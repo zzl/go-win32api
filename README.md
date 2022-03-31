@@ -1,1 +1,1 @@
-# gowin32api
+# go-win32api
