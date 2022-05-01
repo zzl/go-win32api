@@ -731,27 +731,27 @@ var (
 	pGetEventLogInformation uintptr
 )
 
-func ClearEventLogA(hEventLog HANDLE, lpBackupFileName PSTR) (BOOL, WIN32_ERROR) {
+func ClearEventLogA(hEventLog EventLogHandle, lpBackupFileName PSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pClearEventLogA, libAdvapi32, "ClearEventLogA")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(unsafe.Pointer(lpBackupFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ClearEventLog = ClearEventLogW
-func ClearEventLogW(hEventLog HANDLE, lpBackupFileName PWSTR) (BOOL, WIN32_ERROR) {
+func ClearEventLogW(hEventLog EventLogHandle, lpBackupFileName PWSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pClearEventLogW, libAdvapi32, "ClearEventLogW")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(unsafe.Pointer(lpBackupFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func BackupEventLogA(hEventLog HANDLE, lpBackupFileName PSTR) (BOOL, WIN32_ERROR) {
+func BackupEventLogA(hEventLog EventLogHandle, lpBackupFileName PSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pBackupEventLogA, libAdvapi32, "BackupEventLogA")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(unsafe.Pointer(lpBackupFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var BackupEventLog = BackupEventLogW
-func BackupEventLogW(hEventLog HANDLE, lpBackupFileName PWSTR) (BOOL, WIN32_ERROR) {
+func BackupEventLogW(hEventLog EventLogHandle, lpBackupFileName PWSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pBackupEventLogW, libAdvapi32, "BackupEventLogW")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(unsafe.Pointer(lpBackupFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -769,19 +769,19 @@ func DeregisterEventSource(hEventLog EventSourceHandle) (BOOL, WIN32_ERROR) {
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func NotifyChangeEventLog(hEventLog HANDLE, hEvent HANDLE) (BOOL, WIN32_ERROR) {
+func NotifyChangeEventLog(hEventLog EventLogHandle, hEvent HANDLE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pNotifyChangeEventLog, libAdvapi32, "NotifyChangeEventLog")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, hEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetNumberOfEventLogRecords(hEventLog HANDLE, NumberOfRecords *uint32) (BOOL, WIN32_ERROR) {
+func GetNumberOfEventLogRecords(hEventLog EventLogHandle, NumberOfRecords *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetNumberOfEventLogRecords, libAdvapi32, "GetNumberOfEventLogRecords")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(unsafe.Pointer(NumberOfRecords)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetOldestEventLogRecord(hEventLog HANDLE, OldestRecord *uint32) (BOOL, WIN32_ERROR) {
+func GetOldestEventLogRecord(hEventLog EventLogHandle, OldestRecord *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetOldestEventLogRecord, libAdvapi32, "GetOldestEventLogRecord")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(unsafe.Pointer(OldestRecord)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -826,33 +826,33 @@ func OpenBackupEventLogW(lpUNCServerName PWSTR, lpFileName PWSTR) (EventLogHandl
 	return EventLogHandle(ret), WIN32_ERROR(err)
 }
 
-func ReadEventLogA(hEventLog HANDLE, dwReadFlags READ_EVENT_LOG_READ_FLAGS, dwRecordOffset uint32, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, pnBytesRead *uint32, pnMinNumberOfBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
+func ReadEventLogA(hEventLog EventLogHandle, dwReadFlags READ_EVENT_LOG_READ_FLAGS, dwRecordOffset uint32, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, pnBytesRead *uint32, pnMinNumberOfBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadEventLogA, libAdvapi32, "ReadEventLogA")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(dwReadFlags), uintptr(dwRecordOffset), uintptr(lpBuffer), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(pnBytesRead)), uintptr(unsafe.Pointer(pnMinNumberOfBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ReadEventLog = ReadEventLogW
-func ReadEventLogW(hEventLog HANDLE, dwReadFlags READ_EVENT_LOG_READ_FLAGS, dwRecordOffset uint32, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, pnBytesRead *uint32, pnMinNumberOfBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
+func ReadEventLogW(hEventLog EventLogHandle, dwReadFlags READ_EVENT_LOG_READ_FLAGS, dwRecordOffset uint32, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, pnBytesRead *uint32, pnMinNumberOfBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadEventLogW, libAdvapi32, "ReadEventLogW")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(dwReadFlags), uintptr(dwRecordOffset), uintptr(lpBuffer), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(pnBytesRead)), uintptr(unsafe.Pointer(pnMinNumberOfBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ReportEventA(hEventLog HANDLE, wType REPORT_EVENT_TYPE, wCategory uint16, dwEventID uint32, lpUserSid PSID, wNumStrings uint16, dwDataSize uint32, lpStrings *PSTR, lpRawData unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func ReportEventA(hEventLog EventSourceHandle, wType REPORT_EVENT_TYPE, wCategory uint16, dwEventID uint32, lpUserSid PSID, wNumStrings uint16, dwDataSize uint32, lpStrings *PSTR, lpRawData unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReportEventA, libAdvapi32, "ReportEventA")
-	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(wType), uintptr(wCategory), uintptr(dwEventID), lpUserSid, uintptr(wNumStrings), uintptr(dwDataSize), uintptr(unsafe.Pointer(lpStrings)), uintptr(lpRawData))
+	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(wType), uintptr(wCategory), uintptr(dwEventID), uintptr(unsafe.Pointer(lpUserSid)), uintptr(wNumStrings), uintptr(dwDataSize), uintptr(unsafe.Pointer(lpStrings)), uintptr(lpRawData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ReportEvent = ReportEventW
-func ReportEventW(hEventLog HANDLE, wType REPORT_EVENT_TYPE, wCategory uint16, dwEventID uint32, lpUserSid PSID, wNumStrings uint16, dwDataSize uint32, lpStrings *PWSTR, lpRawData unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func ReportEventW(hEventLog EventSourceHandle, wType REPORT_EVENT_TYPE, wCategory uint16, dwEventID uint32, lpUserSid PSID, wNumStrings uint16, dwDataSize uint32, lpStrings *PWSTR, lpRawData unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReportEventW, libAdvapi32, "ReportEventW")
-	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(wType), uintptr(wCategory), uintptr(dwEventID), lpUserSid, uintptr(wNumStrings), uintptr(dwDataSize), uintptr(unsafe.Pointer(lpStrings)), uintptr(lpRawData))
+	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(wType), uintptr(wCategory), uintptr(dwEventID), uintptr(unsafe.Pointer(lpUserSid)), uintptr(wNumStrings), uintptr(dwDataSize), uintptr(unsafe.Pointer(lpStrings)), uintptr(lpRawData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetEventLogInformation(hEventLog HANDLE, dwInfoLevel uint32, lpBuffer unsafe.Pointer, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
+func GetEventLogInformation(hEventLog EventLogHandle, dwInfoLevel uint32, lpBuffer unsafe.Pointer, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetEventLogInformation, libAdvapi32, "GetEventLogInformation")
 	ret, _,  err := syscall.SyscallN(addr, hEventLog, uintptr(dwInfoLevel), uintptr(lpBuffer), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)

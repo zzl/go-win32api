@@ -31,6 +31,7 @@ const (
 )
 
 // enum RAWINPUTDEVICE_FLAGS
+// flags
 type RAWINPUTDEVICE_FLAGS uint32
 const (
 	RIDEV_REMOVE RAWINPUTDEVICE_FLAGS = 1

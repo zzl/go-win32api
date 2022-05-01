@@ -11,6 +11,9 @@ type FindVolumeHandle = uintptr
 type FindVolumeMointPointHandle = uintptr
 
 const (
+	EA_CONTAINER_NAME string = "ContainerName"
+	EA_CONTAINER_SIZE string = "ContainerSize"
+	CLFS_BASELOG_EXTENSION string = ".blf"
 	CLFS_FLAG_REENTRANT_FILE_SYSTEM uint32 = 8
 	CLFS_FLAG_NON_REENTRANT_FILTER uint32 = 16
 	CLFS_FLAG_REENTRANT_FILTER uint32 = 32
@@ -22,6 +25,8 @@ const (
 	CLFS_MARSHALLING_FLAG_DISABLE_BUFF_INIT uint32 = 1
 	CLFS_FLAG_FILTER_INTERMEDIATE_LEVEL uint32 = 16
 	CLFS_FLAG_FILTER_TOP_LEVEL uint32 = 32
+	CLFS_CONTAINER_STREAM_PREFIX string = "%BLF%:"
+	CLFS_CONTAINER_RELATIVE_PREFIX string = "%BLF%\\"
 	TRANSACTION_MANAGER_VOLATILE uint32 = 1
 	TRANSACTION_MANAGER_COMMIT_DEFAULT uint32 = 0
 	TRANSACTION_MANAGER_COMMIT_SYSTEM_VOLUME uint32 = 2
@@ -67,6 +72,10 @@ const (
 	TRANSACTION_NOTIFY_PROMOTE_NEW uint32 = 268435456
 	TRANSACTION_NOTIFY_REQUEST_OUTCOME uint32 = 536870912
 	TRANSACTION_NOTIFY_COMMIT_FINALIZE uint32 = 1073741824
+	TRANSACTIONMANAGER_OBJECT_PATH string = "\\TransactionManager\\"
+	TRANSACTION_OBJECT_PATH string = "\\Transaction\\"
+	ENLISTMENT_OBJECT_PATH string = "\\Enlistment\\"
+	RESOURCE_MANAGER_OBJECT_PATH string = "\\ResourceManager\\"
 	TRANSACTION_NOTIFICATION_TM_ONLINE_FLAG_IS_CLUSTERED uint32 = 1
 	KTM_MARSHAL_BLOB_VERSION_MAJOR uint32 = 1
 	KTM_MARSHAL_BLOB_VERSION_MINOR uint32 = 1
@@ -2890,12 +2899,12 @@ type CLFS_MGMT_POLICY_PolicyParameters__MaximumSize_ struct {
 	Containers uint32
 }
 
-type CLFS_MGMT_POLICY_PolicyParameters__AutoGrow_ struct {
-	Enabled uint32
-}
-
 type CLFS_MGMT_POLICY_PolicyParameters__NewContainerSize_ struct {
 	SizeInBytes uint32
+}
+
+type CLFS_MGMT_POLICY_PolicyParameters__AutoGrow_ struct {
+	Enabled uint32
 }
 
 type CLFS_MGMT_POLICY_PolicyParameters_ struct {
@@ -3312,7 +3321,7 @@ type SHARE_INFO_502 struct {
 	Shi502_path PWSTR
 	Shi502_passwd PWSTR
 	Shi502_reserved uint32
-	Shi502_security_descriptor *SECURITY_DESCRIPTOR
+	Shi502_security_descriptor PSECURITY_DESCRIPTOR
 }
 
 type SHARE_INFO_503 struct {
@@ -3326,7 +3335,7 @@ type SHARE_INFO_503 struct {
 	Shi503_passwd PWSTR
 	Shi503_servername PWSTR
 	Shi503_reserved uint32
-	Shi503_security_descriptor *SECURITY_DESCRIPTOR
+	Shi503_security_descriptor PSECURITY_DESCRIPTOR
 }
 
 type SHARE_INFO_1004 struct {
@@ -3343,7 +3352,7 @@ type SHARE_INFO_1006 struct {
 
 type SHARE_INFO_1501 struct {
 	Shi1501_reserved uint32
-	Shi1501_security_descriptor *SECURITY_DESCRIPTOR
+	Shi1501_security_descriptor PSECURITY_DESCRIPTOR
 }
 
 type SHARE_INFO_1503 struct {
@@ -3758,6 +3767,15 @@ type COPYFILE2_MESSAGE_Info__ChunkFinished_ struct {
 	UliTotalBytesTransferred uint64
 }
 
+type COPYFILE2_MESSAGE_Info__StreamStarted_ struct {
+	DwStreamNumber uint32
+	DwReserved uint32
+	HSourceFile HANDLE
+	HDestinationFile HANDLE
+	UliStreamSize uint64
+	UliTotalFileSize uint64
+}
+
 type COPYFILE2_MESSAGE_Info__PollContinue_ struct {
 	DwReserved uint32
 }
@@ -3769,15 +3787,6 @@ type COPYFILE2_MESSAGE_Info__ChunkStarted_ struct {
 	HDestinationFile HANDLE
 	UliChunkNumber uint64
 	UliChunkSize uint64
-	UliStreamSize uint64
-	UliTotalFileSize uint64
-}
-
-type COPYFILE2_MESSAGE_Info__StreamStarted_ struct {
-	DwStreamNumber uint32
-	DwReserved uint32
-	HSourceFile HANDLE
-	HDestinationFile HANDLE
 	UliStreamSize uint64
 	UliTotalFileSize uint64
 }
@@ -4015,13 +4024,13 @@ type FILE_ID_EXTD_DIR_INFO struct {
 	FileName [1]uint16
 }
 
-type FILE_REMOTE_PROTOCOL_INFO_ProtocolSpecific__Smb2__Server_ struct {
-	Capabilities uint32
-}
-
 type FILE_REMOTE_PROTOCOL_INFO_ProtocolSpecific__Smb2__Share_ struct {
 	Capabilities uint32
 	CachingFlags uint32
+}
+
+type FILE_REMOTE_PROTOCOL_INFO_ProtocolSpecific__Smb2__Server_ struct {
+	Capabilities uint32
 }
 
 type FILE_REMOTE_PROTOCOL_INFO_ProtocolSpecific__Smb2_ struct {
@@ -4139,7 +4148,7 @@ type CACHE_READ_CALLBACK func(cb uint32, lpb *uint8, lpvContext unsafe.Pointer) 
 
 type CACHE_DESTROY_CALLBACK func(cb uint32, lpb *uint8)
 
-type CACHE_ACCESS_CHECK func(pSecurityDescriptor *SECURITY_DESCRIPTOR, hClientToken HANDLE, dwDesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) BOOL
+type CACHE_ACCESS_CHECK func(pSecurityDescriptor PSECURITY_DESCRIPTOR, hClientToken HANDLE, dwDesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) BOOL
 
 type PFE_EXPORT_FUNC func(pbData *uint8, pvCallbackContext unsafe.Pointer, ulLength uint32) uint32
 
@@ -4491,7 +4500,7 @@ func (this *IDiskQuotaControl) GetDefaultQuotaLimitText(pszText PWSTR, cchText u
 }
 
 func (this *IDiskQuotaControl) AddUserSid(pUserSid PSID, fNameResolution DISKQUOTA_USERNAME_RESOLVE, ppUser **IDiskQuotaUser) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().AddUserSid, uintptr(unsafe.Pointer(this)), uintptr(pUserSid), uintptr(fNameResolution), uintptr(unsafe.Pointer(ppUser)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().AddUserSid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pUserSid)), uintptr(fNameResolution), uintptr(unsafe.Pointer(ppUser)))
 	return HRESULT(ret)
 }
 
@@ -4506,7 +4515,7 @@ func (this *IDiskQuotaControl) DeleteUser(pUser *IDiskQuotaUser) HRESULT{
 }
 
 func (this *IDiskQuotaControl) FindUserSid(pUserSid PSID, fNameResolution DISKQUOTA_USERNAME_RESOLVE, ppUser **IDiskQuotaUser) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().FindUserSid, uintptr(unsafe.Pointer(this)), uintptr(pUserSid), uintptr(fNameResolution), uintptr(unsafe.Pointer(ppUser)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().FindUserSid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pUserSid)), uintptr(fNameResolution), uintptr(unsafe.Pointer(ppUser)))
 	return HRESULT(ret)
 }
 

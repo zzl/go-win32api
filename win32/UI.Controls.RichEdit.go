@@ -4,9 +4,14 @@ import "unsafe"
 import "syscall"
 
 const (
-	WM_CONTEXTMENU uint32 = 123
-	WM_UNICHAR uint32 = 265
-	WM_PRINTCLIENT uint32 = 792
+	CchTextLimitDefault uint32 = 32767
+	MSFTEDIT_CLASS string = "RICHEDIT50W"
+	CERICHEDIT_CLASSA string = "RichEditCEA"
+	CERICHEDIT_CLASSW string = "RichEditCEW"
+	RICHEDIT_CLASSA string = "RichEdit20A"
+	RICHEDIT_CLASS10A string = "RICHEDIT"
+	RICHEDIT_CLASSW string = "RichEdit20W"
+	RICHEDIT_CLASS string = "RichEdit20W"
 	EM_CANPASTE uint32 = 1074
 	EM_DISPLAYBAND uint32 = 1075
 	EM_EXGETSEL uint32 = 1076
@@ -322,6 +327,7 @@ const (
 	IMF_FORCEINACTIVE uint32 = 128
 	IMF_FORCEREMEMBER uint32 = 256
 	IMF_MULTIPLEEDIT uint32 = 1024
+	YHeightCharPtsMost uint32 = 1638
 	SCF_SELECTION uint32 = 1
 	SCF_WORD uint32 = 2
 	SCF_DEFAULT uint32 = 0
@@ -349,6 +355,7 @@ const (
 	SFF_PWD uint32 = 2048
 	SF_RTFVAL uint32 = 1792
 	MAX_TAB_STOPS uint32 = 32
+	LDefaultTab uint32 = 720
 	MAX_TABLE_CELLS uint32 = 63
 	PFM_SPACEBEFORE uint32 = 64
 	PFM_SPACEAFTER uint32 = 128
@@ -381,12 +388,14 @@ const (
 	PFN_UCROMAN uint32 = 6
 	PFA_JUSTIFY uint32 = 4
 	PFA_FULL_INTERWORD uint32 = 4
-	WM_NOTIFY uint32 = 78
 	GCMF_GRIPPER uint32 = 1
 	GCMF_SPELLING uint32 = 2
 	GCMF_TOUCHMENU uint32 = 16384
 	GCMF_MOUSEMENU uint32 = 8192
 	OLEOP_DOVERB uint32 = 1
+	CF_RTF string = "Rich Text Format"
+	CF_RTFNOOBJS string = "Rich Text Format Without Objects"
+	CF_RETEXTOBJ string = "RichEdit Text and Objects"
 	ST_DEFAULT uint32 = 0
 	ST_KEEPUNDO uint32 = 1
 	ST_SELECTION uint32 = 2
@@ -410,6 +419,7 @@ const (
 	FR_MATCHDIAC uint32 = 536870912
 	FR_MATCHKASHIDA uint32 = 1073741824
 	FR_MATCHALEFHAMZA uint32 = 2147483648
+	RICHEDIT60_CLASS string = "RICHEDIT60W"
 	PFA_FULL_NEWSPAPER uint32 = 5
 	PFA_FULL_INTERLETTER uint32 = 6
 	PFA_FULL_SCALED uint32 = 7

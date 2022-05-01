@@ -39,6 +39,25 @@ const (
 	SYNCHRONIZATION_BARRIER_FLAGS_SPIN_ONLY uint32 = 1
 	SYNCHRONIZATION_BARRIER_FLAGS_BLOCK_ONLY uint32 = 2
 	SYNCHRONIZATION_BARRIER_FLAGS_NO_DELETE uint32 = 4
+	PROC_THREAD_ATTRIBUTE_PARENT_PROCESS uint32 = 131072
+	PROC_THREAD_ATTRIBUTE_HANDLE_LIST uint32 = 131074
+	PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY uint32 = 196611
+	PROC_THREAD_ATTRIBUTE_PREFERRED_NODE uint32 = 131076
+	PROC_THREAD_ATTRIBUTE_IDEAL_PROCESSOR uint32 = 196613
+	PROC_THREAD_ATTRIBUTE_UMS_THREAD uint32 = 196614
+	PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY uint32 = 131079
+	PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES uint32 = 131081
+	PROC_THREAD_ATTRIBUTE_PROTECTION_LEVEL uint32 = 131083
+	PROC_THREAD_ATTRIBUTE_PSEUDOCONSOLE uint32 = 131094
+	PROC_THREAD_ATTRIBUTE_MACHINE_TYPE uint32 = 131097
+	PROC_THREAD_ATTRIBUTE_ENABLE_OPTIONAL_XSTATE_FEATURES uint32 = 196635
+	PROC_THREAD_ATTRIBUTE_WIN32K_FILTER uint32 = 131088
+	PROC_THREAD_ATTRIBUTE_JOB_LIST uint32 = 131085
+	PROC_THREAD_ATTRIBUTE_CHILD_PROCESS_POLICY uint32 = 131086
+	PROC_THREAD_ATTRIBUTE_ALL_APPLICATION_PACKAGES_POLICY uint32 = 131087
+	PROC_THREAD_ATTRIBUTE_DESKTOP_APP_POLICY uint32 = 131090
+	PROC_THREAD_ATTRIBUTE_MITIGATION_AUDIT_POLICY uint32 = 131096
+	PROC_THREAD_ATTRIBUTE_COMPONENT_FILTER uint32 = 131098
 )
 
 // enums
@@ -351,6 +370,16 @@ const (
 	PMETypeMax PROCESS_MEMORY_EXHAUSTION_TYPE = 1
 )
 
+// enum AVRT_PRIORITY
+type AVRT_PRIORITY int32
+const (
+	AVRT_PRIORITY_VERYLOW AVRT_PRIORITY = -2
+	AVRT_PRIORITY_LOW AVRT_PRIORITY = -1
+	AVRT_PRIORITY_NORMAL AVRT_PRIORITY = 0
+	AVRT_PRIORITY_HIGH AVRT_PRIORITY = 1
+	AVRT_PRIORITY_CRITICAL AVRT_PRIORITY = 2
+)
+
 // enum PROCESS_MITIGATION_POLICY
 type PROCESS_MITIGATION_POLICY int32
 const (
@@ -395,6 +424,31 @@ const (
 	TP_CALLBACK_PRIORITY_LOW TP_CALLBACK_PRIORITY = 2
 	TP_CALLBACK_PRIORITY_INVALID TP_CALLBACK_PRIORITY = 3
 	TP_CALLBACK_PRIORITY_COUNT TP_CALLBACK_PRIORITY = 3
+)
+
+// enum PROC_THREAD_ATTRIBUTE_NUM
+type PROC_THREAD_ATTRIBUTE_NUM uint32
+const (
+	ProcThreadAttributeParentProcess PROC_THREAD_ATTRIBUTE_NUM = 0
+	ProcThreadAttributeHandleList PROC_THREAD_ATTRIBUTE_NUM = 2
+	ProcThreadAttributeGroupAffinity PROC_THREAD_ATTRIBUTE_NUM = 3
+	ProcThreadAttributePreferredNode PROC_THREAD_ATTRIBUTE_NUM = 4
+	ProcThreadAttributeIdealProcessor PROC_THREAD_ATTRIBUTE_NUM = 5
+	ProcThreadAttributeUmsThread PROC_THREAD_ATTRIBUTE_NUM = 6
+	ProcThreadAttributeMitigationPolicy PROC_THREAD_ATTRIBUTE_NUM = 7
+	ProcThreadAttributeSecurityCapabilities PROC_THREAD_ATTRIBUTE_NUM = 9
+	ProcThreadAttributeProtectionLevel PROC_THREAD_ATTRIBUTE_NUM = 11
+	ProcThreadAttributeJobList PROC_THREAD_ATTRIBUTE_NUM = 13
+	ProcThreadAttributeChildProcessPolicy PROC_THREAD_ATTRIBUTE_NUM = 14
+	ProcThreadAttributeAllApplicationPackagesPolicy PROC_THREAD_ATTRIBUTE_NUM = 15
+	ProcThreadAttributeWin32kFilter PROC_THREAD_ATTRIBUTE_NUM = 16
+	ProcThreadAttributeSafeOpenPromptOriginClaim PROC_THREAD_ATTRIBUTE_NUM = 17
+	ProcThreadAttributeDesktopAppPolicy PROC_THREAD_ATTRIBUTE_NUM = 18
+	ProcThreadAttributePseudoConsole PROC_THREAD_ATTRIBUTE_NUM = 22
+	ProcThreadAttributeMitigationAuditPolicy PROC_THREAD_ATTRIBUTE_NUM = 24
+	ProcThreadAttributeMachineType PROC_THREAD_ATTRIBUTE_NUM = 25
+	ProcThreadAttributeComponentFilter PROC_THREAD_ATTRIBUTE_NUM = 26
+	ProcThreadAttributeEnableOptionalXStateFeatures PROC_THREAD_ATTRIBUTE_NUM = 27
 )
 
 // enum PROCESSINFOCLASS
@@ -2306,7 +2360,7 @@ func CreateBoundaryDescriptorW(Name PWSTR, Flags uint32) BoundaryDescriptorHandl
 
 func AddSIDToBoundaryDescriptor(BoundaryDescriptor *HANDLE, RequiredSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddSIDToBoundaryDescriptor, libKernel32, "AddSIDToBoundaryDescriptor")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(BoundaryDescriptor)), RequiredSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(BoundaryDescriptor)), uintptr(unsafe.Pointer(RequiredSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -2639,7 +2693,7 @@ func CreateBoundaryDescriptorA(Name PSTR, Flags uint32) (BoundaryDescriptorHandl
 
 func AddIntegrityLabelToBoundaryDescriptor(BoundaryDescriptor *HANDLE, IntegrityLabel PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddIntegrityLabelToBoundaryDescriptor, libKernel32, "AddIntegrityLabelToBoundaryDescriptor")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(BoundaryDescriptor)), IntegrityLabel)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(BoundaryDescriptor)), uintptr(unsafe.Pointer(IntegrityLabel)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 

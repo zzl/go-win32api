@@ -8,6 +8,12 @@ type SERVICE_STATUS_HANDLE = uintptr
 const (
 	SERVICE_ALL_ACCESS uint32 = 983551
 	SC_MANAGER_ALL_ACCESS uint32 = 983103
+	SERVICES_ACTIVE_DATABASEW string = "ServicesActive"
+	SERVICES_FAILED_DATABASEW string = "ServicesFailed"
+	SERVICES_ACTIVE_DATABASEA string = "ServicesActive"
+	SERVICES_FAILED_DATABASEA string = "ServicesFailed"
+	SERVICES_ACTIVE_DATABASE string = "ServicesActive"
+	SERVICES_FAILED_DATABASE string = "ServicesFailed"
 	SERVICE_NO_CHANGE uint32 = 4294967295
 	SERVICE_CONTROL_STOP uint32 = 1
 	SERVICE_CONTROL_PAUSE uint32 = 2
@@ -118,6 +124,8 @@ const (
 	SERVICE_LAUNCH_PROTECTED_WINDOWS uint32 = 1
 	SERVICE_LAUNCH_PROTECTED_WINDOWS_LIGHT uint32 = 2
 	SERVICE_LAUNCH_PROTECTED_ANTIMALWARE_LIGHT uint32 = 3
+	SERVICE_TRIGGER_STARTED_ARGUMENT string = "TriggerStarted"
+	SC_AGGREGATE_STORAGE_KEY string = "System\\CurrentControlSet\\Control\\ServiceAggregatedEvents"
 )
 
 var (
@@ -184,10 +192,8 @@ const (
 type ENUM_SERVICE_TYPE uint32
 const (
 	SERVICE_DRIVER ENUM_SERVICE_TYPE = 11
-	SERVICE_FILE_SYSTEM_DRIVER_ ENUM_SERVICE_TYPE = 2
 	SERVICE_KERNEL_DRIVER ENUM_SERVICE_TYPE = 1
 	SERVICE_WIN32 ENUM_SERVICE_TYPE = 48
-	SERVICE_WIN32_OWN_PROCESS_ ENUM_SERVICE_TYPE = 16
 	SERVICE_WIN32_SHARE_PROCESS ENUM_SERVICE_TYPE = 32
 	SERVICE_ADAPTER ENUM_SERVICE_TYPE = 4
 	SERVICE_FILE_SYSTEM_DRIVER ENUM_SERVICE_TYPE = 2
@@ -884,7 +890,7 @@ func QueryServiceLockStatusW(hSCManager SC_HANDLE, lpLockStatus *QUERY_SERVICE_L
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func QueryServiceObjectSecurity(hService SC_HANDLE, dwSecurityInformation uint32, lpSecurityDescriptor *SECURITY_DESCRIPTOR, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
+func QueryServiceObjectSecurity(hService SC_HANDLE, dwSecurityInformation uint32, lpSecurityDescriptor PSECURITY_DESCRIPTOR, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pQueryServiceObjectSecurity, libAdvapi32, "QueryServiceObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, hService, uintptr(dwSecurityInformation), uintptr(unsafe.Pointer(lpSecurityDescriptor)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -928,7 +934,7 @@ func RegisterServiceCtrlHandlerExW(lpServiceName PWSTR, lpHandlerProc uintptr, l
 	return SERVICE_STATUS_HANDLE(ret), WIN32_ERROR(err)
 }
 
-func SetServiceObjectSecurity(hService SC_HANDLE, dwSecurityInformation OBJECT_SECURITY_INFORMATION, lpSecurityDescriptor *SECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
+func SetServiceObjectSecurity(hService SC_HANDLE, dwSecurityInformation OBJECT_SECURITY_INFORMATION, lpSecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetServiceObjectSecurity, libAdvapi32, "SetServiceObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, hService, uintptr(dwSecurityInformation), uintptr(unsafe.Pointer(lpSecurityDescriptor)))
 	return BOOL(ret), WIN32_ERROR(err)

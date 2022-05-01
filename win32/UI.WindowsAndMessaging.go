@@ -14,6 +14,10 @@ const (
 	BSM_VXDS uint32 = 1
 	BSM_NETDRIVER uint32 = 2
 	BSM_INSTALLABLEDRIVERS uint32 = 4
+	WM_CONTEXTMENU uint32 = 123
+	WM_UNICHAR uint32 = 265
+	WM_PRINTCLIENT uint32 = 792
+	WM_NOTIFY uint32 = 78
 	DIFFERENCE uint32 = 11
 	RT_MANIFEST uint32 = 24
 	CREATEPROCESS_MANIFEST_RESOURCE_ID uint32 = 1
@@ -602,7 +606,6 @@ const (
 	SM_RESERVED4 uint32 = 27
 	SM_CMETRICS uint32 = 76
 	SM_CARETBLINKINGENABLED uint32 = 8194
-	SM_SYSTEMDOCKED uint32 = 8196
 	PMB_ACTIVE uint32 = 1
 	MNC_IGNORE uint32 = 0
 	MNC_CLOSE uint32 = 1
@@ -2346,7 +2349,7 @@ const (
 	SM_SLOWMACHINE SYSTEM_METRICS_INDEX = 73
 	SM_STARTER SYSTEM_METRICS_INDEX = 88
 	SM_SWAPBUTTON SYSTEM_METRICS_INDEX = 23
-	SM_SYSTEMDOCKED_ SYSTEM_METRICS_INDEX = 8196
+	SM_SYSTEMDOCKED SYSTEM_METRICS_INDEX = 8196
 	SM_TABLETPC SYSTEM_METRICS_INDEX = 86
 	SM_XVIRTUALSCREEN SYSTEM_METRICS_INDEX = 76
 	SM_YVIRTUALSCREEN SYSTEM_METRICS_INDEX = 77
@@ -3703,14 +3706,14 @@ var (
 	pChangeWindowMessageFilterEx uintptr
 )
 
-func LoadStringA(hInstance HINSTANCE, uID uint32, lpBuffer *uint8, cchBufferMax int32) (int32, WIN32_ERROR) {
+func LoadStringA(hInstance HINSTANCE, uID uint32, lpBuffer PSTR, cchBufferMax int32) (int32, WIN32_ERROR) {
 	addr := lazyAddr(&pLoadStringA, libUser32, "LoadStringA")
 	ret, _,  err := syscall.SyscallN(addr, hInstance, uintptr(uID), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cchBufferMax))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 var LoadString = LoadStringW
-func LoadStringW(hInstance HINSTANCE, uID uint32, lpBuffer *uint16, cchBufferMax int32) (int32, WIN32_ERROR) {
+func LoadStringW(hInstance HINSTANCE, uID uint32, lpBuffer PWSTR, cchBufferMax int32) (int32, WIN32_ERROR) {
 	addr := lazyAddr(&pLoadStringW, libUser32, "LoadStringW")
 	ret, _,  err := syscall.SyscallN(addr, hInstance, uintptr(uID), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cchBufferMax))
 	return int32(ret), WIN32_ERROR(err)

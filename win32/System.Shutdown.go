@@ -188,7 +188,7 @@ func CheckForHiberboot(pHiberboot *BOOLEAN, bClearFlag BOOLEAN) uint32 {
 	return uint32(ret)
 }
 
-func ExitWindowsEx(uFlags EXIT_WINDOWS_FLAGS, dwReason uint32) (BOOL, WIN32_ERROR) {
+func ExitWindowsEx(uFlags EXIT_WINDOWS_FLAGS, dwReason SHUTDOWN_REASON) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pExitWindowsEx, libUser32, "ExitWindowsEx")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(uFlags), uintptr(dwReason))
 	return BOOL(ret), WIN32_ERROR(err)

@@ -13,9 +13,35 @@ type NCRYPT_DESCRIPTOR_HANDLE = uintptr
 type NCRYPT_STREAM_HANDLE = uintptr
 type SAFER_LEVEL_HANDLE = uintptr
 type SC_HANDLE = uintptr
+type PSECURITY_DESCRIPTOR = unsafe.Pointer
 
 const (
+	WszCERTENROLLSHAREPATH string = "CertSrv\\CertEnroll"
+	CwcHRESULTSTRING uint32 = 40
+	SzLBRACE string = "{"
+	SzRBRACE string = "}"
+	WszLBRACE string = "{"
+	WszRBRACE string = "}"
+	SzLPAREN string = "("
+	SzRPAREN string = ")"
+	WszLPAREN string = "("
+	WszRPAREN string = ")"
 	CVT_SECONDS uint32 = 1
+	CwcFILENAMESUFFIXMAX uint32 = 20
+	WszFCSAPARM_SERVERDNSNAME string = "%1"
+	WszFCSAPARM_SERVERSHORTNAME string = "%2"
+	WszFCSAPARM_SANITIZEDCANAME string = "%3"
+	WszFCSAPARM_CERTFILENAMESUFFIX string = "%4"
+	WszFCSAPARM_DOMAINDN string = "%5"
+	WszFCSAPARM_CONFIGDN string = "%6"
+	WszFCSAPARM_SANITIZEDCANAMEHASH string = "%7"
+	WszFCSAPARM_CRLFILENAMESUFFIX string = "%8"
+	WszFCSAPARM_CRLDELTAFILENAMESUFFIX string = "%9"
+	WszFCSAPARM_DSCRLATTRIBUTE string = "%10"
+	WszFCSAPARM_DSCACERTATTRIBUTE string = "%11"
+	WszFCSAPARM_DSUSERCERTATTRIBUTE string = "%12"
+	WszFCSAPARM_DSKRACERTATTRIBUTE string = "%13"
+	WszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE string = "%14"
 )
 
 // enums
@@ -77,7 +103,6 @@ const (
 	INHERIT_NO_PROPAGATE ACE_FLAGS = 4
 	INHERIT_ONLY ACE_FLAGS = 8
 	NO_INHERITANCE ACE_FLAGS = 0
-	INHERIT_ONLY_ACE_ ACE_FLAGS = 8
 )
 
 // enum OBJECT_SECURITY_INFORMATION
@@ -731,7 +756,7 @@ type ACCESS_REASONS struct {
 type SE_SECURITY_DESCRIPTOR struct {
 	Size uint32
 	Flags uint32
-	SecurityDescriptor *SECURITY_DESCRIPTOR
+	SecurityDescriptor PSECURITY_DESCRIPTOR
 }
 
 type SE_ACCESS_REQUEST struct {
@@ -1176,85 +1201,85 @@ var (
 	pLogonUserExW uintptr
 )
 
-func AccessCheck(pSecurityDescriptor *SECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) (BOOL, WIN32_ERROR) {
+func AccessCheck(pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAccessCheck, libAdvapi32, "AccessCheck")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), ClientToken, uintptr(DesiredAccess), uintptr(unsafe.Pointer(GenericMapping)), uintptr(unsafe.Pointer(PrivilegeSet)), uintptr(unsafe.Pointer(PrivilegeSetLength)), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var AccessCheckAndAuditAlarm = AccessCheckAndAuditAlarmW
-func AccessCheckAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) BOOL {
 	addr := lazyAddr(&pAccessCheckAndAuditAlarmW, libAdvapi32, "AccessCheckAndAuditAlarmW")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(DesiredAccess), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
 }
 
-func AccessCheckByType(pSecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, ClientToken HANDLE, DesiredAccess uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByType(pSecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, ClientToken HANDLE, DesiredAccess uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAccessCheckByType, libAdvapi32, "AccessCheckByType")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), PrincipalSelfSid, ClientToken, uintptr(DesiredAccess), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(unsafe.Pointer(PrivilegeSet)), uintptr(unsafe.Pointer(PrivilegeSetLength)), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), ClientToken, uintptr(DesiredAccess), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(unsafe.Pointer(PrivilegeSet)), uintptr(unsafe.Pointer(PrivilegeSetLength)), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckByTypeResultList(pSecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, ClientToken HANDLE, DesiredAccess uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccessList *uint32, AccessStatusList *uint32) (BOOL, WIN32_ERROR) {
+func AccessCheckByTypeResultList(pSecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, ClientToken HANDLE, DesiredAccess uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccessList *uint32, AccessStatusList *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAccessCheckByTypeResultList, libAdvapi32, "AccessCheckByTypeResultList")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), PrincipalSelfSid, ClientToken, uintptr(DesiredAccess), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(unsafe.Pointer(PrivilegeSet)), uintptr(unsafe.Pointer(PrivilegeSetLength)), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), ClientToken, uintptr(DesiredAccess), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(unsafe.Pointer(PrivilegeSet)), uintptr(unsafe.Pointer(PrivilegeSetLength)), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmW
-func AccessCheckByTypeAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckByTypeAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) BOOL {
 	addr := lazyAddr(&pAccessCheckByTypeAndAuditAlarmW, libAdvapi32, "AccessCheckByTypeAndAuditAlarmW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), PrincipalSelfSid, uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
 }
 
 var AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmW
-func AccessCheckByTypeResultListAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckByTypeResultListAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) BOOL {
 	addr := lazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmW, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), PrincipalSelfSid, uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
 }
 
 var AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleW
-func AccessCheckByTypeResultListAndAuditAlarmByHandleW(SubsystemName PWSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckByTypeResultListAndAuditAlarmByHandleW(SubsystemName PWSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) BOOL {
 	addr := lazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmByHandleW, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmByHandleW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), ClientToken, uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), PrincipalSelfSid, uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), ClientToken, uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
 }
 
 func AddAccessAllowedAce(pAcl *ACL, dwAceRevision uint32, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessAllowedAce, libAdvapi32, "AddAccessAllowedAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AccessMask), pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddAccessAllowedAceEx(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessAllowedAceEx, libAdvapi32, "AddAccessAllowedAceEx")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddAccessAllowedObjectAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessAllowedObjectAce, libAdvapi32, "AddAccessAllowedObjectAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddAccessDeniedAce(pAcl *ACL, dwAceRevision uint32, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessDeniedAce, libAdvapi32, "AddAccessDeniedAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AccessMask), pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddAccessDeniedAceEx(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessDeniedAceEx, libAdvapi32, "AddAccessDeniedAceEx")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddAccessDeniedObjectAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessDeniedObjectAce, libAdvapi32, "AddAccessDeniedObjectAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1266,37 +1291,37 @@ func AddAce(pAcl *ACL, dwAceRevision uint32, dwStartingAceIndex uint32, pAceList
 
 func AddAuditAccessAce(pAcl *ACL, dwAceRevision uint32, dwAccessMask uint32, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAuditAccessAce, libAdvapi32, "AddAuditAccessAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(dwAccessMask), pSid, uintptr(bAuditSuccess), uintptr(bAuditFailure))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(dwAccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(bAuditSuccess), uintptr(bAuditFailure))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddAuditAccessAceEx(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, dwAccessMask uint32, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAuditAccessAceEx, libAdvapi32, "AddAuditAccessAceEx")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(dwAccessMask), pSid, uintptr(bAuditSuccess), uintptr(bAuditFailure))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(dwAccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(bAuditSuccess), uintptr(bAuditFailure))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddAuditAccessObjectAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAuditAccessObjectAce, libAdvapi32, "AddAuditAccessObjectAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), pSid, uintptr(bAuditSuccess), uintptr(bAuditFailure))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), uintptr(unsafe.Pointer(pSid)), uintptr(bAuditSuccess), uintptr(bAuditFailure))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddMandatoryAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, MandatoryPolicy uint32, pLabelSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddMandatoryAce, libAdvapi32, "AddMandatoryAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(MandatoryPolicy), pLabelSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(MandatoryPolicy), uintptr(unsafe.Pointer(pLabelSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddResourceAttributeAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID, pAttributeInfo *CLAIM_SECURITY_ATTRIBUTES_INFORMATION, pReturnLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddResourceAttributeAce, libKernel32, "AddResourceAttributeAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), pSid, uintptr(unsafe.Pointer(pAttributeInfo)), uintptr(unsafe.Pointer(pReturnLength)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(unsafe.Pointer(pAttributeInfo)), uintptr(unsafe.Pointer(pReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AddScopedPolicyIDAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddScopedPolicyIDAce, libKernel32, "AddScopedPolicyIDAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1338,13 +1363,13 @@ func AreAnyAccessesGranted(GrantedAccess uint32, DesiredAccess uint32) BOOL {
 
 func CheckTokenMembership(TokenHandle HANDLE, SidToCheck PSID, IsMember *BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCheckTokenMembership, libAdvapi32, "CheckTokenMembership")
-	ret, _,  err := syscall.SyscallN(addr, TokenHandle, SidToCheck, uintptr(unsafe.Pointer(IsMember)))
+	ret, _,  err := syscall.SyscallN(addr, TokenHandle, uintptr(unsafe.Pointer(SidToCheck)), uintptr(unsafe.Pointer(IsMember)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CheckTokenCapability(TokenHandle HANDLE, CapabilitySidToCheck PSID, HasCapability *BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCheckTokenCapability, libKernel32, "CheckTokenCapability")
-	ret, _,  err := syscall.SyscallN(addr, TokenHandle, CapabilitySidToCheck, uintptr(unsafe.Pointer(HasCapability)))
+	ret, _,  err := syscall.SyscallN(addr, TokenHandle, uintptr(unsafe.Pointer(CapabilitySidToCheck)), uintptr(unsafe.Pointer(HasCapability)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1356,11 +1381,11 @@ func GetAppContainerAce(Acl *ACL, StartingAceIndex uint32, AppContainerAce unsaf
 
 func CheckTokenMembershipEx(TokenHandle HANDLE, SidToCheck PSID, Flags uint32, IsMember *BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCheckTokenMembershipEx, libKernel32, "CheckTokenMembershipEx")
-	ret, _,  err := syscall.SyscallN(addr, TokenHandle, SidToCheck, uintptr(Flags), uintptr(unsafe.Pointer(IsMember)))
+	ret, _,  err := syscall.SyscallN(addr, TokenHandle, uintptr(unsafe.Pointer(SidToCheck)), uintptr(Flags), uintptr(unsafe.Pointer(IsMember)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ConvertToAutoInheritPrivateObjectSecurity(ParentDescriptor *SECURITY_DESCRIPTOR, CurrentSecurityDescriptor *SECURITY_DESCRIPTOR, NewSecurityDescriptor **SECURITY_DESCRIPTOR, ObjectType *syscall.GUID, IsDirectoryObject BOOLEAN, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
+func ConvertToAutoInheritPrivateObjectSecurity(ParentDescriptor PSECURITY_DESCRIPTOR, CurrentSecurityDescriptor PSECURITY_DESCRIPTOR, NewSecurityDescriptor *PSECURITY_DESCRIPTOR, ObjectType *syscall.GUID, IsDirectoryObject BOOLEAN, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pConvertToAutoInheritPrivateObjectSecurity, libAdvapi32, "ConvertToAutoInheritPrivateObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ParentDescriptor)), uintptr(unsafe.Pointer(CurrentSecurityDescriptor)), uintptr(unsafe.Pointer(NewSecurityDescriptor)), uintptr(unsafe.Pointer(ObjectType)), uintptr(IsDirectoryObject), uintptr(unsafe.Pointer(GenericMapping)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1368,23 +1393,23 @@ func ConvertToAutoInheritPrivateObjectSecurity(ParentDescriptor *SECURITY_DESCRI
 
 func CopySid(nDestinationSidLength uint32, pDestinationSid PSID, pSourceSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCopySid, libAdvapi32, "CopySid")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(nDestinationSidLength), pDestinationSid, pSourceSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(nDestinationSidLength), uintptr(unsafe.Pointer(pDestinationSid)), uintptr(unsafe.Pointer(pSourceSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreatePrivateObjectSecurity(ParentDescriptor *SECURITY_DESCRIPTOR, CreatorDescriptor *SECURITY_DESCRIPTOR, NewDescriptor **SECURITY_DESCRIPTOR, IsDirectoryObject BOOL, Token HANDLE, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
+func CreatePrivateObjectSecurity(ParentDescriptor PSECURITY_DESCRIPTOR, CreatorDescriptor PSECURITY_DESCRIPTOR, NewDescriptor *PSECURITY_DESCRIPTOR, IsDirectoryObject BOOL, Token HANDLE, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreatePrivateObjectSecurity, libAdvapi32, "CreatePrivateObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ParentDescriptor)), uintptr(unsafe.Pointer(CreatorDescriptor)), uintptr(unsafe.Pointer(NewDescriptor)), uintptr(IsDirectoryObject), Token, uintptr(unsafe.Pointer(GenericMapping)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreatePrivateObjectSecurityEx(ParentDescriptor *SECURITY_DESCRIPTOR, CreatorDescriptor *SECURITY_DESCRIPTOR, NewDescriptor **SECURITY_DESCRIPTOR, ObjectType *syscall.GUID, IsContainerObject BOOL, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, Token HANDLE, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
+func CreatePrivateObjectSecurityEx(ParentDescriptor PSECURITY_DESCRIPTOR, CreatorDescriptor PSECURITY_DESCRIPTOR, NewDescriptor *PSECURITY_DESCRIPTOR, ObjectType *syscall.GUID, IsContainerObject BOOL, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, Token HANDLE, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreatePrivateObjectSecurityEx, libAdvapi32, "CreatePrivateObjectSecurityEx")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ParentDescriptor)), uintptr(unsafe.Pointer(CreatorDescriptor)), uintptr(unsafe.Pointer(NewDescriptor)), uintptr(unsafe.Pointer(ObjectType)), uintptr(IsContainerObject), uintptr(AutoInheritFlags), Token, uintptr(unsafe.Pointer(GenericMapping)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreatePrivateObjectSecurityWithMultipleInheritance(ParentDescriptor *SECURITY_DESCRIPTOR, CreatorDescriptor *SECURITY_DESCRIPTOR, NewDescriptor **SECURITY_DESCRIPTOR, ObjectTypes **syscall.GUID, GuidCount uint32, IsContainerObject BOOL, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, Token HANDLE, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
+func CreatePrivateObjectSecurityWithMultipleInheritance(ParentDescriptor PSECURITY_DESCRIPTOR, CreatorDescriptor PSECURITY_DESCRIPTOR, NewDescriptor *PSECURITY_DESCRIPTOR, ObjectTypes **syscall.GUID, GuidCount uint32, IsContainerObject BOOL, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, Token HANDLE, GenericMapping *GENERIC_MAPPING) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreatePrivateObjectSecurityWithMultipleInheritance, libAdvapi32, "CreatePrivateObjectSecurityWithMultipleInheritance")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ParentDescriptor)), uintptr(unsafe.Pointer(CreatorDescriptor)), uintptr(unsafe.Pointer(NewDescriptor)), uintptr(unsafe.Pointer(ObjectTypes)), uintptr(GuidCount), uintptr(IsContainerObject), uintptr(AutoInheritFlags), Token, uintptr(unsafe.Pointer(GenericMapping)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1398,13 +1423,13 @@ func CreateRestrictedToken(ExistingTokenHandle HANDLE, Flags CREATE_RESTRICTED_T
 
 func CreateWellKnownSid(WellKnownSidType WELL_KNOWN_SID_TYPE, DomainSid PSID, pSid PSID, cbSid *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateWellKnownSid, libAdvapi32, "CreateWellKnownSid")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(WellKnownSidType), DomainSid, pSid, uintptr(unsafe.Pointer(cbSid)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(WellKnownSidType), uintptr(unsafe.Pointer(DomainSid)), uintptr(unsafe.Pointer(pSid)), uintptr(unsafe.Pointer(cbSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EqualDomainSid(pSid1 PSID, pSid2 PSID, pfEqual *BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pEqualDomainSid, libAdvapi32, "EqualDomainSid")
-	ret, _,  err := syscall.SyscallN(addr, pSid1, pSid2, uintptr(unsafe.Pointer(pfEqual)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid1)), uintptr(unsafe.Pointer(pSid2)), uintptr(unsafe.Pointer(pfEqual)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1414,7 +1439,7 @@ func DeleteAce(pAcl *ACL, dwAceIndex uint32) (BOOL, WIN32_ERROR) {
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func DestroyPrivateObjectSecurity(ObjectDescriptor **SECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
+func DestroyPrivateObjectSecurity(ObjectDescriptor *PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pDestroyPrivateObjectSecurity, libAdvapi32, "DestroyPrivateObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ObjectDescriptor)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1434,13 +1459,13 @@ func DuplicateTokenEx(hExistingToken HANDLE, dwDesiredAccess TOKEN_ACCESS_MASK, 
 
 func EqualPrefixSid(pSid1 PSID, pSid2 PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pEqualPrefixSid, libAdvapi32, "EqualPrefixSid")
-	ret, _,  err := syscall.SyscallN(addr, pSid1, pSid2)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid1)), uintptr(unsafe.Pointer(pSid2)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EqualSid(pSid1 PSID, pSid2 PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pEqualSid, libAdvapi32, "EqualSid")
-	ret, _,  err := syscall.SyscallN(addr, pSid1, pSid2)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid1)), uintptr(unsafe.Pointer(pSid2)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1452,7 +1477,7 @@ func FindFirstFreeAce(pAcl *ACL, pAce unsafe.Pointer) (BOOL, WIN32_ERROR) {
 
 func FreeSid(pSid PSID) unsafe.Pointer {
 	addr := lazyAddr(&pFreeSid, libAdvapi32, "FreeSid")
-	ret, _,  _ := syscall.SyscallN(addr, pSid)
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)))
 	return (unsafe.Pointer)(unsafe.Pointer(ret))
 }
 
@@ -1469,13 +1494,13 @@ func GetAclInformation(pAcl *ACL, pAclInformation unsafe.Pointer, nAclInformatio
 }
 
 var GetFileSecurity = GetFileSecurityW
-func GetFileSecurityW(lpFileName PWSTR, RequestedInformation uint32, pSecurityDescriptor *SECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) BOOL {
+func GetFileSecurityW(lpFileName PWSTR, RequestedInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) BOOL {
 	addr := lazyAddr(&pGetFileSecurityW, libAdvapi32, "GetFileSecurityW")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(RequestedInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(nLength), uintptr(unsafe.Pointer(lpnLengthNeeded)))
 	return BOOL(ret)
 }
 
-func GetKernelObjectSecurity(Handle HANDLE, RequestedInformation uint32, pSecurityDescriptor *SECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
+func GetKernelObjectSecurity(Handle HANDLE, RequestedInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetKernelObjectSecurity, libAdvapi32, "GetKernelObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, Handle, uintptr(RequestedInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(nLength), uintptr(unsafe.Pointer(lpnLengthNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1483,53 +1508,53 @@ func GetKernelObjectSecurity(Handle HANDLE, RequestedInformation uint32, pSecuri
 
 func GetLengthSid(pSid PSID) uint32 {
 	addr := lazyAddr(&pGetLengthSid, libAdvapi32, "GetLengthSid")
-	ret, _,  _ := syscall.SyscallN(addr, pSid)
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)))
 	return uint32(ret)
 }
 
-func GetPrivateObjectSecurity(ObjectDescriptor *SECURITY_DESCRIPTOR, SecurityInformation uint32, ResultantDescriptor *SECURITY_DESCRIPTOR, DescriptorLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
+func GetPrivateObjectSecurity(ObjectDescriptor PSECURITY_DESCRIPTOR, SecurityInformation uint32, ResultantDescriptor PSECURITY_DESCRIPTOR, DescriptorLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetPrivateObjectSecurity, libAdvapi32, "GetPrivateObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ObjectDescriptor)), uintptr(SecurityInformation), uintptr(unsafe.Pointer(ResultantDescriptor)), uintptr(DescriptorLength), uintptr(unsafe.Pointer(ReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetSecurityDescriptorControl(pSecurityDescriptor *SECURITY_DESCRIPTOR, pControl *uint16, lpdwRevision *uint32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorControl(pSecurityDescriptor PSECURITY_DESCRIPTOR, pControl *uint16, lpdwRevision *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSecurityDescriptorControl, libAdvapi32, "GetSecurityDescriptorControl")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(pControl)), uintptr(unsafe.Pointer(lpdwRevision)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetSecurityDescriptorDacl(pSecurityDescriptor *SECURITY_DESCRIPTOR, lpbDaclPresent *int32, pDacl **ACL, lpbDaclDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorDacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, lpbDaclPresent *int32, pDacl **ACL, lpbDaclDefaulted *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSecurityDescriptorDacl, libAdvapi32, "GetSecurityDescriptorDacl")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(lpbDaclPresent)), uintptr(unsafe.Pointer(pDacl)), uintptr(unsafe.Pointer(lpbDaclDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetSecurityDescriptorGroup(pSecurityDescriptor *SECURITY_DESCRIPTOR, pGroup *PSID, lpbGroupDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorGroup(pSecurityDescriptor PSECURITY_DESCRIPTOR, pGroup *PSID, lpbGroupDefaulted *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSecurityDescriptorGroup, libAdvapi32, "GetSecurityDescriptorGroup")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(pGroup)), uintptr(unsafe.Pointer(lpbGroupDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetSecurityDescriptorLength(pSecurityDescriptor *SECURITY_DESCRIPTOR) uint32 {
+func GetSecurityDescriptorLength(pSecurityDescriptor PSECURITY_DESCRIPTOR) uint32 {
 	addr := lazyAddr(&pGetSecurityDescriptorLength, libAdvapi32, "GetSecurityDescriptorLength")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return uint32(ret)
 }
 
-func GetSecurityDescriptorOwner(pSecurityDescriptor *SECURITY_DESCRIPTOR, pOwner *PSID, lpbOwnerDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorOwner(pSecurityDescriptor PSECURITY_DESCRIPTOR, pOwner *PSID, lpbOwnerDefaulted *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSecurityDescriptorOwner, libAdvapi32, "GetSecurityDescriptorOwner")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(pOwner)), uintptr(unsafe.Pointer(lpbOwnerDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetSecurityDescriptorRMControl(SecurityDescriptor *SECURITY_DESCRIPTOR, RMControl *uint8) uint32 {
+func GetSecurityDescriptorRMControl(SecurityDescriptor PSECURITY_DESCRIPTOR, RMControl *uint8) uint32 {
 	addr := lazyAddr(&pGetSecurityDescriptorRMControl, libAdvapi32, "GetSecurityDescriptorRMControl")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(RMControl)))
 	return uint32(ret)
 }
 
-func GetSecurityDescriptorSacl(pSecurityDescriptor *SECURITY_DESCRIPTOR, lpbSaclPresent *int32, pSacl **ACL, lpbSaclDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorSacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, lpbSaclPresent *int32, pSacl **ACL, lpbSaclDefaulted *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSecurityDescriptorSacl, libAdvapi32, "GetSecurityDescriptorSacl")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(lpbSaclPresent)), uintptr(unsafe.Pointer(pSacl)), uintptr(unsafe.Pointer(lpbSaclDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1537,7 +1562,7 @@ func GetSecurityDescriptorSacl(pSecurityDescriptor *SECURITY_DESCRIPTOR, lpbSacl
 
 func GetSidIdentifierAuthority(pSid PSID) (*SID_IDENTIFIER_AUTHORITY, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSidIdentifierAuthority, libAdvapi32, "GetSidIdentifierAuthority")
-	ret, _,  err := syscall.SyscallN(addr, pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)))
 	return (*SID_IDENTIFIER_AUTHORITY)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
@@ -1549,13 +1574,13 @@ func GetSidLengthRequired(nSubAuthorityCount uint8) uint32 {
 
 func GetSidSubAuthority(pSid PSID, nSubAuthority uint32) (*uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSidSubAuthority, libAdvapi32, "GetSidSubAuthority")
-	ret, _,  err := syscall.SyscallN(addr, pSid, uintptr(nSubAuthority))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)), uintptr(nSubAuthority))
 	return (*uint32)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func GetSidSubAuthorityCount(pSid PSID) (*uint8, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSidSubAuthorityCount, libAdvapi32, "GetSidSubAuthorityCount")
-	ret, _,  err := syscall.SyscallN(addr, pSid)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)))
 	return (*uint8)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
@@ -1567,7 +1592,7 @@ func GetTokenInformation(TokenHandle HANDLE, TokenInformationClass TOKEN_INFORMA
 
 func GetWindowsAccountDomainSid(pSid PSID, pDomainSid PSID, cbDomainSid *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetWindowsAccountDomainSid, libAdvapi32, "GetWindowsAccountDomainSid")
-	ret, _,  err := syscall.SyscallN(addr, pSid, pDomainSid, uintptr(unsafe.Pointer(cbDomainSid)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)), uintptr(unsafe.Pointer(pDomainSid)), uintptr(unsafe.Pointer(cbDomainSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1595,7 +1620,7 @@ func InitializeAcl(pAcl *ACL, nAclLength uint32, dwAclRevision uint32) (BOOL, WI
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func InitializeSecurityDescriptor(pSecurityDescriptor *SECURITY_DESCRIPTOR, dwRevision uint32) (BOOL, WIN32_ERROR) {
+func InitializeSecurityDescriptor(pSecurityDescriptor PSECURITY_DESCRIPTOR, dwRevision uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pInitializeSecurityDescriptor, libAdvapi32, "InitializeSecurityDescriptor")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(dwRevision))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1603,7 +1628,7 @@ func InitializeSecurityDescriptor(pSecurityDescriptor *SECURITY_DESCRIPTOR, dwRe
 
 func InitializeSid(Sid PSID, pIdentifierAuthority *SID_IDENTIFIER_AUTHORITY, nSubAuthorityCount uint8) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pInitializeSid, libAdvapi32, "InitializeSid")
-	ret, _,  err := syscall.SyscallN(addr, Sid, uintptr(unsafe.Pointer(pIdentifierAuthority)), uintptr(nSubAuthorityCount))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Sid)), uintptr(unsafe.Pointer(pIdentifierAuthority)), uintptr(nSubAuthorityCount))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1619,7 +1644,7 @@ func IsValidAcl(pAcl *ACL) BOOL {
 	return BOOL(ret)
 }
 
-func IsValidSecurityDescriptor(pSecurityDescriptor *SECURITY_DESCRIPTOR) BOOL {
+func IsValidSecurityDescriptor(pSecurityDescriptor PSECURITY_DESCRIPTOR) BOOL {
 	addr := lazyAddr(&pIsValidSecurityDescriptor, libAdvapi32, "IsValidSecurityDescriptor")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return BOOL(ret)
@@ -1627,23 +1652,23 @@ func IsValidSecurityDescriptor(pSecurityDescriptor *SECURITY_DESCRIPTOR) BOOL {
 
 func IsValidSid(pSid PSID) BOOL {
 	addr := lazyAddr(&pIsValidSid, libAdvapi32, "IsValidSid")
-	ret, _,  _ := syscall.SyscallN(addr, pSid)
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret)
 }
 
 func IsWellKnownSid(pSid PSID, WellKnownSidType WELL_KNOWN_SID_TYPE) BOOL {
 	addr := lazyAddr(&pIsWellKnownSid, libAdvapi32, "IsWellKnownSid")
-	ret, _,  _ := syscall.SyscallN(addr, pSid, uintptr(WellKnownSidType))
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)), uintptr(WellKnownSidType))
 	return BOOL(ret)
 }
 
-func MakeAbsoluteSD(pSelfRelativeSecurityDescriptor *SECURITY_DESCRIPTOR, pAbsoluteSecurityDescriptor *SECURITY_DESCRIPTOR, lpdwAbsoluteSecurityDescriptorSize *uint32, pDacl *ACL, lpdwDaclSize *uint32, pSacl *ACL, lpdwSaclSize *uint32, pOwner PSID, lpdwOwnerSize *uint32, pPrimaryGroup PSID, lpdwPrimaryGroupSize *uint32) (BOOL, WIN32_ERROR) {
+func MakeAbsoluteSD(pSelfRelativeSecurityDescriptor PSECURITY_DESCRIPTOR, pAbsoluteSecurityDescriptor PSECURITY_DESCRIPTOR, lpdwAbsoluteSecurityDescriptorSize *uint32, pDacl *ACL, lpdwDaclSize *uint32, pSacl *ACL, lpdwSaclSize *uint32, pOwner PSID, lpdwOwnerSize *uint32, pPrimaryGroup PSID, lpdwPrimaryGroupSize *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pMakeAbsoluteSD, libAdvapi32, "MakeAbsoluteSD")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSelfRelativeSecurityDescriptor)), uintptr(unsafe.Pointer(pAbsoluteSecurityDescriptor)), uintptr(unsafe.Pointer(lpdwAbsoluteSecurityDescriptorSize)), uintptr(unsafe.Pointer(pDacl)), uintptr(unsafe.Pointer(lpdwDaclSize)), uintptr(unsafe.Pointer(pSacl)), uintptr(unsafe.Pointer(lpdwSaclSize)), pOwner, uintptr(unsafe.Pointer(lpdwOwnerSize)), pPrimaryGroup, uintptr(unsafe.Pointer(lpdwPrimaryGroupSize)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSelfRelativeSecurityDescriptor)), uintptr(unsafe.Pointer(pAbsoluteSecurityDescriptor)), uintptr(unsafe.Pointer(lpdwAbsoluteSecurityDescriptorSize)), uintptr(unsafe.Pointer(pDacl)), uintptr(unsafe.Pointer(lpdwDaclSize)), uintptr(unsafe.Pointer(pSacl)), uintptr(unsafe.Pointer(lpdwSaclSize)), uintptr(unsafe.Pointer(pOwner)), uintptr(unsafe.Pointer(lpdwOwnerSize)), uintptr(unsafe.Pointer(pPrimaryGroup)), uintptr(unsafe.Pointer(lpdwPrimaryGroupSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func MakeSelfRelativeSD(pAbsoluteSecurityDescriptor *SECURITY_DESCRIPTOR, pSelfRelativeSecurityDescriptor *SECURITY_DESCRIPTOR, lpdwBufferLength *uint32) (BOOL, WIN32_ERROR) {
+func MakeSelfRelativeSD(pAbsoluteSecurityDescriptor PSECURITY_DESCRIPTOR, pSelfRelativeSecurityDescriptor PSECURITY_DESCRIPTOR, lpdwBufferLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pMakeSelfRelativeSD, libAdvapi32, "MakeSelfRelativeSD")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAbsoluteSecurityDescriptor)), uintptr(unsafe.Pointer(pSelfRelativeSecurityDescriptor)), uintptr(unsafe.Pointer(lpdwBufferLength)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1669,7 +1694,7 @@ func ObjectDeleteAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, Gener
 }
 
 var ObjectOpenAuditAlarm = ObjectOpenAuditAlarmW
-func ObjectOpenAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, pSecurityDescriptor *SECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *int32) BOOL {
+func ObjectOpenAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *int32) BOOL {
 	addr := lazyAddr(&pObjectOpenAuditAlarmW, libAdvapi32, "ObjectOpenAuditAlarmW")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(pSecurityDescriptor)), ClientToken, uintptr(DesiredAccess), uintptr(GrantedAccess), uintptr(unsafe.Pointer(Privileges)), uintptr(ObjectCreation), uintptr(AccessGranted), uintptr(unsafe.Pointer(GenerateOnClose)))
 	return BOOL(ret)
@@ -1713,25 +1738,25 @@ func SetAclInformation(pAcl *ACL, pAclInformation unsafe.Pointer, nAclInformatio
 }
 
 var SetFileSecurity = SetFileSecurityW
-func SetFileSecurityW(lpFileName PWSTR, SecurityInformation uint32, pSecurityDescriptor *SECURITY_DESCRIPTOR) BOOL {
+func SetFileSecurityW(lpFileName PWSTR, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR) BOOL {
 	addr := lazyAddr(&pSetFileSecurityW, libAdvapi32, "SetFileSecurityW")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return BOOL(ret)
 }
 
-func SetKernelObjectSecurity(Handle HANDLE, SecurityInformation uint32, SecurityDescriptor *SECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
+func SetKernelObjectSecurity(Handle HANDLE, SecurityInformation uint32, SecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetKernelObjectSecurity, libAdvapi32, "SetKernelObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, Handle, uintptr(SecurityInformation), uintptr(unsafe.Pointer(SecurityDescriptor)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetPrivateObjectSecurity(SecurityInformation uint32, ModificationDescriptor *SECURITY_DESCRIPTOR, ObjectsSecurityDescriptor **SECURITY_DESCRIPTOR, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
+func SetPrivateObjectSecurity(SecurityInformation uint32, ModificationDescriptor PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor *PSECURITY_DESCRIPTOR, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetPrivateObjectSecurity, libAdvapi32, "SetPrivateObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(ModificationDescriptor)), uintptr(unsafe.Pointer(ObjectsSecurityDescriptor)), uintptr(unsafe.Pointer(GenericMapping)), Token)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetPrivateObjectSecurityEx(SecurityInformation uint32, ModificationDescriptor *SECURITY_DESCRIPTOR, ObjectsSecurityDescriptor **SECURITY_DESCRIPTOR, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
+func SetPrivateObjectSecurityEx(SecurityInformation uint32, ModificationDescriptor PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor *PSECURITY_DESCRIPTOR, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetPrivateObjectSecurityEx, libAdvapi32, "SetPrivateObjectSecurityEx")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(ModificationDescriptor)), uintptr(unsafe.Pointer(ObjectsSecurityDescriptor)), uintptr(AutoInheritFlags), uintptr(unsafe.Pointer(GenericMapping)), Token)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1742,37 +1767,37 @@ func SetSecurityAccessMask(SecurityInformation uint32, DesiredAccess *uint32) {
 	_, _,  _ = syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(DesiredAccess)))
 }
 
-func SetSecurityDescriptorControl(pSecurityDescriptor *SECURITY_DESCRIPTOR, ControlBitsOfInterest uint16, ControlBitsToSet uint16) (BOOL, WIN32_ERROR) {
+func SetSecurityDescriptorControl(pSecurityDescriptor PSECURITY_DESCRIPTOR, ControlBitsOfInterest uint16, ControlBitsToSet uint16) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetSecurityDescriptorControl, libAdvapi32, "SetSecurityDescriptorControl")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(ControlBitsOfInterest), uintptr(ControlBitsToSet))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetSecurityDescriptorDacl(pSecurityDescriptor *SECURITY_DESCRIPTOR, bDaclPresent BOOL, pDacl *ACL, bDaclDefaulted BOOL) (BOOL, WIN32_ERROR) {
+func SetSecurityDescriptorDacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, bDaclPresent BOOL, pDacl *ACL, bDaclDefaulted BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetSecurityDescriptorDacl, libAdvapi32, "SetSecurityDescriptorDacl")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(bDaclPresent), uintptr(unsafe.Pointer(pDacl)), uintptr(bDaclDefaulted))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetSecurityDescriptorGroup(pSecurityDescriptor *SECURITY_DESCRIPTOR, pGroup PSID, bGroupDefaulted BOOL) (BOOL, WIN32_ERROR) {
+func SetSecurityDescriptorGroup(pSecurityDescriptor PSECURITY_DESCRIPTOR, pGroup PSID, bGroupDefaulted BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetSecurityDescriptorGroup, libAdvapi32, "SetSecurityDescriptorGroup")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), pGroup, uintptr(bGroupDefaulted))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(pGroup)), uintptr(bGroupDefaulted))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetSecurityDescriptorOwner(pSecurityDescriptor *SECURITY_DESCRIPTOR, pOwner PSID, bOwnerDefaulted BOOL) (BOOL, WIN32_ERROR) {
+func SetSecurityDescriptorOwner(pSecurityDescriptor PSECURITY_DESCRIPTOR, pOwner PSID, bOwnerDefaulted BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetSecurityDescriptorOwner, libAdvapi32, "SetSecurityDescriptorOwner")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), pOwner, uintptr(bOwnerDefaulted))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(pOwner)), uintptr(bOwnerDefaulted))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetSecurityDescriptorRMControl(SecurityDescriptor *SECURITY_DESCRIPTOR, RMControl *uint8) uint32 {
+func SetSecurityDescriptorRMControl(SecurityDescriptor PSECURITY_DESCRIPTOR, RMControl *uint8) uint32 {
 	addr := lazyAddr(&pSetSecurityDescriptorRMControl, libAdvapi32, "SetSecurityDescriptorRMControl")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(RMControl)))
 	return uint32(ret)
 }
 
-func SetSecurityDescriptorSacl(pSecurityDescriptor *SECURITY_DESCRIPTOR, bSaclPresent BOOL, pSacl *ACL, bSaclDefaulted BOOL) (BOOL, WIN32_ERROR) {
+func SetSecurityDescriptorSacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, bSaclPresent BOOL, pSacl *ACL, bSaclDefaulted BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetSecurityDescriptorSacl, libAdvapi32, "SetSecurityDescriptorSacl")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(bSaclPresent), uintptr(unsafe.Pointer(pSacl)), uintptr(bSaclDefaulted))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1796,43 +1821,43 @@ func GetCachedSigningLevel(File HANDLE, Flags *uint32, SigningLevel *uint32, Thu
 	return BOOL(ret)
 }
 
-func SetUserObjectSecurity(hObj HANDLE, pSIRequested *OBJECT_SECURITY_INFORMATION, pSID *SECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
+func SetUserObjectSecurity(hObj HANDLE, pSIRequested *OBJECT_SECURITY_INFORMATION, pSID PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetUserObjectSecurity, libUser32, "SetUserObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, hObj, uintptr(unsafe.Pointer(pSIRequested)), uintptr(unsafe.Pointer(pSID)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetUserObjectSecurity(hObj HANDLE, pSIRequested *uint32, pSID *SECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
+func GetUserObjectSecurity(hObj HANDLE, pSIRequested *uint32, pSID PSECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetUserObjectSecurity, libUser32, "GetUserObjectSecurity")
 	ret, _,  err := syscall.SyscallN(addr, hObj, uintptr(unsafe.Pointer(pSIRequested)), uintptr(unsafe.Pointer(pSID)), uintptr(nLength), uintptr(unsafe.Pointer(lpnLengthNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAccessCheckAndAuditAlarmA, libAdvapi32, "AccessCheckAndAuditAlarmA")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(DesiredAccess), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckByTypeAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByTypeAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAccessCheckByTypeAndAuditAlarmA, libAdvapi32, "AccessCheckByTypeAndAuditAlarmA")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), PrincipalSelfSid, uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckByTypeResultListAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByTypeResultListAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmA, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmA")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), PrincipalSelfSid, uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckByTypeResultListAndAuditAlarmByHandleA(SubsystemName PSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor *SECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByTypeResultListAndAuditAlarmByHandleA(SubsystemName PSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmByHandleA, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmByHandleA")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), ClientToken, uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), PrincipalSelfSid, uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), ClientToken, uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ObjectOpenAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, pSecurityDescriptor *SECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func ObjectOpenAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *int32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pObjectOpenAuditAlarmA, libAdvapi32, "ObjectOpenAuditAlarmA")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(pSecurityDescriptor)), ClientToken, uintptr(DesiredAccess), uintptr(GrantedAccess), uintptr(unsafe.Pointer(Privileges)), uintptr(ObjectCreation), uintptr(AccessGranted), uintptr(unsafe.Pointer(GenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1864,17 +1889,17 @@ func PrivilegedServiceAuditAlarmA(SubsystemName PSTR, ServiceName PSTR, ClientTo
 
 func AddConditionalAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AceType uint8, AccessMask uint32, pSid PSID, ConditionStr PWSTR, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddConditionalAce, libAdvapi32, "AddConditionalAce")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AceType), uintptr(AccessMask), pSid, uintptr(unsafe.Pointer(ConditionStr)), uintptr(unsafe.Pointer(ReturnLength)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AceType), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(unsafe.Pointer(ConditionStr)), uintptr(unsafe.Pointer(ReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetFileSecurityA(lpFileName PSTR, SecurityInformation uint32, pSecurityDescriptor *SECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
+func SetFileSecurityA(lpFileName PSTR, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetFileSecurityA, libAdvapi32, "SetFileSecurityA")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetFileSecurityA(lpFileName PSTR, RequestedInformation uint32, pSecurityDescriptor *SECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
+func GetFileSecurityA(lpFileName PSTR, RequestedInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetFileSecurityA, libAdvapi32, "GetFileSecurityA")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(RequestedInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(nLength), uintptr(unsafe.Pointer(lpnLengthNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1882,27 +1907,27 @@ func GetFileSecurityA(lpFileName PSTR, RequestedInformation uint32, pSecurityDes
 
 func LookupAccountSidA(lpSystemName PSTR, Sid PSID, Name *uint8, cchName *uint32, ReferencedDomainName *uint8, cchReferencedDomainName *uint32, peUse *SID_NAME_USE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pLookupAccountSidA, libAdvapi32, "LookupAccountSidA")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), Sid, uintptr(unsafe.Pointer(Name)), uintptr(unsafe.Pointer(cchName)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), uintptr(unsafe.Pointer(Sid)), uintptr(unsafe.Pointer(Name)), uintptr(unsafe.Pointer(cchName)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var LookupAccountSid = LookupAccountSidW
 func LookupAccountSidW(lpSystemName PWSTR, Sid PSID, Name *uint16, cchName *uint32, ReferencedDomainName *uint16, cchReferencedDomainName *uint32, peUse *SID_NAME_USE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pLookupAccountSidW, libAdvapi32, "LookupAccountSidW")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), Sid, uintptr(unsafe.Pointer(Name)), uintptr(unsafe.Pointer(cchName)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), uintptr(unsafe.Pointer(Sid)), uintptr(unsafe.Pointer(Name)), uintptr(unsafe.Pointer(cchName)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LookupAccountNameA(lpSystemName PSTR, lpAccountName PSTR, Sid PSID, cbSid *uint32, ReferencedDomainName *uint8, cchReferencedDomainName *uint32, peUse *SID_NAME_USE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pLookupAccountNameA, libAdvapi32, "LookupAccountNameA")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), uintptr(unsafe.Pointer(lpAccountName)), Sid, uintptr(unsafe.Pointer(cbSid)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), uintptr(unsafe.Pointer(lpAccountName)), uintptr(unsafe.Pointer(Sid)), uintptr(unsafe.Pointer(cbSid)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var LookupAccountName = LookupAccountNameW
 func LookupAccountNameW(lpSystemName PWSTR, lpAccountName PWSTR, Sid PSID, cbSid *uint32, ReferencedDomainName *uint16, cchReferencedDomainName *uint32, peUse *SID_NAME_USE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pLookupAccountNameW, libAdvapi32, "LookupAccountNameW")
-	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), uintptr(unsafe.Pointer(lpAccountName)), Sid, uintptr(unsafe.Pointer(cbSid)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemName)), uintptr(unsafe.Pointer(lpAccountName)), uintptr(unsafe.Pointer(Sid)), uintptr(unsafe.Pointer(cbSid)), uintptr(unsafe.Pointer(ReferencedDomainName)), uintptr(unsafe.Pointer(cchReferencedDomainName)), uintptr(unsafe.Pointer(peUse)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 

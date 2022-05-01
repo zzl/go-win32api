@@ -195,7 +195,7 @@ const (
 )
 
 const (
-	LVM_INSERTCOLUMN = LVM_FIRST + 97
+	//LVM_INSERTCOLUMN = LVM_FIRST + 97
 )
 
 const (

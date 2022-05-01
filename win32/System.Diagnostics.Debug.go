@@ -627,6 +627,18 @@ const (
 	DEBUG_OUTPUT_SYMBOLS_NO_OFFSETS uint32 = 2
 	DEBUG_OUTPUT_SYMBOLS_NO_VALUES uint32 = 4
 	DEBUG_OUTPUT_SYMBOLS_NO_TYPES uint32 = 16
+	DEBUG_OUTPUT_NAME_END string = "**NAME**"
+	DEBUG_OUTPUT_OFFSET_END string = "**OFF**"
+	DEBUG_OUTPUT_VALUE_END string = "**VALUE**"
+	DEBUG_OUTPUT_TYPE_END string = "**TYPE**"
+	DEBUG_OUTPUT_NAME_END_WIDE string = "**NAME**"
+	DEBUG_OUTPUT_OFFSET_END_WIDE string = "**OFF**"
+	DEBUG_OUTPUT_VALUE_END_WIDE string = "**VALUE**"
+	DEBUG_OUTPUT_TYPE_END_WIDE string = "**TYPE**"
+	DEBUG_OUTPUT_NAME_END_T string = "**NAME**"
+	DEBUG_OUTPUT_OFFSET_END_T string = "**OFF**"
+	DEBUG_OUTPUT_VALUE_END_T string = "**VALUE**"
+	DEBUG_OUTPUT_TYPE_END_T string = "**TYPE**"
 	DEBUG_SYMBOL_EXPANSION_LEVEL_MASK uint32 = 15
 	DEBUG_SYMBOL_EXPANDED uint32 = 16
 	DEBUG_SYMBOL_READ_ONLY uint32 = 32
@@ -1156,6 +1168,9 @@ const (
 	WCT_MAX_NODE_COUNT uint32 = 16
 	WCT_OBJNAME_LENGTH uint32 = 128
 	WCT_NETWORK_IO_FLAG uint32 = 8
+	RESTORE_LAST_ERROR_NAME_A string = "RestoreLastError"
+	RESTORE_LAST_ERROR_NAME_W string = "RestoreLastError"
+	RESTORE_LAST_ERROR_NAME string = "RestoreLastError"
 	APPBREAKFLAG_DEBUGGER_BLOCK uint32 = 1
 	APPBREAKFLAG_DEBUGGER_HALT uint32 = 2
 	APPBREAKFLAG_STEP uint32 = 65536
@@ -5182,21 +5197,6 @@ type ARM64_NT_CONTEXT struct {
 	Wvr [2]uint64
 }
 
-type DISPATCHER_CONTEXT_ARM64 struct {
-	ControlPc uintptr
-	ImageBase uintptr
-	FunctionEntry *IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY
-	EstablisherFrame uintptr
-	TargetPc uintptr
-	ContextRecord *ARM64_NT_CONTEXT
-	LanguageHandler uintptr
-	HandlerData unsafe.Pointer
-	HistoryTable *UNWIND_HISTORY_TABLE
-	ScopeIndex uint32
-	ControlPcIsUnwound BOOLEAN
-	NonVolatileRegisters *uint8
-}
-
 type LDT_ENTRY_HighWord__Bytes_ struct {
 	BaseMid uint8
 	Flags1 uint8
@@ -7829,7 +7829,7 @@ type WHEA_NOTIFICATION_DESCRIPTOR_U__Interrupt_ struct {
 	ErrorThresholdWindow uint32
 }
 
-type WHEA_NOTIFICATION_DESCRIPTOR_U__Sci_ struct {
+type WHEA_NOTIFICATION_DESCRIPTOR_U__Gsiv_ struct {
 	PollInterval uint32
 	Vector uint32
 	SwitchToPollingThreshold uint32
@@ -7838,7 +7838,7 @@ type WHEA_NOTIFICATION_DESCRIPTOR_U__Sci_ struct {
 	ErrorThresholdWindow uint32
 }
 
-type WHEA_NOTIFICATION_DESCRIPTOR_U__Gsiv_ struct {
+type WHEA_NOTIFICATION_DESCRIPTOR_U__Sci_ struct {
 	PollInterval uint32
 	Vector uint32
 	SwitchToPollingThreshold uint32

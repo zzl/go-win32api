@@ -5130,7 +5130,7 @@ type IUIAutomationElementInterface interface {
 	get_CurrentIsControlElement(retVal *BOOL) HRESULT
 	get_CurrentIsContentElement(retVal *BOOL) HRESULT
 	get_CurrentIsPassword(retVal *BOOL) HRESULT
-	get_CurrentNativeWindowHandle(retVal HWND) HRESULT
+	get_CurrentNativeWindowHandle(retVal *HWND) HRESULT
 	get_CurrentItemType(retVal *BSTR) HRESULT
 	get_CurrentIsOffscreen(retVal *BOOL) HRESULT
 	get_CurrentOrientation(retVal *OrientationType) HRESULT
@@ -5162,7 +5162,7 @@ type IUIAutomationElementInterface interface {
 	get_CachedIsControlElement(retVal *BOOL) HRESULT
 	get_CachedIsContentElement(retVal *BOOL) HRESULT
 	get_CachedIsPassword(retVal *BOOL) HRESULT
-	get_CachedNativeWindowHandle(retVal HWND) HRESULT
+	get_CachedNativeWindowHandle(retVal *HWND) HRESULT
 	get_CachedItemType(retVal *BSTR) HRESULT
 	get_CachedIsOffscreen(retVal *BOOL) HRESULT
 	get_CachedOrientation(retVal *OrientationType) HRESULT
@@ -5440,8 +5440,8 @@ func (this *IUIAutomationElement) get_CurrentIsPassword(retVal *BOOL) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentNativeWindowHandle(retVal HWND) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(retVal))
+func (this *IUIAutomationElement) get_CurrentNativeWindowHandle(retVal *HWND) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -5600,8 +5600,8 @@ func (this *IUIAutomationElement) get_CachedIsPassword(retVal *BOOL) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedNativeWindowHandle(retVal HWND) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(retVal))
+func (this *IUIAutomationElement) get_CachedNativeWindowHandle(retVal *HWND) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 

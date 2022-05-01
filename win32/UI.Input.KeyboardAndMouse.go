@@ -33,6 +33,23 @@ const (
 	OGONEK uint32 = 808
 	TONOS uint32 = 900
 	DIARESIS_TONOS uint32 = 901
+	WszGRAVE string = "̀"
+	WszACUTE string = "́"
+	WszCIRCUMFLEX string = "̂"
+	WszTILDE string = "̃"
+	WszMACRON string = "̄"
+	WszOVERSCORE string = "̅"
+	WszBREVE string = "̆"
+	WszDOT_ABOVE string = "̇"
+	WszUMLAUT string = "̈"
+	WszHOOK_ABOVE string = "̉"
+	WszRING string = "̊"
+	WszDOUBLE_ACUTE string = "̋"
+	WszHACEK string = "̌"
+	WszCEDILLA string = "̧"
+	WszOGONEK string = "̨"
+	WszTONOS string = "΄"
+	WszDIARESIS_TONOS string = "΅"
 	SHFT_INVALID uint32 = 15
 	WCH_NONE uint32 = 61440
 	WCH_DEAD uint32 = 61441
@@ -663,7 +680,7 @@ type TRACKMOUSEEVENT struct {
 type MOUSEINPUT struct {
 	Dx int32
 	Dy int32
-	MouseData uint32
+	MouseData int32
 	DwFlags MOUSE_EVENT_FLAGS
 	Time uint32
 	DwExtraInfo uintptr

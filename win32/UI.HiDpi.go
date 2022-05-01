@@ -134,7 +134,7 @@ func GetSystemMetricsForDpi(nIndex int32, dpi uint32) (int32, WIN32_ERROR) {
 	return int32(ret), WIN32_ERROR(err)
 }
 
-func AdjustWindowRectExForDpi(lpRect *RECT, dwStyle uint32, bMenu BOOL, dwExStyle uint32, dpi uint32) (BOOL, WIN32_ERROR) {
+func AdjustWindowRectExForDpi(lpRect *RECT, dwStyle WINDOW_STYLE, bMenu BOOL, dwExStyle WINDOW_EX_STYLE, dpi uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAdjustWindowRectExForDpi, libUser32, "AdjustWindowRectExForDpi")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRect)), uintptr(dwStyle), uintptr(bMenu), uintptr(dwExStyle), uintptr(dpi))
 	return BOOL(ret), WIN32_ERROR(err)

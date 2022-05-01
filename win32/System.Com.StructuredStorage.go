@@ -68,30 +68,6 @@ const (
 	PIDMSI_PRODUCTION int32 = 10
 	PIDMSI_COPYRIGHT int32 = 11
 	CWCSTORAGENAME uint32 = 32
-	STGM_DIRECT int32 = 0
-	STGM_TRANSACTED int32 = 65536
-	STGM_SIMPLE int32 = 134217728
-	STGM_READ int32 = 0
-	STGM_WRITE int32 = 1
-	STGM_READWRITE int32 = 2
-	STGM_SHARE_DENY_NONE int32 = 64
-	STGM_SHARE_DENY_READ int32 = 48
-	STGM_SHARE_DENY_WRITE int32 = 32
-	STGM_SHARE_EXCLUSIVE int32 = 16
-	STGM_PRIORITY int32 = 262144
-	STGM_DELETEONRELEASE int32 = 67108864
-	STGM_NOSCRATCH int32 = 1048576
-	STGM_CREATE int32 = 4096
-	STGM_CONVERT int32 = 131072
-	STGM_FAILIFTHERE int32 = 0
-	STGM_NOSNAPSHOT int32 = 2097152
-	STGM_DIRECT_SWMR int32 = 4194304
-	STGFMT_STORAGE uint32 = 0
-	STGFMT_NATIVE uint32 = 1
-	STGFMT_FILE uint32 = 3
-	STGFMT_ANY uint32 = 4
-	STGFMT_DOCFILE uint32 = 5
-	STGFMT_DOCUMENT uint32 = 0
 	STGOPTIONS_VERSION uint32 = 1
 	CCH_MAX_PROPSTG_NAME uint32 = 31
 )
@@ -105,8 +81,44 @@ const (
 	PRSPEC_PROPID PROPSPEC_KIND = 1
 )
 
+// enum STGM
+// flags
+type STGM uint32
+const (
+	STGM_DIRECT STGM = 0
+	STGM_TRANSACTED STGM = 65536
+	STGM_SIMPLE STGM = 134217728
+	STGM_READ STGM = 0
+	STGM_WRITE STGM = 1
+	STGM_READWRITE STGM = 2
+	STGM_SHARE_DENY_NONE STGM = 64
+	STGM_SHARE_DENY_READ STGM = 48
+	STGM_SHARE_DENY_WRITE STGM = 32
+	STGM_SHARE_EXCLUSIVE STGM = 16
+	STGM_PRIORITY STGM = 262144
+	STGM_DELETEONRELEASE STGM = 67108864
+	STGM_NOSCRATCH STGM = 1048576
+	STGM_CREATE STGM = 4096
+	STGM_CONVERT STGM = 131072
+	STGM_FAILIFTHERE STGM = 0
+	STGM_NOSNAPSHOT STGM = 2097152
+	STGM_DIRECT_SWMR STGM = 4194304
+)
+
+// enum STGFMT
+type STGFMT uint32
+const (
+	STGFMT_STORAGE STGFMT = 0
+	STGFMT_NATIVE STGFMT = 1
+	STGFMT_FILE STGFMT = 3
+	STGFMT_ANY STGFMT = 4
+	STGFMT_DOCFILE STGFMT = 5
+	STGFMT_DOCUMENT STGFMT = 0
+)
+
 // enum STGC
-type STGC int32
+// flags
+type STGC uint32
 const (
 	STGC_DEFAULT STGC = 0
 	STGC_OVERWRITE STGC = 1
@@ -1032,13 +1044,13 @@ var IID_IStorage = syscall.GUID{0x0000000b, 0x0000, 0x0000,
 
 type IStorageInterface interface {
 	IUnknownInterface
-	CreateStream(pwcsName PWSTR, grfMode uint32, reserved1 uint32, reserved2 uint32, ppstm **IStream) HRESULT
-	OpenStream(pwcsName PWSTR, reserved1 unsafe.Pointer, grfMode uint32, reserved2 uint32, ppstm **IStream) HRESULT
-	CreateStorage(pwcsName PWSTR, grfMode uint32, reserved1 uint32, reserved2 uint32, ppstg **IStorage) HRESULT
-	OpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode uint32, snbExclude **uint16, reserved uint32, ppstg **IStorage) HRESULT
+	CreateStream(pwcsName PWSTR, grfMode STGM, reserved1 uint32, reserved2 uint32, ppstm **IStream) HRESULT
+	OpenStream(pwcsName PWSTR, reserved1 unsafe.Pointer, grfMode STGM, reserved2 uint32, ppstm **IStream) HRESULT
+	CreateStorage(pwcsName PWSTR, grfMode STGM, reserved1 uint32, reserved2 uint32, ppstg **IStorage) HRESULT
+	OpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode STGM, snbExclude **uint16, reserved uint32, ppstg **IStorage) HRESULT
 	CopyTo(ciidExclude uint32, rgiidExclude *syscall.GUID, snbExclude **uint16, pstgDest *IStorage) HRESULT
-	MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags uint32) HRESULT
-	Commit(grfCommitFlags uint32) HRESULT
+	MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags STGMOVE) HRESULT
+	Commit(grfCommitFlags STGC) HRESULT
 	Revert() HRESULT
 	EnumElements(reserved1 uint32, reserved2 unsafe.Pointer, reserved3 uint32, ppenum **IEnumSTATSTG) HRESULT
 	DestroyElement(pwcsName PWSTR) HRESULT
@@ -1076,22 +1088,22 @@ func (this *IStorage) Vtbl() *IStorageVtbl {
 	return (*IStorageVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IStorage) CreateStream(pwcsName PWSTR, grfMode uint32, reserved1 uint32, reserved2 uint32, ppstm **IStream) HRESULT{
+func (this *IStorage) CreateStream(pwcsName PWSTR, grfMode STGM, reserved1 uint32, reserved2 uint32, ppstm **IStream) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CreateStream, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(reserved1), uintptr(reserved2), uintptr(unsafe.Pointer(ppstm)))
 	return HRESULT(ret)
 }
 
-func (this *IStorage) OpenStream(pwcsName PWSTR, reserved1 unsafe.Pointer, grfMode uint32, reserved2 uint32, ppstm **IStream) HRESULT{
+func (this *IStorage) OpenStream(pwcsName PWSTR, reserved1 unsafe.Pointer, grfMode STGM, reserved2 uint32, ppstm **IStream) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OpenStream, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pwcsName)), uintptr(unsafe.Pointer(reserved1)), uintptr(grfMode), uintptr(reserved2), uintptr(unsafe.Pointer(ppstm)))
 	return HRESULT(ret)
 }
 
-func (this *IStorage) CreateStorage(pwcsName PWSTR, grfMode uint32, reserved1 uint32, reserved2 uint32, ppstg **IStorage) HRESULT{
+func (this *IStorage) CreateStorage(pwcsName PWSTR, grfMode STGM, reserved1 uint32, reserved2 uint32, ppstg **IStorage) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CreateStorage, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(reserved1), uintptr(reserved2), uintptr(unsafe.Pointer(ppstg)))
 	return HRESULT(ret)
 }
 
-func (this *IStorage) OpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode uint32, snbExclude **uint16, reserved uint32, ppstg **IStorage) HRESULT{
+func (this *IStorage) OpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode STGM, snbExclude **uint16, reserved uint32, ppstg **IStorage) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OpenStorage, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pwcsName)), uintptr(unsafe.Pointer(pstgPriority)), uintptr(grfMode), uintptr(unsafe.Pointer(snbExclude)), uintptr(reserved), uintptr(unsafe.Pointer(ppstg)))
 	return HRESULT(ret)
 }
@@ -1101,12 +1113,12 @@ func (this *IStorage) CopyTo(ciidExclude uint32, rgiidExclude *syscall.GUID, snb
 	return HRESULT(ret)
 }
 
-func (this *IStorage) MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags uint32) HRESULT{
+func (this *IStorage) MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags STGMOVE) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveElementTo, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pwcsName)), uintptr(unsafe.Pointer(pstgDest)), uintptr(unsafe.Pointer(pwcsNewName)), uintptr(grfFlags))
 	return HRESULT(ret)
 }
 
-func (this *IStorage) Commit(grfCommitFlags uint32) HRESULT{
+func (this *IStorage) Commit(grfCommitFlags STGC) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Commit, uintptr(unsafe.Pointer(this)), uintptr(grfCommitFlags))
 	return HRESULT(ret)
 }
@@ -1902,19 +1914,19 @@ func FreePropVariantArray(cVariants uint32, rgvars *PROPVARIANT) HRESULT {
 	return HRESULT(ret)
 }
 
-func StgCreateDocfile(pwcsName PWSTR, grfMode uint32, reserved uint32, ppstgOpen **IStorage) HRESULT {
+func StgCreateDocfile(pwcsName PWSTR, grfMode STGM, reserved uint32, ppstgOpen **IStorage) HRESULT {
 	addr := lazyAddr(&pStgCreateDocfile, libOle32, "StgCreateDocfile")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
 }
 
-func StgCreateDocfileOnILockBytes(plkbyt *ILockBytes, grfMode uint32, reserved uint32, ppstgOpen **IStorage) HRESULT {
+func StgCreateDocfileOnILockBytes(plkbyt *ILockBytes, grfMode STGM, reserved uint32, ppstgOpen **IStorage) HRESULT {
 	addr := lazyAddr(&pStgCreateDocfileOnILockBytes, libOle32, "StgCreateDocfileOnILockBytes")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plkbyt)), uintptr(grfMode), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
 }
 
-func StgOpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode uint32, snbExclude **uint16, reserved uint32, ppstgOpen **IStorage) HRESULT {
+func StgOpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode STGM, snbExclude **uint16, reserved uint32, ppstgOpen **IStorage) HRESULT {
 	addr := lazyAddr(&pStgOpenStorage, libOle32, "StgOpenStorage")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(unsafe.Pointer(pstgPriority)), uintptr(grfMode), uintptr(unsafe.Pointer(snbExclude)), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
@@ -1944,13 +1956,13 @@ func StgSetTimes(lpszName PWSTR, pctime *FILETIME, patime *FILETIME, pmtime *FIL
 	return HRESULT(ret)
 }
 
-func StgCreateStorageEx(pwcsName PWSTR, grfMode uint32, stgfmt uint32, grfAttrs uint32, pStgOptions *STGOPTIONS, pSecurityDescriptor *SECURITY_DESCRIPTOR, riid *syscall.GUID, ppObjectOpen unsafe.Pointer) HRESULT {
+func StgCreateStorageEx(pwcsName PWSTR, grfMode STGM, stgfmt STGFMT, grfAttrs uint32, pStgOptions *STGOPTIONS, pSecurityDescriptor PSECURITY_DESCRIPTOR, riid *syscall.GUID, ppObjectOpen unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pStgCreateStorageEx, libOle32, "StgCreateStorageEx")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(stgfmt), uintptr(grfAttrs), uintptr(unsafe.Pointer(pStgOptions)), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(riid)), uintptr(ppObjectOpen))
 	return HRESULT(ret)
 }
 
-func StgOpenStorageEx(pwcsName PWSTR, grfMode uint32, stgfmt uint32, grfAttrs uint32, pStgOptions *STGOPTIONS, pSecurityDescriptor *SECURITY_DESCRIPTOR, riid *syscall.GUID, ppObjectOpen unsafe.Pointer) HRESULT {
+func StgOpenStorageEx(pwcsName PWSTR, grfMode STGM, stgfmt STGFMT, grfAttrs uint32, pStgOptions *STGOPTIONS, pSecurityDescriptor PSECURITY_DESCRIPTOR, riid *syscall.GUID, ppObjectOpen unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pStgOpenStorageEx, libOle32, "StgOpenStorageEx")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(stgfmt), uintptr(grfAttrs), uintptr(unsafe.Pointer(pStgOptions)), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(riid)), uintptr(ppObjectOpen))
 	return HRESULT(ret)

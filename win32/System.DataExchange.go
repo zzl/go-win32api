@@ -45,6 +45,14 @@ const (
 	XTYP_SHIFT uint32 = 4
 	TIMEOUT_ASYNC uint32 = 4294967295
 	QID_SYNC uint32 = 4294967295
+	SZDDESYS_TOPIC string = "System"
+	SZDDESYS_ITEM_TOPICS string = "Topics"
+	SZDDESYS_ITEM_SYSITEMS string = "SysItems"
+	SZDDESYS_ITEM_RTNMSG string = "ReturnMessage"
+	SZDDESYS_ITEM_STATUS string = "Status"
+	SZDDESYS_ITEM_FORMATS string = "Formats"
+	SZDDESYS_ITEM_HELP string = "Help"
+	SZDDE_ITEM_ITEMLIST string = "TopicItemList"
 	APPCMD_MASK int32 = 4080
 	APPCLASS_MASK int32 = 15
 	HDATA_APPOWNED uint32 = 1

@@ -213,16 +213,16 @@ const (
 
 // structs
 
-type PROCESS_HEAP_ENTRY_Anonymous__Block_ struct {
-	HMem HANDLE
-	DwReserved [3]uint32
-}
-
 type PROCESS_HEAP_ENTRY_Anonymous__Region_ struct {
 	DwCommittedSize uint32
 	DwUnCommittedSize uint32
 	LpFirstBlock unsafe.Pointer
 	LpLastBlock unsafe.Pointer
+}
+
+type PROCESS_HEAP_ENTRY_Anonymous__Block_ struct {
+	HMem HANDLE
+	DwReserved [3]uint32
 }
 
 type PROCESS_HEAP_ENTRY_Anonymous_ struct {
@@ -347,6 +347,12 @@ type MEMORY_BASIC_INFORMATION64 struct {
 type CFG_CALL_TARGET_INFO struct {
 	Offset uintptr
 	Flags uintptr
+}
+
+type MEM_ADDRESS_REQUIREMENTS struct {
+	LowestStartingAddress unsafe.Pointer
+	HighestEndingAddress unsafe.Pointer
+	Alignment uintptr
 }
 
 type MEM_EXTENDED_PARAMETER_Anonymous2_ struct {

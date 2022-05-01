@@ -403,110 +403,110 @@ var (
 	pSetStdHandleEx uintptr
 )
 
-func AllocConsole() BOOL {
+func AllocConsole() (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAllocConsole, libKernel32, "AllocConsole")
-	ret, _,  _ := syscall.SyscallN(addr)
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr)
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FreeConsole() BOOL {
+func FreeConsole() (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pFreeConsole, libKernel32, "FreeConsole")
-	ret, _,  _ := syscall.SyscallN(addr)
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr)
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AttachConsole(dwProcessId uint32) BOOL {
+func AttachConsole(dwProcessId uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAttachConsole, libKernel32, "AttachConsole")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(dwProcessId))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(dwProcessId))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleCP() uint32 {
+func GetConsoleCP() (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleCP, libKernel32, "GetConsoleCP")
-	ret, _,  _ := syscall.SyscallN(addr)
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr)
+	return uint32(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleOutputCP() uint32 {
+func GetConsoleOutputCP() (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleOutputCP, libKernel32, "GetConsoleOutputCP")
-	ret, _,  _ := syscall.SyscallN(addr)
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr)
+	return uint32(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleMode(hConsoleHandle HANDLE, lpMode *CONSOLE_MODE) BOOL {
+func GetConsoleMode(hConsoleHandle HANDLE, lpMode *CONSOLE_MODE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleMode, libKernel32, "GetConsoleMode")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleHandle, uintptr(unsafe.Pointer(lpMode)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleHandle, uintptr(unsafe.Pointer(lpMode)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleMode(hConsoleHandle HANDLE, dwMode CONSOLE_MODE) BOOL {
+func SetConsoleMode(hConsoleHandle HANDLE, dwMode CONSOLE_MODE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleMode, libKernel32, "SetConsoleMode")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleHandle, uintptr(dwMode))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleHandle, uintptr(dwMode))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetNumberOfConsoleInputEvents(hConsoleInput HANDLE, lpNumberOfEvents *uint32) BOOL {
+func GetNumberOfConsoleInputEvents(hConsoleInput HANDLE, lpNumberOfEvents *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetNumberOfConsoleInputEvents, libKernel32, "GetNumberOfConsoleInputEvents")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpNumberOfEvents)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpNumberOfEvents)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ReadConsoleInputA(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) BOOL {
+func ReadConsoleInputA(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleInputA, libKernel32, "ReadConsoleInputA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ReadConsoleInput = ReadConsoleInputW
-func ReadConsoleInputW(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) BOOL {
+func ReadConsoleInputW(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleInputW, libKernel32, "ReadConsoleInputW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func PeekConsoleInputA(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) BOOL {
+func PeekConsoleInputA(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pPeekConsoleInputA, libKernel32, "PeekConsoleInputA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var PeekConsoleInput = PeekConsoleInputW
-func PeekConsoleInputW(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) BOOL {
+func PeekConsoleInputW(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsRead *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pPeekConsoleInputW, libKernel32, "PeekConsoleInputW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsRead)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ReadConsoleA(hConsoleInput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToRead uint32, lpNumberOfCharsRead *uint32, pInputControl *CONSOLE_READCONSOLE_CONTROL) BOOL {
+func ReadConsoleA(hConsoleInput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToRead uint32, lpNumberOfCharsRead *uint32, pInputControl *CONSOLE_READCONSOLE_CONTROL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleA, libKernel32, "ReadConsoleA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(lpBuffer), uintptr(nNumberOfCharsToRead), uintptr(unsafe.Pointer(lpNumberOfCharsRead)), uintptr(unsafe.Pointer(pInputControl)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(lpBuffer), uintptr(nNumberOfCharsToRead), uintptr(unsafe.Pointer(lpNumberOfCharsRead)), uintptr(unsafe.Pointer(pInputControl)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ReadConsole = ReadConsoleW
-func ReadConsoleW(hConsoleInput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToRead uint32, lpNumberOfCharsRead *uint32, pInputControl *CONSOLE_READCONSOLE_CONTROL) BOOL {
+func ReadConsoleW(hConsoleInput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToRead uint32, lpNumberOfCharsRead *uint32, pInputControl *CONSOLE_READCONSOLE_CONTROL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleW, libKernel32, "ReadConsoleW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(lpBuffer), uintptr(nNumberOfCharsToRead), uintptr(unsafe.Pointer(lpNumberOfCharsRead)), uintptr(unsafe.Pointer(pInputControl)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(lpBuffer), uintptr(nNumberOfCharsToRead), uintptr(unsafe.Pointer(lpNumberOfCharsRead)), uintptr(unsafe.Pointer(pInputControl)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteConsoleA(hConsoleOutput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) BOOL {
+func WriteConsoleA(hConsoleOutput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleA, libKernel32, "WriteConsoleA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(lpBuffer), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(lpBuffer), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var WriteConsole = WriteConsoleW
-func WriteConsoleW(hConsoleOutput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) BOOL {
+func WriteConsoleW(hConsoleOutput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleW, libKernel32, "WriteConsoleW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(lpBuffer), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(lpBuffer), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleCtrlHandler(HandlerRoutine uintptr, Add BOOL) BOOL {
+func SetConsoleCtrlHandler(HandlerRoutine uintptr, Add BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleCtrlHandler, libKernel32, "SetConsoleCtrlHandler")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(HandlerRoutine), uintptr(Add))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(HandlerRoutine), uintptr(Add))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreatePseudoConsole(size COORD, hInput HANDLE, hOutput HANDLE, dwFlags uint32, phPC *HPCON) HRESULT {
@@ -526,308 +526,308 @@ func ClosePseudoConsole(hPC HPCON) {
 	_, _,  _ = syscall.SyscallN(addr, hPC)
 }
 
-func FillConsoleOutputCharacterA(hConsoleOutput HANDLE, cCharacter CHAR, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) BOOL {
+func FillConsoleOutputCharacterA(hConsoleOutput HANDLE, cCharacter CHAR, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pFillConsoleOutputCharacterA, libKernel32, "FillConsoleOutputCharacterA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(cCharacter), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(cCharacter), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var FillConsoleOutputCharacter = FillConsoleOutputCharacterW
-func FillConsoleOutputCharacterW(hConsoleOutput HANDLE, cCharacter uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) BOOL {
+func FillConsoleOutputCharacterW(hConsoleOutput HANDLE, cCharacter uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pFillConsoleOutputCharacterW, libKernel32, "FillConsoleOutputCharacterW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(cCharacter), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(cCharacter), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FillConsoleOutputAttribute(hConsoleOutput HANDLE, wAttribute uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfAttrsWritten *uint32) BOOL {
+func FillConsoleOutputAttribute(hConsoleOutput HANDLE, wAttribute uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfAttrsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pFillConsoleOutputAttribute, libKernel32, "FillConsoleOutputAttribute")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(wAttribute), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfAttrsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(wAttribute), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfAttrsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GenerateConsoleCtrlEvent(dwCtrlEvent uint32, dwProcessGroupId uint32) BOOL {
+func GenerateConsoleCtrlEvent(dwCtrlEvent uint32, dwProcessGroupId uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGenerateConsoleCtrlEvent, libKernel32, "GenerateConsoleCtrlEvent")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(dwCtrlEvent), uintptr(dwProcessGroupId))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(dwCtrlEvent), uintptr(dwProcessGroupId))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreateConsoleScreenBuffer(dwDesiredAccess uint32, dwShareMode uint32, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwFlags uint32, lpScreenBufferData unsafe.Pointer) HANDLE {
+func CreateConsoleScreenBuffer(dwDesiredAccess uint32, dwShareMode uint32, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwFlags uint32, lpScreenBufferData unsafe.Pointer) (HANDLE, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateConsoleScreenBuffer, libKernel32, "CreateConsoleScreenBuffer")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwFlags), uintptr(lpScreenBufferData))
-	return HANDLE(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwFlags), uintptr(lpScreenBufferData))
+	return HANDLE(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleActiveScreenBuffer(hConsoleOutput HANDLE) BOOL {
+func SetConsoleActiveScreenBuffer(hConsoleOutput HANDLE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleActiveScreenBuffer, libKernel32, "SetConsoleActiveScreenBuffer")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput)
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput)
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FlushConsoleInputBuffer(hConsoleInput HANDLE) BOOL {
+func FlushConsoleInputBuffer(hConsoleInput HANDLE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pFlushConsoleInputBuffer, libKernel32, "FlushConsoleInputBuffer")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput)
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput)
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleCP(wCodePageID uint32) BOOL {
+func SetConsoleCP(wCodePageID uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleCP, libKernel32, "SetConsoleCP")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(wCodePageID))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(wCodePageID))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleOutputCP(wCodePageID uint32) BOOL {
+func SetConsoleOutputCP(wCodePageID uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleOutputCP, libKernel32, "SetConsoleOutputCP")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(wCodePageID))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(wCodePageID))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleCursorInfo(hConsoleOutput HANDLE, lpConsoleCursorInfo *CONSOLE_CURSOR_INFO) BOOL {
+func GetConsoleCursorInfo(hConsoleOutput HANDLE, lpConsoleCursorInfo *CONSOLE_CURSOR_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleCursorInfo, libKernel32, "GetConsoleCursorInfo")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleCursorInfo)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleCursorInfo)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleCursorInfo(hConsoleOutput HANDLE, lpConsoleCursorInfo *CONSOLE_CURSOR_INFO) BOOL {
+func SetConsoleCursorInfo(hConsoleOutput HANDLE, lpConsoleCursorInfo *CONSOLE_CURSOR_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleCursorInfo, libKernel32, "SetConsoleCursorInfo")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleCursorInfo)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleCursorInfo)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleScreenBufferInfo(hConsoleOutput HANDLE, lpConsoleScreenBufferInfo *CONSOLE_SCREEN_BUFFER_INFO) BOOL {
+func GetConsoleScreenBufferInfo(hConsoleOutput HANDLE, lpConsoleScreenBufferInfo *CONSOLE_SCREEN_BUFFER_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleScreenBufferInfo, libKernel32, "GetConsoleScreenBufferInfo")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleScreenBufferInfo)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleScreenBufferInfo)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleScreenBufferInfoEx(hConsoleOutput HANDLE, lpConsoleScreenBufferInfoEx *CONSOLE_SCREEN_BUFFER_INFOEX) BOOL {
+func GetConsoleScreenBufferInfoEx(hConsoleOutput HANDLE, lpConsoleScreenBufferInfoEx *CONSOLE_SCREEN_BUFFER_INFOEX) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleScreenBufferInfoEx, libKernel32, "GetConsoleScreenBufferInfoEx")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleScreenBufferInfoEx)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleScreenBufferInfoEx)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleScreenBufferInfoEx(hConsoleOutput HANDLE, lpConsoleScreenBufferInfoEx *CONSOLE_SCREEN_BUFFER_INFOEX) BOOL {
+func SetConsoleScreenBufferInfoEx(hConsoleOutput HANDLE, lpConsoleScreenBufferInfoEx *CONSOLE_SCREEN_BUFFER_INFOEX) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleScreenBufferInfoEx, libKernel32, "SetConsoleScreenBufferInfoEx")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleScreenBufferInfoEx)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpConsoleScreenBufferInfoEx)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleScreenBufferSize(hConsoleOutput HANDLE, dwSize COORD) BOOL {
+func SetConsoleScreenBufferSize(hConsoleOutput HANDLE, dwSize COORD) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleScreenBufferSize, libKernel32, "SetConsoleScreenBufferSize")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, *(*uintptr)(unsafe.Pointer(&dwSize)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, *(*uintptr)(unsafe.Pointer(&dwSize)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleCursorPosition(hConsoleOutput HANDLE, dwCursorPosition COORD) BOOL {
+func SetConsoleCursorPosition(hConsoleOutput HANDLE, dwCursorPosition COORD) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleCursorPosition, libKernel32, "SetConsoleCursorPosition")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, *(*uintptr)(unsafe.Pointer(&dwCursorPosition)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, *(*uintptr)(unsafe.Pointer(&dwCursorPosition)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetLargestConsoleWindowSize(hConsoleOutput HANDLE) COORD {
+func GetLargestConsoleWindowSize(hConsoleOutput HANDLE) (COORD, WIN32_ERROR) {
 	addr := lazyAddr(&pGetLargestConsoleWindowSize, libKernel32, "GetLargestConsoleWindowSize")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput)
-	return *(*COORD)(unsafe.Pointer(ret))
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput)
+	return *(*COORD)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
-func SetConsoleTextAttribute(hConsoleOutput HANDLE, wAttributes uint16) BOOL {
+func SetConsoleTextAttribute(hConsoleOutput HANDLE, wAttributes uint16) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleTextAttribute, libKernel32, "SetConsoleTextAttribute")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(wAttributes))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(wAttributes))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleWindowInfo(hConsoleOutput HANDLE, bAbsolute BOOL, lpConsoleWindow *SMALL_RECT) BOOL {
+func SetConsoleWindowInfo(hConsoleOutput HANDLE, bAbsolute BOOL, lpConsoleWindow *SMALL_RECT) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleWindowInfo, libKernel32, "SetConsoleWindowInfo")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(bAbsolute), uintptr(unsafe.Pointer(lpConsoleWindow)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(bAbsolute), uintptr(unsafe.Pointer(lpConsoleWindow)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteConsoleOutputCharacterA(hConsoleOutput HANDLE, lpCharacter *uint8, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) BOOL {
+func WriteConsoleOutputCharacterA(hConsoleOutput HANDLE, lpCharacter *uint8, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleOutputCharacterA, libKernel32, "WriteConsoleOutputCharacterA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var WriteConsoleOutputCharacter = WriteConsoleOutputCharacterW
-func WriteConsoleOutputCharacterW(hConsoleOutput HANDLE, lpCharacter *uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) BOOL {
+func WriteConsoleOutputCharacterW(hConsoleOutput HANDLE, lpCharacter *uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfCharsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleOutputCharacterW, libKernel32, "WriteConsoleOutputCharacterW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteConsoleOutputAttribute(hConsoleOutput HANDLE, lpAttribute *uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfAttrsWritten *uint32) BOOL {
+func WriteConsoleOutputAttribute(hConsoleOutput HANDLE, lpAttribute *uint16, nLength uint32, dwWriteCoord COORD, lpNumberOfAttrsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleOutputAttribute, libKernel32, "WriteConsoleOutputAttribute")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpAttribute)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfAttrsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpAttribute)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwWriteCoord)), uintptr(unsafe.Pointer(lpNumberOfAttrsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ReadConsoleOutputCharacterA(hConsoleOutput HANDLE, lpCharacter *uint8, nLength uint32, dwReadCoord COORD, lpNumberOfCharsRead *uint32) BOOL {
+func ReadConsoleOutputCharacterA(hConsoleOutput HANDLE, lpCharacter *uint8, nLength uint32, dwReadCoord COORD, lpNumberOfCharsRead *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleOutputCharacterA, libKernel32, "ReadConsoleOutputCharacterA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwReadCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsRead)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwReadCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsRead)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ReadConsoleOutputCharacter = ReadConsoleOutputCharacterW
-func ReadConsoleOutputCharacterW(hConsoleOutput HANDLE, lpCharacter *uint16, nLength uint32, dwReadCoord COORD, lpNumberOfCharsRead *uint32) BOOL {
+func ReadConsoleOutputCharacterW(hConsoleOutput HANDLE, lpCharacter *uint16, nLength uint32, dwReadCoord COORD, lpNumberOfCharsRead *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleOutputCharacterW, libKernel32, "ReadConsoleOutputCharacterW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwReadCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsRead)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpCharacter)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwReadCoord)), uintptr(unsafe.Pointer(lpNumberOfCharsRead)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ReadConsoleOutputAttribute(hConsoleOutput HANDLE, lpAttribute *uint16, nLength uint32, dwReadCoord COORD, lpNumberOfAttrsRead *uint32) BOOL {
+func ReadConsoleOutputAttribute(hConsoleOutput HANDLE, lpAttribute *uint16, nLength uint32, dwReadCoord COORD, lpNumberOfAttrsRead *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleOutputAttribute, libKernel32, "ReadConsoleOutputAttribute")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpAttribute)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwReadCoord)), uintptr(unsafe.Pointer(lpNumberOfAttrsRead)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpAttribute)), uintptr(nLength), *(*uintptr)(unsafe.Pointer(&dwReadCoord)), uintptr(unsafe.Pointer(lpNumberOfAttrsRead)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteConsoleInputA(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsWritten *uint32) BOOL {
+func WriteConsoleInputA(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleInputA, libKernel32, "WriteConsoleInputA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var WriteConsoleInput = WriteConsoleInputW
-func WriteConsoleInputW(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsWritten *uint32) BOOL {
+func WriteConsoleInputW(hConsoleInput HANDLE, lpBuffer *INPUT_RECORD, nLength uint32, lpNumberOfEventsWritten *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleInputW, libKernel32, "WriteConsoleInputW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsWritten)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleInput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nLength), uintptr(unsafe.Pointer(lpNumberOfEventsWritten)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ScrollConsoleScreenBufferA(hConsoleOutput HANDLE, lpScrollRectangle *SMALL_RECT, lpClipRectangle *SMALL_RECT, dwDestinationOrigin COORD, lpFill *CHAR_INFO) BOOL {
+func ScrollConsoleScreenBufferA(hConsoleOutput HANDLE, lpScrollRectangle *SMALL_RECT, lpClipRectangle *SMALL_RECT, dwDestinationOrigin COORD, lpFill *CHAR_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pScrollConsoleScreenBufferA, libKernel32, "ScrollConsoleScreenBufferA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpScrollRectangle)), uintptr(unsafe.Pointer(lpClipRectangle)), *(*uintptr)(unsafe.Pointer(&dwDestinationOrigin)), uintptr(unsafe.Pointer(lpFill)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpScrollRectangle)), uintptr(unsafe.Pointer(lpClipRectangle)), *(*uintptr)(unsafe.Pointer(&dwDestinationOrigin)), uintptr(unsafe.Pointer(lpFill)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ScrollConsoleScreenBuffer = ScrollConsoleScreenBufferW
-func ScrollConsoleScreenBufferW(hConsoleOutput HANDLE, lpScrollRectangle *SMALL_RECT, lpClipRectangle *SMALL_RECT, dwDestinationOrigin COORD, lpFill *CHAR_INFO) BOOL {
+func ScrollConsoleScreenBufferW(hConsoleOutput HANDLE, lpScrollRectangle *SMALL_RECT, lpClipRectangle *SMALL_RECT, dwDestinationOrigin COORD, lpFill *CHAR_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pScrollConsoleScreenBufferW, libKernel32, "ScrollConsoleScreenBufferW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpScrollRectangle)), uintptr(unsafe.Pointer(lpClipRectangle)), *(*uintptr)(unsafe.Pointer(&dwDestinationOrigin)), uintptr(unsafe.Pointer(lpFill)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpScrollRectangle)), uintptr(unsafe.Pointer(lpClipRectangle)), *(*uintptr)(unsafe.Pointer(&dwDestinationOrigin)), uintptr(unsafe.Pointer(lpFill)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteConsoleOutputA(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpWriteRegion *SMALL_RECT) BOOL {
+func WriteConsoleOutputA(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpWriteRegion *SMALL_RECT) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleOutputA, libKernel32, "WriteConsoleOutputA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpWriteRegion)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpWriteRegion)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var WriteConsoleOutput = WriteConsoleOutputW
-func WriteConsoleOutputW(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpWriteRegion *SMALL_RECT) BOOL {
+func WriteConsoleOutputW(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpWriteRegion *SMALL_RECT) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pWriteConsoleOutputW, libKernel32, "WriteConsoleOutputW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpWriteRegion)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpWriteRegion)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ReadConsoleOutputA(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpReadRegion *SMALL_RECT) BOOL {
+func ReadConsoleOutputA(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpReadRegion *SMALL_RECT) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleOutputA, libKernel32, "ReadConsoleOutputA")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpReadRegion)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpReadRegion)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var ReadConsoleOutput = ReadConsoleOutputW
-func ReadConsoleOutputW(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpReadRegion *SMALL_RECT) BOOL {
+func ReadConsoleOutputW(hConsoleOutput HANDLE, lpBuffer *CHAR_INFO, dwBufferSize COORD, dwBufferCoord COORD, lpReadRegion *SMALL_RECT) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pReadConsoleOutputW, libKernel32, "ReadConsoleOutputW")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpReadRegion)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), *(*uintptr)(unsafe.Pointer(&dwBufferSize)), *(*uintptr)(unsafe.Pointer(&dwBufferCoord)), uintptr(unsafe.Pointer(lpReadRegion)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleTitleA(lpConsoleTitle *uint8, nSize uint32) uint32 {
+func GetConsoleTitleA(lpConsoleTitle *uint8, nSize uint32) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleTitleA, libKernel32, "GetConsoleTitleA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
 var GetConsoleTitle = GetConsoleTitleW
-func GetConsoleTitleW(lpConsoleTitle *uint16, nSize uint32) uint32 {
+func GetConsoleTitleW(lpConsoleTitle *uint16, nSize uint32) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleTitleW, libKernel32, "GetConsoleTitleW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleOriginalTitleA(lpConsoleTitle *uint8, nSize uint32) uint32 {
+func GetConsoleOriginalTitleA(lpConsoleTitle *uint8, nSize uint32) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleOriginalTitleA, libKernel32, "GetConsoleOriginalTitleA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
 var GetConsoleOriginalTitle = GetConsoleOriginalTitleW
-func GetConsoleOriginalTitleW(lpConsoleTitle *uint16, nSize uint32) uint32 {
+func GetConsoleOriginalTitleW(lpConsoleTitle *uint16, nSize uint32) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleOriginalTitleW, libKernel32, "GetConsoleOriginalTitleW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)), uintptr(nSize))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleTitleA(lpConsoleTitle PSTR) BOOL {
+func SetConsoleTitleA(lpConsoleTitle PSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleTitleA, libKernel32, "SetConsoleTitleA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var SetConsoleTitle = SetConsoleTitleW
-func SetConsoleTitleW(lpConsoleTitle PWSTR) BOOL {
+func SetConsoleTitleW(lpConsoleTitle PWSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleTitleW, libKernel32, "SetConsoleTitleW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleTitle)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetNumberOfConsoleMouseButtons(lpNumberOfMouseButtons *uint32) BOOL {
+func GetNumberOfConsoleMouseButtons(lpNumberOfMouseButtons *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetNumberOfConsoleMouseButtons, libKernel32, "GetNumberOfConsoleMouseButtons")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpNumberOfMouseButtons)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpNumberOfMouseButtons)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleFontSize(hConsoleOutput HANDLE, nFont uint32) COORD {
+func GetConsoleFontSize(hConsoleOutput HANDLE, nFont uint32) (COORD, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleFontSize, libKernel32, "GetConsoleFontSize")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(nFont))
-	return *(*COORD)(unsafe.Pointer(ret))
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(nFont))
+	return *(*COORD)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
-func GetCurrentConsoleFont(hConsoleOutput HANDLE, bMaximumWindow BOOL, lpConsoleCurrentFont *CONSOLE_FONT_INFO) BOOL {
+func GetCurrentConsoleFont(hConsoleOutput HANDLE, bMaximumWindow BOOL, lpConsoleCurrentFont *CONSOLE_FONT_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetCurrentConsoleFont, libKernel32, "GetCurrentConsoleFont")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(bMaximumWindow), uintptr(unsafe.Pointer(lpConsoleCurrentFont)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(bMaximumWindow), uintptr(unsafe.Pointer(lpConsoleCurrentFont)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetCurrentConsoleFontEx(hConsoleOutput HANDLE, bMaximumWindow BOOL, lpConsoleCurrentFontEx *CONSOLE_FONT_INFOEX) BOOL {
+func GetCurrentConsoleFontEx(hConsoleOutput HANDLE, bMaximumWindow BOOL, lpConsoleCurrentFontEx *CONSOLE_FONT_INFOEX) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetCurrentConsoleFontEx, libKernel32, "GetCurrentConsoleFontEx")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(bMaximumWindow), uintptr(unsafe.Pointer(lpConsoleCurrentFontEx)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(bMaximumWindow), uintptr(unsafe.Pointer(lpConsoleCurrentFontEx)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetCurrentConsoleFontEx(hConsoleOutput HANDLE, bMaximumWindow BOOL, lpConsoleCurrentFontEx *CONSOLE_FONT_INFOEX) BOOL {
+func SetCurrentConsoleFontEx(hConsoleOutput HANDLE, bMaximumWindow BOOL, lpConsoleCurrentFontEx *CONSOLE_FONT_INFOEX) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetCurrentConsoleFontEx, libKernel32, "SetCurrentConsoleFontEx")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(bMaximumWindow), uintptr(unsafe.Pointer(lpConsoleCurrentFontEx)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(bMaximumWindow), uintptr(unsafe.Pointer(lpConsoleCurrentFontEx)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleSelectionInfo(lpConsoleSelectionInfo *CONSOLE_SELECTION_INFO) BOOL {
+func GetConsoleSelectionInfo(lpConsoleSelectionInfo *CONSOLE_SELECTION_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleSelectionInfo, libKernel32, "GetConsoleSelectionInfo")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleSelectionInfo)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleSelectionInfo)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleHistoryInfo(lpConsoleHistoryInfo *CONSOLE_HISTORY_INFO) BOOL {
+func GetConsoleHistoryInfo(lpConsoleHistoryInfo *CONSOLE_HISTORY_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleHistoryInfo, libKernel32, "GetConsoleHistoryInfo")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleHistoryInfo)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleHistoryInfo)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleHistoryInfo(lpConsoleHistoryInfo *CONSOLE_HISTORY_INFO) BOOL {
+func SetConsoleHistoryInfo(lpConsoleHistoryInfo *CONSOLE_HISTORY_INFO) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleHistoryInfo, libKernel32, "SetConsoleHistoryInfo")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleHistoryInfo)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpConsoleHistoryInfo)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleDisplayMode(lpModeFlags *uint32) BOOL {
+func GetConsoleDisplayMode(lpModeFlags *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleDisplayMode, libKernel32, "GetConsoleDisplayMode")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpModeFlags)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpModeFlags)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetConsoleDisplayMode(hConsoleOutput HANDLE, dwFlags uint32, lpNewScreenBufferDimensions *COORD) BOOL {
+func SetConsoleDisplayMode(hConsoleOutput HANDLE, dwFlags uint32, lpNewScreenBufferDimensions *COORD) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetConsoleDisplayMode, libKernel32, "SetConsoleDisplayMode")
-	ret, _,  _ := syscall.SyscallN(addr, hConsoleOutput, uintptr(dwFlags), uintptr(unsafe.Pointer(lpNewScreenBufferDimensions)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, hConsoleOutput, uintptr(dwFlags), uintptr(unsafe.Pointer(lpNewScreenBufferDimensions)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetConsoleWindow() HWND {
@@ -836,30 +836,30 @@ func GetConsoleWindow() HWND {
 	return HWND(ret)
 }
 
-func AddConsoleAliasA(Source PSTR, Target PSTR, ExeName PSTR) BOOL {
+func AddConsoleAliasA(Source PSTR, Target PSTR, ExeName PSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddConsoleAliasA, libKernel32, "AddConsoleAliasA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(Target)), uintptr(unsafe.Pointer(ExeName)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(Target)), uintptr(unsafe.Pointer(ExeName)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var AddConsoleAlias = AddConsoleAliasW
-func AddConsoleAliasW(Source PWSTR, Target PWSTR, ExeName PWSTR) BOOL {
+func AddConsoleAliasW(Source PWSTR, Target PWSTR, ExeName PWSTR) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddConsoleAliasW, libKernel32, "AddConsoleAliasW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(Target)), uintptr(unsafe.Pointer(ExeName)))
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(Target)), uintptr(unsafe.Pointer(ExeName)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleAliasA(Source PSTR, TargetBuffer *uint8, TargetBufferLength uint32, ExeName PSTR) uint32 {
+func GetConsoleAliasA(Source PSTR, TargetBuffer *uint8, TargetBufferLength uint32, ExeName PSTR) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleAliasA, libKernel32, "GetConsoleAliasA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(TargetBuffer)), uintptr(TargetBufferLength), uintptr(unsafe.Pointer(ExeName)))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(TargetBuffer)), uintptr(TargetBufferLength), uintptr(unsafe.Pointer(ExeName)))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
 var GetConsoleAlias = GetConsoleAliasW
-func GetConsoleAliasW(Source PWSTR, TargetBuffer *uint16, TargetBufferLength uint32, ExeName PWSTR) uint32 {
+func GetConsoleAliasW(Source PWSTR, TargetBuffer *uint16, TargetBufferLength uint32, ExeName PWSTR) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleAliasW, libKernel32, "GetConsoleAliasW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(TargetBuffer)), uintptr(TargetBufferLength), uintptr(unsafe.Pointer(ExeName)))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Source)), uintptr(unsafe.Pointer(TargetBuffer)), uintptr(TargetBufferLength), uintptr(unsafe.Pointer(ExeName)))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetConsoleAliasesLengthA(ExeName PSTR) uint32 {
@@ -888,30 +888,30 @@ func GetConsoleAliasExesLengthW() uint32 {
 	return uint32(ret)
 }
 
-func GetConsoleAliasesA(AliasBuffer *uint8, AliasBufferLength uint32, ExeName PSTR) uint32 {
+func GetConsoleAliasesA(AliasBuffer *uint8, AliasBufferLength uint32, ExeName PSTR) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleAliasesA, libKernel32, "GetConsoleAliasesA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(AliasBuffer)), uintptr(AliasBufferLength), uintptr(unsafe.Pointer(ExeName)))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(AliasBuffer)), uintptr(AliasBufferLength), uintptr(unsafe.Pointer(ExeName)))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
 var GetConsoleAliases = GetConsoleAliasesW
-func GetConsoleAliasesW(AliasBuffer *uint16, AliasBufferLength uint32, ExeName PWSTR) uint32 {
+func GetConsoleAliasesW(AliasBuffer *uint16, AliasBufferLength uint32, ExeName PWSTR) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleAliasesW, libKernel32, "GetConsoleAliasesW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(AliasBuffer)), uintptr(AliasBufferLength), uintptr(unsafe.Pointer(ExeName)))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(AliasBuffer)), uintptr(AliasBufferLength), uintptr(unsafe.Pointer(ExeName)))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
-func GetConsoleAliasExesA(ExeNameBuffer *uint8, ExeNameBufferLength uint32) uint32 {
+func GetConsoleAliasExesA(ExeNameBuffer *uint8, ExeNameBufferLength uint32) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleAliasExesA, libKernel32, "GetConsoleAliasExesA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ExeNameBuffer)), uintptr(ExeNameBufferLength))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ExeNameBuffer)), uintptr(ExeNameBufferLength))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
 var GetConsoleAliasExes = GetConsoleAliasExesW
-func GetConsoleAliasExesW(ExeNameBuffer *uint16, ExeNameBufferLength uint32) uint32 {
+func GetConsoleAliasExesW(ExeNameBuffer *uint16, ExeNameBufferLength uint32) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleAliasExesW, libKernel32, "GetConsoleAliasExesW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ExeNameBuffer)), uintptr(ExeNameBufferLength))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ExeNameBuffer)), uintptr(ExeNameBufferLength))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
 func ExpungeConsoleCommandHistoryA(ExeName PSTR) {
@@ -964,22 +964,22 @@ func GetConsoleCommandHistoryW(Commands PWSTR, CommandBufferLength uint32, ExeNa
 	return uint32(ret)
 }
 
-func GetConsoleProcessList(lpdwProcessList *uint32, dwProcessCount uint32) uint32 {
+func GetConsoleProcessList(lpdwProcessList *uint32, dwProcessCount uint32) (uint32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetConsoleProcessList, libKernel32, "GetConsoleProcessList")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpdwProcessList)), uintptr(dwProcessCount))
-	return uint32(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpdwProcessList)), uintptr(dwProcessCount))
+	return uint32(ret), WIN32_ERROR(err)
 }
 
-func GetStdHandle(nStdHandle STD_HANDLE) HANDLE {
+func GetStdHandle(nStdHandle STD_HANDLE) (HANDLE, WIN32_ERROR) {
 	addr := lazyAddr(&pGetStdHandle, libKernel32, "GetStdHandle")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(nStdHandle))
-	return HANDLE(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(nStdHandle))
+	return HANDLE(ret), WIN32_ERROR(err)
 }
 
-func SetStdHandle(nStdHandle STD_HANDLE, hHandle HANDLE) BOOL {
+func SetStdHandle(nStdHandle STD_HANDLE, hHandle HANDLE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetStdHandle, libKernel32, "SetStdHandle")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(nStdHandle), hHandle)
-	return BOOL(ret)
+	ret, _,  err := syscall.SyscallN(addr, uintptr(nStdHandle), hHandle)
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetStdHandleEx(nStdHandle STD_HANDLE, hHandle HANDLE, phPrevValue *HANDLE) BOOL {

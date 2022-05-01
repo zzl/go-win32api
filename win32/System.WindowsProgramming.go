@@ -8,6 +8,24 @@ type FEATURE_STATE_CHANGE_SUBSCRIPTION = uintptr
 type FH_SERVICE_PIPE_HANDLE = uintptr
 
 const (
+	WLDP_DLL string = "WLDP.DLL"
+	WLDP_GETLOCKDOWNPOLICY_FN string = "WldpGetLockdownPolicy"
+	WLDP_ISCLASSINAPPROVEDLIST_FN string = "WldpIsClassInApprovedList"
+	WLDP_SETDYNAMICCODETRUST_FN string = "WldpSetDynamicCodeTrust"
+	WLDP_ISDYNAMICCODEPOLICYENABLED_FN string = "WldpIsDynamicCodePolicyEnabled"
+	WLDP_QUERYDANAMICCODETRUST_FN string = "WldpQueryDynamicCodeTrust"
+	WLDP_QUERYDYNAMICCODETRUST_FN string = "WldpQueryDynamicCodeTrust"
+	WLDP_QUERYWINDOWSLOCKDOWNMODE_FN string = "WldpQueryWindowsLockdownMode"
+	WLDP_SETWINDOWSLOCKDOWNRESTRICTION_FN string = "WldpSetWindowsLockdownRestriction"
+	WLDP_QUERYDEVICESECURITYINFORMATION_FN string = "WldpQueryDeviceSecurityInformation"
+	WLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_FN string = "WldpQueryWindowsLockdownRestriction"
+	WLDP_ISAPPAPPROVEDBYPOLICY_FN string = "WldpIsAppApprovedByPolicy"
+	WLDP_QUERYPOLICYSETTINGENABLED_FN string = "WldpQueryPolicySettingEnabled"
+	WLDP_QUERYPOLICYSETTINGENABLED2_FN string = "WldpQueryPolicySettingEnabled2"
+	WLDP_ISWCOSPRODUCTIONCONFIGURATION_FN string = "WldpIsWcosProductionConfiguration"
+	WLDP_RESETWCOSPRODUCTIONCONFIGURATION_FN string = "WldpResetWcosProductionConfiguration"
+	WLDP_ISPRODUCTIONCONFIGURATION_FN string = "WldpIsProductionConfiguration"
+	WLDP_RESETPRODUCTIONCONFIGURATION_FN string = "WldpResetProductionConfiguration"
 	WLDP_LOCKDOWN_UNDEFINED uint32 = 0
 	WLDP_LOCKDOWN_DEFINED_FLAG uint32 = 2147483648
 	WLDP_LOCKDOWN_CONFIG_CI_FLAG uint32 = 1
@@ -155,14 +173,6 @@ const (
 	FILE_TYPE_CHAR uint32 = 2
 	FILE_TYPE_PIPE uint32 = 3
 	FILE_TYPE_REMOTE uint32 = 32768
-	NOPARITY uint32 = 0
-	ODDPARITY uint32 = 1
-	EVENPARITY uint32 = 2
-	MARKPARITY uint32 = 3
-	SPACEPARITY uint32 = 4
-	ONESTOPBIT uint32 = 0
-	ONE5STOPBITS uint32 = 1
-	TWOSTOPBITS uint32 = 2
 	IGNORE uint32 = 0
 	INFINITE uint32 = 4294967295
 	CBR_110 uint32 = 110
@@ -242,6 +252,7 @@ const (
 	SCS_POSIX_BINARY uint32 = 4
 	SCS_OS216_BINARY uint32 = 5
 	SCS_64BIT_BINARY uint32 = 6
+	SCS_THIS_PLATFORM_BINARY uint32 = 6
 	FIBER_FLAG_FLOAT_SWITCH uint32 = 1
 	UMS_VERSION uint32 = 256
 	FILE_SKIP_COMPLETION_PORT_ON_SUCCESS uint32 = 1
@@ -291,6 +302,15 @@ const (
 	PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_DISABLE_PROCESS_TREE uint32 = 2
 	PROCESS_CREATION_DESKTOP_APP_BREAKAWAY_OVERRIDE uint32 = 4
 	ATOM_FLAG_GLOBAL uint32 = 2
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_A_A string = "GetSystemWow64DirectoryA"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_A_W string = "GetSystemWow64DirectoryA"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_A_T string = "GetSystemWow64DirectoryA"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_W_A string = "GetSystemWow64DirectoryW"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_W_W string = "GetSystemWow64DirectoryW"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_W_T string = "GetSystemWow64DirectoryW"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_T_A string = "GetSystemWow64DirectoryW"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_T_W string = "GetSystemWow64DirectoryW"
+	GET_SYSTEM_WOW64_DIRECTORY_NAME_T_T string = "GetSystemWow64DirectoryW"
 	BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE uint32 = 1
 	BASE_SEARCH_PATH_DISABLE_SAFE_SEARCHMODE uint32 = 65536
 	BASE_SEARCH_PATH_PERMANENT uint32 = 32768
@@ -464,6 +484,8 @@ const (
 	ARSR_NOMESSAGES uint32 = 8
 	ARSR_REGSECTION uint32 = 128
 	ARSR_REMOVREGBKDATA uint32 = 4096
+	REG_SAVE_LOG_KEY string = "RegSaveLogFile"
+	REG_RESTORE_LOG_KEY string = "RegRestoreLogFile"
 	AFSR_RESTORE uint32 = 1
 	AFSR_BACKNEW uint32 = 2
 	AFSR_NODELETENEW uint32 = 4
@@ -585,31 +607,6 @@ const (
 	CO_TL_ENTITY TDIENTITY_ENTITY_TYPE = 1024
 	ER_ENTITY TDIENTITY_ENTITY_TYPE = 896
 	IF_ENTITY TDIENTITY_ENTITY_TYPE = 512
-)
-
-// enum PROC_THREAD_ATTRIBUTE_NUM
-type PROC_THREAD_ATTRIBUTE_NUM int32
-const (
-	ProcThreadAttributeParentProcess PROC_THREAD_ATTRIBUTE_NUM = 0
-	ProcThreadAttributeHandleList PROC_THREAD_ATTRIBUTE_NUM = 2
-	ProcThreadAttributeGroupAffinity PROC_THREAD_ATTRIBUTE_NUM = 3
-	ProcThreadAttributePreferredNode PROC_THREAD_ATTRIBUTE_NUM = 4
-	ProcThreadAttributeIdealProcessor PROC_THREAD_ATTRIBUTE_NUM = 5
-	ProcThreadAttributeUmsThread PROC_THREAD_ATTRIBUTE_NUM = 6
-	ProcThreadAttributeMitigationPolicy PROC_THREAD_ATTRIBUTE_NUM = 7
-	ProcThreadAttributeSecurityCapabilities PROC_THREAD_ATTRIBUTE_NUM = 9
-	ProcThreadAttributeProtectionLevel PROC_THREAD_ATTRIBUTE_NUM = 11
-	ProcThreadAttributeJobList PROC_THREAD_ATTRIBUTE_NUM = 13
-	ProcThreadAttributeChildProcessPolicy PROC_THREAD_ATTRIBUTE_NUM = 14
-	ProcThreadAttributeAllApplicationPackagesPolicy PROC_THREAD_ATTRIBUTE_NUM = 15
-	ProcThreadAttributeWin32kFilter PROC_THREAD_ATTRIBUTE_NUM = 16
-	ProcThreadAttributeSafeOpenPromptOriginClaim PROC_THREAD_ATTRIBUTE_NUM = 17
-	ProcThreadAttributeDesktopAppPolicy PROC_THREAD_ATTRIBUTE_NUM = 18
-	ProcThreadAttributePseudoConsole PROC_THREAD_ATTRIBUTE_NUM = 22
-	ProcThreadAttributeMitigationAuditPolicy PROC_THREAD_ATTRIBUTE_NUM = 24
-	ProcThreadAttributeMachineType PROC_THREAD_ATTRIBUTE_NUM = 25
-	ProcThreadAttributeComponentFilter PROC_THREAD_ATTRIBUTE_NUM = 26
-	ProcThreadAttributeEnableOptionalXStateFeatures PROC_THREAD_ATTRIBUTE_NUM = 27
 )
 
 // enum FILE_INFORMATION_CLASS

@@ -4,6 +4,12 @@ import "unsafe"
 import "syscall"
 
 const (
+	WszW32TimeRegKeyTimeProviders string = "System\\CurrentControlSet\\Services\\W32Time\\TimeProviders"
+	WszW32TimeRegKeyPolicyTimeProviders string = "Software\\Policies\\Microsoft\\W32Time\\TimeProviders"
+	WszW32TimeRegValueEnabled string = "Enabled"
+	WszW32TimeRegValueDllName string = "DllName"
+	WszW32TimeRegValueInputProvider string = "InputProvider"
+	WszW32TimeRegValueMetaDataProvider string = "MetaDataProvider"
 	TSF_Hardware uint32 = 1
 	TSF_Authenticated uint32 = 2
 	TSF_IPv6 uint32 = 4

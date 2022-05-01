@@ -14,6 +14,7 @@ const (
 	STG_TOEND int32 = -1
 	STG_LAYOUT_SEQUENTIAL int32 = 0
 	STG_LAYOUT_INTERLEAVED int32 = 1
+	CRT_INTERNAL_COMBASE_SYMBOL_PREFIX_ string = "_"
 	COM_RIGHTS_EXECUTE uint32 = 1
 	COM_RIGHTS_EXECUTE_LOCAL uint32 = 2
 	COM_RIGHTS_EXECUTE_REMOTE uint32 = 4
@@ -679,13 +680,13 @@ type QUERYCONTEXT struct {
 	DwVersionLo uint32
 }
 
-type UCLSSPEC_Tagged_union__ByName_ struct {
-	PPackageName PWSTR
+type UCLSSPEC_Tagged_union__ByObjectId_ struct {
+	ObjectId syscall.GUID
 	PolicyId syscall.GUID
 }
 
-type UCLSSPEC_Tagged_union__ByObjectId_ struct {
-	ObjectId syscall.GUID
+type UCLSSPEC_Tagged_union__ByName_ struct {
+	PPackageName PWSTR
 	PolicyId syscall.GUID
 }
 
@@ -2352,7 +2353,7 @@ type IStreamInterface interface {
 	Seek(dlibMove int64, dwOrigin STREAM_SEEK, plibNewPosition *uint64) HRESULT
 	SetSize(libNewSize uint64) HRESULT
 	CopyTo(pstm *IStream, cb uint64, pcbRead *uint64, pcbWritten *uint64) HRESULT
-	Commit(grfCommitFlags uint32) HRESULT
+	Commit(grfCommitFlags STGC) HRESULT
 	Revert() HRESULT
 	LockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
 	UnlockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
@@ -2396,7 +2397,7 @@ func (this *IStream) CopyTo(pstm *IStream, cb uint64, pcbRead *uint64, pcbWritte
 	return HRESULT(ret)
 }
 
-func (this *IStream) Commit(grfCommitFlags uint32) HRESULT{
+func (this *IStream) Commit(grfCommitFlags STGC) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Commit, uintptr(unsafe.Pointer(this)), uintptr(grfCommitFlags))
 	return HRESULT(ret)
 }
@@ -7361,7 +7362,7 @@ func CoRevokeInitializeSpy(uliCookie uint64) HRESULT {
 	return HRESULT(ret)
 }
 
-func CoGetSystemSecurityPermissions(comSDType COMSD, ppSD **SECURITY_DESCRIPTOR) HRESULT {
+func CoGetSystemSecurityPermissions(comSDType COMSD, ppSD *PSECURITY_DESCRIPTOR) HRESULT {
 	addr := lazyAddr(&pCoGetSystemSecurityPermissions, libOle32, "CoGetSystemSecurityPermissions")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(comSDType), uintptr(unsafe.Pointer(ppSD)))
 	return HRESULT(ret)
@@ -7628,7 +7629,7 @@ func CoGetClassObject(rclsid *syscall.GUID, dwClsContext CLSCTX, pvReserved unsa
 	return HRESULT(ret)
 }
 
-func CoRegisterClassObject(rclsid *syscall.GUID, pUnk *IUnknown, dwClsContext CLSCTX, flags uint32, lpdwRegister *uint32) HRESULT {
+func CoRegisterClassObject(rclsid *syscall.GUID, pUnk *IUnknown, dwClsContext CLSCTX, flags REGCLS, lpdwRegister *uint32) HRESULT {
 	addr := lazyAddr(&pCoRegisterClassObject, libOle32, "CoRegisterClassObject")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(pUnk)), uintptr(dwClsContext), uintptr(flags), uintptr(unsafe.Pointer(lpdwRegister)))
 	return HRESULT(ret)
@@ -7722,7 +7723,7 @@ func CoDisconnectContext(dwTimeout uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func CoInitializeSecurity(pSecDesc *SECURITY_DESCRIPTOR, cAuthSvc int32, asAuthSvc *SOLE_AUTHENTICATION_SERVICE, pReserved1 unsafe.Pointer, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthList unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES, pReserved3 unsafe.Pointer) HRESULT {
+func CoInitializeSecurity(pSecDesc PSECURITY_DESCRIPTOR, cAuthSvc int32, asAuthSvc *SOLE_AUTHENTICATION_SERVICE, pReserved1 unsafe.Pointer, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthList unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES, pReserved3 unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pCoInitializeSecurity, libOle32, "CoInitializeSecurity")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecDesc)), uintptr(cAuthSvc), uintptr(unsafe.Pointer(asAuthSvc)), uintptr(pReserved1), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthList), uintptr(dwCapabilities), uintptr(pReserved3))
 	return HRESULT(ret)

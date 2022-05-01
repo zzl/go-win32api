@@ -26,6 +26,7 @@ const (
 	CPL_STARTWPARMS uint32 = 10
 	CPL_SETUP uint32 = 200
 	HLINK_S_DONTHIDE int32 = 262400
+	STR_MYDOCS_CLSID string = "{450D8FBA-AD25-11D0-98A8-0800361B1103}"
 	PID_FINDDATA uint32 = 0
 	PID_NETRESOURCE uint32 = 1
 	PID_DESCRIPTIONID uint32 = 2
@@ -91,6 +92,7 @@ const (
 	SHPWHF_ANYLOCATION uint32 = 256
 	SHPWHF_VALIDATEVIAWEBFOLDERS uint32 = 65536
 	ACDD_VISIBLE uint32 = 1
+	PROPSTR_EXTENSIONCOMPLETIONSTATE string = "ExtensionCompletionState"
 	NSTCDHPOS_ONTOP int32 = -1
 	FVSIF_RECT uint32 = 1
 	FVSIF_PINNED uint32 = 2
@@ -336,6 +338,8 @@ const (
 	BFFM_SETSELECTION uint32 = 1127
 	BFFM_VALIDATEFAILED uint32 = 4
 	CMDID_INTSHORTCUTCREATE int32 = 1
+	STR_PARSE_WITH_PROPERTIES string = "ParseWithProperties"
+	STR_PARSE_PARTIAL_IDLIST string = "ParseOriginalItem"
 	PROGDLG_NORMAL uint32 = 0
 	PROGDLG_MODAL uint32 = 1
 	PROGDLG_AUTOTIME uint32 = 2
@@ -393,6 +397,39 @@ const (
 	COMPONENT_DEFAULT_TOP uint32 = 65535
 	MAX_COLUMN_NAME_LEN uint32 = 80
 	MAX_COLUMN_DESC_LEN uint32 = 128
+	CFSTR_SHELLIDLIST string = "Shell IDList Array"
+	CFSTR_SHELLIDLISTOFFSET string = "Shell Object Offsets"
+	CFSTR_NETRESOURCES string = "Net Resource"
+	CFSTR_FILEDESCRIPTORA string = "FileGroupDescriptor"
+	CFSTR_FILEDESCRIPTORW string = "FileGroupDescriptorW"
+	CFSTR_FILECONTENTS string = "FileContents"
+	CFSTR_FILENAMEA string = "FileName"
+	CFSTR_FILENAMEW string = "FileNameW"
+	CFSTR_PRINTERGROUP string = "PrinterFriendlyName"
+	CFSTR_FILENAMEMAPA string = "FileNameMap"
+	CFSTR_FILENAMEMAPW string = "FileNameMapW"
+	CFSTR_SHELLURL string = "UniformResourceLocator"
+	CFSTR_INETURLA string = "UniformResourceLocator"
+	CFSTR_INETURLW string = "UniformResourceLocatorW"
+	CFSTR_PREFERREDDROPEFFECT string = "Preferred DropEffect"
+	CFSTR_PERFORMEDDROPEFFECT string = "Performed DropEffect"
+	CFSTR_PASTESUCCEEDED string = "Paste Succeeded"
+	CFSTR_INDRAGLOOP string = "InShellDragLoop"
+	CFSTR_MOUNTEDVOLUME string = "MountedVolume"
+	CFSTR_PERSISTEDDATAOBJECT string = "PersistedDataObject"
+	CFSTR_TARGETCLSID string = "TargetCLSID"
+	CFSTR_LOGICALPERFORMEDDROPEFFECT string = "Logical Performed DropEffect"
+	CFSTR_AUTOPLAY_SHELLIDLISTS string = "Autoplay Enumerated IDList Array"
+	CFSTR_UNTRUSTEDDRAGDROP string = "UntrustedDragDrop"
+	CFSTR_FILE_ATTRIBUTES_ARRAY string = "File Attributes Array"
+	CFSTR_INVOKECOMMAND_DROPPARAM string = "InvokeCommand DropParam"
+	CFSTR_SHELLDROPHANDLER string = "DropHandlerCLSID"
+	CFSTR_DROPDESCRIPTION string = "DropDescription"
+	CFSTR_ZONEIDENTIFIER string = "ZoneIdentifier"
+	CFSTR_FILEDESCRIPTOR string = "FileGroupDescriptorW"
+	CFSTR_FILENAME string = "FileNameW"
+	CFSTR_FILENAMEMAP string = "FileNameMapW"
+	CFSTR_INETURL string = "UniformResourceLocatorW"
 	DVASPECT_SHORTNAME uint32 = 2
 	DVASPECT_COPY uint32 = 3
 	DVASPECT_LINK uint32 = 4
@@ -448,6 +485,15 @@ const (
 	GCS_VERB uint32 = 4
 	GCS_HELPTEXT uint32 = 5
 	GCS_VALIDATE uint32 = 6
+	CMDSTR_NEWFOLDERA string = "NewFolder"
+	CMDSTR_VIEWLISTA string = "ViewList"
+	CMDSTR_VIEWDETAILSA string = "ViewDetails"
+	CMDSTR_NEWFOLDERW string = "NewFolder"
+	CMDSTR_VIEWLISTW string = "ViewList"
+	CMDSTR_VIEWDETAILSW string = "ViewDetails"
+	CMDSTR_NEWFOLDER string = "NewFolder"
+	CMDSTR_VIEWLIST string = "ViewList"
+	CMDSTR_VIEWDETAILS string = "ViewDetails"
 	CMIC_MASK_SHIFT_DOWN uint32 = 268435456
 	CMIC_MASK_CONTROL_DOWN uint32 = 1073741824
 	CMIC_MASK_PTINVOKE uint32 = 536870912
@@ -503,7 +549,36 @@ const (
 	SFGAO_STORAGEANCESTOR int32 = 8388608
 	SFGAO_STORAGECAPMASK int32 = 1891958792
 	SFGAO_PKEYSFGAOMASK int32 = -2130427904
+	CONFLICT_RESOLUTION_CLSID_KEY string = "ConflictResolutionCLSID"
+	STR_BIND_FORCE_FOLDER_SHORTCUT_RESOLVE string = "Force Folder Shortcut Resolve"
+	STR_AVOID_DRIVE_RESTRICTION_POLICY string = "Avoid Drive Restriction Policy"
+	STR_SKIP_BINDING_CLSID string = "Skip Binding CLSID"
+	STR_PARSE_PREFER_FOLDER_BROWSING string = "Parse Prefer Folder Browsing"
+	STR_DONT_PARSE_RELATIVE string = "Don't Parse Relative"
+	STR_PARSE_TRANSLATE_ALIASES string = "Parse Translate Aliases"
+	STR_PARSE_SKIP_NET_CACHE string = "Skip Net Resource Cache"
+	STR_PARSE_SHELL_PROTOCOL_TO_FILE_OBJECTS string = "Parse Shell Protocol To File Objects"
+	STR_TRACK_CLSID string = "Track the CLSID"
+	STR_INTERNAL_NAVIGATE string = "Internal Navigation"
+	STR_PARSE_PROPERTYSTORE string = "DelegateNamedProperties"
+	STR_NO_VALIDATE_FILENAME_CHARS string = "NoValidateFilenameChars"
+	STR_BIND_DELEGATE_CREATE_OBJECT string = "Delegate Object Creation"
+	STR_PARSE_ALLOW_INTERNET_SHELL_FOLDERS string = "Allow binding to Internet shell folder handlers and negate STR_PARSE_PREFER_WEB_BROWSING"
+	STR_PARSE_PREFER_WEB_BROWSING string = "Do not bind to Internet shell folder handlers"
+	STR_PARSE_SHOW_NET_DIAGNOSTICS_UI string = "Show network diagnostics UI"
+	STR_PARSE_DONT_REQUIRE_VALIDATED_URLS string = "Do not require validated URLs"
+	STR_INTERNETFOLDER_PARSE_ONLY_URLMON_BINDABLE string = "Validate URL"
 	BIND_INTERRUPTABLE uint32 = 4294967295
+	STR_BIND_FOLDERS_READ_ONLY string = "Folders As Read Only"
+	STR_BIND_FOLDER_ENUM_MODE string = "Folder Enum Mode"
+	STR_PARSE_WITH_EXPLICIT_PROGID string = "ExplicitProgid"
+	STR_PARSE_WITH_EXPLICIT_ASSOCAPP string = "ExplicitAssociationApp"
+	STR_PARSE_EXPLICIT_ASSOCIATION_SUCCESSFUL string = "ExplicitAssociationSuccessful"
+	STR_PARSE_AND_CREATE_ITEM string = "ParseAndCreateItem"
+	STR_PROPERTYBAG_PARAM string = "SHBindCtxPropertyBag"
+	STR_ENUM_ITEMS_FLAGS string = "SHCONTF"
+	STR_STORAGEITEM_CREATION_FLAGS string = "SHGETSTORAGEITEM"
+	STR_ITEM_CACHE_CONTEXT string = "ItemCacheContext"
 	CDBOSC_SETFOCUS uint32 = 0
 	CDBOSC_KILLFOCUS uint32 = 1
 	CDBOSC_SELCHANGE uint32 = 2
@@ -554,6 +629,15 @@ const (
 	FCT_MERGE uint32 = 1
 	FCT_CONFIGABLE uint32 = 2
 	FCT_ADDTOEND uint32 = 4
+	STR_DONT_RESOLVE_LINK string = "Don't Resolve Link"
+	STR_GET_ASYNC_HANDLER string = "GetAsyncHandler"
+	STR_GPS_HANDLERPROPERTIESONLY string = "GPS_HANDLERPROPERTIESONLY"
+	STR_GPS_FASTPROPERTIESONLY string = "GPS_FASTPROPERTIESONLY"
+	STR_GPS_OPENSLOWITEM string = "GPS_OPENSLOWITEM"
+	STR_GPS_DELAYCREATION string = "GPS_DELAYCREATION"
+	STR_GPS_BESTEFFORT string = "GPS_BESTEFFORT"
+	STR_GPS_NO_OPLOCK string = "GPS_NO_OPLOCK"
+	DI_GETDRAGIMAGE string = "ShellGetDragImage"
 	ARCONTENT_AUTORUNINF uint32 = 2
 	ARCONTENT_AUDIOCD uint32 = 4
 	ARCONTENT_DVDMOVIE uint32 = 8
@@ -704,6 +788,13 @@ const (
 	E_PREVIEWHANDLER_NOAUTH HRESULT = -2042494974
 	E_PREVIEWHANDLER_NOTFOUND HRESULT = -2042494973
 	E_PREVIEWHANDLER_CORRUPT HRESULT = -2042494972
+	STR_FILE_SYS_BIND_DATA string = "File System Bind Data"
+	STR_FILE_SYS_BIND_DATA_WIN7_FORMAT string = "Win7FileSystemIdList"
+	HOMEGROUP_SECURITY_GROUP_MULTI string = "HUG"
+	HOMEGROUP_SECURITY_GROUP string = "HomeUsers"
+	PROP_CONTRACT_DELEGATE string = "ContractDelegate"
+	STR_TAB_REUSE_IDENTIFIER string = "Tab Reuse Identifier"
+	STR_REFERRER_IDENTIFIER string = "Referrer Identifier"
 	ISIOI_ICONFILE uint32 = 1
 	ISIOI_ICONINDEX uint32 = 2
 	ABM_NEW uint32 = 0
@@ -835,6 +926,7 @@ const (
 	SHIL_SYSSMALL uint32 = 3
 	SHIL_JUMBO uint32 = 4
 	SHIL_LAST uint32 = 4
+	WC_NETADDRESS string = "msctls_netaddress"
 	NCM_GETADDRESS uint32 = 1025
 	NCM_SETALLOWTYPE uint32 = 1026
 	NCM_GETALLOWTYPE uint32 = 1027
@@ -845,6 +937,12 @@ const (
 	MAX_SYNCMGR_NAME uint32 = 128
 	STIF_DEFAULT int32 = 0
 	STIF_SUPPORT_HEX int32 = 1
+	SZ_CONTENTTYPE_HTMLA string = "text/html"
+	SZ_CONTENTTYPE_HTMLW string = "text/html"
+	SZ_CONTENTTYPE_CDFA string = "application/x-cdf"
+	SZ_CONTENTTYPE_CDFW string = "application/x-cdf"
+	SZ_CONTENTTYPE_HTML string = "text/html"
+	SZ_CONTENTTYPE_CDF string = "application/x-cdf"
 	GCT_INVALID uint32 = 0
 	GCT_LFNCHAR uint32 = 1
 	GCT_SHORTCHAR uint32 = 2
@@ -961,6 +1059,8 @@ const (
 	WTS_E_EXTRACTIONPENDING HRESULT = -2147175931
 	WTS_E_EXTRACTIONBLOCKED HRESULT = -2147175930
 	WTS_E_NOSTORAGEPROVIDERTHUMBNAILHANDLER HRESULT = -2147175929
+	SHIMGKEY_QUALITY string = "Compression"
+	SHIMGKEY_RAWFORMAT string = "RawDataFormat"
 	SHIMGDEC_DEFAULT uint32 = 0
 	SHIMGDEC_THUMBNAIL uint32 = 1
 	SHIMGDEC_LOADFULL uint32 = 2
@@ -1027,10 +1127,22 @@ const (
 	VIEW_PRIORITY_SHELLEXT_ASBACKUP uint32 = 21
 	VIEW_PRIORITY_DESPERATE uint32 = 16
 	VIEW_PRIORITY_NONE uint32 = 0
+	VOLUME_PREFIX string = "\\\\?\\Volume"
 	PATHCCH_MAX_CCH uint32 = 32768
 	IDS_DESCRIPTION uint32 = 1
 	ID_APP uint32 = 100
 	DLG_SCRNSAVECONFIGURE uint32 = 2003
+	IdsIsPassword uint32 = 1000
+	IdsIniFile uint32 = 1001
+	IdsScreenSaver uint32 = 1002
+	IdsPassword uint32 = 1003
+	IdsDifferentPW uint32 = 1004
+	IdsChangePW uint32 = 1005
+	IdsBadOldPW uint32 = 1006
+	IdsAppName uint32 = 1007
+	IdsNoHelpMemory uint32 = 1008
+	IdsHelpFile uint32 = 1009
+	IdsDefKeyword uint32 = 1010
 	MAXFILELEN uint32 = 13
 	TITLEBARNAMELEN uint32 = 40
 	APPNAMEBUFFERLEN uint32 = 40
@@ -2990,32 +3102,32 @@ const (
 	FDAP_TOP FDAP = 1
 )
 
-// enum FILEOPENDIALOGOPTIONS_
-type FILEOPENDIALOGOPTIONS_ int32
+// enum FILEOPENDIALOGOPTIONS
+type FILEOPENDIALOGOPTIONS uint32
 const (
-	FOS_OVERWRITEPROMPT FILEOPENDIALOGOPTIONS_ = 2
-	FOS_STRICTFILETYPES FILEOPENDIALOGOPTIONS_ = 4
-	FOS_NOCHANGEDIR FILEOPENDIALOGOPTIONS_ = 8
-	FOS_PICKFOLDERS FILEOPENDIALOGOPTIONS_ = 32
-	FOS_FORCEFILESYSTEM FILEOPENDIALOGOPTIONS_ = 64
-	FOS_ALLNONSTORAGEITEMS FILEOPENDIALOGOPTIONS_ = 128
-	FOS_NOVALIDATE FILEOPENDIALOGOPTIONS_ = 256
-	FOS_ALLOWMULTISELECT FILEOPENDIALOGOPTIONS_ = 512
-	FOS_PATHMUSTEXIST FILEOPENDIALOGOPTIONS_ = 2048
-	FOS_FILEMUSTEXIST FILEOPENDIALOGOPTIONS_ = 4096
-	FOS_CREATEPROMPT FILEOPENDIALOGOPTIONS_ = 8192
-	FOS_SHAREAWARE FILEOPENDIALOGOPTIONS_ = 16384
-	FOS_NOREADONLYRETURN FILEOPENDIALOGOPTIONS_ = 32768
-	FOS_NOTESTFILECREATE FILEOPENDIALOGOPTIONS_ = 65536
-	FOS_HIDEMRUPLACES FILEOPENDIALOGOPTIONS_ = 131072
-	FOS_HIDEPINNEDPLACES FILEOPENDIALOGOPTIONS_ = 262144
-	FOS_NODEREFERENCELINKS FILEOPENDIALOGOPTIONS_ = 1048576
-	FOS_OKBUTTONNEEDSINTERACTION FILEOPENDIALOGOPTIONS_ = 2097152
-	FOS_DONTADDTORECENT FILEOPENDIALOGOPTIONS_ = 33554432
-	FOS_FORCESHOWHIDDEN FILEOPENDIALOGOPTIONS_ = 268435456
-	FOS_DEFAULTNOMINIMODE FILEOPENDIALOGOPTIONS_ = 536870912
-	FOS_FORCEPREVIEWPANEON FILEOPENDIALOGOPTIONS_ = 1073741824
-	FOS_SUPPORTSTREAMABLEITEMS FILEOPENDIALOGOPTIONS_ = -2147483648
+	FOS_OVERWRITEPROMPT FILEOPENDIALOGOPTIONS = 2
+	FOS_STRICTFILETYPES FILEOPENDIALOGOPTIONS = 4
+	FOS_NOCHANGEDIR FILEOPENDIALOGOPTIONS = 8
+	FOS_PICKFOLDERS FILEOPENDIALOGOPTIONS = 32
+	FOS_FORCEFILESYSTEM FILEOPENDIALOGOPTIONS = 64
+	FOS_ALLNONSTORAGEITEMS FILEOPENDIALOGOPTIONS = 128
+	FOS_NOVALIDATE FILEOPENDIALOGOPTIONS = 256
+	FOS_ALLOWMULTISELECT FILEOPENDIALOGOPTIONS = 512
+	FOS_PATHMUSTEXIST FILEOPENDIALOGOPTIONS = 2048
+	FOS_FILEMUSTEXIST FILEOPENDIALOGOPTIONS = 4096
+	FOS_CREATEPROMPT FILEOPENDIALOGOPTIONS = 8192
+	FOS_SHAREAWARE FILEOPENDIALOGOPTIONS = 16384
+	FOS_NOREADONLYRETURN FILEOPENDIALOGOPTIONS = 32768
+	FOS_NOTESTFILECREATE FILEOPENDIALOGOPTIONS = 65536
+	FOS_HIDEMRUPLACES FILEOPENDIALOGOPTIONS = 131072
+	FOS_HIDEPINNEDPLACES FILEOPENDIALOGOPTIONS = 262144
+	FOS_NODEREFERENCELINKS FILEOPENDIALOGOPTIONS = 1048576
+	FOS_OKBUTTONNEEDSINTERACTION FILEOPENDIALOGOPTIONS = 2097152
+	FOS_DONTADDTORECENT FILEOPENDIALOGOPTIONS = 33554432
+	FOS_FORCESHOWHIDDEN FILEOPENDIALOGOPTIONS = 268435456
+	FOS_DEFAULTNOMINIMODE FILEOPENDIALOGOPTIONS = 536870912
+	FOS_FORCEPREVIEWPANEON FILEOPENDIALOGOPTIONS = 1073741824
+	FOS_SUPPORTSTREAMABLEITEMS FILEOPENDIALOGOPTIONS = 2147483648
 )
 
 // enum CDCONTROLSTATEF
@@ -11973,8 +12085,8 @@ type IFileDialogInterface interface {
 	GetFileTypeIndex(piFileType *uint32) HRESULT
 	Advise(pfde *IFileDialogEvents, pdwCookie *uint32) HRESULT
 	Unadvise(dwCookie uint32) HRESULT
-	SetOptions(fos uint32) HRESULT
-	GetOptions(pfos *uint32) HRESULT
+	SetOptions(fos FILEOPENDIALOGOPTIONS) HRESULT
+	GetOptions(pfos *FILEOPENDIALOGOPTIONS) HRESULT
 	SetDefaultFolder(psi *IShellItem) HRESULT
 	SetFolder(psi *IShellItem) HRESULT
 	GetFolder(ppsi **IShellItem) HRESULT
@@ -12053,12 +12165,12 @@ func (this *IFileDialog) Unadvise(dwCookie uint32) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IFileDialog) SetOptions(fos uint32) HRESULT{
+func (this *IFileDialog) SetOptions(fos FILEOPENDIALOGOPTIONS) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetOptions, uintptr(unsafe.Pointer(this)), uintptr(fos))
 	return HRESULT(ret)
 }
 
-func (this *IFileDialog) GetOptions(pfos *uint32) HRESULT{
+func (this *IFileDialog) GetOptions(pfos *FILEOPENDIALOGOPTIONS) HRESULT{
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfos)))
 	return HRESULT(ret)
 }
@@ -32099,353 +32211,353 @@ func ParseURLW(pcszURL PWSTR, ppu *PARSEDURLW) HRESULT {
 	return HRESULT(ret)
 }
 
-func SHDeleteEmptyKeyA(hkey HKEY, pszSubKey PSTR) LSTATUS {
+func SHDeleteEmptyKeyA(hkey HKEY, pszSubKey PSTR) WIN32_ERROR {
 	addr := lazyAddr(&pSHDeleteEmptyKeyA, libShlwapi, "SHDeleteEmptyKeyA")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
 var SHDeleteEmptyKey = SHDeleteEmptyKeyW
-func SHDeleteEmptyKeyW(hkey HKEY, pszSubKey PWSTR) LSTATUS {
+func SHDeleteEmptyKeyW(hkey HKEY, pszSubKey PWSTR) WIN32_ERROR {
 	addr := lazyAddr(&pSHDeleteEmptyKeyW, libShlwapi, "SHDeleteEmptyKeyW")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
-func SHDeleteKeyA(hkey HKEY, pszSubKey PSTR) LSTATUS {
+func SHDeleteKeyA(hkey HKEY, pszSubKey PSTR) WIN32_ERROR {
 	addr := lazyAddr(&pSHDeleteKeyA, libShlwapi, "SHDeleteKeyA")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
 var SHDeleteKey = SHDeleteKeyW
-func SHDeleteKeyW(hkey HKEY, pszSubKey PWSTR) LSTATUS {
+func SHDeleteKeyW(hkey HKEY, pszSubKey PWSTR) WIN32_ERROR {
 	addr := lazyAddr(&pSHDeleteKeyW, libShlwapi, "SHDeleteKeyW")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
-func SHRegDuplicateHKey(hkey HKEY) HKEY {
+func SHRegDuplicateHKey(hkey HKEY) WIN32_ERROR {
 	addr := lazyAddr(&pSHRegDuplicateHKey, libShlwapi, "SHRegDuplicateHKey")
 	ret, _,  _ := syscall.SyscallN(addr, hkey)
-	return HKEY(ret)
+	return WIN32_ERROR(ret)
 }
 
-func SHDeleteValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR) LSTATUS {
+func SHDeleteValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR) WIN32_ERROR {
 	addr := lazyAddr(&pSHDeleteValueA, libShlwapi, "SHDeleteValueA")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
 var SHDeleteValue = SHDeleteValueW
-func SHDeleteValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR) LSTATUS {
+func SHDeleteValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR) WIN32_ERROR {
 	addr := lazyAddr(&pSHDeleteValueW, libShlwapi, "SHDeleteValueW")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
-func SHGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
+func SHGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
 	addr := lazyAddr(&pSHGetValueA, libShlwapi, "SHGetValueA")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
 var SHGetValue = SHGetValueW
-func SHGetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
+func SHGetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
 	addr := lazyAddr(&pSHGetValueW, libShlwapi, "SHGetValueW")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
+	return WIN32_ERROR(ret)
 }
 
-func SHSetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32) LSTATUS {
+func SHSetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32) int32 {
 	addr := lazyAddr(&pSHSetValueA, libShlwapi, "SHSetValueA")
 	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData))
-	return LSTATUS(ret)
-}
-
-var SHSetValue = SHSetValueW
-func SHSetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32) LSTATUS {
-	addr := lazyAddr(&pSHSetValueW, libShlwapi, "SHSetValueW")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData))
-	return LSTATUS(ret)
-}
-
-func SHRegGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegGetValueA, libShlwapi, "SHRegGetValueA")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
-}
-
-var SHRegGetValue = SHRegGetValueW
-func SHRegGetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegGetValueW, libShlwapi, "SHRegGetValueW")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
-}
-
-func SHRegGetValueFromHKCUHKLM(pwszKey PWSTR, pwszValue PWSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegGetValueFromHKCUHKLM, libShlwapi, "SHRegGetValueFromHKCUHKLM")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszKey)), uintptr(unsafe.Pointer(pwszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
-}
-
-func SHQueryValueExA(hkey HKEY, pszValue PSTR, pdwReserved *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
-	addr := lazyAddr(&pSHQueryValueExA, libShlwapi, "SHQueryValueExA")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwReserved)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
-}
-
-var SHQueryValueEx = SHQueryValueExW
-func SHQueryValueExW(hkey HKEY, pszValue PWSTR, pdwReserved *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
-	addr := lazyAddr(&pSHQueryValueExW, libShlwapi, "SHQueryValueExW")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwReserved)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
-}
-
-func SHEnumKeyExA(hkey HKEY, dwIndex uint32, pszName *uint8, pcchName *uint32) LSTATUS {
-	addr := lazyAddr(&pSHEnumKeyExA, libShlwapi, "SHEnumKeyExA")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)))
-	return LSTATUS(ret)
-}
-
-var SHEnumKeyEx = SHEnumKeyExW
-func SHEnumKeyExW(hkey HKEY, dwIndex uint32, pszName *uint16, pcchName *uint32) LSTATUS {
-	addr := lazyAddr(&pSHEnumKeyExW, libShlwapi, "SHEnumKeyExW")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)))
-	return LSTATUS(ret)
-}
-
-func SHEnumValueA(hkey HKEY, dwIndex uint32, pszValueName *uint8, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
-	addr := lazyAddr(&pSHEnumValueA, libShlwapi, "SHEnumValueA")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
-}
-
-var SHEnumValue = SHEnumValueW
-func SHEnumValueW(hkey HKEY, dwIndex uint32, pszValueName *uint16, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) LSTATUS {
-	addr := lazyAddr(&pSHEnumValueW, libShlwapi, "SHEnumValueW")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
-	return LSTATUS(ret)
-}
-
-func SHQueryInfoKeyA(hkey HKEY, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32) LSTATUS {
-	addr := lazyAddr(&pSHQueryInfoKeyA, libShlwapi, "SHQueryInfoKeyA")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)))
-	return LSTATUS(ret)
-}
-
-var SHQueryInfoKey = SHQueryInfoKeyW
-func SHQueryInfoKeyW(hkey HKEY, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32) LSTATUS {
-	addr := lazyAddr(&pSHQueryInfoKeyW, libShlwapi, "SHQueryInfoKeyW")
-	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)))
-	return LSTATUS(ret)
-}
-
-func SHCopyKeyA(hkeySrc HKEY, pszSrcSubKey PSTR, hkeyDest HKEY, fReserved uint32) LSTATUS {
-	addr := lazyAddr(&pSHCopyKeyA, libShlwapi, "SHCopyKeyA")
-	ret, _,  _ := syscall.SyscallN(addr, hkeySrc, uintptr(unsafe.Pointer(pszSrcSubKey)), hkeyDest, uintptr(fReserved))
-	return LSTATUS(ret)
-}
-
-var SHCopyKey = SHCopyKeyW
-func SHCopyKeyW(hkeySrc HKEY, pszSrcSubKey PWSTR, hkeyDest HKEY, fReserved uint32) LSTATUS {
-	addr := lazyAddr(&pSHCopyKeyW, libShlwapi, "SHCopyKeyW")
-	ret, _,  _ := syscall.SyscallN(addr, hkeySrc, uintptr(unsafe.Pointer(pszSrcSubKey)), hkeyDest, uintptr(fReserved))
-	return LSTATUS(ret)
-}
-
-func SHRegGetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pszPath *uint8, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegGetPathA, libShlwapi, "SHRegGetPathA")
-	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegGetPath = SHRegGetPathW
-func SHRegGetPathW(hKey HKEY, pcszSubKey PWSTR, pcszValue PWSTR, pszPath *uint16, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegGetPathW, libShlwapi, "SHRegGetPathW")
-	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegSetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pcszPath PSTR, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegSetPathA, libShlwapi, "SHRegSetPathA")
-	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pcszPath)), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegSetPath = SHRegSetPathW
-func SHRegSetPathW(hKey HKEY, pcszSubKey PWSTR, pcszValue PWSTR, pcszPath PWSTR, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegSetPathW, libShlwapi, "SHRegSetPathW")
-	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pcszPath)), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegCreateUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegCreateUSKeyA, libShlwapi, "SHRegCreateUSKeyA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegCreateUSKey = SHRegCreateUSKeyW
-func SHRegCreateUSKeyW(pwzPath PWSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegCreateUSKeyW, libShlwapi, "SHRegCreateUSKeyW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegOpenUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, fIgnoreHKCU BOOL) LSTATUS {
-	addr := lazyAddr(&pSHRegOpenUSKeyA, libShlwapi, "SHRegOpenUSKeyA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(fIgnoreHKCU))
-	return LSTATUS(ret)
-}
-
-var SHRegOpenUSKey = SHRegOpenUSKeyW
-func SHRegOpenUSKeyW(pwzPath PWSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, fIgnoreHKCU BOOL) LSTATUS {
-	addr := lazyAddr(&pSHRegOpenUSKeyW, libShlwapi, "SHRegOpenUSKeyW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(fIgnoreHKCU))
-	return LSTATUS(ret)
-}
-
-func SHRegQueryUSValueA(hUSKey uintptr, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegQueryUSValueA, libShlwapi, "SHRegQueryUSValueA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
-	return LSTATUS(ret)
-}
-
-var SHRegQueryUSValue = SHRegQueryUSValueW
-func SHRegQueryUSValueW(hUSKey uintptr, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegQueryUSValueW, libShlwapi, "SHRegQueryUSValueW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
-	return LSTATUS(ret)
-}
-
-func SHRegWriteUSValueA(hUSKey uintptr, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegWriteUSValueA, libShlwapi, "SHRegWriteUSValueA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegWriteUSValue = SHRegWriteUSValueW
-func SHRegWriteUSValueW(hUSKey uintptr, pwzValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegWriteUSValueW, libShlwapi, "SHRegWriteUSValueW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pwzValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegDeleteUSValueA(hUSKey uintptr, pszValue PSTR, delRegFlags SHREGDEL_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegDeleteUSValueA, libShlwapi, "SHRegDeleteUSValueA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(delRegFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegDeleteUSValue = SHRegDeleteUSValueW
-func SHRegDeleteUSValueW(hUSKey uintptr, pwzValue PWSTR, delRegFlags SHREGDEL_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegDeleteUSValueW, libShlwapi, "SHRegDeleteUSValueW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pwzValue)), uintptr(delRegFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegDeleteEmptyUSKey = SHRegDeleteEmptyUSKeyW
-func SHRegDeleteEmptyUSKeyW(hUSKey uintptr, pwzSubKey PWSTR, delRegFlags SHREGDEL_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegDeleteEmptyUSKeyW, libShlwapi, "SHRegDeleteEmptyUSKeyW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pwzSubKey)), uintptr(delRegFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegDeleteEmptyUSKeyA(hUSKey uintptr, pszSubKey PSTR, delRegFlags SHREGDEL_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegDeleteEmptyUSKeyA, libShlwapi, "SHRegDeleteEmptyUSKeyA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszSubKey)), uintptr(delRegFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegEnumUSKeyA(hUSKey uintptr, dwIndex uint32, pszName *uint8, pcchName *uint32, enumRegFlags SHREGENUM_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegEnumUSKeyA, libShlwapi, "SHRegEnumUSKeyA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)), uintptr(enumRegFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegEnumUSKey = SHRegEnumUSKeyW
-func SHRegEnumUSKeyW(hUSKey uintptr, dwIndex uint32, pwzName *uint16, pcchName *uint32, enumRegFlags SHREGENUM_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegEnumUSKeyW, libShlwapi, "SHRegEnumUSKeyW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(dwIndex), uintptr(unsafe.Pointer(pwzName)), uintptr(unsafe.Pointer(pcchName)), uintptr(enumRegFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegEnumUSValueA(hUSkey uintptr, dwIndex uint32, pszValueName *uint8, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, enumRegFlags SHREGENUM_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegEnumUSValueA, libShlwapi, "SHRegEnumUSValueA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSkey), uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(enumRegFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegEnumUSValue = SHRegEnumUSValueW
-func SHRegEnumUSValueW(hUSkey uintptr, dwIndex uint32, pszValueName *uint16, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, enumRegFlags SHREGENUM_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegEnumUSValueW, libShlwapi, "SHRegEnumUSValueW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSkey), uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(enumRegFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegQueryInfoUSKeyA(hUSKey uintptr, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32, enumRegFlags SHREGENUM_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegQueryInfoUSKeyA, libShlwapi, "SHRegQueryInfoUSKeyA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)), uintptr(enumRegFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegQueryInfoUSKey = SHRegQueryInfoUSKeyW
-func SHRegQueryInfoUSKeyW(hUSKey uintptr, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32, enumRegFlags SHREGENUM_FLAGS) LSTATUS {
-	addr := lazyAddr(&pSHRegQueryInfoUSKeyW, libShlwapi, "SHRegQueryInfoUSKeyW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)), uintptr(enumRegFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegCloseUSKey(hUSKey uintptr) LSTATUS {
-	addr := lazyAddr(&pSHRegCloseUSKey, libShlwapi, "SHRegCloseUSKey")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey))
-	return LSTATUS(ret)
-}
-
-func SHRegGetUSValueA(pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegGetUSValueA, libShlwapi, "SHRegGetUSValueA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
-	return LSTATUS(ret)
-}
-
-var SHRegGetUSValue = SHRegGetUSValueW
-func SHRegGetUSValueW(pszSubKey PWSTR, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegGetUSValueW, libShlwapi, "SHRegGetUSValueW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
-	return LSTATUS(ret)
-}
-
-func SHRegSetUSValueA(pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegSetUSValueA, libShlwapi, "SHRegSetUSValueA")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-var SHRegSetUSValue = SHRegSetUSValueW
-func SHRegSetUSValueW(pwzSubKey PWSTR, pwzValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) LSTATUS {
-	addr := lazyAddr(&pSHRegSetUSValueW, libShlwapi, "SHRegSetUSValueW")
-	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzSubKey)), uintptr(unsafe.Pointer(pwzValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
-	return LSTATUS(ret)
-}
-
-func SHRegGetIntW(hk HKEY, pwzKey PWSTR, iDefault int32) int32 {
-	addr := lazyAddr(&pSHRegGetIntW, libShlwapi, "SHRegGetIntW")
-	ret, _,  _ := syscall.SyscallN(addr, hk, uintptr(unsafe.Pointer(pwzKey)), uintptr(iDefault))
 	return int32(ret)
 }
 
-func SHRegGetBoolUSValueA(pszSubKey PSTR, pszValue PSTR, fIgnoreHKCU BOOL, fDefault BOOL) BOOL {
+var SHSetValue = SHSetValueW
+func SHSetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32) int32 {
+	addr := lazyAddr(&pSHSetValueW, libShlwapi, "SHSetValueW")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData))
+	return int32(ret)
+}
+
+func SHRegGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetValueA, libShlwapi, "SHRegGetValueA")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegGetValue = SHRegGetValueW
+func SHRegGetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetValueW, libShlwapi, "SHRegGetValueW")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegGetValueFromHKCUHKLM(pwszKey PWSTR, pwszValue PWSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetValueFromHKCUHKLM, libShlwapi, "SHRegGetValueFromHKCUHKLM")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszKey)), uintptr(unsafe.Pointer(pwszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
+	return WIN32_ERROR(ret)
+}
+
+func SHQueryValueExA(hkey HKEY, pszValue PSTR, pdwReserved *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHQueryValueExA, libShlwapi, "SHQueryValueExA")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwReserved)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
+	return WIN32_ERROR(ret)
+}
+
+var SHQueryValueEx = SHQueryValueExW
+func SHQueryValueExW(hkey HKEY, pszValue PWSTR, pdwReserved *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHQueryValueExW, libShlwapi, "SHQueryValueExW")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwReserved)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
+	return WIN32_ERROR(ret)
+}
+
+func SHEnumKeyExA(hkey HKEY, dwIndex uint32, pszName *uint8, pcchName *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHEnumKeyExA, libShlwapi, "SHEnumKeyExA")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)))
+	return WIN32_ERROR(ret)
+}
+
+var SHEnumKeyEx = SHEnumKeyExW
+func SHEnumKeyExW(hkey HKEY, dwIndex uint32, pszName *uint16, pcchName *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHEnumKeyExW, libShlwapi, "SHEnumKeyExW")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)))
+	return WIN32_ERROR(ret)
+}
+
+func SHEnumValueA(hkey HKEY, dwIndex uint32, pszValueName *uint8, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHEnumValueA, libShlwapi, "SHEnumValueA")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
+	return WIN32_ERROR(ret)
+}
+
+var SHEnumValue = SHEnumValueW
+func SHEnumValueW(hkey HKEY, dwIndex uint32, pszValueName *uint16, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHEnumValueW, libShlwapi, "SHEnumValueW")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
+	return WIN32_ERROR(ret)
+}
+
+func SHQueryInfoKeyA(hkey HKEY, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHQueryInfoKeyA, libShlwapi, "SHQueryInfoKeyA")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)))
+	return WIN32_ERROR(ret)
+}
+
+var SHQueryInfoKey = SHQueryInfoKeyW
+func SHQueryInfoKeyW(hkey HKEY, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHQueryInfoKeyW, libShlwapi, "SHQueryInfoKeyW")
+	ret, _,  _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)))
+	return WIN32_ERROR(ret)
+}
+
+func SHCopyKeyA(hkeySrc HKEY, pszSrcSubKey PSTR, hkeyDest HKEY, fReserved uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHCopyKeyA, libShlwapi, "SHCopyKeyA")
+	ret, _,  _ := syscall.SyscallN(addr, hkeySrc, uintptr(unsafe.Pointer(pszSrcSubKey)), hkeyDest, uintptr(fReserved))
+	return WIN32_ERROR(ret)
+}
+
+var SHCopyKey = SHCopyKeyW
+func SHCopyKeyW(hkeySrc HKEY, pszSrcSubKey PWSTR, hkeyDest HKEY, fReserved uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHCopyKeyW, libShlwapi, "SHCopyKeyW")
+	ret, _,  _ := syscall.SyscallN(addr, hkeySrc, uintptr(unsafe.Pointer(pszSrcSubKey)), hkeyDest, uintptr(fReserved))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegGetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pszPath *uint8, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetPathA, libShlwapi, "SHRegGetPathA")
+	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegGetPath = SHRegGetPathW
+func SHRegGetPathW(hKey HKEY, pcszSubKey PWSTR, pcszValue PWSTR, pszPath *uint16, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetPathW, libShlwapi, "SHRegGetPathW")
+	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegSetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pcszPath PSTR, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegSetPathA, libShlwapi, "SHRegSetPathA")
+	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pcszPath)), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegSetPath = SHRegSetPathW
+func SHRegSetPathW(hKey HKEY, pcszSubKey PWSTR, pcszValue PWSTR, pcszPath PWSTR, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegSetPathW, libShlwapi, "SHRegSetPathW")
+	ret, _,  _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pcszPath)), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegCreateUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegCreateUSKeyA, libShlwapi, "SHRegCreateUSKeyA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegCreateUSKey = SHRegCreateUSKeyW
+func SHRegCreateUSKeyW(pwzPath PWSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegCreateUSKeyW, libShlwapi, "SHRegCreateUSKeyW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegOpenUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, fIgnoreHKCU BOOL) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegOpenUSKeyA, libShlwapi, "SHRegOpenUSKeyA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(fIgnoreHKCU))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegOpenUSKey = SHRegOpenUSKeyW
+func SHRegOpenUSKeyW(pwzPath PWSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, fIgnoreHKCU BOOL) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegOpenUSKeyW, libShlwapi, "SHRegOpenUSKeyW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzPath)), uintptr(samDesired), uintptr(hRelativeUSKey), uintptr(unsafe.Pointer(phNewUSKey)), uintptr(fIgnoreHKCU))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegQueryUSValueA(hUSKey uintptr, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegQueryUSValueA, libShlwapi, "SHRegQueryUSValueA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegQueryUSValue = SHRegQueryUSValueW
+func SHRegQueryUSValueW(hUSKey uintptr, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegQueryUSValueW, libShlwapi, "SHRegQueryUSValueW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegWriteUSValueA(hUSKey uintptr, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegWriteUSValueA, libShlwapi, "SHRegWriteUSValueA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegWriteUSValue = SHRegWriteUSValueW
+func SHRegWriteUSValueW(hUSKey uintptr, pwzValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegWriteUSValueW, libShlwapi, "SHRegWriteUSValueW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pwzValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegDeleteUSValueA(hUSKey uintptr, pszValue PSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegDeleteUSValueA, libShlwapi, "SHRegDeleteUSValueA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszValue)), uintptr(delRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegDeleteUSValue = SHRegDeleteUSValueW
+func SHRegDeleteUSValueW(hUSKey uintptr, pwzValue PWSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegDeleteUSValueW, libShlwapi, "SHRegDeleteUSValueW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pwzValue)), uintptr(delRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegDeleteEmptyUSKey = SHRegDeleteEmptyUSKeyW
+func SHRegDeleteEmptyUSKeyW(hUSKey uintptr, pwzSubKey PWSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegDeleteEmptyUSKeyW, libShlwapi, "SHRegDeleteEmptyUSKeyW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pwzSubKey)), uintptr(delRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegDeleteEmptyUSKeyA(hUSKey uintptr, pszSubKey PSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegDeleteEmptyUSKeyA, libShlwapi, "SHRegDeleteEmptyUSKeyA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pszSubKey)), uintptr(delRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegEnumUSKeyA(hUSKey uintptr, dwIndex uint32, pszName *uint8, pcchName *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegEnumUSKeyA, libShlwapi, "SHRegEnumUSKeyA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)), uintptr(enumRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegEnumUSKey = SHRegEnumUSKeyW
+func SHRegEnumUSKeyW(hUSKey uintptr, dwIndex uint32, pwzName *uint16, pcchName *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegEnumUSKeyW, libShlwapi, "SHRegEnumUSKeyW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(dwIndex), uintptr(unsafe.Pointer(pwzName)), uintptr(unsafe.Pointer(pcchName)), uintptr(enumRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegEnumUSValueA(hUSkey uintptr, dwIndex uint32, pszValueName *uint8, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegEnumUSValueA, libShlwapi, "SHRegEnumUSValueA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSkey), uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(enumRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegEnumUSValue = SHRegEnumUSValueW
+func SHRegEnumUSValueW(hUSkey uintptr, dwIndex uint32, pszValueName *uint16, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegEnumUSValueW, libShlwapi, "SHRegEnumUSValueW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSkey), uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(enumRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegQueryInfoUSKeyA(hUSKey uintptr, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegQueryInfoUSKeyA, libShlwapi, "SHRegQueryInfoUSKeyA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)), uintptr(enumRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegQueryInfoUSKey = SHRegQueryInfoUSKeyW
+func SHRegQueryInfoUSKeyW(hUSKey uintptr, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegQueryInfoUSKeyW, libShlwapi, "SHRegQueryInfoUSKeyW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey), uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)), uintptr(enumRegFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegCloseUSKey(hUSKey uintptr) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegCloseUSKey, libShlwapi, "SHRegCloseUSKey")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(hUSKey))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegGetUSValueA(pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetUSValueA, libShlwapi, "SHRegGetUSValueA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegGetUSValue = SHRegGetUSValueW
+func SHRegGetUSValueW(pszSubKey PWSTR, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetUSValueW, libShlwapi, "SHRegGetUSValueW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegSetUSValueA(pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegSetUSValueA, libShlwapi, "SHRegSetUSValueA")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+var SHRegSetUSValue = SHRegSetUSValueW
+func SHRegSetUSValueW(pwzSubKey PWSTR, pwzValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegSetUSValueW, libShlwapi, "SHRegSetUSValueW")
+	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzSubKey)), uintptr(unsafe.Pointer(pwzValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegGetIntW(hk HKEY, pwzKey PWSTR, iDefault int32) WIN32_ERROR {
+	addr := lazyAddr(&pSHRegGetIntW, libShlwapi, "SHRegGetIntW")
+	ret, _,  _ := syscall.SyscallN(addr, hk, uintptr(unsafe.Pointer(pwzKey)), uintptr(iDefault))
+	return WIN32_ERROR(ret)
+}
+
+func SHRegGetBoolUSValueA(pszSubKey PSTR, pszValue PSTR, fIgnoreHKCU BOOL, fDefault BOOL) WIN32_ERROR {
 	addr := lazyAddr(&pSHRegGetBoolUSValueA, libShlwapi, "SHRegGetBoolUSValueA")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(fIgnoreHKCU), uintptr(fDefault))
-	return BOOL(ret)
+	return WIN32_ERROR(ret)
 }
 
 var SHRegGetBoolUSValue = SHRegGetBoolUSValueW
-func SHRegGetBoolUSValueW(pszSubKey PWSTR, pszValue PWSTR, fIgnoreHKCU BOOL, fDefault BOOL) BOOL {
+func SHRegGetBoolUSValueW(pszSubKey PWSTR, pszValue PWSTR, fIgnoreHKCU BOOL, fDefault BOOL) WIN32_ERROR {
 	addr := lazyAddr(&pSHRegGetBoolUSValueW, libShlwapi, "SHRegGetBoolUSValueW")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(fIgnoreHKCU), uintptr(fDefault))
-	return BOOL(ret)
+	return WIN32_ERROR(ret)
 }
 
 func AssocCreate(clsid syscall.GUID, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
