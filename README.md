@@ -1,3 +1,5 @@
+:ukraine:
+
 # go-win32api
 
 Win32 API bindings for Golang. 
