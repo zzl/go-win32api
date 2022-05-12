@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"syscall"
 	"unsafe"
+	"log"
 )
 
 func HRESULT_ToString(hr HRESULT) string {
@@ -20,7 +21,7 @@ func HRESULT_ToString(hr HRESULT) string {
 
 func ASSERT_SUCCEEDED(hr HRESULT) {
 	if FAILED(hr) {
-		panic("" + HRESULT_ToString(hr))
+		log.Fatal(HRESULT_ToString(hr))
 	}
 }
 

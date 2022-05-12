@@ -195,7 +195,7 @@ const (
 )
 
 const (
-	//LVM_INSERTCOLUMN = LVM_FIRST + 97
+//LVM_INSERTCOLUMN = LVM_FIRST + 97
 )
 
 const (
@@ -386,8 +386,8 @@ func RGB(r, g, b byte) COLORREF {
 	return COLORREF(r) | (COLORREF(g) << 8) | (COLORREF(b) << 16)
 }
 
-func MAKEINTRESOURCE(id uintptr) *uint16 {
-	return (*uint16)(unsafe.Pointer(id))
+func MAKEINTRESOURCE(id uint16) *uint16 {
+	return (*uint16)(unsafe.Pointer(uintptr(id)))
 }
 
 func MAKELONG(lo, hi uint16) uint32 {

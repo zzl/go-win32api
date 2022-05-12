@@ -4690,18 +4690,18 @@ var IID_ISpellingError = syscall.GUID{0xb7c82d61, 0xfbe8, 0x4b47,
 
 type ISpellingErrorInterface interface {
 	IUnknownInterface
-	get_StartIndex(value *uint32) HRESULT
-	get_Length(value *uint32) HRESULT
-	get_CorrectiveAction(value *CORRECTIVE_ACTION) HRESULT
-	get_Replacement(value *PWSTR) HRESULT
+	Get_StartIndex(value *uint32) HRESULT
+	Get_Length(value *uint32) HRESULT
+	Get_CorrectiveAction(value *CORRECTIVE_ACTION) HRESULT
+	Get_Replacement(value *PWSTR) HRESULT
 }
 
 type ISpellingErrorVtbl struct {
 	IUnknownVtbl
-	get_StartIndex uintptr
-	get_Length uintptr
-	get_CorrectiveAction uintptr
-	get_Replacement uintptr
+	Get_StartIndex uintptr
+	Get_Length uintptr
+	Get_CorrectiveAction uintptr
+	Get_Replacement uintptr
 }
 
 type ISpellingError struct {
@@ -4712,23 +4712,23 @@ func (this *ISpellingError) Vtbl() *ISpellingErrorVtbl {
 	return (*ISpellingErrorVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ISpellingError) get_StartIndex(value *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_StartIndex, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellingError) Get_StartIndex(value *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_StartIndex, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellingError) get_Length(value *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Length, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellingError) Get_Length(value *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Length, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellingError) get_CorrectiveAction(value *CORRECTIVE_ACTION) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CorrectiveAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellingError) Get_CorrectiveAction(value *CORRECTIVE_ACTION) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CorrectiveAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellingError) get_Replacement(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Replacement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellingError) Get_Replacement(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Replacement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
@@ -4765,18 +4765,18 @@ var IID_IOptionDescription = syscall.GUID{0x432e5f85, 0x35cf, 0x4606,
 
 type IOptionDescriptionInterface interface {
 	IUnknownInterface
-	get_Id(value *PWSTR) HRESULT
-	get_Heading(value *PWSTR) HRESULT
-	get_Description(value *PWSTR) HRESULT
-	get_Labels(value **IEnumString) HRESULT
+	Get_Id(value *PWSTR) HRESULT
+	Get_Heading(value *PWSTR) HRESULT
+	Get_Description(value *PWSTR) HRESULT
+	Get_Labels(value **IEnumString) HRESULT
 }
 
 type IOptionDescriptionVtbl struct {
 	IUnknownVtbl
-	get_Id uintptr
-	get_Heading uintptr
-	get_Description uintptr
-	get_Labels uintptr
+	Get_Id uintptr
+	Get_Heading uintptr
+	Get_Description uintptr
+	Get_Labels uintptr
 }
 
 type IOptionDescription struct {
@@ -4787,23 +4787,23 @@ func (this *IOptionDescription) Vtbl() *IOptionDescriptionVtbl {
 	return (*IOptionDescriptionVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IOptionDescription) get_Id(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Id, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *IOptionDescription) Get_Id(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Id, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *IOptionDescription) get_Heading(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Heading, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *IOptionDescription) Get_Heading(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Heading, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *IOptionDescription) get_Description(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *IOptionDescription) Get_Description(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *IOptionDescription) get_Labels(value **IEnumString) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Labels, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *IOptionDescription) Get_Labels(value **IEnumString) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Labels, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
@@ -4840,36 +4840,36 @@ var IID_ISpellChecker = syscall.GUID{0xb6fd0b71, 0xe2bc, 0x4653,
 
 type ISpellCheckerInterface interface {
 	IUnknownInterface
-	get_LanguageTag(value *PWSTR) HRESULT
+	Get_LanguageTag(value *PWSTR) HRESULT
 	Check(text PWSTR, value **IEnumSpellingError) HRESULT
 	Suggest(word PWSTR, value **IEnumString) HRESULT
 	Add(word PWSTR) HRESULT
 	Ignore(word PWSTR) HRESULT
 	AutoCorrect(from PWSTR, to PWSTR) HRESULT
 	GetOptionValue(optionId PWSTR, value *uint8) HRESULT
-	get_OptionIds(value **IEnumString) HRESULT
-	get_Id(value *PWSTR) HRESULT
-	get_LocalizedName(value *PWSTR) HRESULT
-	add_SpellCheckerChanged(handler *ISpellCheckerChangedEventHandler, eventCookie *uint32) HRESULT
-	remove_SpellCheckerChanged(eventCookie uint32) HRESULT
+	Get_OptionIds(value **IEnumString) HRESULT
+	Get_Id(value *PWSTR) HRESULT
+	Get_LocalizedName(value *PWSTR) HRESULT
+	Add_SpellCheckerChanged(handler *ISpellCheckerChangedEventHandler, eventCookie *uint32) HRESULT
+	Remove_SpellCheckerChanged(eventCookie uint32) HRESULT
 	GetOptionDescription(optionId PWSTR, value **IOptionDescription) HRESULT
 	ComprehensiveCheck(text PWSTR, value **IEnumSpellingError) HRESULT
 }
 
 type ISpellCheckerVtbl struct {
 	IUnknownVtbl
-	get_LanguageTag uintptr
+	Get_LanguageTag uintptr
 	Check uintptr
 	Suggest uintptr
 	Add uintptr
 	Ignore uintptr
 	AutoCorrect uintptr
 	GetOptionValue uintptr
-	get_OptionIds uintptr
-	get_Id uintptr
-	get_LocalizedName uintptr
-	add_SpellCheckerChanged uintptr
-	remove_SpellCheckerChanged uintptr
+	Get_OptionIds uintptr
+	Get_Id uintptr
+	Get_LocalizedName uintptr
+	Add_SpellCheckerChanged uintptr
+	Remove_SpellCheckerChanged uintptr
 	GetOptionDescription uintptr
 	ComprehensiveCheck uintptr
 }
@@ -4882,8 +4882,8 @@ func (this *ISpellChecker) Vtbl() *ISpellCheckerVtbl {
 	return (*ISpellCheckerVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ISpellChecker) get_LanguageTag(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LanguageTag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellChecker) Get_LanguageTag(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LanguageTag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
@@ -4917,28 +4917,28 @@ func (this *ISpellChecker) GetOptionValue(optionId PWSTR, value *uint8) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *ISpellChecker) get_OptionIds(value **IEnumString) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_OptionIds, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellChecker) Get_OptionIds(value **IEnumString) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_OptionIds, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellChecker) get_Id(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Id, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellChecker) Get_Id(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Id, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellChecker) get_LocalizedName(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LocalizedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellChecker) Get_LocalizedName(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LocalizedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellChecker) add_SpellCheckerChanged(handler *ISpellCheckerChangedEventHandler, eventCookie *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().add_SpellCheckerChanged, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(handler)), uintptr(unsafe.Pointer(eventCookie)))
+func (this *ISpellChecker) Add_SpellCheckerChanged(handler *ISpellCheckerChangedEventHandler, eventCookie *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Add_SpellCheckerChanged, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(handler)), uintptr(unsafe.Pointer(eventCookie)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellChecker) remove_SpellCheckerChanged(eventCookie uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().remove_SpellCheckerChanged, uintptr(unsafe.Pointer(this)), uintptr(eventCookie))
+func (this *ISpellChecker) Remove_SpellCheckerChanged(eventCookie uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Remove_SpellCheckerChanged, uintptr(unsafe.Pointer(this)), uintptr(eventCookie))
 	return HRESULT(ret)
 }
 
@@ -4985,14 +4985,14 @@ var IID_ISpellCheckerFactory = syscall.GUID{0x8e018a9d, 0x2415, 0x4677,
 
 type ISpellCheckerFactoryInterface interface {
 	IUnknownInterface
-	get_SupportedLanguages(value **IEnumString) HRESULT
+	Get_SupportedLanguages(value **IEnumString) HRESULT
 	IsSupported(languageTag PWSTR, value *BOOL) HRESULT
 	CreateSpellChecker(languageTag PWSTR, value **ISpellChecker) HRESULT
 }
 
 type ISpellCheckerFactoryVtbl struct {
 	IUnknownVtbl
-	get_SupportedLanguages uintptr
+	Get_SupportedLanguages uintptr
 	IsSupported uintptr
 	CreateSpellChecker uintptr
 }
@@ -5005,8 +5005,8 @@ func (this *ISpellCheckerFactory) Vtbl() *ISpellCheckerFactoryVtbl {
 	return (*ISpellCheckerFactoryVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ISpellCheckerFactory) get_SupportedLanguages(value **IEnumString) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SupportedLanguages, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellCheckerFactory) Get_SupportedLanguages(value **IEnumString) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SupportedLanguages, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
@@ -5060,28 +5060,28 @@ var IID_ISpellCheckProvider = syscall.GUID{0x73e976e0, 0x8ed4, 0x4eb1,
 
 type ISpellCheckProviderInterface interface {
 	IUnknownInterface
-	get_LanguageTag(value *PWSTR) HRESULT
+	Get_LanguageTag(value *PWSTR) HRESULT
 	Check(text PWSTR, value **IEnumSpellingError) HRESULT
 	Suggest(word PWSTR, value **IEnumString) HRESULT
 	GetOptionValue(optionId PWSTR, value *uint8) HRESULT
 	SetOptionValue(optionId PWSTR, value uint8) HRESULT
-	get_OptionIds(value **IEnumString) HRESULT
-	get_Id(value *PWSTR) HRESULT
-	get_LocalizedName(value *PWSTR) HRESULT
+	Get_OptionIds(value **IEnumString) HRESULT
+	Get_Id(value *PWSTR) HRESULT
+	Get_LocalizedName(value *PWSTR) HRESULT
 	GetOptionDescription(optionId PWSTR, value **IOptionDescription) HRESULT
 	InitializeWordlist(wordlistType WORDLIST_TYPE, words *IEnumString) HRESULT
 }
 
 type ISpellCheckProviderVtbl struct {
 	IUnknownVtbl
-	get_LanguageTag uintptr
+	Get_LanguageTag uintptr
 	Check uintptr
 	Suggest uintptr
 	GetOptionValue uintptr
 	SetOptionValue uintptr
-	get_OptionIds uintptr
-	get_Id uintptr
-	get_LocalizedName uintptr
+	Get_OptionIds uintptr
+	Get_Id uintptr
+	Get_LocalizedName uintptr
 	GetOptionDescription uintptr
 	InitializeWordlist uintptr
 }
@@ -5094,8 +5094,8 @@ func (this *ISpellCheckProvider) Vtbl() *ISpellCheckProviderVtbl {
 	return (*ISpellCheckProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ISpellCheckProvider) get_LanguageTag(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LanguageTag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellCheckProvider) Get_LanguageTag(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LanguageTag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
@@ -5119,18 +5119,18 @@ func (this *ISpellCheckProvider) SetOptionValue(optionId PWSTR, value uint8) HRE
 	return HRESULT(ret)
 }
 
-func (this *ISpellCheckProvider) get_OptionIds(value **IEnumString) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_OptionIds, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellCheckProvider) Get_OptionIds(value **IEnumString) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_OptionIds, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellCheckProvider) get_Id(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Id, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellCheckProvider) Get_Id(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Id, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
-func (this *ISpellCheckProvider) get_LocalizedName(value *PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LocalizedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellCheckProvider) Get_LocalizedName(value *PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LocalizedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 
@@ -5177,14 +5177,14 @@ var IID_ISpellCheckProviderFactory = syscall.GUID{0x9f671e11, 0x77d6, 0x4c92,
 
 type ISpellCheckProviderFactoryInterface interface {
 	IUnknownInterface
-	get_SupportedLanguages(value **IEnumString) HRESULT
+	Get_SupportedLanguages(value **IEnumString) HRESULT
 	IsSupported(languageTag PWSTR, value *BOOL) HRESULT
 	CreateSpellCheckProvider(languageTag PWSTR, value **ISpellCheckProvider) HRESULT
 }
 
 type ISpellCheckProviderFactoryVtbl struct {
 	IUnknownVtbl
-	get_SupportedLanguages uintptr
+	Get_SupportedLanguages uintptr
 	IsSupported uintptr
 	CreateSpellCheckProvider uintptr
 }
@@ -5197,8 +5197,8 @@ func (this *ISpellCheckProviderFactory) Vtbl() *ISpellCheckProviderFactoryVtbl {
 	return (*ISpellCheckProviderFactoryVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ISpellCheckProviderFactory) get_SupportedLanguages(value **IEnumString) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SupportedLanguages, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+func (this *ISpellCheckProviderFactory) Get_SupportedLanguages(value **IEnumString) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SupportedLanguages, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
 

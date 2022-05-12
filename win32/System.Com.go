@@ -1460,12 +1460,12 @@ func (this *VARIANT_Anonymous__Anonymous__Anonymous_) ByrefVal() unsafe.Pointer{
 	return *(*unsafe.Pointer)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous__Anonymous__Anonymous_) CVal() *CHAR{
-	return (*CHAR)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous__Anonymous__Anonymous_) CVal() *int8{
+	return (*int8)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous__Anonymous__Anonymous_) CValVal() CHAR{
-	return *(*CHAR)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous__Anonymous__Anonymous_) CValVal() int8{
+	return *(*int8)(unsafe.Pointer(this))
 }
 
 func (this *VARIANT_Anonymous__Anonymous__Anonymous_) UiVal() *uint16{
@@ -1516,12 +1516,12 @@ func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PdecValVal() *DECIMAL{
 	return *(**DECIMAL)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PcVal() *PSTR{
-	return (*PSTR)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PcVal() **int8{
+	return (**int8)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PcValVal() PSTR{
-	return *(*PSTR)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PcValVal() *int8{
+	return *(**int8)(unsafe.Pointer(this))
 }
 
 func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PuiVal() **uint16{

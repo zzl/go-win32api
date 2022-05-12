@@ -5214,23 +5214,23 @@ var IID_IFont = syscall.GUID{0xbef6e002, 0xa874, 0x101a,
 
 type IFontInterface interface {
 	IUnknownInterface
-	get_Name(pName *BSTR) HRESULT
-	put_Name(name BSTR) HRESULT
-	get_Size(pSize *CY) HRESULT
-	put_Size(size CY) HRESULT
-	get_Bold(pBold *BOOL) HRESULT
-	put_Bold(bold BOOL) HRESULT
-	get_Italic(pItalic *BOOL) HRESULT
-	put_Italic(italic BOOL) HRESULT
-	get_Underline(pUnderline *BOOL) HRESULT
-	put_Underline(underline BOOL) HRESULT
-	get_Strikethrough(pStrikethrough *BOOL) HRESULT
-	put_Strikethrough(strikethrough BOOL) HRESULT
-	get_Weight(pWeight *int16) HRESULT
-	put_Weight(weight int16) HRESULT
-	get_Charset(pCharset *int16) HRESULT
-	put_Charset(charset int16) HRESULT
-	get_hFont(phFont *HFONT) HRESULT
+	Get_Name(pName *BSTR) HRESULT
+	Put_Name(name BSTR) HRESULT
+	Get_Size(pSize *CY) HRESULT
+	Put_Size(size CY) HRESULT
+	Get_Bold(pBold *BOOL) HRESULT
+	Put_Bold(bold BOOL) HRESULT
+	Get_Italic(pItalic *BOOL) HRESULT
+	Put_Italic(italic BOOL) HRESULT
+	Get_Underline(pUnderline *BOOL) HRESULT
+	Put_Underline(underline BOOL) HRESULT
+	Get_Strikethrough(pStrikethrough *BOOL) HRESULT
+	Put_Strikethrough(strikethrough BOOL) HRESULT
+	Get_Weight(pWeight *int16) HRESULT
+	Put_Weight(weight int16) HRESULT
+	Get_Charset(pCharset *int16) HRESULT
+	Put_Charset(charset int16) HRESULT
+	Get_hFont(phFont *HFONT) HRESULT
 	Clone(ppFont **IFont) HRESULT
 	IsEqual(pFontOther *IFont) HRESULT
 	SetRatio(cyLogical int32, cyHimetric int32) HRESULT
@@ -5242,23 +5242,23 @@ type IFontInterface interface {
 
 type IFontVtbl struct {
 	IUnknownVtbl
-	get_Name uintptr
-	put_Name uintptr
-	get_Size uintptr
-	put_Size uintptr
-	get_Bold uintptr
-	put_Bold uintptr
-	get_Italic uintptr
-	put_Italic uintptr
-	get_Underline uintptr
-	put_Underline uintptr
-	get_Strikethrough uintptr
-	put_Strikethrough uintptr
-	get_Weight uintptr
-	put_Weight uintptr
-	get_Charset uintptr
-	put_Charset uintptr
-	get_hFont uintptr
+	Get_Name uintptr
+	Put_Name uintptr
+	Get_Size uintptr
+	Put_Size uintptr
+	Get_Bold uintptr
+	Put_Bold uintptr
+	Get_Italic uintptr
+	Put_Italic uintptr
+	Get_Underline uintptr
+	Put_Underline uintptr
+	Get_Strikethrough uintptr
+	Put_Strikethrough uintptr
+	Get_Weight uintptr
+	Put_Weight uintptr
+	Get_Charset uintptr
+	Put_Charset uintptr
+	Get_hFont uintptr
 	Clone uintptr
 	IsEqual uintptr
 	SetRatio uintptr
@@ -5276,88 +5276,88 @@ func (this *IFont) Vtbl() *IFontVtbl {
 	return (*IFontVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IFont) get_Name(pName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pName)))
+func (this *IFont) Get_Name(pName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pName)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Name(name BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)))
+func (this *IFont) Put_Name(name BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_Size(pSize *CY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Size, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pSize)))
+func (this *IFont) Get_Size(pSize *CY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Size, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pSize)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Size(size CY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Size, uintptr(unsafe.Pointer(this)), *(*uintptr)(unsafe.Pointer(&size)))
+func (this *IFont) Put_Size(size CY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Size, uintptr(unsafe.Pointer(this)), *(*uintptr)(unsafe.Pointer(&size)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_Bold(pBold *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Bold, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBold)))
+func (this *IFont) Get_Bold(pBold *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Bold, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBold)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Bold(bold BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Bold, uintptr(unsafe.Pointer(this)), uintptr(bold))
+func (this *IFont) Put_Bold(bold BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Bold, uintptr(unsafe.Pointer(this)), uintptr(bold))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_Italic(pItalic *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Italic, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pItalic)))
+func (this *IFont) Get_Italic(pItalic *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Italic, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pItalic)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Italic(italic BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Italic, uintptr(unsafe.Pointer(this)), uintptr(italic))
+func (this *IFont) Put_Italic(italic BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Italic, uintptr(unsafe.Pointer(this)), uintptr(italic))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_Underline(pUnderline *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Underline, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pUnderline)))
+func (this *IFont) Get_Underline(pUnderline *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Underline, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pUnderline)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Underline(underline BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Underline, uintptr(unsafe.Pointer(this)), uintptr(underline))
+func (this *IFont) Put_Underline(underline BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Underline, uintptr(unsafe.Pointer(this)), uintptr(underline))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_Strikethrough(pStrikethrough *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Strikethrough, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pStrikethrough)))
+func (this *IFont) Get_Strikethrough(pStrikethrough *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Strikethrough, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pStrikethrough)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Strikethrough(strikethrough BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Strikethrough, uintptr(unsafe.Pointer(this)), uintptr(strikethrough))
+func (this *IFont) Put_Strikethrough(strikethrough BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Strikethrough, uintptr(unsafe.Pointer(this)), uintptr(strikethrough))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_Weight(pWeight *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Weight, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pWeight)))
+func (this *IFont) Get_Weight(pWeight *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Weight, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pWeight)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Weight(weight int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Weight, uintptr(unsafe.Pointer(this)), uintptr(weight))
+func (this *IFont) Put_Weight(weight int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Weight, uintptr(unsafe.Pointer(this)), uintptr(weight))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_Charset(pCharset *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Charset, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCharset)))
+func (this *IFont) Get_Charset(pCharset *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Charset, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCharset)))
 	return HRESULT(ret)
 }
 
-func (this *IFont) put_Charset(charset int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Charset, uintptr(unsafe.Pointer(this)), uintptr(charset))
+func (this *IFont) Put_Charset(charset int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Charset, uintptr(unsafe.Pointer(this)), uintptr(charset))
 	return HRESULT(ret)
 }
 
-func (this *IFont) get_hFont(phFont *HFONT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_hFont, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phFont)))
+func (this *IFont) Get_hFont(phFont *HFONT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_hFont, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phFont)))
 	return HRESULT(ret)
 }
 
@@ -5402,38 +5402,38 @@ var IID_IPicture = syscall.GUID{0x7bf80980, 0xbf32, 0x101a,
 
 type IPictureInterface interface {
 	IUnknownInterface
-	get_Handle(pHandle *uint32) HRESULT
-	get_hPal(phPal *uint32) HRESULT
-	get_Type(pType *int16) HRESULT
-	get_Width(pWidth *int32) HRESULT
-	get_Height(pHeight *int32) HRESULT
+	Get_Handle(pHandle *uint32) HRESULT
+	Get_hPal(phPal *uint32) HRESULT
+	Get_Type(pType *int16) HRESULT
+	Get_Width(pWidth *int32) HRESULT
+	Get_Height(pHeight *int32) HRESULT
 	Render(hDC HDC, x int32, y int32, cx int32, cy int32, xSrc int32, ySrc int32, cxSrc int32, cySrc int32, pRcWBounds *RECT) HRESULT
-	set_hPal(hPal uint32) HRESULT
-	get_CurDC(phDC *HDC) HRESULT
+	Set_hPal(hPal uint32) HRESULT
+	Get_CurDC(phDC *HDC) HRESULT
 	SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *uint32) HRESULT
-	get_KeepOriginalFormat(pKeep *BOOL) HRESULT
-	put_KeepOriginalFormat(keep BOOL) HRESULT
+	Get_KeepOriginalFormat(pKeep *BOOL) HRESULT
+	Put_KeepOriginalFormat(keep BOOL) HRESULT
 	PictureChanged() HRESULT
 	SaveAsFile(pStream *IStream, fSaveMemCopy BOOL, pCbSize *int32) HRESULT
-	get_Attributes(pDwAttr *uint32) HRESULT
+	Get_Attributes(pDwAttr *uint32) HRESULT
 }
 
 type IPictureVtbl struct {
 	IUnknownVtbl
-	get_Handle uintptr
-	get_hPal uintptr
-	get_Type uintptr
-	get_Width uintptr
-	get_Height uintptr
+	Get_Handle uintptr
+	Get_hPal uintptr
+	Get_Type uintptr
+	Get_Width uintptr
+	Get_Height uintptr
 	Render uintptr
-	set_hPal uintptr
-	get_CurDC uintptr
+	Set_hPal uintptr
+	Get_CurDC uintptr
 	SelectPicture uintptr
-	get_KeepOriginalFormat uintptr
-	put_KeepOriginalFormat uintptr
+	Get_KeepOriginalFormat uintptr
+	Put_KeepOriginalFormat uintptr
 	PictureChanged uintptr
 	SaveAsFile uintptr
-	get_Attributes uintptr
+	Get_Attributes uintptr
 }
 
 type IPicture struct {
@@ -5444,28 +5444,28 @@ func (this *IPicture) Vtbl() *IPictureVtbl {
 	return (*IPictureVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IPicture) get_Handle(pHandle *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Handle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHandle)))
+func (this *IPicture) Get_Handle(pHandle *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Handle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHandle)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture) get_hPal(phPal *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_hPal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phPal)))
+func (this *IPicture) Get_hPal(phPal *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_hPal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phPal)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture) get_Type(pType *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pType)))
+func (this *IPicture) Get_Type(pType *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pType)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture) get_Width(pWidth *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Width, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pWidth)))
+func (this *IPicture) Get_Width(pWidth *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Width, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pWidth)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture) get_Height(pHeight *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Height, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHeight)))
+func (this *IPicture) Get_Height(pHeight *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Height, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHeight)))
 	return HRESULT(ret)
 }
 
@@ -5474,13 +5474,13 @@ func (this *IPicture) Render(hDC HDC, x int32, y int32, cx int32, cy int32, xSrc
 	return HRESULT(ret)
 }
 
-func (this *IPicture) set_hPal(hPal uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().set_hPal, uintptr(unsafe.Pointer(this)), uintptr(hPal))
+func (this *IPicture) Set_hPal(hPal uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Set_hPal, uintptr(unsafe.Pointer(this)), uintptr(hPal))
 	return HRESULT(ret)
 }
 
-func (this *IPicture) get_CurDC(phDC *HDC) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurDC, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phDC)))
+func (this *IPicture) Get_CurDC(phDC *HDC) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurDC, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phDC)))
 	return HRESULT(ret)
 }
 
@@ -5489,13 +5489,13 @@ func (this *IPicture) SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *uint32) H
 	return HRESULT(ret)
 }
 
-func (this *IPicture) get_KeepOriginalFormat(pKeep *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pKeep)))
+func (this *IPicture) Get_KeepOriginalFormat(pKeep *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pKeep)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture) put_KeepOriginalFormat(keep BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(keep))
+func (this *IPicture) Put_KeepOriginalFormat(keep BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(keep))
 	return HRESULT(ret)
 }
 
@@ -5509,8 +5509,8 @@ func (this *IPicture) SaveAsFile(pStream *IStream, fSaveMemCopy BOOL, pCbSize *i
 	return HRESULT(ret)
 }
 
-func (this *IPicture) get_Attributes(pDwAttr *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Attributes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pDwAttr)))
+func (this *IPicture) Get_Attributes(pDwAttr *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Attributes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pDwAttr)))
 	return HRESULT(ret)
 }
 
@@ -5520,38 +5520,38 @@ var IID_IPicture2 = syscall.GUID{0xf5185dd8, 0x2012, 0x4b0b,
 
 type IPicture2Interface interface {
 	IUnknownInterface
-	get_Handle(pHandle *uintptr) HRESULT
-	get_hPal(phPal *uintptr) HRESULT
-	get_Type(pType *int16) HRESULT
-	get_Width(pWidth *int32) HRESULT
-	get_Height(pHeight *int32) HRESULT
+	Get_Handle(pHandle *uintptr) HRESULT
+	Get_hPal(phPal *uintptr) HRESULT
+	Get_Type(pType *int16) HRESULT
+	Get_Width(pWidth *int32) HRESULT
+	Get_Height(pHeight *int32) HRESULT
 	Render(hDC HDC, x int32, y int32, cx int32, cy int32, xSrc int32, ySrc int32, cxSrc int32, cySrc int32, pRcWBounds *RECT) HRESULT
-	set_hPal(hPal uintptr) HRESULT
-	get_CurDC(phDC *HDC) HRESULT
+	Set_hPal(hPal uintptr) HRESULT
+	Get_CurDC(phDC *HDC) HRESULT
 	SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *uintptr) HRESULT
-	get_KeepOriginalFormat(pKeep *BOOL) HRESULT
-	put_KeepOriginalFormat(keep BOOL) HRESULT
+	Get_KeepOriginalFormat(pKeep *BOOL) HRESULT
+	Put_KeepOriginalFormat(keep BOOL) HRESULT
 	PictureChanged() HRESULT
 	SaveAsFile(pStream *IStream, fSaveMemCopy BOOL, pCbSize *int32) HRESULT
-	get_Attributes(pDwAttr *uint32) HRESULT
+	Get_Attributes(pDwAttr *uint32) HRESULT
 }
 
 type IPicture2Vtbl struct {
 	IUnknownVtbl
-	get_Handle uintptr
-	get_hPal uintptr
-	get_Type uintptr
-	get_Width uintptr
-	get_Height uintptr
+	Get_Handle uintptr
+	Get_hPal uintptr
+	Get_Type uintptr
+	Get_Width uintptr
+	Get_Height uintptr
 	Render uintptr
-	set_hPal uintptr
-	get_CurDC uintptr
+	Set_hPal uintptr
+	Get_CurDC uintptr
 	SelectPicture uintptr
-	get_KeepOriginalFormat uintptr
-	put_KeepOriginalFormat uintptr
+	Get_KeepOriginalFormat uintptr
+	Put_KeepOriginalFormat uintptr
 	PictureChanged uintptr
 	SaveAsFile uintptr
-	get_Attributes uintptr
+	Get_Attributes uintptr
 }
 
 type IPicture2 struct {
@@ -5562,28 +5562,28 @@ func (this *IPicture2) Vtbl() *IPicture2Vtbl {
 	return (*IPicture2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IPicture2) get_Handle(pHandle *uintptr) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Handle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHandle)))
+func (this *IPicture2) Get_Handle(pHandle *uintptr) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Handle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHandle)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) get_hPal(phPal *uintptr) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_hPal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phPal)))
+func (this *IPicture2) Get_hPal(phPal *uintptr) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_hPal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phPal)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) get_Type(pType *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pType)))
+func (this *IPicture2) Get_Type(pType *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pType)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) get_Width(pWidth *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Width, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pWidth)))
+func (this *IPicture2) Get_Width(pWidth *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Width, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pWidth)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) get_Height(pHeight *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Height, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHeight)))
+func (this *IPicture2) Get_Height(pHeight *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Height, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHeight)))
 	return HRESULT(ret)
 }
 
@@ -5592,13 +5592,13 @@ func (this *IPicture2) Render(hDC HDC, x int32, y int32, cx int32, cy int32, xSr
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) set_hPal(hPal uintptr) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().set_hPal, uintptr(unsafe.Pointer(this)), hPal)
+func (this *IPicture2) Set_hPal(hPal uintptr) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Set_hPal, uintptr(unsafe.Pointer(this)), hPal)
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) get_CurDC(phDC *HDC) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurDC, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phDC)))
+func (this *IPicture2) Get_CurDC(phDC *HDC) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurDC, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phDC)))
 	return HRESULT(ret)
 }
 
@@ -5607,13 +5607,13 @@ func (this *IPicture2) SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *uintptr)
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) get_KeepOriginalFormat(pKeep *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pKeep)))
+func (this *IPicture2) Get_KeepOriginalFormat(pKeep *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pKeep)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) put_KeepOriginalFormat(keep BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(keep))
+func (this *IPicture2) Put_KeepOriginalFormat(keep BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_KeepOriginalFormat, uintptr(unsafe.Pointer(this)), uintptr(keep))
 	return HRESULT(ret)
 }
 
@@ -5627,8 +5627,8 @@ func (this *IPicture2) SaveAsFile(pStream *IStream, fSaveMemCopy BOOL, pCbSize *
 	return HRESULT(ret)
 }
 
-func (this *IPicture2) get_Attributes(pDwAttr *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Attributes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pDwAttr)))
+func (this *IPicture2) Get_Attributes(pDwAttr *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Attributes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pDwAttr)))
 	return HRESULT(ret)
 }
 

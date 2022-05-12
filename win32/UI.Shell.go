@@ -18358,23 +18358,23 @@ type IWebBrowserInterface interface {
 	Refresh() HRESULT
 	Refresh2(Level *VARIANT) HRESULT
 	Stop() HRESULT
-	get_Application(ppDisp **IDispatch) HRESULT
-	get_Parent(ppDisp **IDispatch) HRESULT
-	get_Container(ppDisp **IDispatch) HRESULT
-	get_Document(ppDisp **IDispatch) HRESULT
-	get_TopLevelContainer(pBool *int16) HRESULT
-	get_Type(Type *BSTR) HRESULT
-	get_Left(pl *int32) HRESULT
-	put_Left(Left int32) HRESULT
-	get_Top(pl *int32) HRESULT
-	put_Top(Top int32) HRESULT
-	get_Width(pl *int32) HRESULT
-	put_Width(Width int32) HRESULT
-	get_Height(pl *int32) HRESULT
-	put_Height(Height int32) HRESULT
-	get_LocationName(LocationName *BSTR) HRESULT
-	get_LocationURL(LocationURL *BSTR) HRESULT
-	get_Busy(pBool *int16) HRESULT
+	Get_Application(ppDisp **IDispatch) HRESULT
+	Get_Parent(ppDisp **IDispatch) HRESULT
+	Get_Container(ppDisp **IDispatch) HRESULT
+	Get_Document(ppDisp **IDispatch) HRESULT
+	Get_TopLevelContainer(pBool *int16) HRESULT
+	Get_Type(Type *BSTR) HRESULT
+	Get_Left(pl *int32) HRESULT
+	Put_Left(Left int32) HRESULT
+	Get_Top(pl *int32) HRESULT
+	Put_Top(Top int32) HRESULT
+	Get_Width(pl *int32) HRESULT
+	Put_Width(Width int32) HRESULT
+	Get_Height(pl *int32) HRESULT
+	Put_Height(Height int32) HRESULT
+	Get_LocationName(LocationName *BSTR) HRESULT
+	Get_LocationURL(LocationURL *BSTR) HRESULT
+	Get_Busy(pBool *int16) HRESULT
 }
 
 type IWebBrowserVtbl struct {
@@ -18387,23 +18387,23 @@ type IWebBrowserVtbl struct {
 	Refresh uintptr
 	Refresh2 uintptr
 	Stop uintptr
-	get_Application uintptr
-	get_Parent uintptr
-	get_Container uintptr
-	get_Document uintptr
-	get_TopLevelContainer uintptr
-	get_Type uintptr
-	get_Left uintptr
-	put_Left uintptr
-	get_Top uintptr
-	put_Top uintptr
-	get_Width uintptr
-	put_Width uintptr
-	get_Height uintptr
-	put_Height uintptr
-	get_LocationName uintptr
-	get_LocationURL uintptr
-	get_Busy uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
+	Get_Container uintptr
+	Get_Document uintptr
+	Get_TopLevelContainer uintptr
+	Get_Type uintptr
+	Get_Left uintptr
+	Put_Left uintptr
+	Get_Top uintptr
+	Put_Top uintptr
+	Get_Width uintptr
+	Put_Width uintptr
+	Get_Height uintptr
+	Put_Height uintptr
+	Get_LocationName uintptr
+	Get_LocationURL uintptr
+	Get_Busy uintptr
 }
 
 type IWebBrowser struct {
@@ -18454,88 +18454,88 @@ func (this *IWebBrowser) Stop() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Application(ppDisp **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
+func (this *IWebBrowser) Get_Application(ppDisp **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Parent(ppDisp **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
+func (this *IWebBrowser) Get_Parent(ppDisp **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Container(ppDisp **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Container, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
+func (this *IWebBrowser) Get_Container(ppDisp **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Container, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Document(ppDisp **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Document, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
+func (this *IWebBrowser) Get_Document(ppDisp **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Document, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_TopLevelContainer(pBool *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TopLevelContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
+func (this *IWebBrowser) Get_TopLevelContainer(pBool *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TopLevelContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Type(Type *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Type)))
+func (this *IWebBrowser) Get_Type(Type *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Type)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Left(pl *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Left, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
+func (this *IWebBrowser) Get_Left(pl *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Left, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) put_Left(Left int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Left, uintptr(unsafe.Pointer(this)), uintptr(Left))
+func (this *IWebBrowser) Put_Left(Left int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Left, uintptr(unsafe.Pointer(this)), uintptr(Left))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Top(pl *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Top, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
+func (this *IWebBrowser) Get_Top(pl *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Top, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) put_Top(Top int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Top, uintptr(unsafe.Pointer(this)), uintptr(Top))
+func (this *IWebBrowser) Put_Top(Top int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Top, uintptr(unsafe.Pointer(this)), uintptr(Top))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Width(pl *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Width, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
+func (this *IWebBrowser) Get_Width(pl *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Width, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) put_Width(Width int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Width, uintptr(unsafe.Pointer(this)), uintptr(Width))
+func (this *IWebBrowser) Put_Width(Width int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Width, uintptr(unsafe.Pointer(this)), uintptr(Width))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Height(pl *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Height, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
+func (this *IWebBrowser) Get_Height(pl *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Height, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pl)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) put_Height(Height int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Height, uintptr(unsafe.Pointer(this)), uintptr(Height))
+func (this *IWebBrowser) Put_Height(Height int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Height, uintptr(unsafe.Pointer(this)), uintptr(Height))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_LocationName(LocationName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LocationName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(LocationName)))
+func (this *IWebBrowser) Get_LocationName(LocationName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LocationName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(LocationName)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_LocationURL(LocationURL *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LocationURL, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(LocationURL)))
+func (this *IWebBrowser) Get_LocationURL(LocationURL *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LocationURL, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(LocationURL)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) get_Busy(pBool *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Busy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
+func (this *IWebBrowser) Get_Busy(pBool *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Busy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
@@ -18569,22 +18569,22 @@ type IWebBrowserAppInterface interface {
 	ClientToWindow(pcx *int32, pcy *int32) HRESULT
 	PutProperty(Property BSTR, vtValue VARIANT) HRESULT
 	GetProperty(Property BSTR, pvtValue *VARIANT) HRESULT
-	get_Name(Name *BSTR) HRESULT
-	get_HWND(pHWND *SHANDLE_PTR) HRESULT
-	get_FullName(FullName *BSTR) HRESULT
-	get_Path(Path *BSTR) HRESULT
-	get_Visible(pBool *int16) HRESULT
-	put_Visible(Value int16) HRESULT
-	get_StatusBar(pBool *int16) HRESULT
-	put_StatusBar(Value int16) HRESULT
-	get_StatusText(StatusText *BSTR) HRESULT
-	put_StatusText(StatusText BSTR) HRESULT
-	get_ToolBar(Value *int32) HRESULT
-	put_ToolBar(Value int32) HRESULT
-	get_MenuBar(Value *int16) HRESULT
-	put_MenuBar(Value int16) HRESULT
-	get_FullScreen(pbFullScreen *int16) HRESULT
-	put_FullScreen(bFullScreen int16) HRESULT
+	Get_Name(Name *BSTR) HRESULT
+	Get_HWND(pHWND *SHANDLE_PTR) HRESULT
+	Get_FullName(FullName *BSTR) HRESULT
+	Get_Path(Path *BSTR) HRESULT
+	Get_Visible(pBool *int16) HRESULT
+	Put_Visible(Value int16) HRESULT
+	Get_StatusBar(pBool *int16) HRESULT
+	Put_StatusBar(Value int16) HRESULT
+	Get_StatusText(StatusText *BSTR) HRESULT
+	Put_StatusText(StatusText BSTR) HRESULT
+	Get_ToolBar(Value *int32) HRESULT
+	Put_ToolBar(Value int32) HRESULT
+	Get_MenuBar(Value *int16) HRESULT
+	Put_MenuBar(Value int16) HRESULT
+	Get_FullScreen(pbFullScreen *int16) HRESULT
+	Put_FullScreen(bFullScreen int16) HRESULT
 }
 
 type IWebBrowserAppVtbl struct {
@@ -18593,22 +18593,22 @@ type IWebBrowserAppVtbl struct {
 	ClientToWindow uintptr
 	PutProperty uintptr
 	GetProperty uintptr
-	get_Name uintptr
-	get_HWND uintptr
-	get_FullName uintptr
-	get_Path uintptr
-	get_Visible uintptr
-	put_Visible uintptr
-	get_StatusBar uintptr
-	put_StatusBar uintptr
-	get_StatusText uintptr
-	put_StatusText uintptr
-	get_ToolBar uintptr
-	put_ToolBar uintptr
-	get_MenuBar uintptr
-	put_MenuBar uintptr
-	get_FullScreen uintptr
-	put_FullScreen uintptr
+	Get_Name uintptr
+	Get_HWND uintptr
+	Get_FullName uintptr
+	Get_Path uintptr
+	Get_Visible uintptr
+	Put_Visible uintptr
+	Get_StatusBar uintptr
+	Put_StatusBar uintptr
+	Get_StatusText uintptr
+	Put_StatusText uintptr
+	Get_ToolBar uintptr
+	Put_ToolBar uintptr
+	Get_MenuBar uintptr
+	Put_MenuBar uintptr
+	Get_FullScreen uintptr
+	Put_FullScreen uintptr
 }
 
 type IWebBrowserApp struct {
@@ -18639,83 +18639,83 @@ func (this *IWebBrowserApp) GetProperty(Property BSTR, pvtValue *VARIANT) HRESUL
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_Name(Name *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Name)))
+func (this *IWebBrowserApp) Get_Name(Name *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Name)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_HWND(pHWND *SHANDLE_PTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_HWND, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHWND)))
+func (this *IWebBrowserApp) Get_HWND(pHWND *SHANDLE_PTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_HWND, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHWND)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_FullName(FullName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FullName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(FullName)))
+func (this *IWebBrowserApp) Get_FullName(FullName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FullName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(FullName)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_Path(Path *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Path)))
+func (this *IWebBrowserApp) Get_Path(Path *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Path)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_Visible(pBool *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Visible, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
+func (this *IWebBrowserApp) Get_Visible(pBool *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Visible, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) put_Visible(Value int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Visible, uintptr(unsafe.Pointer(this)), uintptr(Value))
+func (this *IWebBrowserApp) Put_Visible(Value int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Visible, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_StatusBar(pBool *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_StatusBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
+func (this *IWebBrowserApp) Get_StatusBar(pBool *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_StatusBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) put_StatusBar(Value int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_StatusBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
+func (this *IWebBrowserApp) Put_StatusBar(Value int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_StatusBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_StatusText(StatusText *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_StatusText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(StatusText)))
+func (this *IWebBrowserApp) Get_StatusText(StatusText *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_StatusText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(StatusText)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) put_StatusText(StatusText BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_StatusText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(StatusText)))
+func (this *IWebBrowserApp) Put_StatusText(StatusText BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_StatusText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(StatusText)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_ToolBar(Value *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ToolBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
+func (this *IWebBrowserApp) Get_ToolBar(Value *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ToolBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) put_ToolBar(Value int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ToolBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
+func (this *IWebBrowserApp) Put_ToolBar(Value int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ToolBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_MenuBar(Value *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_MenuBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
+func (this *IWebBrowserApp) Get_MenuBar(Value *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_MenuBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) put_MenuBar(Value int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_MenuBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
+func (this *IWebBrowserApp) Put_MenuBar(Value int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_MenuBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) get_FullScreen(pbFullScreen *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FullScreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbFullScreen)))
+func (this *IWebBrowserApp) Get_FullScreen(pbFullScreen *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FullScreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbFullScreen)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) put_FullScreen(bFullScreen int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_FullScreen, uintptr(unsafe.Pointer(this)), uintptr(bFullScreen))
+func (this *IWebBrowserApp) Put_FullScreen(bFullScreen int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_FullScreen, uintptr(unsafe.Pointer(this)), uintptr(bFullScreen))
 	return HRESULT(ret)
 }
 
@@ -18729,21 +18729,21 @@ type IWebBrowser2Interface interface {
 	QueryStatusWB(cmdID OLECMDID, pcmdf *OLECMDF) HRESULT
 	ExecWB(cmdID OLECMDID, cmdexecopt OLECMDEXECOPT, pvaIn *VARIANT, pvaOut *VARIANT) HRESULT
 	ShowBrowserBar(pvaClsid *VARIANT, pvarShow *VARIANT, pvarSize *VARIANT) HRESULT
-	get_ReadyState(plReadyState *READYSTATE) HRESULT
-	get_Offline(pbOffline *int16) HRESULT
-	put_Offline(bOffline int16) HRESULT
-	get_Silent(pbSilent *int16) HRESULT
-	put_Silent(bSilent int16) HRESULT
-	get_RegisterAsBrowser(pbRegister *int16) HRESULT
-	put_RegisterAsBrowser(bRegister int16) HRESULT
-	get_RegisterAsDropTarget(pbRegister *int16) HRESULT
-	put_RegisterAsDropTarget(bRegister int16) HRESULT
-	get_TheaterMode(pbRegister *int16) HRESULT
-	put_TheaterMode(bRegister int16) HRESULT
-	get_AddressBar(Value *int16) HRESULT
-	put_AddressBar(Value int16) HRESULT
-	get_Resizable(Value *int16) HRESULT
-	put_Resizable(Value int16) HRESULT
+	Get_ReadyState(plReadyState *READYSTATE) HRESULT
+	Get_Offline(pbOffline *int16) HRESULT
+	Put_Offline(bOffline int16) HRESULT
+	Get_Silent(pbSilent *int16) HRESULT
+	Put_Silent(bSilent int16) HRESULT
+	Get_RegisterAsBrowser(pbRegister *int16) HRESULT
+	Put_RegisterAsBrowser(bRegister int16) HRESULT
+	Get_RegisterAsDropTarget(pbRegister *int16) HRESULT
+	Put_RegisterAsDropTarget(bRegister int16) HRESULT
+	Get_TheaterMode(pbRegister *int16) HRESULT
+	Put_TheaterMode(bRegister int16) HRESULT
+	Get_AddressBar(Value *int16) HRESULT
+	Put_AddressBar(Value int16) HRESULT
+	Get_Resizable(Value *int16) HRESULT
+	Put_Resizable(Value int16) HRESULT
 }
 
 type IWebBrowser2Vtbl struct {
@@ -18752,21 +18752,21 @@ type IWebBrowser2Vtbl struct {
 	QueryStatusWB uintptr
 	ExecWB uintptr
 	ShowBrowserBar uintptr
-	get_ReadyState uintptr
-	get_Offline uintptr
-	put_Offline uintptr
-	get_Silent uintptr
-	put_Silent uintptr
-	get_RegisterAsBrowser uintptr
-	put_RegisterAsBrowser uintptr
-	get_RegisterAsDropTarget uintptr
-	put_RegisterAsDropTarget uintptr
-	get_TheaterMode uintptr
-	put_TheaterMode uintptr
-	get_AddressBar uintptr
-	put_AddressBar uintptr
-	get_Resizable uintptr
-	put_Resizable uintptr
+	Get_ReadyState uintptr
+	Get_Offline uintptr
+	Put_Offline uintptr
+	Get_Silent uintptr
+	Put_Silent uintptr
+	Get_RegisterAsBrowser uintptr
+	Put_RegisterAsBrowser uintptr
+	Get_RegisterAsDropTarget uintptr
+	Put_RegisterAsDropTarget uintptr
+	Get_TheaterMode uintptr
+	Put_TheaterMode uintptr
+	Get_AddressBar uintptr
+	Put_AddressBar uintptr
+	Get_Resizable uintptr
+	Put_Resizable uintptr
 }
 
 type IWebBrowser2 struct {
@@ -18797,78 +18797,78 @@ func (this *IWebBrowser2) ShowBrowserBar(pvaClsid *VARIANT, pvarShow *VARIANT, p
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_ReadyState(plReadyState *READYSTATE) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ReadyState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plReadyState)))
+func (this *IWebBrowser2) Get_ReadyState(plReadyState *READYSTATE) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ReadyState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plReadyState)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_Offline(pbOffline *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Offline, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbOffline)))
+func (this *IWebBrowser2) Get_Offline(pbOffline *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Offline, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbOffline)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) put_Offline(bOffline int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Offline, uintptr(unsafe.Pointer(this)), uintptr(bOffline))
+func (this *IWebBrowser2) Put_Offline(bOffline int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Offline, uintptr(unsafe.Pointer(this)), uintptr(bOffline))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_Silent(pbSilent *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Silent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbSilent)))
+func (this *IWebBrowser2) Get_Silent(pbSilent *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Silent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbSilent)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) put_Silent(bSilent int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Silent, uintptr(unsafe.Pointer(this)), uintptr(bSilent))
+func (this *IWebBrowser2) Put_Silent(bSilent int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Silent, uintptr(unsafe.Pointer(this)), uintptr(bSilent))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_RegisterAsBrowser(pbRegister *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_RegisterAsBrowser, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
+func (this *IWebBrowser2) Get_RegisterAsBrowser(pbRegister *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RegisterAsBrowser, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) put_RegisterAsBrowser(bRegister int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_RegisterAsBrowser, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
+func (this *IWebBrowser2) Put_RegisterAsBrowser(bRegister int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_RegisterAsBrowser, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_RegisterAsDropTarget(pbRegister *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_RegisterAsDropTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
+func (this *IWebBrowser2) Get_RegisterAsDropTarget(pbRegister *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RegisterAsDropTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) put_RegisterAsDropTarget(bRegister int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_RegisterAsDropTarget, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
+func (this *IWebBrowser2) Put_RegisterAsDropTarget(bRegister int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_RegisterAsDropTarget, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_TheaterMode(pbRegister *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TheaterMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
+func (this *IWebBrowser2) Get_TheaterMode(pbRegister *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TheaterMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) put_TheaterMode(bRegister int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_TheaterMode, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
+func (this *IWebBrowser2) Put_TheaterMode(bRegister int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_TheaterMode, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_AddressBar(Value *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_AddressBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
+func (this *IWebBrowser2) Get_AddressBar(Value *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AddressBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) put_AddressBar(Value int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_AddressBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
+func (this *IWebBrowser2) Put_AddressBar(Value int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_AddressBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) get_Resizable(Value *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Resizable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
+func (this *IWebBrowser2) Get_Resizable(Value *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Resizable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) put_Resizable(Value int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Resizable, uintptr(unsafe.Pointer(this)), uintptr(Value))
+func (this *IWebBrowser2) Put_Resizable(Value int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Resizable, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
@@ -18918,9 +18918,9 @@ var IID_IShellWindows = syscall.GUID{0x85cb6900, 0x4d95, 0x11cf,
 
 type IShellWindowsInterface interface {
 	IDispatchInterface
-	get_Count(Count *int32) HRESULT
+	Get_Count(Count *int32) HRESULT
 	Item(index VARIANT, Folder **IDispatch) HRESULT
-	_NewEnum(ppunk **IUnknown) HRESULT
+	NewEnum_(ppunk **IUnknown) HRESULT
 	Register(pid *IDispatch, hwnd int32, swClass int32, plCookie *int32) HRESULT
 	RegisterPending(lThreadId int32, pvarloc *VARIANT, pvarlocRoot *VARIANT, swClass int32, plCookie *int32) HRESULT
 	Revoke(lCookie int32) HRESULT
@@ -18933,9 +18933,9 @@ type IShellWindowsInterface interface {
 
 type IShellWindowsVtbl struct {
 	IDispatchVtbl
-	get_Count uintptr
+	Get_Count uintptr
 	Item uintptr
-	_NewEnum uintptr
+	NewEnum_ uintptr
 	Register uintptr
 	RegisterPending uintptr
 	Revoke uintptr
@@ -18954,8 +18954,8 @@ func (this *IShellWindows) Vtbl() *IShellWindowsVtbl {
 	return (*IShellWindowsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellWindows) get_Count(Count *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Count)))
+func (this *IShellWindows) Get_Count(Count *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Count)))
 	return HRESULT(ret)
 }
 
@@ -18964,8 +18964,8 @@ func (this *IShellWindows) Item(index VARIANT, Folder **IDispatch) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IShellWindows) _NewEnum(ppunk **IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._NewEnum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunk)))
+func (this *IShellWindows) NewEnum_(ppunk **IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().NewEnum_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunk)))
 	return HRESULT(ret)
 }
 
@@ -19369,46 +19369,46 @@ var IID_IShellUIHelper4 = syscall.GUID{0xb36e6a53, 0x8073, 0x499e,
 
 type IShellUIHelper4Interface interface {
 	IShellUIHelper3Interface
-	msIsSiteMode(pfSiteMode *int16) HRESULT
-	msSiteModeShowThumbBar() HRESULT
-	msSiteModeAddThumbBarButton(bstrIconURL BSTR, bstrTooltip BSTR, pvarButtonID *VARIANT) HRESULT
-	msSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled int16, fVisible int16) HRESULT
-	msSiteModeSetIconOverlay(IconUrl BSTR, pvarDescription *VARIANT) HRESULT
-	msSiteModeClearIconOverlay() HRESULT
-	msAddSiteMode() HRESULT
-	msSiteModeCreateJumpList(bstrHeader BSTR) HRESULT
-	msSiteModeAddJumpListItem(bstrName BSTR, bstrActionUri BSTR, bstrIconUri BSTR, pvarWindowType *VARIANT) HRESULT
-	msSiteModeClearJumpList() HRESULT
-	msSiteModeShowJumpList() HRESULT
-	msSiteModeAddButtonStyle(uiButtonID VARIANT, bstrIconUrl BSTR, bstrTooltip BSTR, pvarStyleID *VARIANT) HRESULT
-	msSiteModeShowButtonStyle(uiButtonID VARIANT, uiStyleID VARIANT) HRESULT
-	msSiteModeActivate() HRESULT
-	msIsSiteModeFirstRun(fPreserveState int16, puiFirstRun *VARIANT) HRESULT
-	msAddTrackingProtectionList(URL BSTR, bstrFilterName BSTR) HRESULT
-	msTrackingProtectionEnabled(pfEnabled *int16) HRESULT
-	msActiveXFilteringEnabled(pfEnabled *int16) HRESULT
+	MsIsSiteMode(pfSiteMode *int16) HRESULT
+	MsSiteModeShowThumbBar() HRESULT
+	MsSiteModeAddThumbBarButton(bstrIconURL BSTR, bstrTooltip BSTR, pvarButtonID *VARIANT) HRESULT
+	MsSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled int16, fVisible int16) HRESULT
+	MsSiteModeSetIconOverlay(IconUrl BSTR, pvarDescription *VARIANT) HRESULT
+	MsSiteModeClearIconOverlay() HRESULT
+	MsAddSiteMode() HRESULT
+	MsSiteModeCreateJumpList(bstrHeader BSTR) HRESULT
+	MsSiteModeAddJumpListItem(bstrName BSTR, bstrActionUri BSTR, bstrIconUri BSTR, pvarWindowType *VARIANT) HRESULT
+	MsSiteModeClearJumpList() HRESULT
+	MsSiteModeShowJumpList() HRESULT
+	MsSiteModeAddButtonStyle(uiButtonID VARIANT, bstrIconUrl BSTR, bstrTooltip BSTR, pvarStyleID *VARIANT) HRESULT
+	MsSiteModeShowButtonStyle(uiButtonID VARIANT, uiStyleID VARIANT) HRESULT
+	MsSiteModeActivate() HRESULT
+	MsIsSiteModeFirstRun(fPreserveState int16, puiFirstRun *VARIANT) HRESULT
+	MsAddTrackingProtectionList(URL BSTR, bstrFilterName BSTR) HRESULT
+	MsTrackingProtectionEnabled(pfEnabled *int16) HRESULT
+	MsActiveXFilteringEnabled(pfEnabled *int16) HRESULT
 }
 
 type IShellUIHelper4Vtbl struct {
 	IShellUIHelper3Vtbl
-	msIsSiteMode uintptr
-	msSiteModeShowThumbBar uintptr
-	msSiteModeAddThumbBarButton uintptr
-	msSiteModeUpdateThumbBarButton uintptr
-	msSiteModeSetIconOverlay uintptr
-	msSiteModeClearIconOverlay uintptr
-	msAddSiteMode uintptr
-	msSiteModeCreateJumpList uintptr
-	msSiteModeAddJumpListItem uintptr
-	msSiteModeClearJumpList uintptr
-	msSiteModeShowJumpList uintptr
-	msSiteModeAddButtonStyle uintptr
-	msSiteModeShowButtonStyle uintptr
-	msSiteModeActivate uintptr
-	msIsSiteModeFirstRun uintptr
-	msAddTrackingProtectionList uintptr
-	msTrackingProtectionEnabled uintptr
-	msActiveXFilteringEnabled uintptr
+	MsIsSiteMode uintptr
+	MsSiteModeShowThumbBar uintptr
+	MsSiteModeAddThumbBarButton uintptr
+	MsSiteModeUpdateThumbBarButton uintptr
+	MsSiteModeSetIconOverlay uintptr
+	MsSiteModeClearIconOverlay uintptr
+	MsAddSiteMode uintptr
+	MsSiteModeCreateJumpList uintptr
+	MsSiteModeAddJumpListItem uintptr
+	MsSiteModeClearJumpList uintptr
+	MsSiteModeShowJumpList uintptr
+	MsSiteModeAddButtonStyle uintptr
+	MsSiteModeShowButtonStyle uintptr
+	MsSiteModeActivate uintptr
+	MsIsSiteModeFirstRun uintptr
+	MsAddTrackingProtectionList uintptr
+	MsTrackingProtectionEnabled uintptr
+	MsActiveXFilteringEnabled uintptr
 }
 
 type IShellUIHelper4 struct {
@@ -19419,93 +19419,93 @@ func (this *IShellUIHelper4) Vtbl() *IShellUIHelper4Vtbl {
 	return (*IShellUIHelper4Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellUIHelper4) msIsSiteMode(pfSiteMode *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msIsSiteMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfSiteMode)))
+func (this *IShellUIHelper4) MsIsSiteMode(pfSiteMode *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsIsSiteMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfSiteMode)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeShowThumbBar() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeShowThumbBar, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper4) MsSiteModeShowThumbBar() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeShowThumbBar, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeAddThumbBarButton(bstrIconURL BSTR, bstrTooltip BSTR, pvarButtonID *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeAddThumbBarButton, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrIconURL)), uintptr(unsafe.Pointer(bstrTooltip)), uintptr(unsafe.Pointer(pvarButtonID)))
+func (this *IShellUIHelper4) MsSiteModeAddThumbBarButton(bstrIconURL BSTR, bstrTooltip BSTR, pvarButtonID *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeAddThumbBarButton, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrIconURL)), uintptr(unsafe.Pointer(bstrTooltip)), uintptr(unsafe.Pointer(pvarButtonID)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled int16, fVisible int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeUpdateThumbBarButton, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&ButtonID)), uintptr(fEnabled), uintptr(fVisible))
+func (this *IShellUIHelper4) MsSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled int16, fVisible int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeUpdateThumbBarButton, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&ButtonID)), uintptr(fEnabled), uintptr(fVisible))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeSetIconOverlay(IconUrl BSTR, pvarDescription *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeSetIconOverlay, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(IconUrl)), uintptr(unsafe.Pointer(pvarDescription)))
+func (this *IShellUIHelper4) MsSiteModeSetIconOverlay(IconUrl BSTR, pvarDescription *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeSetIconOverlay, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(IconUrl)), uintptr(unsafe.Pointer(pvarDescription)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeClearIconOverlay() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeClearIconOverlay, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper4) MsSiteModeClearIconOverlay() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeClearIconOverlay, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msAddSiteMode() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msAddSiteMode, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper4) MsAddSiteMode() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsAddSiteMode, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeCreateJumpList(bstrHeader BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeCreateJumpList, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrHeader)))
+func (this *IShellUIHelper4) MsSiteModeCreateJumpList(bstrHeader BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeCreateJumpList, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrHeader)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeAddJumpListItem(bstrName BSTR, bstrActionUri BSTR, bstrIconUri BSTR, pvarWindowType *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeAddJumpListItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrName)), uintptr(unsafe.Pointer(bstrActionUri)), uintptr(unsafe.Pointer(bstrIconUri)), uintptr(unsafe.Pointer(pvarWindowType)))
+func (this *IShellUIHelper4) MsSiteModeAddJumpListItem(bstrName BSTR, bstrActionUri BSTR, bstrIconUri BSTR, pvarWindowType *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeAddJumpListItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrName)), uintptr(unsafe.Pointer(bstrActionUri)), uintptr(unsafe.Pointer(bstrIconUri)), uintptr(unsafe.Pointer(pvarWindowType)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeClearJumpList() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeClearJumpList, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper4) MsSiteModeClearJumpList() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeClearJumpList, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeShowJumpList() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeShowJumpList, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper4) MsSiteModeShowJumpList() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeShowJumpList, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeAddButtonStyle(uiButtonID VARIANT, bstrIconUrl BSTR, bstrTooltip BSTR, pvarStyleID *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeAddButtonStyle, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&uiButtonID)), uintptr(unsafe.Pointer(bstrIconUrl)), uintptr(unsafe.Pointer(bstrTooltip)), uintptr(unsafe.Pointer(pvarStyleID)))
+func (this *IShellUIHelper4) MsSiteModeAddButtonStyle(uiButtonID VARIANT, bstrIconUrl BSTR, bstrTooltip BSTR, pvarStyleID *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeAddButtonStyle, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&uiButtonID)), uintptr(unsafe.Pointer(bstrIconUrl)), uintptr(unsafe.Pointer(bstrTooltip)), uintptr(unsafe.Pointer(pvarStyleID)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeShowButtonStyle(uiButtonID VARIANT, uiStyleID VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeShowButtonStyle, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&uiButtonID)), (uintptr)(unsafe.Pointer(&uiStyleID)))
+func (this *IShellUIHelper4) MsSiteModeShowButtonStyle(uiButtonID VARIANT, uiStyleID VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeShowButtonStyle, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&uiButtonID)), (uintptr)(unsafe.Pointer(&uiStyleID)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msSiteModeActivate() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeActivate, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper4) MsSiteModeActivate() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeActivate, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msIsSiteModeFirstRun(fPreserveState int16, puiFirstRun *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msIsSiteModeFirstRun, uintptr(unsafe.Pointer(this)), uintptr(fPreserveState), uintptr(unsafe.Pointer(puiFirstRun)))
+func (this *IShellUIHelper4) MsIsSiteModeFirstRun(fPreserveState int16, puiFirstRun *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsIsSiteModeFirstRun, uintptr(unsafe.Pointer(this)), uintptr(fPreserveState), uintptr(unsafe.Pointer(puiFirstRun)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msAddTrackingProtectionList(URL BSTR, bstrFilterName BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msAddTrackingProtectionList, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(URL)), uintptr(unsafe.Pointer(bstrFilterName)))
+func (this *IShellUIHelper4) MsAddTrackingProtectionList(URL BSTR, bstrFilterName BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsAddTrackingProtectionList, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(URL)), uintptr(unsafe.Pointer(bstrFilterName)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msTrackingProtectionEnabled(pfEnabled *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msTrackingProtectionEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
+func (this *IShellUIHelper4) MsTrackingProtectionEnabled(pfEnabled *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsTrackingProtectionEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) msActiveXFilteringEnabled(pfEnabled *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msActiveXFilteringEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
+func (this *IShellUIHelper4) MsActiveXFilteringEnabled(pfEnabled *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsActiveXFilteringEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
 
@@ -19515,24 +19515,24 @@ var IID_IShellUIHelper5 = syscall.GUID{0xa2a08b09, 0x103d, 0x4d3f,
 
 type IShellUIHelper5Interface interface {
 	IShellUIHelper4Interface
-	msProvisionNetworks(bstrProvisioningXml BSTR, puiResult *VARIANT) HRESULT
-	msReportSafeUrl() HRESULT
-	msSiteModeRefreshBadge() HRESULT
-	msSiteModeClearBadge() HRESULT
-	msDiagnoseConnectionUILess() HRESULT
-	msLaunchNetworkClientHelp() HRESULT
-	msChangeDefaultBrowser(fChange int16) HRESULT
+	MsProvisionNetworks(bstrProvisioningXml BSTR, puiResult *VARIANT) HRESULT
+	MsReportSafeUrl() HRESULT
+	MsSiteModeRefreshBadge() HRESULT
+	MsSiteModeClearBadge() HRESULT
+	MsDiagnoseConnectionUILess() HRESULT
+	MsLaunchNetworkClientHelp() HRESULT
+	MsChangeDefaultBrowser(fChange int16) HRESULT
 }
 
 type IShellUIHelper5Vtbl struct {
 	IShellUIHelper4Vtbl
-	msProvisionNetworks uintptr
-	msReportSafeUrl uintptr
-	msSiteModeRefreshBadge uintptr
-	msSiteModeClearBadge uintptr
-	msDiagnoseConnectionUILess uintptr
-	msLaunchNetworkClientHelp uintptr
-	msChangeDefaultBrowser uintptr
+	MsProvisionNetworks uintptr
+	MsReportSafeUrl uintptr
+	MsSiteModeRefreshBadge uintptr
+	MsSiteModeClearBadge uintptr
+	MsDiagnoseConnectionUILess uintptr
+	MsLaunchNetworkClientHelp uintptr
+	MsChangeDefaultBrowser uintptr
 }
 
 type IShellUIHelper5 struct {
@@ -19543,38 +19543,38 @@ func (this *IShellUIHelper5) Vtbl() *IShellUIHelper5Vtbl {
 	return (*IShellUIHelper5Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellUIHelper5) msProvisionNetworks(bstrProvisioningXml BSTR, puiResult *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msProvisionNetworks, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrProvisioningXml)), uintptr(unsafe.Pointer(puiResult)))
+func (this *IShellUIHelper5) MsProvisionNetworks(bstrProvisioningXml BSTR, puiResult *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsProvisionNetworks, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrProvisioningXml)), uintptr(unsafe.Pointer(puiResult)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper5) msReportSafeUrl() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msReportSafeUrl, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper5) MsReportSafeUrl() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsReportSafeUrl, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper5) msSiteModeRefreshBadge() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeRefreshBadge, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper5) MsSiteModeRefreshBadge() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeRefreshBadge, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper5) msSiteModeClearBadge() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msSiteModeClearBadge, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper5) MsSiteModeClearBadge() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeClearBadge, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper5) msDiagnoseConnectionUILess() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msDiagnoseConnectionUILess, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper5) MsDiagnoseConnectionUILess() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsDiagnoseConnectionUILess, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper5) msLaunchNetworkClientHelp() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msLaunchNetworkClientHelp, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper5) MsLaunchNetworkClientHelp() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsLaunchNetworkClientHelp, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper5) msChangeDefaultBrowser(fChange int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msChangeDefaultBrowser, uintptr(unsafe.Pointer(this)), uintptr(fChange))
+func (this *IShellUIHelper5) MsChangeDefaultBrowser(fChange int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsChangeDefaultBrowser, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
 
@@ -19584,38 +19584,38 @@ var IID_IShellUIHelper6 = syscall.GUID{0x987a573e, 0x46ee, 0x4e89,
 
 type IShellUIHelper6Interface interface {
 	IShellUIHelper5Interface
-	msStopPeriodicTileUpdate() HRESULT
-	msStartPeriodicTileUpdate(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
-	msStartPeriodicTileUpdateBatch(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
-	msClearTile() HRESULT
-	msEnableTileNotificationQueue(fChange int16) HRESULT
-	msPinnedSiteState(pvarSiteState *VARIANT) HRESULT
-	msEnableTileNotificationQueueForSquare150x150(fChange int16) HRESULT
-	msEnableTileNotificationQueueForWide310x150(fChange int16) HRESULT
-	msEnableTileNotificationQueueForSquare310x310(fChange int16) HRESULT
-	msScheduledTileNotification(bstrNotificationXml BSTR, bstrNotificationId BSTR, bstrNotificationTag BSTR, startTime VARIANT, expirationTime VARIANT) HRESULT
-	msRemoveScheduledTileNotification(bstrNotificationId BSTR) HRESULT
-	msStartPeriodicBadgeUpdate(pollingUri BSTR, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
-	msStopPeriodicBadgeUpdate() HRESULT
-	msLaunchInternetOptions() HRESULT
+	MsStopPeriodicTileUpdate() HRESULT
+	MsStartPeriodicTileUpdate(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
+	MsStartPeriodicTileUpdateBatch(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
+	MsClearTile() HRESULT
+	MsEnableTileNotificationQueue(fChange int16) HRESULT
+	MsPinnedSiteState(pvarSiteState *VARIANT) HRESULT
+	MsEnableTileNotificationQueueForSquare150x150(fChange int16) HRESULT
+	MsEnableTileNotificationQueueForWide310x150(fChange int16) HRESULT
+	MsEnableTileNotificationQueueForSquare310x310(fChange int16) HRESULT
+	MsScheduledTileNotification(bstrNotificationXml BSTR, bstrNotificationId BSTR, bstrNotificationTag BSTR, startTime VARIANT, expirationTime VARIANT) HRESULT
+	MsRemoveScheduledTileNotification(bstrNotificationId BSTR) HRESULT
+	MsStartPeriodicBadgeUpdate(pollingUri BSTR, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
+	MsStopPeriodicBadgeUpdate() HRESULT
+	MsLaunchInternetOptions() HRESULT
 }
 
 type IShellUIHelper6Vtbl struct {
 	IShellUIHelper5Vtbl
-	msStopPeriodicTileUpdate uintptr
-	msStartPeriodicTileUpdate uintptr
-	msStartPeriodicTileUpdateBatch uintptr
-	msClearTile uintptr
-	msEnableTileNotificationQueue uintptr
-	msPinnedSiteState uintptr
-	msEnableTileNotificationQueueForSquare150x150 uintptr
-	msEnableTileNotificationQueueForWide310x150 uintptr
-	msEnableTileNotificationQueueForSquare310x310 uintptr
-	msScheduledTileNotification uintptr
-	msRemoveScheduledTileNotification uintptr
-	msStartPeriodicBadgeUpdate uintptr
-	msStopPeriodicBadgeUpdate uintptr
-	msLaunchInternetOptions uintptr
+	MsStopPeriodicTileUpdate uintptr
+	MsStartPeriodicTileUpdate uintptr
+	MsStartPeriodicTileUpdateBatch uintptr
+	MsClearTile uintptr
+	MsEnableTileNotificationQueue uintptr
+	MsPinnedSiteState uintptr
+	MsEnableTileNotificationQueueForSquare150x150 uintptr
+	MsEnableTileNotificationQueueForWide310x150 uintptr
+	MsEnableTileNotificationQueueForSquare310x310 uintptr
+	MsScheduledTileNotification uintptr
+	MsRemoveScheduledTileNotification uintptr
+	MsStartPeriodicBadgeUpdate uintptr
+	MsStopPeriodicBadgeUpdate uintptr
+	MsLaunchInternetOptions uintptr
 }
 
 type IShellUIHelper6 struct {
@@ -19626,73 +19626,73 @@ func (this *IShellUIHelper6) Vtbl() *IShellUIHelper6Vtbl {
 	return (*IShellUIHelper6Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellUIHelper6) msStopPeriodicTileUpdate() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msStopPeriodicTileUpdate, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper6) MsStopPeriodicTileUpdate() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsStopPeriodicTileUpdate, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msStartPeriodicTileUpdate(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msStartPeriodicTileUpdate, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&pollingUris)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&uiUpdateRecurrence)))
+func (this *IShellUIHelper6) MsStartPeriodicTileUpdate(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsStartPeriodicTileUpdate, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&pollingUris)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&uiUpdateRecurrence)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msStartPeriodicTileUpdateBatch(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msStartPeriodicTileUpdateBatch, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&pollingUris)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&uiUpdateRecurrence)))
+func (this *IShellUIHelper6) MsStartPeriodicTileUpdateBatch(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsStartPeriodicTileUpdateBatch, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&pollingUris)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&uiUpdateRecurrence)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msClearTile() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msClearTile, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper6) MsClearTile() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsClearTile, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msEnableTileNotificationQueue(fChange int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msEnableTileNotificationQueue, uintptr(unsafe.Pointer(this)), uintptr(fChange))
+func (this *IShellUIHelper6) MsEnableTileNotificationQueue(fChange int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueue, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msPinnedSiteState(pvarSiteState *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msPinnedSiteState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarSiteState)))
+func (this *IShellUIHelper6) MsPinnedSiteState(pvarSiteState *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsPinnedSiteState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarSiteState)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msEnableTileNotificationQueueForSquare150x150(fChange int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msEnableTileNotificationQueueForSquare150x150, uintptr(unsafe.Pointer(this)), uintptr(fChange))
+func (this *IShellUIHelper6) MsEnableTileNotificationQueueForSquare150x150(fChange int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueueForSquare150x150, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msEnableTileNotificationQueueForWide310x150(fChange int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msEnableTileNotificationQueueForWide310x150, uintptr(unsafe.Pointer(this)), uintptr(fChange))
+func (this *IShellUIHelper6) MsEnableTileNotificationQueueForWide310x150(fChange int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueueForWide310x150, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msEnableTileNotificationQueueForSquare310x310(fChange int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msEnableTileNotificationQueueForSquare310x310, uintptr(unsafe.Pointer(this)), uintptr(fChange))
+func (this *IShellUIHelper6) MsEnableTileNotificationQueueForSquare310x310(fChange int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueueForSquare310x310, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msScheduledTileNotification(bstrNotificationXml BSTR, bstrNotificationId BSTR, bstrNotificationTag BSTR, startTime VARIANT, expirationTime VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msScheduledTileNotification, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrNotificationXml)), uintptr(unsafe.Pointer(bstrNotificationId)), uintptr(unsafe.Pointer(bstrNotificationTag)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&expirationTime)))
+func (this *IShellUIHelper6) MsScheduledTileNotification(bstrNotificationXml BSTR, bstrNotificationId BSTR, bstrNotificationTag BSTR, startTime VARIANT, expirationTime VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsScheduledTileNotification, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrNotificationXml)), uintptr(unsafe.Pointer(bstrNotificationId)), uintptr(unsafe.Pointer(bstrNotificationTag)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&expirationTime)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msRemoveScheduledTileNotification(bstrNotificationId BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msRemoveScheduledTileNotification, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrNotificationId)))
+func (this *IShellUIHelper6) MsRemoveScheduledTileNotification(bstrNotificationId BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsRemoveScheduledTileNotification, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrNotificationId)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msStartPeriodicBadgeUpdate(pollingUri BSTR, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msStartPeriodicBadgeUpdate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pollingUri)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&uiUpdateRecurrence)))
+func (this *IShellUIHelper6) MsStartPeriodicBadgeUpdate(pollingUri BSTR, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsStartPeriodicBadgeUpdate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pollingUri)), (uintptr)(unsafe.Pointer(&startTime)), (uintptr)(unsafe.Pointer(&uiUpdateRecurrence)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msStopPeriodicBadgeUpdate() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msStopPeriodicBadgeUpdate, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper6) MsStopPeriodicBadgeUpdate() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsStopPeriodicBadgeUpdate, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) msLaunchInternetOptions() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().msLaunchInternetOptions, uintptr(unsafe.Pointer(this)))
+func (this *IShellUIHelper6) MsLaunchInternetOptions() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MsLaunchInternetOptions, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
@@ -19910,7 +19910,7 @@ type IShellFavoritesNameSpaceInterface interface {
 	Export() HRESULT
 	InvokeContextMenuCommand(strCommand BSTR) HRESULT
 	MoveSelectionTo() HRESULT
-	get_SubscriptionsEnabled(pBool *int16) HRESULT
+	Get_SubscriptionsEnabled(pBool *int16) HRESULT
 	CreateSubscriptionForSelection(pBool *int16) HRESULT
 	DeleteSubscriptionForSelection(pBool *int16) HRESULT
 	SetRoot(bstrFullPath BSTR) HRESULT
@@ -19927,7 +19927,7 @@ type IShellFavoritesNameSpaceVtbl struct {
 	Export uintptr
 	InvokeContextMenuCommand uintptr
 	MoveSelectionTo uintptr
-	get_SubscriptionsEnabled uintptr
+	Get_SubscriptionsEnabled uintptr
 	CreateSubscriptionForSelection uintptr
 	DeleteSubscriptionForSelection uintptr
 	SetRoot uintptr
@@ -19986,8 +19986,8 @@ func (this *IShellFavoritesNameSpace) MoveSelectionTo() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IShellFavoritesNameSpace) get_SubscriptionsEnabled(pBool *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SubscriptionsEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
+func (this *IShellFavoritesNameSpace) Get_SubscriptionsEnabled(pBool *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SubscriptionsEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
@@ -20012,23 +20012,23 @@ var IID_IShellNameSpace = syscall.GUID{0xe572d3c9, 0x37be, 0x4ae2,
 
 type IShellNameSpaceInterface interface {
 	IShellFavoritesNameSpaceInterface
-	get_EnumOptions(pgrfEnumFlags *int32) HRESULT
-	put_EnumOptions(lVal int32) HRESULT
-	get_SelectedItem(pItem **IDispatch) HRESULT
-	put_SelectedItem(pItem *IDispatch) HRESULT
-	get_Root(pvar *VARIANT) HRESULT
-	put_Root(var_ VARIANT) HRESULT
-	get_Depth(piDepth *int32) HRESULT
-	put_Depth(iDepth int32) HRESULT
-	get_Mode(puMode *uint32) HRESULT
-	put_Mode(uMode uint32) HRESULT
-	get_Flags(pdwFlags *uint32) HRESULT
-	put_Flags(dwFlags uint32) HRESULT
-	put_TVFlags(dwFlags uint32) HRESULT
-	get_TVFlags(dwFlags *uint32) HRESULT
-	get_Columns(bstrColumns *BSTR) HRESULT
-	put_Columns(bstrColumns BSTR) HRESULT
-	get_CountViewTypes(piTypes *int32) HRESULT
+	Get_EnumOptions(pgrfEnumFlags *int32) HRESULT
+	Put_EnumOptions(lVal int32) HRESULT
+	Get_SelectedItem(pItem **IDispatch) HRESULT
+	Put_SelectedItem(pItem *IDispatch) HRESULT
+	Get_Root(pvar *VARIANT) HRESULT
+	Put_Root(var_ VARIANT) HRESULT
+	Get_Depth(piDepth *int32) HRESULT
+	Put_Depth(iDepth int32) HRESULT
+	Get_Mode(puMode *uint32) HRESULT
+	Put_Mode(uMode uint32) HRESULT
+	Get_Flags(pdwFlags *uint32) HRESULT
+	Put_Flags(dwFlags uint32) HRESULT
+	Put_TVFlags(dwFlags uint32) HRESULT
+	Get_TVFlags(dwFlags *uint32) HRESULT
+	Get_Columns(bstrColumns *BSTR) HRESULT
+	Put_Columns(bstrColumns BSTR) HRESULT
+	Get_CountViewTypes(piTypes *int32) HRESULT
 	SetViewType(iType int32) HRESULT
 	SelectedItems(ppid **IDispatch) HRESULT
 	Expand(var_ VARIANT, iDepth int32) HRESULT
@@ -20037,23 +20037,23 @@ type IShellNameSpaceInterface interface {
 
 type IShellNameSpaceVtbl struct {
 	IShellFavoritesNameSpaceVtbl
-	get_EnumOptions uintptr
-	put_EnumOptions uintptr
-	get_SelectedItem uintptr
-	put_SelectedItem uintptr
-	get_Root uintptr
-	put_Root uintptr
-	get_Depth uintptr
-	put_Depth uintptr
-	get_Mode uintptr
-	put_Mode uintptr
-	get_Flags uintptr
-	put_Flags uintptr
-	put_TVFlags uintptr
-	get_TVFlags uintptr
-	get_Columns uintptr
-	put_Columns uintptr
-	get_CountViewTypes uintptr
+	Get_EnumOptions uintptr
+	Put_EnumOptions uintptr
+	Get_SelectedItem uintptr
+	Put_SelectedItem uintptr
+	Get_Root uintptr
+	Put_Root uintptr
+	Get_Depth uintptr
+	Put_Depth uintptr
+	Get_Mode uintptr
+	Put_Mode uintptr
+	Get_Flags uintptr
+	Put_Flags uintptr
+	Put_TVFlags uintptr
+	Get_TVFlags uintptr
+	Get_Columns uintptr
+	Put_Columns uintptr
+	Get_CountViewTypes uintptr
 	SetViewType uintptr
 	SelectedItems uintptr
 	Expand uintptr
@@ -20068,88 +20068,88 @@ func (this *IShellNameSpace) Vtbl() *IShellNameSpaceVtbl {
 	return (*IShellNameSpaceVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellNameSpace) get_EnumOptions(pgrfEnumFlags *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_EnumOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pgrfEnumFlags)))
+func (this *IShellNameSpace) Get_EnumOptions(pgrfEnumFlags *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_EnumOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pgrfEnumFlags)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_EnumOptions(lVal int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_EnumOptions, uintptr(unsafe.Pointer(this)), uintptr(lVal))
+func (this *IShellNameSpace) Put_EnumOptions(lVal int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_EnumOptions, uintptr(unsafe.Pointer(this)), uintptr(lVal))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_SelectedItem(pItem **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pItem)))
+func (this *IShellNameSpace) Get_SelectedItem(pItem **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pItem)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_SelectedItem(pItem *IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_SelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pItem)))
+func (this *IShellNameSpace) Put_SelectedItem(pItem *IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_SelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pItem)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_Root(pvar *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Root, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvar)))
+func (this *IShellNameSpace) Get_Root(pvar *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Root, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvar)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_Root(var_ VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Root, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&var_)))
+func (this *IShellNameSpace) Put_Root(var_ VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Root, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&var_)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_Depth(piDepth *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Depth, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piDepth)))
+func (this *IShellNameSpace) Get_Depth(piDepth *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Depth, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piDepth)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_Depth(iDepth int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Depth, uintptr(unsafe.Pointer(this)), uintptr(iDepth))
+func (this *IShellNameSpace) Put_Depth(iDepth int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Depth, uintptr(unsafe.Pointer(this)), uintptr(iDepth))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_Mode(puMode *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Mode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(puMode)))
+func (this *IShellNameSpace) Get_Mode(puMode *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Mode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(puMode)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_Mode(uMode uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Mode, uintptr(unsafe.Pointer(this)), uintptr(uMode))
+func (this *IShellNameSpace) Put_Mode(uMode uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Mode, uintptr(unsafe.Pointer(this)), uintptr(uMode))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_Flags(pdwFlags *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Flags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwFlags)))
+func (this *IShellNameSpace) Get_Flags(pdwFlags *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Flags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwFlags)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_Flags(dwFlags uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Flags, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
+func (this *IShellNameSpace) Put_Flags(dwFlags uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Flags, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_TVFlags(dwFlags uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_TVFlags, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
+func (this *IShellNameSpace) Put_TVFlags(dwFlags uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_TVFlags, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_TVFlags(dwFlags *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TVFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(dwFlags)))
+func (this *IShellNameSpace) Get_TVFlags(dwFlags *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TVFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(dwFlags)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_Columns(bstrColumns *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Columns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrColumns)))
+func (this *IShellNameSpace) Get_Columns(bstrColumns *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Columns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrColumns)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) put_Columns(bstrColumns BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Columns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrColumns)))
+func (this *IShellNameSpace) Put_Columns(bstrColumns BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Columns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrColumns)))
 	return HRESULT(ret)
 }
 
-func (this *IShellNameSpace) get_CountViewTypes(piTypes *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CountViewTypes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piTypes)))
+func (this *IShellNameSpace) Get_CountViewTypes(piTypes *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CountViewTypes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piTypes)))
 	return HRESULT(ret)
 }
 
@@ -20179,38 +20179,38 @@ var IID_IScriptErrorList = syscall.GUID{0xf3470f24, 0x15fd, 0x11d2,
 
 type IScriptErrorListInterface interface {
 	IDispatchInterface
-	advanceError() HRESULT
-	retreatError() HRESULT
-	canAdvanceError(pfCanAdvance *BOOL) HRESULT
-	canRetreatError(pfCanRetreat *BOOL) HRESULT
-	getErrorLine(plLine *int32) HRESULT
-	getErrorChar(plChar *int32) HRESULT
-	getErrorCode(plCode *int32) HRESULT
-	getErrorMsg(pstr *BSTR) HRESULT
-	getErrorUrl(pstr *BSTR) HRESULT
-	getAlwaysShowLockState(pfAlwaysShowLocked *BOOL) HRESULT
-	getDetailsPaneOpen(pfDetailsPaneOpen *BOOL) HRESULT
-	setDetailsPaneOpen(fDetailsPaneOpen BOOL) HRESULT
-	getPerErrorDisplay(pfPerErrorDisplay *BOOL) HRESULT
-	setPerErrorDisplay(fPerErrorDisplay BOOL) HRESULT
+	AdvanceError() HRESULT
+	RetreatError() HRESULT
+	CanAdvanceError(pfCanAdvance *BOOL) HRESULT
+	CanRetreatError(pfCanRetreat *BOOL) HRESULT
+	GetErrorLine(plLine *int32) HRESULT
+	GetErrorChar(plChar *int32) HRESULT
+	GetErrorCode(plCode *int32) HRESULT
+	GetErrorMsg(pstr *BSTR) HRESULT
+	GetErrorUrl(pstr *BSTR) HRESULT
+	GetAlwaysShowLockState(pfAlwaysShowLocked *BOOL) HRESULT
+	GetDetailsPaneOpen(pfDetailsPaneOpen *BOOL) HRESULT
+	SetDetailsPaneOpen(fDetailsPaneOpen BOOL) HRESULT
+	GetPerErrorDisplay(pfPerErrorDisplay *BOOL) HRESULT
+	SetPerErrorDisplay(fPerErrorDisplay BOOL) HRESULT
 }
 
 type IScriptErrorListVtbl struct {
 	IDispatchVtbl
-	advanceError uintptr
-	retreatError uintptr
-	canAdvanceError uintptr
-	canRetreatError uintptr
-	getErrorLine uintptr
-	getErrorChar uintptr
-	getErrorCode uintptr
-	getErrorMsg uintptr
-	getErrorUrl uintptr
-	getAlwaysShowLockState uintptr
-	getDetailsPaneOpen uintptr
-	setDetailsPaneOpen uintptr
-	getPerErrorDisplay uintptr
-	setPerErrorDisplay uintptr
+	AdvanceError uintptr
+	RetreatError uintptr
+	CanAdvanceError uintptr
+	CanRetreatError uintptr
+	GetErrorLine uintptr
+	GetErrorChar uintptr
+	GetErrorCode uintptr
+	GetErrorMsg uintptr
+	GetErrorUrl uintptr
+	GetAlwaysShowLockState uintptr
+	GetDetailsPaneOpen uintptr
+	SetDetailsPaneOpen uintptr
+	GetPerErrorDisplay uintptr
+	SetPerErrorDisplay uintptr
 }
 
 type IScriptErrorList struct {
@@ -20221,73 +20221,73 @@ func (this *IScriptErrorList) Vtbl() *IScriptErrorListVtbl {
 	return (*IScriptErrorListVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IScriptErrorList) advanceError() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().advanceError, uintptr(unsafe.Pointer(this)))
+func (this *IScriptErrorList) AdvanceError() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().AdvanceError, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) retreatError() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().retreatError, uintptr(unsafe.Pointer(this)))
+func (this *IScriptErrorList) RetreatError() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().RetreatError, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) canAdvanceError(pfCanAdvance *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().canAdvanceError, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfCanAdvance)))
+func (this *IScriptErrorList) CanAdvanceError(pfCanAdvance *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().CanAdvanceError, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfCanAdvance)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) canRetreatError(pfCanRetreat *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().canRetreatError, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfCanRetreat)))
+func (this *IScriptErrorList) CanRetreatError(pfCanRetreat *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().CanRetreatError, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfCanRetreat)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getErrorLine(plLine *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getErrorLine, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plLine)))
+func (this *IScriptErrorList) GetErrorLine(plLine *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetErrorLine, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plLine)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getErrorChar(plChar *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getErrorChar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plChar)))
+func (this *IScriptErrorList) GetErrorChar(plChar *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetErrorChar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plChar)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getErrorCode(plCode *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getErrorCode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plCode)))
+func (this *IScriptErrorList) GetErrorCode(plCode *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetErrorCode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plCode)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getErrorMsg(pstr *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getErrorMsg, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstr)))
+func (this *IScriptErrorList) GetErrorMsg(pstr *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetErrorMsg, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstr)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getErrorUrl(pstr *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getErrorUrl, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstr)))
+func (this *IScriptErrorList) GetErrorUrl(pstr *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetErrorUrl, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstr)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getAlwaysShowLockState(pfAlwaysShowLocked *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getAlwaysShowLockState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfAlwaysShowLocked)))
+func (this *IScriptErrorList) GetAlwaysShowLockState(pfAlwaysShowLocked *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAlwaysShowLockState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfAlwaysShowLocked)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getDetailsPaneOpen(pfDetailsPaneOpen *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getDetailsPaneOpen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfDetailsPaneOpen)))
+func (this *IScriptErrorList) GetDetailsPaneOpen(pfDetailsPaneOpen *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDetailsPaneOpen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfDetailsPaneOpen)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) setDetailsPaneOpen(fDetailsPaneOpen BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().setDetailsPaneOpen, uintptr(unsafe.Pointer(this)), uintptr(fDetailsPaneOpen))
+func (this *IScriptErrorList) SetDetailsPaneOpen(fDetailsPaneOpen BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDetailsPaneOpen, uintptr(unsafe.Pointer(this)), uintptr(fDetailsPaneOpen))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) getPerErrorDisplay(pfPerErrorDisplay *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().getPerErrorDisplay, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfPerErrorDisplay)))
+func (this *IScriptErrorList) GetPerErrorDisplay(pfPerErrorDisplay *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPerErrorDisplay, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfPerErrorDisplay)))
 	return HRESULT(ret)
 }
 
-func (this *IScriptErrorList) setPerErrorDisplay(fPerErrorDisplay BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().setPerErrorDisplay, uintptr(unsafe.Pointer(this)), uintptr(fPerErrorDisplay))
+func (this *IScriptErrorList) SetPerErrorDisplay(fPerErrorDisplay BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPerErrorDisplay, uintptr(unsafe.Pointer(this)), uintptr(fPerErrorDisplay))
 	return HRESULT(ret)
 }
 
@@ -20344,14 +20344,14 @@ var IID_DFConstraint = syscall.GUID{0x4a3df050, 0x23bd, 0x11d2,
 
 type DFConstraintInterface interface {
 	IDispatchInterface
-	get_Name(pbs *BSTR) HRESULT
-	get_Value(pv *VARIANT) HRESULT
+	Get_Name(pbs *BSTR) HRESULT
+	Get_Value(pv *VARIANT) HRESULT
 }
 
 type DFConstraintVtbl struct {
 	IDispatchVtbl
-	get_Name uintptr
-	get_Value uintptr
+	Get_Name uintptr
+	Get_Value uintptr
 }
 
 type DFConstraint struct {
@@ -20362,13 +20362,13 @@ func (this *DFConstraint) Vtbl() *DFConstraintVtbl {
 	return (*DFConstraintVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *DFConstraint) get_Name(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *DFConstraint) Get_Name(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *DFConstraint) get_Value(pv *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pv)))
+func (this *DFConstraint) Get_Value(pv *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pv)))
 	return HRESULT(ret)
 }
 
@@ -20378,42 +20378,42 @@ var IID_FolderItem = syscall.GUID{0xfac32c80, 0xcbe4, 0x11ce,
 
 type FolderItemInterface interface {
 	IDispatchInterface
-	get_Application(ppid **IDispatch) HRESULT
-	get_Parent(ppid **IDispatch) HRESULT
-	get_Name(pbs *BSTR) HRESULT
-	put_Name(bs BSTR) HRESULT
-	get_Path(pbs *BSTR) HRESULT
-	get_GetLink(ppid **IDispatch) HRESULT
-	get_GetFolder(ppid **IDispatch) HRESULT
-	get_IsLink(pb *int16) HRESULT
-	get_IsFolder(pb *int16) HRESULT
-	get_IsFileSystem(pb *int16) HRESULT
-	get_IsBrowsable(pb *int16) HRESULT
-	get_ModifyDate(pdt *float64) HRESULT
-	put_ModifyDate(dt float64) HRESULT
-	get_Size(pul *int32) HRESULT
-	get_Type(pbs *BSTR) HRESULT
+	Get_Application(ppid **IDispatch) HRESULT
+	Get_Parent(ppid **IDispatch) HRESULT
+	Get_Name(pbs *BSTR) HRESULT
+	Put_Name(bs BSTR) HRESULT
+	Get_Path(pbs *BSTR) HRESULT
+	Get_GetLink(ppid **IDispatch) HRESULT
+	Get_GetFolder(ppid **IDispatch) HRESULT
+	Get_IsLink(pb *int16) HRESULT
+	Get_IsFolder(pb *int16) HRESULT
+	Get_IsFileSystem(pb *int16) HRESULT
+	Get_IsBrowsable(pb *int16) HRESULT
+	Get_ModifyDate(pdt *float64) HRESULT
+	Put_ModifyDate(dt float64) HRESULT
+	Get_Size(pul *int32) HRESULT
+	Get_Type(pbs *BSTR) HRESULT
 	Verbs(ppfic **FolderItemVerbs) HRESULT
 	InvokeVerb(vVerb VARIANT) HRESULT
 }
 
 type FolderItemVtbl struct {
 	IDispatchVtbl
-	get_Application uintptr
-	get_Parent uintptr
-	get_Name uintptr
-	put_Name uintptr
-	get_Path uintptr
-	get_GetLink uintptr
-	get_GetFolder uintptr
-	get_IsLink uintptr
-	get_IsFolder uintptr
-	get_IsFileSystem uintptr
-	get_IsBrowsable uintptr
-	get_ModifyDate uintptr
-	put_ModifyDate uintptr
-	get_Size uintptr
-	get_Type uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
+	Get_Name uintptr
+	Put_Name uintptr
+	Get_Path uintptr
+	Get_GetLink uintptr
+	Get_GetFolder uintptr
+	Get_IsLink uintptr
+	Get_IsFolder uintptr
+	Get_IsFileSystem uintptr
+	Get_IsBrowsable uintptr
+	Get_ModifyDate uintptr
+	Put_ModifyDate uintptr
+	Get_Size uintptr
+	Get_Type uintptr
 	Verbs uintptr
 	InvokeVerb uintptr
 }
@@ -20426,78 +20426,78 @@ func (this *FolderItem) Vtbl() *FolderItemVtbl {
 	return (*FolderItemVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *FolderItem) get_Application(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItem) Get_Application(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_Parent(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItem) Get_Parent(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_Name(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *FolderItem) Get_Name(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) put_Name(bs BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
+func (this *FolderItem) Put_Name(bs BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_Path(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *FolderItem) Get_Path(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_GetLink(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_GetLink, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItem) Get_GetLink(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_GetLink, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_GetFolder(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_GetFolder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItem) Get_GetFolder(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_GetFolder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_IsLink(pb *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsLink, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
+func (this *FolderItem) Get_IsLink(pb *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsLink, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_IsFolder(pb *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsFolder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
+func (this *FolderItem) Get_IsFolder(pb *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsFolder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_IsFileSystem(pb *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsFileSystem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
+func (this *FolderItem) Get_IsFileSystem(pb *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsFileSystem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_IsBrowsable(pb *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsBrowsable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
+func (this *FolderItem) Get_IsBrowsable(pb *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsBrowsable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_ModifyDate(pdt *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ModifyDate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdt)))
+func (this *FolderItem) Get_ModifyDate(pdt *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ModifyDate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdt)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) put_ModifyDate(dt float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ModifyDate, uintptr(unsafe.Pointer(this)), uintptr(dt))
+func (this *FolderItem) Put_ModifyDate(dt float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ModifyDate, uintptr(unsafe.Pointer(this)), uintptr(dt))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_Size(pul *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Size, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pul)))
+func (this *FolderItem) Get_Size(pul *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Size, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pul)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) get_Type(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *FolderItem) Get_Type(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Type, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
@@ -20517,20 +20517,20 @@ var IID_FolderItems = syscall.GUID{0x744129e0, 0xcbe5, 0x11ce,
 
 type FolderItemsInterface interface {
 	IDispatchInterface
-	get_Count(plCount *int32) HRESULT
-	get_Application(ppid **IDispatch) HRESULT
-	get_Parent(ppid **IDispatch) HRESULT
+	Get_Count(plCount *int32) HRESULT
+	Get_Application(ppid **IDispatch) HRESULT
+	Get_Parent(ppid **IDispatch) HRESULT
 	Item(index VARIANT, ppid **FolderItem) HRESULT
-	_NewEnum(ppunk **IUnknown) HRESULT
+	NewEnum_(ppunk **IUnknown) HRESULT
 }
 
 type FolderItemsVtbl struct {
 	IDispatchVtbl
-	get_Count uintptr
-	get_Application uintptr
-	get_Parent uintptr
+	Get_Count uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
 	Item uintptr
-	_NewEnum uintptr
+	NewEnum_ uintptr
 }
 
 type FolderItems struct {
@@ -20541,18 +20541,18 @@ func (this *FolderItems) Vtbl() *FolderItemsVtbl {
 	return (*FolderItemsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *FolderItems) get_Count(plCount *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plCount)))
+func (this *FolderItems) Get_Count(plCount *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plCount)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItems) get_Application(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItems) Get_Application(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItems) get_Parent(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItems) Get_Parent(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
@@ -20561,8 +20561,8 @@ func (this *FolderItems) Item(index VARIANT, ppid **FolderItem) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *FolderItems) _NewEnum(ppunk **IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._NewEnum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunk)))
+func (this *FolderItems) NewEnum_(ppunk **IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().NewEnum_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunk)))
 	return HRESULT(ret)
 }
 
@@ -20572,17 +20572,17 @@ var IID_FolderItemVerb = syscall.GUID{0x08ec3e00, 0x50b0, 0x11cf,
 
 type FolderItemVerbInterface interface {
 	IDispatchInterface
-	get_Application(ppid **IDispatch) HRESULT
-	get_Parent(ppid **IDispatch) HRESULT
-	get_Name(pbs *BSTR) HRESULT
+	Get_Application(ppid **IDispatch) HRESULT
+	Get_Parent(ppid **IDispatch) HRESULT
+	Get_Name(pbs *BSTR) HRESULT
 	DoIt() HRESULT
 }
 
 type FolderItemVerbVtbl struct {
 	IDispatchVtbl
-	get_Application uintptr
-	get_Parent uintptr
-	get_Name uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
+	Get_Name uintptr
 	DoIt uintptr
 }
 
@@ -20594,18 +20594,18 @@ func (this *FolderItemVerb) Vtbl() *FolderItemVerbVtbl {
 	return (*FolderItemVerbVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *FolderItemVerb) get_Application(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItemVerb) Get_Application(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItemVerb) get_Parent(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItemVerb) Get_Parent(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItemVerb) get_Name(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *FolderItemVerb) Get_Name(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
@@ -20620,20 +20620,20 @@ var IID_FolderItemVerbs = syscall.GUID{0x1f8352c0, 0x50b0, 0x11cf,
 
 type FolderItemVerbsInterface interface {
 	IDispatchInterface
-	get_Count(plCount *int32) HRESULT
-	get_Application(ppid **IDispatch) HRESULT
-	get_Parent(ppid **IDispatch) HRESULT
+	Get_Count(plCount *int32) HRESULT
+	Get_Application(ppid **IDispatch) HRESULT
+	Get_Parent(ppid **IDispatch) HRESULT
 	Item(index VARIANT, ppid **FolderItemVerb) HRESULT
-	_NewEnum(ppunk **IUnknown) HRESULT
+	NewEnum_(ppunk **IUnknown) HRESULT
 }
 
 type FolderItemVerbsVtbl struct {
 	IDispatchVtbl
-	get_Count uintptr
-	get_Application uintptr
-	get_Parent uintptr
+	Get_Count uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
 	Item uintptr
-	_NewEnum uintptr
+	NewEnum_ uintptr
 }
 
 type FolderItemVerbs struct {
@@ -20644,18 +20644,18 @@ func (this *FolderItemVerbs) Vtbl() *FolderItemVerbsVtbl {
 	return (*FolderItemVerbsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *FolderItemVerbs) get_Count(plCount *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plCount)))
+func (this *FolderItemVerbs) Get_Count(plCount *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plCount)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItemVerbs) get_Application(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItemVerbs) Get_Application(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItemVerbs) get_Parent(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *FolderItemVerbs) Get_Parent(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
@@ -20664,8 +20664,8 @@ func (this *FolderItemVerbs) Item(index VARIANT, ppid **FolderItemVerb) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *FolderItemVerbs) _NewEnum(ppunk **IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._NewEnum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunk)))
+func (this *FolderItemVerbs) NewEnum_(ppunk **IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().NewEnum_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunk)))
 	return HRESULT(ret)
 }
 
@@ -20675,10 +20675,10 @@ var IID_Folder = syscall.GUID{0xbbcbde60, 0xc3ff, 0x11ce,
 
 type FolderInterface interface {
 	IDispatchInterface
-	get_Title(pbs *BSTR) HRESULT
-	get_Application(ppid **IDispatch) HRESULT
-	get_Parent(ppid **IDispatch) HRESULT
-	get_ParentFolder(ppsf **Folder) HRESULT
+	Get_Title(pbs *BSTR) HRESULT
+	Get_Application(ppid **IDispatch) HRESULT
+	Get_Parent(ppid **IDispatch) HRESULT
+	Get_ParentFolder(ppsf **Folder) HRESULT
 	Items(ppid **FolderItems) HRESULT
 	ParseName(bName BSTR, ppid **FolderItem) HRESULT
 	NewFolder(bName BSTR, vOptions VARIANT) HRESULT
@@ -20689,10 +20689,10 @@ type FolderInterface interface {
 
 type FolderVtbl struct {
 	IDispatchVtbl
-	get_Title uintptr
-	get_Application uintptr
-	get_Parent uintptr
-	get_ParentFolder uintptr
+	Get_Title uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
+	Get_ParentFolder uintptr
 	Items uintptr
 	ParseName uintptr
 	NewFolder uintptr
@@ -20709,23 +20709,23 @@ func (this *Folder) Vtbl() *FolderVtbl {
 	return (*FolderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *Folder) get_Title(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Title, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *Folder) Get_Title(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Title, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *Folder) get_Application(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *Folder) Get_Application(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *Folder) get_Parent(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *Folder) Get_Parent(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *Folder) get_ParentFolder(ppsf **Folder) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ParentFolder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppsf)))
+func (this *Folder) Get_ParentFolder(ppsf **Folder) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ParentFolder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppsf)))
 	return HRESULT(ret)
 }
 
@@ -20765,19 +20765,19 @@ var IID_Folder2 = syscall.GUID{0xf0d2d8ef, 0x3890, 0x11d2,
 
 type Folder2Interface interface {
 	FolderInterface
-	get_Self(ppfi **FolderItem) HRESULT
-	get_OfflineStatus(pul *int32) HRESULT
+	Get_Self(ppfi **FolderItem) HRESULT
+	Get_OfflineStatus(pul *int32) HRESULT
 	Synchronize() HRESULT
-	get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *int16) HRESULT
+	Get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *int16) HRESULT
 	DismissedWebViewBarricade() HRESULT
 }
 
 type Folder2Vtbl struct {
 	FolderVtbl
-	get_Self uintptr
-	get_OfflineStatus uintptr
+	Get_Self uintptr
+	Get_OfflineStatus uintptr
 	Synchronize uintptr
-	get_HaveToShowWebViewBarricade uintptr
+	Get_HaveToShowWebViewBarricade uintptr
 	DismissedWebViewBarricade uintptr
 }
 
@@ -20789,13 +20789,13 @@ func (this *Folder2) Vtbl() *Folder2Vtbl {
 	return (*Folder2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *Folder2) get_Self(ppfi **FolderItem) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Self, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppfi)))
+func (this *Folder2) Get_Self(ppfi **FolderItem) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Self, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppfi)))
 	return HRESULT(ret)
 }
 
-func (this *Folder2) get_OfflineStatus(pul *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_OfflineStatus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pul)))
+func (this *Folder2) Get_OfflineStatus(pul *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_OfflineStatus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pul)))
 	return HRESULT(ret)
 }
 
@@ -20804,8 +20804,8 @@ func (this *Folder2) Synchronize() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *Folder2) get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_HaveToShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbHaveToShowWebViewBarricade)))
+func (this *Folder2) Get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_HaveToShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbHaveToShowWebViewBarricade)))
 	return HRESULT(ret)
 }
 
@@ -20820,14 +20820,14 @@ var IID_Folder3 = syscall.GUID{0xa7ae5f64, 0xc4d7, 0x4d7f,
 
 type Folder3Interface interface {
 	Folder2Interface
-	get_ShowWebViewBarricade(pbShowWebViewBarricade *int16) HRESULT
-	put_ShowWebViewBarricade(bShowWebViewBarricade int16) HRESULT
+	Get_ShowWebViewBarricade(pbShowWebViewBarricade *int16) HRESULT
+	Put_ShowWebViewBarricade(bShowWebViewBarricade int16) HRESULT
 }
 
 type Folder3Vtbl struct {
 	Folder2Vtbl
-	get_ShowWebViewBarricade uintptr
-	put_ShowWebViewBarricade uintptr
+	Get_ShowWebViewBarricade uintptr
+	Put_ShowWebViewBarricade uintptr
 }
 
 type Folder3 struct {
@@ -20838,13 +20838,13 @@ func (this *Folder3) Vtbl() *Folder3Vtbl {
 	return (*Folder3Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *Folder3) get_ShowWebViewBarricade(pbShowWebViewBarricade *int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbShowWebViewBarricade)))
+func (this *Folder3) Get_ShowWebViewBarricade(pbShowWebViewBarricade *int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbShowWebViewBarricade)))
 	return HRESULT(ret)
 }
 
-func (this *Folder3) put_ShowWebViewBarricade(bShowWebViewBarricade int16) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(bShowWebViewBarricade))
+func (this *Folder3) Put_ShowWebViewBarricade(bShowWebViewBarricade int16) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(bShowWebViewBarricade))
 	return HRESULT(ret)
 }
 
@@ -20916,13 +20916,13 @@ var IID_FolderItems3 = syscall.GUID{0xeaa7c309, 0xbbec, 0x49d5,
 type FolderItems3Interface interface {
 	FolderItems2Interface
 	Filter(grfFlags int32, bstrFileSpec BSTR) HRESULT
-	get_Verbs(ppfic **FolderItemVerbs) HRESULT
+	Get_Verbs(ppfic **FolderItemVerbs) HRESULT
 }
 
 type FolderItems3Vtbl struct {
 	FolderItems2Vtbl
 	Filter uintptr
-	get_Verbs uintptr
+	Get_Verbs uintptr
 }
 
 type FolderItems3 struct {
@@ -20938,8 +20938,8 @@ func (this *FolderItems3) Filter(grfFlags int32, bstrFileSpec BSTR) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *FolderItems3) get_Verbs(ppfic **FolderItemVerbs) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Verbs, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppfic)))
+func (this *FolderItems3) Get_Verbs(ppfic **FolderItemVerbs) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Verbs, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppfic)))
 	return HRESULT(ret)
 }
 
@@ -20949,18 +20949,18 @@ var IID_IShellLinkDual = syscall.GUID{0x88a05c00, 0xf000, 0x11ce,
 
 type IShellLinkDualInterface interface {
 	IDispatchInterface
-	get_Path(pbs *BSTR) HRESULT
-	put_Path(bs BSTR) HRESULT
-	get_Description(pbs *BSTR) HRESULT
-	put_Description(bs BSTR) HRESULT
-	get_WorkingDirectory(pbs *BSTR) HRESULT
-	put_WorkingDirectory(bs BSTR) HRESULT
-	get_Arguments(pbs *BSTR) HRESULT
-	put_Arguments(bs BSTR) HRESULT
-	get_Hotkey(piHK *int32) HRESULT
-	put_Hotkey(iHK int32) HRESULT
-	get_ShowCommand(piShowCommand *int32) HRESULT
-	put_ShowCommand(iShowCommand int32) HRESULT
+	Get_Path(pbs *BSTR) HRESULT
+	Put_Path(bs BSTR) HRESULT
+	Get_Description(pbs *BSTR) HRESULT
+	Put_Description(bs BSTR) HRESULT
+	Get_WorkingDirectory(pbs *BSTR) HRESULT
+	Put_WorkingDirectory(bs BSTR) HRESULT
+	Get_Arguments(pbs *BSTR) HRESULT
+	Put_Arguments(bs BSTR) HRESULT
+	Get_Hotkey(piHK *int32) HRESULT
+	Put_Hotkey(iHK int32) HRESULT
+	Get_ShowCommand(piShowCommand *int32) HRESULT
+	Put_ShowCommand(iShowCommand int32) HRESULT
 	Resolve(fFlags int32) HRESULT
 	GetIconLocation(pbs *BSTR, piIcon *int32) HRESULT
 	SetIconLocation(bs BSTR, iIcon int32) HRESULT
@@ -20969,18 +20969,18 @@ type IShellLinkDualInterface interface {
 
 type IShellLinkDualVtbl struct {
 	IDispatchVtbl
-	get_Path uintptr
-	put_Path uintptr
-	get_Description uintptr
-	put_Description uintptr
-	get_WorkingDirectory uintptr
-	put_WorkingDirectory uintptr
-	get_Arguments uintptr
-	put_Arguments uintptr
-	get_Hotkey uintptr
-	put_Hotkey uintptr
-	get_ShowCommand uintptr
-	put_ShowCommand uintptr
+	Get_Path uintptr
+	Put_Path uintptr
+	Get_Description uintptr
+	Put_Description uintptr
+	Get_WorkingDirectory uintptr
+	Put_WorkingDirectory uintptr
+	Get_Arguments uintptr
+	Put_Arguments uintptr
+	Get_Hotkey uintptr
+	Put_Hotkey uintptr
+	Get_ShowCommand uintptr
+	Put_ShowCommand uintptr
 	Resolve uintptr
 	GetIconLocation uintptr
 	SetIconLocation uintptr
@@ -20995,63 +20995,63 @@ func (this *IShellLinkDual) Vtbl() *IShellLinkDualVtbl {
 	return (*IShellLinkDualVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellLinkDual) get_Path(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *IShellLinkDual) Get_Path(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) put_Path(bs BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
+func (this *IShellLinkDual) Put_Path(bs BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Path, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) get_Description(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *IShellLinkDual) Get_Description(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) put_Description(bs BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
+func (this *IShellLinkDual) Put_Description(bs BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) get_WorkingDirectory(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_WorkingDirectory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *IShellLinkDual) Get_WorkingDirectory(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_WorkingDirectory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) put_WorkingDirectory(bs BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_WorkingDirectory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
+func (this *IShellLinkDual) Put_WorkingDirectory(bs BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_WorkingDirectory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) get_Arguments(pbs *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Arguments, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
+func (this *IShellLinkDual) Get_Arguments(pbs *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Arguments, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) put_Arguments(bs BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Arguments, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
+func (this *IShellLinkDual) Put_Arguments(bs BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Arguments, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bs)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) get_Hotkey(piHK *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Hotkey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piHK)))
+func (this *IShellLinkDual) Get_Hotkey(piHK *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Hotkey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piHK)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) put_Hotkey(iHK int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Hotkey, uintptr(unsafe.Pointer(this)), uintptr(iHK))
+func (this *IShellLinkDual) Put_Hotkey(iHK int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Hotkey, uintptr(unsafe.Pointer(this)), uintptr(iHK))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) get_ShowCommand(piShowCommand *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ShowCommand, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piShowCommand)))
+func (this *IShellLinkDual) Get_ShowCommand(piShowCommand *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ShowCommand, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piShowCommand)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkDual) put_ShowCommand(iShowCommand int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ShowCommand, uintptr(unsafe.Pointer(this)), uintptr(iShowCommand))
+func (this *IShellLinkDual) Put_ShowCommand(iShowCommand int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ShowCommand, uintptr(unsafe.Pointer(this)), uintptr(iShowCommand))
 	return HRESULT(ret)
 }
 
@@ -21081,12 +21081,12 @@ var IID_IShellLinkDual2 = syscall.GUID{0x317ee249, 0xf12e, 0x11d2,
 
 type IShellLinkDual2Interface interface {
 	IShellLinkDualInterface
-	get_Target(ppfi **FolderItem) HRESULT
+	Get_Target(ppfi **FolderItem) HRESULT
 }
 
 type IShellLinkDual2Vtbl struct {
 	IShellLinkDualVtbl
-	get_Target uintptr
+	Get_Target uintptr
 }
 
 type IShellLinkDual2 struct {
@@ -21097,8 +21097,8 @@ func (this *IShellLinkDual2) Vtbl() *IShellLinkDual2Vtbl {
 	return (*IShellLinkDual2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellLinkDual2) get_Target(ppfi **FolderItem) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Target, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppfi)))
+func (this *IShellLinkDual2) Get_Target(ppfi **FolderItem) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Target, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppfi)))
 	return HRESULT(ret)
 }
 
@@ -21108,28 +21108,28 @@ var IID_IShellFolderViewDual = syscall.GUID{0xe7a1af80, 0x4d96, 0x11cf,
 
 type IShellFolderViewDualInterface interface {
 	IDispatchInterface
-	get_Application(ppid **IDispatch) HRESULT
-	get_Parent(ppid **IDispatch) HRESULT
-	get_Folder(ppid **Folder) HRESULT
+	Get_Application(ppid **IDispatch) HRESULT
+	Get_Parent(ppid **IDispatch) HRESULT
+	Get_Folder(ppid **Folder) HRESULT
 	SelectedItems(ppid **FolderItems) HRESULT
-	get_FocusedItem(ppid **FolderItem) HRESULT
+	Get_FocusedItem(ppid **FolderItem) HRESULT
 	SelectItem(pvfi *VARIANT, dwFlags int32) HRESULT
 	PopupItemMenu(pfi *FolderItem, vx VARIANT, vy VARIANT, pbs *BSTR) HRESULT
-	get_Script(ppDisp **IDispatch) HRESULT
-	get_ViewOptions(plViewOptions *int32) HRESULT
+	Get_Script(ppDisp **IDispatch) HRESULT
+	Get_ViewOptions(plViewOptions *int32) HRESULT
 }
 
 type IShellFolderViewDualVtbl struct {
 	IDispatchVtbl
-	get_Application uintptr
-	get_Parent uintptr
-	get_Folder uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
+	Get_Folder uintptr
 	SelectedItems uintptr
-	get_FocusedItem uintptr
+	Get_FocusedItem uintptr
 	SelectItem uintptr
 	PopupItemMenu uintptr
-	get_Script uintptr
-	get_ViewOptions uintptr
+	Get_Script uintptr
+	Get_ViewOptions uintptr
 }
 
 type IShellFolderViewDual struct {
@@ -21140,18 +21140,18 @@ func (this *IShellFolderViewDual) Vtbl() *IShellFolderViewDualVtbl {
 	return (*IShellFolderViewDualVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellFolderViewDual) get_Application(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *IShellFolderViewDual) Get_Application(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual) get_Parent(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *IShellFolderViewDual) Get_Parent(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual) get_Folder(ppid **Folder) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Folder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *IShellFolderViewDual) Get_Folder(ppid **Folder) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Folder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
@@ -21160,8 +21160,8 @@ func (this *IShellFolderViewDual) SelectedItems(ppid **FolderItems) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual) get_FocusedItem(ppid **FolderItem) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FocusedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *IShellFolderViewDual) Get_FocusedItem(ppid **FolderItem) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FocusedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
@@ -21175,13 +21175,13 @@ func (this *IShellFolderViewDual) PopupItemMenu(pfi *FolderItem, vx VARIANT, vy 
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual) get_Script(ppDisp **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Script, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
+func (this *IShellFolderViewDual) Get_Script(ppDisp **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Script, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisp)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual) get_ViewOptions(plViewOptions *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ViewOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plViewOptions)))
+func (this *IShellFolderViewDual) Get_ViewOptions(plViewOptions *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ViewOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plViewOptions)))
 	return HRESULT(ret)
 }
 
@@ -21191,15 +21191,15 @@ var IID_IShellFolderViewDual2 = syscall.GUID{0x31c147b6, 0x0ade, 0x4a3c,
 
 type IShellFolderViewDual2Interface interface {
 	IShellFolderViewDualInterface
-	get_CurrentViewMode(pViewMode *uint32) HRESULT
-	put_CurrentViewMode(ViewMode uint32) HRESULT
+	Get_CurrentViewMode(pViewMode *uint32) HRESULT
+	Put_CurrentViewMode(ViewMode uint32) HRESULT
 	SelectItemRelative(iRelative int32) HRESULT
 }
 
 type IShellFolderViewDual2Vtbl struct {
 	IShellFolderViewDualVtbl
-	get_CurrentViewMode uintptr
-	put_CurrentViewMode uintptr
+	Get_CurrentViewMode uintptr
+	Put_CurrentViewMode uintptr
 	SelectItemRelative uintptr
 }
 
@@ -21211,13 +21211,13 @@ func (this *IShellFolderViewDual2) Vtbl() *IShellFolderViewDual2Vtbl {
 	return (*IShellFolderViewDual2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellFolderViewDual2) get_CurrentViewMode(pViewMode *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentViewMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pViewMode)))
+func (this *IShellFolderViewDual2) Get_CurrentViewMode(pViewMode *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentViewMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pViewMode)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual2) put_CurrentViewMode(ViewMode uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_CurrentViewMode, uintptr(unsafe.Pointer(this)), uintptr(ViewMode))
+func (this *IShellFolderViewDual2) Put_CurrentViewMode(ViewMode uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_CurrentViewMode, uintptr(unsafe.Pointer(this)), uintptr(ViewMode))
 	return HRESULT(ret)
 }
 
@@ -21232,27 +21232,27 @@ var IID_IShellFolderViewDual3 = syscall.GUID{0x29ec8e6c, 0x46d3, 0x411f,
 
 type IShellFolderViewDual3Interface interface {
 	IShellFolderViewDual2Interface
-	get_GroupBy(pbstrGroupBy *BSTR) HRESULT
-	put_GroupBy(bstrGroupBy BSTR) HRESULT
-	get_FolderFlags(pdwFlags *uint32) HRESULT
-	put_FolderFlags(dwFlags uint32) HRESULT
-	get_SortColumns(pbstrSortColumns *BSTR) HRESULT
-	put_SortColumns(bstrSortColumns BSTR) HRESULT
-	put_IconSize(iIconSize int32) HRESULT
-	get_IconSize(piIconSize *int32) HRESULT
+	Get_GroupBy(pbstrGroupBy *BSTR) HRESULT
+	Put_GroupBy(bstrGroupBy BSTR) HRESULT
+	Get_FolderFlags(pdwFlags *uint32) HRESULT
+	Put_FolderFlags(dwFlags uint32) HRESULT
+	Get_SortColumns(pbstrSortColumns *BSTR) HRESULT
+	Put_SortColumns(bstrSortColumns BSTR) HRESULT
+	Put_IconSize(iIconSize int32) HRESULT
+	Get_IconSize(piIconSize *int32) HRESULT
 	FilterView(bstrFilterText BSTR) HRESULT
 }
 
 type IShellFolderViewDual3Vtbl struct {
 	IShellFolderViewDual2Vtbl
-	get_GroupBy uintptr
-	put_GroupBy uintptr
-	get_FolderFlags uintptr
-	put_FolderFlags uintptr
-	get_SortColumns uintptr
-	put_SortColumns uintptr
-	put_IconSize uintptr
-	get_IconSize uintptr
+	Get_GroupBy uintptr
+	Put_GroupBy uintptr
+	Get_FolderFlags uintptr
+	Put_FolderFlags uintptr
+	Get_SortColumns uintptr
+	Put_SortColumns uintptr
+	Put_IconSize uintptr
+	Get_IconSize uintptr
 	FilterView uintptr
 }
 
@@ -21264,43 +21264,43 @@ func (this *IShellFolderViewDual3) Vtbl() *IShellFolderViewDual3Vtbl {
 	return (*IShellFolderViewDual3Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellFolderViewDual3) get_GroupBy(pbstrGroupBy *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_GroupBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrGroupBy)))
+func (this *IShellFolderViewDual3) Get_GroupBy(pbstrGroupBy *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_GroupBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrGroupBy)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual3) put_GroupBy(bstrGroupBy BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_GroupBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrGroupBy)))
+func (this *IShellFolderViewDual3) Put_GroupBy(bstrGroupBy BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_GroupBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrGroupBy)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual3) get_FolderFlags(pdwFlags *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FolderFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwFlags)))
+func (this *IShellFolderViewDual3) Get_FolderFlags(pdwFlags *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FolderFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwFlags)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual3) put_FolderFlags(dwFlags uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_FolderFlags, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
+func (this *IShellFolderViewDual3) Put_FolderFlags(dwFlags uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_FolderFlags, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual3) get_SortColumns(pbstrSortColumns *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SortColumns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrSortColumns)))
+func (this *IShellFolderViewDual3) Get_SortColumns(pbstrSortColumns *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SortColumns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrSortColumns)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual3) put_SortColumns(bstrSortColumns BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_SortColumns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrSortColumns)))
+func (this *IShellFolderViewDual3) Put_SortColumns(bstrSortColumns BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_SortColumns, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrSortColumns)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual3) put_IconSize(iIconSize int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_IconSize, uintptr(unsafe.Pointer(this)), uintptr(iIconSize))
+func (this *IShellFolderViewDual3) Put_IconSize(iIconSize int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_IconSize, uintptr(unsafe.Pointer(this)), uintptr(iIconSize))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderViewDual3) get_IconSize(piIconSize *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IconSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piIconSize)))
+func (this *IShellFolderViewDual3) Get_IconSize(piIconSize *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IconSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piIconSize)))
 	return HRESULT(ret)
 }
 
@@ -21315,8 +21315,8 @@ var IID_IShellDispatch = syscall.GUID{0xd8f015c0, 0xc278, 0x11ce,
 
 type IShellDispatchInterface interface {
 	IDispatchInterface
-	get_Application(ppid **IDispatch) HRESULT
-	get_Parent(ppid **IDispatch) HRESULT
+	Get_Application(ppid **IDispatch) HRESULT
+	Get_Parent(ppid **IDispatch) HRESULT
 	NameSpace(vDir VARIANT, ppsdf **Folder) HRESULT
 	BrowseForFolder(Hwnd int32, Title BSTR, Options int32, RootFolder VARIANT, ppsdf **Folder) HRESULT
 	Windows(ppid **IDispatch) HRESULT
@@ -21342,8 +21342,8 @@ type IShellDispatchInterface interface {
 
 type IShellDispatchVtbl struct {
 	IDispatchVtbl
-	get_Application uintptr
-	get_Parent uintptr
+	Get_Application uintptr
+	Get_Parent uintptr
 	NameSpace uintptr
 	BrowseForFolder uintptr
 	Windows uintptr
@@ -21375,13 +21375,13 @@ func (this *IShellDispatch) Vtbl() *IShellDispatchVtbl {
 	return (*IShellDispatchVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellDispatch) get_Application(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *IShellDispatch) Get_Application(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Application, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
-func (this *IShellDispatch) get_Parent(ppid **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
+func (this *IShellDispatch) Get_Parent(ppid **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Parent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppid)))
 	return HRESULT(ret)
 }
 
@@ -21710,18 +21710,18 @@ type IFileSearchBandInterface interface {
 	IDispatchInterface
 	SetFocus() HRESULT
 	SetSearchParameters(pbstrSearchID *BSTR, bNavToResults int16, pvarScope *VARIANT, pvarQueryFile *VARIANT) HRESULT
-	get_SearchID(pbstrSearchID *BSTR) HRESULT
-	get_Scope(pvarScope *VARIANT) HRESULT
-	get_QueryFile(pvarFile *VARIANT) HRESULT
+	Get_SearchID(pbstrSearchID *BSTR) HRESULT
+	Get_Scope(pvarScope *VARIANT) HRESULT
+	Get_QueryFile(pvarFile *VARIANT) HRESULT
 }
 
 type IFileSearchBandVtbl struct {
 	IDispatchVtbl
 	SetFocus uintptr
 	SetSearchParameters uintptr
-	get_SearchID uintptr
-	get_Scope uintptr
-	get_QueryFile uintptr
+	Get_SearchID uintptr
+	Get_Scope uintptr
+	Get_QueryFile uintptr
 }
 
 type IFileSearchBand struct {
@@ -21742,18 +21742,18 @@ func (this *IFileSearchBand) SetSearchParameters(pbstrSearchID *BSTR, bNavToResu
 	return HRESULT(ret)
 }
 
-func (this *IFileSearchBand) get_SearchID(pbstrSearchID *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SearchID, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrSearchID)))
+func (this *IFileSearchBand) Get_SearchID(pbstrSearchID *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SearchID, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrSearchID)))
 	return HRESULT(ret)
 }
 
-func (this *IFileSearchBand) get_Scope(pvarScope *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Scope, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarScope)))
+func (this *IFileSearchBand) Get_Scope(pvarScope *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Scope, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarScope)))
 	return HRESULT(ret)
 }
 
-func (this *IFileSearchBand) get_QueryFile(pvarFile *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_QueryFile, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarFile)))
+func (this *IFileSearchBand) Get_QueryFile(pvarFile *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_QueryFile, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarFile)))
 	return HRESULT(ret)
 }
 
@@ -21766,10 +21766,10 @@ type IWebWizardHostInterface interface {
 	FinalBack() HRESULT
 	FinalNext() HRESULT
 	Cancel() HRESULT
-	put_Caption(bstrCaption BSTR) HRESULT
-	get_Caption(pbstrCaption *BSTR) HRESULT
-	put_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT
-	get_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT
+	Put_Caption(bstrCaption BSTR) HRESULT
+	Get_Caption(pbstrCaption *BSTR) HRESULT
+	Put_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT
+	Get_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT
 	SetWizardButtons(vfEnableBack int16, vfEnableNext int16, vfLastPage int16) HRESULT
 	SetHeaderText(bstrHeaderTitle BSTR, bstrHeaderSubtitle BSTR) HRESULT
 }
@@ -21779,10 +21779,10 @@ type IWebWizardHostVtbl struct {
 	FinalBack uintptr
 	FinalNext uintptr
 	Cancel uintptr
-	put_Caption uintptr
-	get_Caption uintptr
-	put_Property uintptr
-	get_Property uintptr
+	Put_Caption uintptr
+	Get_Caption uintptr
+	Put_Property uintptr
+	Get_Property uintptr
 	SetWizardButtons uintptr
 	SetHeaderText uintptr
 }
@@ -21810,23 +21810,23 @@ func (this *IWebWizardHost) Cancel() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IWebWizardHost) put_Caption(bstrCaption BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Caption, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrCaption)))
+func (this *IWebWizardHost) Put_Caption(bstrCaption BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Caption, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrCaption)))
 	return HRESULT(ret)
 }
 
-func (this *IWebWizardHost) get_Caption(pbstrCaption *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Caption, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrCaption)))
+func (this *IWebWizardHost) Get_Caption(pbstrCaption *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Caption, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrCaption)))
 	return HRESULT(ret)
 }
 
-func (this *IWebWizardHost) put_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_Property, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrPropertyName)), uintptr(unsafe.Pointer(pvProperty)))
+func (this *IWebWizardHost) Put_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Property, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrPropertyName)), uintptr(unsafe.Pointer(pvProperty)))
 	return HRESULT(ret)
 }
 
-func (this *IWebWizardHost) get_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Property, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrPropertyName)), uintptr(unsafe.Pointer(pvProperty)))
+func (this *IWebWizardHost) Get_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Property, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrPropertyName)), uintptr(unsafe.Pointer(pvProperty)))
 	return HRESULT(ret)
 }
 
@@ -27818,43 +27818,43 @@ type IBrowserService2Interface interface {
 	UpdateSecureLockIcon(eSecureLock int32) HRESULT
 	InitializeDownloadManager() HRESULT
 	InitializeTransitionSite() HRESULT
-	_Initialize(hwnd HWND, pauto *IUnknown) HRESULT
-	_CancelPendingNavigationAsync() HRESULT
-	_CancelPendingView() HRESULT
-	_MaySaveChanges() HRESULT
-	_PauseOrResumeView(fPaused BOOL) HRESULT
-	_DisableModeless() HRESULT
-	_NavigateToPidl2(pidl *ITEMIDLIST, grfHLNF uint32, dwFlags uint32) HRESULT
-	_TryShell2Rename(psv *IShellView, pidlNew *ITEMIDLIST) HRESULT
-	_SwitchActivationNow() HRESULT
-	_ExecChildren(punkBar *IUnknown, fBroadcast BOOL, pguidCmdGroup *syscall.GUID, nCmdID uint32, nCmdexecopt uint32, pvarargIn *VARIANT, pvarargOut *VARIANT) HRESULT
-	_SendChildren(hwndBar HWND, fBroadcast BOOL, uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT
+	Initialize_(hwnd HWND, pauto *IUnknown) HRESULT
+	CancelPendingNavigationAsync_() HRESULT
+	CancelPendingView_() HRESULT
+	MaySaveChanges_() HRESULT
+	PauseOrResumeView_(fPaused BOOL) HRESULT
+	DisableModeless_() HRESULT
+	NavigateToPidl2_(pidl *ITEMIDLIST, grfHLNF uint32, dwFlags uint32) HRESULT
+	TryShell2Rename_(psv *IShellView, pidlNew *ITEMIDLIST) HRESULT
+	SwitchActivationNow_() HRESULT
+	ExecChildren_(punkBar *IUnknown, fBroadcast BOOL, pguidCmdGroup *syscall.GUID, nCmdID uint32, nCmdexecopt uint32, pvarargIn *VARIANT, pvarargOut *VARIANT) HRESULT
+	SendChildren_(hwndBar HWND, fBroadcast BOOL, uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT
 	GetFolderSetData(pfsd *FOLDERSETDATA) HRESULT
-	_OnFocusChange(itb uint32) HRESULT
-	v_ShowHideChildWindows(fChildOnly BOOL) HRESULT
-	_get_itbLastFocus() uint32
-	_put_itbLastFocus(itbLastFocus uint32) HRESULT
-	_UIActivateView(uState uint32) HRESULT
-	_GetViewBorderRect(prc *RECT) HRESULT
-	_UpdateViewRectSize() HRESULT
-	_ResizeNextBorder(itb uint32) HRESULT
-	_ResizeView() HRESULT
-	_GetEffectiveClientArea(lprectBorder *RECT, hmon HMONITOR) HRESULT
-	v_GetViewStream(pidl *ITEMIDLIST, grfMode uint32, pwszName PWSTR) *IStream
+	OnFocusChange_(itb uint32) HRESULT
+	V_ShowHideChildWindows(fChildOnly BOOL) HRESULT
+	Get_itbLastFocus_() uint32
+	Put_itbLastFocus_(itbLastFocus uint32) HRESULT
+	UIActivateView_(uState uint32) HRESULT
+	GetViewBorderRect_(prc *RECT) HRESULT
+	UpdateViewRectSize_() HRESULT
+	ResizeNextBorder_(itb uint32) HRESULT
+	ResizeView_() HRESULT
+	GetEffectiveClientArea_(lprectBorder *RECT, hmon HMONITOR) HRESULT
+	V_GetViewStream(pidl *ITEMIDLIST, grfMode uint32, pwszName PWSTR) *IStream
 	ForwardViewMsg(uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT
 	SetAcceleratorMenu(hacc HACCEL) HRESULT
-	_GetToolbarCount() int32
-	_GetToolbarItem(itb int32) *TOOLBARITEM
-	_SaveToolbars(pstm *IStream) HRESULT
-	_LoadToolbars(pstm *IStream) HRESULT
-	_CloseAndReleaseToolbars(fClose BOOL) HRESULT
-	v_MayGetNextToolbarFocus(lpMsg *MSG, itbNext uint32, citb int32, pptbi **TOOLBARITEM, phwnd *HWND) HRESULT
-	_ResizeNextBorderHelper(itb uint32, bUseHmonitor BOOL) HRESULT
-	_FindTBar(punkSrc *IUnknown) uint32
-	_SetFocus(ptbi *TOOLBARITEM, hwnd HWND, lpMsg *MSG) HRESULT
-	v_MayTranslateAccelerator(pmsg *MSG) HRESULT
-	_GetBorderDWHelper(punkSrc *IUnknown, lprectBorder *RECT, bUseHmonitor BOOL) HRESULT
-	v_CheckZoneCrossing(pidl *ITEMIDLIST) HRESULT
+	GetToolbarCount_() int32
+	GetToolbarItem_(itb int32) *TOOLBARITEM
+	SaveToolbars_(pstm *IStream) HRESULT
+	LoadToolbars_(pstm *IStream) HRESULT
+	CloseAndReleaseToolbars_(fClose BOOL) HRESULT
+	V_MayGetNextToolbarFocus(lpMsg *MSG, itbNext uint32, citb int32, pptbi **TOOLBARITEM, phwnd *HWND) HRESULT
+	ResizeNextBorderHelper_(itb uint32, bUseHmonitor BOOL) HRESULT
+	FindTBar_(punkSrc *IUnknown) uint32
+	SetFocus_(ptbi *TOOLBARITEM, hwnd HWND, lpMsg *MSG) HRESULT
+	V_MayTranslateAccelerator(pmsg *MSG) HRESULT
+	GetBorderDWHelper_(punkSrc *IUnknown, lprectBorder *RECT, bUseHmonitor BOOL) HRESULT
+	V_CheckZoneCrossing(pidl *ITEMIDLIST) HRESULT
 }
 
 type IBrowserService2Vtbl struct {
@@ -27884,43 +27884,43 @@ type IBrowserService2Vtbl struct {
 	UpdateSecureLockIcon uintptr
 	InitializeDownloadManager uintptr
 	InitializeTransitionSite uintptr
-	_Initialize uintptr
-	_CancelPendingNavigationAsync uintptr
-	_CancelPendingView uintptr
-	_MaySaveChanges uintptr
-	_PauseOrResumeView uintptr
-	_DisableModeless uintptr
-	_NavigateToPidl2 uintptr
-	_TryShell2Rename uintptr
-	_SwitchActivationNow uintptr
-	_ExecChildren uintptr
-	_SendChildren uintptr
+	Initialize_ uintptr
+	CancelPendingNavigationAsync_ uintptr
+	CancelPendingView_ uintptr
+	MaySaveChanges_ uintptr
+	PauseOrResumeView_ uintptr
+	DisableModeless_ uintptr
+	NavigateToPidl2_ uintptr
+	TryShell2Rename_ uintptr
+	SwitchActivationNow_ uintptr
+	ExecChildren_ uintptr
+	SendChildren_ uintptr
 	GetFolderSetData uintptr
-	_OnFocusChange uintptr
-	v_ShowHideChildWindows uintptr
-	_get_itbLastFocus uintptr
-	_put_itbLastFocus uintptr
-	_UIActivateView uintptr
-	_GetViewBorderRect uintptr
-	_UpdateViewRectSize uintptr
-	_ResizeNextBorder uintptr
-	_ResizeView uintptr
-	_GetEffectiveClientArea uintptr
-	v_GetViewStream uintptr
+	OnFocusChange_ uintptr
+	V_ShowHideChildWindows uintptr
+	Get_itbLastFocus_ uintptr
+	Put_itbLastFocus_ uintptr
+	UIActivateView_ uintptr
+	GetViewBorderRect_ uintptr
+	UpdateViewRectSize_ uintptr
+	ResizeNextBorder_ uintptr
+	ResizeView_ uintptr
+	GetEffectiveClientArea_ uintptr
+	V_GetViewStream uintptr
 	ForwardViewMsg uintptr
 	SetAcceleratorMenu uintptr
-	_GetToolbarCount uintptr
-	_GetToolbarItem uintptr
-	_SaveToolbars uintptr
-	_LoadToolbars uintptr
-	_CloseAndReleaseToolbars uintptr
-	v_MayGetNextToolbarFocus uintptr
-	_ResizeNextBorderHelper uintptr
-	_FindTBar uintptr
-	_SetFocus uintptr
-	v_MayTranslateAccelerator uintptr
-	_GetBorderDWHelper uintptr
-	v_CheckZoneCrossing uintptr
+	GetToolbarCount_ uintptr
+	GetToolbarItem_ uintptr
+	SaveToolbars_ uintptr
+	LoadToolbars_ uintptr
+	CloseAndReleaseToolbars_ uintptr
+	V_MayGetNextToolbarFocus uintptr
+	ResizeNextBorderHelper_ uintptr
+	FindTBar_ uintptr
+	SetFocus_ uintptr
+	V_MayTranslateAccelerator uintptr
+	GetBorderDWHelper_ uintptr
+	V_CheckZoneCrossing uintptr
 }
 
 type IBrowserService2 struct {
@@ -28056,58 +28056,58 @@ func (this *IBrowserService2) InitializeTransitionSite() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _Initialize(hwnd HWND, pauto *IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._Initialize, uintptr(unsafe.Pointer(this)), uintptr(hwnd), uintptr(unsafe.Pointer(pauto)))
+func (this *IBrowserService2) Initialize_(hwnd HWND, pauto *IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Initialize_, uintptr(unsafe.Pointer(this)), uintptr(hwnd), uintptr(unsafe.Pointer(pauto)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _CancelPendingNavigationAsync() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._CancelPendingNavigationAsync, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) CancelPendingNavigationAsync_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().CancelPendingNavigationAsync_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _CancelPendingView() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._CancelPendingView, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) CancelPendingView_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().CancelPendingView_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _MaySaveChanges() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._MaySaveChanges, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) MaySaveChanges_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().MaySaveChanges_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _PauseOrResumeView(fPaused BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._PauseOrResumeView, uintptr(unsafe.Pointer(this)), uintptr(fPaused))
+func (this *IBrowserService2) PauseOrResumeView_(fPaused BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().PauseOrResumeView_, uintptr(unsafe.Pointer(this)), uintptr(fPaused))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _DisableModeless() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._DisableModeless, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) DisableModeless_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().DisableModeless_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _NavigateToPidl2(pidl *ITEMIDLIST, grfHLNF uint32, dwFlags uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._NavigateToPidl2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pidl)), uintptr(grfHLNF), uintptr(dwFlags))
+func (this *IBrowserService2) NavigateToPidl2_(pidl *ITEMIDLIST, grfHLNF uint32, dwFlags uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().NavigateToPidl2_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pidl)), uintptr(grfHLNF), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _TryShell2Rename(psv *IShellView, pidlNew *ITEMIDLIST) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._TryShell2Rename, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(psv)), uintptr(unsafe.Pointer(pidlNew)))
+func (this *IBrowserService2) TryShell2Rename_(psv *IShellView, pidlNew *ITEMIDLIST) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TryShell2Rename_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(psv)), uintptr(unsafe.Pointer(pidlNew)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _SwitchActivationNow() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._SwitchActivationNow, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) SwitchActivationNow_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SwitchActivationNow_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _ExecChildren(punkBar *IUnknown, fBroadcast BOOL, pguidCmdGroup *syscall.GUID, nCmdID uint32, nCmdexecopt uint32, pvarargIn *VARIANT, pvarargOut *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._ExecChildren, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(punkBar)), uintptr(fBroadcast), uintptr(unsafe.Pointer(pguidCmdGroup)), uintptr(nCmdID), uintptr(nCmdexecopt), uintptr(unsafe.Pointer(pvarargIn)), uintptr(unsafe.Pointer(pvarargOut)))
+func (this *IBrowserService2) ExecChildren_(punkBar *IUnknown, fBroadcast BOOL, pguidCmdGroup *syscall.GUID, nCmdID uint32, nCmdexecopt uint32, pvarargIn *VARIANT, pvarargOut *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ExecChildren_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(punkBar)), uintptr(fBroadcast), uintptr(unsafe.Pointer(pguidCmdGroup)), uintptr(nCmdID), uintptr(nCmdexecopt), uintptr(unsafe.Pointer(pvarargIn)), uintptr(unsafe.Pointer(pvarargOut)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _SendChildren(hwndBar HWND, fBroadcast BOOL, uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._SendChildren, uintptr(unsafe.Pointer(this)), uintptr(hwndBar), uintptr(fBroadcast), uintptr(uMsg), uintptr(wParam), uintptr(lParam))
+func (this *IBrowserService2) SendChildren_(hwndBar HWND, fBroadcast BOOL, uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SendChildren_, uintptr(unsafe.Pointer(this)), uintptr(hwndBar), uintptr(fBroadcast), uintptr(uMsg), uintptr(wParam), uintptr(lParam))
 	return HRESULT(ret)
 }
 
@@ -28116,58 +28116,58 @@ func (this *IBrowserService2) GetFolderSetData(pfsd *FOLDERSETDATA) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _OnFocusChange(itb uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._OnFocusChange, uintptr(unsafe.Pointer(this)), uintptr(itb))
+func (this *IBrowserService2) OnFocusChange_(itb uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnFocusChange_, uintptr(unsafe.Pointer(this)), uintptr(itb))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) v_ShowHideChildWindows(fChildOnly BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().v_ShowHideChildWindows, uintptr(unsafe.Pointer(this)), uintptr(fChildOnly))
+func (this *IBrowserService2) V_ShowHideChildWindows(fChildOnly BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().V_ShowHideChildWindows, uintptr(unsafe.Pointer(this)), uintptr(fChildOnly))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _get_itbLastFocus() uint32{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._get_itbLastFocus, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) Get_itbLastFocus_() uint32{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_itbLastFocus_, uintptr(unsafe.Pointer(this)))
 	return uint32(ret)
 }
 
-func (this *IBrowserService2) _put_itbLastFocus(itbLastFocus uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._put_itbLastFocus, uintptr(unsafe.Pointer(this)), uintptr(itbLastFocus))
+func (this *IBrowserService2) Put_itbLastFocus_(itbLastFocus uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_itbLastFocus_, uintptr(unsafe.Pointer(this)), uintptr(itbLastFocus))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _UIActivateView(uState uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._UIActivateView, uintptr(unsafe.Pointer(this)), uintptr(uState))
+func (this *IBrowserService2) UIActivateView_(uState uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().UIActivateView_, uintptr(unsafe.Pointer(this)), uintptr(uState))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _GetViewBorderRect(prc *RECT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._GetViewBorderRect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prc)))
+func (this *IBrowserService2) GetViewBorderRect_(prc *RECT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetViewBorderRect_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _UpdateViewRectSize() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._UpdateViewRectSize, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) UpdateViewRectSize_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().UpdateViewRectSize_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _ResizeNextBorder(itb uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._ResizeNextBorder, uintptr(unsafe.Pointer(this)), uintptr(itb))
+func (this *IBrowserService2) ResizeNextBorder_(itb uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ResizeNextBorder_, uintptr(unsafe.Pointer(this)), uintptr(itb))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _ResizeView() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._ResizeView, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) ResizeView_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ResizeView_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _GetEffectiveClientArea(lprectBorder *RECT, hmon HMONITOR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._GetEffectiveClientArea, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lprectBorder)), uintptr(hmon))
+func (this *IBrowserService2) GetEffectiveClientArea_(lprectBorder *RECT, hmon HMONITOR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEffectiveClientArea_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lprectBorder)), uintptr(hmon))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) v_GetViewStream(pidl *ITEMIDLIST, grfMode uint32, pwszName PWSTR) *IStream{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().v_GetViewStream, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pidl)), uintptr(grfMode), uintptr(unsafe.Pointer(pwszName)))
+func (this *IBrowserService2) V_GetViewStream(pidl *ITEMIDLIST, grfMode uint32, pwszName PWSTR) *IStream{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().V_GetViewStream, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pidl)), uintptr(grfMode), uintptr(unsafe.Pointer(pwszName)))
 	return (*IStream)(unsafe.Pointer(ret))
 }
 
@@ -28181,63 +28181,63 @@ func (this *IBrowserService2) SetAcceleratorMenu(hacc HACCEL) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _GetToolbarCount() int32{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._GetToolbarCount, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService2) GetToolbarCount_() int32{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetToolbarCount_, uintptr(unsafe.Pointer(this)))
 	return int32(ret)
 }
 
-func (this *IBrowserService2) _GetToolbarItem(itb int32) *TOOLBARITEM{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._GetToolbarItem, uintptr(unsafe.Pointer(this)), uintptr(itb))
+func (this *IBrowserService2) GetToolbarItem_(itb int32) *TOOLBARITEM{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetToolbarItem_, uintptr(unsafe.Pointer(this)), uintptr(itb))
 	return (*TOOLBARITEM)(unsafe.Pointer(ret))
 }
 
-func (this *IBrowserService2) _SaveToolbars(pstm *IStream) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._SaveToolbars, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstm)))
+func (this *IBrowserService2) SaveToolbars_(pstm *IStream) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SaveToolbars_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstm)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _LoadToolbars(pstm *IStream) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._LoadToolbars, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstm)))
+func (this *IBrowserService2) LoadToolbars_(pstm *IStream) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().LoadToolbars_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstm)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _CloseAndReleaseToolbars(fClose BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._CloseAndReleaseToolbars, uintptr(unsafe.Pointer(this)), uintptr(fClose))
+func (this *IBrowserService2) CloseAndReleaseToolbars_(fClose BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().CloseAndReleaseToolbars_, uintptr(unsafe.Pointer(this)), uintptr(fClose))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) v_MayGetNextToolbarFocus(lpMsg *MSG, itbNext uint32, citb int32, pptbi **TOOLBARITEM, phwnd *HWND) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().v_MayGetNextToolbarFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpMsg)), uintptr(itbNext), uintptr(citb), uintptr(unsafe.Pointer(pptbi)), uintptr(unsafe.Pointer(phwnd)))
+func (this *IBrowserService2) V_MayGetNextToolbarFocus(lpMsg *MSG, itbNext uint32, citb int32, pptbi **TOOLBARITEM, phwnd *HWND) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().V_MayGetNextToolbarFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpMsg)), uintptr(itbNext), uintptr(citb), uintptr(unsafe.Pointer(pptbi)), uintptr(unsafe.Pointer(phwnd)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _ResizeNextBorderHelper(itb uint32, bUseHmonitor BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._ResizeNextBorderHelper, uintptr(unsafe.Pointer(this)), uintptr(itb), uintptr(bUseHmonitor))
+func (this *IBrowserService2) ResizeNextBorderHelper_(itb uint32, bUseHmonitor BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ResizeNextBorderHelper_, uintptr(unsafe.Pointer(this)), uintptr(itb), uintptr(bUseHmonitor))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _FindTBar(punkSrc *IUnknown) uint32{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._FindTBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(punkSrc)))
+func (this *IBrowserService2) FindTBar_(punkSrc *IUnknown) uint32{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().FindTBar_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(punkSrc)))
 	return uint32(ret)
 }
 
-func (this *IBrowserService2) _SetFocus(ptbi *TOOLBARITEM, hwnd HWND, lpMsg *MSG) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._SetFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ptbi)), uintptr(hwnd), uintptr(unsafe.Pointer(lpMsg)))
+func (this *IBrowserService2) SetFocus_(ptbi *TOOLBARITEM, hwnd HWND, lpMsg *MSG) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFocus_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ptbi)), uintptr(hwnd), uintptr(unsafe.Pointer(lpMsg)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) v_MayTranslateAccelerator(pmsg *MSG) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().v_MayTranslateAccelerator, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pmsg)))
+func (this *IBrowserService2) V_MayTranslateAccelerator(pmsg *MSG) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().V_MayTranslateAccelerator, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pmsg)))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) _GetBorderDWHelper(punkSrc *IUnknown, lprectBorder *RECT, bUseHmonitor BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._GetBorderDWHelper, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(punkSrc)), uintptr(unsafe.Pointer(lprectBorder)), uintptr(bUseHmonitor))
+func (this *IBrowserService2) GetBorderDWHelper_(punkSrc *IUnknown, lprectBorder *RECT, bUseHmonitor BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBorderDWHelper_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(punkSrc)), uintptr(unsafe.Pointer(lprectBorder)), uintptr(bUseHmonitor))
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService2) v_CheckZoneCrossing(pidl *ITEMIDLIST) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().v_CheckZoneCrossing, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pidl)))
+func (this *IBrowserService2) V_CheckZoneCrossing(pidl *ITEMIDLIST) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().V_CheckZoneCrossing, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pidl)))
 	return HRESULT(ret)
 }
 
@@ -28247,13 +28247,13 @@ var IID_IBrowserService3 = syscall.GUID{0x27d7ce21, 0x762d, 0x48f3,
 
 type IBrowserService3Interface interface {
 	IBrowserService2Interface
-	_PositionViewWindow(hwnd HWND, prc *RECT) HRESULT
+	PositionViewWindow_(hwnd HWND, prc *RECT) HRESULT
 	IEParseDisplayNameEx(uiCP uint32, pwszPath PWSTR, dwFlags uint32, ppidlOut **ITEMIDLIST) HRESULT
 }
 
 type IBrowserService3Vtbl struct {
 	IBrowserService2Vtbl
-	_PositionViewWindow uintptr
+	PositionViewWindow_ uintptr
 	IEParseDisplayNameEx uintptr
 }
 
@@ -28265,8 +28265,8 @@ func (this *IBrowserService3) Vtbl() *IBrowserService3Vtbl {
 	return (*IBrowserService3Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IBrowserService3) _PositionViewWindow(hwnd HWND, prc *RECT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._PositionViewWindow, uintptr(unsafe.Pointer(this)), uintptr(hwnd), uintptr(unsafe.Pointer(prc)))
+func (this *IBrowserService3) PositionViewWindow_(hwnd HWND, prc *RECT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().PositionViewWindow_, uintptr(unsafe.Pointer(this)), uintptr(hwnd), uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
@@ -28283,14 +28283,14 @@ type IBrowserService4Interface interface {
 	IBrowserService3Interface
 	ActivateView(fPendingView BOOL) HRESULT
 	SaveViewState() HRESULT
-	_ResizeAllBorders() HRESULT
+	ResizeAllBorders_() HRESULT
 }
 
 type IBrowserService4Vtbl struct {
 	IBrowserService3Vtbl
 	ActivateView uintptr
 	SaveViewState uintptr
-	_ResizeAllBorders uintptr
+	ResizeAllBorders_ uintptr
 }
 
 type IBrowserService4 struct {
@@ -28311,8 +28311,8 @@ func (this *IBrowserService4) SaveViewState() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService4) _ResizeAllBorders() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._ResizeAllBorders, uintptr(unsafe.Pointer(this)))
+func (this *IBrowserService4) ResizeAllBorders_() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ResizeAllBorders_, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 

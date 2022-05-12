@@ -32174,12 +32174,12 @@ var IID_IDebugExpressionCallBack = syscall.GUID{0x51973c16, 0xcb0c, 0x11d0,
 
 type IDebugExpressionCallBackInterface interface {
 	IUnknownInterface
-	onComplete() HRESULT
+	OnComplete() HRESULT
 }
 
 type IDebugExpressionCallBackVtbl struct {
 	IUnknownVtbl
-	onComplete uintptr
+	OnComplete uintptr
 }
 
 type IDebugExpressionCallBack struct {
@@ -32190,8 +32190,8 @@ func (this *IDebugExpressionCallBack) Vtbl() *IDebugExpressionCallBackVtbl {
 	return (*IDebugExpressionCallBackVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDebugExpressionCallBack) onComplete() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onComplete, uintptr(unsafe.Pointer(this)))
+func (this *IDebugExpressionCallBack) OnComplete() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnComplete, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
@@ -32433,12 +32433,12 @@ var IID_IDebugAsyncOperationCallBack = syscall.GUID{0x51973c1c, 0xcb0c, 0x11d0,
 
 type IDebugAsyncOperationCallBackInterface interface {
 	IUnknownInterface
-	onComplete() HRESULT
+	OnComplete() HRESULT
 }
 
 type IDebugAsyncOperationCallBackVtbl struct {
 	IUnknownVtbl
-	onComplete uintptr
+	OnComplete uintptr
 }
 
 type IDebugAsyncOperationCallBack struct {
@@ -32449,8 +32449,8 @@ func (this *IDebugAsyncOperationCallBack) Vtbl() *IDebugAsyncOperationCallBackVt
 	return (*IDebugAsyncOperationCallBackVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDebugAsyncOperationCallBack) onComplete() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onComplete, uintptr(unsafe.Pointer(this)))
+func (this *IDebugAsyncOperationCallBack) OnComplete() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnComplete, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
@@ -32733,22 +32733,22 @@ var IID_IDebugDocumentTextEvents = syscall.GUID{0x51973c23, 0xcb0c, 0x11d0,
 
 type IDebugDocumentTextEventsInterface interface {
 	IUnknownInterface
-	onDestroy() HRESULT
-	onInsertText(cCharacterPosition uint32, cNumToInsert uint32) HRESULT
-	onRemoveText(cCharacterPosition uint32, cNumToRemove uint32) HRESULT
-	onReplaceText(cCharacterPosition uint32, cNumToReplace uint32) HRESULT
-	onUpdateTextAttributes(cCharacterPosition uint32, cNumToUpdate uint32) HRESULT
-	onUpdateDocumentAttributes(textdocattr uint32) HRESULT
+	OnDestroy() HRESULT
+	OnInsertText(cCharacterPosition uint32, cNumToInsert uint32) HRESULT
+	OnRemoveText(cCharacterPosition uint32, cNumToRemove uint32) HRESULT
+	OnReplaceText(cCharacterPosition uint32, cNumToReplace uint32) HRESULT
+	OnUpdateTextAttributes(cCharacterPosition uint32, cNumToUpdate uint32) HRESULT
+	OnUpdateDocumentAttributes(textdocattr uint32) HRESULT
 }
 
 type IDebugDocumentTextEventsVtbl struct {
 	IUnknownVtbl
-	onDestroy uintptr
-	onInsertText uintptr
-	onRemoveText uintptr
-	onReplaceText uintptr
-	onUpdateTextAttributes uintptr
-	onUpdateDocumentAttributes uintptr
+	OnDestroy uintptr
+	OnInsertText uintptr
+	OnRemoveText uintptr
+	OnReplaceText uintptr
+	OnUpdateTextAttributes uintptr
+	OnUpdateDocumentAttributes uintptr
 }
 
 type IDebugDocumentTextEvents struct {
@@ -32759,33 +32759,33 @@ func (this *IDebugDocumentTextEvents) Vtbl() *IDebugDocumentTextEventsVtbl {
 	return (*IDebugDocumentTextEventsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDebugDocumentTextEvents) onDestroy() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onDestroy, uintptr(unsafe.Pointer(this)))
+func (this *IDebugDocumentTextEvents) OnDestroy() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnDestroy, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IDebugDocumentTextEvents) onInsertText(cCharacterPosition uint32, cNumToInsert uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onInsertText, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToInsert))
+func (this *IDebugDocumentTextEvents) OnInsertText(cCharacterPosition uint32, cNumToInsert uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnInsertText, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToInsert))
 	return HRESULT(ret)
 }
 
-func (this *IDebugDocumentTextEvents) onRemoveText(cCharacterPosition uint32, cNumToRemove uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onRemoveText, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToRemove))
+func (this *IDebugDocumentTextEvents) OnRemoveText(cCharacterPosition uint32, cNumToRemove uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnRemoveText, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToRemove))
 	return HRESULT(ret)
 }
 
-func (this *IDebugDocumentTextEvents) onReplaceText(cCharacterPosition uint32, cNumToReplace uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onReplaceText, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToReplace))
+func (this *IDebugDocumentTextEvents) OnReplaceText(cCharacterPosition uint32, cNumToReplace uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnReplaceText, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToReplace))
 	return HRESULT(ret)
 }
 
-func (this *IDebugDocumentTextEvents) onUpdateTextAttributes(cCharacterPosition uint32, cNumToUpdate uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onUpdateTextAttributes, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToUpdate))
+func (this *IDebugDocumentTextEvents) OnUpdateTextAttributes(cCharacterPosition uint32, cNumToUpdate uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnUpdateTextAttributes, uintptr(unsafe.Pointer(this)), uintptr(cCharacterPosition), uintptr(cNumToUpdate))
 	return HRESULT(ret)
 }
 
-func (this *IDebugDocumentTextEvents) onUpdateDocumentAttributes(textdocattr uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onUpdateDocumentAttributes, uintptr(unsafe.Pointer(this)), uintptr(textdocattr))
+func (this *IDebugDocumentTextEvents) OnUpdateDocumentAttributes(textdocattr uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnUpdateDocumentAttributes, uintptr(unsafe.Pointer(this)), uintptr(textdocattr))
 	return HRESULT(ret)
 }
 
@@ -33294,20 +33294,20 @@ type IApplicationDebuggerInterface interface {
 	IUnknownInterface
 	QueryAlive() HRESULT
 	CreateInstanceAtDebugger(rclsid *syscall.GUID, pUnkOuter *IUnknown, dwClsContext uint32, riid *syscall.GUID, ppvObject **IUnknown) HRESULT
-	onDebugOutput(pstr PWSTR) HRESULT
-	onHandleBreakPoint(prpt *IRemoteDebugApplicationThread, br BREAKREASON, pError *IActiveScriptErrorDebug) HRESULT
-	onClose() HRESULT
-	onDebuggerEvent(riid *syscall.GUID, punk *IUnknown) HRESULT
+	OnDebugOutput(pstr PWSTR) HRESULT
+	OnHandleBreakPoint(prpt *IRemoteDebugApplicationThread, br BREAKREASON, pError *IActiveScriptErrorDebug) HRESULT
+	OnClose() HRESULT
+	OnDebuggerEvent(riid *syscall.GUID, punk *IUnknown) HRESULT
 }
 
 type IApplicationDebuggerVtbl struct {
 	IUnknownVtbl
 	QueryAlive uintptr
 	CreateInstanceAtDebugger uintptr
-	onDebugOutput uintptr
-	onHandleBreakPoint uintptr
-	onClose uintptr
-	onDebuggerEvent uintptr
+	OnDebugOutput uintptr
+	OnHandleBreakPoint uintptr
+	OnClose uintptr
+	OnDebuggerEvent uintptr
 }
 
 type IApplicationDebugger struct {
@@ -33328,23 +33328,23 @@ func (this *IApplicationDebugger) CreateInstanceAtDebugger(rclsid *syscall.GUID,
 	return HRESULT(ret)
 }
 
-func (this *IApplicationDebugger) onDebugOutput(pstr PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onDebugOutput, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstr)))
+func (this *IApplicationDebugger) OnDebugOutput(pstr PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnDebugOutput, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstr)))
 	return HRESULT(ret)
 }
 
-func (this *IApplicationDebugger) onHandleBreakPoint(prpt *IRemoteDebugApplicationThread, br BREAKREASON, pError *IActiveScriptErrorDebug) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onHandleBreakPoint, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prpt)), uintptr(br), uintptr(unsafe.Pointer(pError)))
+func (this *IApplicationDebugger) OnHandleBreakPoint(prpt *IRemoteDebugApplicationThread, br BREAKREASON, pError *IActiveScriptErrorDebug) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnHandleBreakPoint, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prpt)), uintptr(br), uintptr(unsafe.Pointer(pError)))
 	return HRESULT(ret)
 }
 
-func (this *IApplicationDebugger) onClose() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onClose, uintptr(unsafe.Pointer(this)))
+func (this *IApplicationDebugger) OnClose() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnClose, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IApplicationDebugger) onDebuggerEvent(riid *syscall.GUID, punk *IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onDebuggerEvent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(riid)), uintptr(unsafe.Pointer(punk)))
+func (this *IApplicationDebugger) OnDebuggerEvent(riid *syscall.GUID, punk *IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnDebuggerEvent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(riid)), uintptr(unsafe.Pointer(punk)))
 	return HRESULT(ret)
 }
 
@@ -33470,14 +33470,14 @@ var IID_IMachineDebugManagerEvents = syscall.GUID{0x51973c2e, 0xcb0c, 0x11d0,
 
 type IMachineDebugManagerEventsInterface interface {
 	IUnknownInterface
-	onAddApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT
-	onRemoveApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT
+	OnAddApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT
+	OnRemoveApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT
 }
 
 type IMachineDebugManagerEventsVtbl struct {
 	IUnknownVtbl
-	onAddApplication uintptr
-	onRemoveApplication uintptr
+	OnAddApplication uintptr
+	OnRemoveApplication uintptr
 }
 
 type IMachineDebugManagerEvents struct {
@@ -33488,13 +33488,13 @@ func (this *IMachineDebugManagerEvents) Vtbl() *IMachineDebugManagerEventsVtbl {
 	return (*IMachineDebugManagerEventsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IMachineDebugManagerEvents) onAddApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onAddApplication, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pda)), uintptr(dwAppCookie))
+func (this *IMachineDebugManagerEvents) OnAddApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnAddApplication, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pda)), uintptr(dwAppCookie))
 	return HRESULT(ret)
 }
 
-func (this *IMachineDebugManagerEvents) onRemoveApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onRemoveApplication, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pda)), uintptr(dwAppCookie))
+func (this *IMachineDebugManagerEvents) OnRemoveApplication(pda *IRemoteDebugApplication, dwAppCookie uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnRemoveApplication, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pda)), uintptr(dwAppCookie))
 	return HRESULT(ret)
 }
 
@@ -34183,18 +34183,18 @@ var IID_IDebugApplicationNodeEvents = syscall.GUID{0x51973c35, 0xcb0c, 0x11d0,
 
 type IDebugApplicationNodeEventsInterface interface {
 	IUnknownInterface
-	onAddChild(prddpChild *IDebugApplicationNode) HRESULT
-	onRemoveChild(prddpChild *IDebugApplicationNode) HRESULT
-	onDetach() HRESULT
-	onAttach(prddpParent *IDebugApplicationNode) HRESULT
+	OnAddChild(prddpChild *IDebugApplicationNode) HRESULT
+	OnRemoveChild(prddpChild *IDebugApplicationNode) HRESULT
+	OnDetach() HRESULT
+	OnAttach(prddpParent *IDebugApplicationNode) HRESULT
 }
 
 type IDebugApplicationNodeEventsVtbl struct {
 	IUnknownVtbl
-	onAddChild uintptr
-	onRemoveChild uintptr
-	onDetach uintptr
-	onAttach uintptr
+	OnAddChild uintptr
+	OnRemoveChild uintptr
+	OnDetach uintptr
+	OnAttach uintptr
 }
 
 type IDebugApplicationNodeEvents struct {
@@ -34205,23 +34205,23 @@ func (this *IDebugApplicationNodeEvents) Vtbl() *IDebugApplicationNodeEventsVtbl
 	return (*IDebugApplicationNodeEventsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDebugApplicationNodeEvents) onAddChild(prddpChild *IDebugApplicationNode) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onAddChild, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prddpChild)))
+func (this *IDebugApplicationNodeEvents) OnAddChild(prddpChild *IDebugApplicationNode) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnAddChild, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prddpChild)))
 	return HRESULT(ret)
 }
 
-func (this *IDebugApplicationNodeEvents) onRemoveChild(prddpChild *IDebugApplicationNode) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onRemoveChild, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prddpChild)))
+func (this *IDebugApplicationNodeEvents) OnRemoveChild(prddpChild *IDebugApplicationNode) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnRemoveChild, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prddpChild)))
 	return HRESULT(ret)
 }
 
-func (this *IDebugApplicationNodeEvents) onDetach() HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onDetach, uintptr(unsafe.Pointer(this)))
+func (this *IDebugApplicationNodeEvents) OnDetach() HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnDetach, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IDebugApplicationNodeEvents) onAttach(prddpParent *IDebugApplicationNode) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().onAttach, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prddpParent)))
+func (this *IDebugApplicationNodeEvents) OnAttach(prddpParent *IDebugApplicationNode) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnAttach, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prddpParent)))
 	return HRESULT(ret)
 }
 

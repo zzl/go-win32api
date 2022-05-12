@@ -4073,14 +4073,14 @@ var IID_ITextStoryRanges = syscall.GUID{0x8cc497c5, 0xa1df, 0x11ce,
 
 type ITextStoryRangesInterface interface {
 	IDispatchInterface
-	_NewEnum(ppunkEnum **IUnknown) HRESULT
+	NewEnum_(ppunkEnum **IUnknown) HRESULT
 	Item(Index int32, ppRange **ITextRange) HRESULT
 	GetCount(pCount *int32) HRESULT
 }
 
 type ITextStoryRangesVtbl struct {
 	IDispatchVtbl
-	_NewEnum uintptr
+	NewEnum_ uintptr
 	Item uintptr
 	GetCount uintptr
 }
@@ -4093,8 +4093,8 @@ func (this *ITextStoryRanges) Vtbl() *ITextStoryRangesVtbl {
 	return (*ITextStoryRangesVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextStoryRanges) _NewEnum(ppunkEnum **IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl()._NewEnum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunkEnum)))
+func (this *ITextStoryRanges) NewEnum_(ppunkEnum **IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().NewEnum_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunkEnum)))
 	return HRESULT(ret)
 }
 

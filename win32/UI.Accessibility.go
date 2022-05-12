@@ -2307,52 +2307,52 @@ var IID_IAccessible = syscall.GUID{0x618736e0, 0x3c3d, 0x11cf,
 
 type IAccessibleInterface interface {
 	IDispatchInterface
-	get_accParent(ppdispParent **IDispatch) HRESULT
-	get_accChildCount(pcountChildren *int32) HRESULT
-	get_accChild(varChild VARIANT, ppdispChild **IDispatch) HRESULT
-	get_accName(varChild VARIANT, pszName *BSTR) HRESULT
-	get_accValue(varChild VARIANT, pszValue *BSTR) HRESULT
-	get_accDescription(varChild VARIANT, pszDescription *BSTR) HRESULT
-	get_accRole(varChild VARIANT, pvarRole *VARIANT) HRESULT
-	get_accState(varChild VARIANT, pvarState *VARIANT) HRESULT
-	get_accHelp(varChild VARIANT, pszHelp *BSTR) HRESULT
-	get_accHelpTopic(pszHelpFile *BSTR, varChild VARIANT, pidTopic *int32) HRESULT
-	get_accKeyboardShortcut(varChild VARIANT, pszKeyboardShortcut *BSTR) HRESULT
-	get_accFocus(pvarChild *VARIANT) HRESULT
-	get_accSelection(pvarChildren *VARIANT) HRESULT
-	get_accDefaultAction(varChild VARIANT, pszDefaultAction *BSTR) HRESULT
-	accSelect(flagsSelect int32, varChild VARIANT) HRESULT
-	accLocation(pxLeft *int32, pyTop *int32, pcxWidth *int32, pcyHeight *int32, varChild VARIANT) HRESULT
-	accNavigate(navDir int32, varStart VARIANT, pvarEndUpAt *VARIANT) HRESULT
-	accHitTest(xLeft int32, yTop int32, pvarChild *VARIANT) HRESULT
-	accDoDefaultAction(varChild VARIANT) HRESULT
-	put_accName(varChild VARIANT, szName BSTR) HRESULT
-	put_accValue(varChild VARIANT, szValue BSTR) HRESULT
+	Get_accParent(ppdispParent **IDispatch) HRESULT
+	Get_accChildCount(pcountChildren *int32) HRESULT
+	Get_accChild(varChild VARIANT, ppdispChild **IDispatch) HRESULT
+	Get_accName(varChild VARIANT, pszName *BSTR) HRESULT
+	Get_accValue(varChild VARIANT, pszValue *BSTR) HRESULT
+	Get_accDescription(varChild VARIANT, pszDescription *BSTR) HRESULT
+	Get_accRole(varChild VARIANT, pvarRole *VARIANT) HRESULT
+	Get_accState(varChild VARIANT, pvarState *VARIANT) HRESULT
+	Get_accHelp(varChild VARIANT, pszHelp *BSTR) HRESULT
+	Get_accHelpTopic(pszHelpFile *BSTR, varChild VARIANT, pidTopic *int32) HRESULT
+	Get_accKeyboardShortcut(varChild VARIANT, pszKeyboardShortcut *BSTR) HRESULT
+	Get_accFocus(pvarChild *VARIANT) HRESULT
+	Get_accSelection(pvarChildren *VARIANT) HRESULT
+	Get_accDefaultAction(varChild VARIANT, pszDefaultAction *BSTR) HRESULT
+	AccSelect(flagsSelect int32, varChild VARIANT) HRESULT
+	AccLocation(pxLeft *int32, pyTop *int32, pcxWidth *int32, pcyHeight *int32, varChild VARIANT) HRESULT
+	AccNavigate(navDir int32, varStart VARIANT, pvarEndUpAt *VARIANT) HRESULT
+	AccHitTest(xLeft int32, yTop int32, pvarChild *VARIANT) HRESULT
+	AccDoDefaultAction(varChild VARIANT) HRESULT
+	Put_accName(varChild VARIANT, szName BSTR) HRESULT
+	Put_accValue(varChild VARIANT, szValue BSTR) HRESULT
 }
 
 type IAccessibleVtbl struct {
 	IDispatchVtbl
-	get_accParent uintptr
-	get_accChildCount uintptr
-	get_accChild uintptr
-	get_accName uintptr
-	get_accValue uintptr
-	get_accDescription uintptr
-	get_accRole uintptr
-	get_accState uintptr
-	get_accHelp uintptr
-	get_accHelpTopic uintptr
-	get_accKeyboardShortcut uintptr
-	get_accFocus uintptr
-	get_accSelection uintptr
-	get_accDefaultAction uintptr
-	accSelect uintptr
-	accLocation uintptr
-	accNavigate uintptr
-	accHitTest uintptr
-	accDoDefaultAction uintptr
-	put_accName uintptr
-	put_accValue uintptr
+	Get_accParent uintptr
+	Get_accChildCount uintptr
+	Get_accChild uintptr
+	Get_accName uintptr
+	Get_accValue uintptr
+	Get_accDescription uintptr
+	Get_accRole uintptr
+	Get_accState uintptr
+	Get_accHelp uintptr
+	Get_accHelpTopic uintptr
+	Get_accKeyboardShortcut uintptr
+	Get_accFocus uintptr
+	Get_accSelection uintptr
+	Get_accDefaultAction uintptr
+	AccSelect uintptr
+	AccLocation uintptr
+	AccNavigate uintptr
+	AccHitTest uintptr
+	AccDoDefaultAction uintptr
+	Put_accName uintptr
+	Put_accValue uintptr
 }
 
 type IAccessible struct {
@@ -2363,108 +2363,108 @@ func (this *IAccessible) Vtbl() *IAccessibleVtbl {
 	return (*IAccessibleVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IAccessible) get_accParent(ppdispParent **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accParent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppdispParent)))
+func (this *IAccessible) Get_accParent(ppdispParent **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accParent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppdispParent)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accChildCount(pcountChildren *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accChildCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcountChildren)))
+func (this *IAccessible) Get_accChildCount(pcountChildren *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accChildCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcountChildren)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accChild(varChild VARIANT, ppdispChild **IDispatch) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accChild, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(ppdispChild)))
+func (this *IAccessible) Get_accChild(varChild VARIANT, ppdispChild **IDispatch) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accChild, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(ppdispChild)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accName(varChild VARIANT, pszName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accName, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszName)))
+func (this *IAccessible) Get_accName(varChild VARIANT, pszName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accName, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszName)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accValue(varChild VARIANT, pszValue *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accValue, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszValue)))
+func (this *IAccessible) Get_accValue(varChild VARIANT, pszValue *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accValue, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszValue)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accDescription(varChild VARIANT, pszDescription *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accDescription, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszDescription)))
+func (this *IAccessible) Get_accDescription(varChild VARIANT, pszDescription *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accDescription, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszDescription)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accRole(varChild VARIANT, pvarRole *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accRole, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pvarRole)))
+func (this *IAccessible) Get_accRole(varChild VARIANT, pvarRole *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accRole, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pvarRole)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accState(varChild VARIANT, pvarState *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accState, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pvarState)))
+func (this *IAccessible) Get_accState(varChild VARIANT, pvarState *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accState, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pvarState)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accHelp(varChild VARIANT, pszHelp *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accHelp, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszHelp)))
+func (this *IAccessible) Get_accHelp(varChild VARIANT, pszHelp *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accHelp, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszHelp)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accHelpTopic(pszHelpFile *BSTR, varChild VARIANT, pidTopic *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accHelpTopic, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelpFile)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pidTopic)))
+func (this *IAccessible) Get_accHelpTopic(pszHelpFile *BSTR, varChild VARIANT, pidTopic *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accHelpTopic, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelpFile)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pidTopic)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accKeyboardShortcut(varChild VARIANT, pszKeyboardShortcut *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accKeyboardShortcut, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
+func (this *IAccessible) Get_accKeyboardShortcut(varChild VARIANT, pszKeyboardShortcut *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accKeyboardShortcut, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accFocus(pvarChild *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarChild)))
+func (this *IAccessible) Get_accFocus(pvarChild *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarChild)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accSelection(pvarChildren *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarChildren)))
+func (this *IAccessible) Get_accSelection(pvarChildren *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarChildren)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) get_accDefaultAction(varChild VARIANT, pszDefaultAction *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_accDefaultAction, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszDefaultAction)))
+func (this *IAccessible) Get_accDefaultAction(varChild VARIANT, pszDefaultAction *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_accDefaultAction, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(pszDefaultAction)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) accSelect(flagsSelect int32, varChild VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().accSelect, uintptr(unsafe.Pointer(this)), uintptr(flagsSelect), (uintptr)(unsafe.Pointer(&varChild)))
+func (this *IAccessible) AccSelect(flagsSelect int32, varChild VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().AccSelect, uintptr(unsafe.Pointer(this)), uintptr(flagsSelect), (uintptr)(unsafe.Pointer(&varChild)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) accLocation(pxLeft *int32, pyTop *int32, pcxWidth *int32, pcyHeight *int32, varChild VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().accLocation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pxLeft)), uintptr(unsafe.Pointer(pyTop)), uintptr(unsafe.Pointer(pcxWidth)), uintptr(unsafe.Pointer(pcyHeight)), (uintptr)(unsafe.Pointer(&varChild)))
+func (this *IAccessible) AccLocation(pxLeft *int32, pyTop *int32, pcxWidth *int32, pcyHeight *int32, varChild VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().AccLocation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pxLeft)), uintptr(unsafe.Pointer(pyTop)), uintptr(unsafe.Pointer(pcxWidth)), uintptr(unsafe.Pointer(pcyHeight)), (uintptr)(unsafe.Pointer(&varChild)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) accNavigate(navDir int32, varStart VARIANT, pvarEndUpAt *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().accNavigate, uintptr(unsafe.Pointer(this)), uintptr(navDir), (uintptr)(unsafe.Pointer(&varStart)), uintptr(unsafe.Pointer(pvarEndUpAt)))
+func (this *IAccessible) AccNavigate(navDir int32, varStart VARIANT, pvarEndUpAt *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().AccNavigate, uintptr(unsafe.Pointer(this)), uintptr(navDir), (uintptr)(unsafe.Pointer(&varStart)), uintptr(unsafe.Pointer(pvarEndUpAt)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) accHitTest(xLeft int32, yTop int32, pvarChild *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().accHitTest, uintptr(unsafe.Pointer(this)), uintptr(xLeft), uintptr(yTop), uintptr(unsafe.Pointer(pvarChild)))
+func (this *IAccessible) AccHitTest(xLeft int32, yTop int32, pvarChild *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().AccHitTest, uintptr(unsafe.Pointer(this)), uintptr(xLeft), uintptr(yTop), uintptr(unsafe.Pointer(pvarChild)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) accDoDefaultAction(varChild VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().accDoDefaultAction, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)))
+func (this *IAccessible) AccDoDefaultAction(varChild VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().AccDoDefaultAction, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) put_accName(varChild VARIANT, szName BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_accName, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(szName)))
+func (this *IAccessible) Put_accName(varChild VARIANT, szName BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_accName, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(szName)))
 	return HRESULT(ret)
 }
 
-func (this *IAccessible) put_accValue(varChild VARIANT, szValue BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_accValue, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(szValue)))
+func (this *IAccessible) Put_accValue(varChild VARIANT, szValue BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_accValue, uintptr(unsafe.Pointer(this)), (uintptr)(unsafe.Pointer(&varChild)), uintptr(unsafe.Pointer(szValue)))
 	return HRESULT(ret)
 }
 
@@ -2728,18 +2728,18 @@ var IID_IRawElementProviderSimple = syscall.GUID{0xd6dd68d1, 0x86fd, 0x4332,
 
 type IRawElementProviderSimpleInterface interface {
 	IUnknownInterface
-	get_ProviderOptions(pRetVal *ProviderOptions) HRESULT
+	Get_ProviderOptions(pRetVal *ProviderOptions) HRESULT
 	GetPatternProvider(patternId int32, pRetVal **IUnknown) HRESULT
 	GetPropertyValue(propertyId int32, pRetVal *VARIANT) HRESULT
-	get_HostRawElementProvider(pRetVal **IRawElementProviderSimple) HRESULT
+	Get_HostRawElementProvider(pRetVal **IRawElementProviderSimple) HRESULT
 }
 
 type IRawElementProviderSimpleVtbl struct {
 	IUnknownVtbl
-	get_ProviderOptions uintptr
+	Get_ProviderOptions uintptr
 	GetPatternProvider uintptr
 	GetPropertyValue uintptr
-	get_HostRawElementProvider uintptr
+	Get_HostRawElementProvider uintptr
 }
 
 type IRawElementProviderSimple struct {
@@ -2750,8 +2750,8 @@ func (this *IRawElementProviderSimple) Vtbl() *IRawElementProviderSimpleVtbl {
 	return (*IRawElementProviderSimpleVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRawElementProviderSimple) get_ProviderOptions(pRetVal *ProviderOptions) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ProviderOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRawElementProviderSimple) Get_ProviderOptions(pRetVal *ProviderOptions) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ProviderOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -2765,8 +2765,8 @@ func (this *IRawElementProviderSimple) GetPropertyValue(propertyId int32, pRetVa
 	return HRESULT(ret)
 }
 
-func (this *IRawElementProviderSimple) get_HostRawElementProvider(pRetVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_HostRawElementProvider, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRawElementProviderSimple) Get_HostRawElementProvider(pRetVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_HostRawElementProvider, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -2914,20 +2914,20 @@ type IRawElementProviderFragmentInterface interface {
 	IUnknownInterface
 	Navigate(direction NavigateDirection, pRetVal **IRawElementProviderFragment) HRESULT
 	GetRuntimeId(pRetVal **SAFEARRAY) HRESULT
-	get_BoundingRectangle(pRetVal *UiaRect) HRESULT
+	Get_BoundingRectangle(pRetVal *UiaRect) HRESULT
 	GetEmbeddedFragmentRoots(pRetVal **SAFEARRAY) HRESULT
 	SetFocus() HRESULT
-	get_FragmentRoot(pRetVal **IRawElementProviderFragmentRoot) HRESULT
+	Get_FragmentRoot(pRetVal **IRawElementProviderFragmentRoot) HRESULT
 }
 
 type IRawElementProviderFragmentVtbl struct {
 	IUnknownVtbl
 	Navigate uintptr
 	GetRuntimeId uintptr
-	get_BoundingRectangle uintptr
+	Get_BoundingRectangle uintptr
 	GetEmbeddedFragmentRoots uintptr
 	SetFocus uintptr
-	get_FragmentRoot uintptr
+	Get_FragmentRoot uintptr
 }
 
 type IRawElementProviderFragment struct {
@@ -2948,8 +2948,8 @@ func (this *IRawElementProviderFragment) GetRuntimeId(pRetVal **SAFEARRAY) HRESU
 	return HRESULT(ret)
 }
 
-func (this *IRawElementProviderFragment) get_BoundingRectangle(pRetVal *UiaRect) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_BoundingRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRawElementProviderFragment) Get_BoundingRectangle(pRetVal *UiaRect) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_BoundingRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -2963,8 +2963,8 @@ func (this *IRawElementProviderFragment) SetFocus() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IRawElementProviderFragment) get_FragmentRoot(pRetVal **IRawElementProviderFragmentRoot) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FragmentRoot, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRawElementProviderFragment) Get_FragmentRoot(pRetVal **IRawElementProviderFragmentRoot) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FragmentRoot, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3199,13 +3199,13 @@ var IID_IDockProvider = syscall.GUID{0x159bc72c, 0x4ad3, 0x485e,
 type IDockProviderInterface interface {
 	IUnknownInterface
 	SetDockPosition(dockPosition DockPosition) HRESULT
-	get_DockPosition(pRetVal *DockPosition) HRESULT
+	Get_DockPosition(pRetVal *DockPosition) HRESULT
 }
 
 type IDockProviderVtbl struct {
 	IUnknownVtbl
 	SetDockPosition uintptr
-	get_DockPosition uintptr
+	Get_DockPosition uintptr
 }
 
 type IDockProvider struct {
@@ -3221,8 +3221,8 @@ func (this *IDockProvider) SetDockPosition(dockPosition DockPosition) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IDockProvider) get_DockPosition(pRetVal *DockPosition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DockPosition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IDockProvider) Get_DockPosition(pRetVal *DockPosition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DockPosition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3234,14 +3234,14 @@ type IExpandCollapseProviderInterface interface {
 	IUnknownInterface
 	Expand() HRESULT
 	Collapse() HRESULT
-	get_ExpandCollapseState(pRetVal *ExpandCollapseState) HRESULT
+	Get_ExpandCollapseState(pRetVal *ExpandCollapseState) HRESULT
 }
 
 type IExpandCollapseProviderVtbl struct {
 	IUnknownVtbl
 	Expand uintptr
 	Collapse uintptr
-	get_ExpandCollapseState uintptr
+	Get_ExpandCollapseState uintptr
 }
 
 type IExpandCollapseProvider struct {
@@ -3262,8 +3262,8 @@ func (this *IExpandCollapseProvider) Collapse() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IExpandCollapseProvider) get_ExpandCollapseState(pRetVal *ExpandCollapseState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ExpandCollapseState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IExpandCollapseProvider) Get_ExpandCollapseState(pRetVal *ExpandCollapseState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ExpandCollapseState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3274,15 +3274,15 @@ var IID_IGridProvider = syscall.GUID{0xb17d6187, 0x0907, 0x464b,
 type IGridProviderInterface interface {
 	IUnknownInterface
 	GetItem(row int32, column int32, pRetVal **IRawElementProviderSimple) HRESULT
-	get_RowCount(pRetVal *int32) HRESULT
-	get_ColumnCount(pRetVal *int32) HRESULT
+	Get_RowCount(pRetVal *int32) HRESULT
+	Get_ColumnCount(pRetVal *int32) HRESULT
 }
 
 type IGridProviderVtbl struct {
 	IUnknownVtbl
 	GetItem uintptr
-	get_RowCount uintptr
-	get_ColumnCount uintptr
+	Get_RowCount uintptr
+	Get_ColumnCount uintptr
 }
 
 type IGridProvider struct {
@@ -3298,13 +3298,13 @@ func (this *IGridProvider) GetItem(row int32, column int32, pRetVal **IRawElemen
 	return HRESULT(ret)
 }
 
-func (this *IGridProvider) get_RowCount(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_RowCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IGridProvider) Get_RowCount(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RowCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IGridProvider) get_ColumnCount(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ColumnCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IGridProvider) Get_ColumnCount(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ColumnCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3314,20 +3314,20 @@ var IID_IGridItemProvider = syscall.GUID{0xd02541f1, 0xfb81, 0x4d64,
 
 type IGridItemProviderInterface interface {
 	IUnknownInterface
-	get_Row(pRetVal *int32) HRESULT
-	get_Column(pRetVal *int32) HRESULT
-	get_RowSpan(pRetVal *int32) HRESULT
-	get_ColumnSpan(pRetVal *int32) HRESULT
-	get_ContainingGrid(pRetVal **IRawElementProviderSimple) HRESULT
+	Get_Row(pRetVal *int32) HRESULT
+	Get_Column(pRetVal *int32) HRESULT
+	Get_RowSpan(pRetVal *int32) HRESULT
+	Get_ColumnSpan(pRetVal *int32) HRESULT
+	Get_ContainingGrid(pRetVal **IRawElementProviderSimple) HRESULT
 }
 
 type IGridItemProviderVtbl struct {
 	IUnknownVtbl
-	get_Row uintptr
-	get_Column uintptr
-	get_RowSpan uintptr
-	get_ColumnSpan uintptr
-	get_ContainingGrid uintptr
+	Get_Row uintptr
+	Get_Column uintptr
+	Get_RowSpan uintptr
+	Get_ColumnSpan uintptr
+	Get_ContainingGrid uintptr
 }
 
 type IGridItemProvider struct {
@@ -3338,28 +3338,28 @@ func (this *IGridItemProvider) Vtbl() *IGridItemProviderVtbl {
 	return (*IGridItemProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IGridItemProvider) get_Row(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Row, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IGridItemProvider) Get_Row(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Row, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IGridItemProvider) get_Column(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Column, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IGridItemProvider) Get_Column(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Column, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IGridItemProvider) get_RowSpan(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_RowSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IGridItemProvider) Get_RowSpan(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RowSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IGridItemProvider) get_ColumnSpan(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ColumnSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IGridItemProvider) Get_ColumnSpan(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ColumnSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IGridItemProvider) get_ContainingGrid(pRetVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ContainingGrid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IGridItemProvider) Get_ContainingGrid(pRetVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ContainingGrid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3398,7 +3398,7 @@ type IMultipleViewProviderInterface interface {
 	IUnknownInterface
 	GetViewName(viewId int32, pRetVal *BSTR) HRESULT
 	SetCurrentView(viewId int32) HRESULT
-	get_CurrentView(pRetVal *int32) HRESULT
+	Get_CurrentView(pRetVal *int32) HRESULT
 	GetSupportedViews(pRetVal **SAFEARRAY) HRESULT
 }
 
@@ -3406,7 +3406,7 @@ type IMultipleViewProviderVtbl struct {
 	IUnknownVtbl
 	GetViewName uintptr
 	SetCurrentView uintptr
-	get_CurrentView uintptr
+	Get_CurrentView uintptr
 	GetSupportedViews uintptr
 }
 
@@ -3428,8 +3428,8 @@ func (this *IMultipleViewProvider) SetCurrentView(viewId int32) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IMultipleViewProvider) get_CurrentView(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentView, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IMultipleViewProvider) Get_CurrentView(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentView, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3445,23 +3445,23 @@ var IID_IRangeValueProvider = syscall.GUID{0x36dc7aef, 0x33e6, 0x4691,
 type IRangeValueProviderInterface interface {
 	IUnknownInterface
 	SetValue(val float64) HRESULT
-	get_Value(pRetVal *float64) HRESULT
-	get_IsReadOnly(pRetVal *BOOL) HRESULT
-	get_Maximum(pRetVal *float64) HRESULT
-	get_Minimum(pRetVal *float64) HRESULT
-	get_LargeChange(pRetVal *float64) HRESULT
-	get_SmallChange(pRetVal *float64) HRESULT
+	Get_Value(pRetVal *float64) HRESULT
+	Get_IsReadOnly(pRetVal *BOOL) HRESULT
+	Get_Maximum(pRetVal *float64) HRESULT
+	Get_Minimum(pRetVal *float64) HRESULT
+	Get_LargeChange(pRetVal *float64) HRESULT
+	Get_SmallChange(pRetVal *float64) HRESULT
 }
 
 type IRangeValueProviderVtbl struct {
 	IUnknownVtbl
 	SetValue uintptr
-	get_Value uintptr
-	get_IsReadOnly uintptr
-	get_Maximum uintptr
-	get_Minimum uintptr
-	get_LargeChange uintptr
-	get_SmallChange uintptr
+	Get_Value uintptr
+	Get_IsReadOnly uintptr
+	Get_Maximum uintptr
+	Get_Minimum uintptr
+	Get_LargeChange uintptr
+	Get_SmallChange uintptr
 }
 
 type IRangeValueProvider struct {
@@ -3477,33 +3477,33 @@ func (this *IRangeValueProvider) SetValue(val float64) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IRangeValueProvider) get_Value(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRangeValueProvider) Get_Value(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IRangeValueProvider) get_IsReadOnly(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRangeValueProvider) Get_IsReadOnly(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IRangeValueProvider) get_Maximum(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Maximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRangeValueProvider) Get_Maximum(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Maximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IRangeValueProvider) get_Minimum(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Minimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRangeValueProvider) Get_Minimum(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Minimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IRangeValueProvider) get_LargeChange(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LargeChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRangeValueProvider) Get_LargeChange(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LargeChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IRangeValueProvider) get_SmallChange(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SmallChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IRangeValueProvider) Get_SmallChange(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SmallChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3541,15 +3541,15 @@ var IID_ISelectionProvider = syscall.GUID{0xfb8b03af, 0x3bdf, 0x48d4,
 type ISelectionProviderInterface interface {
 	IUnknownInterface
 	GetSelection(pRetVal **SAFEARRAY) HRESULT
-	get_CanSelectMultiple(pRetVal *BOOL) HRESULT
-	get_IsSelectionRequired(pRetVal *BOOL) HRESULT
+	Get_CanSelectMultiple(pRetVal *BOOL) HRESULT
+	Get_IsSelectionRequired(pRetVal *BOOL) HRESULT
 }
 
 type ISelectionProviderVtbl struct {
 	IUnknownVtbl
 	GetSelection uintptr
-	get_CanSelectMultiple uintptr
-	get_IsSelectionRequired uintptr
+	Get_CanSelectMultiple uintptr
+	Get_IsSelectionRequired uintptr
 }
 
 type ISelectionProvider struct {
@@ -3565,13 +3565,13 @@ func (this *ISelectionProvider) GetSelection(pRetVal **SAFEARRAY) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *ISelectionProvider) get_CanSelectMultiple(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanSelectMultiple, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ISelectionProvider) Get_CanSelectMultiple(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanSelectMultiple, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ISelectionProvider) get_IsSelectionRequired(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsSelectionRequired, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ISelectionProvider) Get_IsSelectionRequired(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsSelectionRequired, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3581,18 +3581,18 @@ var IID_ISelectionProvider2 = syscall.GUID{0x14f68475, 0xee1c, 0x44f6,
 
 type ISelectionProvider2Interface interface {
 	ISelectionProviderInterface
-	get_FirstSelectedItem(retVal **IRawElementProviderSimple) HRESULT
-	get_LastSelectedItem(retVal **IRawElementProviderSimple) HRESULT
-	get_CurrentSelectedItem(retVal **IRawElementProviderSimple) HRESULT
-	get_ItemCount(retVal *int32) HRESULT
+	Get_FirstSelectedItem(retVal **IRawElementProviderSimple) HRESULT
+	Get_LastSelectedItem(retVal **IRawElementProviderSimple) HRESULT
+	Get_CurrentSelectedItem(retVal **IRawElementProviderSimple) HRESULT
+	Get_ItemCount(retVal *int32) HRESULT
 }
 
 type ISelectionProvider2Vtbl struct {
 	ISelectionProviderVtbl
-	get_FirstSelectedItem uintptr
-	get_LastSelectedItem uintptr
-	get_CurrentSelectedItem uintptr
-	get_ItemCount uintptr
+	Get_FirstSelectedItem uintptr
+	Get_LastSelectedItem uintptr
+	Get_CurrentSelectedItem uintptr
+	Get_ItemCount uintptr
 }
 
 type ISelectionProvider2 struct {
@@ -3603,23 +3603,23 @@ func (this *ISelectionProvider2) Vtbl() *ISelectionProvider2Vtbl {
 	return (*ISelectionProvider2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ISelectionProvider2) get_FirstSelectedItem(retVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FirstSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *ISelectionProvider2) Get_FirstSelectedItem(retVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FirstSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *ISelectionProvider2) get_LastSelectedItem(retVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_LastSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *ISelectionProvider2) Get_LastSelectedItem(retVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_LastSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *ISelectionProvider2) get_CurrentSelectedItem(retVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *ISelectionProvider2) Get_CurrentSelectedItem(retVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *ISelectionProvider2) get_ItemCount(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ItemCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *ISelectionProvider2) Get_ItemCount(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ItemCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -3631,24 +3631,24 @@ type IScrollProviderInterface interface {
 	IUnknownInterface
 	Scroll(horizontalAmount ScrollAmount, verticalAmount ScrollAmount) HRESULT
 	SetScrollPercent(horizontalPercent float64, verticalPercent float64) HRESULT
-	get_HorizontalScrollPercent(pRetVal *float64) HRESULT
-	get_VerticalScrollPercent(pRetVal *float64) HRESULT
-	get_HorizontalViewSize(pRetVal *float64) HRESULT
-	get_VerticalViewSize(pRetVal *float64) HRESULT
-	get_HorizontallyScrollable(pRetVal *BOOL) HRESULT
-	get_VerticallyScrollable(pRetVal *BOOL) HRESULT
+	Get_HorizontalScrollPercent(pRetVal *float64) HRESULT
+	Get_VerticalScrollPercent(pRetVal *float64) HRESULT
+	Get_HorizontalViewSize(pRetVal *float64) HRESULT
+	Get_VerticalViewSize(pRetVal *float64) HRESULT
+	Get_HorizontallyScrollable(pRetVal *BOOL) HRESULT
+	Get_VerticallyScrollable(pRetVal *BOOL) HRESULT
 }
 
 type IScrollProviderVtbl struct {
 	IUnknownVtbl
 	Scroll uintptr
 	SetScrollPercent uintptr
-	get_HorizontalScrollPercent uintptr
-	get_VerticalScrollPercent uintptr
-	get_HorizontalViewSize uintptr
-	get_VerticalViewSize uintptr
-	get_HorizontallyScrollable uintptr
-	get_VerticallyScrollable uintptr
+	Get_HorizontalScrollPercent uintptr
+	Get_VerticalScrollPercent uintptr
+	Get_HorizontalViewSize uintptr
+	Get_VerticalViewSize uintptr
+	Get_HorizontallyScrollable uintptr
+	Get_VerticallyScrollable uintptr
 }
 
 type IScrollProvider struct {
@@ -3669,33 +3669,33 @@ func (this *IScrollProvider) SetScrollPercent(horizontalPercent float64, vertica
 	return HRESULT(ret)
 }
 
-func (this *IScrollProvider) get_HorizontalScrollPercent(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_HorizontalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IScrollProvider) Get_HorizontalScrollPercent(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_HorizontalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IScrollProvider) get_VerticalScrollPercent(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_VerticalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IScrollProvider) Get_VerticalScrollPercent(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_VerticalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IScrollProvider) get_HorizontalViewSize(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_HorizontalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IScrollProvider) Get_HorizontalViewSize(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_HorizontalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IScrollProvider) get_VerticalViewSize(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_VerticalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IScrollProvider) Get_VerticalViewSize(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_VerticalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IScrollProvider) get_HorizontallyScrollable(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_HorizontallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IScrollProvider) Get_HorizontallyScrollable(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_HorizontallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IScrollProvider) get_VerticallyScrollable(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_VerticallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IScrollProvider) Get_VerticallyScrollable(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_VerticallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3708,8 +3708,8 @@ type ISelectionItemProviderInterface interface {
 	Select() HRESULT
 	AddToSelection() HRESULT
 	RemoveFromSelection() HRESULT
-	get_IsSelected(pRetVal *BOOL) HRESULT
-	get_SelectionContainer(pRetVal **IRawElementProviderSimple) HRESULT
+	Get_IsSelected(pRetVal *BOOL) HRESULT
+	Get_SelectionContainer(pRetVal **IRawElementProviderSimple) HRESULT
 }
 
 type ISelectionItemProviderVtbl struct {
@@ -3717,8 +3717,8 @@ type ISelectionItemProviderVtbl struct {
 	Select uintptr
 	AddToSelection uintptr
 	RemoveFromSelection uintptr
-	get_IsSelected uintptr
-	get_SelectionContainer uintptr
+	Get_IsSelected uintptr
+	Get_SelectionContainer uintptr
 }
 
 type ISelectionItemProvider struct {
@@ -3744,13 +3744,13 @@ func (this *ISelectionItemProvider) RemoveFromSelection() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *ISelectionItemProvider) get_IsSelected(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsSelected, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ISelectionItemProvider) Get_IsSelected(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsSelected, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ISelectionItemProvider) get_SelectionContainer(pRetVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SelectionContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ISelectionItemProvider) Get_SelectionContainer(pRetVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SelectionContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3796,14 +3796,14 @@ type ITableProviderInterface interface {
 	IUnknownInterface
 	GetRowHeaders(pRetVal **SAFEARRAY) HRESULT
 	GetColumnHeaders(pRetVal **SAFEARRAY) HRESULT
-	get_RowOrColumnMajor(pRetVal *RowOrColumnMajor) HRESULT
+	Get_RowOrColumnMajor(pRetVal *RowOrColumnMajor) HRESULT
 }
 
 type ITableProviderVtbl struct {
 	IUnknownVtbl
 	GetRowHeaders uintptr
 	GetColumnHeaders uintptr
-	get_RowOrColumnMajor uintptr
+	Get_RowOrColumnMajor uintptr
 }
 
 type ITableProvider struct {
@@ -3824,8 +3824,8 @@ func (this *ITableProvider) GetColumnHeaders(pRetVal **SAFEARRAY) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *ITableProvider) get_RowOrColumnMajor(pRetVal *RowOrColumnMajor) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_RowOrColumnMajor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITableProvider) Get_RowOrColumnMajor(pRetVal *RowOrColumnMajor) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RowOrColumnMajor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3870,13 +3870,13 @@ var IID_IToggleProvider = syscall.GUID{0x56d00bd0, 0xc4f4, 0x433c,
 type IToggleProviderInterface interface {
 	IUnknownInterface
 	Toggle() HRESULT
-	get_ToggleState(pRetVal *ToggleState) HRESULT
+	Get_ToggleState(pRetVal *ToggleState) HRESULT
 }
 
 type IToggleProviderVtbl struct {
 	IUnknownVtbl
 	Toggle uintptr
-	get_ToggleState uintptr
+	Get_ToggleState uintptr
 }
 
 type IToggleProvider struct {
@@ -3892,8 +3892,8 @@ func (this *IToggleProvider) Toggle() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IToggleProvider) get_ToggleState(pRetVal *ToggleState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ToggleState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IToggleProvider) Get_ToggleState(pRetVal *ToggleState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ToggleState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3906,9 +3906,9 @@ type ITransformProviderInterface interface {
 	Move(x float64, y float64) HRESULT
 	Resize(width float64, height float64) HRESULT
 	Rotate(degrees float64) HRESULT
-	get_CanMove(pRetVal *BOOL) HRESULT
-	get_CanResize(pRetVal *BOOL) HRESULT
-	get_CanRotate(pRetVal *BOOL) HRESULT
+	Get_CanMove(pRetVal *BOOL) HRESULT
+	Get_CanResize(pRetVal *BOOL) HRESULT
+	Get_CanRotate(pRetVal *BOOL) HRESULT
 }
 
 type ITransformProviderVtbl struct {
@@ -3916,9 +3916,9 @@ type ITransformProviderVtbl struct {
 	Move uintptr
 	Resize uintptr
 	Rotate uintptr
-	get_CanMove uintptr
-	get_CanResize uintptr
-	get_CanRotate uintptr
+	Get_CanMove uintptr
+	Get_CanResize uintptr
+	Get_CanRotate uintptr
 }
 
 type ITransformProvider struct {
@@ -3944,18 +3944,18 @@ func (this *ITransformProvider) Rotate(degrees float64) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *ITransformProvider) get_CanMove(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanMove, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITransformProvider) Get_CanMove(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanMove, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ITransformProvider) get_CanResize(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanResize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITransformProvider) Get_CanResize(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanResize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ITransformProvider) get_CanRotate(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanRotate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITransformProvider) Get_CanRotate(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanRotate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -3966,15 +3966,15 @@ var IID_IValueProvider = syscall.GUID{0xc7935180, 0x6fb3, 0x4201,
 type IValueProviderInterface interface {
 	IUnknownInterface
 	SetValue(val PWSTR) HRESULT
-	get_Value(pRetVal *BSTR) HRESULT
-	get_IsReadOnly(pRetVal *BOOL) HRESULT
+	Get_Value(pRetVal *BSTR) HRESULT
+	Get_IsReadOnly(pRetVal *BOOL) HRESULT
 }
 
 type IValueProviderVtbl struct {
 	IUnknownVtbl
 	SetValue uintptr
-	get_Value uintptr
-	get_IsReadOnly uintptr
+	Get_Value uintptr
+	Get_IsReadOnly uintptr
 }
 
 type IValueProvider struct {
@@ -3990,13 +3990,13 @@ func (this *IValueProvider) SetValue(val PWSTR) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IValueProvider) get_Value(pRetVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IValueProvider) Get_Value(pRetVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IValueProvider) get_IsReadOnly(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IValueProvider) Get_IsReadOnly(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -4009,12 +4009,12 @@ type IWindowProviderInterface interface {
 	SetVisualState(state WindowVisualState) HRESULT
 	Close() HRESULT
 	WaitForInputIdle(milliseconds int32, pRetVal *BOOL) HRESULT
-	get_CanMaximize(pRetVal *BOOL) HRESULT
-	get_CanMinimize(pRetVal *BOOL) HRESULT
-	get_IsModal(pRetVal *BOOL) HRESULT
-	get_WindowVisualState(pRetVal *WindowVisualState) HRESULT
-	get_WindowInteractionState(pRetVal *WindowInteractionState) HRESULT
-	get_IsTopmost(pRetVal *BOOL) HRESULT
+	Get_CanMaximize(pRetVal *BOOL) HRESULT
+	Get_CanMinimize(pRetVal *BOOL) HRESULT
+	Get_IsModal(pRetVal *BOOL) HRESULT
+	Get_WindowVisualState(pRetVal *WindowVisualState) HRESULT
+	Get_WindowInteractionState(pRetVal *WindowInteractionState) HRESULT
+	Get_IsTopmost(pRetVal *BOOL) HRESULT
 }
 
 type IWindowProviderVtbl struct {
@@ -4022,12 +4022,12 @@ type IWindowProviderVtbl struct {
 	SetVisualState uintptr
 	Close uintptr
 	WaitForInputIdle uintptr
-	get_CanMaximize uintptr
-	get_CanMinimize uintptr
-	get_IsModal uintptr
-	get_WindowVisualState uintptr
-	get_WindowInteractionState uintptr
-	get_IsTopmost uintptr
+	Get_CanMaximize uintptr
+	Get_CanMinimize uintptr
+	Get_IsModal uintptr
+	Get_WindowVisualState uintptr
+	Get_WindowInteractionState uintptr
+	Get_IsTopmost uintptr
 }
 
 type IWindowProvider struct {
@@ -4053,33 +4053,33 @@ func (this *IWindowProvider) WaitForInputIdle(milliseconds int32, pRetVal *BOOL)
 	return HRESULT(ret)
 }
 
-func (this *IWindowProvider) get_CanMaximize(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanMaximize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IWindowProvider) Get_CanMaximize(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanMaximize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IWindowProvider) get_CanMinimize(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanMinimize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IWindowProvider) Get_CanMinimize(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanMinimize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IWindowProvider) get_IsModal(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsModal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IWindowProvider) Get_IsModal(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsModal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IWindowProvider) get_WindowVisualState(pRetVal *WindowVisualState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_WindowVisualState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IWindowProvider) Get_WindowVisualState(pRetVal *WindowVisualState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_WindowVisualState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IWindowProvider) get_WindowInteractionState(pRetVal *WindowInteractionState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_WindowInteractionState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IWindowProvider) Get_WindowInteractionState(pRetVal *WindowInteractionState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_WindowInteractionState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IWindowProvider) get_IsTopmost(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsTopmost, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IWindowProvider) Get_IsTopmost(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsTopmost, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -4093,16 +4093,16 @@ type ILegacyIAccessibleProviderInterface interface {
 	DoDefaultAction() HRESULT
 	SetValue(szValue PWSTR) HRESULT
 	GetIAccessible(ppAccessible **IAccessible) HRESULT
-	get_ChildId(pRetVal *int32) HRESULT
-	get_Name(pszName *BSTR) HRESULT
-	get_Value(pszValue *BSTR) HRESULT
-	get_Description(pszDescription *BSTR) HRESULT
-	get_Role(pdwRole *uint32) HRESULT
-	get_State(pdwState *uint32) HRESULT
-	get_Help(pszHelp *BSTR) HRESULT
-	get_KeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT
+	Get_ChildId(pRetVal *int32) HRESULT
+	Get_Name(pszName *BSTR) HRESULT
+	Get_Value(pszValue *BSTR) HRESULT
+	Get_Description(pszDescription *BSTR) HRESULT
+	Get_Role(pdwRole *uint32) HRESULT
+	Get_State(pdwState *uint32) HRESULT
+	Get_Help(pszHelp *BSTR) HRESULT
+	Get_KeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT
 	GetSelection(pvarSelectedChildren **SAFEARRAY) HRESULT
-	get_DefaultAction(pszDefaultAction *BSTR) HRESULT
+	Get_DefaultAction(pszDefaultAction *BSTR) HRESULT
 }
 
 type ILegacyIAccessibleProviderVtbl struct {
@@ -4111,16 +4111,16 @@ type ILegacyIAccessibleProviderVtbl struct {
 	DoDefaultAction uintptr
 	SetValue uintptr
 	GetIAccessible uintptr
-	get_ChildId uintptr
-	get_Name uintptr
-	get_Value uintptr
-	get_Description uintptr
-	get_Role uintptr
-	get_State uintptr
-	get_Help uintptr
-	get_KeyboardShortcut uintptr
+	Get_ChildId uintptr
+	Get_Name uintptr
+	Get_Value uintptr
+	Get_Description uintptr
+	Get_Role uintptr
+	Get_State uintptr
+	Get_Help uintptr
+	Get_KeyboardShortcut uintptr
 	GetSelection uintptr
-	get_DefaultAction uintptr
+	Get_DefaultAction uintptr
 }
 
 type ILegacyIAccessibleProvider struct {
@@ -4151,43 +4151,43 @@ func (this *ILegacyIAccessibleProvider) GetIAccessible(ppAccessible **IAccessibl
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_ChildId(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ChildId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ILegacyIAccessibleProvider) Get_ChildId(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ChildId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_Name(pszName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszName)))
+func (this *ILegacyIAccessibleProvider) Get_Name(pszName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Name, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszName)))
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_Value(pszValue *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszValue)))
+func (this *ILegacyIAccessibleProvider) Get_Value(pszValue *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Value, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszValue)))
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_Description(pszDescription *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDescription)))
+func (this *ILegacyIAccessibleProvider) Get_Description(pszDescription *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Description, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDescription)))
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_Role(pdwRole *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Role, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwRole)))
+func (this *ILegacyIAccessibleProvider) Get_Role(pdwRole *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Role, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwRole)))
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_State(pdwState *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_State, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwState)))
+func (this *ILegacyIAccessibleProvider) Get_State(pdwState *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_State, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwState)))
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_Help(pszHelp *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Help, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelp)))
+func (this *ILegacyIAccessibleProvider) Get_Help(pszHelp *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Help, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelp)))
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_KeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_KeyboardShortcut, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
+func (this *ILegacyIAccessibleProvider) Get_KeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_KeyboardShortcut, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
 	return HRESULT(ret)
 }
 
@@ -4196,8 +4196,8 @@ func (this *ILegacyIAccessibleProvider) GetSelection(pvarSelectedChildren **SAFE
 	return HRESULT(ret)
 }
 
-func (this *ILegacyIAccessibleProvider) get_DefaultAction(pszDefaultAction *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DefaultAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDefaultAction)))
+func (this *ILegacyIAccessibleProvider) Get_DefaultAction(pszDefaultAction *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DefaultAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDefaultAction)))
 	return HRESULT(ret)
 }
 
@@ -4288,20 +4288,20 @@ var IID_IAnnotationProvider = syscall.GUID{0xf95c7e80, 0xbd63, 0x4601,
 
 type IAnnotationProviderInterface interface {
 	IUnknownInterface
-	get_AnnotationTypeId(retVal *int32) HRESULT
-	get_AnnotationTypeName(retVal *BSTR) HRESULT
-	get_Author(retVal *BSTR) HRESULT
-	get_DateTime(retVal *BSTR) HRESULT
-	get_Target(retVal **IRawElementProviderSimple) HRESULT
+	Get_AnnotationTypeId(retVal *int32) HRESULT
+	Get_AnnotationTypeName(retVal *BSTR) HRESULT
+	Get_Author(retVal *BSTR) HRESULT
+	Get_DateTime(retVal *BSTR) HRESULT
+	Get_Target(retVal **IRawElementProviderSimple) HRESULT
 }
 
 type IAnnotationProviderVtbl struct {
 	IUnknownVtbl
-	get_AnnotationTypeId uintptr
-	get_AnnotationTypeName uintptr
-	get_Author uintptr
-	get_DateTime uintptr
-	get_Target uintptr
+	Get_AnnotationTypeId uintptr
+	Get_AnnotationTypeName uintptr
+	Get_Author uintptr
+	Get_DateTime uintptr
+	Get_Target uintptr
 }
 
 type IAnnotationProvider struct {
@@ -4312,28 +4312,28 @@ func (this *IAnnotationProvider) Vtbl() *IAnnotationProviderVtbl {
 	return (*IAnnotationProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IAnnotationProvider) get_AnnotationTypeId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_AnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IAnnotationProvider) Get_AnnotationTypeId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IAnnotationProvider) get_AnnotationTypeName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_AnnotationTypeName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IAnnotationProvider) Get_AnnotationTypeName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AnnotationTypeName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IAnnotationProvider) get_Author(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Author, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IAnnotationProvider) Get_Author(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Author, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IAnnotationProvider) get_DateTime(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DateTime, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IAnnotationProvider) Get_DateTime(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DateTime, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IAnnotationProvider) get_Target(retVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Target, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IAnnotationProvider) Get_Target(retVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Target, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -4343,24 +4343,24 @@ var IID_IStylesProvider = syscall.GUID{0x19b6b649, 0xf5d7, 0x4a6d,
 
 type IStylesProviderInterface interface {
 	IUnknownInterface
-	get_StyleId(retVal *int32) HRESULT
-	get_StyleName(retVal *BSTR) HRESULT
-	get_FillColor(retVal *int32) HRESULT
-	get_FillPatternStyle(retVal *BSTR) HRESULT
-	get_Shape(retVal *BSTR) HRESULT
-	get_FillPatternColor(retVal *int32) HRESULT
-	get_ExtendedProperties(retVal *BSTR) HRESULT
+	Get_StyleId(retVal *int32) HRESULT
+	Get_StyleName(retVal *BSTR) HRESULT
+	Get_FillColor(retVal *int32) HRESULT
+	Get_FillPatternStyle(retVal *BSTR) HRESULT
+	Get_Shape(retVal *BSTR) HRESULT
+	Get_FillPatternColor(retVal *int32) HRESULT
+	Get_ExtendedProperties(retVal *BSTR) HRESULT
 }
 
 type IStylesProviderVtbl struct {
 	IUnknownVtbl
-	get_StyleId uintptr
-	get_StyleName uintptr
-	get_FillColor uintptr
-	get_FillPatternStyle uintptr
-	get_Shape uintptr
-	get_FillPatternColor uintptr
-	get_ExtendedProperties uintptr
+	Get_StyleId uintptr
+	Get_StyleName uintptr
+	Get_FillColor uintptr
+	Get_FillPatternStyle uintptr
+	Get_Shape uintptr
+	Get_FillPatternColor uintptr
+	Get_ExtendedProperties uintptr
 }
 
 type IStylesProvider struct {
@@ -4371,38 +4371,38 @@ func (this *IStylesProvider) Vtbl() *IStylesProviderVtbl {
 	return (*IStylesProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IStylesProvider) get_StyleId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_StyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IStylesProvider) Get_StyleId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_StyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IStylesProvider) get_StyleName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_StyleName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IStylesProvider) Get_StyleName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_StyleName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IStylesProvider) get_FillColor(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FillColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IStylesProvider) Get_FillColor(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FillColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IStylesProvider) get_FillPatternStyle(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FillPatternStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IStylesProvider) Get_FillPatternStyle(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FillPatternStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IStylesProvider) get_Shape(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Shape, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IStylesProvider) Get_Shape(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Shape, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IStylesProvider) get_FillPatternColor(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_FillPatternColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IStylesProvider) Get_FillPatternColor(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FillPatternColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IStylesProvider) get_ExtendedProperties(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ExtendedProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IStylesProvider) Get_ExtendedProperties(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ExtendedProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -4439,14 +4439,14 @@ var IID_ISpreadsheetItemProvider = syscall.GUID{0xeaed4660, 0x7b3d, 0x4879,
 
 type ISpreadsheetItemProviderInterface interface {
 	IUnknownInterface
-	get_Formula(pRetVal *BSTR) HRESULT
+	Get_Formula(pRetVal *BSTR) HRESULT
 	GetAnnotationObjects(pRetVal **SAFEARRAY) HRESULT
 	GetAnnotationTypes(pRetVal **SAFEARRAY) HRESULT
 }
 
 type ISpreadsheetItemProviderVtbl struct {
 	IUnknownVtbl
-	get_Formula uintptr
+	Get_Formula uintptr
 	GetAnnotationObjects uintptr
 	GetAnnotationTypes uintptr
 }
@@ -4459,8 +4459,8 @@ func (this *ISpreadsheetItemProvider) Vtbl() *ISpreadsheetItemProviderVtbl {
 	return (*ISpreadsheetItemProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ISpreadsheetItemProvider) get_Formula(pRetVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Formula, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ISpreadsheetItemProvider) Get_Formula(pRetVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Formula, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -4481,20 +4481,20 @@ var IID_ITransformProvider2 = syscall.GUID{0x4758742f, 0x7ac2, 0x460c,
 type ITransformProvider2Interface interface {
 	ITransformProviderInterface
 	Zoom(zoom float64) HRESULT
-	get_CanZoom(pRetVal *BOOL) HRESULT
-	get_ZoomLevel(pRetVal *float64) HRESULT
-	get_ZoomMinimum(pRetVal *float64) HRESULT
-	get_ZoomMaximum(pRetVal *float64) HRESULT
+	Get_CanZoom(pRetVal *BOOL) HRESULT
+	Get_ZoomLevel(pRetVal *float64) HRESULT
+	Get_ZoomMinimum(pRetVal *float64) HRESULT
+	Get_ZoomMaximum(pRetVal *float64) HRESULT
 	ZoomByUnit(zoomUnit ZoomUnit) HRESULT
 }
 
 type ITransformProvider2Vtbl struct {
 	ITransformProviderVtbl
 	Zoom uintptr
-	get_CanZoom uintptr
-	get_ZoomLevel uintptr
-	get_ZoomMinimum uintptr
-	get_ZoomMaximum uintptr
+	Get_CanZoom uintptr
+	Get_ZoomLevel uintptr
+	Get_ZoomMinimum uintptr
+	Get_ZoomMaximum uintptr
 	ZoomByUnit uintptr
 }
 
@@ -4511,23 +4511,23 @@ func (this *ITransformProvider2) Zoom(zoom float64) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *ITransformProvider2) get_CanZoom(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanZoom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITransformProvider2) Get_CanZoom(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanZoom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ITransformProvider2) get_ZoomLevel(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ZoomLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITransformProvider2) Get_ZoomLevel(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ZoomLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ITransformProvider2) get_ZoomMinimum(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ZoomMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITransformProvider2) Get_ZoomMinimum(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ZoomMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ITransformProvider2) get_ZoomMaximum(pRetVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ZoomMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITransformProvider2) Get_ZoomMaximum(pRetVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ZoomMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -4542,17 +4542,17 @@ var IID_IDragProvider = syscall.GUID{0x6aa7bbbb, 0x7ff9, 0x497d,
 
 type IDragProviderInterface interface {
 	IUnknownInterface
-	get_IsGrabbed(pRetVal *BOOL) HRESULT
-	get_DropEffect(pRetVal *BSTR) HRESULT
-	get_DropEffects(pRetVal **SAFEARRAY) HRESULT
+	Get_IsGrabbed(pRetVal *BOOL) HRESULT
+	Get_DropEffect(pRetVal *BSTR) HRESULT
+	Get_DropEffects(pRetVal **SAFEARRAY) HRESULT
 	GetGrabbedItems(pRetVal **SAFEARRAY) HRESULT
 }
 
 type IDragProviderVtbl struct {
 	IUnknownVtbl
-	get_IsGrabbed uintptr
-	get_DropEffect uintptr
-	get_DropEffects uintptr
+	Get_IsGrabbed uintptr
+	Get_DropEffect uintptr
+	Get_DropEffects uintptr
 	GetGrabbedItems uintptr
 }
 
@@ -4564,18 +4564,18 @@ func (this *IDragProvider) Vtbl() *IDragProviderVtbl {
 	return (*IDragProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDragProvider) get_IsGrabbed(pRetVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_IsGrabbed, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IDragProvider) Get_IsGrabbed(pRetVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsGrabbed, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IDragProvider) get_DropEffect(pRetVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DropEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IDragProvider) Get_DropEffect(pRetVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DropEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IDragProvider) get_DropEffects(pRetVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DropEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IDragProvider) Get_DropEffects(pRetVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DropEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -4590,14 +4590,14 @@ var IID_IDropTargetProvider = syscall.GUID{0xbae82bfd, 0x358a, 0x481c,
 
 type IDropTargetProviderInterface interface {
 	IUnknownInterface
-	get_DropTargetEffect(pRetVal *BSTR) HRESULT
-	get_DropTargetEffects(pRetVal **SAFEARRAY) HRESULT
+	Get_DropTargetEffect(pRetVal *BSTR) HRESULT
+	Get_DropTargetEffects(pRetVal **SAFEARRAY) HRESULT
 }
 
 type IDropTargetProviderVtbl struct {
 	IUnknownVtbl
-	get_DropTargetEffect uintptr
-	get_DropTargetEffects uintptr
+	Get_DropTargetEffect uintptr
+	Get_DropTargetEffects uintptr
 }
 
 type IDropTargetProvider struct {
@@ -4608,13 +4608,13 @@ func (this *IDropTargetProvider) Vtbl() *IDropTargetProviderVtbl {
 	return (*IDropTargetProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDropTargetProvider) get_DropTargetEffect(pRetVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DropTargetEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IDropTargetProvider) Get_DropTargetEffect(pRetVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DropTargetEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IDropTargetProvider) get_DropTargetEffects(pRetVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DropTargetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IDropTargetProvider) Get_DropTargetEffects(pRetVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DropTargetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -4774,8 +4774,8 @@ type ITextProviderInterface interface {
 	GetVisibleRanges(pRetVal **SAFEARRAY) HRESULT
 	RangeFromChild(childElement *IRawElementProviderSimple, pRetVal **ITextRangeProvider) HRESULT
 	RangeFromPoint(point UiaPoint, pRetVal **ITextRangeProvider) HRESULT
-	get_DocumentRange(pRetVal **ITextRangeProvider) HRESULT
-	get_SupportedTextSelection(pRetVal *SupportedTextSelection) HRESULT
+	Get_DocumentRange(pRetVal **ITextRangeProvider) HRESULT
+	Get_SupportedTextSelection(pRetVal *SupportedTextSelection) HRESULT
 }
 
 type ITextProviderVtbl struct {
@@ -4784,8 +4784,8 @@ type ITextProviderVtbl struct {
 	GetVisibleRanges uintptr
 	RangeFromChild uintptr
 	RangeFromPoint uintptr
-	get_DocumentRange uintptr
-	get_SupportedTextSelection uintptr
+	Get_DocumentRange uintptr
+	Get_SupportedTextSelection uintptr
 }
 
 type ITextProvider struct {
@@ -4816,13 +4816,13 @@ func (this *ITextProvider) RangeFromPoint(point UiaPoint, pRetVal **ITextRangePr
 	return HRESULT(ret)
 }
 
-func (this *ITextProvider) get_DocumentRange(pRetVal **ITextRangeProvider) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DocumentRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITextProvider) Get_DocumentRange(pRetVal **ITextRangeProvider) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DocumentRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ITextProvider) get_SupportedTextSelection(pRetVal *SupportedTextSelection) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SupportedTextSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITextProvider) Get_SupportedTextSelection(pRetVal *SupportedTextSelection) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SupportedTextSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -4927,14 +4927,14 @@ var IID_ITextChildProvider = syscall.GUID{0x4c2de2b9, 0xc88f, 0x4f88,
 
 type ITextChildProviderInterface interface {
 	IUnknownInterface
-	get_TextContainer(pRetVal **IRawElementProviderSimple) HRESULT
-	get_TextRange(pRetVal **ITextRangeProvider) HRESULT
+	Get_TextContainer(pRetVal **IRawElementProviderSimple) HRESULT
+	Get_TextRange(pRetVal **ITextRangeProvider) HRESULT
 }
 
 type ITextChildProviderVtbl struct {
 	IUnknownVtbl
-	get_TextContainer uintptr
-	get_TextRange uintptr
+	Get_TextContainer uintptr
+	Get_TextRange uintptr
 }
 
 type ITextChildProvider struct {
@@ -4945,13 +4945,13 @@ func (this *ITextChildProvider) Vtbl() *ITextChildProviderVtbl {
 	return (*ITextChildProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextChildProvider) get_TextContainer(pRetVal **IRawElementProviderSimple) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TextContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITextChildProvider) Get_TextContainer(pRetVal **IRawElementProviderSimple) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TextContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *ITextChildProvider) get_TextRange(pRetVal **ITextRangeProvider) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TextRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *ITextChildProvider) Get_TextRange(pRetVal **ITextRangeProvider) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TextRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
@@ -5114,70 +5114,70 @@ type IUIAutomationElementInterface interface {
 	GetCachedPattern(patternId int32, patternObject **IUnknown) HRESULT
 	GetCachedParent(parent **IUIAutomationElement) HRESULT
 	GetCachedChildren(children **IUIAutomationElementArray) HRESULT
-	get_CurrentProcessId(retVal *int32) HRESULT
-	get_CurrentControlType(retVal *int32) HRESULT
-	get_CurrentLocalizedControlType(retVal *BSTR) HRESULT
-	get_CurrentName(retVal *BSTR) HRESULT
-	get_CurrentAcceleratorKey(retVal *BSTR) HRESULT
-	get_CurrentAccessKey(retVal *BSTR) HRESULT
-	get_CurrentHasKeyboardFocus(retVal *BOOL) HRESULT
-	get_CurrentIsKeyboardFocusable(retVal *BOOL) HRESULT
-	get_CurrentIsEnabled(retVal *BOOL) HRESULT
-	get_CurrentAutomationId(retVal *BSTR) HRESULT
-	get_CurrentClassName(retVal *BSTR) HRESULT
-	get_CurrentHelpText(retVal *BSTR) HRESULT
-	get_CurrentCulture(retVal *int32) HRESULT
-	get_CurrentIsControlElement(retVal *BOOL) HRESULT
-	get_CurrentIsContentElement(retVal *BOOL) HRESULT
-	get_CurrentIsPassword(retVal *BOOL) HRESULT
-	get_CurrentNativeWindowHandle(retVal *HWND) HRESULT
-	get_CurrentItemType(retVal *BSTR) HRESULT
-	get_CurrentIsOffscreen(retVal *BOOL) HRESULT
-	get_CurrentOrientation(retVal *OrientationType) HRESULT
-	get_CurrentFrameworkId(retVal *BSTR) HRESULT
-	get_CurrentIsRequiredForForm(retVal *BOOL) HRESULT
-	get_CurrentItemStatus(retVal *BSTR) HRESULT
-	get_CurrentBoundingRectangle(retVal *RECT) HRESULT
-	get_CurrentLabeledBy(retVal **IUIAutomationElement) HRESULT
-	get_CurrentAriaRole(retVal *BSTR) HRESULT
-	get_CurrentAriaProperties(retVal *BSTR) HRESULT
-	get_CurrentIsDataValidForForm(retVal *BOOL) HRESULT
-	get_CurrentControllerFor(retVal **IUIAutomationElementArray) HRESULT
-	get_CurrentDescribedBy(retVal **IUIAutomationElementArray) HRESULT
-	get_CurrentFlowsTo(retVal **IUIAutomationElementArray) HRESULT
-	get_CurrentProviderDescription(retVal *BSTR) HRESULT
-	get_CachedProcessId(retVal *int32) HRESULT
-	get_CachedControlType(retVal *int32) HRESULT
-	get_CachedLocalizedControlType(retVal *BSTR) HRESULT
-	get_CachedName(retVal *BSTR) HRESULT
-	get_CachedAcceleratorKey(retVal *BSTR) HRESULT
-	get_CachedAccessKey(retVal *BSTR) HRESULT
-	get_CachedHasKeyboardFocus(retVal *BOOL) HRESULT
-	get_CachedIsKeyboardFocusable(retVal *BOOL) HRESULT
-	get_CachedIsEnabled(retVal *BOOL) HRESULT
-	get_CachedAutomationId(retVal *BSTR) HRESULT
-	get_CachedClassName(retVal *BSTR) HRESULT
-	get_CachedHelpText(retVal *BSTR) HRESULT
-	get_CachedCulture(retVal *int32) HRESULT
-	get_CachedIsControlElement(retVal *BOOL) HRESULT
-	get_CachedIsContentElement(retVal *BOOL) HRESULT
-	get_CachedIsPassword(retVal *BOOL) HRESULT
-	get_CachedNativeWindowHandle(retVal *HWND) HRESULT
-	get_CachedItemType(retVal *BSTR) HRESULT
-	get_CachedIsOffscreen(retVal *BOOL) HRESULT
-	get_CachedOrientation(retVal *OrientationType) HRESULT
-	get_CachedFrameworkId(retVal *BSTR) HRESULT
-	get_CachedIsRequiredForForm(retVal *BOOL) HRESULT
-	get_CachedItemStatus(retVal *BSTR) HRESULT
-	get_CachedBoundingRectangle(retVal *RECT) HRESULT
-	get_CachedLabeledBy(retVal **IUIAutomationElement) HRESULT
-	get_CachedAriaRole(retVal *BSTR) HRESULT
-	get_CachedAriaProperties(retVal *BSTR) HRESULT
-	get_CachedIsDataValidForForm(retVal *BOOL) HRESULT
-	get_CachedControllerFor(retVal **IUIAutomationElementArray) HRESULT
-	get_CachedDescribedBy(retVal **IUIAutomationElementArray) HRESULT
-	get_CachedFlowsTo(retVal **IUIAutomationElementArray) HRESULT
-	get_CachedProviderDescription(retVal *BSTR) HRESULT
+	Get_CurrentProcessId(retVal *int32) HRESULT
+	Get_CurrentControlType(retVal *int32) HRESULT
+	Get_CurrentLocalizedControlType(retVal *BSTR) HRESULT
+	Get_CurrentName(retVal *BSTR) HRESULT
+	Get_CurrentAcceleratorKey(retVal *BSTR) HRESULT
+	Get_CurrentAccessKey(retVal *BSTR) HRESULT
+	Get_CurrentHasKeyboardFocus(retVal *BOOL) HRESULT
+	Get_CurrentIsKeyboardFocusable(retVal *BOOL) HRESULT
+	Get_CurrentIsEnabled(retVal *BOOL) HRESULT
+	Get_CurrentAutomationId(retVal *BSTR) HRESULT
+	Get_CurrentClassName(retVal *BSTR) HRESULT
+	Get_CurrentHelpText(retVal *BSTR) HRESULT
+	Get_CurrentCulture(retVal *int32) HRESULT
+	Get_CurrentIsControlElement(retVal *BOOL) HRESULT
+	Get_CurrentIsContentElement(retVal *BOOL) HRESULT
+	Get_CurrentIsPassword(retVal *BOOL) HRESULT
+	Get_CurrentNativeWindowHandle(retVal *HWND) HRESULT
+	Get_CurrentItemType(retVal *BSTR) HRESULT
+	Get_CurrentIsOffscreen(retVal *BOOL) HRESULT
+	Get_CurrentOrientation(retVal *OrientationType) HRESULT
+	Get_CurrentFrameworkId(retVal *BSTR) HRESULT
+	Get_CurrentIsRequiredForForm(retVal *BOOL) HRESULT
+	Get_CurrentItemStatus(retVal *BSTR) HRESULT
+	Get_CurrentBoundingRectangle(retVal *RECT) HRESULT
+	Get_CurrentLabeledBy(retVal **IUIAutomationElement) HRESULT
+	Get_CurrentAriaRole(retVal *BSTR) HRESULT
+	Get_CurrentAriaProperties(retVal *BSTR) HRESULT
+	Get_CurrentIsDataValidForForm(retVal *BOOL) HRESULT
+	Get_CurrentControllerFor(retVal **IUIAutomationElementArray) HRESULT
+	Get_CurrentDescribedBy(retVal **IUIAutomationElementArray) HRESULT
+	Get_CurrentFlowsTo(retVal **IUIAutomationElementArray) HRESULT
+	Get_CurrentProviderDescription(retVal *BSTR) HRESULT
+	Get_CachedProcessId(retVal *int32) HRESULT
+	Get_CachedControlType(retVal *int32) HRESULT
+	Get_CachedLocalizedControlType(retVal *BSTR) HRESULT
+	Get_CachedName(retVal *BSTR) HRESULT
+	Get_CachedAcceleratorKey(retVal *BSTR) HRESULT
+	Get_CachedAccessKey(retVal *BSTR) HRESULT
+	Get_CachedHasKeyboardFocus(retVal *BOOL) HRESULT
+	Get_CachedIsKeyboardFocusable(retVal *BOOL) HRESULT
+	Get_CachedIsEnabled(retVal *BOOL) HRESULT
+	Get_CachedAutomationId(retVal *BSTR) HRESULT
+	Get_CachedClassName(retVal *BSTR) HRESULT
+	Get_CachedHelpText(retVal *BSTR) HRESULT
+	Get_CachedCulture(retVal *int32) HRESULT
+	Get_CachedIsControlElement(retVal *BOOL) HRESULT
+	Get_CachedIsContentElement(retVal *BOOL) HRESULT
+	Get_CachedIsPassword(retVal *BOOL) HRESULT
+	Get_CachedNativeWindowHandle(retVal *HWND) HRESULT
+	Get_CachedItemType(retVal *BSTR) HRESULT
+	Get_CachedIsOffscreen(retVal *BOOL) HRESULT
+	Get_CachedOrientation(retVal *OrientationType) HRESULT
+	Get_CachedFrameworkId(retVal *BSTR) HRESULT
+	Get_CachedIsRequiredForForm(retVal *BOOL) HRESULT
+	Get_CachedItemStatus(retVal *BSTR) HRESULT
+	Get_CachedBoundingRectangle(retVal *RECT) HRESULT
+	Get_CachedLabeledBy(retVal **IUIAutomationElement) HRESULT
+	Get_CachedAriaRole(retVal *BSTR) HRESULT
+	Get_CachedAriaProperties(retVal *BSTR) HRESULT
+	Get_CachedIsDataValidForForm(retVal *BOOL) HRESULT
+	Get_CachedControllerFor(retVal **IUIAutomationElementArray) HRESULT
+	Get_CachedDescribedBy(retVal **IUIAutomationElementArray) HRESULT
+	Get_CachedFlowsTo(retVal **IUIAutomationElementArray) HRESULT
+	Get_CachedProviderDescription(retVal *BSTR) HRESULT
 	GetClickablePoint(clickable *POINT, gotClickable *BOOL) HRESULT
 }
 
@@ -5200,70 +5200,70 @@ type IUIAutomationElementVtbl struct {
 	GetCachedPattern uintptr
 	GetCachedParent uintptr
 	GetCachedChildren uintptr
-	get_CurrentProcessId uintptr
-	get_CurrentControlType uintptr
-	get_CurrentLocalizedControlType uintptr
-	get_CurrentName uintptr
-	get_CurrentAcceleratorKey uintptr
-	get_CurrentAccessKey uintptr
-	get_CurrentHasKeyboardFocus uintptr
-	get_CurrentIsKeyboardFocusable uintptr
-	get_CurrentIsEnabled uintptr
-	get_CurrentAutomationId uintptr
-	get_CurrentClassName uintptr
-	get_CurrentHelpText uintptr
-	get_CurrentCulture uintptr
-	get_CurrentIsControlElement uintptr
-	get_CurrentIsContentElement uintptr
-	get_CurrentIsPassword uintptr
-	get_CurrentNativeWindowHandle uintptr
-	get_CurrentItemType uintptr
-	get_CurrentIsOffscreen uintptr
-	get_CurrentOrientation uintptr
-	get_CurrentFrameworkId uintptr
-	get_CurrentIsRequiredForForm uintptr
-	get_CurrentItemStatus uintptr
-	get_CurrentBoundingRectangle uintptr
-	get_CurrentLabeledBy uintptr
-	get_CurrentAriaRole uintptr
-	get_CurrentAriaProperties uintptr
-	get_CurrentIsDataValidForForm uintptr
-	get_CurrentControllerFor uintptr
-	get_CurrentDescribedBy uintptr
-	get_CurrentFlowsTo uintptr
-	get_CurrentProviderDescription uintptr
-	get_CachedProcessId uintptr
-	get_CachedControlType uintptr
-	get_CachedLocalizedControlType uintptr
-	get_CachedName uintptr
-	get_CachedAcceleratorKey uintptr
-	get_CachedAccessKey uintptr
-	get_CachedHasKeyboardFocus uintptr
-	get_CachedIsKeyboardFocusable uintptr
-	get_CachedIsEnabled uintptr
-	get_CachedAutomationId uintptr
-	get_CachedClassName uintptr
-	get_CachedHelpText uintptr
-	get_CachedCulture uintptr
-	get_CachedIsControlElement uintptr
-	get_CachedIsContentElement uintptr
-	get_CachedIsPassword uintptr
-	get_CachedNativeWindowHandle uintptr
-	get_CachedItemType uintptr
-	get_CachedIsOffscreen uintptr
-	get_CachedOrientation uintptr
-	get_CachedFrameworkId uintptr
-	get_CachedIsRequiredForForm uintptr
-	get_CachedItemStatus uintptr
-	get_CachedBoundingRectangle uintptr
-	get_CachedLabeledBy uintptr
-	get_CachedAriaRole uintptr
-	get_CachedAriaProperties uintptr
-	get_CachedIsDataValidForForm uintptr
-	get_CachedControllerFor uintptr
-	get_CachedDescribedBy uintptr
-	get_CachedFlowsTo uintptr
-	get_CachedProviderDescription uintptr
+	Get_CurrentProcessId uintptr
+	Get_CurrentControlType uintptr
+	Get_CurrentLocalizedControlType uintptr
+	Get_CurrentName uintptr
+	Get_CurrentAcceleratorKey uintptr
+	Get_CurrentAccessKey uintptr
+	Get_CurrentHasKeyboardFocus uintptr
+	Get_CurrentIsKeyboardFocusable uintptr
+	Get_CurrentIsEnabled uintptr
+	Get_CurrentAutomationId uintptr
+	Get_CurrentClassName uintptr
+	Get_CurrentHelpText uintptr
+	Get_CurrentCulture uintptr
+	Get_CurrentIsControlElement uintptr
+	Get_CurrentIsContentElement uintptr
+	Get_CurrentIsPassword uintptr
+	Get_CurrentNativeWindowHandle uintptr
+	Get_CurrentItemType uintptr
+	Get_CurrentIsOffscreen uintptr
+	Get_CurrentOrientation uintptr
+	Get_CurrentFrameworkId uintptr
+	Get_CurrentIsRequiredForForm uintptr
+	Get_CurrentItemStatus uintptr
+	Get_CurrentBoundingRectangle uintptr
+	Get_CurrentLabeledBy uintptr
+	Get_CurrentAriaRole uintptr
+	Get_CurrentAriaProperties uintptr
+	Get_CurrentIsDataValidForForm uintptr
+	Get_CurrentControllerFor uintptr
+	Get_CurrentDescribedBy uintptr
+	Get_CurrentFlowsTo uintptr
+	Get_CurrentProviderDescription uintptr
+	Get_CachedProcessId uintptr
+	Get_CachedControlType uintptr
+	Get_CachedLocalizedControlType uintptr
+	Get_CachedName uintptr
+	Get_CachedAcceleratorKey uintptr
+	Get_CachedAccessKey uintptr
+	Get_CachedHasKeyboardFocus uintptr
+	Get_CachedIsKeyboardFocusable uintptr
+	Get_CachedIsEnabled uintptr
+	Get_CachedAutomationId uintptr
+	Get_CachedClassName uintptr
+	Get_CachedHelpText uintptr
+	Get_CachedCulture uintptr
+	Get_CachedIsControlElement uintptr
+	Get_CachedIsContentElement uintptr
+	Get_CachedIsPassword uintptr
+	Get_CachedNativeWindowHandle uintptr
+	Get_CachedItemType uintptr
+	Get_CachedIsOffscreen uintptr
+	Get_CachedOrientation uintptr
+	Get_CachedFrameworkId uintptr
+	Get_CachedIsRequiredForForm uintptr
+	Get_CachedItemStatus uintptr
+	Get_CachedBoundingRectangle uintptr
+	Get_CachedLabeledBy uintptr
+	Get_CachedAriaRole uintptr
+	Get_CachedAriaProperties uintptr
+	Get_CachedIsDataValidForForm uintptr
+	Get_CachedControllerFor uintptr
+	Get_CachedDescribedBy uintptr
+	Get_CachedFlowsTo uintptr
+	Get_CachedProviderDescription uintptr
 	GetClickablePoint uintptr
 }
 
@@ -5360,323 +5360,323 @@ func (this *IUIAutomationElement) GetCachedChildren(children **IUIAutomationElem
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentProcessId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentProcessId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentProcessId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentProcessId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentControlType(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentControlType(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentLocalizedControlType(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLocalizedControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentLocalizedControlType(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLocalizedControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentAcceleratorKey(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAcceleratorKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentAcceleratorKey(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAcceleratorKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentAccessKey(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAccessKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentAccessKey(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAccessKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentHasKeyboardFocus(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentHasKeyboardFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentHasKeyboardFocus(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHasKeyboardFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsKeyboardFocusable(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsKeyboardFocusable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsKeyboardFocusable(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsKeyboardFocusable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsEnabled(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsEnabled(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentAutomationId(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAutomationId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentAutomationId(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAutomationId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentClassName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentClassName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentHelpText(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentHelpText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentHelpText(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHelpText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentCulture(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCulture, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentCulture(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCulture, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsControlElement(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsControlElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsControlElement(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsControlElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsContentElement(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsContentElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsContentElement(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsContentElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsPassword(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsPassword, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsPassword(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsPassword, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentNativeWindowHandle(retVal *HWND) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentNativeWindowHandle(retVal *HWND) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentItemType(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentItemType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentItemType(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentItemType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsOffscreen(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsOffscreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsOffscreen(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsOffscreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentOrientation(retVal *OrientationType) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentOrientation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentOrientation(retVal *OrientationType) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentOrientation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentFrameworkId(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFrameworkId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentFrameworkId(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFrameworkId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsRequiredForForm(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsRequiredForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsRequiredForForm(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsRequiredForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentItemStatus(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentItemStatus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentItemStatus(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentItemStatus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentBoundingRectangle(retVal *RECT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentBoundingRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentBoundingRectangle(retVal *RECT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentBoundingRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentLabeledBy(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLabeledBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentLabeledBy(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLabeledBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentAriaRole(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAriaRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentAriaRole(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAriaRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentAriaProperties(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAriaProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentAriaProperties(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAriaProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentIsDataValidForForm(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsDataValidForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentIsDataValidForForm(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsDataValidForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentControllerFor(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentControllerFor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentControllerFor(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentControllerFor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentDescribedBy(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDescribedBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentDescribedBy(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDescribedBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentFlowsTo(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFlowsTo, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentFlowsTo(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFlowsTo, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CurrentProviderDescription(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentProviderDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CurrentProviderDescription(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentProviderDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedProcessId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedProcessId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedProcessId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedProcessId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedControlType(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedControlType(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedLocalizedControlType(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLocalizedControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedLocalizedControlType(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLocalizedControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedAcceleratorKey(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAcceleratorKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedAcceleratorKey(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAcceleratorKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedAccessKey(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAccessKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedAccessKey(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAccessKey, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedHasKeyboardFocus(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedHasKeyboardFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedHasKeyboardFocus(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHasKeyboardFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsKeyboardFocusable(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsKeyboardFocusable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsKeyboardFocusable(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsKeyboardFocusable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsEnabled(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsEnabled(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedAutomationId(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAutomationId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedAutomationId(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAutomationId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedClassName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedClassName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedHelpText(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedHelpText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedHelpText(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHelpText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedCulture(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCulture, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedCulture(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCulture, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsControlElement(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsControlElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsControlElement(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsControlElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsContentElement(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsContentElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsContentElement(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsContentElement, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsPassword(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsPassword, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsPassword(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsPassword, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedNativeWindowHandle(retVal *HWND) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedNativeWindowHandle(retVal *HWND) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedNativeWindowHandle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedItemType(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedItemType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedItemType(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedItemType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsOffscreen(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsOffscreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsOffscreen(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsOffscreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedOrientation(retVal *OrientationType) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedOrientation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedOrientation(retVal *OrientationType) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedOrientation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedFrameworkId(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFrameworkId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedFrameworkId(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFrameworkId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsRequiredForForm(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsRequiredForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsRequiredForForm(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsRequiredForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedItemStatus(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedItemStatus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedItemStatus(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedItemStatus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedBoundingRectangle(retVal *RECT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedBoundingRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedBoundingRectangle(retVal *RECT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedBoundingRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedLabeledBy(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLabeledBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedLabeledBy(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLabeledBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedAriaRole(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAriaRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedAriaRole(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAriaRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedAriaProperties(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAriaProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedAriaProperties(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAriaProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedIsDataValidForForm(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsDataValidForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedIsDataValidForForm(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsDataValidForForm, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedControllerFor(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedControllerFor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedControllerFor(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedControllerFor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedDescribedBy(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDescribedBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedDescribedBy(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDescribedBy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedFlowsTo(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFlowsTo, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedFlowsTo(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFlowsTo, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) get_CachedProviderDescription(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedProviderDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement) Get_CachedProviderDescription(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedProviderDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -5691,13 +5691,13 @@ var IID_IUIAutomationElementArray = syscall.GUID{0x14314595, 0xb4bc, 0x4055,
 
 type IUIAutomationElementArrayInterface interface {
 	IUnknownInterface
-	get_Length(length *int32) HRESULT
+	Get_Length(length *int32) HRESULT
 	GetElement(index int32, element **IUIAutomationElement) HRESULT
 }
 
 type IUIAutomationElementArrayVtbl struct {
 	IUnknownVtbl
-	get_Length uintptr
+	Get_Length uintptr
 	GetElement uintptr
 }
 
@@ -5709,8 +5709,8 @@ func (this *IUIAutomationElementArray) Vtbl() *IUIAutomationElementArrayVtbl {
 	return (*IUIAutomationElementArrayVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElementArray) get_Length(length *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Length, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(length)))
+func (this *IUIAutomationElementArray) Get_Length(length *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Length, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(length)))
 	return HRESULT(ret)
 }
 
@@ -5745,12 +5745,12 @@ var IID_IUIAutomationBoolCondition = syscall.GUID{0x1b4e1f2e, 0x75eb, 0x4d0b,
 
 type IUIAutomationBoolConditionInterface interface {
 	IUIAutomationConditionInterface
-	get_BooleanValue(boolVal *BOOL) HRESULT
+	Get_BooleanValue(boolVal *BOOL) HRESULT
 }
 
 type IUIAutomationBoolConditionVtbl struct {
 	IUIAutomationConditionVtbl
-	get_BooleanValue uintptr
+	Get_BooleanValue uintptr
 }
 
 type IUIAutomationBoolCondition struct {
@@ -5761,8 +5761,8 @@ func (this *IUIAutomationBoolCondition) Vtbl() *IUIAutomationBoolConditionVtbl {
 	return (*IUIAutomationBoolConditionVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationBoolCondition) get_BooleanValue(boolVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_BooleanValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(boolVal)))
+func (this *IUIAutomationBoolCondition) Get_BooleanValue(boolVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_BooleanValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(boolVal)))
 	return HRESULT(ret)
 }
 
@@ -5772,16 +5772,16 @@ var IID_IUIAutomationPropertyCondition = syscall.GUID{0x99ebf2cb, 0x5578, 0x4267
 
 type IUIAutomationPropertyConditionInterface interface {
 	IUIAutomationConditionInterface
-	get_PropertyId(propertyId *int32) HRESULT
-	get_PropertyValue(propertyValue *VARIANT) HRESULT
-	get_PropertyConditionFlags(flags *PropertyConditionFlags) HRESULT
+	Get_PropertyId(propertyId *int32) HRESULT
+	Get_PropertyValue(propertyValue *VARIANT) HRESULT
+	Get_PropertyConditionFlags(flags *PropertyConditionFlags) HRESULT
 }
 
 type IUIAutomationPropertyConditionVtbl struct {
 	IUIAutomationConditionVtbl
-	get_PropertyId uintptr
-	get_PropertyValue uintptr
-	get_PropertyConditionFlags uintptr
+	Get_PropertyId uintptr
+	Get_PropertyValue uintptr
+	Get_PropertyConditionFlags uintptr
 }
 
 type IUIAutomationPropertyCondition struct {
@@ -5792,18 +5792,18 @@ func (this *IUIAutomationPropertyCondition) Vtbl() *IUIAutomationPropertyConditi
 	return (*IUIAutomationPropertyConditionVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationPropertyCondition) get_PropertyId(propertyId *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_PropertyId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(propertyId)))
+func (this *IUIAutomationPropertyCondition) Get_PropertyId(propertyId *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_PropertyId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(propertyId)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationPropertyCondition) get_PropertyValue(propertyValue *VARIANT) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_PropertyValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(propertyValue)))
+func (this *IUIAutomationPropertyCondition) Get_PropertyValue(propertyValue *VARIANT) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_PropertyValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(propertyValue)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationPropertyCondition) get_PropertyConditionFlags(flags *PropertyConditionFlags) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_PropertyConditionFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(flags)))
+func (this *IUIAutomationPropertyCondition) Get_PropertyConditionFlags(flags *PropertyConditionFlags) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_PropertyConditionFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(flags)))
 	return HRESULT(ret)
 }
 
@@ -5813,14 +5813,14 @@ var IID_IUIAutomationAndCondition = syscall.GUID{0xa7d0af36, 0xb912, 0x45fe,
 
 type IUIAutomationAndConditionInterface interface {
 	IUIAutomationConditionInterface
-	get_ChildCount(childCount *int32) HRESULT
+	Get_ChildCount(childCount *int32) HRESULT
 	GetChildrenAsNativeArray(childArray ***IUIAutomationCondition, childArrayCount *int32) HRESULT
 	GetChildren(childArray **SAFEARRAY) HRESULT
 }
 
 type IUIAutomationAndConditionVtbl struct {
 	IUIAutomationConditionVtbl
-	get_ChildCount uintptr
+	Get_ChildCount uintptr
 	GetChildrenAsNativeArray uintptr
 	GetChildren uintptr
 }
@@ -5833,8 +5833,8 @@ func (this *IUIAutomationAndCondition) Vtbl() *IUIAutomationAndConditionVtbl {
 	return (*IUIAutomationAndConditionVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationAndCondition) get_ChildCount(childCount *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ChildCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(childCount)))
+func (this *IUIAutomationAndCondition) Get_ChildCount(childCount *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ChildCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(childCount)))
 	return HRESULT(ret)
 }
 
@@ -5854,14 +5854,14 @@ var IID_IUIAutomationOrCondition = syscall.GUID{0x8753f032, 0x3db1, 0x47b5,
 
 type IUIAutomationOrConditionInterface interface {
 	IUIAutomationConditionInterface
-	get_ChildCount(childCount *int32) HRESULT
+	Get_ChildCount(childCount *int32) HRESULT
 	GetChildrenAsNativeArray(childArray ***IUIAutomationCondition, childArrayCount *int32) HRESULT
 	GetChildren(childArray **SAFEARRAY) HRESULT
 }
 
 type IUIAutomationOrConditionVtbl struct {
 	IUIAutomationConditionVtbl
-	get_ChildCount uintptr
+	Get_ChildCount uintptr
 	GetChildrenAsNativeArray uintptr
 	GetChildren uintptr
 }
@@ -5874,8 +5874,8 @@ func (this *IUIAutomationOrCondition) Vtbl() *IUIAutomationOrConditionVtbl {
 	return (*IUIAutomationOrConditionVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationOrCondition) get_ChildCount(childCount *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ChildCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(childCount)))
+func (this *IUIAutomationOrCondition) Get_ChildCount(childCount *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ChildCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(childCount)))
 	return HRESULT(ret)
 }
 
@@ -5925,12 +5925,12 @@ type IUIAutomationCacheRequestInterface interface {
 	AddProperty(propertyId int32) HRESULT
 	AddPattern(patternId int32) HRESULT
 	Clone(clonedRequest **IUIAutomationCacheRequest) HRESULT
-	get_TreeScope(scope *TreeScope) HRESULT
-	put_TreeScope(scope TreeScope) HRESULT
-	get_TreeFilter(filter **IUIAutomationCondition) HRESULT
-	put_TreeFilter(filter *IUIAutomationCondition) HRESULT
-	get_AutomationElementMode(mode *AutomationElementMode) HRESULT
-	put_AutomationElementMode(mode AutomationElementMode) HRESULT
+	Get_TreeScope(scope *TreeScope) HRESULT
+	Put_TreeScope(scope TreeScope) HRESULT
+	Get_TreeFilter(filter **IUIAutomationCondition) HRESULT
+	Put_TreeFilter(filter *IUIAutomationCondition) HRESULT
+	Get_AutomationElementMode(mode *AutomationElementMode) HRESULT
+	Put_AutomationElementMode(mode AutomationElementMode) HRESULT
 }
 
 type IUIAutomationCacheRequestVtbl struct {
@@ -5938,12 +5938,12 @@ type IUIAutomationCacheRequestVtbl struct {
 	AddProperty uintptr
 	AddPattern uintptr
 	Clone uintptr
-	get_TreeScope uintptr
-	put_TreeScope uintptr
-	get_TreeFilter uintptr
-	put_TreeFilter uintptr
-	get_AutomationElementMode uintptr
-	put_AutomationElementMode uintptr
+	Get_TreeScope uintptr
+	Put_TreeScope uintptr
+	Get_TreeFilter uintptr
+	Put_TreeFilter uintptr
+	Get_AutomationElementMode uintptr
+	Put_AutomationElementMode uintptr
 }
 
 type IUIAutomationCacheRequest struct {
@@ -5969,33 +5969,33 @@ func (this *IUIAutomationCacheRequest) Clone(clonedRequest **IUIAutomationCacheR
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationCacheRequest) get_TreeScope(scope *TreeScope) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TreeScope, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(scope)))
+func (this *IUIAutomationCacheRequest) Get_TreeScope(scope *TreeScope) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TreeScope, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(scope)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationCacheRequest) put_TreeScope(scope TreeScope) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_TreeScope, uintptr(unsafe.Pointer(this)), uintptr(scope))
+func (this *IUIAutomationCacheRequest) Put_TreeScope(scope TreeScope) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_TreeScope, uintptr(unsafe.Pointer(this)), uintptr(scope))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationCacheRequest) get_TreeFilter(filter **IUIAutomationCondition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TreeFilter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(filter)))
+func (this *IUIAutomationCacheRequest) Get_TreeFilter(filter **IUIAutomationCondition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TreeFilter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(filter)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationCacheRequest) put_TreeFilter(filter *IUIAutomationCondition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_TreeFilter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(filter)))
+func (this *IUIAutomationCacheRequest) Put_TreeFilter(filter *IUIAutomationCondition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_TreeFilter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(filter)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationCacheRequest) get_AutomationElementMode(mode *AutomationElementMode) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_AutomationElementMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(mode)))
+func (this *IUIAutomationCacheRequest) Get_AutomationElementMode(mode *AutomationElementMode) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AutomationElementMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(mode)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationCacheRequest) put_AutomationElementMode(mode AutomationElementMode) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_AutomationElementMode, uintptr(unsafe.Pointer(this)), uintptr(mode))
+func (this *IUIAutomationCacheRequest) Put_AutomationElementMode(mode AutomationElementMode) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_AutomationElementMode, uintptr(unsafe.Pointer(this)), uintptr(mode))
 	return HRESULT(ret)
 }
 
@@ -6017,7 +6017,7 @@ type IUIAutomationTreeWalkerInterface interface {
 	GetNextSiblingElementBuildCache(element *IUIAutomationElement, cacheRequest *IUIAutomationCacheRequest, next **IUIAutomationElement) HRESULT
 	GetPreviousSiblingElementBuildCache(element *IUIAutomationElement, cacheRequest *IUIAutomationCacheRequest, previous **IUIAutomationElement) HRESULT
 	NormalizeElementBuildCache(element *IUIAutomationElement, cacheRequest *IUIAutomationCacheRequest, normalized **IUIAutomationElement) HRESULT
-	get_Condition(condition **IUIAutomationCondition) HRESULT
+	Get_Condition(condition **IUIAutomationCondition) HRESULT
 }
 
 type IUIAutomationTreeWalkerVtbl struct {
@@ -6034,7 +6034,7 @@ type IUIAutomationTreeWalkerVtbl struct {
 	GetNextSiblingElementBuildCache uintptr
 	GetPreviousSiblingElementBuildCache uintptr
 	NormalizeElementBuildCache uintptr
-	get_Condition uintptr
+	Get_Condition uintptr
 }
 
 type IUIAutomationTreeWalker struct {
@@ -6105,8 +6105,8 @@ func (this *IUIAutomationTreeWalker) NormalizeElementBuildCache(element *IUIAuto
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTreeWalker) get_Condition(condition **IUIAutomationCondition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Condition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
+func (this *IUIAutomationTreeWalker) Get_Condition(condition **IUIAutomationCondition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Condition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
 	return HRESULT(ret)
 }
 
@@ -6333,15 +6333,15 @@ var IID_IUIAutomationDockPattern = syscall.GUID{0xfde5ef97, 0x1464, 0x48f6,
 type IUIAutomationDockPatternInterface interface {
 	IUnknownInterface
 	SetDockPosition(dockPos DockPosition) HRESULT
-	get_CurrentDockPosition(retVal *DockPosition) HRESULT
-	get_CachedDockPosition(retVal *DockPosition) HRESULT
+	Get_CurrentDockPosition(retVal *DockPosition) HRESULT
+	Get_CachedDockPosition(retVal *DockPosition) HRESULT
 }
 
 type IUIAutomationDockPatternVtbl struct {
 	IUnknownVtbl
 	SetDockPosition uintptr
-	get_CurrentDockPosition uintptr
-	get_CachedDockPosition uintptr
+	Get_CurrentDockPosition uintptr
+	Get_CachedDockPosition uintptr
 }
 
 type IUIAutomationDockPattern struct {
@@ -6357,13 +6357,13 @@ func (this *IUIAutomationDockPattern) SetDockPosition(dockPos DockPosition) HRES
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDockPattern) get_CurrentDockPosition(retVal *DockPosition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDockPosition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDockPattern) Get_CurrentDockPosition(retVal *DockPosition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDockPosition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDockPattern) get_CachedDockPosition(retVal *DockPosition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDockPosition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDockPattern) Get_CachedDockPosition(retVal *DockPosition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDockPosition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6375,16 +6375,16 @@ type IUIAutomationExpandCollapsePatternInterface interface {
 	IUnknownInterface
 	Expand() HRESULT
 	Collapse() HRESULT
-	get_CurrentExpandCollapseState(retVal *ExpandCollapseState) HRESULT
-	get_CachedExpandCollapseState(retVal *ExpandCollapseState) HRESULT
+	Get_CurrentExpandCollapseState(retVal *ExpandCollapseState) HRESULT
+	Get_CachedExpandCollapseState(retVal *ExpandCollapseState) HRESULT
 }
 
 type IUIAutomationExpandCollapsePatternVtbl struct {
 	IUnknownVtbl
 	Expand uintptr
 	Collapse uintptr
-	get_CurrentExpandCollapseState uintptr
-	get_CachedExpandCollapseState uintptr
+	Get_CurrentExpandCollapseState uintptr
+	Get_CachedExpandCollapseState uintptr
 }
 
 type IUIAutomationExpandCollapsePattern struct {
@@ -6405,13 +6405,13 @@ func (this *IUIAutomationExpandCollapsePattern) Collapse() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationExpandCollapsePattern) get_CurrentExpandCollapseState(retVal *ExpandCollapseState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentExpandCollapseState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationExpandCollapsePattern) Get_CurrentExpandCollapseState(retVal *ExpandCollapseState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentExpandCollapseState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationExpandCollapsePattern) get_CachedExpandCollapseState(retVal *ExpandCollapseState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedExpandCollapseState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationExpandCollapsePattern) Get_CachedExpandCollapseState(retVal *ExpandCollapseState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedExpandCollapseState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6422,19 +6422,19 @@ var IID_IUIAutomationGridPattern = syscall.GUID{0x414c3cdc, 0x856b, 0x4f5b,
 type IUIAutomationGridPatternInterface interface {
 	IUnknownInterface
 	GetItem(row int32, column int32, element **IUIAutomationElement) HRESULT
-	get_CurrentRowCount(retVal *int32) HRESULT
-	get_CurrentColumnCount(retVal *int32) HRESULT
-	get_CachedRowCount(retVal *int32) HRESULT
-	get_CachedColumnCount(retVal *int32) HRESULT
+	Get_CurrentRowCount(retVal *int32) HRESULT
+	Get_CurrentColumnCount(retVal *int32) HRESULT
+	Get_CachedRowCount(retVal *int32) HRESULT
+	Get_CachedColumnCount(retVal *int32) HRESULT
 }
 
 type IUIAutomationGridPatternVtbl struct {
 	IUnknownVtbl
 	GetItem uintptr
-	get_CurrentRowCount uintptr
-	get_CurrentColumnCount uintptr
-	get_CachedRowCount uintptr
-	get_CachedColumnCount uintptr
+	Get_CurrentRowCount uintptr
+	Get_CurrentColumnCount uintptr
+	Get_CachedRowCount uintptr
+	Get_CachedColumnCount uintptr
 }
 
 type IUIAutomationGridPattern struct {
@@ -6450,23 +6450,23 @@ func (this *IUIAutomationGridPattern) GetItem(row int32, column int32, element *
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridPattern) get_CurrentRowCount(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentRowCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridPattern) Get_CurrentRowCount(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentRowCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridPattern) get_CurrentColumnCount(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentColumnCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridPattern) Get_CurrentColumnCount(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentColumnCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridPattern) get_CachedRowCount(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedRowCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridPattern) Get_CachedRowCount(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedRowCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridPattern) get_CachedColumnCount(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedColumnCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridPattern) Get_CachedColumnCount(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedColumnCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6476,30 +6476,30 @@ var IID_IUIAutomationGridItemPattern = syscall.GUID{0x78f8ef57, 0x66c3, 0x4e09,
 
 type IUIAutomationGridItemPatternInterface interface {
 	IUnknownInterface
-	get_CurrentContainingGrid(retVal **IUIAutomationElement) HRESULT
-	get_CurrentRow(retVal *int32) HRESULT
-	get_CurrentColumn(retVal *int32) HRESULT
-	get_CurrentRowSpan(retVal *int32) HRESULT
-	get_CurrentColumnSpan(retVal *int32) HRESULT
-	get_CachedContainingGrid(retVal **IUIAutomationElement) HRESULT
-	get_CachedRow(retVal *int32) HRESULT
-	get_CachedColumn(retVal *int32) HRESULT
-	get_CachedRowSpan(retVal *int32) HRESULT
-	get_CachedColumnSpan(retVal *int32) HRESULT
+	Get_CurrentContainingGrid(retVal **IUIAutomationElement) HRESULT
+	Get_CurrentRow(retVal *int32) HRESULT
+	Get_CurrentColumn(retVal *int32) HRESULT
+	Get_CurrentRowSpan(retVal *int32) HRESULT
+	Get_CurrentColumnSpan(retVal *int32) HRESULT
+	Get_CachedContainingGrid(retVal **IUIAutomationElement) HRESULT
+	Get_CachedRow(retVal *int32) HRESULT
+	Get_CachedColumn(retVal *int32) HRESULT
+	Get_CachedRowSpan(retVal *int32) HRESULT
+	Get_CachedColumnSpan(retVal *int32) HRESULT
 }
 
 type IUIAutomationGridItemPatternVtbl struct {
 	IUnknownVtbl
-	get_CurrentContainingGrid uintptr
-	get_CurrentRow uintptr
-	get_CurrentColumn uintptr
-	get_CurrentRowSpan uintptr
-	get_CurrentColumnSpan uintptr
-	get_CachedContainingGrid uintptr
-	get_CachedRow uintptr
-	get_CachedColumn uintptr
-	get_CachedRowSpan uintptr
-	get_CachedColumnSpan uintptr
+	Get_CurrentContainingGrid uintptr
+	Get_CurrentRow uintptr
+	Get_CurrentColumn uintptr
+	Get_CurrentRowSpan uintptr
+	Get_CurrentColumnSpan uintptr
+	Get_CachedContainingGrid uintptr
+	Get_CachedRow uintptr
+	Get_CachedColumn uintptr
+	Get_CachedRowSpan uintptr
+	Get_CachedColumnSpan uintptr
 }
 
 type IUIAutomationGridItemPattern struct {
@@ -6510,53 +6510,53 @@ func (this *IUIAutomationGridItemPattern) Vtbl() *IUIAutomationGridItemPatternVt
 	return (*IUIAutomationGridItemPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationGridItemPattern) get_CurrentContainingGrid(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentContainingGrid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CurrentContainingGrid(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentContainingGrid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CurrentRow(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentRow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CurrentRow(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentRow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CurrentColumn(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentColumn, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CurrentColumn(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentColumn, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CurrentRowSpan(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentRowSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CurrentRowSpan(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentRowSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CurrentColumnSpan(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentColumnSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CurrentColumnSpan(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentColumnSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CachedContainingGrid(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedContainingGrid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CachedContainingGrid(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedContainingGrid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CachedRow(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedRow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CachedRow(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedRow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CachedColumn(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedColumn, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CachedColumn(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedColumn, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CachedRowSpan(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedRowSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CachedRowSpan(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedRowSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationGridItemPattern) get_CachedColumnSpan(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedColumnSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationGridItemPattern) Get_CachedColumnSpan(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedColumnSpan, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6568,9 +6568,9 @@ type IUIAutomationMultipleViewPatternInterface interface {
 	IUnknownInterface
 	GetViewName(view int32, name *BSTR) HRESULT
 	SetCurrentView(view int32) HRESULT
-	get_CurrentCurrentView(retVal *int32) HRESULT
+	Get_CurrentCurrentView(retVal *int32) HRESULT
 	GetCurrentSupportedViews(retVal **SAFEARRAY) HRESULT
-	get_CachedCurrentView(retVal *int32) HRESULT
+	Get_CachedCurrentView(retVal *int32) HRESULT
 	GetCachedSupportedViews(retVal **SAFEARRAY) HRESULT
 }
 
@@ -6578,9 +6578,9 @@ type IUIAutomationMultipleViewPatternVtbl struct {
 	IUnknownVtbl
 	GetViewName uintptr
 	SetCurrentView uintptr
-	get_CurrentCurrentView uintptr
+	Get_CurrentCurrentView uintptr
 	GetCurrentSupportedViews uintptr
-	get_CachedCurrentView uintptr
+	Get_CachedCurrentView uintptr
 	GetCachedSupportedViews uintptr
 }
 
@@ -6602,8 +6602,8 @@ func (this *IUIAutomationMultipleViewPattern) SetCurrentView(view int32) HRESULT
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationMultipleViewPattern) get_CurrentCurrentView(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCurrentView, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationMultipleViewPattern) Get_CurrentCurrentView(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCurrentView, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6612,8 +6612,8 @@ func (this *IUIAutomationMultipleViewPattern) GetCurrentSupportedViews(retVal **
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationMultipleViewPattern) get_CachedCurrentView(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCurrentView, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationMultipleViewPattern) Get_CachedCurrentView(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCurrentView, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6656,35 +6656,35 @@ var IID_IUIAutomationRangeValuePattern = syscall.GUID{0x59213f4f, 0x7346, 0x49e5
 type IUIAutomationRangeValuePatternInterface interface {
 	IUnknownInterface
 	SetValue(val float64) HRESULT
-	get_CurrentValue(retVal *float64) HRESULT
-	get_CurrentIsReadOnly(retVal *BOOL) HRESULT
-	get_CurrentMaximum(retVal *float64) HRESULT
-	get_CurrentMinimum(retVal *float64) HRESULT
-	get_CurrentLargeChange(retVal *float64) HRESULT
-	get_CurrentSmallChange(retVal *float64) HRESULT
-	get_CachedValue(retVal *float64) HRESULT
-	get_CachedIsReadOnly(retVal *BOOL) HRESULT
-	get_CachedMaximum(retVal *float64) HRESULT
-	get_CachedMinimum(retVal *float64) HRESULT
-	get_CachedLargeChange(retVal *float64) HRESULT
-	get_CachedSmallChange(retVal *float64) HRESULT
+	Get_CurrentValue(retVal *float64) HRESULT
+	Get_CurrentIsReadOnly(retVal *BOOL) HRESULT
+	Get_CurrentMaximum(retVal *float64) HRESULT
+	Get_CurrentMinimum(retVal *float64) HRESULT
+	Get_CurrentLargeChange(retVal *float64) HRESULT
+	Get_CurrentSmallChange(retVal *float64) HRESULT
+	Get_CachedValue(retVal *float64) HRESULT
+	Get_CachedIsReadOnly(retVal *BOOL) HRESULT
+	Get_CachedMaximum(retVal *float64) HRESULT
+	Get_CachedMinimum(retVal *float64) HRESULT
+	Get_CachedLargeChange(retVal *float64) HRESULT
+	Get_CachedSmallChange(retVal *float64) HRESULT
 }
 
 type IUIAutomationRangeValuePatternVtbl struct {
 	IUnknownVtbl
 	SetValue uintptr
-	get_CurrentValue uintptr
-	get_CurrentIsReadOnly uintptr
-	get_CurrentMaximum uintptr
-	get_CurrentMinimum uintptr
-	get_CurrentLargeChange uintptr
-	get_CurrentSmallChange uintptr
-	get_CachedValue uintptr
-	get_CachedIsReadOnly uintptr
-	get_CachedMaximum uintptr
-	get_CachedMinimum uintptr
-	get_CachedLargeChange uintptr
-	get_CachedSmallChange uintptr
+	Get_CurrentValue uintptr
+	Get_CurrentIsReadOnly uintptr
+	Get_CurrentMaximum uintptr
+	Get_CurrentMinimum uintptr
+	Get_CurrentLargeChange uintptr
+	Get_CurrentSmallChange uintptr
+	Get_CachedValue uintptr
+	Get_CachedIsReadOnly uintptr
+	Get_CachedMaximum uintptr
+	Get_CachedMinimum uintptr
+	Get_CachedLargeChange uintptr
+	Get_CachedSmallChange uintptr
 }
 
 type IUIAutomationRangeValuePattern struct {
@@ -6700,63 +6700,63 @@ func (this *IUIAutomationRangeValuePattern) SetValue(val float64) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CurrentValue(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CurrentValue(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CurrentIsReadOnly(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CurrentIsReadOnly(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CurrentMaximum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CurrentMaximum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CurrentMinimum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CurrentMinimum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CurrentLargeChange(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLargeChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CurrentLargeChange(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLargeChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CurrentSmallChange(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentSmallChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CurrentSmallChange(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentSmallChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CachedValue(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CachedValue(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CachedIsReadOnly(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CachedIsReadOnly(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CachedMaximum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CachedMaximum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CachedMinimum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CachedMinimum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CachedLargeChange(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLargeChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CachedLargeChange(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLargeChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationRangeValuePattern) get_CachedSmallChange(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedSmallChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationRangeValuePattern) Get_CachedSmallChange(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedSmallChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6768,36 +6768,36 @@ type IUIAutomationScrollPatternInterface interface {
 	IUnknownInterface
 	Scroll(horizontalAmount ScrollAmount, verticalAmount ScrollAmount) HRESULT
 	SetScrollPercent(horizontalPercent float64, verticalPercent float64) HRESULT
-	get_CurrentHorizontalScrollPercent(retVal *float64) HRESULT
-	get_CurrentVerticalScrollPercent(retVal *float64) HRESULT
-	get_CurrentHorizontalViewSize(retVal *float64) HRESULT
-	get_CurrentVerticalViewSize(retVal *float64) HRESULT
-	get_CurrentHorizontallyScrollable(retVal *BOOL) HRESULT
-	get_CurrentVerticallyScrollable(retVal *BOOL) HRESULT
-	get_CachedHorizontalScrollPercent(retVal *float64) HRESULT
-	get_CachedVerticalScrollPercent(retVal *float64) HRESULT
-	get_CachedHorizontalViewSize(retVal *float64) HRESULT
-	get_CachedVerticalViewSize(retVal *float64) HRESULT
-	get_CachedHorizontallyScrollable(retVal *BOOL) HRESULT
-	get_CachedVerticallyScrollable(retVal *BOOL) HRESULT
+	Get_CurrentHorizontalScrollPercent(retVal *float64) HRESULT
+	Get_CurrentVerticalScrollPercent(retVal *float64) HRESULT
+	Get_CurrentHorizontalViewSize(retVal *float64) HRESULT
+	Get_CurrentVerticalViewSize(retVal *float64) HRESULT
+	Get_CurrentHorizontallyScrollable(retVal *BOOL) HRESULT
+	Get_CurrentVerticallyScrollable(retVal *BOOL) HRESULT
+	Get_CachedHorizontalScrollPercent(retVal *float64) HRESULT
+	Get_CachedVerticalScrollPercent(retVal *float64) HRESULT
+	Get_CachedHorizontalViewSize(retVal *float64) HRESULT
+	Get_CachedVerticalViewSize(retVal *float64) HRESULT
+	Get_CachedHorizontallyScrollable(retVal *BOOL) HRESULT
+	Get_CachedVerticallyScrollable(retVal *BOOL) HRESULT
 }
 
 type IUIAutomationScrollPatternVtbl struct {
 	IUnknownVtbl
 	Scroll uintptr
 	SetScrollPercent uintptr
-	get_CurrentHorizontalScrollPercent uintptr
-	get_CurrentVerticalScrollPercent uintptr
-	get_CurrentHorizontalViewSize uintptr
-	get_CurrentVerticalViewSize uintptr
-	get_CurrentHorizontallyScrollable uintptr
-	get_CurrentVerticallyScrollable uintptr
-	get_CachedHorizontalScrollPercent uintptr
-	get_CachedVerticalScrollPercent uintptr
-	get_CachedHorizontalViewSize uintptr
-	get_CachedVerticalViewSize uintptr
-	get_CachedHorizontallyScrollable uintptr
-	get_CachedVerticallyScrollable uintptr
+	Get_CurrentHorizontalScrollPercent uintptr
+	Get_CurrentVerticalScrollPercent uintptr
+	Get_CurrentHorizontalViewSize uintptr
+	Get_CurrentVerticalViewSize uintptr
+	Get_CurrentHorizontallyScrollable uintptr
+	Get_CurrentVerticallyScrollable uintptr
+	Get_CachedHorizontalScrollPercent uintptr
+	Get_CachedVerticalScrollPercent uintptr
+	Get_CachedHorizontalViewSize uintptr
+	Get_CachedVerticalViewSize uintptr
+	Get_CachedHorizontallyScrollable uintptr
+	Get_CachedVerticallyScrollable uintptr
 }
 
 type IUIAutomationScrollPattern struct {
@@ -6818,63 +6818,63 @@ func (this *IUIAutomationScrollPattern) SetScrollPercent(horizontalPercent float
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CurrentHorizontalScrollPercent(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentHorizontalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CurrentHorizontalScrollPercent(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHorizontalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CurrentVerticalScrollPercent(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentVerticalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CurrentVerticalScrollPercent(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentVerticalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CurrentHorizontalViewSize(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentHorizontalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CurrentHorizontalViewSize(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHorizontalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CurrentVerticalViewSize(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentVerticalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CurrentVerticalViewSize(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentVerticalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CurrentHorizontallyScrollable(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentHorizontallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CurrentHorizontallyScrollable(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHorizontallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CurrentVerticallyScrollable(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentVerticallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CurrentVerticallyScrollable(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentVerticallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CachedHorizontalScrollPercent(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedHorizontalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CachedHorizontalScrollPercent(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHorizontalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CachedVerticalScrollPercent(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedVerticalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CachedVerticalScrollPercent(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedVerticalScrollPercent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CachedHorizontalViewSize(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedHorizontalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CachedHorizontalViewSize(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHorizontalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CachedVerticalViewSize(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedVerticalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CachedVerticalViewSize(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedVerticalViewSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CachedHorizontallyScrollable(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedHorizontallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CachedHorizontallyScrollable(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHorizontallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationScrollPattern) get_CachedVerticallyScrollable(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedVerticallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationScrollPattern) Get_CachedVerticallyScrollable(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedVerticallyScrollable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6912,21 +6912,21 @@ var IID_IUIAutomationSelectionPattern = syscall.GUID{0x5ed5202e, 0xb2ac, 0x47a6,
 type IUIAutomationSelectionPatternInterface interface {
 	IUnknownInterface
 	GetCurrentSelection(retVal **IUIAutomationElementArray) HRESULT
-	get_CurrentCanSelectMultiple(retVal *BOOL) HRESULT
-	get_CurrentIsSelectionRequired(retVal *BOOL) HRESULT
+	Get_CurrentCanSelectMultiple(retVal *BOOL) HRESULT
+	Get_CurrentIsSelectionRequired(retVal *BOOL) HRESULT
 	GetCachedSelection(retVal **IUIAutomationElementArray) HRESULT
-	get_CachedCanSelectMultiple(retVal *BOOL) HRESULT
-	get_CachedIsSelectionRequired(retVal *BOOL) HRESULT
+	Get_CachedCanSelectMultiple(retVal *BOOL) HRESULT
+	Get_CachedIsSelectionRequired(retVal *BOOL) HRESULT
 }
 
 type IUIAutomationSelectionPatternVtbl struct {
 	IUnknownVtbl
 	GetCurrentSelection uintptr
-	get_CurrentCanSelectMultiple uintptr
-	get_CurrentIsSelectionRequired uintptr
+	Get_CurrentCanSelectMultiple uintptr
+	Get_CurrentIsSelectionRequired uintptr
 	GetCachedSelection uintptr
-	get_CachedCanSelectMultiple uintptr
-	get_CachedIsSelectionRequired uintptr
+	Get_CachedCanSelectMultiple uintptr
+	Get_CachedIsSelectionRequired uintptr
 }
 
 type IUIAutomationSelectionPattern struct {
@@ -6942,13 +6942,13 @@ func (this *IUIAutomationSelectionPattern) GetCurrentSelection(retVal **IUIAutom
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern) get_CurrentCanSelectMultiple(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCanSelectMultiple, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern) Get_CurrentCanSelectMultiple(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCanSelectMultiple, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern) get_CurrentIsSelectionRequired(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsSelectionRequired, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern) Get_CurrentIsSelectionRequired(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsSelectionRequired, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6957,13 +6957,13 @@ func (this *IUIAutomationSelectionPattern) GetCachedSelection(retVal **IUIAutoma
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern) get_CachedCanSelectMultiple(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCanSelectMultiple, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern) Get_CachedCanSelectMultiple(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCanSelectMultiple, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern) get_CachedIsSelectionRequired(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsSelectionRequired, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern) Get_CachedIsSelectionRequired(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsSelectionRequired, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -6973,26 +6973,26 @@ var IID_IUIAutomationSelectionPattern2 = syscall.GUID{0x0532bfae, 0xc011, 0x4e32
 
 type IUIAutomationSelectionPattern2Interface interface {
 	IUIAutomationSelectionPatternInterface
-	get_CurrentFirstSelectedItem(retVal **IUIAutomationElement) HRESULT
-	get_CurrentLastSelectedItem(retVal **IUIAutomationElement) HRESULT
-	get_CurrentCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT
-	get_CurrentItemCount(retVal *int32) HRESULT
-	get_CachedFirstSelectedItem(retVal **IUIAutomationElement) HRESULT
-	get_CachedLastSelectedItem(retVal **IUIAutomationElement) HRESULT
-	get_CachedCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT
-	get_CachedItemCount(retVal *int32) HRESULT
+	Get_CurrentFirstSelectedItem(retVal **IUIAutomationElement) HRESULT
+	Get_CurrentLastSelectedItem(retVal **IUIAutomationElement) HRESULT
+	Get_CurrentCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT
+	Get_CurrentItemCount(retVal *int32) HRESULT
+	Get_CachedFirstSelectedItem(retVal **IUIAutomationElement) HRESULT
+	Get_CachedLastSelectedItem(retVal **IUIAutomationElement) HRESULT
+	Get_CachedCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT
+	Get_CachedItemCount(retVal *int32) HRESULT
 }
 
 type IUIAutomationSelectionPattern2Vtbl struct {
 	IUIAutomationSelectionPatternVtbl
-	get_CurrentFirstSelectedItem uintptr
-	get_CurrentLastSelectedItem uintptr
-	get_CurrentCurrentSelectedItem uintptr
-	get_CurrentItemCount uintptr
-	get_CachedFirstSelectedItem uintptr
-	get_CachedLastSelectedItem uintptr
-	get_CachedCurrentSelectedItem uintptr
-	get_CachedItemCount uintptr
+	Get_CurrentFirstSelectedItem uintptr
+	Get_CurrentLastSelectedItem uintptr
+	Get_CurrentCurrentSelectedItem uintptr
+	Get_CurrentItemCount uintptr
+	Get_CachedFirstSelectedItem uintptr
+	Get_CachedLastSelectedItem uintptr
+	Get_CachedCurrentSelectedItem uintptr
+	Get_CachedItemCount uintptr
 }
 
 type IUIAutomationSelectionPattern2 struct {
@@ -7003,43 +7003,43 @@ func (this *IUIAutomationSelectionPattern2) Vtbl() *IUIAutomationSelectionPatter
 	return (*IUIAutomationSelectionPattern2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CurrentFirstSelectedItem(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFirstSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CurrentFirstSelectedItem(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFirstSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CurrentLastSelectedItem(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLastSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CurrentLastSelectedItem(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLastSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CurrentCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCurrentSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CurrentCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCurrentSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CurrentItemCount(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentItemCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CurrentItemCount(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentItemCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CachedFirstSelectedItem(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFirstSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CachedFirstSelectedItem(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFirstSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CachedLastSelectedItem(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLastSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CachedLastSelectedItem(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLastSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CachedCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCurrentSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CachedCurrentSelectedItem(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCurrentSelectedItem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionPattern2) get_CachedItemCount(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedItemCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionPattern2) Get_CachedItemCount(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedItemCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7052,10 +7052,10 @@ type IUIAutomationSelectionItemPatternInterface interface {
 	Select() HRESULT
 	AddToSelection() HRESULT
 	RemoveFromSelection() HRESULT
-	get_CurrentIsSelected(retVal *BOOL) HRESULT
-	get_CurrentSelectionContainer(retVal **IUIAutomationElement) HRESULT
-	get_CachedIsSelected(retVal *BOOL) HRESULT
-	get_CachedSelectionContainer(retVal **IUIAutomationElement) HRESULT
+	Get_CurrentIsSelected(retVal *BOOL) HRESULT
+	Get_CurrentSelectionContainer(retVal **IUIAutomationElement) HRESULT
+	Get_CachedIsSelected(retVal *BOOL) HRESULT
+	Get_CachedSelectionContainer(retVal **IUIAutomationElement) HRESULT
 }
 
 type IUIAutomationSelectionItemPatternVtbl struct {
@@ -7063,10 +7063,10 @@ type IUIAutomationSelectionItemPatternVtbl struct {
 	Select uintptr
 	AddToSelection uintptr
 	RemoveFromSelection uintptr
-	get_CurrentIsSelected uintptr
-	get_CurrentSelectionContainer uintptr
-	get_CachedIsSelected uintptr
-	get_CachedSelectionContainer uintptr
+	Get_CurrentIsSelected uintptr
+	Get_CurrentSelectionContainer uintptr
+	Get_CachedIsSelected uintptr
+	Get_CachedSelectionContainer uintptr
 }
 
 type IUIAutomationSelectionItemPattern struct {
@@ -7092,23 +7092,23 @@ func (this *IUIAutomationSelectionItemPattern) RemoveFromSelection() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionItemPattern) get_CurrentIsSelected(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsSelected, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionItemPattern) Get_CurrentIsSelected(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsSelected, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionItemPattern) get_CurrentSelectionContainer(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentSelectionContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionItemPattern) Get_CurrentSelectionContainer(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentSelectionContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionItemPattern) get_CachedIsSelected(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsSelected, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionItemPattern) Get_CachedIsSelected(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsSelected, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSelectionItemPattern) get_CachedSelectionContainer(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedSelectionContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSelectionItemPattern) Get_CachedSelectionContainer(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedSelectionContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7154,20 +7154,20 @@ type IUIAutomationTablePatternInterface interface {
 	IUnknownInterface
 	GetCurrentRowHeaders(retVal **IUIAutomationElementArray) HRESULT
 	GetCurrentColumnHeaders(retVal **IUIAutomationElementArray) HRESULT
-	get_CurrentRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT
+	Get_CurrentRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT
 	GetCachedRowHeaders(retVal **IUIAutomationElementArray) HRESULT
 	GetCachedColumnHeaders(retVal **IUIAutomationElementArray) HRESULT
-	get_CachedRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT
+	Get_CachedRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT
 }
 
 type IUIAutomationTablePatternVtbl struct {
 	IUnknownVtbl
 	GetCurrentRowHeaders uintptr
 	GetCurrentColumnHeaders uintptr
-	get_CurrentRowOrColumnMajor uintptr
+	Get_CurrentRowOrColumnMajor uintptr
 	GetCachedRowHeaders uintptr
 	GetCachedColumnHeaders uintptr
-	get_CachedRowOrColumnMajor uintptr
+	Get_CachedRowOrColumnMajor uintptr
 }
 
 type IUIAutomationTablePattern struct {
@@ -7188,8 +7188,8 @@ func (this *IUIAutomationTablePattern) GetCurrentColumnHeaders(retVal **IUIAutom
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTablePattern) get_CurrentRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentRowOrColumnMajor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTablePattern) Get_CurrentRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentRowOrColumnMajor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7203,8 +7203,8 @@ func (this *IUIAutomationTablePattern) GetCachedColumnHeaders(retVal **IUIAutoma
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTablePattern) get_CachedRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedRowOrColumnMajor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTablePattern) Get_CachedRowOrColumnMajor(retVal *RowOrColumnMajor) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedRowOrColumnMajor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7263,15 +7263,15 @@ var IID_IUIAutomationTogglePattern = syscall.GUID{0x94cf8058, 0x9b8d, 0x4ab9,
 type IUIAutomationTogglePatternInterface interface {
 	IUnknownInterface
 	Toggle() HRESULT
-	get_CurrentToggleState(retVal *ToggleState) HRESULT
-	get_CachedToggleState(retVal *ToggleState) HRESULT
+	Get_CurrentToggleState(retVal *ToggleState) HRESULT
+	Get_CachedToggleState(retVal *ToggleState) HRESULT
 }
 
 type IUIAutomationTogglePatternVtbl struct {
 	IUnknownVtbl
 	Toggle uintptr
-	get_CurrentToggleState uintptr
-	get_CachedToggleState uintptr
+	Get_CurrentToggleState uintptr
+	Get_CachedToggleState uintptr
 }
 
 type IUIAutomationTogglePattern struct {
@@ -7287,13 +7287,13 @@ func (this *IUIAutomationTogglePattern) Toggle() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTogglePattern) get_CurrentToggleState(retVal *ToggleState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentToggleState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTogglePattern) Get_CurrentToggleState(retVal *ToggleState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentToggleState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTogglePattern) get_CachedToggleState(retVal *ToggleState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedToggleState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTogglePattern) Get_CachedToggleState(retVal *ToggleState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedToggleState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7306,12 +7306,12 @@ type IUIAutomationTransformPatternInterface interface {
 	Move(x float64, y float64) HRESULT
 	Resize(width float64, height float64) HRESULT
 	Rotate(degrees float64) HRESULT
-	get_CurrentCanMove(retVal *BOOL) HRESULT
-	get_CurrentCanResize(retVal *BOOL) HRESULT
-	get_CurrentCanRotate(retVal *BOOL) HRESULT
-	get_CachedCanMove(retVal *BOOL) HRESULT
-	get_CachedCanResize(retVal *BOOL) HRESULT
-	get_CachedCanRotate(retVal *BOOL) HRESULT
+	Get_CurrentCanMove(retVal *BOOL) HRESULT
+	Get_CurrentCanResize(retVal *BOOL) HRESULT
+	Get_CurrentCanRotate(retVal *BOOL) HRESULT
+	Get_CachedCanMove(retVal *BOOL) HRESULT
+	Get_CachedCanResize(retVal *BOOL) HRESULT
+	Get_CachedCanRotate(retVal *BOOL) HRESULT
 }
 
 type IUIAutomationTransformPatternVtbl struct {
@@ -7319,12 +7319,12 @@ type IUIAutomationTransformPatternVtbl struct {
 	Move uintptr
 	Resize uintptr
 	Rotate uintptr
-	get_CurrentCanMove uintptr
-	get_CurrentCanResize uintptr
-	get_CurrentCanRotate uintptr
-	get_CachedCanMove uintptr
-	get_CachedCanResize uintptr
-	get_CachedCanRotate uintptr
+	Get_CurrentCanMove uintptr
+	Get_CurrentCanResize uintptr
+	Get_CurrentCanRotate uintptr
+	Get_CachedCanMove uintptr
+	Get_CachedCanResize uintptr
+	Get_CachedCanRotate uintptr
 }
 
 type IUIAutomationTransformPattern struct {
@@ -7350,33 +7350,33 @@ func (this *IUIAutomationTransformPattern) Rotate(degrees float64) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern) get_CurrentCanMove(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCanMove, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern) Get_CurrentCanMove(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCanMove, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern) get_CurrentCanResize(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCanResize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern) Get_CurrentCanResize(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCanResize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern) get_CurrentCanRotate(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCanRotate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern) Get_CurrentCanRotate(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCanRotate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern) get_CachedCanMove(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCanMove, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern) Get_CachedCanMove(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCanMove, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern) get_CachedCanResize(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCanResize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern) Get_CachedCanResize(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCanResize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern) get_CachedCanRotate(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCanRotate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern) Get_CachedCanRotate(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCanRotate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7387,19 +7387,19 @@ var IID_IUIAutomationValuePattern = syscall.GUID{0xa94cd8b1, 0x0844, 0x4cd6,
 type IUIAutomationValuePatternInterface interface {
 	IUnknownInterface
 	SetValue(val BSTR) HRESULT
-	get_CurrentValue(retVal *BSTR) HRESULT
-	get_CurrentIsReadOnly(retVal *BOOL) HRESULT
-	get_CachedValue(retVal *BSTR) HRESULT
-	get_CachedIsReadOnly(retVal *BOOL) HRESULT
+	Get_CurrentValue(retVal *BSTR) HRESULT
+	Get_CurrentIsReadOnly(retVal *BOOL) HRESULT
+	Get_CachedValue(retVal *BSTR) HRESULT
+	Get_CachedIsReadOnly(retVal *BOOL) HRESULT
 }
 
 type IUIAutomationValuePatternVtbl struct {
 	IUnknownVtbl
 	SetValue uintptr
-	get_CurrentValue uintptr
-	get_CurrentIsReadOnly uintptr
-	get_CachedValue uintptr
-	get_CachedIsReadOnly uintptr
+	Get_CurrentValue uintptr
+	Get_CurrentIsReadOnly uintptr
+	Get_CachedValue uintptr
+	Get_CachedIsReadOnly uintptr
 }
 
 type IUIAutomationValuePattern struct {
@@ -7415,23 +7415,23 @@ func (this *IUIAutomationValuePattern) SetValue(val BSTR) HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationValuePattern) get_CurrentValue(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationValuePattern) Get_CurrentValue(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationValuePattern) get_CurrentIsReadOnly(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationValuePattern) Get_CurrentIsReadOnly(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationValuePattern) get_CachedValue(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationValuePattern) Get_CachedValue(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationValuePattern) get_CachedIsReadOnly(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationValuePattern) Get_CachedIsReadOnly(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsReadOnly, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7444,18 +7444,18 @@ type IUIAutomationWindowPatternInterface interface {
 	Close() HRESULT
 	WaitForInputIdle(milliseconds int32, success *BOOL) HRESULT
 	SetWindowVisualState(state WindowVisualState) HRESULT
-	get_CurrentCanMaximize(retVal *BOOL) HRESULT
-	get_CurrentCanMinimize(retVal *BOOL) HRESULT
-	get_CurrentIsModal(retVal *BOOL) HRESULT
-	get_CurrentIsTopmost(retVal *BOOL) HRESULT
-	get_CurrentWindowVisualState(retVal *WindowVisualState) HRESULT
-	get_CurrentWindowInteractionState(retVal *WindowInteractionState) HRESULT
-	get_CachedCanMaximize(retVal *BOOL) HRESULT
-	get_CachedCanMinimize(retVal *BOOL) HRESULT
-	get_CachedIsModal(retVal *BOOL) HRESULT
-	get_CachedIsTopmost(retVal *BOOL) HRESULT
-	get_CachedWindowVisualState(retVal *WindowVisualState) HRESULT
-	get_CachedWindowInteractionState(retVal *WindowInteractionState) HRESULT
+	Get_CurrentCanMaximize(retVal *BOOL) HRESULT
+	Get_CurrentCanMinimize(retVal *BOOL) HRESULT
+	Get_CurrentIsModal(retVal *BOOL) HRESULT
+	Get_CurrentIsTopmost(retVal *BOOL) HRESULT
+	Get_CurrentWindowVisualState(retVal *WindowVisualState) HRESULT
+	Get_CurrentWindowInteractionState(retVal *WindowInteractionState) HRESULT
+	Get_CachedCanMaximize(retVal *BOOL) HRESULT
+	Get_CachedCanMinimize(retVal *BOOL) HRESULT
+	Get_CachedIsModal(retVal *BOOL) HRESULT
+	Get_CachedIsTopmost(retVal *BOOL) HRESULT
+	Get_CachedWindowVisualState(retVal *WindowVisualState) HRESULT
+	Get_CachedWindowInteractionState(retVal *WindowInteractionState) HRESULT
 }
 
 type IUIAutomationWindowPatternVtbl struct {
@@ -7463,18 +7463,18 @@ type IUIAutomationWindowPatternVtbl struct {
 	Close uintptr
 	WaitForInputIdle uintptr
 	SetWindowVisualState uintptr
-	get_CurrentCanMaximize uintptr
-	get_CurrentCanMinimize uintptr
-	get_CurrentIsModal uintptr
-	get_CurrentIsTopmost uintptr
-	get_CurrentWindowVisualState uintptr
-	get_CurrentWindowInteractionState uintptr
-	get_CachedCanMaximize uintptr
-	get_CachedCanMinimize uintptr
-	get_CachedIsModal uintptr
-	get_CachedIsTopmost uintptr
-	get_CachedWindowVisualState uintptr
-	get_CachedWindowInteractionState uintptr
+	Get_CurrentCanMaximize uintptr
+	Get_CurrentCanMinimize uintptr
+	Get_CurrentIsModal uintptr
+	Get_CurrentIsTopmost uintptr
+	Get_CurrentWindowVisualState uintptr
+	Get_CurrentWindowInteractionState uintptr
+	Get_CachedCanMaximize uintptr
+	Get_CachedCanMinimize uintptr
+	Get_CachedIsModal uintptr
+	Get_CachedIsTopmost uintptr
+	Get_CachedWindowVisualState uintptr
+	Get_CachedWindowInteractionState uintptr
 }
 
 type IUIAutomationWindowPattern struct {
@@ -7500,63 +7500,63 @@ func (this *IUIAutomationWindowPattern) SetWindowVisualState(state WindowVisualS
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CurrentCanMaximize(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCanMaximize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CurrentCanMaximize(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCanMaximize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CurrentCanMinimize(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCanMinimize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CurrentCanMinimize(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCanMinimize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CurrentIsModal(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsModal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CurrentIsModal(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsModal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CurrentIsTopmost(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsTopmost, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CurrentIsTopmost(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsTopmost, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CurrentWindowVisualState(retVal *WindowVisualState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentWindowVisualState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CurrentWindowVisualState(retVal *WindowVisualState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentWindowVisualState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CurrentWindowInteractionState(retVal *WindowInteractionState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentWindowInteractionState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CurrentWindowInteractionState(retVal *WindowInteractionState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentWindowInteractionState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CachedCanMaximize(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCanMaximize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CachedCanMaximize(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCanMaximize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CachedCanMinimize(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCanMinimize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CachedCanMinimize(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCanMinimize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CachedIsModal(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsModal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CachedIsModal(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsModal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CachedIsTopmost(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsTopmost, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CachedIsTopmost(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsTopmost, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CachedWindowVisualState(retVal *WindowVisualState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedWindowVisualState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CachedWindowVisualState(retVal *WindowVisualState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedWindowVisualState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationWindowPattern) get_CachedWindowInteractionState(retVal *WindowInteractionState) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedWindowInteractionState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationWindowPattern) Get_CachedWindowInteractionState(retVal *WindowInteractionState) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedWindowInteractionState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -7780,13 +7780,13 @@ var IID_IUIAutomationTextRangeArray = syscall.GUID{0xce4ae76a, 0xe717, 0x4c98,
 
 type IUIAutomationTextRangeArrayInterface interface {
 	IUnknownInterface
-	get_Length(length *int32) HRESULT
+	Get_Length(length *int32) HRESULT
 	GetElement(index int32, element **IUIAutomationTextRange) HRESULT
 }
 
 type IUIAutomationTextRangeArrayVtbl struct {
 	IUnknownVtbl
-	get_Length uintptr
+	Get_Length uintptr
 	GetElement uintptr
 }
 
@@ -7798,8 +7798,8 @@ func (this *IUIAutomationTextRangeArray) Vtbl() *IUIAutomationTextRangeArrayVtbl
 	return (*IUIAutomationTextRangeArrayVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationTextRangeArray) get_Length(length *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Length, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(length)))
+func (this *IUIAutomationTextRangeArray) Get_Length(length *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Length, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(length)))
 	return HRESULT(ret)
 }
 
@@ -7818,8 +7818,8 @@ type IUIAutomationTextPatternInterface interface {
 	RangeFromChild(child *IUIAutomationElement, range_ **IUIAutomationTextRange) HRESULT
 	GetSelection(ranges **IUIAutomationTextRangeArray) HRESULT
 	GetVisibleRanges(ranges **IUIAutomationTextRangeArray) HRESULT
-	get_DocumentRange(range_ **IUIAutomationTextRange) HRESULT
-	get_SupportedTextSelection(supportedTextSelection *SupportedTextSelection) HRESULT
+	Get_DocumentRange(range_ **IUIAutomationTextRange) HRESULT
+	Get_SupportedTextSelection(supportedTextSelection *SupportedTextSelection) HRESULT
 }
 
 type IUIAutomationTextPatternVtbl struct {
@@ -7828,8 +7828,8 @@ type IUIAutomationTextPatternVtbl struct {
 	RangeFromChild uintptr
 	GetSelection uintptr
 	GetVisibleRanges uintptr
-	get_DocumentRange uintptr
-	get_SupportedTextSelection uintptr
+	Get_DocumentRange uintptr
+	Get_SupportedTextSelection uintptr
 }
 
 type IUIAutomationTextPattern struct {
@@ -7860,13 +7860,13 @@ func (this *IUIAutomationTextPattern) GetVisibleRanges(ranges **IUIAutomationTex
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTextPattern) get_DocumentRange(range_ **IUIAutomationTextRange) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_DocumentRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(range_)))
+func (this *IUIAutomationTextPattern) Get_DocumentRange(range_ **IUIAutomationTextRange) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_DocumentRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(range_)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTextPattern) get_SupportedTextSelection(supportedTextSelection *SupportedTextSelection) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_SupportedTextSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(supportedTextSelection)))
+func (this *IUIAutomationTextPattern) Get_SupportedTextSelection(supportedTextSelection *SupportedTextSelection) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SupportedTextSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(supportedTextSelection)))
 	return HRESULT(ret)
 }
 
@@ -8001,26 +8001,26 @@ type IUIAutomationLegacyIAccessiblePatternInterface interface {
 	Select(flagsSelect int32) HRESULT
 	DoDefaultAction() HRESULT
 	SetValue(szValue PWSTR) HRESULT
-	get_CurrentChildId(pRetVal *int32) HRESULT
-	get_CurrentName(pszName *BSTR) HRESULT
-	get_CurrentValue(pszValue *BSTR) HRESULT
-	get_CurrentDescription(pszDescription *BSTR) HRESULT
-	get_CurrentRole(pdwRole *uint32) HRESULT
-	get_CurrentState(pdwState *uint32) HRESULT
-	get_CurrentHelp(pszHelp *BSTR) HRESULT
-	get_CurrentKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT
+	Get_CurrentChildId(pRetVal *int32) HRESULT
+	Get_CurrentName(pszName *BSTR) HRESULT
+	Get_CurrentValue(pszValue *BSTR) HRESULT
+	Get_CurrentDescription(pszDescription *BSTR) HRESULT
+	Get_CurrentRole(pdwRole *uint32) HRESULT
+	Get_CurrentState(pdwState *uint32) HRESULT
+	Get_CurrentHelp(pszHelp *BSTR) HRESULT
+	Get_CurrentKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT
 	GetCurrentSelection(pvarSelectedChildren **IUIAutomationElementArray) HRESULT
-	get_CurrentDefaultAction(pszDefaultAction *BSTR) HRESULT
-	get_CachedChildId(pRetVal *int32) HRESULT
-	get_CachedName(pszName *BSTR) HRESULT
-	get_CachedValue(pszValue *BSTR) HRESULT
-	get_CachedDescription(pszDescription *BSTR) HRESULT
-	get_CachedRole(pdwRole *uint32) HRESULT
-	get_CachedState(pdwState *uint32) HRESULT
-	get_CachedHelp(pszHelp *BSTR) HRESULT
-	get_CachedKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT
+	Get_CurrentDefaultAction(pszDefaultAction *BSTR) HRESULT
+	Get_CachedChildId(pRetVal *int32) HRESULT
+	Get_CachedName(pszName *BSTR) HRESULT
+	Get_CachedValue(pszValue *BSTR) HRESULT
+	Get_CachedDescription(pszDescription *BSTR) HRESULT
+	Get_CachedRole(pdwRole *uint32) HRESULT
+	Get_CachedState(pdwState *uint32) HRESULT
+	Get_CachedHelp(pszHelp *BSTR) HRESULT
+	Get_CachedKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT
 	GetCachedSelection(pvarSelectedChildren **IUIAutomationElementArray) HRESULT
-	get_CachedDefaultAction(pszDefaultAction *BSTR) HRESULT
+	Get_CachedDefaultAction(pszDefaultAction *BSTR) HRESULT
 	GetIAccessible(ppAccessible **IAccessible) HRESULT
 }
 
@@ -8029,26 +8029,26 @@ type IUIAutomationLegacyIAccessiblePatternVtbl struct {
 	Select uintptr
 	DoDefaultAction uintptr
 	SetValue uintptr
-	get_CurrentChildId uintptr
-	get_CurrentName uintptr
-	get_CurrentValue uintptr
-	get_CurrentDescription uintptr
-	get_CurrentRole uintptr
-	get_CurrentState uintptr
-	get_CurrentHelp uintptr
-	get_CurrentKeyboardShortcut uintptr
+	Get_CurrentChildId uintptr
+	Get_CurrentName uintptr
+	Get_CurrentValue uintptr
+	Get_CurrentDescription uintptr
+	Get_CurrentRole uintptr
+	Get_CurrentState uintptr
+	Get_CurrentHelp uintptr
+	Get_CurrentKeyboardShortcut uintptr
 	GetCurrentSelection uintptr
-	get_CurrentDefaultAction uintptr
-	get_CachedChildId uintptr
-	get_CachedName uintptr
-	get_CachedValue uintptr
-	get_CachedDescription uintptr
-	get_CachedRole uintptr
-	get_CachedState uintptr
-	get_CachedHelp uintptr
-	get_CachedKeyboardShortcut uintptr
+	Get_CurrentDefaultAction uintptr
+	Get_CachedChildId uintptr
+	Get_CachedName uintptr
+	Get_CachedValue uintptr
+	Get_CachedDescription uintptr
+	Get_CachedRole uintptr
+	Get_CachedState uintptr
+	Get_CachedHelp uintptr
+	Get_CachedKeyboardShortcut uintptr
 	GetCachedSelection uintptr
-	get_CachedDefaultAction uintptr
+	Get_CachedDefaultAction uintptr
 	GetIAccessible uintptr
 }
 
@@ -8075,43 +8075,43 @@ func (this *IUIAutomationLegacyIAccessiblePattern) SetValue(szValue PWSTR) HRESU
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentChildId(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentChildId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentChildId(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentChildId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentName(pszName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszName)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentName(pszName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszName)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentValue(pszValue *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszValue)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentValue(pszValue *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszValue)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentDescription(pszDescription *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDescription)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentDescription(pszDescription *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDescription)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentRole(pdwRole *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwRole)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentRole(pdwRole *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwRole)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentState(pdwState *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwState)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentState(pdwState *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwState)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentHelp(pszHelp *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentHelp, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelp)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentHelp(pszHelp *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHelp, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelp)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentKeyboardShortcut, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentKeyboardShortcut, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
 	return HRESULT(ret)
 }
 
@@ -8120,48 +8120,48 @@ func (this *IUIAutomationLegacyIAccessiblePattern) GetCurrentSelection(pvarSelec
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CurrentDefaultAction(pszDefaultAction *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDefaultAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDefaultAction)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CurrentDefaultAction(pszDefaultAction *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDefaultAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDefaultAction)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedChildId(pRetVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedChildId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedChildId(pRetVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedChildId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedName(pszName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszName)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedName(pszName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszName)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedValue(pszValue *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszValue)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedValue(pszValue *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszValue)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedDescription(pszDescription *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDescription)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedDescription(pszDescription *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDescription)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedRole(pdwRole *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwRole)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedRole(pdwRole *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedRole, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwRole)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedState(pdwState *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwState)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedState(pdwState *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwState)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedHelp(pszHelp *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedHelp, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelp)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedHelp(pszHelp *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHelp, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszHelp)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedKeyboardShortcut, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedKeyboardShortcut(pszKeyboardShortcut *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedKeyboardShortcut, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszKeyboardShortcut)))
 	return HRESULT(ret)
 }
 
@@ -8170,8 +8170,8 @@ func (this *IUIAutomationLegacyIAccessiblePattern) GetCachedSelection(pvarSelect
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationLegacyIAccessiblePattern) get_CachedDefaultAction(pszDefaultAction *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDefaultAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDefaultAction)))
+func (this *IUIAutomationLegacyIAccessiblePattern) Get_CachedDefaultAction(pszDefaultAction *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDefaultAction, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszDefaultAction)))
 	return HRESULT(ret)
 }
 
@@ -8240,30 +8240,30 @@ var IID_IUIAutomationAnnotationPattern = syscall.GUID{0x9a175b21, 0x339e, 0x41b1
 
 type IUIAutomationAnnotationPatternInterface interface {
 	IUnknownInterface
-	get_CurrentAnnotationTypeId(retVal *int32) HRESULT
-	get_CurrentAnnotationTypeName(retVal *BSTR) HRESULT
-	get_CurrentAuthor(retVal *BSTR) HRESULT
-	get_CurrentDateTime(retVal *BSTR) HRESULT
-	get_CurrentTarget(retVal **IUIAutomationElement) HRESULT
-	get_CachedAnnotationTypeId(retVal *int32) HRESULT
-	get_CachedAnnotationTypeName(retVal *BSTR) HRESULT
-	get_CachedAuthor(retVal *BSTR) HRESULT
-	get_CachedDateTime(retVal *BSTR) HRESULT
-	get_CachedTarget(retVal **IUIAutomationElement) HRESULT
+	Get_CurrentAnnotationTypeId(retVal *int32) HRESULT
+	Get_CurrentAnnotationTypeName(retVal *BSTR) HRESULT
+	Get_CurrentAuthor(retVal *BSTR) HRESULT
+	Get_CurrentDateTime(retVal *BSTR) HRESULT
+	Get_CurrentTarget(retVal **IUIAutomationElement) HRESULT
+	Get_CachedAnnotationTypeId(retVal *int32) HRESULT
+	Get_CachedAnnotationTypeName(retVal *BSTR) HRESULT
+	Get_CachedAuthor(retVal *BSTR) HRESULT
+	Get_CachedDateTime(retVal *BSTR) HRESULT
+	Get_CachedTarget(retVal **IUIAutomationElement) HRESULT
 }
 
 type IUIAutomationAnnotationPatternVtbl struct {
 	IUnknownVtbl
-	get_CurrentAnnotationTypeId uintptr
-	get_CurrentAnnotationTypeName uintptr
-	get_CurrentAuthor uintptr
-	get_CurrentDateTime uintptr
-	get_CurrentTarget uintptr
-	get_CachedAnnotationTypeId uintptr
-	get_CachedAnnotationTypeName uintptr
-	get_CachedAuthor uintptr
-	get_CachedDateTime uintptr
-	get_CachedTarget uintptr
+	Get_CurrentAnnotationTypeId uintptr
+	Get_CurrentAnnotationTypeName uintptr
+	Get_CurrentAuthor uintptr
+	Get_CurrentDateTime uintptr
+	Get_CurrentTarget uintptr
+	Get_CachedAnnotationTypeId uintptr
+	Get_CachedAnnotationTypeName uintptr
+	Get_CachedAuthor uintptr
+	Get_CachedDateTime uintptr
+	Get_CachedTarget uintptr
 }
 
 type IUIAutomationAnnotationPattern struct {
@@ -8274,53 +8274,53 @@ func (this *IUIAutomationAnnotationPattern) Vtbl() *IUIAutomationAnnotationPatte
 	return (*IUIAutomationAnnotationPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CurrentAnnotationTypeId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CurrentAnnotationTypeId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CurrentAnnotationTypeName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAnnotationTypeName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CurrentAnnotationTypeName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAnnotationTypeName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CurrentAuthor(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAuthor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CurrentAuthor(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAuthor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CurrentDateTime(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDateTime, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CurrentDateTime(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDateTime, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CurrentTarget(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CurrentTarget(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CachedAnnotationTypeId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CachedAnnotationTypeId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CachedAnnotationTypeName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAnnotationTypeName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CachedAnnotationTypeName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAnnotationTypeName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CachedAuthor(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAuthor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CachedAuthor(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAuthor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CachedDateTime(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDateTime, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CachedDateTime(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDateTime, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) get_CachedTarget(retVal **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationAnnotationPattern) Get_CachedTarget(retVal **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8330,41 +8330,41 @@ var IID_IUIAutomationStylesPattern = syscall.GUID{0x85b5f0a2, 0xbd79, 0x484a,
 
 type IUIAutomationStylesPatternInterface interface {
 	IUnknownInterface
-	get_CurrentStyleId(retVal *int32) HRESULT
-	get_CurrentStyleName(retVal *BSTR) HRESULT
-	get_CurrentFillColor(retVal *int32) HRESULT
-	get_CurrentFillPatternStyle(retVal *BSTR) HRESULT
-	get_CurrentShape(retVal *BSTR) HRESULT
-	get_CurrentFillPatternColor(retVal *int32) HRESULT
-	get_CurrentExtendedProperties(retVal *BSTR) HRESULT
+	Get_CurrentStyleId(retVal *int32) HRESULT
+	Get_CurrentStyleName(retVal *BSTR) HRESULT
+	Get_CurrentFillColor(retVal *int32) HRESULT
+	Get_CurrentFillPatternStyle(retVal *BSTR) HRESULT
+	Get_CurrentShape(retVal *BSTR) HRESULT
+	Get_CurrentFillPatternColor(retVal *int32) HRESULT
+	Get_CurrentExtendedProperties(retVal *BSTR) HRESULT
 	GetCurrentExtendedPropertiesAsArray(propertyArray **ExtendedProperty, propertyCount *int32) HRESULT
-	get_CachedStyleId(retVal *int32) HRESULT
-	get_CachedStyleName(retVal *BSTR) HRESULT
-	get_CachedFillColor(retVal *int32) HRESULT
-	get_CachedFillPatternStyle(retVal *BSTR) HRESULT
-	get_CachedShape(retVal *BSTR) HRESULT
-	get_CachedFillPatternColor(retVal *int32) HRESULT
-	get_CachedExtendedProperties(retVal *BSTR) HRESULT
+	Get_CachedStyleId(retVal *int32) HRESULT
+	Get_CachedStyleName(retVal *BSTR) HRESULT
+	Get_CachedFillColor(retVal *int32) HRESULT
+	Get_CachedFillPatternStyle(retVal *BSTR) HRESULT
+	Get_CachedShape(retVal *BSTR) HRESULT
+	Get_CachedFillPatternColor(retVal *int32) HRESULT
+	Get_CachedExtendedProperties(retVal *BSTR) HRESULT
 	GetCachedExtendedPropertiesAsArray(propertyArray **ExtendedProperty, propertyCount *int32) HRESULT
 }
 
 type IUIAutomationStylesPatternVtbl struct {
 	IUnknownVtbl
-	get_CurrentStyleId uintptr
-	get_CurrentStyleName uintptr
-	get_CurrentFillColor uintptr
-	get_CurrentFillPatternStyle uintptr
-	get_CurrentShape uintptr
-	get_CurrentFillPatternColor uintptr
-	get_CurrentExtendedProperties uintptr
+	Get_CurrentStyleId uintptr
+	Get_CurrentStyleName uintptr
+	Get_CurrentFillColor uintptr
+	Get_CurrentFillPatternStyle uintptr
+	Get_CurrentShape uintptr
+	Get_CurrentFillPatternColor uintptr
+	Get_CurrentExtendedProperties uintptr
 	GetCurrentExtendedPropertiesAsArray uintptr
-	get_CachedStyleId uintptr
-	get_CachedStyleName uintptr
-	get_CachedFillColor uintptr
-	get_CachedFillPatternStyle uintptr
-	get_CachedShape uintptr
-	get_CachedFillPatternColor uintptr
-	get_CachedExtendedProperties uintptr
+	Get_CachedStyleId uintptr
+	Get_CachedStyleName uintptr
+	Get_CachedFillColor uintptr
+	Get_CachedFillPatternStyle uintptr
+	Get_CachedShape uintptr
+	Get_CachedFillPatternColor uintptr
+	Get_CachedExtendedProperties uintptr
 	GetCachedExtendedPropertiesAsArray uintptr
 }
 
@@ -8376,38 +8376,38 @@ func (this *IUIAutomationStylesPattern) Vtbl() *IUIAutomationStylesPatternVtbl {
 	return (*IUIAutomationStylesPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationStylesPattern) get_CurrentStyleId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentStyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CurrentStyleId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentStyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CurrentStyleName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentStyleName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CurrentStyleName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentStyleName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CurrentFillColor(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFillColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CurrentFillColor(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFillColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CurrentFillPatternStyle(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFillPatternStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CurrentFillPatternStyle(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFillPatternStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CurrentShape(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentShape, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CurrentShape(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentShape, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CurrentFillPatternColor(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFillPatternColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CurrentFillPatternColor(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFillPatternColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CurrentExtendedProperties(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentExtendedProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CurrentExtendedProperties(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentExtendedProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8416,38 +8416,38 @@ func (this *IUIAutomationStylesPattern) GetCurrentExtendedPropertiesAsArray(prop
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CachedStyleId(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedStyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CachedStyleId(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedStyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CachedStyleName(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedStyleName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CachedStyleName(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedStyleName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CachedFillColor(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFillColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CachedFillColor(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFillColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CachedFillPatternStyle(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFillPatternStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CachedFillPatternStyle(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFillPatternStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CachedShape(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedShape, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CachedShape(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedShape, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CachedFillPatternColor(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFillPatternColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CachedFillPatternColor(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFillPatternColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) get_CachedExtendedProperties(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedExtendedProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationStylesPattern) Get_CachedExtendedProperties(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedExtendedProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8489,20 +8489,20 @@ var IID_IUIAutomationSpreadsheetItemPattern = syscall.GUID{0x7d4fb86c, 0x8d34, 0
 
 type IUIAutomationSpreadsheetItemPatternInterface interface {
 	IUnknownInterface
-	get_CurrentFormula(retVal *BSTR) HRESULT
+	Get_CurrentFormula(retVal *BSTR) HRESULT
 	GetCurrentAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT
 	GetCurrentAnnotationTypes(retVal **SAFEARRAY) HRESULT
-	get_CachedFormula(retVal *BSTR) HRESULT
+	Get_CachedFormula(retVal *BSTR) HRESULT
 	GetCachedAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT
 	GetCachedAnnotationTypes(retVal **SAFEARRAY) HRESULT
 }
 
 type IUIAutomationSpreadsheetItemPatternVtbl struct {
 	IUnknownVtbl
-	get_CurrentFormula uintptr
+	Get_CurrentFormula uintptr
 	GetCurrentAnnotationObjects uintptr
 	GetCurrentAnnotationTypes uintptr
-	get_CachedFormula uintptr
+	Get_CachedFormula uintptr
 	GetCachedAnnotationObjects uintptr
 	GetCachedAnnotationTypes uintptr
 }
@@ -8515,8 +8515,8 @@ func (this *IUIAutomationSpreadsheetItemPattern) Vtbl() *IUIAutomationSpreadshee
 	return (*IUIAutomationSpreadsheetItemPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationSpreadsheetItemPattern) get_CurrentFormula(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFormula, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSpreadsheetItemPattern) Get_CurrentFormula(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFormula, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8530,8 +8530,8 @@ func (this *IUIAutomationSpreadsheetItemPattern) GetCurrentAnnotationTypes(retVa
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationSpreadsheetItemPattern) get_CachedFormula(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFormula, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationSpreadsheetItemPattern) Get_CachedFormula(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFormula, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8553,28 +8553,28 @@ type IUIAutomationTransformPattern2Interface interface {
 	IUIAutomationTransformPatternInterface
 	Zoom(zoomValue float64) HRESULT
 	ZoomByUnit(zoomUnit ZoomUnit) HRESULT
-	get_CurrentCanZoom(retVal *BOOL) HRESULT
-	get_CachedCanZoom(retVal *BOOL) HRESULT
-	get_CurrentZoomLevel(retVal *float64) HRESULT
-	get_CachedZoomLevel(retVal *float64) HRESULT
-	get_CurrentZoomMinimum(retVal *float64) HRESULT
-	get_CachedZoomMinimum(retVal *float64) HRESULT
-	get_CurrentZoomMaximum(retVal *float64) HRESULT
-	get_CachedZoomMaximum(retVal *float64) HRESULT
+	Get_CurrentCanZoom(retVal *BOOL) HRESULT
+	Get_CachedCanZoom(retVal *BOOL) HRESULT
+	Get_CurrentZoomLevel(retVal *float64) HRESULT
+	Get_CachedZoomLevel(retVal *float64) HRESULT
+	Get_CurrentZoomMinimum(retVal *float64) HRESULT
+	Get_CachedZoomMinimum(retVal *float64) HRESULT
+	Get_CurrentZoomMaximum(retVal *float64) HRESULT
+	Get_CachedZoomMaximum(retVal *float64) HRESULT
 }
 
 type IUIAutomationTransformPattern2Vtbl struct {
 	IUIAutomationTransformPatternVtbl
 	Zoom uintptr
 	ZoomByUnit uintptr
-	get_CurrentCanZoom uintptr
-	get_CachedCanZoom uintptr
-	get_CurrentZoomLevel uintptr
-	get_CachedZoomLevel uintptr
-	get_CurrentZoomMinimum uintptr
-	get_CachedZoomMinimum uintptr
-	get_CurrentZoomMaximum uintptr
-	get_CachedZoomMaximum uintptr
+	Get_CurrentCanZoom uintptr
+	Get_CachedCanZoom uintptr
+	Get_CurrentZoomLevel uintptr
+	Get_CachedZoomLevel uintptr
+	Get_CurrentZoomMinimum uintptr
+	Get_CachedZoomMinimum uintptr
+	Get_CurrentZoomMaximum uintptr
+	Get_CachedZoomMaximum uintptr
 }
 
 type IUIAutomationTransformPattern2 struct {
@@ -8595,43 +8595,43 @@ func (this *IUIAutomationTransformPattern2) ZoomByUnit(zoomUnit ZoomUnit) HRESUL
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CurrentCanZoom(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentCanZoom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CurrentCanZoom(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentCanZoom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CachedCanZoom(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedCanZoom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CachedCanZoom(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedCanZoom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CurrentZoomLevel(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentZoomLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CurrentZoomLevel(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentZoomLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CachedZoomLevel(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedZoomLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CachedZoomLevel(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedZoomLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CurrentZoomMinimum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentZoomMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CurrentZoomMinimum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentZoomMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CachedZoomMinimum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedZoomMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CachedZoomMinimum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedZoomMinimum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CurrentZoomMaximum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentZoomMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CurrentZoomMaximum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentZoomMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTransformPattern2) get_CachedZoomMaximum(retVal *float64) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedZoomMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationTransformPattern2) Get_CachedZoomMaximum(retVal *float64) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedZoomMaximum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8641,14 +8641,14 @@ var IID_IUIAutomationTextChildPattern = syscall.GUID{0x6552b038, 0xae05, 0x40c8,
 
 type IUIAutomationTextChildPatternInterface interface {
 	IUnknownInterface
-	get_TextContainer(container **IUIAutomationElement) HRESULT
-	get_TextRange(range_ **IUIAutomationTextRange) HRESULT
+	Get_TextContainer(container **IUIAutomationElement) HRESULT
+	Get_TextRange(range_ **IUIAutomationTextRange) HRESULT
 }
 
 type IUIAutomationTextChildPatternVtbl struct {
 	IUnknownVtbl
-	get_TextContainer uintptr
-	get_TextRange uintptr
+	Get_TextContainer uintptr
+	Get_TextRange uintptr
 }
 
 type IUIAutomationTextChildPattern struct {
@@ -8659,13 +8659,13 @@ func (this *IUIAutomationTextChildPattern) Vtbl() *IUIAutomationTextChildPattern
 	return (*IUIAutomationTextChildPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationTextChildPattern) get_TextContainer(container **IUIAutomationElement) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TextContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(container)))
+func (this *IUIAutomationTextChildPattern) Get_TextContainer(container **IUIAutomationElement) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TextContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(container)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTextChildPattern) get_TextRange(range_ **IUIAutomationTextRange) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TextRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(range_)))
+func (this *IUIAutomationTextChildPattern) Get_TextRange(range_ **IUIAutomationTextRange) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TextRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(range_)))
 	return HRESULT(ret)
 }
 
@@ -8675,24 +8675,24 @@ var IID_IUIAutomationDragPattern = syscall.GUID{0x1dc7b570, 0x1f54, 0x4bad,
 
 type IUIAutomationDragPatternInterface interface {
 	IUnknownInterface
-	get_CurrentIsGrabbed(retVal *BOOL) HRESULT
-	get_CachedIsGrabbed(retVal *BOOL) HRESULT
-	get_CurrentDropEffect(retVal *BSTR) HRESULT
-	get_CachedDropEffect(retVal *BSTR) HRESULT
-	get_CurrentDropEffects(retVal **SAFEARRAY) HRESULT
-	get_CachedDropEffects(retVal **SAFEARRAY) HRESULT
+	Get_CurrentIsGrabbed(retVal *BOOL) HRESULT
+	Get_CachedIsGrabbed(retVal *BOOL) HRESULT
+	Get_CurrentDropEffect(retVal *BSTR) HRESULT
+	Get_CachedDropEffect(retVal *BSTR) HRESULT
+	Get_CurrentDropEffects(retVal **SAFEARRAY) HRESULT
+	Get_CachedDropEffects(retVal **SAFEARRAY) HRESULT
 	GetCurrentGrabbedItems(retVal **IUIAutomationElementArray) HRESULT
 	GetCachedGrabbedItems(retVal **IUIAutomationElementArray) HRESULT
 }
 
 type IUIAutomationDragPatternVtbl struct {
 	IUnknownVtbl
-	get_CurrentIsGrabbed uintptr
-	get_CachedIsGrabbed uintptr
-	get_CurrentDropEffect uintptr
-	get_CachedDropEffect uintptr
-	get_CurrentDropEffects uintptr
-	get_CachedDropEffects uintptr
+	Get_CurrentIsGrabbed uintptr
+	Get_CachedIsGrabbed uintptr
+	Get_CurrentDropEffect uintptr
+	Get_CachedDropEffect uintptr
+	Get_CurrentDropEffects uintptr
+	Get_CachedDropEffects uintptr
 	GetCurrentGrabbedItems uintptr
 	GetCachedGrabbedItems uintptr
 }
@@ -8705,33 +8705,33 @@ func (this *IUIAutomationDragPattern) Vtbl() *IUIAutomationDragPatternVtbl {
 	return (*IUIAutomationDragPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationDragPattern) get_CurrentIsGrabbed(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsGrabbed, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDragPattern) Get_CurrentIsGrabbed(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsGrabbed, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDragPattern) get_CachedIsGrabbed(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsGrabbed, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDragPattern) Get_CachedIsGrabbed(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsGrabbed, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDragPattern) get_CurrentDropEffect(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDropEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDragPattern) Get_CurrentDropEffect(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDropEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDragPattern) get_CachedDropEffect(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDropEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDragPattern) Get_CachedDropEffect(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDropEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDragPattern) get_CurrentDropEffects(retVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDropEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDragPattern) Get_CurrentDropEffects(retVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDropEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDragPattern) get_CachedDropEffects(retVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDropEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDragPattern) Get_CachedDropEffects(retVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDropEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8751,18 +8751,18 @@ var IID_IUIAutomationDropTargetPattern = syscall.GUID{0x69a095f7, 0xeee4, 0x430e
 
 type IUIAutomationDropTargetPatternInterface interface {
 	IUnknownInterface
-	get_CurrentDropTargetEffect(retVal *BSTR) HRESULT
-	get_CachedDropTargetEffect(retVal *BSTR) HRESULT
-	get_CurrentDropTargetEffects(retVal **SAFEARRAY) HRESULT
-	get_CachedDropTargetEffects(retVal **SAFEARRAY) HRESULT
+	Get_CurrentDropTargetEffect(retVal *BSTR) HRESULT
+	Get_CachedDropTargetEffect(retVal *BSTR) HRESULT
+	Get_CurrentDropTargetEffects(retVal **SAFEARRAY) HRESULT
+	Get_CachedDropTargetEffects(retVal **SAFEARRAY) HRESULT
 }
 
 type IUIAutomationDropTargetPatternVtbl struct {
 	IUnknownVtbl
-	get_CurrentDropTargetEffect uintptr
-	get_CachedDropTargetEffect uintptr
-	get_CurrentDropTargetEffects uintptr
-	get_CachedDropTargetEffects uintptr
+	Get_CurrentDropTargetEffect uintptr
+	Get_CachedDropTargetEffect uintptr
+	Get_CurrentDropTargetEffects uintptr
+	Get_CachedDropTargetEffects uintptr
 }
 
 type IUIAutomationDropTargetPattern struct {
@@ -8773,23 +8773,23 @@ func (this *IUIAutomationDropTargetPattern) Vtbl() *IUIAutomationDropTargetPatte
 	return (*IUIAutomationDropTargetPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationDropTargetPattern) get_CurrentDropTargetEffect(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDropTargetEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDropTargetPattern) Get_CurrentDropTargetEffect(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDropTargetEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDropTargetPattern) get_CachedDropTargetEffect(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDropTargetEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDropTargetPattern) Get_CachedDropTargetEffect(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDropTargetEffect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDropTargetPattern) get_CurrentDropTargetEffects(retVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentDropTargetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDropTargetPattern) Get_CurrentDropTargetEffects(retVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentDropTargetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationDropTargetPattern) get_CachedDropTargetEffects(retVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedDropTargetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationDropTargetPattern) Get_CachedDropTargetEffects(retVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedDropTargetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8799,22 +8799,22 @@ var IID_IUIAutomationElement2 = syscall.GUID{0x6749c683, 0xf70d, 0x4487,
 
 type IUIAutomationElement2Interface interface {
 	IUIAutomationElementInterface
-	get_CurrentOptimizeForVisualContent(retVal *BOOL) HRESULT
-	get_CachedOptimizeForVisualContent(retVal *BOOL) HRESULT
-	get_CurrentLiveSetting(retVal *LiveSetting) HRESULT
-	get_CachedLiveSetting(retVal *LiveSetting) HRESULT
-	get_CurrentFlowsFrom(retVal **IUIAutomationElementArray) HRESULT
-	get_CachedFlowsFrom(retVal **IUIAutomationElementArray) HRESULT
+	Get_CurrentOptimizeForVisualContent(retVal *BOOL) HRESULT
+	Get_CachedOptimizeForVisualContent(retVal *BOOL) HRESULT
+	Get_CurrentLiveSetting(retVal *LiveSetting) HRESULT
+	Get_CachedLiveSetting(retVal *LiveSetting) HRESULT
+	Get_CurrentFlowsFrom(retVal **IUIAutomationElementArray) HRESULT
+	Get_CachedFlowsFrom(retVal **IUIAutomationElementArray) HRESULT
 }
 
 type IUIAutomationElement2Vtbl struct {
 	IUIAutomationElementVtbl
-	get_CurrentOptimizeForVisualContent uintptr
-	get_CachedOptimizeForVisualContent uintptr
-	get_CurrentLiveSetting uintptr
-	get_CachedLiveSetting uintptr
-	get_CurrentFlowsFrom uintptr
-	get_CachedFlowsFrom uintptr
+	Get_CurrentOptimizeForVisualContent uintptr
+	Get_CachedOptimizeForVisualContent uintptr
+	Get_CurrentLiveSetting uintptr
+	Get_CachedLiveSetting uintptr
+	Get_CurrentFlowsFrom uintptr
+	Get_CachedFlowsFrom uintptr
 }
 
 type IUIAutomationElement2 struct {
@@ -8825,33 +8825,33 @@ func (this *IUIAutomationElement2) Vtbl() *IUIAutomationElement2Vtbl {
 	return (*IUIAutomationElement2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement2) get_CurrentOptimizeForVisualContent(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentOptimizeForVisualContent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement2) Get_CurrentOptimizeForVisualContent(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentOptimizeForVisualContent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement2) get_CachedOptimizeForVisualContent(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedOptimizeForVisualContent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement2) Get_CachedOptimizeForVisualContent(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedOptimizeForVisualContent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement2) get_CurrentLiveSetting(retVal *LiveSetting) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLiveSetting, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement2) Get_CurrentLiveSetting(retVal *LiveSetting) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLiveSetting, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement2) get_CachedLiveSetting(retVal *LiveSetting) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLiveSetting, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement2) Get_CachedLiveSetting(retVal *LiveSetting) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLiveSetting, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement2) get_CurrentFlowsFrom(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFlowsFrom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement2) Get_CurrentFlowsFrom(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFlowsFrom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement2) get_CachedFlowsFrom(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFlowsFrom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement2) Get_CachedFlowsFrom(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFlowsFrom, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8862,15 +8862,15 @@ var IID_IUIAutomationElement3 = syscall.GUID{0x8471df34, 0xaee0, 0x4a01,
 type IUIAutomationElement3Interface interface {
 	IUIAutomationElement2Interface
 	ShowContextMenu() HRESULT
-	get_CurrentIsPeripheral(retVal *BOOL) HRESULT
-	get_CachedIsPeripheral(retVal *BOOL) HRESULT
+	Get_CurrentIsPeripheral(retVal *BOOL) HRESULT
+	Get_CachedIsPeripheral(retVal *BOOL) HRESULT
 }
 
 type IUIAutomationElement3Vtbl struct {
 	IUIAutomationElement2Vtbl
 	ShowContextMenu uintptr
-	get_CurrentIsPeripheral uintptr
-	get_CachedIsPeripheral uintptr
+	Get_CurrentIsPeripheral uintptr
+	Get_CachedIsPeripheral uintptr
 }
 
 type IUIAutomationElement3 struct {
@@ -8886,13 +8886,13 @@ func (this *IUIAutomationElement3) ShowContextMenu() HRESULT{
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement3) get_CurrentIsPeripheral(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsPeripheral, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement3) Get_CurrentIsPeripheral(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsPeripheral, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement3) get_CachedIsPeripheral(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsPeripheral, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement3) Get_CachedIsPeripheral(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsPeripheral, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8902,30 +8902,30 @@ var IID_IUIAutomationElement4 = syscall.GUID{0x3b6e233c, 0x52fb, 0x4063,
 
 type IUIAutomationElement4Interface interface {
 	IUIAutomationElement3Interface
-	get_CurrentPositionInSet(retVal *int32) HRESULT
-	get_CurrentSizeOfSet(retVal *int32) HRESULT
-	get_CurrentLevel(retVal *int32) HRESULT
-	get_CurrentAnnotationTypes(retVal **SAFEARRAY) HRESULT
-	get_CurrentAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT
-	get_CachedPositionInSet(retVal *int32) HRESULT
-	get_CachedSizeOfSet(retVal *int32) HRESULT
-	get_CachedLevel(retVal *int32) HRESULT
-	get_CachedAnnotationTypes(retVal **SAFEARRAY) HRESULT
-	get_CachedAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT
+	Get_CurrentPositionInSet(retVal *int32) HRESULT
+	Get_CurrentSizeOfSet(retVal *int32) HRESULT
+	Get_CurrentLevel(retVal *int32) HRESULT
+	Get_CurrentAnnotationTypes(retVal **SAFEARRAY) HRESULT
+	Get_CurrentAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT
+	Get_CachedPositionInSet(retVal *int32) HRESULT
+	Get_CachedSizeOfSet(retVal *int32) HRESULT
+	Get_CachedLevel(retVal *int32) HRESULT
+	Get_CachedAnnotationTypes(retVal **SAFEARRAY) HRESULT
+	Get_CachedAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT
 }
 
 type IUIAutomationElement4Vtbl struct {
 	IUIAutomationElement3Vtbl
-	get_CurrentPositionInSet uintptr
-	get_CurrentSizeOfSet uintptr
-	get_CurrentLevel uintptr
-	get_CurrentAnnotationTypes uintptr
-	get_CurrentAnnotationObjects uintptr
-	get_CachedPositionInSet uintptr
-	get_CachedSizeOfSet uintptr
-	get_CachedLevel uintptr
-	get_CachedAnnotationTypes uintptr
-	get_CachedAnnotationObjects uintptr
+	Get_CurrentPositionInSet uintptr
+	Get_CurrentSizeOfSet uintptr
+	Get_CurrentLevel uintptr
+	Get_CurrentAnnotationTypes uintptr
+	Get_CurrentAnnotationObjects uintptr
+	Get_CachedPositionInSet uintptr
+	Get_CachedSizeOfSet uintptr
+	Get_CachedLevel uintptr
+	Get_CachedAnnotationTypes uintptr
+	Get_CachedAnnotationObjects uintptr
 }
 
 type IUIAutomationElement4 struct {
@@ -8936,53 +8936,53 @@ func (this *IUIAutomationElement4) Vtbl() *IUIAutomationElement4Vtbl {
 	return (*IUIAutomationElement4Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement4) get_CurrentPositionInSet(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentPositionInSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CurrentPositionInSet(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentPositionInSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CurrentSizeOfSet(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentSizeOfSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CurrentSizeOfSet(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentSizeOfSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CurrentLevel(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CurrentLevel(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CurrentAnnotationTypes(retVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAnnotationTypes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CurrentAnnotationTypes(retVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAnnotationTypes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CurrentAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentAnnotationObjects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CurrentAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAnnotationObjects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CachedPositionInSet(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedPositionInSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CachedPositionInSet(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedPositionInSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CachedSizeOfSet(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedSizeOfSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CachedSizeOfSet(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedSizeOfSet, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CachedLevel(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CachedLevel(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CachedAnnotationTypes(retVal **SAFEARRAY) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAnnotationTypes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CachedAnnotationTypes(retVal **SAFEARRAY) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAnnotationTypes, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement4) get_CachedAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedAnnotationObjects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement4) Get_CachedAnnotationObjects(retVal **IUIAutomationElementArray) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAnnotationObjects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -8992,18 +8992,18 @@ var IID_IUIAutomationElement5 = syscall.GUID{0x98141c1d, 0x0d0e, 0x4175,
 
 type IUIAutomationElement5Interface interface {
 	IUIAutomationElement4Interface
-	get_CurrentLandmarkType(retVal *int32) HRESULT
-	get_CurrentLocalizedLandmarkType(retVal *BSTR) HRESULT
-	get_CachedLandmarkType(retVal *int32) HRESULT
-	get_CachedLocalizedLandmarkType(retVal *BSTR) HRESULT
+	Get_CurrentLandmarkType(retVal *int32) HRESULT
+	Get_CurrentLocalizedLandmarkType(retVal *BSTR) HRESULT
+	Get_CachedLandmarkType(retVal *int32) HRESULT
+	Get_CachedLocalizedLandmarkType(retVal *BSTR) HRESULT
 }
 
 type IUIAutomationElement5Vtbl struct {
 	IUIAutomationElement4Vtbl
-	get_CurrentLandmarkType uintptr
-	get_CurrentLocalizedLandmarkType uintptr
-	get_CachedLandmarkType uintptr
-	get_CachedLocalizedLandmarkType uintptr
+	Get_CurrentLandmarkType uintptr
+	Get_CurrentLocalizedLandmarkType uintptr
+	Get_CachedLandmarkType uintptr
+	Get_CachedLocalizedLandmarkType uintptr
 }
 
 type IUIAutomationElement5 struct {
@@ -9014,23 +9014,23 @@ func (this *IUIAutomationElement5) Vtbl() *IUIAutomationElement5Vtbl {
 	return (*IUIAutomationElement5Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement5) get_CurrentLandmarkType(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement5) Get_CurrentLandmarkType(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement5) get_CurrentLocalizedLandmarkType(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentLocalizedLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement5) Get_CurrentLocalizedLandmarkType(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLocalizedLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement5) get_CachedLandmarkType(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement5) Get_CachedLandmarkType(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement5) get_CachedLocalizedLandmarkType(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedLocalizedLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement5) Get_CachedLocalizedLandmarkType(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLocalizedLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -9040,14 +9040,14 @@ var IID_IUIAutomationElement6 = syscall.GUID{0x4780d450, 0x8bca, 0x4977,
 
 type IUIAutomationElement6Interface interface {
 	IUIAutomationElement5Interface
-	get_CurrentFullDescription(retVal *BSTR) HRESULT
-	get_CachedFullDescription(retVal *BSTR) HRESULT
+	Get_CurrentFullDescription(retVal *BSTR) HRESULT
+	Get_CachedFullDescription(retVal *BSTR) HRESULT
 }
 
 type IUIAutomationElement6Vtbl struct {
 	IUIAutomationElement5Vtbl
-	get_CurrentFullDescription uintptr
-	get_CachedFullDescription uintptr
+	Get_CurrentFullDescription uintptr
+	Get_CachedFullDescription uintptr
 }
 
 type IUIAutomationElement6 struct {
@@ -9058,13 +9058,13 @@ func (this *IUIAutomationElement6) Vtbl() *IUIAutomationElement6Vtbl {
 	return (*IUIAutomationElement6Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement6) get_CurrentFullDescription(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentFullDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement6) Get_CurrentFullDescription(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentFullDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement6) get_CachedFullDescription(retVal *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedFullDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement6) Get_CachedFullDescription(retVal *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedFullDescription, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -9129,14 +9129,14 @@ var IID_IUIAutomationElement8 = syscall.GUID{0x8c60217d, 0x5411, 0x4cde,
 
 type IUIAutomationElement8Interface interface {
 	IUIAutomationElement7Interface
-	get_CurrentHeadingLevel(retVal *int32) HRESULT
-	get_CachedHeadingLevel(retVal *int32) HRESULT
+	Get_CurrentHeadingLevel(retVal *int32) HRESULT
+	Get_CachedHeadingLevel(retVal *int32) HRESULT
 }
 
 type IUIAutomationElement8Vtbl struct {
 	IUIAutomationElement7Vtbl
-	get_CurrentHeadingLevel uintptr
-	get_CachedHeadingLevel uintptr
+	Get_CurrentHeadingLevel uintptr
+	Get_CachedHeadingLevel uintptr
 }
 
 type IUIAutomationElement8 struct {
@@ -9147,13 +9147,13 @@ func (this *IUIAutomationElement8) Vtbl() *IUIAutomationElement8Vtbl {
 	return (*IUIAutomationElement8Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement8) get_CurrentHeadingLevel(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentHeadingLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement8) Get_CurrentHeadingLevel(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHeadingLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement8) get_CachedHeadingLevel(retVal *int32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedHeadingLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement8) Get_CachedHeadingLevel(retVal *int32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHeadingLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -9163,14 +9163,14 @@ var IID_IUIAutomationElement9 = syscall.GUID{0x39325fac, 0x039d, 0x440e,
 
 type IUIAutomationElement9Interface interface {
 	IUIAutomationElement8Interface
-	get_CurrentIsDialog(retVal *BOOL) HRESULT
-	get_CachedIsDialog(retVal *BOOL) HRESULT
+	Get_CurrentIsDialog(retVal *BOOL) HRESULT
+	Get_CachedIsDialog(retVal *BOOL) HRESULT
 }
 
 type IUIAutomationElement9Vtbl struct {
 	IUIAutomationElement8Vtbl
-	get_CurrentIsDialog uintptr
-	get_CachedIsDialog uintptr
+	Get_CurrentIsDialog uintptr
+	Get_CachedIsDialog uintptr
 }
 
 type IUIAutomationElement9 struct {
@@ -9181,13 +9181,13 @@ func (this *IUIAutomationElement9) Vtbl() *IUIAutomationElement9Vtbl {
 	return (*IUIAutomationElement9Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement9) get_CurrentIsDialog(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CurrentIsDialog, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement9) Get_CurrentIsDialog(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentIsDialog, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement9) get_CachedIsDialog(retVal *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CachedIsDialog, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
+func (this *IUIAutomationElement9) Get_CachedIsDialog(retVal *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedIsDialog, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
@@ -9198,13 +9198,13 @@ var IID_IUIAutomationProxyFactory = syscall.GUID{0x85b94ecd, 0x849d, 0x42b6,
 type IUIAutomationProxyFactoryInterface interface {
 	IUnknownInterface
 	CreateProvider(hwnd HWND, idObject int32, idChild int32, provider **IRawElementProviderSimple) HRESULT
-	get_ProxyFactoryId(factoryId *BSTR) HRESULT
+	Get_ProxyFactoryId(factoryId *BSTR) HRESULT
 }
 
 type IUIAutomationProxyFactoryVtbl struct {
 	IUnknownVtbl
 	CreateProvider uintptr
-	get_ProxyFactoryId uintptr
+	Get_ProxyFactoryId uintptr
 }
 
 type IUIAutomationProxyFactory struct {
@@ -9220,8 +9220,8 @@ func (this *IUIAutomationProxyFactory) CreateProvider(hwnd HWND, idObject int32,
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactory) get_ProxyFactoryId(factoryId *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ProxyFactoryId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(factoryId)))
+func (this *IUIAutomationProxyFactory) Get_ProxyFactoryId(factoryId *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ProxyFactoryId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(factoryId)))
 	return HRESULT(ret)
 }
 
@@ -9231,34 +9231,34 @@ var IID_IUIAutomationProxyFactoryEntry = syscall.GUID{0xd50e472e, 0xb64b, 0x490c
 
 type IUIAutomationProxyFactoryEntryInterface interface {
 	IUnknownInterface
-	get_ProxyFactory(factory **IUIAutomationProxyFactory) HRESULT
-	get_ClassName(className *BSTR) HRESULT
-	get_ImageName(imageName *BSTR) HRESULT
-	get_AllowSubstringMatch(allowSubstringMatch *BOOL) HRESULT
-	get_CanCheckBaseClass(canCheckBaseClass *BOOL) HRESULT
-	get_NeedsAdviseEvents(adviseEvents *BOOL) HRESULT
-	put_ClassName(className PWSTR) HRESULT
-	put_ImageName(imageName PWSTR) HRESULT
-	put_AllowSubstringMatch(allowSubstringMatch BOOL) HRESULT
-	put_CanCheckBaseClass(canCheckBaseClass BOOL) HRESULT
-	put_NeedsAdviseEvents(adviseEvents BOOL) HRESULT
+	Get_ProxyFactory(factory **IUIAutomationProxyFactory) HRESULT
+	Get_ClassName(className *BSTR) HRESULT
+	Get_ImageName(imageName *BSTR) HRESULT
+	Get_AllowSubstringMatch(allowSubstringMatch *BOOL) HRESULT
+	Get_CanCheckBaseClass(canCheckBaseClass *BOOL) HRESULT
+	Get_NeedsAdviseEvents(adviseEvents *BOOL) HRESULT
+	Put_ClassName(className PWSTR) HRESULT
+	Put_ImageName(imageName PWSTR) HRESULT
+	Put_AllowSubstringMatch(allowSubstringMatch BOOL) HRESULT
+	Put_CanCheckBaseClass(canCheckBaseClass BOOL) HRESULT
+	Put_NeedsAdviseEvents(adviseEvents BOOL) HRESULT
 	SetWinEventsForAutomationEvent(eventId int32, propertyId int32, winEvents *SAFEARRAY) HRESULT
 	GetWinEventsForAutomationEvent(eventId int32, propertyId int32, winEvents **SAFEARRAY) HRESULT
 }
 
 type IUIAutomationProxyFactoryEntryVtbl struct {
 	IUnknownVtbl
-	get_ProxyFactory uintptr
-	get_ClassName uintptr
-	get_ImageName uintptr
-	get_AllowSubstringMatch uintptr
-	get_CanCheckBaseClass uintptr
-	get_NeedsAdviseEvents uintptr
-	put_ClassName uintptr
-	put_ImageName uintptr
-	put_AllowSubstringMatch uintptr
-	put_CanCheckBaseClass uintptr
-	put_NeedsAdviseEvents uintptr
+	Get_ProxyFactory uintptr
+	Get_ClassName uintptr
+	Get_ImageName uintptr
+	Get_AllowSubstringMatch uintptr
+	Get_CanCheckBaseClass uintptr
+	Get_NeedsAdviseEvents uintptr
+	Put_ClassName uintptr
+	Put_ImageName uintptr
+	Put_AllowSubstringMatch uintptr
+	Put_CanCheckBaseClass uintptr
+	Put_NeedsAdviseEvents uintptr
 	SetWinEventsForAutomationEvent uintptr
 	GetWinEventsForAutomationEvent uintptr
 }
@@ -9271,58 +9271,58 @@ func (this *IUIAutomationProxyFactoryEntry) Vtbl() *IUIAutomationProxyFactoryEnt
 	return (*IUIAutomationProxyFactoryEntryVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationProxyFactoryEntry) get_ProxyFactory(factory **IUIAutomationProxyFactory) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ProxyFactory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(factory)))
+func (this *IUIAutomationProxyFactoryEntry) Get_ProxyFactory(factory **IUIAutomationProxyFactory) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ProxyFactory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(factory)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) get_ClassName(className *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(className)))
+func (this *IUIAutomationProxyFactoryEntry) Get_ClassName(className *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(className)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) get_ImageName(imageName *BSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ImageName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(imageName)))
+func (this *IUIAutomationProxyFactoryEntry) Get_ImageName(imageName *BSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ImageName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(imageName)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) get_AllowSubstringMatch(allowSubstringMatch *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_AllowSubstringMatch, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(allowSubstringMatch)))
+func (this *IUIAutomationProxyFactoryEntry) Get_AllowSubstringMatch(allowSubstringMatch *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AllowSubstringMatch, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(allowSubstringMatch)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) get_CanCheckBaseClass(canCheckBaseClass *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CanCheckBaseClass, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(canCheckBaseClass)))
+func (this *IUIAutomationProxyFactoryEntry) Get_CanCheckBaseClass(canCheckBaseClass *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CanCheckBaseClass, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(canCheckBaseClass)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) get_NeedsAdviseEvents(adviseEvents *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_NeedsAdviseEvents, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(adviseEvents)))
+func (this *IUIAutomationProxyFactoryEntry) Get_NeedsAdviseEvents(adviseEvents *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_NeedsAdviseEvents, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(adviseEvents)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) put_ClassName(className PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(className)))
+func (this *IUIAutomationProxyFactoryEntry) Put_ClassName(className PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ClassName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(className)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) put_ImageName(imageName PWSTR) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ImageName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(imageName)))
+func (this *IUIAutomationProxyFactoryEntry) Put_ImageName(imageName PWSTR) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ImageName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(imageName)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) put_AllowSubstringMatch(allowSubstringMatch BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_AllowSubstringMatch, uintptr(unsafe.Pointer(this)), uintptr(allowSubstringMatch))
+func (this *IUIAutomationProxyFactoryEntry) Put_AllowSubstringMatch(allowSubstringMatch BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_AllowSubstringMatch, uintptr(unsafe.Pointer(this)), uintptr(allowSubstringMatch))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) put_CanCheckBaseClass(canCheckBaseClass BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_CanCheckBaseClass, uintptr(unsafe.Pointer(this)), uintptr(canCheckBaseClass))
+func (this *IUIAutomationProxyFactoryEntry) Put_CanCheckBaseClass(canCheckBaseClass BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_CanCheckBaseClass, uintptr(unsafe.Pointer(this)), uintptr(canCheckBaseClass))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) put_NeedsAdviseEvents(adviseEvents BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_NeedsAdviseEvents, uintptr(unsafe.Pointer(this)), uintptr(adviseEvents))
+func (this *IUIAutomationProxyFactoryEntry) Put_NeedsAdviseEvents(adviseEvents BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_NeedsAdviseEvents, uintptr(unsafe.Pointer(this)), uintptr(adviseEvents))
 	return HRESULT(ret)
 }
 
@@ -9342,7 +9342,7 @@ var IID_IUIAutomationProxyFactoryMapping = syscall.GUID{0x09e31e18, 0x872d, 0x48
 
 type IUIAutomationProxyFactoryMappingInterface interface {
 	IUnknownInterface
-	get_Count(count *uint32) HRESULT
+	Get_Count(count *uint32) HRESULT
 	GetTable(table **SAFEARRAY) HRESULT
 	GetEntry(index uint32, entry **IUIAutomationProxyFactoryEntry) HRESULT
 	SetTable(factoryList *SAFEARRAY) HRESULT
@@ -9355,7 +9355,7 @@ type IUIAutomationProxyFactoryMappingInterface interface {
 
 type IUIAutomationProxyFactoryMappingVtbl struct {
 	IUnknownVtbl
-	get_Count uintptr
+	Get_Count uintptr
 	GetTable uintptr
 	GetEntry uintptr
 	SetTable uintptr
@@ -9374,8 +9374,8 @@ func (this *IUIAutomationProxyFactoryMapping) Vtbl() *IUIAutomationProxyFactoryM
 	return (*IUIAutomationProxyFactoryMappingVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationProxyFactoryMapping) get_Count(count *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(count)))
+func (this *IUIAutomationProxyFactoryMapping) Get_Count(count *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(count)))
 	return HRESULT(ret)
 }
 
@@ -9505,12 +9505,12 @@ type IUIAutomationInterface interface {
 	ElementFromPointBuildCache(pt POINT, cacheRequest *IUIAutomationCacheRequest, element **IUIAutomationElement) HRESULT
 	GetFocusedElementBuildCache(cacheRequest *IUIAutomationCacheRequest, element **IUIAutomationElement) HRESULT
 	CreateTreeWalker(pCondition *IUIAutomationCondition, walker **IUIAutomationTreeWalker) HRESULT
-	get_ControlViewWalker(walker **IUIAutomationTreeWalker) HRESULT
-	get_ContentViewWalker(walker **IUIAutomationTreeWalker) HRESULT
-	get_RawViewWalker(walker **IUIAutomationTreeWalker) HRESULT
-	get_RawViewCondition(condition **IUIAutomationCondition) HRESULT
-	get_ControlViewCondition(condition **IUIAutomationCondition) HRESULT
-	get_ContentViewCondition(condition **IUIAutomationCondition) HRESULT
+	Get_ControlViewWalker(walker **IUIAutomationTreeWalker) HRESULT
+	Get_ContentViewWalker(walker **IUIAutomationTreeWalker) HRESULT
+	Get_RawViewWalker(walker **IUIAutomationTreeWalker) HRESULT
+	Get_RawViewCondition(condition **IUIAutomationCondition) HRESULT
+	Get_ControlViewCondition(condition **IUIAutomationCondition) HRESULT
+	Get_ContentViewCondition(condition **IUIAutomationCondition) HRESULT
 	CreateCacheRequest(cacheRequest **IUIAutomationCacheRequest) HRESULT
 	CreateTrueCondition(newCondition **IUIAutomationCondition) HRESULT
 	CreateFalseCondition(newCondition **IUIAutomationCondition) HRESULT
@@ -9539,14 +9539,14 @@ type IUIAutomationInterface interface {
 	VariantToRect(var_ VARIANT, rc *RECT) HRESULT
 	SafeArrayToRectNativeArray(rects *SAFEARRAY, rectArray **RECT, rectArrayCount *int32) HRESULT
 	CreateProxyFactoryEntry(factory *IUIAutomationProxyFactory, factoryEntry **IUIAutomationProxyFactoryEntry) HRESULT
-	get_ProxyFactoryMapping(factoryMapping **IUIAutomationProxyFactoryMapping) HRESULT
+	Get_ProxyFactoryMapping(factoryMapping **IUIAutomationProxyFactoryMapping) HRESULT
 	GetPropertyProgrammaticName(property int32, name *BSTR) HRESULT
 	GetPatternProgrammaticName(pattern int32, name *BSTR) HRESULT
 	PollForPotentialSupportedPatterns(pElement *IUIAutomationElement, patternIds **SAFEARRAY, patternNames **SAFEARRAY) HRESULT
 	PollForPotentialSupportedProperties(pElement *IUIAutomationElement, propertyIds **SAFEARRAY, propertyNames **SAFEARRAY) HRESULT
 	CheckNotSupported(value VARIANT, isNotSupported *BOOL) HRESULT
-	get_ReservedNotSupportedValue(notSupportedValue **IUnknown) HRESULT
-	get_ReservedMixedAttributeValue(mixedAttributeValue **IUnknown) HRESULT
+	Get_ReservedNotSupportedValue(notSupportedValue **IUnknown) HRESULT
+	Get_ReservedMixedAttributeValue(mixedAttributeValue **IUnknown) HRESULT
 	ElementFromIAccessible(accessible *IAccessible, childId int32, element **IUIAutomationElement) HRESULT
 	ElementFromIAccessibleBuildCache(accessible *IAccessible, childId int32, cacheRequest *IUIAutomationCacheRequest, element **IUIAutomationElement) HRESULT
 }
@@ -9564,12 +9564,12 @@ type IUIAutomationVtbl struct {
 	ElementFromPointBuildCache uintptr
 	GetFocusedElementBuildCache uintptr
 	CreateTreeWalker uintptr
-	get_ControlViewWalker uintptr
-	get_ContentViewWalker uintptr
-	get_RawViewWalker uintptr
-	get_RawViewCondition uintptr
-	get_ControlViewCondition uintptr
-	get_ContentViewCondition uintptr
+	Get_ControlViewWalker uintptr
+	Get_ContentViewWalker uintptr
+	Get_RawViewWalker uintptr
+	Get_RawViewCondition uintptr
+	Get_ControlViewCondition uintptr
+	Get_ContentViewCondition uintptr
 	CreateCacheRequest uintptr
 	CreateTrueCondition uintptr
 	CreateFalseCondition uintptr
@@ -9598,14 +9598,14 @@ type IUIAutomationVtbl struct {
 	VariantToRect uintptr
 	SafeArrayToRectNativeArray uintptr
 	CreateProxyFactoryEntry uintptr
-	get_ProxyFactoryMapping uintptr
+	Get_ProxyFactoryMapping uintptr
 	GetPropertyProgrammaticName uintptr
 	GetPatternProgrammaticName uintptr
 	PollForPotentialSupportedPatterns uintptr
 	PollForPotentialSupportedProperties uintptr
 	CheckNotSupported uintptr
-	get_ReservedNotSupportedValue uintptr
-	get_ReservedMixedAttributeValue uintptr
+	Get_ReservedNotSupportedValue uintptr
+	Get_ReservedMixedAttributeValue uintptr
 	ElementFromIAccessible uintptr
 	ElementFromIAccessibleBuildCache uintptr
 }
@@ -9673,33 +9673,33 @@ func (this *IUIAutomation) CreateTreeWalker(pCondition *IUIAutomationCondition, 
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_ControlViewWalker(walker **IUIAutomationTreeWalker) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ControlViewWalker, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(walker)))
+func (this *IUIAutomation) Get_ControlViewWalker(walker **IUIAutomationTreeWalker) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ControlViewWalker, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(walker)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_ContentViewWalker(walker **IUIAutomationTreeWalker) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ContentViewWalker, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(walker)))
+func (this *IUIAutomation) Get_ContentViewWalker(walker **IUIAutomationTreeWalker) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ContentViewWalker, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(walker)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_RawViewWalker(walker **IUIAutomationTreeWalker) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_RawViewWalker, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(walker)))
+func (this *IUIAutomation) Get_RawViewWalker(walker **IUIAutomationTreeWalker) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RawViewWalker, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(walker)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_RawViewCondition(condition **IUIAutomationCondition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_RawViewCondition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
+func (this *IUIAutomation) Get_RawViewCondition(condition **IUIAutomationCondition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RawViewCondition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_ControlViewCondition(condition **IUIAutomationCondition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ControlViewCondition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
+func (this *IUIAutomation) Get_ControlViewCondition(condition **IUIAutomationCondition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ControlViewCondition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_ContentViewCondition(condition **IUIAutomationCondition) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ContentViewCondition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
+func (this *IUIAutomation) Get_ContentViewCondition(condition **IUIAutomationCondition) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ContentViewCondition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(condition)))
 	return HRESULT(ret)
 }
 
@@ -9843,8 +9843,8 @@ func (this *IUIAutomation) CreateProxyFactoryEntry(factory *IUIAutomationProxyFa
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_ProxyFactoryMapping(factoryMapping **IUIAutomationProxyFactoryMapping) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ProxyFactoryMapping, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(factoryMapping)))
+func (this *IUIAutomation) Get_ProxyFactoryMapping(factoryMapping **IUIAutomationProxyFactoryMapping) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ProxyFactoryMapping, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(factoryMapping)))
 	return HRESULT(ret)
 }
 
@@ -9873,13 +9873,13 @@ func (this *IUIAutomation) CheckNotSupported(value VARIANT, isNotSupported *BOOL
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_ReservedNotSupportedValue(notSupportedValue **IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ReservedNotSupportedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(notSupportedValue)))
+func (this *IUIAutomation) Get_ReservedNotSupportedValue(notSupportedValue **IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ReservedNotSupportedValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(notSupportedValue)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) get_ReservedMixedAttributeValue(mixedAttributeValue **IUnknown) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ReservedMixedAttributeValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(mixedAttributeValue)))
+func (this *IUIAutomation) Get_ReservedMixedAttributeValue(mixedAttributeValue **IUnknown) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ReservedMixedAttributeValue, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(mixedAttributeValue)))
 	return HRESULT(ret)
 }
 
@@ -9899,22 +9899,22 @@ var IID_IUIAutomation2 = syscall.GUID{0x34723aff, 0x0c9d, 0x49d0,
 
 type IUIAutomation2Interface interface {
 	IUIAutomationInterface
-	get_AutoSetFocus(autoSetFocus *BOOL) HRESULT
-	put_AutoSetFocus(autoSetFocus BOOL) HRESULT
-	get_ConnectionTimeout(timeout *uint32) HRESULT
-	put_ConnectionTimeout(timeout uint32) HRESULT
-	get_TransactionTimeout(timeout *uint32) HRESULT
-	put_TransactionTimeout(timeout uint32) HRESULT
+	Get_AutoSetFocus(autoSetFocus *BOOL) HRESULT
+	Put_AutoSetFocus(autoSetFocus BOOL) HRESULT
+	Get_ConnectionTimeout(timeout *uint32) HRESULT
+	Put_ConnectionTimeout(timeout uint32) HRESULT
+	Get_TransactionTimeout(timeout *uint32) HRESULT
+	Put_TransactionTimeout(timeout uint32) HRESULT
 }
 
 type IUIAutomation2Vtbl struct {
 	IUIAutomationVtbl
-	get_AutoSetFocus uintptr
-	put_AutoSetFocus uintptr
-	get_ConnectionTimeout uintptr
-	put_ConnectionTimeout uintptr
-	get_TransactionTimeout uintptr
-	put_TransactionTimeout uintptr
+	Get_AutoSetFocus uintptr
+	Put_AutoSetFocus uintptr
+	Get_ConnectionTimeout uintptr
+	Put_ConnectionTimeout uintptr
+	Get_TransactionTimeout uintptr
+	Put_TransactionTimeout uintptr
 }
 
 type IUIAutomation2 struct {
@@ -9925,33 +9925,33 @@ func (this *IUIAutomation2) Vtbl() *IUIAutomation2Vtbl {
 	return (*IUIAutomation2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomation2) get_AutoSetFocus(autoSetFocus *BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_AutoSetFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(autoSetFocus)))
+func (this *IUIAutomation2) Get_AutoSetFocus(autoSetFocus *BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AutoSetFocus, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(autoSetFocus)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation2) put_AutoSetFocus(autoSetFocus BOOL) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_AutoSetFocus, uintptr(unsafe.Pointer(this)), uintptr(autoSetFocus))
+func (this *IUIAutomation2) Put_AutoSetFocus(autoSetFocus BOOL) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_AutoSetFocus, uintptr(unsafe.Pointer(this)), uintptr(autoSetFocus))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation2) get_ConnectionTimeout(timeout *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ConnectionTimeout, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(timeout)))
+func (this *IUIAutomation2) Get_ConnectionTimeout(timeout *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ConnectionTimeout, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(timeout)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation2) put_ConnectionTimeout(timeout uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ConnectionTimeout, uintptr(unsafe.Pointer(this)), uintptr(timeout))
+func (this *IUIAutomation2) Put_ConnectionTimeout(timeout uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ConnectionTimeout, uintptr(unsafe.Pointer(this)), uintptr(timeout))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation2) get_TransactionTimeout(timeout *uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_TransactionTimeout, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(timeout)))
+func (this *IUIAutomation2) Get_TransactionTimeout(timeout *uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TransactionTimeout, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(timeout)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation2) put_TransactionTimeout(timeout uint32) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_TransactionTimeout, uintptr(unsafe.Pointer(this)), uintptr(timeout))
+func (this *IUIAutomation2) Put_TransactionTimeout(timeout uint32) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_TransactionTimeout, uintptr(unsafe.Pointer(this)), uintptr(timeout))
 	return HRESULT(ret)
 }
 
@@ -10066,10 +10066,10 @@ type IUIAutomation6Interface interface {
 	CreateEventHandlerGroup(handlerGroup **IUIAutomationEventHandlerGroup) HRESULT
 	AddEventHandlerGroup(element *IUIAutomationElement, handlerGroup *IUIAutomationEventHandlerGroup) HRESULT
 	RemoveEventHandlerGroup(element *IUIAutomationElement, handlerGroup *IUIAutomationEventHandlerGroup) HRESULT
-	get_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions *ConnectionRecoveryBehaviorOptions) HRESULT
-	put_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions ConnectionRecoveryBehaviorOptions) HRESULT
-	get_CoalesceEvents(coalesceEventsOptions *CoalesceEventsOptions) HRESULT
-	put_CoalesceEvents(coalesceEventsOptions CoalesceEventsOptions) HRESULT
+	Get_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions *ConnectionRecoveryBehaviorOptions) HRESULT
+	Put_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions ConnectionRecoveryBehaviorOptions) HRESULT
+	Get_CoalesceEvents(coalesceEventsOptions *CoalesceEventsOptions) HRESULT
+	Put_CoalesceEvents(coalesceEventsOptions CoalesceEventsOptions) HRESULT
 	AddActiveTextPositionChangedEventHandler(element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationActiveTextPositionChangedEventHandler) HRESULT
 	RemoveActiveTextPositionChangedEventHandler(element *IUIAutomationElement, handler *IUIAutomationActiveTextPositionChangedEventHandler) HRESULT
 }
@@ -10079,10 +10079,10 @@ type IUIAutomation6Vtbl struct {
 	CreateEventHandlerGroup uintptr
 	AddEventHandlerGroup uintptr
 	RemoveEventHandlerGroup uintptr
-	get_ConnectionRecoveryBehavior uintptr
-	put_ConnectionRecoveryBehavior uintptr
-	get_CoalesceEvents uintptr
-	put_CoalesceEvents uintptr
+	Get_ConnectionRecoveryBehavior uintptr
+	Put_ConnectionRecoveryBehavior uintptr
+	Get_CoalesceEvents uintptr
+	Put_CoalesceEvents uintptr
 	AddActiveTextPositionChangedEventHandler uintptr
 	RemoveActiveTextPositionChangedEventHandler uintptr
 }
@@ -10110,23 +10110,23 @@ func (this *IUIAutomation6) RemoveEventHandlerGroup(element *IUIAutomationElemen
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation6) get_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions *ConnectionRecoveryBehaviorOptions) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_ConnectionRecoveryBehavior, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(connectionRecoveryBehaviorOptions)))
+func (this *IUIAutomation6) Get_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions *ConnectionRecoveryBehaviorOptions) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ConnectionRecoveryBehavior, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(connectionRecoveryBehaviorOptions)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation6) put_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions ConnectionRecoveryBehaviorOptions) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_ConnectionRecoveryBehavior, uintptr(unsafe.Pointer(this)), uintptr(connectionRecoveryBehaviorOptions))
+func (this *IUIAutomation6) Put_ConnectionRecoveryBehavior(connectionRecoveryBehaviorOptions ConnectionRecoveryBehaviorOptions) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ConnectionRecoveryBehavior, uintptr(unsafe.Pointer(this)), uintptr(connectionRecoveryBehaviorOptions))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation6) get_CoalesceEvents(coalesceEventsOptions *CoalesceEventsOptions) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().get_CoalesceEvents, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(coalesceEventsOptions)))
+func (this *IUIAutomation6) Get_CoalesceEvents(coalesceEventsOptions *CoalesceEventsOptions) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CoalesceEvents, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(coalesceEventsOptions)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation6) put_CoalesceEvents(coalesceEventsOptions CoalesceEventsOptions) HRESULT{
-	ret, _, _ := syscall.SyscallN(this.Vtbl().put_CoalesceEvents, uintptr(unsafe.Pointer(this)), uintptr(coalesceEventsOptions))
+func (this *IUIAutomation6) Put_CoalesceEvents(coalesceEventsOptions CoalesceEventsOptions) HRESULT{
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_CoalesceEvents, uintptr(unsafe.Pointer(this)), uintptr(coalesceEventsOptions))
 	return HRESULT(ret)
 }
 
