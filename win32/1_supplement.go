@@ -454,3 +454,12 @@ func ImageList_AddIcon(himl HIMAGELIST, hicon HICON) (int32, WIN32_ERROR) {
 	ret, _, err := syscall.SyscallN(imageList_AddIcon.Addr(), himl, hicon)
 	return int32(ret), WIN32_ERROR(err)
 }
+
+//
+type IUnknownObject interface {
+	GetIUnknown() *IUnknown
+}
+
+func (this *IUnknown) GetIUnknown() *IUnknown {
+	return this
+}
