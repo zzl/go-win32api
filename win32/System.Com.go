@@ -1521,7 +1521,7 @@ func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PcVal() **int8{
 }
 
 func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PcValVal() *int8{
-	return *(**int8)(unsafe.Pointer(this))
+	return (*int8)(unsafe.Pointer(this))
 }
 
 func (this *VARIANT_Anonymous__Anonymous__Anonymous_) PuiVal() **uint16{
@@ -7918,13 +7918,13 @@ func CoInvalidateRemoteMachineBindings(pszMachineName PWSTR) HRESULT {
 func CoTaskMemAlloc(cb uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pCoTaskMemAlloc, libOle32, "CoTaskMemAlloc")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(cb))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func CoTaskMemRealloc(pv unsafe.Pointer, cb uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pCoTaskMemRealloc, libOle32, "CoTaskMemRealloc")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(pv), uintptr(cb))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func CoTaskMemFree(pv unsafe.Pointer) {

@@ -440,10 +440,13 @@ var (
 func init() {
 	copyMemory = libKernel32.NewProc("RtlMoveMemory")
 	imageList_AddIcon = libComctl32.NewProc("ImageList_AddIcon")
+
+	//
+	lazyAddr(&pTlsGetValue, libKernel32, "TlsGetValue")
 }
 
 func CopyMemory(Destination unsafe.Pointer, Source unsafe.Pointer, Length uint32) WIN32_ERROR {
-	_, _, err := syscall.Syscall(copyMemory.Addr(), 3,
+	_, _, err := syscall.SyscallN(copyMemory.Addr(),
 		uintptr(Destination),
 		uintptr(Source),
 		uintptr(Length))
@@ -462,4 +465,18 @@ type IUnknownObject interface {
 
 func (this *IUnknown) GetIUnknown() *IUnknown {
 	return this
+}
+
+type IDispatchObject interface {
+	GetIDispatch_() *IDispatch
+}
+
+func (this *IDispatch) GetIDispatch_() *IDispatch {
+	return this
+}
+
+//
+func TlsGetValueAlt(dwTlsIndex uint32) uintptr {
+	ret, _, _ := syscall.SyscallN(pTlsGetValue, uintptr(dwTlsIndex))
+	return ret
 }

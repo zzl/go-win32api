@@ -2082,7 +2082,7 @@ func GlobalUnfix(hMem uintptr) {
 func GlobalWire(hMem uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pGlobalWire, libKernel32, "GlobalWire")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(hMem))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func GlobalUnWire(hMem uintptr) BOOL {

@@ -1478,7 +1478,7 @@ func FindFirstFreeAce(pAcl *ACL, pAce unsafe.Pointer) (BOOL, WIN32_ERROR) {
 func FreeSid(pSid PSID) unsafe.Pointer {
 	addr := lazyAddr(&pFreeSid, libAdvapi32, "FreeSid")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSid)))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func GetAce(pAcl *ACL, dwAceIndex uint32, pAce unsafe.Pointer) (BOOL, WIN32_ERROR) {

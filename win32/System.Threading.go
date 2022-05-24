@@ -1157,7 +1157,7 @@ func FlsAlloc(lpCallback uintptr) (uint32, WIN32_ERROR) {
 func FlsGetValue(dwFlsIndex uint32) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pFlsGetValue, libKernel32, "FlsGetValue")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(dwFlsIndex))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func FlsSetValue(dwFlsIndex uint32, lpFlsData unsafe.Pointer) (BOOL, WIN32_ERROR) {
@@ -1693,7 +1693,7 @@ func TlsAlloc() (uint32, WIN32_ERROR) {
 func TlsGetValue(dwTlsIndex uint32) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pTlsGetValue, libKernel32, "TlsGetValue")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(dwTlsIndex))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func TlsSetValue(dwTlsIndex uint32, lpTlsValue unsafe.Pointer) (BOOL, WIN32_ERROR) {
@@ -2478,25 +2478,25 @@ func ConvertFiberToThread() (BOOL, WIN32_ERROR) {
 func CreateFiberEx(dwStackCommitSize uintptr, dwStackReserveSize uintptr, dwFlags uint32, lpStartAddress uintptr, lpParameter unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateFiberEx, libKernel32, "CreateFiberEx")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(dwStackCommitSize), uintptr(dwStackReserveSize), uintptr(dwFlags), uintptr(lpStartAddress), uintptr(lpParameter))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func ConvertThreadToFiberEx(lpParameter unsafe.Pointer, dwFlags uint32) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pConvertThreadToFiberEx, libKernel32, "ConvertThreadToFiberEx")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(lpParameter), uintptr(dwFlags))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func CreateFiber(dwStackSize uintptr, lpStartAddress uintptr, lpParameter unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateFiber, libKernel32, "CreateFiber")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(dwStackSize), uintptr(lpStartAddress), uintptr(lpParameter))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func ConvertThreadToFiber(lpParameter unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pConvertThreadToFiber, libKernel32, "ConvertThreadToFiber")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(lpParameter))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func CreateUmsCompletionList(UmsCompletionList unsafe.Pointer) (BOOL, WIN32_ERROR) {
@@ -2538,13 +2538,13 @@ func DeleteUmsCompletionList(UmsCompletionList unsafe.Pointer) (BOOL, WIN32_ERRO
 func GetCurrentUmsThread() (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pGetCurrentUmsThread, libKernel32, "GetCurrentUmsThread")
 	ret, _,  err := syscall.SyscallN(addr)
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func GetNextUmsListItem(UmsContext unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pGetNextUmsListItem, libKernel32, "GetNextUmsListItem")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(UmsContext))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func QueryUmsThreadInformation(UmsThread unsafe.Pointer, UmsThreadInfoClass RTL_UMS_THREAD_INFO_CLASS, UmsThreadInformation unsafe.Pointer, UmsThreadInformationLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {

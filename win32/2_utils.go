@@ -6,6 +6,7 @@ import (
 	"syscall"
 	"unsafe"
 	"log"
+	"strings"
 )
 
 func HRESULT_ToString(hr HRESULT) string {
@@ -15,6 +16,7 @@ func HRESULT_ToString(hr HRESULT) string {
 	FormatMessage(flags, nil, uint32(hr), 0, &buf[0], bufSize, nil)
 	hrHex := strconv.FormatUint(uint64(uint32(hr)), 16)
 	s := syscall.UTF16ToString(buf)
+	s = strings.TrimSpace(s)
 	s = "HRESULT " + hrHex + " - " + s
 	return s
 }
@@ -126,4 +128,22 @@ func BoolToBOOL(b bool) BOOL {
 
 func BoolFromBOOL(b BOOL) bool {
 	return b != 0
+}
+
+func GetCh() byte {
+	hStdIn, _ := GetStdHandle(STD_INPUT_HANDLE)
+	if hStdIn == 0 {
+		println("??")
+		return 0
+	}
+	var cc DWORD
+	var ir INPUT_RECORD
+	for {
+		ReadConsoleInput(hStdIn, &ir, 1, &cc)
+		if ir.EventType == uint16(KEY_EVENT) &&
+			ir.Event.KeyEvent().BKeyDown == TRUE {
+			b := ir.Event.KeyEvent().UChar.AsciiCharVal()
+			return b
+		}
+	}
 }

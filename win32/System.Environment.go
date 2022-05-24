@@ -360,7 +360,7 @@ func IsEnclaveTypeSupported(flEnclaveType uint32) (BOOL, WIN32_ERROR) {
 func CreateEnclave(hProcess HANDLE, lpAddress unsafe.Pointer, dwSize uintptr, dwInitialCommitment uintptr, flEnclaveType uint32, lpEnclaveInformation unsafe.Pointer, dwInfoLength uint32, lpEnclaveError *uint32) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateEnclave, libKernel32, "CreateEnclave")
 	ret, _,  err := syscall.SyscallN(addr, hProcess, uintptr(lpAddress), uintptr(dwSize), uintptr(dwInitialCommitment), uintptr(flEnclaveType), uintptr(lpEnclaveInformation), uintptr(dwInfoLength), uintptr(unsafe.Pointer(lpEnclaveError)))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func LoadEnclaveData(hProcess HANDLE, lpAddress unsafe.Pointer, lpBuffer unsafe.Pointer, nSize uintptr, flProtect uint32, lpPageInformation unsafe.Pointer, dwInfoLength uint32, lpNumberOfBytesWritten *uintptr, lpEnclaveError *uint32) (BOOL, WIN32_ERROR) {

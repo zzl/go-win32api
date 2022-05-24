@@ -816,7 +816,7 @@ func GetServiceDisplayNameW(hSCManager SC_HANDLE, lpServiceName PWSTR, lpDisplay
 func LockServiceDatabase(hSCManager SC_HANDLE) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pLockServiceDatabase, libAdvapi32, "LockServiceDatabase")
 	ret, _,  err := syscall.SyscallN(addr, hSCManager)
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func NotifyBootConfigStatus(BootAcceptable BOOL) (BOOL, WIN32_ERROR) {

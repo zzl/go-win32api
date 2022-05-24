@@ -29483,7 +29483,7 @@ func SHGetMalloc(ppMalloc **IMalloc) HRESULT {
 func SHAlloc(cb uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pSHAlloc, libShell32, "SHAlloc")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(cb))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func SHFree(pv unsafe.Pointer) {
@@ -32896,7 +32896,7 @@ func SHFreeShared(hData HANDLE, dwProcessId uint32) (BOOL, WIN32_ERROR) {
 func SHLockShared(hData HANDLE, dwProcessId uint32) unsafe.Pointer {
 	addr := lazyAddr(&pSHLockShared, libShlwapi, "SHLockShared")
 	ret, _,  _ := syscall.SyscallN(addr, hData, uintptr(dwProcessId))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func SHUnlockShared(pvData unsafe.Pointer) (BOOL, WIN32_ERROR) {

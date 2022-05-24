@@ -232,7 +232,7 @@ func LoadResource(hModule HINSTANCE, hResInfo HRSRC) (uintptr, WIN32_ERROR) {
 func LockResource(hResData uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pLockResource, libKernel32, "LockResource")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(hResData))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func SizeofResource(hModule HINSTANCE, hResInfo HRSRC) (uint32, WIN32_ERROR) {
@@ -244,7 +244,7 @@ func SizeofResource(hModule HINSTANCE, hResInfo HRSRC) (uint32, WIN32_ERROR) {
 func AddDllDirectory(NewDirectory PWSTR) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pAddDllDirectory, libKernel32, "AddDllDirectory")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(NewDirectory)))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func RemoveDllDirectory(Cookie unsafe.Pointer) (BOOL, WIN32_ERROR) {

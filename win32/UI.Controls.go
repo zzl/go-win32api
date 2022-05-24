@@ -7237,7 +7237,7 @@ func DSA_InsertItem(hdsa HDSA, i int32, pitem unsafe.Pointer) int32 {
 func DSA_GetItemPtr(hdsa HDSA, i int32) unsafe.Pointer {
 	addr := lazyAddr(&pDSA_GetItemPtr, libComctl32, "DSA_GetItemPtr")
 	ret, _,  _ := syscall.SyscallN(addr, hdsa, uintptr(i))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func DSA_GetItem(hdsa HDSA, i int32, pitem unsafe.Pointer) BOOL {
@@ -7302,7 +7302,7 @@ func DPA_DestroyCallback(hdpa HDPA, pfnCB uintptr, pData unsafe.Pointer) {
 func DPA_DeletePtr(hdpa HDPA, i int32) unsafe.Pointer {
 	addr := lazyAddr(&pDPA_DeletePtr, libComctl32, "DPA_DeletePtr")
 	ret, _,  _ := syscall.SyscallN(addr, hdpa, uintptr(i))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func DPA_DeleteAllPtrs(hdpa HDPA) BOOL {
@@ -7337,7 +7337,7 @@ func DPA_SetPtr(hdpa HDPA, i int32, p unsafe.Pointer) BOOL {
 func DPA_GetPtr(hdpa HDPA, i uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pDPA_GetPtr, libComctl32, "DPA_GetPtr")
 	ret, _,  _ := syscall.SyscallN(addr, hdpa, uintptr(i))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func DPA_GetPtrIndex(hdpa HDPA, p unsafe.Pointer) int32 {

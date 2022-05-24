@@ -36811,7 +36811,7 @@ func RtlRaiseException(ExceptionRecord *EXCEPTION_RECORD) {
 func RtlPcToFileHeader(PcValue unsafe.Pointer, BaseOfImage unsafe.Pointer) unsafe.Pointer {
 	addr := lazyAddr(&pRtlPcToFileHeader, libKernel32, "RtlPcToFileHeader")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(PcValue), uintptr(BaseOfImage))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func IsDebuggerPresent() BOOL {
@@ -36875,25 +36875,25 @@ func WaitForDebugEventEx(lpDebugEvent *DEBUG_EVENT, dwMilliseconds uint32) (BOOL
 func EncodePointer(Ptr unsafe.Pointer) unsafe.Pointer {
 	addr := lazyAddr(&pEncodePointer, libKernel32, "EncodePointer")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(Ptr))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func DecodePointer(Ptr unsafe.Pointer) unsafe.Pointer {
 	addr := lazyAddr(&pDecodePointer, libKernel32, "DecodePointer")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(Ptr))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func EncodeSystemPointer(Ptr unsafe.Pointer) unsafe.Pointer {
 	addr := lazyAddr(&pEncodeSystemPointer, libKernel32, "EncodeSystemPointer")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(Ptr))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func DecodeSystemPointer(Ptr unsafe.Pointer) unsafe.Pointer {
 	addr := lazyAddr(&pDecodeSystemPointer, libKernel32, "DecodeSystemPointer")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(Ptr))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func Beep(dwFreq uint32, dwDuration uint32) (BOOL, WIN32_ERROR) {
@@ -36934,7 +36934,7 @@ func SetErrorMode(uMode THREAD_ERROR_MODE) uint32 {
 func AddVectoredExceptionHandler(First uint32, Handler uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pAddVectoredExceptionHandler, libKernel32, "AddVectoredExceptionHandler")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(First), uintptr(Handler))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func RemoveVectoredExceptionHandler(Handle unsafe.Pointer) uint32 {
@@ -36946,7 +36946,7 @@ func RemoveVectoredExceptionHandler(Handle unsafe.Pointer) uint32 {
 func AddVectoredContinueHandler(First uint32, Handler uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pAddVectoredContinueHandler, libKernel32, "AddVectoredContinueHandler")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(First), uintptr(Handler))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func RemoveVectoredContinueHandler(Handle unsafe.Pointer) uint32 {
@@ -36986,7 +36986,7 @@ func SetThreadErrorMode(dwNewMode THREAD_ERROR_MODE, lpOldMode *THREAD_ERROR_MOD
 func OpenThreadWaitChainSession(Flags OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS, callback uintptr) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenThreadWaitChainSession, libAdvapi32, "OpenThreadWaitChainSession")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(Flags), uintptr(callback))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func CloseThreadWaitChainSession(WctHandle unsafe.Pointer) {
@@ -37086,7 +37086,7 @@ func GetXStateFeaturesMask(Context *CONTEXT, FeatureMask *uint64) BOOL {
 func LocateXStateFeature(Context *CONTEXT, FeatureId uint32, Length *uint32) unsafe.Pointer {
 	addr := lazyAddr(&pLocateXStateFeature, libKernel32, "LocateXStateFeature")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Context)), uintptr(FeatureId), uintptr(unsafe.Pointer(Length)))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func SetXStateFeaturesMask(Context *CONTEXT, FeatureMask uint64) BOOL {

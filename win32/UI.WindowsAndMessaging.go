@@ -3903,14 +3903,14 @@ func SendMessageCallbackW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, l
 func RegisterDeviceNotificationA(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags POWER_SETTING_REGISTER_NOTIFICATION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pRegisterDeviceNotificationA, libUser32, "RegisterDeviceNotificationA")
 	ret, _,  err := syscall.SyscallN(addr, hRecipient, uintptr(NotificationFilter), uintptr(Flags))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 var RegisterDeviceNotification = RegisterDeviceNotificationW
 func RegisterDeviceNotificationW(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags POWER_SETTING_REGISTER_NOTIFICATION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pRegisterDeviceNotificationW, libUser32, "RegisterDeviceNotificationW")
 	ret, _,  err := syscall.SyscallN(addr, hRecipient, uintptr(NotificationFilter), uintptr(Flags))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func PostMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {

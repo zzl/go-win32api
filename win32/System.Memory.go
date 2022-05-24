@@ -520,13 +520,13 @@ func HeapDestroy(hHeap HeapHandle) (BOOL, WIN32_ERROR) {
 func HeapAlloc(hHeap HeapHandle, dwFlags HEAP_FLAGS, dwBytes uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pHeapAlloc, libKernel32, "HeapAlloc")
 	ret, _,  _ := syscall.SyscallN(addr, hHeap, uintptr(dwFlags), uintptr(dwBytes))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func HeapReAlloc(hHeap HeapHandle, dwFlags HEAP_FLAGS, lpMem unsafe.Pointer, dwBytes uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pHeapReAlloc, libKernel32, "HeapReAlloc")
 	ret, _,  _ := syscall.SyscallN(addr, hHeap, uintptr(dwFlags), uintptr(lpMem), uintptr(dwBytes))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func HeapFree(hHeap HeapHandle, dwFlags HEAP_FLAGS, lpMem unsafe.Pointer) (BOOL, WIN32_ERROR) {
@@ -604,7 +604,7 @@ func HeapQueryInformation(HeapHandle HeapHandle, HeapInformationClass HEAP_INFOR
 func VirtualAlloc(lpAddress unsafe.Pointer, dwSize uintptr, flAllocationType VIRTUAL_ALLOCATION_TYPE, flProtect PAGE_PROTECTION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pVirtualAlloc, libKernel32, "VirtualAlloc")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(lpAddress), uintptr(dwSize), uintptr(flAllocationType), uintptr(flProtect))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func VirtualProtect(lpAddress unsafe.Pointer, dwSize uintptr, flNewProtect PAGE_PROTECTION_FLAGS, lpflOldProtect *PAGE_PROTECTION_FLAGS) (BOOL, WIN32_ERROR) {
@@ -628,7 +628,7 @@ func VirtualQuery(lpAddress unsafe.Pointer, lpBuffer *MEMORY_BASIC_INFORMATION, 
 func VirtualAllocEx(hProcess HANDLE, lpAddress unsafe.Pointer, dwSize uintptr, flAllocationType VIRTUAL_ALLOCATION_TYPE, flProtect PAGE_PROTECTION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pVirtualAllocEx, libKernel32, "VirtualAllocEx")
 	ret, _,  err := syscall.SyscallN(addr, hProcess, uintptr(lpAddress), uintptr(dwSize), uintptr(flAllocationType), uintptr(flProtect))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func VirtualProtectEx(hProcess HANDLE, lpAddress unsafe.Pointer, dwSize uintptr, flNewProtect PAGE_PROTECTION_FLAGS, lpflOldProtect *PAGE_PROTECTION_FLAGS) (BOOL, WIN32_ERROR) {
@@ -660,13 +660,13 @@ func OpenFileMappingW(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PWSTR)
 func MapViewOfFile(hFileMappingObject HANDLE, dwDesiredAccess FILE_MAP, dwFileOffsetHigh uint32, dwFileOffsetLow uint32, dwNumberOfBytesToMap uintptr) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pMapViewOfFile, libKernel32, "MapViewOfFile")
 	ret, _,  err := syscall.SyscallN(addr, hFileMappingObject, uintptr(dwDesiredAccess), uintptr(dwFileOffsetHigh), uintptr(dwFileOffsetLow), uintptr(dwNumberOfBytesToMap))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func MapViewOfFileEx(hFileMappingObject HANDLE, dwDesiredAccess FILE_MAP, dwFileOffsetHigh uint32, dwFileOffsetLow uint32, dwNumberOfBytesToMap uintptr, lpBaseAddress unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pMapViewOfFileEx, libKernel32, "MapViewOfFileEx")
 	ret, _,  err := syscall.SyscallN(addr, hFileMappingObject, uintptr(dwDesiredAccess), uintptr(dwFileOffsetHigh), uintptr(dwFileOffsetLow), uintptr(dwNumberOfBytesToMap), uintptr(lpBaseAddress))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func VirtualFreeEx(hProcess HANDLE, lpAddress unsafe.Pointer, dwSize uintptr, dwFreeType VIRTUAL_FREE_TYPE) (BOOL, WIN32_ERROR) {
@@ -775,7 +775,7 @@ func CreateFileMappingFromApp(hFile HANDLE, SecurityAttributes *SECURITY_ATTRIBU
 func MapViewOfFileFromApp(hFileMappingObject HANDLE, DesiredAccess FILE_MAP, FileOffset uint64, NumberOfBytesToMap uintptr) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pMapViewOfFileFromApp, libKernel32, "MapViewOfFileFromApp")
 	ret, _,  err := syscall.SyscallN(addr, hFileMappingObject, uintptr(DesiredAccess), uintptr(FileOffset), uintptr(NumberOfBytesToMap))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func UnmapViewOfFileEx(BaseAddress unsafe.Pointer, UnmapFlags UNMAP_VIEW_OF_FILE_FLAGS) (BOOL, WIN32_ERROR) {
@@ -811,7 +811,7 @@ func AllocateUserPhysicalPagesNuma(hProcess HANDLE, NumberOfPages *uintptr, Page
 func VirtualAllocExNuma(hProcess HANDLE, lpAddress unsafe.Pointer, dwSize uintptr, flAllocationType VIRTUAL_ALLOCATION_TYPE, flProtect uint32, nndPreferred uint32) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pVirtualAllocExNuma, libKernel32, "VirtualAllocExNuma")
 	ret, _,  err := syscall.SyscallN(addr, hProcess, uintptr(lpAddress), uintptr(dwSize), uintptr(flAllocationType), uintptr(flProtect), uintptr(nndPreferred))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func GetMemoryErrorHandlingCapabilities(Capabilities *uint32) (BOOL, WIN32_ERROR) {
@@ -823,7 +823,7 @@ func GetMemoryErrorHandlingCapabilities(Capabilities *uint32) (BOOL, WIN32_ERROR
 func RegisterBadMemoryNotification(Callback uintptr) unsafe.Pointer {
 	addr := lazyAddr(&pRegisterBadMemoryNotification, libKernel32, "RegisterBadMemoryNotification")
 	ret, _,  _ := syscall.SyscallN(addr, uintptr(Callback))
-	return (unsafe.Pointer)(unsafe.Pointer(ret))
+	return (unsafe.Pointer)(ret)
 }
 
 func UnregisterBadMemoryNotification(RegistrationHandle unsafe.Pointer) (BOOL, WIN32_ERROR) {
@@ -883,7 +883,7 @@ func GlobalUnlock(hMem uintptr) (BOOL, WIN32_ERROR) {
 func GlobalLock(hMem uintptr) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pGlobalLock, libKernel32, "GlobalLock")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(hMem))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func GlobalFlags(hMem uintptr) (uint32, WIN32_ERROR) {
@@ -919,7 +919,7 @@ func LocalReAlloc(hMem uintptr, uBytes uintptr, uFlags uint32) (uintptr, WIN32_E
 func LocalLock(hMem uintptr) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pLocalLock, libKernel32, "LocalLock")
 	ret, _,  err := syscall.SyscallN(addr, uintptr(hMem))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func LocalHandle(pMem unsafe.Pointer) (uintptr, WIN32_ERROR) {
@@ -973,7 +973,7 @@ func OpenFileMappingA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) 
 func MapViewOfFileExNuma(hFileMappingObject HANDLE, dwDesiredAccess FILE_MAP, dwFileOffsetHigh uint32, dwFileOffsetLow uint32, dwNumberOfBytesToMap uintptr, lpBaseAddress unsafe.Pointer, nndPreferred uint32) (unsafe.Pointer, WIN32_ERROR) {
 	addr := lazyAddr(&pMapViewOfFileExNuma, libKernel32, "MapViewOfFileExNuma")
 	ret, _,  err := syscall.SyscallN(addr, hFileMappingObject, uintptr(dwDesiredAccess), uintptr(dwFileOffsetHigh), uintptr(dwFileOffsetLow), uintptr(dwNumberOfBytesToMap), uintptr(lpBaseAddress), uintptr(nndPreferred))
-	return (unsafe.Pointer)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func IsBadReadPtr(lp unsafe.Pointer, ucb uintptr) BOOL {
