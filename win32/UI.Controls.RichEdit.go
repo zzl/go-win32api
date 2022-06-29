@@ -4,468 +4,468 @@ import "unsafe"
 import "syscall"
 
 const (
-	CchTextLimitDefault uint32 = 32767
-	MSFTEDIT_CLASS string = "RICHEDIT50W"
-	CERICHEDIT_CLASSA string = "RichEditCEA"
-	CERICHEDIT_CLASSW string = "RichEditCEW"
-	RICHEDIT_CLASSA string = "RichEdit20A"
-	RICHEDIT_CLASS10A string = "RICHEDIT"
-	RICHEDIT_CLASSW string = "RichEdit20W"
-	RICHEDIT_CLASS string = "RichEdit20W"
-	EM_CANPASTE uint32 = 1074
-	EM_DISPLAYBAND uint32 = 1075
-	EM_EXGETSEL uint32 = 1076
-	EM_EXLIMITTEXT uint32 = 1077
-	EM_EXLINEFROMCHAR uint32 = 1078
-	EM_EXSETSEL uint32 = 1079
-	EM_FINDTEXT uint32 = 1080
-	EM_FORMATRANGE uint32 = 1081
-	EM_GETCHARFORMAT uint32 = 1082
-	EM_GETEVENTMASK uint32 = 1083
-	EM_GETOLEINTERFACE uint32 = 1084
-	EM_GETPARAFORMAT uint32 = 1085
-	EM_GETSELTEXT uint32 = 1086
-	EM_HIDESELECTION uint32 = 1087
-	EM_PASTESPECIAL uint32 = 1088
-	EM_REQUESTRESIZE uint32 = 1089
-	EM_SELECTIONTYPE uint32 = 1090
-	EM_SETBKGNDCOLOR uint32 = 1091
-	EM_SETCHARFORMAT uint32 = 1092
-	EM_SETEVENTMASK uint32 = 1093
-	EM_SETOLECALLBACK uint32 = 1094
-	EM_SETPARAFORMAT uint32 = 1095
-	EM_SETTARGETDEVICE uint32 = 1096
-	EM_STREAMIN uint32 = 1097
-	EM_STREAMOUT uint32 = 1098
-	EM_GETTEXTRANGE uint32 = 1099
-	EM_FINDWORDBREAK uint32 = 1100
-	EM_SETOPTIONS uint32 = 1101
-	EM_GETOPTIONS uint32 = 1102
-	EM_FINDTEXTEX uint32 = 1103
-	EM_GETWORDBREAKPROCEX uint32 = 1104
-	EM_SETWORDBREAKPROCEX uint32 = 1105
-	EM_SETUNDOLIMIT uint32 = 1106
-	EM_REDO uint32 = 1108
-	EM_CANREDO uint32 = 1109
-	EM_GETUNDONAME uint32 = 1110
-	EM_GETREDONAME uint32 = 1111
-	EM_STOPGROUPTYPING uint32 = 1112
-	EM_SETTEXTMODE uint32 = 1113
-	EM_GETTEXTMODE uint32 = 1114
-	EM_AUTOURLDETECT uint32 = 1115
-	AURL_ENABLEURL uint32 = 1
-	AURL_ENABLEEMAILADDR uint32 = 2
-	AURL_ENABLETELNO uint32 = 4
-	AURL_ENABLEEAURLS uint32 = 8
-	AURL_ENABLEDRIVELETTERS uint32 = 16
-	AURL_DISABLEMIXEDLGC uint32 = 32
-	EM_GETAUTOURLDETECT uint32 = 1116
-	EM_SETPALETTE uint32 = 1117
-	EM_GETTEXTEX uint32 = 1118
-	EM_GETTEXTLENGTHEX uint32 = 1119
-	EM_SHOWSCROLLBAR uint32 = 1120
-	EM_SETTEXTEX uint32 = 1121
-	EM_SETPUNCTUATION uint32 = 1124
-	EM_GETPUNCTUATION uint32 = 1125
-	EM_SETWORDWRAPMODE uint32 = 1126
-	EM_GETWORDWRAPMODE uint32 = 1127
-	EM_SETIMECOLOR uint32 = 1128
-	EM_GETIMECOLOR uint32 = 1129
-	EM_SETIMEOPTIONS uint32 = 1130
-	EM_GETIMEOPTIONS uint32 = 1131
-	EM_CONVPOSITION uint32 = 1132
-	EM_SETLANGOPTIONS uint32 = 1144
-	EM_GETLANGOPTIONS uint32 = 1145
-	EM_GETIMECOMPMODE uint32 = 1146
-	EM_FINDTEXTW uint32 = 1147
-	EM_FINDTEXTEXW uint32 = 1148
-	EM_RECONVERSION uint32 = 1149
-	EM_SETIMEMODEBIAS uint32 = 1150
-	EM_GETIMEMODEBIAS uint32 = 1151
-	EM_SETBIDIOPTIONS uint32 = 1224
-	EM_GETBIDIOPTIONS uint32 = 1225
-	EM_SETTYPOGRAPHYOPTIONS uint32 = 1226
-	EM_GETTYPOGRAPHYOPTIONS uint32 = 1227
-	EM_SETEDITSTYLE uint32 = 1228
-	EM_GETEDITSTYLE uint32 = 1229
-	SES_EMULATESYSEDIT uint32 = 1
-	SES_BEEPONMAXTEXT uint32 = 2
-	SES_EXTENDBACKCOLOR uint32 = 4
-	SES_MAPCPS uint32 = 8
-	SES_HYPERLINKTOOLTIPS uint32 = 8
-	SES_EMULATE10 uint32 = 16
-	SES_DEFAULTLATINLIGA uint32 = 16
-	SES_USECRLF uint32 = 32
-	SES_NOFOCUSLINKNOTIFY uint32 = 32
-	SES_USEAIMM uint32 = 64
-	SES_NOIME uint32 = 128
-	SES_ALLOWBEEPS uint32 = 256
-	SES_UPPERCASE uint32 = 512
-	SES_LOWERCASE uint32 = 1024
-	SES_NOINPUTSEQUENCECHK uint32 = 2048
-	SES_BIDI uint32 = 4096
-	SES_SCROLLONKILLFOCUS uint32 = 8192
-	SES_XLTCRCRLFTOCR uint32 = 16384
-	SES_DRAFTMODE uint32 = 32768
-	SES_USECTF uint32 = 65536
-	SES_HIDEGRIDLINES uint32 = 131072
-	SES_USEATFONT uint32 = 262144
-	SES_CUSTOMLOOK uint32 = 524288
-	SES_LBSCROLLNOTIFY uint32 = 1048576
-	SES_CTFALLOWEMBED uint32 = 2097152
-	SES_CTFALLOWSMARTTAG uint32 = 4194304
-	SES_CTFALLOWPROOFING uint32 = 8388608
-	SES_LOGICALCARET uint32 = 16777216
-	SES_WORDDRAGDROP uint32 = 33554432
-	SES_SMARTDRAGDROP uint32 = 67108864
-	SES_MULTISELECT uint32 = 134217728
-	SES_CTFNOLOCK uint32 = 268435456
-	SES_NOEALINEHEIGHTADJUST uint32 = 536870912
-	SES_MAX uint32 = 536870912
-	IMF_AUTOKEYBOARD uint32 = 1
-	IMF_AUTOFONT uint32 = 2
-	IMF_IMECANCELCOMPLETE uint32 = 4
-	IMF_IMEALWAYSSENDNOTIFY uint32 = 8
-	IMF_AUTOFONTSIZEADJUST uint32 = 16
-	IMF_UIFONTS uint32 = 32
-	IMF_NOIMPLICITLANG uint32 = 64
-	IMF_DUALFONT uint32 = 128
-	IMF_NOKBDLIDFIXUP uint32 = 512
-	IMF_NORTFFONTSUBSTITUTE uint32 = 1024
-	IMF_SPELLCHECKING uint32 = 2048
-	IMF_TKBPREDICTION uint32 = 4096
-	IMF_IMEUIINTEGRATION uint32 = 8192
-	ICM_NOTOPEN uint32 = 0
-	ICM_LEVEL3 uint32 = 1
-	ICM_LEVEL2 uint32 = 2
-	ICM_LEVEL2_5 uint32 = 3
-	ICM_LEVEL2_SUI uint32 = 4
-	ICM_CTF uint32 = 5
-	TO_ADVANCEDTYPOGRAPHY uint32 = 1
-	TO_SIMPLELINEBREAK uint32 = 2
-	TO_DISABLECUSTOMTEXTOUT uint32 = 4
-	TO_ADVANCEDLAYOUT uint32 = 8
-	EM_OUTLINE uint32 = 1244
-	EM_GETSCROLLPOS uint32 = 1245
-	EM_SETSCROLLPOS uint32 = 1246
-	EM_SETFONTSIZE uint32 = 1247
-	EM_GETZOOM uint32 = 1248
-	EM_SETZOOM uint32 = 1249
-	EM_GETVIEWKIND uint32 = 1250
-	EM_SETVIEWKIND uint32 = 1251
-	EM_GETPAGE uint32 = 1252
-	EM_SETPAGE uint32 = 1253
-	EM_GETHYPHENATEINFO uint32 = 1254
-	EM_SETHYPHENATEINFO uint32 = 1255
-	EM_GETPAGEROTATE uint32 = 1259
-	EM_SETPAGEROTATE uint32 = 1260
-	EM_GETCTFMODEBIAS uint32 = 1261
-	EM_SETCTFMODEBIAS uint32 = 1262
-	EM_GETCTFOPENSTATUS uint32 = 1264
-	EM_SETCTFOPENSTATUS uint32 = 1265
-	EM_GETIMECOMPTEXT uint32 = 1266
-	EM_ISIME uint32 = 1267
-	EM_GETIMEPROPERTY uint32 = 1268
-	EM_GETQUERYRTFOBJ uint32 = 1293
-	EM_SETQUERYRTFOBJ uint32 = 1294
-	EPR_0 uint32 = 0
-	EPR_270 uint32 = 1
-	EPR_180 uint32 = 2
-	EPR_90 uint32 = 3
-	EPR_SE uint32 = 5
-	CTFMODEBIAS_DEFAULT uint32 = 0
-	CTFMODEBIAS_FILENAME uint32 = 1
-	CTFMODEBIAS_NAME uint32 = 2
-	CTFMODEBIAS_READING uint32 = 3
-	CTFMODEBIAS_DATETIME uint32 = 4
-	CTFMODEBIAS_CONVERSATION uint32 = 5
-	CTFMODEBIAS_NUMERIC uint32 = 6
-	CTFMODEBIAS_HIRAGANA uint32 = 7
-	CTFMODEBIAS_KATAKANA uint32 = 8
-	CTFMODEBIAS_HANGUL uint32 = 9
-	CTFMODEBIAS_HALFWIDTHKATAKANA uint32 = 10
-	CTFMODEBIAS_FULLWIDTHALPHANUMERIC uint32 = 11
-	CTFMODEBIAS_HALFWIDTHALPHANUMERIC uint32 = 12
-	IMF_SMODE_PLAURALCLAUSE uint32 = 1
-	IMF_SMODE_NONE uint32 = 2
-	EMO_EXIT uint32 = 0
-	EMO_ENTER uint32 = 1
-	EMO_PROMOTE uint32 = 2
-	EMO_EXPAND uint32 = 3
-	EMO_MOVESELECTION uint32 = 4
-	EMO_GETVIEWMODE uint32 = 5
-	EMO_EXPANDSELECTION uint32 = 0
-	EMO_EXPANDDOCUMENT uint32 = 1
-	VM_NORMAL uint32 = 4
-	VM_OUTLINE uint32 = 2
-	VM_PAGE uint32 = 9
-	EM_INSERTTABLE uint32 = 1256
-	EM_GETAUTOCORRECTPROC uint32 = 1257
-	EM_SETAUTOCORRECTPROC uint32 = 1258
-	EM_CALLAUTOCORRECTPROC uint32 = 1279
-	ATP_NOCHANGE uint32 = 0
-	ATP_CHANGE uint32 = 1
-	ATP_NODELIMITER uint32 = 2
-	ATP_REPLACEALLTEXT uint32 = 4
-	EM_GETTABLEPARMS uint32 = 1289
-	EM_SETEDITSTYLEEX uint32 = 1299
-	EM_GETEDITSTYLEEX uint32 = 1300
-	SES_EX_NOTABLE uint32 = 4
-	SES_EX_NOMATH uint32 = 64
-	SES_EX_HANDLEFRIENDLYURL uint32 = 256
-	SES_EX_NOTHEMING uint32 = 524288
-	SES_EX_NOACETATESELECTION uint32 = 1048576
-	SES_EX_USESINGLELINE uint32 = 2097152
-	SES_EX_MULTITOUCH uint32 = 134217728
-	SES_EX_HIDETEMPFORMAT uint32 = 268435456
-	SES_EX_USEMOUSEWPARAM uint32 = 536870912
-	EM_GETSTORYTYPE uint32 = 1314
-	EM_SETSTORYTYPE uint32 = 1315
-	EM_GETELLIPSISMODE uint32 = 1329
-	EM_SETELLIPSISMODE uint32 = 1330
-	ELLIPSIS_MASK uint32 = 3
-	ELLIPSIS_NONE uint32 = 0
-	ELLIPSIS_END uint32 = 1
-	ELLIPSIS_WORD uint32 = 3
-	EM_SETTABLEPARMS uint32 = 1331
-	EM_GETTOUCHOPTIONS uint32 = 1334
-	EM_SETTOUCHOPTIONS uint32 = 1335
-	EM_INSERTIMAGE uint32 = 1338
-	EM_SETUIANAME uint32 = 1344
-	EM_GETELLIPSISSTATE uint32 = 1346
-	RTO_SHOWHANDLES uint32 = 1
-	RTO_DISABLEHANDLES uint32 = 2
-	RTO_READINGMODE uint32 = 3
-	EN_MSGFILTER uint32 = 1792
-	EN_REQUESTRESIZE uint32 = 1793
-	EN_SELCHANGE uint32 = 1794
-	EN_DROPFILES uint32 = 1795
-	EN_PROTECTED uint32 = 1796
-	EN_CORRECTTEXT uint32 = 1797
-	EN_STOPNOUNDO uint32 = 1798
-	EN_IMECHANGE uint32 = 1799
-	EN_SAVECLIPBOARD uint32 = 1800
-	EN_OLEOPFAILED uint32 = 1801
-	EN_OBJECTPOSITIONS uint32 = 1802
-	EN_LINK uint32 = 1803
-	EN_DRAGDROPDONE uint32 = 1804
-	EN_PARAGRAPHEXPANDED uint32 = 1805
-	EN_PAGECHANGE uint32 = 1806
-	EN_LOWFIRTF uint32 = 1807
-	EN_ALIGNLTR uint32 = 1808
-	EN_ALIGNRTL uint32 = 1809
-	EN_CLIPFORMAT uint32 = 1810
-	EN_STARTCOMPOSITION uint32 = 1811
-	EN_ENDCOMPOSITION uint32 = 1812
-	ENM_NONE uint32 = 0
-	ENM_CHANGE uint32 = 1
-	ENM_UPDATE uint32 = 2
-	ENM_SCROLL uint32 = 4
-	ENM_SCROLLEVENTS uint32 = 8
-	ENM_DRAGDROPDONE uint32 = 16
-	ENM_PARAGRAPHEXPANDED uint32 = 32
-	ENM_PAGECHANGE uint32 = 64
-	ENM_CLIPFORMAT uint32 = 128
-	ENM_KEYEVENTS uint32 = 65536
-	ENM_MOUSEEVENTS uint32 = 131072
-	ENM_REQUESTRESIZE uint32 = 262144
-	ENM_SELCHANGE uint32 = 524288
-	ENM_DROPFILES uint32 = 1048576
-	ENM_PROTECTED uint32 = 2097152
-	ENM_CORRECTTEXT uint32 = 4194304
-	ENM_IMECHANGE uint32 = 8388608
-	ENM_LANGCHANGE uint32 = 16777216
-	ENM_OBJECTPOSITIONS uint32 = 33554432
-	ENM_LINK uint32 = 67108864
-	ENM_LOWFIRTF uint32 = 134217728
-	ENM_STARTCOMPOSITION uint32 = 268435456
-	ENM_ENDCOMPOSITION uint32 = 536870912
-	ENM_GROUPTYPINGCHANGE uint32 = 1073741824
-	ENM_HIDELINKTOOLTIP uint32 = 2147483648
-	ES_SAVESEL uint32 = 32768
-	ES_SUNKEN uint32 = 16384
-	ES_DISABLENOSCROLL uint32 = 8192
-	ES_SELECTIONBAR uint32 = 16777216
-	ES_NOOLEDRAGDROP uint32 = 8
-	ES_EX_NOCALLOLEINIT uint32 = 0
-	ES_VERTICAL uint32 = 4194304
-	ES_NOIME uint32 = 524288
-	ES_SELFIME uint32 = 262144
-	ECO_AUTOWORDSELECTION uint32 = 1
-	ECO_AUTOVSCROLL uint32 = 64
-	ECO_AUTOHSCROLL uint32 = 128
-	ECO_NOHIDESEL uint32 = 256
-	ECO_READONLY uint32 = 2048
-	ECO_WANTRETURN uint32 = 4096
-	ECO_SAVESEL uint32 = 32768
-	ECO_SELECTIONBAR uint32 = 16777216
-	ECO_VERTICAL uint32 = 4194304
-	ECOOP_SET uint32 = 1
-	ECOOP_OR uint32 = 2
-	ECOOP_AND uint32 = 3
-	ECOOP_XOR uint32 = 4
-	WB_MOVEWORDPREV uint32 = 4
-	WB_MOVEWORDNEXT uint32 = 5
-	WB_PREVBREAK uint32 = 6
-	WB_NEXTBREAK uint32 = 7
-	PC_FOLLOWING uint32 = 1
-	PC_LEADING uint32 = 2
-	PC_OVERFLOW uint32 = 3
-	PC_DELIMITER uint32 = 4
-	WBF_WORDWRAP uint32 = 16
-	WBF_WORDBREAK uint32 = 32
-	WBF_OVERFLOW uint32 = 64
-	WBF_LEVEL1 uint32 = 128
-	WBF_LEVEL2 uint32 = 256
-	WBF_CUSTOM uint32 = 512
-	IMF_FORCENONE uint32 = 1
-	IMF_FORCEENABLE uint32 = 2
-	IMF_FORCEDISABLE uint32 = 4
-	IMF_CLOSESTATUSWINDOW uint32 = 8
-	IMF_VERTICAL uint32 = 32
-	IMF_FORCEACTIVE uint32 = 64
-	IMF_FORCEINACTIVE uint32 = 128
-	IMF_FORCEREMEMBER uint32 = 256
-	IMF_MULTIPLEEDIT uint32 = 1024
-	YHeightCharPtsMost uint32 = 1638
-	SCF_SELECTION uint32 = 1
-	SCF_WORD uint32 = 2
-	SCF_DEFAULT uint32 = 0
-	SCF_ALL uint32 = 4
-	SCF_USEUIRULES uint32 = 8
-	SCF_ASSOCIATEFONT uint32 = 16
-	SCF_NOKBUPDATE uint32 = 32
-	SCF_ASSOCIATEFONT2 uint32 = 64
-	SCF_SMARTFONT uint32 = 128
-	SCF_CHARREPFROMLCID uint32 = 256
-	SPF_DONTSETDEFAULT uint32 = 2
-	SPF_SETDEFAULT uint32 = 4
-	SF_TEXT uint32 = 1
-	SF_RTF uint32 = 2
-	SF_RTFNOOBJS uint32 = 3
-	SF_TEXTIZED uint32 = 4
-	SF_UNICODE uint32 = 16
-	SF_USECODEPAGE uint32 = 32
-	SF_NCRFORNONASCII uint32 = 64
-	SFF_WRITEXTRAPAR uint32 = 128
-	SFF_SELECTION uint32 = 32768
-	SFF_PLAINRTF uint32 = 16384
-	SFF_PERSISTVIEWSCALE uint32 = 8192
-	SFF_KEEPDOCINFO uint32 = 4096
-	SFF_PWD uint32 = 2048
-	SF_RTFVAL uint32 = 1792
-	MAX_TAB_STOPS uint32 = 32
-	LDefaultTab uint32 = 720
-	MAX_TABLE_CELLS uint32 = 63
-	PFM_SPACEBEFORE uint32 = 64
-	PFM_SPACEAFTER uint32 = 128
-	PFM_LINESPACING uint32 = 256
-	PFM_STYLE uint32 = 1024
-	PFM_BORDER uint32 = 2048
-	PFM_SHADING uint32 = 4096
-	PFM_NUMBERINGSTYLE uint32 = 8192
-	PFM_NUMBERINGTAB uint32 = 16384
-	PFM_NUMBERINGSTART uint32 = 32768
-	PFM_KEEP uint32 = 131072
-	PFM_KEEPNEXT uint32 = 262144
-	PFM_PAGEBREAKBEFORE uint32 = 524288
-	PFM_NOLINENUMBER uint32 = 1048576
-	PFM_NOWIDOWCONTROL uint32 = 2097152
-	PFM_DONOTHYPHEN uint32 = 4194304
-	PFM_SIDEBYSIDE uint32 = 8388608
-	PFM_COLLAPSED uint32 = 16777216
-	PFM_OUTLINELEVEL uint32 = 33554432
-	PFM_BOX uint32 = 67108864
-	PFM_RESERVED2 uint32 = 134217728
-	PFM_TABLEROWDELIMITER uint32 = 268435456
-	PFM_TEXTWRAPPINGBREAK uint32 = 536870912
-	PFM_TABLE uint32 = 1073741824
-	PFN_BULLET uint32 = 1
-	PFN_ARABIC uint32 = 2
-	PFN_LCLETTER uint32 = 3
-	PFN_UCLETTER uint32 = 4
-	PFN_LCROMAN uint32 = 5
-	PFN_UCROMAN uint32 = 6
-	PFA_JUSTIFY uint32 = 4
-	PFA_FULL_INTERWORD uint32 = 4
-	GCMF_GRIPPER uint32 = 1
-	GCMF_SPELLING uint32 = 2
-	GCMF_TOUCHMENU uint32 = 16384
-	GCMF_MOUSEMENU uint32 = 8192
-	OLEOP_DOVERB uint32 = 1
-	CF_RTF string = "Rich Text Format"
-	CF_RTFNOOBJS string = "Rich Text Format Without Objects"
-	CF_RETEXTOBJ string = "RichEdit Text and Objects"
-	ST_DEFAULT uint32 = 0
-	ST_KEEPUNDO uint32 = 1
-	ST_SELECTION uint32 = 2
-	ST_NEWCHARS uint32 = 4
-	ST_UNICODE uint32 = 8
-	BOM_DEFPARADIR uint32 = 1
-	BOM_PLAINTEXT uint32 = 2
-	BOM_NEUTRALOVERRIDE uint32 = 4
-	BOM_CONTEXTREADING uint32 = 8
-	BOM_CONTEXTALIGNMENT uint32 = 16
-	BOM_LEGACYBIDICLASS uint32 = 64
-	BOM_UNICODEBIDI uint32 = 128
-	BOE_RTLDIR uint32 = 1
-	BOE_PLAINTEXT uint32 = 2
-	BOE_NEUTRALOVERRIDE uint32 = 4
-	BOE_CONTEXTREADING uint32 = 8
-	BOE_CONTEXTALIGNMENT uint32 = 16
-	BOE_FORCERECALC uint32 = 32
-	BOE_LEGACYBIDICLASS uint32 = 64
-	BOE_UNICODEBIDI uint32 = 128
-	FR_MATCHDIAC uint32 = 536870912
-	FR_MATCHKASHIDA uint32 = 1073741824
-	FR_MATCHALEFHAMZA uint32 = 2147483648
-	RICHEDIT60_CLASS string = "RICHEDIT60W"
-	PFA_FULL_NEWSPAPER uint32 = 5
-	PFA_FULL_INTERLETTER uint32 = 6
-	PFA_FULL_SCALED uint32 = 7
-	PFA_FULL_GLYPHS uint32 = 8
-	AURL_ENABLEEA uint32 = 1
-	GCM_TOUCHMENU uint32 = 16384
-	GCM_MOUSEMENU uint32 = 8192
-	S_MSG_KEY_IGNORED HRESULT = 262657
-	TXTBIT_RICHTEXT uint32 = 1
-	TXTBIT_MULTILINE uint32 = 2
-	TXTBIT_READONLY uint32 = 4
-	TXTBIT_SHOWACCELERATOR uint32 = 8
-	TXTBIT_USEPASSWORD uint32 = 16
-	TXTBIT_HIDESELECTION uint32 = 32
-	TXTBIT_SAVESELECTION uint32 = 64
-	TXTBIT_AUTOWORDSEL uint32 = 128
-	TXTBIT_VERTICAL uint32 = 256
-	TXTBIT_SELBARCHANGE uint32 = 512
-	TXTBIT_WORDWRAP uint32 = 1024
-	TXTBIT_ALLOWBEEP uint32 = 2048
-	TXTBIT_DISABLEDRAG uint32 = 4096
-	TXTBIT_VIEWINSETCHANGE uint32 = 8192
-	TXTBIT_BACKSTYLECHANGE uint32 = 16384
-	TXTBIT_MAXLENGTHCHANGE uint32 = 32768
-	TXTBIT_SCROLLBARCHANGE uint32 = 65536
-	TXTBIT_CHARFORMATCHANGE uint32 = 131072
-	TXTBIT_PARAFORMATCHANGE uint32 = 262144
-	TXTBIT_EXTENTCHANGE uint32 = 524288
-	TXTBIT_CLIENTRECTCHANGE uint32 = 1048576
-	TXTBIT_USECURRENTBKG uint32 = 2097152
-	TXTBIT_NOTHREADREFCOUNT uint32 = 4194304
-	TXTBIT_SHOWPASSWORD uint32 = 8388608
-	TXTBIT_D2DDWRITE uint32 = 16777216
-	TXTBIT_D2DSIMPLETYPOGRAPHY uint32 = 33554432
-	TXTBIT_D2DPIXELSNAPPED uint32 = 67108864
-	TXTBIT_D2DSUBPIXELLINES uint32 = 134217728
-	TXTBIT_FLASHLASTPASSWORDCHAR uint32 = 268435456
-	TXTBIT_ADVANCEDINPUT uint32 = 536870912
-	TXES_ISDIALOG uint32 = 1
-	REO_NULL int32 = 0
-	REO_READWRITEMASK int32 = 2047
-	RECO_PASTE int32 = 0
-	RECO_DROP int32 = 1
-	RECO_COPY int32 = 2
-	RECO_CUT int32 = 3
-	RECO_DRAG int32 = 4
+	CchTextLimitDefault               uint32  = 32767
+	MSFTEDIT_CLASS                    string  = "RICHEDIT50W"
+	CERICHEDIT_CLASSA                 string  = "RichEditCEA"
+	CERICHEDIT_CLASSW                 string  = "RichEditCEW"
+	RICHEDIT_CLASSA                   string  = "RichEdit20A"
+	RICHEDIT_CLASS10A                 string  = "RICHEDIT"
+	RICHEDIT_CLASSW                   string  = "RichEdit20W"
+	RICHEDIT_CLASS                    string  = "RichEdit20W"
+	EM_CANPASTE                       uint32  = 1074
+	EM_DISPLAYBAND                    uint32  = 1075
+	EM_EXGETSEL                       uint32  = 1076
+	EM_EXLIMITTEXT                    uint32  = 1077
+	EM_EXLINEFROMCHAR                 uint32  = 1078
+	EM_EXSETSEL                       uint32  = 1079
+	EM_FINDTEXT                       uint32  = 1080
+	EM_FORMATRANGE                    uint32  = 1081
+	EM_GETCHARFORMAT                  uint32  = 1082
+	EM_GETEVENTMASK                   uint32  = 1083
+	EM_GETOLEINTERFACE                uint32  = 1084
+	EM_GETPARAFORMAT                  uint32  = 1085
+	EM_GETSELTEXT                     uint32  = 1086
+	EM_HIDESELECTION                  uint32  = 1087
+	EM_PASTESPECIAL                   uint32  = 1088
+	EM_REQUESTRESIZE                  uint32  = 1089
+	EM_SELECTIONTYPE                  uint32  = 1090
+	EM_SETBKGNDCOLOR                  uint32  = 1091
+	EM_SETCHARFORMAT                  uint32  = 1092
+	EM_SETEVENTMASK                   uint32  = 1093
+	EM_SETOLECALLBACK                 uint32  = 1094
+	EM_SETPARAFORMAT                  uint32  = 1095
+	EM_SETTARGETDEVICE                uint32  = 1096
+	EM_STREAMIN                       uint32  = 1097
+	EM_STREAMOUT                      uint32  = 1098
+	EM_GETTEXTRANGE                   uint32  = 1099
+	EM_FINDWORDBREAK                  uint32  = 1100
+	EM_SETOPTIONS                     uint32  = 1101
+	EM_GETOPTIONS                     uint32  = 1102
+	EM_FINDTEXTEX                     uint32  = 1103
+	EM_GETWORDBREAKPROCEX             uint32  = 1104
+	EM_SETWORDBREAKPROCEX             uint32  = 1105
+	EM_SETUNDOLIMIT                   uint32  = 1106
+	EM_REDO                           uint32  = 1108
+	EM_CANREDO                        uint32  = 1109
+	EM_GETUNDONAME                    uint32  = 1110
+	EM_GETREDONAME                    uint32  = 1111
+	EM_STOPGROUPTYPING                uint32  = 1112
+	EM_SETTEXTMODE                    uint32  = 1113
+	EM_GETTEXTMODE                    uint32  = 1114
+	EM_AUTOURLDETECT                  uint32  = 1115
+	AURL_ENABLEURL                    uint32  = 1
+	AURL_ENABLEEMAILADDR              uint32  = 2
+	AURL_ENABLETELNO                  uint32  = 4
+	AURL_ENABLEEAURLS                 uint32  = 8
+	AURL_ENABLEDRIVELETTERS           uint32  = 16
+	AURL_DISABLEMIXEDLGC              uint32  = 32
+	EM_GETAUTOURLDETECT               uint32  = 1116
+	EM_SETPALETTE                     uint32  = 1117
+	EM_GETTEXTEX                      uint32  = 1118
+	EM_GETTEXTLENGTHEX                uint32  = 1119
+	EM_SHOWSCROLLBAR                  uint32  = 1120
+	EM_SETTEXTEX                      uint32  = 1121
+	EM_SETPUNCTUATION                 uint32  = 1124
+	EM_GETPUNCTUATION                 uint32  = 1125
+	EM_SETWORDWRAPMODE                uint32  = 1126
+	EM_GETWORDWRAPMODE                uint32  = 1127
+	EM_SETIMECOLOR                    uint32  = 1128
+	EM_GETIMECOLOR                    uint32  = 1129
+	EM_SETIMEOPTIONS                  uint32  = 1130
+	EM_GETIMEOPTIONS                  uint32  = 1131
+	EM_CONVPOSITION                   uint32  = 1132
+	EM_SETLANGOPTIONS                 uint32  = 1144
+	EM_GETLANGOPTIONS                 uint32  = 1145
+	EM_GETIMECOMPMODE                 uint32  = 1146
+	EM_FINDTEXTW                      uint32  = 1147
+	EM_FINDTEXTEXW                    uint32  = 1148
+	EM_RECONVERSION                   uint32  = 1149
+	EM_SETIMEMODEBIAS                 uint32  = 1150
+	EM_GETIMEMODEBIAS                 uint32  = 1151
+	EM_SETBIDIOPTIONS                 uint32  = 1224
+	EM_GETBIDIOPTIONS                 uint32  = 1225
+	EM_SETTYPOGRAPHYOPTIONS           uint32  = 1226
+	EM_GETTYPOGRAPHYOPTIONS           uint32  = 1227
+	EM_SETEDITSTYLE                   uint32  = 1228
+	EM_GETEDITSTYLE                   uint32  = 1229
+	SES_EMULATESYSEDIT                uint32  = 1
+	SES_BEEPONMAXTEXT                 uint32  = 2
+	SES_EXTENDBACKCOLOR               uint32  = 4
+	SES_MAPCPS                        uint32  = 8
+	SES_HYPERLINKTOOLTIPS             uint32  = 8
+	SES_EMULATE10                     uint32  = 16
+	SES_DEFAULTLATINLIGA              uint32  = 16
+	SES_USECRLF                       uint32  = 32
+	SES_NOFOCUSLINKNOTIFY             uint32  = 32
+	SES_USEAIMM                       uint32  = 64
+	SES_NOIME                         uint32  = 128
+	SES_ALLOWBEEPS                    uint32  = 256
+	SES_UPPERCASE                     uint32  = 512
+	SES_LOWERCASE                     uint32  = 1024
+	SES_NOINPUTSEQUENCECHK            uint32  = 2048
+	SES_BIDI                          uint32  = 4096
+	SES_SCROLLONKILLFOCUS             uint32  = 8192
+	SES_XLTCRCRLFTOCR                 uint32  = 16384
+	SES_DRAFTMODE                     uint32  = 32768
+	SES_USECTF                        uint32  = 65536
+	SES_HIDEGRIDLINES                 uint32  = 131072
+	SES_USEATFONT                     uint32  = 262144
+	SES_CUSTOMLOOK                    uint32  = 524288
+	SES_LBSCROLLNOTIFY                uint32  = 1048576
+	SES_CTFALLOWEMBED                 uint32  = 2097152
+	SES_CTFALLOWSMARTTAG              uint32  = 4194304
+	SES_CTFALLOWPROOFING              uint32  = 8388608
+	SES_LOGICALCARET                  uint32  = 16777216
+	SES_WORDDRAGDROP                  uint32  = 33554432
+	SES_SMARTDRAGDROP                 uint32  = 67108864
+	SES_MULTISELECT                   uint32  = 134217728
+	SES_CTFNOLOCK                     uint32  = 268435456
+	SES_NOEALINEHEIGHTADJUST          uint32  = 536870912
+	SES_MAX                           uint32  = 536870912
+	IMF_AUTOKEYBOARD                  uint32  = 1
+	IMF_AUTOFONT                      uint32  = 2
+	IMF_IMECANCELCOMPLETE             uint32  = 4
+	IMF_IMEALWAYSSENDNOTIFY           uint32  = 8
+	IMF_AUTOFONTSIZEADJUST            uint32  = 16
+	IMF_UIFONTS                       uint32  = 32
+	IMF_NOIMPLICITLANG                uint32  = 64
+	IMF_DUALFONT                      uint32  = 128
+	IMF_NOKBDLIDFIXUP                 uint32  = 512
+	IMF_NORTFFONTSUBSTITUTE           uint32  = 1024
+	IMF_SPELLCHECKING                 uint32  = 2048
+	IMF_TKBPREDICTION                 uint32  = 4096
+	IMF_IMEUIINTEGRATION              uint32  = 8192
+	ICM_NOTOPEN                       uint32  = 0
+	ICM_LEVEL3                        uint32  = 1
+	ICM_LEVEL2                        uint32  = 2
+	ICM_LEVEL2_5                      uint32  = 3
+	ICM_LEVEL2_SUI                    uint32  = 4
+	ICM_CTF                           uint32  = 5
+	TO_ADVANCEDTYPOGRAPHY             uint32  = 1
+	TO_SIMPLELINEBREAK                uint32  = 2
+	TO_DISABLECUSTOMTEXTOUT           uint32  = 4
+	TO_ADVANCEDLAYOUT                 uint32  = 8
+	EM_OUTLINE                        uint32  = 1244
+	EM_GETSCROLLPOS                   uint32  = 1245
+	EM_SETSCROLLPOS                   uint32  = 1246
+	EM_SETFONTSIZE                    uint32  = 1247
+	EM_GETZOOM                        uint32  = 1248
+	EM_SETZOOM                        uint32  = 1249
+	EM_GETVIEWKIND                    uint32  = 1250
+	EM_SETVIEWKIND                    uint32  = 1251
+	EM_GETPAGE                        uint32  = 1252
+	EM_SETPAGE                        uint32  = 1253
+	EM_GETHYPHENATEINFO               uint32  = 1254
+	EM_SETHYPHENATEINFO               uint32  = 1255
+	EM_GETPAGEROTATE                  uint32  = 1259
+	EM_SETPAGEROTATE                  uint32  = 1260
+	EM_GETCTFMODEBIAS                 uint32  = 1261
+	EM_SETCTFMODEBIAS                 uint32  = 1262
+	EM_GETCTFOPENSTATUS               uint32  = 1264
+	EM_SETCTFOPENSTATUS               uint32  = 1265
+	EM_GETIMECOMPTEXT                 uint32  = 1266
+	EM_ISIME                          uint32  = 1267
+	EM_GETIMEPROPERTY                 uint32  = 1268
+	EM_GETQUERYRTFOBJ                 uint32  = 1293
+	EM_SETQUERYRTFOBJ                 uint32  = 1294
+	EPR_0                             uint32  = 0
+	EPR_270                           uint32  = 1
+	EPR_180                           uint32  = 2
+	EPR_90                            uint32  = 3
+	EPR_SE                            uint32  = 5
+	CTFMODEBIAS_DEFAULT               uint32  = 0
+	CTFMODEBIAS_FILENAME              uint32  = 1
+	CTFMODEBIAS_NAME                  uint32  = 2
+	CTFMODEBIAS_READING               uint32  = 3
+	CTFMODEBIAS_DATETIME              uint32  = 4
+	CTFMODEBIAS_CONVERSATION          uint32  = 5
+	CTFMODEBIAS_NUMERIC               uint32  = 6
+	CTFMODEBIAS_HIRAGANA              uint32  = 7
+	CTFMODEBIAS_KATAKANA              uint32  = 8
+	CTFMODEBIAS_HANGUL                uint32  = 9
+	CTFMODEBIAS_HALFWIDTHKATAKANA     uint32  = 10
+	CTFMODEBIAS_FULLWIDTHALPHANUMERIC uint32  = 11
+	CTFMODEBIAS_HALFWIDTHALPHANUMERIC uint32  = 12
+	IMF_SMODE_PLAURALCLAUSE           uint32  = 1
+	IMF_SMODE_NONE                    uint32  = 2
+	EMO_EXIT                          uint32  = 0
+	EMO_ENTER                         uint32  = 1
+	EMO_PROMOTE                       uint32  = 2
+	EMO_EXPAND                        uint32  = 3
+	EMO_MOVESELECTION                 uint32  = 4
+	EMO_GETVIEWMODE                   uint32  = 5
+	EMO_EXPANDSELECTION               uint32  = 0
+	EMO_EXPANDDOCUMENT                uint32  = 1
+	VM_NORMAL                         uint32  = 4
+	VM_OUTLINE                        uint32  = 2
+	VM_PAGE                           uint32  = 9
+	EM_INSERTTABLE                    uint32  = 1256
+	EM_GETAUTOCORRECTPROC             uint32  = 1257
+	EM_SETAUTOCORRECTPROC             uint32  = 1258
+	EM_CALLAUTOCORRECTPROC            uint32  = 1279
+	ATP_NOCHANGE                      uint32  = 0
+	ATP_CHANGE                        uint32  = 1
+	ATP_NODELIMITER                   uint32  = 2
+	ATP_REPLACEALLTEXT                uint32  = 4
+	EM_GETTABLEPARMS                  uint32  = 1289
+	EM_SETEDITSTYLEEX                 uint32  = 1299
+	EM_GETEDITSTYLEEX                 uint32  = 1300
+	SES_EX_NOTABLE                    uint32  = 4
+	SES_EX_NOMATH                     uint32  = 64
+	SES_EX_HANDLEFRIENDLYURL          uint32  = 256
+	SES_EX_NOTHEMING                  uint32  = 524288
+	SES_EX_NOACETATESELECTION         uint32  = 1048576
+	SES_EX_USESINGLELINE              uint32  = 2097152
+	SES_EX_MULTITOUCH                 uint32  = 134217728
+	SES_EX_HIDETEMPFORMAT             uint32  = 268435456
+	SES_EX_USEMOUSEWPARAM             uint32  = 536870912
+	EM_GETSTORYTYPE                   uint32  = 1314
+	EM_SETSTORYTYPE                   uint32  = 1315
+	EM_GETELLIPSISMODE                uint32  = 1329
+	EM_SETELLIPSISMODE                uint32  = 1330
+	ELLIPSIS_MASK                     uint32  = 3
+	ELLIPSIS_NONE                     uint32  = 0
+	ELLIPSIS_END                      uint32  = 1
+	ELLIPSIS_WORD                     uint32  = 3
+	EM_SETTABLEPARMS                  uint32  = 1331
+	EM_GETTOUCHOPTIONS                uint32  = 1334
+	EM_SETTOUCHOPTIONS                uint32  = 1335
+	EM_INSERTIMAGE                    uint32  = 1338
+	EM_SETUIANAME                     uint32  = 1344
+	EM_GETELLIPSISSTATE               uint32  = 1346
+	RTO_SHOWHANDLES                   uint32  = 1
+	RTO_DISABLEHANDLES                uint32  = 2
+	RTO_READINGMODE                   uint32  = 3
+	EN_MSGFILTER                      uint32  = 1792
+	EN_REQUESTRESIZE                  uint32  = 1793
+	EN_SELCHANGE                      uint32  = 1794
+	EN_DROPFILES                      uint32  = 1795
+	EN_PROTECTED                      uint32  = 1796
+	EN_CORRECTTEXT                    uint32  = 1797
+	EN_STOPNOUNDO                     uint32  = 1798
+	EN_IMECHANGE                      uint32  = 1799
+	EN_SAVECLIPBOARD                  uint32  = 1800
+	EN_OLEOPFAILED                    uint32  = 1801
+	EN_OBJECTPOSITIONS                uint32  = 1802
+	EN_LINK                           uint32  = 1803
+	EN_DRAGDROPDONE                   uint32  = 1804
+	EN_PARAGRAPHEXPANDED              uint32  = 1805
+	EN_PAGECHANGE                     uint32  = 1806
+	EN_LOWFIRTF                       uint32  = 1807
+	EN_ALIGNLTR                       uint32  = 1808
+	EN_ALIGNRTL                       uint32  = 1809
+	EN_CLIPFORMAT                     uint32  = 1810
+	EN_STARTCOMPOSITION               uint32  = 1811
+	EN_ENDCOMPOSITION                 uint32  = 1812
+	ENM_NONE                          uint32  = 0
+	ENM_CHANGE                        uint32  = 1
+	ENM_UPDATE                        uint32  = 2
+	ENM_SCROLL                        uint32  = 4
+	ENM_SCROLLEVENTS                  uint32  = 8
+	ENM_DRAGDROPDONE                  uint32  = 16
+	ENM_PARAGRAPHEXPANDED             uint32  = 32
+	ENM_PAGECHANGE                    uint32  = 64
+	ENM_CLIPFORMAT                    uint32  = 128
+	ENM_KEYEVENTS                     uint32  = 65536
+	ENM_MOUSEEVENTS                   uint32  = 131072
+	ENM_REQUESTRESIZE                 uint32  = 262144
+	ENM_SELCHANGE                     uint32  = 524288
+	ENM_DROPFILES                     uint32  = 1048576
+	ENM_PROTECTED                     uint32  = 2097152
+	ENM_CORRECTTEXT                   uint32  = 4194304
+	ENM_IMECHANGE                     uint32  = 8388608
+	ENM_LANGCHANGE                    uint32  = 16777216
+	ENM_OBJECTPOSITIONS               uint32  = 33554432
+	ENM_LINK                          uint32  = 67108864
+	ENM_LOWFIRTF                      uint32  = 134217728
+	ENM_STARTCOMPOSITION              uint32  = 268435456
+	ENM_ENDCOMPOSITION                uint32  = 536870912
+	ENM_GROUPTYPINGCHANGE             uint32  = 1073741824
+	ENM_HIDELINKTOOLTIP               uint32  = 2147483648
+	ES_SAVESEL                        uint32  = 32768
+	ES_SUNKEN                         uint32  = 16384
+	ES_DISABLENOSCROLL                uint32  = 8192
+	ES_SELECTIONBAR                   uint32  = 16777216
+	ES_NOOLEDRAGDROP                  uint32  = 8
+	ES_EX_NOCALLOLEINIT               uint32  = 0
+	ES_VERTICAL                       uint32  = 4194304
+	ES_NOIME                          uint32  = 524288
+	ES_SELFIME                        uint32  = 262144
+	ECO_AUTOWORDSELECTION             uint32  = 1
+	ECO_AUTOVSCROLL                   uint32  = 64
+	ECO_AUTOHSCROLL                   uint32  = 128
+	ECO_NOHIDESEL                     uint32  = 256
+	ECO_READONLY                      uint32  = 2048
+	ECO_WANTRETURN                    uint32  = 4096
+	ECO_SAVESEL                       uint32  = 32768
+	ECO_SELECTIONBAR                  uint32  = 16777216
+	ECO_VERTICAL                      uint32  = 4194304
+	ECOOP_SET                         uint32  = 1
+	ECOOP_OR                          uint32  = 2
+	ECOOP_AND                         uint32  = 3
+	ECOOP_XOR                         uint32  = 4
+	WB_MOVEWORDPREV                   uint32  = 4
+	WB_MOVEWORDNEXT                   uint32  = 5
+	WB_PREVBREAK                      uint32  = 6
+	WB_NEXTBREAK                      uint32  = 7
+	PC_FOLLOWING                      uint32  = 1
+	PC_LEADING                        uint32  = 2
+	PC_OVERFLOW                       uint32  = 3
+	PC_DELIMITER                      uint32  = 4
+	WBF_WORDWRAP                      uint32  = 16
+	WBF_WORDBREAK                     uint32  = 32
+	WBF_OVERFLOW                      uint32  = 64
+	WBF_LEVEL1                        uint32  = 128
+	WBF_LEVEL2                        uint32  = 256
+	WBF_CUSTOM                        uint32  = 512
+	IMF_FORCENONE                     uint32  = 1
+	IMF_FORCEENABLE                   uint32  = 2
+	IMF_FORCEDISABLE                  uint32  = 4
+	IMF_CLOSESTATUSWINDOW             uint32  = 8
+	IMF_VERTICAL                      uint32  = 32
+	IMF_FORCEACTIVE                   uint32  = 64
+	IMF_FORCEINACTIVE                 uint32  = 128
+	IMF_FORCEREMEMBER                 uint32  = 256
+	IMF_MULTIPLEEDIT                  uint32  = 1024
+	YHeightCharPtsMost                uint32  = 1638
+	SCF_SELECTION                     uint32  = 1
+	SCF_WORD                          uint32  = 2
+	SCF_DEFAULT                       uint32  = 0
+	SCF_ALL                           uint32  = 4
+	SCF_USEUIRULES                    uint32  = 8
+	SCF_ASSOCIATEFONT                 uint32  = 16
+	SCF_NOKBUPDATE                    uint32  = 32
+	SCF_ASSOCIATEFONT2                uint32  = 64
+	SCF_SMARTFONT                     uint32  = 128
+	SCF_CHARREPFROMLCID               uint32  = 256
+	SPF_DONTSETDEFAULT                uint32  = 2
+	SPF_SETDEFAULT                    uint32  = 4
+	SF_TEXT                           uint32  = 1
+	SF_RTF                            uint32  = 2
+	SF_RTFNOOBJS                      uint32  = 3
+	SF_TEXTIZED                       uint32  = 4
+	SF_UNICODE                        uint32  = 16
+	SF_USECODEPAGE                    uint32  = 32
+	SF_NCRFORNONASCII                 uint32  = 64
+	SFF_WRITEXTRAPAR                  uint32  = 128
+	SFF_SELECTION                     uint32  = 32768
+	SFF_PLAINRTF                      uint32  = 16384
+	SFF_PERSISTVIEWSCALE              uint32  = 8192
+	SFF_KEEPDOCINFO                   uint32  = 4096
+	SFF_PWD                           uint32  = 2048
+	SF_RTFVAL                         uint32  = 1792
+	MAX_TAB_STOPS                     uint32  = 32
+	LDefaultTab                       uint32  = 720
+	MAX_TABLE_CELLS                   uint32  = 63
+	PFM_SPACEBEFORE                   uint32  = 64
+	PFM_SPACEAFTER                    uint32  = 128
+	PFM_LINESPACING                   uint32  = 256
+	PFM_STYLE                         uint32  = 1024
+	PFM_BORDER                        uint32  = 2048
+	PFM_SHADING                       uint32  = 4096
+	PFM_NUMBERINGSTYLE                uint32  = 8192
+	PFM_NUMBERINGTAB                  uint32  = 16384
+	PFM_NUMBERINGSTART                uint32  = 32768
+	PFM_KEEP                          uint32  = 131072
+	PFM_KEEPNEXT                      uint32  = 262144
+	PFM_PAGEBREAKBEFORE               uint32  = 524288
+	PFM_NOLINENUMBER                  uint32  = 1048576
+	PFM_NOWIDOWCONTROL                uint32  = 2097152
+	PFM_DONOTHYPHEN                   uint32  = 4194304
+	PFM_SIDEBYSIDE                    uint32  = 8388608
+	PFM_COLLAPSED                     uint32  = 16777216
+	PFM_OUTLINELEVEL                  uint32  = 33554432
+	PFM_BOX                           uint32  = 67108864
+	PFM_RESERVED2                     uint32  = 134217728
+	PFM_TABLEROWDELIMITER             uint32  = 268435456
+	PFM_TEXTWRAPPINGBREAK             uint32  = 536870912
+	PFM_TABLE                         uint32  = 1073741824
+	PFN_BULLET                        uint32  = 1
+	PFN_ARABIC                        uint32  = 2
+	PFN_LCLETTER                      uint32  = 3
+	PFN_UCLETTER                      uint32  = 4
+	PFN_LCROMAN                       uint32  = 5
+	PFN_UCROMAN                       uint32  = 6
+	PFA_JUSTIFY                       uint32  = 4
+	PFA_FULL_INTERWORD                uint32  = 4
+	GCMF_GRIPPER                      uint32  = 1
+	GCMF_SPELLING                     uint32  = 2
+	GCMF_TOUCHMENU                    uint32  = 16384
+	GCMF_MOUSEMENU                    uint32  = 8192
+	OLEOP_DOVERB                      uint32  = 1
+	CF_RTF                            string  = "Rich Text Format"
+	CF_RTFNOOBJS                      string  = "Rich Text Format Without Objects"
+	CF_RETEXTOBJ                      string  = "RichEdit Text and Objects"
+	ST_DEFAULT                        uint32  = 0
+	ST_KEEPUNDO                       uint32  = 1
+	ST_SELECTION                      uint32  = 2
+	ST_NEWCHARS                       uint32  = 4
+	ST_UNICODE                        uint32  = 8
+	BOM_DEFPARADIR                    uint32  = 1
+	BOM_PLAINTEXT                     uint32  = 2
+	BOM_NEUTRALOVERRIDE               uint32  = 4
+	BOM_CONTEXTREADING                uint32  = 8
+	BOM_CONTEXTALIGNMENT              uint32  = 16
+	BOM_LEGACYBIDICLASS               uint32  = 64
+	BOM_UNICODEBIDI                   uint32  = 128
+	BOE_RTLDIR                        uint32  = 1
+	BOE_PLAINTEXT                     uint32  = 2
+	BOE_NEUTRALOVERRIDE               uint32  = 4
+	BOE_CONTEXTREADING                uint32  = 8
+	BOE_CONTEXTALIGNMENT              uint32  = 16
+	BOE_FORCERECALC                   uint32  = 32
+	BOE_LEGACYBIDICLASS               uint32  = 64
+	BOE_UNICODEBIDI                   uint32  = 128
+	FR_MATCHDIAC                      uint32  = 536870912
+	FR_MATCHKASHIDA                   uint32  = 1073741824
+	FR_MATCHALEFHAMZA                 uint32  = 2147483648
+	RICHEDIT60_CLASS                  string  = "RICHEDIT60W"
+	PFA_FULL_NEWSPAPER                uint32  = 5
+	PFA_FULL_INTERLETTER              uint32  = 6
+	PFA_FULL_SCALED                   uint32  = 7
+	PFA_FULL_GLYPHS                   uint32  = 8
+	AURL_ENABLEEA                     uint32  = 1
+	GCM_TOUCHMENU                     uint32  = 16384
+	GCM_MOUSEMENU                     uint32  = 8192
+	S_MSG_KEY_IGNORED                 HRESULT = 262657
+	TXTBIT_RICHTEXT                   uint32  = 1
+	TXTBIT_MULTILINE                  uint32  = 2
+	TXTBIT_READONLY                   uint32  = 4
+	TXTBIT_SHOWACCELERATOR            uint32  = 8
+	TXTBIT_USEPASSWORD                uint32  = 16
+	TXTBIT_HIDESELECTION              uint32  = 32
+	TXTBIT_SAVESELECTION              uint32  = 64
+	TXTBIT_AUTOWORDSEL                uint32  = 128
+	TXTBIT_VERTICAL                   uint32  = 256
+	TXTBIT_SELBARCHANGE               uint32  = 512
+	TXTBIT_WORDWRAP                   uint32  = 1024
+	TXTBIT_ALLOWBEEP                  uint32  = 2048
+	TXTBIT_DISABLEDRAG                uint32  = 4096
+	TXTBIT_VIEWINSETCHANGE            uint32  = 8192
+	TXTBIT_BACKSTYLECHANGE            uint32  = 16384
+	TXTBIT_MAXLENGTHCHANGE            uint32  = 32768
+	TXTBIT_SCROLLBARCHANGE            uint32  = 65536
+	TXTBIT_CHARFORMATCHANGE           uint32  = 131072
+	TXTBIT_PARAFORMATCHANGE           uint32  = 262144
+	TXTBIT_EXTENTCHANGE               uint32  = 524288
+	TXTBIT_CLIENTRECTCHANGE           uint32  = 1048576
+	TXTBIT_USECURRENTBKG              uint32  = 2097152
+	TXTBIT_NOTHREADREFCOUNT           uint32  = 4194304
+	TXTBIT_SHOWPASSWORD               uint32  = 8388608
+	TXTBIT_D2DDWRITE                  uint32  = 16777216
+	TXTBIT_D2DSIMPLETYPOGRAPHY        uint32  = 33554432
+	TXTBIT_D2DPIXELSNAPPED            uint32  = 67108864
+	TXTBIT_D2DSUBPIXELLINES           uint32  = 134217728
+	TXTBIT_FLASHLASTPASSWORDCHAR      uint32  = 268435456
+	TXTBIT_ADVANCEDINPUT              uint32  = 536870912
+	TXES_ISDIALOG                     uint32  = 1
+	REO_NULL                          int32   = 0
+	REO_READWRITEMASK                 int32   = 2047
+	RECO_PASTE                        int32   = 0
+	RECO_DROP                         int32   = 1
+	RECO_COPY                         int32   = 2
+	RECO_CUT                          int32   = 3
+	RECO_DRAG                         int32   = 4
 )
 
 // enums
@@ -473,170 +473,180 @@ const (
 // enum CFM_MASK
 // flags
 type CFM_MASK uint32
+
 const (
-	CFM_SUBSCRIPT CFM_MASK = 196608
-	CFM_SUPERSCRIPT CFM_MASK = 196608
-	CFM_EFFECTS CFM_MASK = 1073741887
-	CFM_ALL CFM_MASK = 4160749631
-	CFM_BOLD CFM_MASK = 1
-	CFM_CHARSET CFM_MASK = 134217728
-	CFM_COLOR CFM_MASK = 1073741824
-	CFM_FACE CFM_MASK = 536870912
-	CFM_ITALIC CFM_MASK = 2
-	CFM_OFFSET CFM_MASK = 268435456
-	CFM_PROTECTED CFM_MASK = 16
-	CFM_SIZE CFM_MASK = 2147483648
-	CFM_STRIKEOUT CFM_MASK = 8
-	CFM_UNDERLINE CFM_MASK = 4
-	CFM_LINK CFM_MASK = 32
-	CFM_SMALLCAPS CFM_MASK = 64
-	CFM_ALLCAPS CFM_MASK = 128
-	CFM_HIDDEN CFM_MASK = 256
-	CFM_OUTLINE CFM_MASK = 512
-	CFM_SHADOW CFM_MASK = 1024
-	CFM_EMBOSS CFM_MASK = 2048
-	CFM_IMPRINT CFM_MASK = 4096
-	CFM_DISABLED CFM_MASK = 8192
-	CFM_REVISED CFM_MASK = 16384
-	CFM_REVAUTHOR CFM_MASK = 32768
-	CFM_ANIMATION CFM_MASK = 262144
-	CFM_STYLE CFM_MASK = 524288
-	CFM_KERNING CFM_MASK = 1048576
-	CFM_SPACING CFM_MASK = 2097152
-	CFM_WEIGHT CFM_MASK = 4194304
+	CFM_SUBSCRIPT     CFM_MASK = 196608
+	CFM_SUPERSCRIPT   CFM_MASK = 196608
+	CFM_EFFECTS       CFM_MASK = 1073741887
+	CFM_ALL           CFM_MASK = 4160749631
+	CFM_BOLD          CFM_MASK = 1
+	CFM_CHARSET       CFM_MASK = 134217728
+	CFM_COLOR         CFM_MASK = 1073741824
+	CFM_FACE          CFM_MASK = 536870912
+	CFM_ITALIC        CFM_MASK = 2
+	CFM_OFFSET        CFM_MASK = 268435456
+	CFM_PROTECTED     CFM_MASK = 16
+	CFM_SIZE          CFM_MASK = 2147483648
+	CFM_STRIKEOUT     CFM_MASK = 8
+	CFM_UNDERLINE     CFM_MASK = 4
+	CFM_LINK          CFM_MASK = 32
+	CFM_SMALLCAPS     CFM_MASK = 64
+	CFM_ALLCAPS       CFM_MASK = 128
+	CFM_HIDDEN        CFM_MASK = 256
+	CFM_OUTLINE       CFM_MASK = 512
+	CFM_SHADOW        CFM_MASK = 1024
+	CFM_EMBOSS        CFM_MASK = 2048
+	CFM_IMPRINT       CFM_MASK = 4096
+	CFM_DISABLED      CFM_MASK = 8192
+	CFM_REVISED       CFM_MASK = 16384
+	CFM_REVAUTHOR     CFM_MASK = 32768
+	CFM_ANIMATION     CFM_MASK = 262144
+	CFM_STYLE         CFM_MASK = 524288
+	CFM_KERNING       CFM_MASK = 1048576
+	CFM_SPACING       CFM_MASK = 2097152
+	CFM_WEIGHT        CFM_MASK = 4194304
 	CFM_UNDERLINETYPE CFM_MASK = 8388608
-	CFM_COOKIE CFM_MASK = 16777216
-	CFM_LCID CFM_MASK = 33554432
-	CFM_BACKCOLOR CFM_MASK = 67108864
-	CFM_EFFECTS2 CFM_MASK = 1141080063
-	CFM_ALL2 CFM_MASK = 4294967295
-	CFM_FONTBOUND CFM_MASK = 1048576
+	CFM_COOKIE        CFM_MASK = 16777216
+	CFM_LCID          CFM_MASK = 33554432
+	CFM_BACKCOLOR     CFM_MASK = 67108864
+	CFM_EFFECTS2      CFM_MASK = 1141080063
+	CFM_ALL2          CFM_MASK = 4294967295
+	CFM_FONTBOUND     CFM_MASK = 1048576
 	CFM_LINKPROTECTED CFM_MASK = 8388608
-	CFM_EXTENDED CFM_MASK = 33554432
+	CFM_EXTENDED      CFM_MASK = 33554432
 	CFM_MATHNOBUILDUP CFM_MASK = 134217728
-	CFM_MATH CFM_MASK = 268435456
-	CFM_MATHORDINARY CFM_MASK = 536870912
-	CFM_ALLEFFECTS CFM_MASK = 2115207167
+	CFM_MATH          CFM_MASK = 268435456
+	CFM_MATHORDINARY  CFM_MASK = 536870912
+	CFM_ALLEFFECTS    CFM_MASK = 2115207167
 )
 
 // enum CFE_EFFECTS
 // flags
 type CFE_EFFECTS uint32
+
 const (
-	CFE_ALLCAPS CFE_EFFECTS = 128
+	CFE_ALLCAPS       CFE_EFFECTS = 128
 	CFE_AUTOBACKCOLOR CFE_EFFECTS = 67108864
-	CFE_DISABLED CFE_EFFECTS = 8192
-	CFE_EMBOSS CFE_EFFECTS = 2048
-	CFE_HIDDEN CFE_EFFECTS = 256
-	CFE_IMPRINT CFE_EFFECTS = 4096
-	CFE_OUTLINE CFE_EFFECTS = 512
-	CFE_REVISED CFE_EFFECTS = 16384
-	CFE_SHADOW CFE_EFFECTS = 1024
-	CFE_SMALLCAPS CFE_EFFECTS = 64
-	CFE_AUTOCOLOR CFE_EFFECTS = 1073741824
-	CFE_BOLD CFE_EFFECTS = 1
-	CFE_ITALIC CFE_EFFECTS = 2
-	CFE_STRIKEOUT CFE_EFFECTS = 8
-	CFE_UNDERLINE CFE_EFFECTS = 4
-	CFE_PROTECTED CFE_EFFECTS = 16
-	CFE_LINK CFE_EFFECTS = 32
-	CFE_SUBSCRIPT CFE_EFFECTS = 65536
-	CFE_SUPERSCRIPT CFE_EFFECTS = 131072
-	CFE_FONTBOUND CFE_EFFECTS = 1048576
+	CFE_DISABLED      CFE_EFFECTS = 8192
+	CFE_EMBOSS        CFE_EFFECTS = 2048
+	CFE_HIDDEN        CFE_EFFECTS = 256
+	CFE_IMPRINT       CFE_EFFECTS = 4096
+	CFE_OUTLINE       CFE_EFFECTS = 512
+	CFE_REVISED       CFE_EFFECTS = 16384
+	CFE_SHADOW        CFE_EFFECTS = 1024
+	CFE_SMALLCAPS     CFE_EFFECTS = 64
+	CFE_AUTOCOLOR     CFE_EFFECTS = 1073741824
+	CFE_BOLD          CFE_EFFECTS = 1
+	CFE_ITALIC        CFE_EFFECTS = 2
+	CFE_STRIKEOUT     CFE_EFFECTS = 8
+	CFE_UNDERLINE_    CFE_EFFECTS = 4
+	CFE_PROTECTED     CFE_EFFECTS = 16
+	CFE_LINK          CFE_EFFECTS = 32
+	CFE_SUBSCRIPT     CFE_EFFECTS = 65536
+	CFE_SUPERSCRIPT   CFE_EFFECTS = 131072
+	CFE_FONTBOUND     CFE_EFFECTS = 1048576
 	CFE_LINKPROTECTED CFE_EFFECTS = 8388608
-	CFE_EXTENDED CFE_EFFECTS = 33554432
+	CFE_EXTENDED      CFE_EFFECTS = 33554432
 	CFE_MATHNOBUILDUP CFE_EFFECTS = 134217728
-	CFE_MATH CFE_EFFECTS = 268435456
-	CFE_MATHORDINARY CFE_EFFECTS = 536870912
+	CFE_MATH          CFE_EFFECTS = 268435456
+	CFE_MATHORDINARY  CFE_EFFECTS = 536870912
 )
 
 // enum PARAFORMAT_MASK
 // flags
 type PARAFORMAT_MASK uint32
+
 const (
-	PFM_ALIGNMENT PARAFORMAT_MASK = 8
-	PFM_NUMBERING PARAFORMAT_MASK = 32
-	PFM_OFFSET PARAFORMAT_MASK = 4
+	PFM_ALIGNMENT    PARAFORMAT_MASK = 8
+	PFM_NUMBERING    PARAFORMAT_MASK = 32
+	PFM_OFFSET       PARAFORMAT_MASK = 4
 	PFM_OFFSETINDENT PARAFORMAT_MASK = 2147483648
-	PFM_RIGHTINDENT PARAFORMAT_MASK = 2
-	PFM_RTLPARA PARAFORMAT_MASK = 65536
-	PFM_STARTINDENT PARAFORMAT_MASK = 1
-	PFM_TABSTOPS PARAFORMAT_MASK = 16
+	PFM_RIGHTINDENT  PARAFORMAT_MASK = 2
+	PFM_RTLPARA      PARAFORMAT_MASK = 65536
+	PFM_STARTINDENT  PARAFORMAT_MASK = 1
+	PFM_TABSTOPS     PARAFORMAT_MASK = 16
 )
 
 // enum RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
 // flags
 type RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE uint16
+
 const (
-	SEL_EMPTY RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 0
-	SEL_TEXT RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 1
-	SEL_OBJECT RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 2
-	SEL_MULTICHAR RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 4
-	SEL_MULTIOBJECT RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 8
+	SEL_EMPTY          RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 0
+	SEL_TEXT           RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 1
+	SEL_OBJECT         RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 2
+	SEL_MULTICHAR      RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 4
+	SEL_MULTIOBJECT    RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 8
 	GCM_RIGHTMOUSEDROP RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 32768
 )
 
 // enum RICH_EDIT_GET_OBJECT_FLAGS
 // flags
 type RICH_EDIT_GET_OBJECT_FLAGS uint32
+
 const (
-	REO_GETOBJ_POLEOBJ RICH_EDIT_GET_OBJECT_FLAGS = 1
-	REO_GETOBJ_PSTG RICH_EDIT_GET_OBJECT_FLAGS = 2
-	REO_GETOBJ_POLESITE RICH_EDIT_GET_OBJECT_FLAGS = 4
-	REO_GETOBJ_NO_INTERFACES RICH_EDIT_GET_OBJECT_FLAGS = 0
+	REO_GETOBJ_POLEOBJ        RICH_EDIT_GET_OBJECT_FLAGS = 1
+	REO_GETOBJ_PSTG           RICH_EDIT_GET_OBJECT_FLAGS = 2
+	REO_GETOBJ_POLESITE       RICH_EDIT_GET_OBJECT_FLAGS = 4
+	REO_GETOBJ_NO_INTERFACES  RICH_EDIT_GET_OBJECT_FLAGS = 0
 	REO_GETOBJ_ALL_INTERFACES RICH_EDIT_GET_OBJECT_FLAGS = 7
 )
 
 // enum PARAFORMAT_BORDERS
 // flags
 type PARAFORMAT_BORDERS uint16
+
 const (
-	PARAFORMAT_BORDERS_LEFT PARAFORMAT_BORDERS = 1
-	PARAFORMAT_BORDERS_RIGHT PARAFORMAT_BORDERS = 2
-	PARAFORMAT_BORDERS_TOP PARAFORMAT_BORDERS = 4
-	PARAFORMAT_BORDERS_BOTTOM PARAFORMAT_BORDERS = 8
-	PARAFORMAT_BORDERS_INSIDE PARAFORMAT_BORDERS = 16
-	PARAFORMAT_BORDERS_OUTSIDE PARAFORMAT_BORDERS = 32
+	PARAFORMAT_BORDERS_LEFT      PARAFORMAT_BORDERS = 1
+	PARAFORMAT_BORDERS_RIGHT     PARAFORMAT_BORDERS = 2
+	PARAFORMAT_BORDERS_TOP       PARAFORMAT_BORDERS = 4
+	PARAFORMAT_BORDERS_BOTTOM    PARAFORMAT_BORDERS = 8
+	PARAFORMAT_BORDERS_INSIDE    PARAFORMAT_BORDERS = 16
+	PARAFORMAT_BORDERS_OUTSIDE   PARAFORMAT_BORDERS = 32
 	PARAFORMAT_BORDERS_AUTOCOLOR PARAFORMAT_BORDERS = 64
 )
 
 // enum PARAFORMAT_SHADING_STYLE
 type PARAFORMAT_SHADING_STYLE uint16
+
 const (
-	PARAFORMAT_SHADING_STYLE_NONE PARAFORMAT_SHADING_STYLE = 0
-	PARAFORMAT_SHADING_STYLE_DARK_HORIZ PARAFORMAT_SHADING_STYLE = 1
-	PARAFORMAT_SHADING_STYLE_DARK_VERT PARAFORMAT_SHADING_STYLE = 2
-	PARAFORMAT_SHADING_STYLE_DARK_DOWN_DIAG PARAFORMAT_SHADING_STYLE = 3
-	PARAFORMAT_SHADING_STYLE_DARK_UP_DIAG PARAFORMAT_SHADING_STYLE = 4
-	PARAFORMAT_SHADING_STYLE_DARK_GRID PARAFORMAT_SHADING_STYLE = 5
-	PARAFORMAT_SHADING_STYLE_DARK_TRELLIS PARAFORMAT_SHADING_STYLE = 6
-	PARAFORMAT_SHADING_STYLE_LIGHT_HORZ PARAFORMAT_SHADING_STYLE = 7
-	PARAFORMAT_SHADING_STYLE_LIGHT_VERT PARAFORMAT_SHADING_STYLE = 8
+	PARAFORMAT_SHADING_STYLE_NONE            PARAFORMAT_SHADING_STYLE = 0
+	PARAFORMAT_SHADING_STYLE_DARK_HORIZ      PARAFORMAT_SHADING_STYLE = 1
+	PARAFORMAT_SHADING_STYLE_DARK_VERT       PARAFORMAT_SHADING_STYLE = 2
+	PARAFORMAT_SHADING_STYLE_DARK_DOWN_DIAG  PARAFORMAT_SHADING_STYLE = 3
+	PARAFORMAT_SHADING_STYLE_DARK_UP_DIAG    PARAFORMAT_SHADING_STYLE = 4
+	PARAFORMAT_SHADING_STYLE_DARK_GRID       PARAFORMAT_SHADING_STYLE = 5
+	PARAFORMAT_SHADING_STYLE_DARK_TRELLIS    PARAFORMAT_SHADING_STYLE = 6
+	PARAFORMAT_SHADING_STYLE_LIGHT_HORZ      PARAFORMAT_SHADING_STYLE = 7
+	PARAFORMAT_SHADING_STYLE_LIGHT_VERT      PARAFORMAT_SHADING_STYLE = 8
 	PARAFORMAT_SHADING_STYLE_LIGHT_DOWN_DIAG PARAFORMAT_SHADING_STYLE = 9
-	PARAFORMAT_SHADING_STYLE_LIGHT_UP_DIAG PARAFORMAT_SHADING_STYLE = 10
-	PARAFORMAT_SHADING_STYLE_LIGHT_GRID PARAFORMAT_SHADING_STYLE = 11
-	PARAFORMAT_SHADING_STYLE_LIGHT_TRELLIS PARAFORMAT_SHADING_STYLE = 12
+	PARAFORMAT_SHADING_STYLE_LIGHT_UP_DIAG   PARAFORMAT_SHADING_STYLE = 10
+	PARAFORMAT_SHADING_STYLE_LIGHT_GRID      PARAFORMAT_SHADING_STYLE = 11
+	PARAFORMAT_SHADING_STYLE_LIGHT_TRELLIS   PARAFORMAT_SHADING_STYLE = 12
 )
 
 // enum GETTEXTEX_FLAGS
 type GETTEXTEX_FLAGS uint32
+
 const (
-	GT_DEFAULT GETTEXTEX_FLAGS = 0
+	GT_DEFAULT      GETTEXTEX_FLAGS = 0
 	GT_NOHIDDENTEXT GETTEXTEX_FLAGS = 8
-	GT_RAWTEXT GETTEXTEX_FLAGS = 4
-	GT_SELECTION GETTEXTEX_FLAGS = 2
-	GT_USECRLF GETTEXTEX_FLAGS = 1
+	GT_RAWTEXT      GETTEXTEX_FLAGS = 4
+	GT_SELECTION    GETTEXTEX_FLAGS = 2
+	GT_USECRLF      GETTEXTEX_FLAGS = 1
 )
 
 // enum ENDCOMPOSITIONNOTIFY_CODE
 type ENDCOMPOSITIONNOTIFY_CODE uint32
+
 const (
 	ECN_ENDCOMPOSITION ENDCOMPOSITIONNOTIFY_CODE = 1
-	ECN_NEWTEXT ENDCOMPOSITIONNOTIFY_CODE = 2
+	ECN_NEWTEXT        ENDCOMPOSITIONNOTIFY_CODE = 2
 )
 
 // enum IMECOMPTEXT_FLAGS
 type IMECOMPTEXT_FLAGS uint32
+
 const (
 	ICT_RESULTREADSTR IMECOMPTEXT_FLAGS = 1
 )
@@ -644,11 +654,12 @@ const (
 // enum GETTEXTLENGTHEX_FLAGS
 // flags
 type GETTEXTLENGTHEX_FLAGS uint32
+
 const (
-	GTL_DEFAULT GETTEXTLENGTHEX_FLAGS = 0
-	GTL_USECRLF GETTEXTLENGTHEX_FLAGS = 1
-	GTL_PRECISE GETTEXTLENGTHEX_FLAGS = 2
-	GTL_CLOSE GETTEXTLENGTHEX_FLAGS = 4
+	GTL_DEFAULT  GETTEXTLENGTHEX_FLAGS = 0
+	GTL_USECRLF  GETTEXTLENGTHEX_FLAGS = 1
+	GTL_PRECISE  GETTEXTLENGTHEX_FLAGS = 2
+	GTL_CLOSE    GETTEXTLENGTHEX_FLAGS = 4
 	GTL_NUMCHARS GETTEXTLENGTHEX_FLAGS = 8
 	GTL_NUMBYTES GETTEXTLENGTHEX_FLAGS = 16
 )
@@ -656,893 +667,907 @@ const (
 // enum REOBJECT_FLAGS
 // flags
 type REOBJECT_FLAGS uint32
+
 const (
-	REO_ALIGNTORIGHT REOBJECT_FLAGS = 256
-	REO_BELOWBASELINE REOBJECT_FLAGS = 2
-	REO_BLANK REOBJECT_FLAGS = 16
-	REO_CANROTATE REOBJECT_FLAGS = 128
+	REO_ALIGNTORIGHT    REOBJECT_FLAGS = 256
+	REO_BELOWBASELINE   REOBJECT_FLAGS = 2
+	REO_BLANK           REOBJECT_FLAGS = 16
+	REO_CANROTATE       REOBJECT_FLAGS = 128
 	REO_DONTNEEDPALETTE REOBJECT_FLAGS = 32
-	REO_DYNAMICSIZE REOBJECT_FLAGS = 8
-	REO_GETMETAFILE REOBJECT_FLAGS = 4194304
-	REO_HILITED REOBJECT_FLAGS = 16777216
-	REO_INPLACEACTIVE REOBJECT_FLAGS = 33554432
-	REO_INVERTEDSELECT REOBJECT_FLAGS = 4
-	REO_LINK REOBJECT_FLAGS = 2147483648
-	REO_LINKAVAILABLE REOBJECT_FLAGS = 8388608
-	REO_OPEN REOBJECT_FLAGS = 67108864
+	REO_DYNAMICSIZE     REOBJECT_FLAGS = 8
+	REO_GETMETAFILE     REOBJECT_FLAGS = 4194304
+	REO_HILITED         REOBJECT_FLAGS = 16777216
+	REO_INPLACEACTIVE   REOBJECT_FLAGS = 33554432
+	REO_INVERTEDSELECT  REOBJECT_FLAGS = 4
+	REO_LINK            REOBJECT_FLAGS = 2147483648
+	REO_LINKAVAILABLE   REOBJECT_FLAGS = 8388608
+	REO_OPEN            REOBJECT_FLAGS = 67108864
 	REO_OWNERDRAWSELECT REOBJECT_FLAGS = 64
-	REO_RESIZABLE REOBJECT_FLAGS = 1
-	REO_SELECTED REOBJECT_FLAGS = 134217728
-	REO_STATIC REOBJECT_FLAGS = 1073741824
+	REO_RESIZABLE       REOBJECT_FLAGS = 1
+	REO_SELECTED        REOBJECT_FLAGS = 134217728
+	REO_STATIC          REOBJECT_FLAGS = 1073741824
 	REO_USEASBACKGROUND REOBJECT_FLAGS = 1024
-	REO_WRAPTEXTAROUND REOBJECT_FLAGS = 512
+	REO_WRAPTEXTAROUND  REOBJECT_FLAGS = 512
 )
 
 // enum PARAFORMAT_NUMBERING_STYLE
 type PARAFORMAT_NUMBERING_STYLE uint16
+
 const (
-	PFNS_PAREN PARAFORMAT_NUMBERING_STYLE = 0
-	PFNS_PARENS PARAFORMAT_NUMBERING_STYLE = 256
-	PFNS_PERIOD PARAFORMAT_NUMBERING_STYLE = 512
-	PFNS_PLAIN PARAFORMAT_NUMBERING_STYLE = 768
-	PFNS_NONUMBER PARAFORMAT_NUMBERING_STYLE = 1024
+	PFNS_PAREN     PARAFORMAT_NUMBERING_STYLE = 0
+	PFNS_PARENS    PARAFORMAT_NUMBERING_STYLE = 256
+	PFNS_PERIOD    PARAFORMAT_NUMBERING_STYLE = 512
+	PFNS_PLAIN     PARAFORMAT_NUMBERING_STYLE = 768
+	PFNS_NONUMBER  PARAFORMAT_NUMBERING_STYLE = 1024
 	PFNS_NEWNUMBER PARAFORMAT_NUMBERING_STYLE = 32768
 )
 
 // enum PARAFORMAT_ALIGNMENT
 type PARAFORMAT_ALIGNMENT uint16
+
 const (
 	PFA_CENTER PARAFORMAT_ALIGNMENT = 3
-	PFA_LEFT PARAFORMAT_ALIGNMENT = 1
-	PFA_RIGHT PARAFORMAT_ALIGNMENT = 2
+	PFA_LEFT   PARAFORMAT_ALIGNMENT = 1
+	PFA_RIGHT  PARAFORMAT_ALIGNMENT = 2
 )
 
 // enum TEXTMODE
 type TEXTMODE int32
+
 const (
-	TM_PLAINTEXT TEXTMODE = 1
-	TM_RICHTEXT TEXTMODE = 2
+	TM_PLAINTEXT       TEXTMODE = 1
+	TM_RICHTEXT        TEXTMODE = 2
 	TM_SINGLELEVELUNDO TEXTMODE = 4
-	TM_MULTILEVELUNDO TEXTMODE = 8
-	TM_SINGLECODEPAGE TEXTMODE = 16
-	TM_MULTICODEPAGE TEXTMODE = 32
+	TM_MULTILEVELUNDO  TEXTMODE = 8
+	TM_SINGLECODEPAGE  TEXTMODE = 16
+	TM_MULTICODEPAGE   TEXTMODE = 32
 )
 
 // enum UNDONAMEID
 type UNDONAMEID int32
+
 const (
-	UID_UNKNOWN UNDONAMEID = 0
-	UID_TYPING UNDONAMEID = 1
-	UID_DELETE UNDONAMEID = 2
-	UID_DRAGDROP UNDONAMEID = 3
-	UID_CUT UNDONAMEID = 4
-	UID_PASTE UNDONAMEID = 5
+	UID_UNKNOWN   UNDONAMEID = 0
+	UID_TYPING    UNDONAMEID = 1
+	UID_DELETE    UNDONAMEID = 2
+	UID_DRAGDROP  UNDONAMEID = 3
+	UID_CUT       UNDONAMEID = 4
+	UID_PASTE     UNDONAMEID = 5
 	UID_AUTOTABLE UNDONAMEID = 6
 )
 
 // enum KHYPH
 type KHYPH int32
+
 const (
-	KhyphNil KHYPH = 0
-	KhyphNormal KHYPH = 1
-	KhyphAddBefore KHYPH = 2
+	KhyphNil          KHYPH = 0
+	KhyphNormal       KHYPH = 1
+	KhyphAddBefore    KHYPH = 2
 	KhyphChangeBefore KHYPH = 3
 	KhyphDeleteBefore KHYPH = 4
-	KhyphChangeAfter KHYPH = 5
+	KhyphChangeAfter  KHYPH = 5
 	KhyphDelAndChange KHYPH = 6
 )
 
 // enum TXTBACKSTYLE
 type TXTBACKSTYLE int32
+
 const (
 	TXTBACK_TRANSPARENT TXTBACKSTYLE = 0
-	TXTBACK_OPAQUE TXTBACKSTYLE = 1
+	TXTBACK_OPAQUE      TXTBACKSTYLE = 1
 )
 
 // enum TXTHITRESULT
 type TXTHITRESULT int32
+
 const (
-	TXTHITRESULT_NOHIT TXTHITRESULT = 0
+	TXTHITRESULT_NOHIT       TXTHITRESULT = 0
 	TXTHITRESULT_TRANSPARENT TXTHITRESULT = 1
-	TXTHITRESULT_CLOSE TXTHITRESULT = 2
-	TXTHITRESULT_HIT TXTHITRESULT = 3
+	TXTHITRESULT_CLOSE       TXTHITRESULT = 2
+	TXTHITRESULT_HIT         TXTHITRESULT = 3
 )
 
 // enum TXTNATURALSIZE
 type TXTNATURALSIZE int32
+
 const (
-	TXTNS_FITTOCONTENT2 TXTNATURALSIZE = 0
-	TXTNS_FITTOCONTENT TXTNATURALSIZE = 1
-	TXTNS_ROUNDTOLINE TXTNATURALSIZE = 2
-	TXTNS_FITTOCONTENT3 TXTNATURALSIZE = 3
+	TXTNS_FITTOCONTENT2   TXTNATURALSIZE = 0
+	TXTNS_FITTOCONTENT    TXTNATURALSIZE = 1
+	TXTNS_ROUNDTOLINE     TXTNATURALSIZE = 2
+	TXTNS_FITTOCONTENT3   TXTNATURALSIZE = 3
 	TXTNS_FITTOCONTENTWSP TXTNATURALSIZE = 4
 	TXTNS_INCLUDELASTLINE TXTNATURALSIZE = 1073741824
-	TXTNS_EMU TXTNATURALSIZE = -2147483648
+	TXTNS_EMU             TXTNATURALSIZE = -2147483648
 )
 
 // enum TXTVIEW
 type TXTVIEW int32
+
 const (
-	TXTVIEW_ACTIVE TXTVIEW = 0
+	TXTVIEW_ACTIVE   TXTVIEW = 0
 	TXTVIEW_INACTIVE TXTVIEW = -1
 )
 
 // enum CHANGETYPE
 type CHANGETYPE int32
+
 const (
-	CN_GENERIC CHANGETYPE = 0
+	CN_GENERIC     CHANGETYPE = 0
 	CN_TEXTCHANGED CHANGETYPE = 1
-	CN_NEWUNDO CHANGETYPE = 2
-	CN_NEWREDO CHANGETYPE = 4
+	CN_NEWUNDO     CHANGETYPE = 2
+	CN_NEWREDO     CHANGETYPE = 4
 )
 
 // enum CARET_FLAGS
 type CARET_FLAGS int32
+
 const (
-	CARET_NONE CARET_FLAGS = 0
-	CARET_CUSTOM CARET_FLAGS = 1
-	CARET_RTL CARET_FLAGS = 2
-	CARET_ITALIC CARET_FLAGS = 32
-	CARET_NULL CARET_FLAGS = 64
+	CARET_NONE     CARET_FLAGS = 0
+	CARET_CUSTOM   CARET_FLAGS = 1
+	CARET_RTL      CARET_FLAGS = 2
+	CARET_ITALIC   CARET_FLAGS = 32
+	CARET_NULL     CARET_FLAGS = 64
 	CARET_ROTATE90 CARET_FLAGS = 128
 )
 
 // enum TomConstants
 type TomConstants int32
+
 const (
-	TomFalse TomConstants = 0
-	TomTrue TomConstants = -1
-	TomUndefined TomConstants = -9999999
-	TomToggle TomConstants = -9999998
-	TomAutoColor TomConstants = -9999997
-	TomDefault TomConstants = -9999996
-	TomSuspend TomConstants = -9999995
-	TomResume TomConstants = -9999994
-	TomApplyNow TomConstants = 0
-	TomApplyLater TomConstants = 1
-	TomTrackParms TomConstants = 2
-	TomCacheParms TomConstants = 3
-	TomApplyTmp TomConstants = 4
-	TomDisableSmartFont TomConstants = 8
-	TomEnableSmartFont TomConstants = 9
-	TomUsePoints TomConstants = 10
-	TomUseTwips TomConstants = 11
-	TomBackward TomConstants = -1073741823
-	TomForward TomConstants = 1073741823
-	TomMove TomConstants = 0
-	TomExtend TomConstants = 1
-	TomNoSelection TomConstants = 0
-	TomSelectionIP TomConstants = 1
-	TomSelectionNormal TomConstants = 2
-	TomSelectionFrame TomConstants = 3
-	TomSelectionColumn TomConstants = 4
-	TomSelectionRow TomConstants = 5
-	TomSelectionBlock TomConstants = 6
-	TomSelectionInlineShape TomConstants = 7
-	TomSelectionShape TomConstants = 8
-	TomSelStartActive TomConstants = 1
-	TomSelAtEOL TomConstants = 2
-	TomSelOvertype TomConstants = 4
-	TomSelActive TomConstants = 8
-	TomSelReplace TomConstants = 16
-	TomEnd TomConstants = 0
-	TomStart TomConstants = 32
-	TomCollapseEnd TomConstants = 0
-	TomCollapseStart TomConstants = 1
-	TomClientCoord TomConstants = 256
-	TomAllowOffClient TomConstants = 512
-	TomTransform TomConstants = 1024
-	TomObjectArg TomConstants = 2048
-	TomAtEnd TomConstants = 4096
-	TomNone TomConstants = 0
-	TomSingle TomConstants = 1
-	TomWords TomConstants = 2
-	TomDouble TomConstants = 3
-	TomDotted TomConstants = 4
-	TomDash TomConstants = 5
-	TomDashDot TomConstants = 6
-	TomDashDotDot TomConstants = 7
-	TomWave TomConstants = 8
-	TomThick TomConstants = 9
-	TomHair TomConstants = 10
-	TomDoubleWave TomConstants = 11
-	TomHeavyWave TomConstants = 12
-	TomLongDash TomConstants = 13
-	TomThickDash TomConstants = 14
-	TomThickDashDot TomConstants = 15
-	TomThickDashDotDot TomConstants = 16
-	TomThickDotted TomConstants = 17
-	TomThickLongDash TomConstants = 18
-	TomLineSpaceSingle TomConstants = 0
-	TomLineSpace1pt5 TomConstants = 1
-	TomLineSpaceDouble TomConstants = 2
-	TomLineSpaceAtLeast TomConstants = 3
-	TomLineSpaceExactly TomConstants = 4
-	TomLineSpaceMultiple TomConstants = 5
-	TomLineSpacePercent TomConstants = 6
-	TomAlignLeft TomConstants = 0
-	TomAlignCenter TomConstants = 1
-	TomAlignRight TomConstants = 2
-	TomAlignJustify TomConstants = 3
-	TomAlignDecimal TomConstants = 3
-	TomAlignBar TomConstants = 4
-	TomDefaultTab TomConstants = 5
-	TomAlignInterWord TomConstants = 3
-	TomAlignNewspaper TomConstants = 4
-	TomAlignInterLetter TomConstants = 5
-	TomAlignScaled TomConstants = 6
-	TomSpaces TomConstants = 0
-	TomDots TomConstants = 1
-	TomDashes TomConstants = 2
-	TomLines TomConstants = 3
-	TomThickLines TomConstants = 4
-	TomEquals TomConstants = 5
-	TomTabBack TomConstants = -3
-	TomTabNext TomConstants = -2
-	TomTabHere TomConstants = -1
-	TomListNone TomConstants = 0
-	TomListBullet TomConstants = 1
-	TomListNumberAsArabic TomConstants = 2
-	TomListNumberAsLCLetter TomConstants = 3
-	TomListNumberAsUCLetter TomConstants = 4
-	TomListNumberAsLCRoman TomConstants = 5
-	TomListNumberAsUCRoman TomConstants = 6
-	TomListNumberAsSequence TomConstants = 7
-	TomListNumberedCircle TomConstants = 8
+	TomFalse                           TomConstants = 0
+	TomTrue                            TomConstants = -1
+	TomUndefined                       TomConstants = -9999999
+	TomToggle                          TomConstants = -9999998
+	TomAutoColor                       TomConstants = -9999997
+	TomDefault                         TomConstants = -9999996
+	TomSuspend                         TomConstants = -9999995
+	TomResume                          TomConstants = -9999994
+	TomApplyNow                        TomConstants = 0
+	TomApplyLater                      TomConstants = 1
+	TomTrackParms                      TomConstants = 2
+	TomCacheParms                      TomConstants = 3
+	TomApplyTmp                        TomConstants = 4
+	TomDisableSmartFont                TomConstants = 8
+	TomEnableSmartFont                 TomConstants = 9
+	TomUsePoints                       TomConstants = 10
+	TomUseTwips                        TomConstants = 11
+	TomBackward                        TomConstants = -1073741823
+	TomForward                         TomConstants = 1073741823
+	TomMove                            TomConstants = 0
+	TomExtend                          TomConstants = 1
+	TomNoSelection                     TomConstants = 0
+	TomSelectionIP                     TomConstants = 1
+	TomSelectionNormal                 TomConstants = 2
+	TomSelectionFrame                  TomConstants = 3
+	TomSelectionColumn                 TomConstants = 4
+	TomSelectionRow                    TomConstants = 5
+	TomSelectionBlock                  TomConstants = 6
+	TomSelectionInlineShape            TomConstants = 7
+	TomSelectionShape                  TomConstants = 8
+	TomSelStartActive                  TomConstants = 1
+	TomSelAtEOL                        TomConstants = 2
+	TomSelOvertype                     TomConstants = 4
+	TomSelActive                       TomConstants = 8
+	TomSelReplace                      TomConstants = 16
+	TomEnd                             TomConstants = 0
+	TomStart                           TomConstants = 32
+	TomCollapseEnd                     TomConstants = 0
+	TomCollapseStart                   TomConstants = 1
+	TomClientCoord                     TomConstants = 256
+	TomAllowOffClient                  TomConstants = 512
+	TomTransform                       TomConstants = 1024
+	TomObjectArg                       TomConstants = 2048
+	TomAtEnd                           TomConstants = 4096
+	TomNone                            TomConstants = 0
+	TomSingle                          TomConstants = 1
+	TomWords                           TomConstants = 2
+	TomDouble                          TomConstants = 3
+	TomDotted                          TomConstants = 4
+	TomDash                            TomConstants = 5
+	TomDashDot                         TomConstants = 6
+	TomDashDotDot                      TomConstants = 7
+	TomWave                            TomConstants = 8
+	TomThick                           TomConstants = 9
+	TomHair                            TomConstants = 10
+	TomDoubleWave                      TomConstants = 11
+	TomHeavyWave                       TomConstants = 12
+	TomLongDash                        TomConstants = 13
+	TomThickDash                       TomConstants = 14
+	TomThickDashDot                    TomConstants = 15
+	TomThickDashDotDot                 TomConstants = 16
+	TomThickDotted                     TomConstants = 17
+	TomThickLongDash                   TomConstants = 18
+	TomLineSpaceSingle                 TomConstants = 0
+	TomLineSpace1pt5                   TomConstants = 1
+	TomLineSpaceDouble                 TomConstants = 2
+	TomLineSpaceAtLeast                TomConstants = 3
+	TomLineSpaceExactly                TomConstants = 4
+	TomLineSpaceMultiple               TomConstants = 5
+	TomLineSpacePercent                TomConstants = 6
+	TomAlignLeft                       TomConstants = 0
+	TomAlignCenter                     TomConstants = 1
+	TomAlignRight                      TomConstants = 2
+	TomAlignJustify                    TomConstants = 3
+	TomAlignDecimal                    TomConstants = 3
+	TomAlignBar                        TomConstants = 4
+	TomDefaultTab                      TomConstants = 5
+	TomAlignInterWord                  TomConstants = 3
+	TomAlignNewspaper                  TomConstants = 4
+	TomAlignInterLetter                TomConstants = 5
+	TomAlignScaled                     TomConstants = 6
+	TomSpaces                          TomConstants = 0
+	TomDots                            TomConstants = 1
+	TomDashes                          TomConstants = 2
+	TomLines                           TomConstants = 3
+	TomThickLines                      TomConstants = 4
+	TomEquals                          TomConstants = 5
+	TomTabBack                         TomConstants = -3
+	TomTabNext                         TomConstants = -2
+	TomTabHere                         TomConstants = -1
+	TomListNone                        TomConstants = 0
+	TomListBullet                      TomConstants = 1
+	TomListNumberAsArabic              TomConstants = 2
+	TomListNumberAsLCLetter            TomConstants = 3
+	TomListNumberAsUCLetter            TomConstants = 4
+	TomListNumberAsLCRoman             TomConstants = 5
+	TomListNumberAsUCRoman             TomConstants = 6
+	TomListNumberAsSequence            TomConstants = 7
+	TomListNumberedCircle              TomConstants = 8
 	TomListNumberedBlackCircleWingding TomConstants = 9
 	TomListNumberedWhiteCircleWingding TomConstants = 10
-	TomListNumberedArabicWide TomConstants = 11
-	TomListNumberedChS TomConstants = 12
-	TomListNumberedChT TomConstants = 13
-	TomListNumberedJpnChS TomConstants = 14
-	TomListNumberedJpnKor TomConstants = 15
-	TomListNumberedArabic1 TomConstants = 16
-	TomListNumberedArabic2 TomConstants = 17
-	TomListNumberedHebrew TomConstants = 18
-	TomListNumberedThaiAlpha TomConstants = 19
-	TomListNumberedThaiNum TomConstants = 20
-	TomListNumberedHindiAlpha TomConstants = 21
-	TomListNumberedHindiAlpha1 TomConstants = 22
-	TomListNumberedHindiNum TomConstants = 23
-	TomListParentheses TomConstants = 65536
-	TomListPeriod TomConstants = 131072
-	TomListPlain TomConstants = 196608
-	TomListNoNumber TomConstants = 262144
-	TomListMinus TomConstants = 524288
-	TomIgnoreNumberStyle TomConstants = 16777216
-	TomParaStyleNormal TomConstants = -1
-	TomParaStyleHeading1 TomConstants = -2
-	TomParaStyleHeading2 TomConstants = -3
-	TomParaStyleHeading3 TomConstants = -4
-	TomParaStyleHeading4 TomConstants = -5
-	TomParaStyleHeading5 TomConstants = -6
-	TomParaStyleHeading6 TomConstants = -7
-	TomParaStyleHeading7 TomConstants = -8
-	TomParaStyleHeading8 TomConstants = -9
-	TomParaStyleHeading9 TomConstants = -10
-	TomCharacter TomConstants = 1
-	TomWord TomConstants = 2
-	TomSentence TomConstants = 3
-	TomParagraph TomConstants = 4
-	TomLine TomConstants = 5
-	TomStory TomConstants = 6
-	TomScreen TomConstants = 7
-	TomSection TomConstants = 8
-	TomTableColumn TomConstants = 9
-	TomColumn TomConstants = 9
-	TomRow TomConstants = 10
-	TomWindow TomConstants = 11
-	TomCell TomConstants = 12
-	TomCharFormat TomConstants = 13
-	TomParaFormat TomConstants = 14
-	TomTable TomConstants = 15
-	TomObject TomConstants = 16
-	TomPage TomConstants = 17
-	TomHardParagraph TomConstants = 18
-	TomCluster TomConstants = 19
-	TomInlineObject TomConstants = 20
-	TomInlineObjectArg TomConstants = 21
-	TomLeafLine TomConstants = 22
-	TomLayoutColumn TomConstants = 23
-	TomProcessId TomConstants = 1073741825
-	TomMatchWord TomConstants = 2
-	TomMatchCase TomConstants = 4
-	TomMatchPattern TomConstants = 8
-	TomUnknownStory TomConstants = 0
-	TomMainTextStory TomConstants = 1
-	TomFootnotesStory TomConstants = 2
-	TomEndnotesStory TomConstants = 3
-	TomCommentsStory TomConstants = 4
-	TomTextFrameStory TomConstants = 5
-	TomEvenPagesHeaderStory TomConstants = 6
-	TomPrimaryHeaderStory TomConstants = 7
-	TomEvenPagesFooterStory TomConstants = 8
-	TomPrimaryFooterStory TomConstants = 9
-	TomFirstPageHeaderStory TomConstants = 10
-	TomFirstPageFooterStory TomConstants = 11
-	TomScratchStory TomConstants = 127
-	TomFindStory TomConstants = 128
-	TomReplaceStory TomConstants = 129
-	TomStoryInactive TomConstants = 0
-	TomStoryActiveDisplay TomConstants = 1
-	TomStoryActiveUI TomConstants = 2
-	TomStoryActiveDisplayUI TomConstants = 3
-	TomNoAnimation TomConstants = 0
-	TomLasVegasLights TomConstants = 1
-	TomBlinkingBackground TomConstants = 2
-	TomSparkleText TomConstants = 3
-	TomMarchingBlackAnts TomConstants = 4
-	TomMarchingRedAnts TomConstants = 5
-	TomShimmer TomConstants = 6
-	TomWipeDown TomConstants = 7
-	TomWipeRight TomConstants = 8
-	TomAnimationMax TomConstants = 8
-	TomLowerCase TomConstants = 0
-	TomUpperCase TomConstants = 1
-	TomTitleCase TomConstants = 2
-	TomSentenceCase TomConstants = 4
-	TomToggleCase TomConstants = 5
-	TomReadOnly TomConstants = 256
-	TomShareDenyRead TomConstants = 512
-	TomShareDenyWrite TomConstants = 1024
-	TomPasteFile TomConstants = 4096
-	TomCreateNew TomConstants = 16
-	TomCreateAlways TomConstants = 32
-	TomOpenExisting TomConstants = 48
-	TomOpenAlways TomConstants = 64
-	TomTruncateExisting TomConstants = 80
-	TomRTF TomConstants = 1
-	TomText TomConstants = 2
-	TomHTML TomConstants = 3
-	TomWordDocument TomConstants = 4
-	TomBold TomConstants = -2147483647
-	TomItalic TomConstants = -2147483646
-	TomUnderline TomConstants = -2147483644
-	TomStrikeout TomConstants = -2147483640
-	TomProtected TomConstants = -2147483632
-	TomLink TomConstants = -2147483616
-	TomSmallCaps TomConstants = -2147483584
-	TomAllCaps TomConstants = -2147483520
-	TomHidden TomConstants = -2147483392
-	TomOutline TomConstants = -2147483136
-	TomShadow TomConstants = -2147482624
-	TomEmboss TomConstants = -2147481600
-	TomImprint TomConstants = -2147479552
-	TomDisabled TomConstants = -2147475456
-	TomRevised TomConstants = -2147467264
-	TomSubscriptCF TomConstants = -2147418112
-	TomSuperscriptCF TomConstants = -2147352576
-	TomFontBound TomConstants = -2146435072
-	TomLinkProtected TomConstants = -2139095040
-	TomInlineObjectStart TomConstants = -2130706432
-	TomExtendedChar TomConstants = -2113929216
-	TomAutoBackColor TomConstants = -2080374784
-	TomMathZoneNoBuildUp TomConstants = -2013265920
-	TomMathZone TomConstants = -1879048192
-	TomMathZoneOrdinary TomConstants = -1610612736
-	TomAutoTextColor TomConstants = -1073741824
-	TomMathZoneDisplay TomConstants = 262144
-	TomParaEffectRTL TomConstants = 1
-	TomParaEffectKeep TomConstants = 2
-	TomParaEffectKeepNext TomConstants = 4
-	TomParaEffectPageBreakBefore TomConstants = 8
-	TomParaEffectNoLineNumber TomConstants = 16
-	TomParaEffectNoWidowControl TomConstants = 32
-	TomParaEffectDoNotHyphen TomConstants = 64
-	TomParaEffectSideBySide TomConstants = 128
-	TomParaEffectCollapsed TomConstants = 256
-	TomParaEffectOutlineLevel TomConstants = 512
-	TomParaEffectBox TomConstants = 1024
-	TomParaEffectTableRowDelimiter TomConstants = 4096
-	TomParaEffectTable TomConstants = 16384
-	TomModWidthPairs TomConstants = 1
-	TomModWidthSpace TomConstants = 2
-	TomAutoSpaceAlpha TomConstants = 4
-	TomAutoSpaceNumeric TomConstants = 8
-	TomAutoSpaceParens TomConstants = 16
-	TomEmbeddedFont TomConstants = 32
-	TomDoublestrike TomConstants = 64
-	TomOverlapping TomConstants = 128
-	TomNormalCaret TomConstants = 0
-	TomKoreanBlockCaret TomConstants = 1
-	TomNullCaret TomConstants = 2
-	TomIncludeInset TomConstants = 1
-	TomUnicodeBiDi TomConstants = 1
-	TomMathCFCheck TomConstants = 4
-	TomUnlink TomConstants = 8
-	TomUnhide TomConstants = 16
-	TomCheckTextLimit TomConstants = 32
-	TomIgnoreCurrentFont TomConstants = 0
-	TomMatchCharRep TomConstants = 1
-	TomMatchFontSignature TomConstants = 2
-	TomMatchAscii TomConstants = 4
-	TomGetHeightOnly TomConstants = 8
-	TomMatchMathFont TomConstants = 16
-	TomCharset TomConstants = -2147483648
-	TomCharRepFromLcid TomConstants = 1073741824
-	TomAnsi TomConstants = 0
-	TomEastEurope TomConstants = 1
-	TomCyrillic TomConstants = 2
-	TomGreek TomConstants = 3
-	TomTurkish TomConstants = 4
-	TomHebrew TomConstants = 5
-	TomArabic TomConstants = 6
-	TomBaltic TomConstants = 7
-	TomVietnamese TomConstants = 8
-	TomDefaultCharRep TomConstants = 9
-	TomSymbol TomConstants = 10
-	TomThai TomConstants = 11
-	TomShiftJIS TomConstants = 12
-	TomGB2312 TomConstants = 13
-	TomHangul TomConstants = 14
-	TomBIG5 TomConstants = 15
-	TomPC437 TomConstants = 16
-	TomOEM TomConstants = 17
-	TomMac TomConstants = 18
-	TomArmenian TomConstants = 19
-	TomSyriac TomConstants = 20
-	TomThaana TomConstants = 21
-	TomDevanagari TomConstants = 22
-	TomBengali TomConstants = 23
-	TomGurmukhi TomConstants = 24
-	TomGujarati TomConstants = 25
-	TomOriya TomConstants = 26
-	TomTamil TomConstants = 27
-	TomTelugu TomConstants = 28
-	TomKannada TomConstants = 29
-	TomMalayalam TomConstants = 30
-	TomSinhala TomConstants = 31
-	TomLao TomConstants = 32
-	TomTibetan TomConstants = 33
-	TomMyanmar TomConstants = 34
-	TomGeorgian TomConstants = 35
-	TomJamo TomConstants = 36
-	TomEthiopic TomConstants = 37
-	TomCherokee TomConstants = 38
-	TomAboriginal TomConstants = 39
-	TomOgham TomConstants = 40
-	TomRunic TomConstants = 41
-	TomKhmer TomConstants = 42
-	TomMongolian TomConstants = 43
-	TomBraille TomConstants = 44
-	TomYi TomConstants = 45
-	TomLimbu TomConstants = 46
-	TomTaiLe TomConstants = 47
-	TomNewTaiLue TomConstants = 48
-	TomSylotiNagri TomConstants = 49
-	TomKharoshthi TomConstants = 50
-	TomKayahli TomConstants = 51
-	TomUsymbol TomConstants = 52
-	TomEmoji TomConstants = 53
-	TomGlagolitic TomConstants = 54
-	TomLisu TomConstants = 55
-	TomVai TomConstants = 56
-	TomNKo TomConstants = 57
-	TomOsmanya TomConstants = 58
-	TomPhagsPa TomConstants = 59
-	TomGothic TomConstants = 60
-	TomDeseret TomConstants = 61
-	TomTifinagh TomConstants = 62
-	TomCharRepMax TomConstants = 63
-	TomRE10Mode TomConstants = 1
-	TomUseAtFont TomConstants = 2
-	TomTextFlowMask TomConstants = 12
-	TomTextFlowES TomConstants = 0
-	TomTextFlowSW TomConstants = 4
-	TomTextFlowWN TomConstants = 8
-	TomTextFlowNE TomConstants = 12
-	TomNoIME TomConstants = 524288
-	TomSelfIME TomConstants = 262144
-	TomNoUpScroll TomConstants = 65536
-	TomNoVpScroll TomConstants = 262144
-	TomNoLink TomConstants = 0
-	TomClientLink TomConstants = 1
-	TomFriendlyLinkName TomConstants = 2
-	TomFriendlyLinkAddress TomConstants = 3
-	TomAutoLinkURL TomConstants = 4
-	TomAutoLinkEmail TomConstants = 5
-	TomAutoLinkPhone TomConstants = 6
-	TomAutoLinkPath TomConstants = 7
-	TomCompressNone TomConstants = 0
-	TomCompressPunctuation TomConstants = 1
-	TomCompressPunctuationAndKana TomConstants = 2
-	TomCompressMax TomConstants = 2
-	TomUnderlinePositionAuto TomConstants = 0
-	TomUnderlinePositionBelow TomConstants = 1
-	TomUnderlinePositionAbove TomConstants = 2
-	TomUnderlinePositionMax TomConstants = 2
-	TomFontAlignmentAuto TomConstants = 0
-	TomFontAlignmentTop TomConstants = 1
-	TomFontAlignmentBaseline TomConstants = 2
-	TomFontAlignmentBottom TomConstants = 3
-	TomFontAlignmentCenter TomConstants = 4
-	TomFontAlignmentMax TomConstants = 4
-	TomRubyBelow TomConstants = 128
-	TomRubyAlignCenter TomConstants = 0
-	TomRubyAlign010 TomConstants = 1
-	TomRubyAlign121 TomConstants = 2
-	TomRubyAlignLeft TomConstants = 3
-	TomRubyAlignRight TomConstants = 4
-	TomLimitsDefault TomConstants = 0
-	TomLimitsUnderOver TomConstants = 1
-	TomLimitsSubSup TomConstants = 2
-	TomUpperLimitAsSuperScript TomConstants = 3
-	TomLimitsOpposite TomConstants = 4
-	TomShowLLimPlaceHldr TomConstants = 8
-	TomShowULimPlaceHldr TomConstants = 16
-	TomDontGrowWithContent TomConstants = 64
-	TomGrowWithContent TomConstants = 128
-	TomSubSupAlign TomConstants = 1
-	TomLimitAlignMask TomConstants = 3
-	TomLimitAlignCenter TomConstants = 0
-	TomLimitAlignLeft TomConstants = 1
-	TomLimitAlignRight TomConstants = 2
-	TomShowDegPlaceHldr TomConstants = 8
-	TomAlignDefault TomConstants = 0
-	TomAlignMatchAscentDescent TomConstants = 2
-	TomMathVariant TomConstants = 32
-	TomStyleDefault TomConstants = 0
-	TomStyleScriptScriptCramped TomConstants = 1
-	TomStyleScriptScript TomConstants = 2
-	TomStyleScriptCramped TomConstants = 3
-	TomStyleScript TomConstants = 4
-	TomStyleTextCramped TomConstants = 5
-	TomStyleText TomConstants = 6
-	TomStyleDisplayCramped TomConstants = 7
-	TomStyleDisplay TomConstants = 8
-	TomMathRelSize TomConstants = 64
-	TomDecDecSize TomConstants = 254
-	TomDecSize TomConstants = 255
-	TomIncSize TomConstants = 65
-	TomIncIncSize TomConstants = 66
-	TomGravityUI TomConstants = 0
-	TomGravityBack TomConstants = 1
-	TomGravityFore TomConstants = 2
-	TomGravityIn TomConstants = 3
-	TomGravityOut TomConstants = 4
-	TomGravityBackward TomConstants = 536870912
-	TomGravityForward TomConstants = 1073741824
-	TomAdjustCRLF TomConstants = 1
-	TomUseCRLF TomConstants = 2
-	TomTextize TomConstants = 4
-	TomAllowFinalEOP TomConstants = 8
-	TomFoldMathAlpha TomConstants = 16
-	TomNoHidden TomConstants = 32
-	TomIncludeNumbering TomConstants = 64
-	TomTranslateTableCell TomConstants = 128
-	TomNoMathZoneBrackets TomConstants = 256
-	TomConvertMathChar TomConstants = 512
-	TomNoUCGreekItalic TomConstants = 1024
-	TomAllowMathBold TomConstants = 2048
-	TomLanguageTag TomConstants = 4096
-	TomConvertRTF TomConstants = 8192
-	TomApplyRtfDocProps TomConstants = 16384
-	TomPhantomShow TomConstants = 1
-	TomPhantomZeroWidth TomConstants = 2
-	TomPhantomZeroAscent TomConstants = 4
-	TomPhantomZeroDescent TomConstants = 8
-	TomPhantomTransparent TomConstants = 16
-	TomPhantomASmash TomConstants = 5
-	TomPhantomDSmash TomConstants = 9
-	TomPhantomHSmash TomConstants = 3
-	TomPhantomSmash TomConstants = 13
-	TomPhantomHorz TomConstants = 12
-	TomPhantomVert TomConstants = 2
-	TomBoxHideTop TomConstants = 1
-	TomBoxHideBottom TomConstants = 2
-	TomBoxHideLeft TomConstants = 4
-	TomBoxHideRight TomConstants = 8
-	TomBoxStrikeH TomConstants = 16
-	TomBoxStrikeV TomConstants = 32
-	TomBoxStrikeTLBR TomConstants = 64
-	TomBoxStrikeBLTR TomConstants = 128
-	TomBoxAlignCenter TomConstants = 1
-	TomSpaceMask TomConstants = 28
-	TomSpaceDefault TomConstants = 0
-	TomSpaceUnary TomConstants = 4
-	TomSpaceBinary TomConstants = 8
-	TomSpaceRelational TomConstants = 12
-	TomSpaceSkip TomConstants = 16
-	TomSpaceOrd TomConstants = 20
-	TomSpaceDifferential TomConstants = 24
-	TomSizeText TomConstants = 32
-	TomSizeScript TomConstants = 64
-	TomSizeScriptScript TomConstants = 96
-	TomNoBreak TomConstants = 128
-	TomTransparentForPositioning TomConstants = 256
-	TomTransparentForSpacing TomConstants = 512
-	TomStretchCharBelow TomConstants = 0
-	TomStretchCharAbove TomConstants = 1
-	TomStretchBaseBelow TomConstants = 2
-	TomStretchBaseAbove TomConstants = 3
-	TomMatrixAlignMask TomConstants = 3
-	TomMatrixAlignCenter TomConstants = 0
-	TomMatrixAlignTopRow TomConstants = 1
-	TomMatrixAlignBottomRow TomConstants = 3
-	TomShowMatPlaceHldr TomConstants = 8
-	TomEqArrayLayoutWidth TomConstants = 1
-	TomEqArrayAlignMask TomConstants = 12
-	TomEqArrayAlignCenter TomConstants = 0
-	TomEqArrayAlignTopRow TomConstants = 4
-	TomEqArrayAlignBottomRow TomConstants = 12
-	TomMathManualBreakMask TomConstants = 127
-	TomMathBreakLeft TomConstants = 125
-	TomMathBreakCenter TomConstants = 126
-	TomMathBreakRight TomConstants = 127
-	TomMathEqAlign TomConstants = 128
-	TomMathArgShadingStart TomConstants = 593
-	TomMathArgShadingEnd TomConstants = 594
-	TomMathObjShadingStart TomConstants = 595
-	TomMathObjShadingEnd TomConstants = 596
-	TomFunctionTypeNone TomConstants = 0
-	TomFunctionTypeTakesArg TomConstants = 1
-	TomFunctionTypeTakesLim TomConstants = 2
-	TomFunctionTypeTakesLim2 TomConstants = 3
-	TomFunctionTypeIsLim TomConstants = 4
-	TomMathParaAlignDefault TomConstants = 0
-	TomMathParaAlignCenterGroup TomConstants = 1
-	TomMathParaAlignCenter TomConstants = 2
-	TomMathParaAlignLeft TomConstants = 3
-	TomMathParaAlignRight TomConstants = 4
-	TomMathDispAlignMask TomConstants = 3
-	TomMathDispAlignCenterGroup TomConstants = 0
-	TomMathDispAlignCenter TomConstants = 1
-	TomMathDispAlignLeft TomConstants = 2
-	TomMathDispAlignRight TomConstants = 3
-	TomMathDispIntUnderOver TomConstants = 4
-	TomMathDispFracTeX TomConstants = 8
-	TomMathDispNaryGrow TomConstants = 16
-	TomMathDocEmptyArgMask TomConstants = 96
-	TomMathDocEmptyArgAuto TomConstants = 0
-	TomMathDocEmptyArgAlways TomConstants = 32
-	TomMathDocEmptyArgNever TomConstants = 64
-	TomMathDocSbSpOpUnchanged TomConstants = 128
-	TomMathDocDiffMask TomConstants = 768
-	TomMathDocDiffDefault TomConstants = 0
-	TomMathDocDiffUpright TomConstants = 256
-	TomMathDocDiffItalic TomConstants = 512
-	TomMathDocDiffOpenItalic TomConstants = 768
-	TomMathDispNarySubSup TomConstants = 1024
-	TomMathDispDef TomConstants = 2048
-	TomMathEnableRtl TomConstants = 4096
-	TomMathBrkBinMask TomConstants = 196608
-	TomMathBrkBinBefore TomConstants = 0
-	TomMathBrkBinAfter TomConstants = 65536
-	TomMathBrkBinDup TomConstants = 131072
-	TomMathBrkBinSubMask TomConstants = 786432
-	TomMathBrkBinSubMM TomConstants = 0
-	TomMathBrkBinSubPM TomConstants = 262144
-	TomMathBrkBinSubMP TomConstants = 524288
-	TomSelRange TomConstants = 597
-	TomHstring TomConstants = 596
-	TomFontPropTeXStyle TomConstants = 828
-	TomFontPropAlign TomConstants = 829
-	TomFontStretch TomConstants = 830
-	TomFontStyle TomConstants = 831
-	TomFontStyleUpright TomConstants = 0
-	TomFontStyleOblique TomConstants = 1
-	TomFontStyleItalic TomConstants = 2
-	TomFontStretchDefault TomConstants = 0
-	TomFontStretchUltraCondensed TomConstants = 1
-	TomFontStretchExtraCondensed TomConstants = 2
-	TomFontStretchCondensed TomConstants = 3
-	TomFontStretchSemiCondensed TomConstants = 4
-	TomFontStretchNormal TomConstants = 5
-	TomFontStretchSemiExpanded TomConstants = 6
-	TomFontStretchExpanded TomConstants = 7
-	TomFontStretchExtraExpanded TomConstants = 8
-	TomFontStretchUltraExpanded TomConstants = 9
-	TomFontWeightDefault TomConstants = 0
-	TomFontWeightThin TomConstants = 100
-	TomFontWeightExtraLight TomConstants = 200
-	TomFontWeightLight TomConstants = 300
-	TomFontWeightNormal TomConstants = 400
-	TomFontWeightRegular TomConstants = 400
-	TomFontWeightMedium TomConstants = 500
-	TomFontWeightSemiBold TomConstants = 600
-	TomFontWeightBold TomConstants = 700
-	TomFontWeightExtraBold TomConstants = 800
-	TomFontWeightBlack TomConstants = 900
-	TomFontWeightHeavy TomConstants = 900
-	TomFontWeightExtraBlack TomConstants = 950
-	TomParaPropMathAlign TomConstants = 1079
-	TomDocMathBuild TomConstants = 128
-	TomMathLMargin TomConstants = 129
-	TomMathRMargin TomConstants = 130
-	TomMathWrapIndent TomConstants = 131
-	TomMathWrapRight TomConstants = 132
-	TomMathPostSpace TomConstants = 134
-	TomMathPreSpace TomConstants = 133
-	TomMathInterSpace TomConstants = 135
-	TomMathIntraSpace TomConstants = 136
-	TomCanCopy TomConstants = 137
-	TomCanRedo TomConstants = 138
-	TomCanUndo TomConstants = 139
-	TomUndoLimit TomConstants = 140
-	TomDocAutoLink TomConstants = 141
-	TomEllipsisMode TomConstants = 142
-	TomEllipsisState TomConstants = 143
-	TomEllipsisNone TomConstants = 0
-	TomEllipsisEnd TomConstants = 1
-	TomEllipsisWord TomConstants = 3
-	TomEllipsisPresent TomConstants = 1
-	TomVTopCell TomConstants = 1
-	TomVLowCell TomConstants = 2
-	TomHStartCell TomConstants = 4
-	TomHContCell TomConstants = 8
-	TomRowUpdate TomConstants = 1
-	TomRowApplyDefault TomConstants = 0
-	TomCellStructureChangeOnly TomConstants = 1
-	TomRowHeightActual TomConstants = 2059
+	TomListNumberedArabicWide          TomConstants = 11
+	TomListNumberedChS                 TomConstants = 12
+	TomListNumberedChT                 TomConstants = 13
+	TomListNumberedJpnChS              TomConstants = 14
+	TomListNumberedJpnKor              TomConstants = 15
+	TomListNumberedArabic1             TomConstants = 16
+	TomListNumberedArabic2             TomConstants = 17
+	TomListNumberedHebrew              TomConstants = 18
+	TomListNumberedThaiAlpha           TomConstants = 19
+	TomListNumberedThaiNum             TomConstants = 20
+	TomListNumberedHindiAlpha          TomConstants = 21
+	TomListNumberedHindiAlpha1         TomConstants = 22
+	TomListNumberedHindiNum            TomConstants = 23
+	TomListParentheses                 TomConstants = 65536
+	TomListPeriod                      TomConstants = 131072
+	TomListPlain                       TomConstants = 196608
+	TomListNoNumber                    TomConstants = 262144
+	TomListMinus                       TomConstants = 524288
+	TomIgnoreNumberStyle               TomConstants = 16777216
+	TomParaStyleNormal                 TomConstants = -1
+	TomParaStyleHeading1               TomConstants = -2
+	TomParaStyleHeading2               TomConstants = -3
+	TomParaStyleHeading3               TomConstants = -4
+	TomParaStyleHeading4               TomConstants = -5
+	TomParaStyleHeading5               TomConstants = -6
+	TomParaStyleHeading6               TomConstants = -7
+	TomParaStyleHeading7               TomConstants = -8
+	TomParaStyleHeading8               TomConstants = -9
+	TomParaStyleHeading9               TomConstants = -10
+	TomCharacter                       TomConstants = 1
+	TomWord                            TomConstants = 2
+	TomSentence                        TomConstants = 3
+	TomParagraph                       TomConstants = 4
+	TomLine                            TomConstants = 5
+	TomStory                           TomConstants = 6
+	TomScreen                          TomConstants = 7
+	TomSection                         TomConstants = 8
+	TomTableColumn                     TomConstants = 9
+	TomColumn                          TomConstants = 9
+	TomRow                             TomConstants = 10
+	TomWindow                          TomConstants = 11
+	TomCell                            TomConstants = 12
+	TomCharFormat                      TomConstants = 13
+	TomParaFormat                      TomConstants = 14
+	TomTable                           TomConstants = 15
+	TomObject                          TomConstants = 16
+	TomPage                            TomConstants = 17
+	TomHardParagraph                   TomConstants = 18
+	TomCluster                         TomConstants = 19
+	TomInlineObject                    TomConstants = 20
+	TomInlineObjectArg                 TomConstants = 21
+	TomLeafLine                        TomConstants = 22
+	TomLayoutColumn                    TomConstants = 23
+	TomProcessId                       TomConstants = 1073741825
+	TomMatchWord                       TomConstants = 2
+	TomMatchCase                       TomConstants = 4
+	TomMatchPattern                    TomConstants = 8
+	TomUnknownStory                    TomConstants = 0
+	TomMainTextStory                   TomConstants = 1
+	TomFootnotesStory                  TomConstants = 2
+	TomEndnotesStory                   TomConstants = 3
+	TomCommentsStory                   TomConstants = 4
+	TomTextFrameStory                  TomConstants = 5
+	TomEvenPagesHeaderStory            TomConstants = 6
+	TomPrimaryHeaderStory              TomConstants = 7
+	TomEvenPagesFooterStory            TomConstants = 8
+	TomPrimaryFooterStory              TomConstants = 9
+	TomFirstPageHeaderStory            TomConstants = 10
+	TomFirstPageFooterStory            TomConstants = 11
+	TomScratchStory                    TomConstants = 127
+	TomFindStory                       TomConstants = 128
+	TomReplaceStory                    TomConstants = 129
+	TomStoryInactive                   TomConstants = 0
+	TomStoryActiveDisplay              TomConstants = 1
+	TomStoryActiveUI                   TomConstants = 2
+	TomStoryActiveDisplayUI            TomConstants = 3
+	TomNoAnimation                     TomConstants = 0
+	TomLasVegasLights                  TomConstants = 1
+	TomBlinkingBackground              TomConstants = 2
+	TomSparkleText                     TomConstants = 3
+	TomMarchingBlackAnts               TomConstants = 4
+	TomMarchingRedAnts                 TomConstants = 5
+	TomShimmer                         TomConstants = 6
+	TomWipeDown                        TomConstants = 7
+	TomWipeRight                       TomConstants = 8
+	TomAnimationMax                    TomConstants = 8
+	TomLowerCase                       TomConstants = 0
+	TomUpperCase                       TomConstants = 1
+	TomTitleCase                       TomConstants = 2
+	TomSentenceCase                    TomConstants = 4
+	TomToggleCase                      TomConstants = 5
+	TomReadOnly                        TomConstants = 256
+	TomShareDenyRead                   TomConstants = 512
+	TomShareDenyWrite                  TomConstants = 1024
+	TomPasteFile                       TomConstants = 4096
+	TomCreateNew                       TomConstants = 16
+	TomCreateAlways                    TomConstants = 32
+	TomOpenExisting                    TomConstants = 48
+	TomOpenAlways                      TomConstants = 64
+	TomTruncateExisting                TomConstants = 80
+	TomRTF                             TomConstants = 1
+	TomText                            TomConstants = 2
+	TomHTML                            TomConstants = 3
+	TomWordDocument                    TomConstants = 4
+	TomBold                            TomConstants = -2147483647
+	TomItalic                          TomConstants = -2147483646
+	TomUnderline                       TomConstants = -2147483644
+	TomStrikeout                       TomConstants = -2147483640
+	TomProtected                       TomConstants = -2147483632
+	TomLink                            TomConstants = -2147483616
+	TomSmallCaps                       TomConstants = -2147483584
+	TomAllCaps                         TomConstants = -2147483520
+	TomHidden                          TomConstants = -2147483392
+	TomOutline                         TomConstants = -2147483136
+	TomShadow                          TomConstants = -2147482624
+	TomEmboss                          TomConstants = -2147481600
+	TomImprint                         TomConstants = -2147479552
+	TomDisabled                        TomConstants = -2147475456
+	TomRevised                         TomConstants = -2147467264
+	TomSubscriptCF                     TomConstants = -2147418112
+	TomSuperscriptCF                   TomConstants = -2147352576
+	TomFontBound                       TomConstants = -2146435072
+	TomLinkProtected                   TomConstants = -2139095040
+	TomInlineObjectStart               TomConstants = -2130706432
+	TomExtendedChar                    TomConstants = -2113929216
+	TomAutoBackColor                   TomConstants = -2080374784
+	TomMathZoneNoBuildUp               TomConstants = -2013265920
+	TomMathZone                        TomConstants = -1879048192
+	TomMathZoneOrdinary                TomConstants = -1610612736
+	TomAutoTextColor                   TomConstants = -1073741824
+	TomMathZoneDisplay                 TomConstants = 262144
+	TomParaEffectRTL                   TomConstants = 1
+	TomParaEffectKeep                  TomConstants = 2
+	TomParaEffectKeepNext              TomConstants = 4
+	TomParaEffectPageBreakBefore       TomConstants = 8
+	TomParaEffectNoLineNumber          TomConstants = 16
+	TomParaEffectNoWidowControl        TomConstants = 32
+	TomParaEffectDoNotHyphen           TomConstants = 64
+	TomParaEffectSideBySide            TomConstants = 128
+	TomParaEffectCollapsed             TomConstants = 256
+	TomParaEffectOutlineLevel          TomConstants = 512
+	TomParaEffectBox                   TomConstants = 1024
+	TomParaEffectTableRowDelimiter     TomConstants = 4096
+	TomParaEffectTable                 TomConstants = 16384
+	TomModWidthPairs                   TomConstants = 1
+	TomModWidthSpace                   TomConstants = 2
+	TomAutoSpaceAlpha                  TomConstants = 4
+	TomAutoSpaceNumeric                TomConstants = 8
+	TomAutoSpaceParens                 TomConstants = 16
+	TomEmbeddedFont                    TomConstants = 32
+	TomDoublestrike                    TomConstants = 64
+	TomOverlapping                     TomConstants = 128
+	TomNormalCaret                     TomConstants = 0
+	TomKoreanBlockCaret                TomConstants = 1
+	TomNullCaret                       TomConstants = 2
+	TomIncludeInset                    TomConstants = 1
+	TomUnicodeBiDi                     TomConstants = 1
+	TomMathCFCheck                     TomConstants = 4
+	TomUnlink                          TomConstants = 8
+	TomUnhide                          TomConstants = 16
+	TomCheckTextLimit                  TomConstants = 32
+	TomIgnoreCurrentFont               TomConstants = 0
+	TomMatchCharRep                    TomConstants = 1
+	TomMatchFontSignature              TomConstants = 2
+	TomMatchAscii                      TomConstants = 4
+	TomGetHeightOnly                   TomConstants = 8
+	TomMatchMathFont                   TomConstants = 16
+	TomCharset                         TomConstants = -2147483648
+	TomCharRepFromLcid                 TomConstants = 1073741824
+	TomAnsi                            TomConstants = 0
+	TomEastEurope                      TomConstants = 1
+	TomCyrillic                        TomConstants = 2
+	TomGreek                           TomConstants = 3
+	TomTurkish                         TomConstants = 4
+	TomHebrew                          TomConstants = 5
+	TomArabic                          TomConstants = 6
+	TomBaltic                          TomConstants = 7
+	TomVietnamese                      TomConstants = 8
+	TomDefaultCharRep                  TomConstants = 9
+	TomSymbol                          TomConstants = 10
+	TomThai                            TomConstants = 11
+	TomShiftJIS                        TomConstants = 12
+	TomGB2312                          TomConstants = 13
+	TomHangul                          TomConstants = 14
+	TomBIG5                            TomConstants = 15
+	TomPC437                           TomConstants = 16
+	TomOEM                             TomConstants = 17
+	TomMac                             TomConstants = 18
+	TomArmenian                        TomConstants = 19
+	TomSyriac                          TomConstants = 20
+	TomThaana                          TomConstants = 21
+	TomDevanagari                      TomConstants = 22
+	TomBengali                         TomConstants = 23
+	TomGurmukhi                        TomConstants = 24
+	TomGujarati                        TomConstants = 25
+	TomOriya                           TomConstants = 26
+	TomTamil                           TomConstants = 27
+	TomTelugu                          TomConstants = 28
+	TomKannada                         TomConstants = 29
+	TomMalayalam                       TomConstants = 30
+	TomSinhala                         TomConstants = 31
+	TomLao                             TomConstants = 32
+	TomTibetan                         TomConstants = 33
+	TomMyanmar                         TomConstants = 34
+	TomGeorgian                        TomConstants = 35
+	TomJamo                            TomConstants = 36
+	TomEthiopic                        TomConstants = 37
+	TomCherokee                        TomConstants = 38
+	TomAboriginal                      TomConstants = 39
+	TomOgham                           TomConstants = 40
+	TomRunic                           TomConstants = 41
+	TomKhmer                           TomConstants = 42
+	TomMongolian                       TomConstants = 43
+	TomBraille                         TomConstants = 44
+	TomYi                              TomConstants = 45
+	TomLimbu                           TomConstants = 46
+	TomTaiLe                           TomConstants = 47
+	TomNewTaiLue                       TomConstants = 48
+	TomSylotiNagri                     TomConstants = 49
+	TomKharoshthi                      TomConstants = 50
+	TomKayahli                         TomConstants = 51
+	TomUsymbol                         TomConstants = 52
+	TomEmoji                           TomConstants = 53
+	TomGlagolitic                      TomConstants = 54
+	TomLisu                            TomConstants = 55
+	TomVai                             TomConstants = 56
+	TomNKo                             TomConstants = 57
+	TomOsmanya                         TomConstants = 58
+	TomPhagsPa                         TomConstants = 59
+	TomGothic                          TomConstants = 60
+	TomDeseret                         TomConstants = 61
+	TomTifinagh                        TomConstants = 62
+	TomCharRepMax                      TomConstants = 63
+	TomRE10Mode                        TomConstants = 1
+	TomUseAtFont                       TomConstants = 2
+	TomTextFlowMask                    TomConstants = 12
+	TomTextFlowES                      TomConstants = 0
+	TomTextFlowSW                      TomConstants = 4
+	TomTextFlowWN                      TomConstants = 8
+	TomTextFlowNE                      TomConstants = 12
+	TomNoIME                           TomConstants = 524288
+	TomSelfIME                         TomConstants = 262144
+	TomNoUpScroll                      TomConstants = 65536
+	TomNoVpScroll                      TomConstants = 262144
+	TomNoLink                          TomConstants = 0
+	TomClientLink                      TomConstants = 1
+	TomFriendlyLinkName                TomConstants = 2
+	TomFriendlyLinkAddress             TomConstants = 3
+	TomAutoLinkURL                     TomConstants = 4
+	TomAutoLinkEmail                   TomConstants = 5
+	TomAutoLinkPhone                   TomConstants = 6
+	TomAutoLinkPath                    TomConstants = 7
+	TomCompressNone                    TomConstants = 0
+	TomCompressPunctuation             TomConstants = 1
+	TomCompressPunctuationAndKana      TomConstants = 2
+	TomCompressMax                     TomConstants = 2
+	TomUnderlinePositionAuto           TomConstants = 0
+	TomUnderlinePositionBelow          TomConstants = 1
+	TomUnderlinePositionAbove          TomConstants = 2
+	TomUnderlinePositionMax            TomConstants = 2
+	TomFontAlignmentAuto               TomConstants = 0
+	TomFontAlignmentTop                TomConstants = 1
+	TomFontAlignmentBaseline           TomConstants = 2
+	TomFontAlignmentBottom             TomConstants = 3
+	TomFontAlignmentCenter             TomConstants = 4
+	TomFontAlignmentMax                TomConstants = 4
+	TomRubyBelow                       TomConstants = 128
+	TomRubyAlignCenter                 TomConstants = 0
+	TomRubyAlign010                    TomConstants = 1
+	TomRubyAlign121                    TomConstants = 2
+	TomRubyAlignLeft                   TomConstants = 3
+	TomRubyAlignRight                  TomConstants = 4
+	TomLimitsDefault                   TomConstants = 0
+	TomLimitsUnderOver                 TomConstants = 1
+	TomLimitsSubSup                    TomConstants = 2
+	TomUpperLimitAsSuperScript         TomConstants = 3
+	TomLimitsOpposite                  TomConstants = 4
+	TomShowLLimPlaceHldr               TomConstants = 8
+	TomShowULimPlaceHldr               TomConstants = 16
+	TomDontGrowWithContent             TomConstants = 64
+	TomGrowWithContent                 TomConstants = 128
+	TomSubSupAlign                     TomConstants = 1
+	TomLimitAlignMask                  TomConstants = 3
+	TomLimitAlignCenter                TomConstants = 0
+	TomLimitAlignLeft                  TomConstants = 1
+	TomLimitAlignRight                 TomConstants = 2
+	TomShowDegPlaceHldr                TomConstants = 8
+	TomAlignDefault                    TomConstants = 0
+	TomAlignMatchAscentDescent         TomConstants = 2
+	TomMathVariant                     TomConstants = 32
+	TomStyleDefault                    TomConstants = 0
+	TomStyleScriptScriptCramped        TomConstants = 1
+	TomStyleScriptScript               TomConstants = 2
+	TomStyleScriptCramped              TomConstants = 3
+	TomStyleScript                     TomConstants = 4
+	TomStyleTextCramped                TomConstants = 5
+	TomStyleText                       TomConstants = 6
+	TomStyleDisplayCramped             TomConstants = 7
+	TomStyleDisplay                    TomConstants = 8
+	TomMathRelSize                     TomConstants = 64
+	TomDecDecSize                      TomConstants = 254
+	TomDecSize                         TomConstants = 255
+	TomIncSize                         TomConstants = 65
+	TomIncIncSize                      TomConstants = 66
+	TomGravityUI                       TomConstants = 0
+	TomGravityBack                     TomConstants = 1
+	TomGravityFore                     TomConstants = 2
+	TomGravityIn                       TomConstants = 3
+	TomGravityOut                      TomConstants = 4
+	TomGravityBackward                 TomConstants = 536870912
+	TomGravityForward                  TomConstants = 1073741824
+	TomAdjustCRLF                      TomConstants = 1
+	TomUseCRLF                         TomConstants = 2
+	TomTextize                         TomConstants = 4
+	TomAllowFinalEOP                   TomConstants = 8
+	TomFoldMathAlpha                   TomConstants = 16
+	TomNoHidden                        TomConstants = 32
+	TomIncludeNumbering                TomConstants = 64
+	TomTranslateTableCell              TomConstants = 128
+	TomNoMathZoneBrackets              TomConstants = 256
+	TomConvertMathChar                 TomConstants = 512
+	TomNoUCGreekItalic                 TomConstants = 1024
+	TomAllowMathBold                   TomConstants = 2048
+	TomLanguageTag                     TomConstants = 4096
+	TomConvertRTF                      TomConstants = 8192
+	TomApplyRtfDocProps                TomConstants = 16384
+	TomPhantomShow                     TomConstants = 1
+	TomPhantomZeroWidth                TomConstants = 2
+	TomPhantomZeroAscent               TomConstants = 4
+	TomPhantomZeroDescent              TomConstants = 8
+	TomPhantomTransparent              TomConstants = 16
+	TomPhantomASmash                   TomConstants = 5
+	TomPhantomDSmash                   TomConstants = 9
+	TomPhantomHSmash                   TomConstants = 3
+	TomPhantomSmash                    TomConstants = 13
+	TomPhantomHorz                     TomConstants = 12
+	TomPhantomVert                     TomConstants = 2
+	TomBoxHideTop                      TomConstants = 1
+	TomBoxHideBottom                   TomConstants = 2
+	TomBoxHideLeft                     TomConstants = 4
+	TomBoxHideRight                    TomConstants = 8
+	TomBoxStrikeH                      TomConstants = 16
+	TomBoxStrikeV                      TomConstants = 32
+	TomBoxStrikeTLBR                   TomConstants = 64
+	TomBoxStrikeBLTR                   TomConstants = 128
+	TomBoxAlignCenter                  TomConstants = 1
+	TomSpaceMask                       TomConstants = 28
+	TomSpaceDefault                    TomConstants = 0
+	TomSpaceUnary                      TomConstants = 4
+	TomSpaceBinary                     TomConstants = 8
+	TomSpaceRelational                 TomConstants = 12
+	TomSpaceSkip                       TomConstants = 16
+	TomSpaceOrd                        TomConstants = 20
+	TomSpaceDifferential               TomConstants = 24
+	TomSizeText                        TomConstants = 32
+	TomSizeScript                      TomConstants = 64
+	TomSizeScriptScript                TomConstants = 96
+	TomNoBreak                         TomConstants = 128
+	TomTransparentForPositioning       TomConstants = 256
+	TomTransparentForSpacing           TomConstants = 512
+	TomStretchCharBelow                TomConstants = 0
+	TomStretchCharAbove                TomConstants = 1
+	TomStretchBaseBelow                TomConstants = 2
+	TomStretchBaseAbove                TomConstants = 3
+	TomMatrixAlignMask                 TomConstants = 3
+	TomMatrixAlignCenter               TomConstants = 0
+	TomMatrixAlignTopRow               TomConstants = 1
+	TomMatrixAlignBottomRow            TomConstants = 3
+	TomShowMatPlaceHldr                TomConstants = 8
+	TomEqArrayLayoutWidth              TomConstants = 1
+	TomEqArrayAlignMask                TomConstants = 12
+	TomEqArrayAlignCenter              TomConstants = 0
+	TomEqArrayAlignTopRow              TomConstants = 4
+	TomEqArrayAlignBottomRow           TomConstants = 12
+	TomMathManualBreakMask             TomConstants = 127
+	TomMathBreakLeft                   TomConstants = 125
+	TomMathBreakCenter                 TomConstants = 126
+	TomMathBreakRight                  TomConstants = 127
+	TomMathEqAlign                     TomConstants = 128
+	TomMathArgShadingStart             TomConstants = 593
+	TomMathArgShadingEnd               TomConstants = 594
+	TomMathObjShadingStart             TomConstants = 595
+	TomMathObjShadingEnd               TomConstants = 596
+	TomFunctionTypeNone                TomConstants = 0
+	TomFunctionTypeTakesArg            TomConstants = 1
+	TomFunctionTypeTakesLim            TomConstants = 2
+	TomFunctionTypeTakesLim2           TomConstants = 3
+	TomFunctionTypeIsLim               TomConstants = 4
+	TomMathParaAlignDefault            TomConstants = 0
+	TomMathParaAlignCenterGroup        TomConstants = 1
+	TomMathParaAlignCenter             TomConstants = 2
+	TomMathParaAlignLeft               TomConstants = 3
+	TomMathParaAlignRight              TomConstants = 4
+	TomMathDispAlignMask               TomConstants = 3
+	TomMathDispAlignCenterGroup        TomConstants = 0
+	TomMathDispAlignCenter             TomConstants = 1
+	TomMathDispAlignLeft               TomConstants = 2
+	TomMathDispAlignRight              TomConstants = 3
+	TomMathDispIntUnderOver            TomConstants = 4
+	TomMathDispFracTeX                 TomConstants = 8
+	TomMathDispNaryGrow                TomConstants = 16
+	TomMathDocEmptyArgMask             TomConstants = 96
+	TomMathDocEmptyArgAuto             TomConstants = 0
+	TomMathDocEmptyArgAlways           TomConstants = 32
+	TomMathDocEmptyArgNever            TomConstants = 64
+	TomMathDocSbSpOpUnchanged          TomConstants = 128
+	TomMathDocDiffMask                 TomConstants = 768
+	TomMathDocDiffDefault              TomConstants = 0
+	TomMathDocDiffUpright              TomConstants = 256
+	TomMathDocDiffItalic               TomConstants = 512
+	TomMathDocDiffOpenItalic           TomConstants = 768
+	TomMathDispNarySubSup              TomConstants = 1024
+	TomMathDispDef                     TomConstants = 2048
+	TomMathEnableRtl                   TomConstants = 4096
+	TomMathBrkBinMask                  TomConstants = 196608
+	TomMathBrkBinBefore                TomConstants = 0
+	TomMathBrkBinAfter                 TomConstants = 65536
+	TomMathBrkBinDup                   TomConstants = 131072
+	TomMathBrkBinSubMask               TomConstants = 786432
+	TomMathBrkBinSubMM                 TomConstants = 0
+	TomMathBrkBinSubPM                 TomConstants = 262144
+	TomMathBrkBinSubMP                 TomConstants = 524288
+	TomSelRange                        TomConstants = 597
+	TomHstring                         TomConstants = 596
+	TomFontPropTeXStyle                TomConstants = 828
+	TomFontPropAlign                   TomConstants = 829
+	TomFontStretch                     TomConstants = 830
+	TomFontStyle                       TomConstants = 831
+	TomFontStyleUpright                TomConstants = 0
+	TomFontStyleOblique                TomConstants = 1
+	TomFontStyleItalic                 TomConstants = 2
+	TomFontStretchDefault              TomConstants = 0
+	TomFontStretchUltraCondensed       TomConstants = 1
+	TomFontStretchExtraCondensed       TomConstants = 2
+	TomFontStretchCondensed            TomConstants = 3
+	TomFontStretchSemiCondensed        TomConstants = 4
+	TomFontStretchNormal               TomConstants = 5
+	TomFontStretchSemiExpanded         TomConstants = 6
+	TomFontStretchExpanded             TomConstants = 7
+	TomFontStretchExtraExpanded        TomConstants = 8
+	TomFontStretchUltraExpanded        TomConstants = 9
+	TomFontWeightDefault               TomConstants = 0
+	TomFontWeightThin                  TomConstants = 100
+	TomFontWeightExtraLight            TomConstants = 200
+	TomFontWeightLight                 TomConstants = 300
+	TomFontWeightNormal                TomConstants = 400
+	TomFontWeightRegular               TomConstants = 400
+	TomFontWeightMedium                TomConstants = 500
+	TomFontWeightSemiBold              TomConstants = 600
+	TomFontWeightBold                  TomConstants = 700
+	TomFontWeightExtraBold             TomConstants = 800
+	TomFontWeightBlack                 TomConstants = 900
+	TomFontWeightHeavy                 TomConstants = 900
+	TomFontWeightExtraBlack            TomConstants = 950
+	TomParaPropMathAlign               TomConstants = 1079
+	TomDocMathBuild                    TomConstants = 128
+	TomMathLMargin                     TomConstants = 129
+	TomMathRMargin                     TomConstants = 130
+	TomMathWrapIndent                  TomConstants = 131
+	TomMathWrapRight                   TomConstants = 132
+	TomMathPostSpace                   TomConstants = 134
+	TomMathPreSpace                    TomConstants = 133
+	TomMathInterSpace                  TomConstants = 135
+	TomMathIntraSpace                  TomConstants = 136
+	TomCanCopy                         TomConstants = 137
+	TomCanRedo                         TomConstants = 138
+	TomCanUndo                         TomConstants = 139
+	TomUndoLimit                       TomConstants = 140
+	TomDocAutoLink                     TomConstants = 141
+	TomEllipsisMode                    TomConstants = 142
+	TomEllipsisState                   TomConstants = 143
+	TomEllipsisNone                    TomConstants = 0
+	TomEllipsisEnd                     TomConstants = 1
+	TomEllipsisWord                    TomConstants = 3
+	TomEllipsisPresent                 TomConstants = 1
+	TomVTopCell                        TomConstants = 1
+	TomVLowCell                        TomConstants = 2
+	TomHStartCell                      TomConstants = 4
+	TomHContCell                       TomConstants = 8
+	TomRowUpdate                       TomConstants = 1
+	TomRowApplyDefault                 TomConstants = 0
+	TomCellStructureChangeOnly         TomConstants = 1
+	TomRowHeightActual                 TomConstants = 2059
 )
 
 // enum OBJECTTYPE
 type OBJECTTYPE int32
+
 const (
-	TomSimpleText OBJECTTYPE = 0
-	TomRuby OBJECTTYPE = 1
-	TomHorzVert OBJECTTYPE = 2
-	TomWarichu OBJECTTYPE = 3
-	TomEq OBJECTTYPE = 9
-	TomMath OBJECTTYPE = 10
-	TomAccent OBJECTTYPE = 10
-	TomBox OBJECTTYPE = 11
-	TomBoxedFormula OBJECTTYPE = 12
-	TomBrackets OBJECTTYPE = 13
+	TomSimpleText       OBJECTTYPE = 0
+	TomRuby             OBJECTTYPE = 1
+	TomHorzVert         OBJECTTYPE = 2
+	TomWarichu          OBJECTTYPE = 3
+	TomEq               OBJECTTYPE = 9
+	TomMath             OBJECTTYPE = 10
+	TomAccent           OBJECTTYPE = 10
+	TomBox              OBJECTTYPE = 11
+	TomBoxedFormula     OBJECTTYPE = 12
+	TomBrackets         OBJECTTYPE = 13
 	TomBracketsWithSeps OBJECTTYPE = 14
-	TomEquationArray OBJECTTYPE = 15
-	TomFraction OBJECTTYPE = 16
-	TomFunctionApply OBJECTTYPE = 17
-	TomLeftSubSup OBJECTTYPE = 18
-	TomLowerLimit OBJECTTYPE = 19
-	TomMatrix OBJECTTYPE = 20
-	TomNary OBJECTTYPE = 21
-	TomOpChar OBJECTTYPE = 22
-	TomOverbar OBJECTTYPE = 23
-	TomPhantom OBJECTTYPE = 24
-	TomRadical OBJECTTYPE = 25
-	TomSlashedFraction OBJECTTYPE = 26
-	TomStack OBJECTTYPE = 27
-	TomStretchStack OBJECTTYPE = 28
-	TomSubscript OBJECTTYPE = 29
-	TomSubSup OBJECTTYPE = 30
-	TomSuperscript OBJECTTYPE = 31
-	TomUnderbar OBJECTTYPE = 32
-	TomUpperLimit OBJECTTYPE = 33
-	TomObjectMax OBJECTTYPE = 33
+	TomEquationArray    OBJECTTYPE = 15
+	TomFraction         OBJECTTYPE = 16
+	TomFunctionApply    OBJECTTYPE = 17
+	TomLeftSubSup       OBJECTTYPE = 18
+	TomLowerLimit       OBJECTTYPE = 19
+	TomMatrix           OBJECTTYPE = 20
+	TomNary             OBJECTTYPE = 21
+	TomOpChar           OBJECTTYPE = 22
+	TomOverbar          OBJECTTYPE = 23
+	TomPhantom          OBJECTTYPE = 24
+	TomRadical          OBJECTTYPE = 25
+	TomSlashedFraction  OBJECTTYPE = 26
+	TomStack            OBJECTTYPE = 27
+	TomStretchStack     OBJECTTYPE = 28
+	TomSubscript        OBJECTTYPE = 29
+	TomSubSup           OBJECTTYPE = 30
+	TomSuperscript      OBJECTTYPE = 31
+	TomUnderbar         OBJECTTYPE = 32
+	TomUpperLimit       OBJECTTYPE = 33
+	TomObjectMax        OBJECTTYPE = 33
 )
 
 // enum MANCODE
 type MANCODE int32
+
 const (
-	MBOLD MANCODE = 16
-	MITAL MANCODE = 32
+	MBOLD  MANCODE = 16
+	MITAL  MANCODE = 32
 	MGREEK MANCODE = 64
-	MROMN MANCODE = 0
-	MSCRP MANCODE = 1
-	MFRAK MANCODE = 2
-	MOPEN MANCODE = 3
-	MSANS MANCODE = 4
-	MMONO MANCODE = 5
-	MMATH MANCODE = 6
-	MISOL MANCODE = 7
-	MINIT MANCODE = 8
-	MTAIL MANCODE = 9
+	MROMN  MANCODE = 0
+	MSCRP  MANCODE = 1
+	MFRAK  MANCODE = 2
+	MOPEN  MANCODE = 3
+	MSANS  MANCODE = 4
+	MMONO  MANCODE = 5
+	MMATH  MANCODE = 6
+	MISOL  MANCODE = 7
+	MINIT  MANCODE = 8
+	MTAIL  MANCODE = 9
 	MSTRCH MANCODE = 10
-	MLOOP MANCODE = 11
+	MLOOP  MANCODE = 11
 	MOPENA MANCODE = 12
 )
-
 
 // structs
 
 type IMECOMPTEXT struct {
-	Cb int32
+	Cb    int32
 	Flags IMECOMPTEXT_FLAGS
 }
 
 type TABLEROWPARMS struct {
-	CbRow uint8
-	CbCell uint8
-	CCell uint8
-	CRow uint8
+	CbRow        uint8
+	CbCell       uint8
+	CCell        uint8
+	CRow         uint8
 	DxCellMargin int32
-	DxIndent int32
-	DyHeight int32
-	Bitfield_ uint32
-	CpStartRow int32
-	BTableLevel uint8
-	ICell uint8
+	DxIndent     int32
+	DyHeight     int32
+	Bitfield_    uint32
+	CpStartRow   int32
+	BTableLevel  uint8
+	ICell        uint8
 }
 
 type TABLECELLPARMS struct {
-	DxWidth int32
-	Bitfield_ uint16
-	WShading uint16
-	DxBrdrLeft int16
-	DyBrdrTop int16
-	DxBrdrRight int16
+	DxWidth      int32
+	Bitfield_    uint16
+	WShading     uint16
+	DxBrdrLeft   int16
+	DyBrdrTop    int16
+	DxBrdrRight  int16
 	DyBrdrBottom int16
-	CrBrdrLeft uint32
-	CrBrdrTop uint32
-	CrBrdrRight uint32
+	CrBrdrLeft   uint32
+	CrBrdrTop    uint32
+	CrBrdrRight  uint32
 	CrBrdrBottom uint32
-	CrBackPat uint32
-	CrForePat uint32
+	CrBackPat    uint32
+	CrForePat    uint32
 }
 
 type RICHEDIT_IMAGE_PARAMETERS struct {
-	XWidth int32
-	YHeight int32
-	Ascent int32
-	Type TEXT_ALIGN_OPTIONS
+	XWidth            int32
+	YHeight           int32
+	Ascent            int32
+	Type              TEXT_ALIGN_OPTIONS
 	PwszAlternateText PWSTR
-	PIStream *IStream
+	PIStream          *IStream
 }
 
 type ENDCOMPOSITIONNOTIFY struct {
-	Nmhdr NMHDR
+	Nmhdr  NMHDR
 	DwCode ENDCOMPOSITIONNOTIFY_CODE
 }
 
 type CHARFORMATA struct {
-	CbSize uint32
-	DwMask CFM_MASK
-	DwEffects CFE_EFFECTS
-	YHeight int32
-	YOffset int32
-	CrTextColor uint32
-	BCharSet uint8
+	CbSize          uint32
+	DwMask          CFM_MASK
+	DwEffects       CFE_EFFECTS
+	YHeight         int32
+	YOffset         int32
+	CrTextColor     uint32
+	BCharSet        uint8
 	BPitchAndFamily uint8
-	SzFaceName [32]CHAR
+	SzFaceName      [32]CHAR
 }
 
 type CHARFORMAT = CHARFORMATW
 type CHARFORMATW struct {
-	CbSize uint32
-	DwMask CFM_MASK
-	DwEffects CFE_EFFECTS
-	YHeight int32
-	YOffset int32
-	CrTextColor uint32
-	BCharSet uint8
+	CbSize          uint32
+	DwMask          CFM_MASK
+	DwEffects       CFE_EFFECTS
+	YHeight         int32
+	YOffset         int32
+	CrTextColor     uint32
+	BCharSet        uint8
 	BPitchAndFamily uint8
-	SzFaceName [32]uint16
+	SzFaceName      [32]uint16
 }
 
 type CHARFORMAT2W_Anonymous_ struct {
 	Data [1]uint32
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwReserved() *uint32{
+func (this *CHARFORMAT2W_Anonymous_) DwReserved() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwReservedVal() uint32{
+func (this *CHARFORMAT2W_Anonymous_) DwReservedVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwCookie() *uint32{
+func (this *CHARFORMAT2W_Anonymous_) DwCookie() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwCookieVal() uint32{
+func (this *CHARFORMAT2W_Anonymous_) DwCookieVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
 type CHARFORMAT2 = CHARFORMAT2W
 type CHARFORMAT2W struct {
 	CHARFORMATW
-	WWeight uint16
-	SSpacing int16
+	WWeight     uint16
+	SSpacing    int16
 	CrBackColor uint32
-	Lcid uint32
+	Lcid        uint32
 	CHARFORMAT2W_Anonymous_
-	SStyle int16
-	WKerning uint16
-	BUnderlineType uint8
-	BAnimation uint8
-	BRevAuthor uint8
+	SStyle          int16
+	WKerning        uint16
+	BUnderlineType  uint8
+	BAnimation      uint8
+	BRevAuthor      uint8
 	BUnderlineColor uint8
 }
 
@@ -1550,34 +1575,34 @@ type CHARFORMAT2A_Anonymous_ struct {
 	Data [1]uint32
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwReserved() *uint32{
+func (this *CHARFORMAT2A_Anonymous_) DwReserved() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwReservedVal() uint32{
+func (this *CHARFORMAT2A_Anonymous_) DwReservedVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwCookie() *uint32{
+func (this *CHARFORMAT2A_Anonymous_) DwCookie() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwCookieVal() uint32{
+func (this *CHARFORMAT2A_Anonymous_) DwCookieVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
 type CHARFORMAT2A struct {
 	CHARFORMATA
-	WWeight uint16
-	SSpacing int16
+	WWeight     uint16
+	SSpacing    int16
 	CrBackColor uint32
-	Lcid uint32
+	Lcid        uint32
 	CHARFORMAT2A_Anonymous_
-	SStyle int16
-	WKerning uint16
-	BUnderlineType uint8
-	BAnimation uint8
-	BRevAuthor uint8
+	SStyle          int16
+	WKerning        uint16
+	BUnderlineType  uint8
+	BAnimation      uint8
+	BRevAuthor      uint8
 	BUnderlineColor uint8
 }
 
@@ -1587,243 +1612,243 @@ type CHARRANGE struct {
 }
 
 type TEXTRANGEA struct {
-	Chrg CHARRANGE
+	Chrg      CHARRANGE
 	LpstrText PSTR
 }
 
 type TEXTRANGE = TEXTRANGEW
 type TEXTRANGEW struct {
-	Chrg CHARRANGE
+	Chrg      CHARRANGE
 	LpstrText PWSTR
 }
 
 type EDITSTREAM struct {
-	DwCookie uintptr
-	DwError uint32
+	DwCookie    uintptr
+	DwError     uint32
 	PfnCallback uintptr
 }
 
 type FINDTEXTA struct {
-	Chrg CHARRANGE
+	Chrg      CHARRANGE
 	LpstrText PSTR
 }
 
 type FINDTEXT = FINDTEXTW
 type FINDTEXTW struct {
-	Chrg CHARRANGE
+	Chrg      CHARRANGE
 	LpstrText PWSTR
 }
 
 type FINDTEXTEXA struct {
-	Chrg CHARRANGE
+	Chrg      CHARRANGE
 	LpstrText PSTR
-	ChrgText CHARRANGE
+	ChrgText  CHARRANGE
 }
 
 type FINDTEXTEX = FINDTEXTEXW
 type FINDTEXTEXW struct {
-	Chrg CHARRANGE
+	Chrg      CHARRANGE
 	LpstrText PWSTR
-	ChrgText CHARRANGE
+	ChrgText  CHARRANGE
 }
 
 type FORMATRANGE struct {
-	Hdc HDC
+	Hdc       HDC
 	HdcTarget HDC
-	Rc RECT
-	RcPage RECT
-	Chrg CHARRANGE
+	Rc        RECT
+	RcPage    RECT
+	Chrg      CHARRANGE
 }
 
 type PARAFORMAT_Anonymous_ struct {
 	Data [1]uint16
 }
 
-func (this *PARAFORMAT_Anonymous_) WReserved() *uint16{
+func (this *PARAFORMAT_Anonymous_) WReserved() *uint16 {
 	return (*uint16)(unsafe.Pointer(this))
 }
 
-func (this *PARAFORMAT_Anonymous_) WReservedVal() uint16{
+func (this *PARAFORMAT_Anonymous_) WReservedVal() uint16 {
 	return *(*uint16)(unsafe.Pointer(this))
 }
 
-func (this *PARAFORMAT_Anonymous_) WEffects() *uint16{
+func (this *PARAFORMAT_Anonymous_) WEffects() *uint16 {
 	return (*uint16)(unsafe.Pointer(this))
 }
 
-func (this *PARAFORMAT_Anonymous_) WEffectsVal() uint16{
+func (this *PARAFORMAT_Anonymous_) WEffectsVal() uint16 {
 	return *(*uint16)(unsafe.Pointer(this))
 }
 
 type PARAFORMAT struct {
-	CbSize uint32
-	DwMask PARAFORMAT_MASK
+	CbSize     uint32
+	DwMask     PARAFORMAT_MASK
 	WNumbering uint16
 	PARAFORMAT_Anonymous_
 	DxStartIndent int32
 	DxRightIndent int32
-	DxOffset int32
-	WAlignment PARAFORMAT_ALIGNMENT
-	CTabCount int16
-	RgxTabs [32]uint32
+	DxOffset      int32
+	WAlignment    PARAFORMAT_ALIGNMENT
+	CTabCount     int16
+	RgxTabs       [32]uint32
 }
 
 type PARAFORMAT2 struct {
 	PARAFORMAT
-	DySpaceBefore int32
-	DySpaceAfter int32
-	DyLineSpacing int32
-	SStyle int16
+	DySpaceBefore    int32
+	DySpaceAfter     int32
+	DyLineSpacing    int32
+	SStyle           int16
 	BLineSpacingRule uint8
-	BOutlineLevel uint8
-	WShadingWeight uint16
-	WShadingStyle PARAFORMAT_SHADING_STYLE
-	WNumberingStart uint16
-	WNumberingStyle PARAFORMAT_NUMBERING_STYLE
-	WNumberingTab uint16
-	WBorderSpace uint16
-	WBorderWidth uint16
-	WBorders PARAFORMAT_BORDERS
+	BOutlineLevel    uint8
+	WShadingWeight   uint16
+	WShadingStyle    PARAFORMAT_SHADING_STYLE
+	WNumberingStart  uint16
+	WNumberingStyle  PARAFORMAT_NUMBERING_STYLE
+	WNumberingTab    uint16
+	WBorderSpace     uint16
+	WBorderWidth     uint16
+	WBorders         PARAFORMAT_BORDERS
 }
 
 type MSGFILTER struct {
-	Nmhdr NMHDR
-	Msg uint32
+	Nmhdr  NMHDR
+	Msg    uint32
 	WParam WPARAM
 	LParam LPARAM
 }
 
 type REQRESIZE struct {
 	Nmhdr NMHDR
-	Rc RECT
+	Rc    RECT
 }
 
 type SELCHANGE struct {
-	Nmhdr NMHDR
-	Chrg CHARRANGE
+	Nmhdr  NMHDR
+	Chrg   CHARRANGE
 	Seltyp RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
 }
 
 type Grouptypingchange_ struct {
-	Nmhdr NMHDR
+	Nmhdr        NMHDR
 	FGroupTyping BOOL
 }
 
 type CLIPBOARDFORMAT struct {
 	Nmhdr NMHDR
-	Cf uint16
+	Cf    uint16
 }
 
 type GETCONTEXTMENUEX struct {
-	Chrg CHARRANGE
-	DwFlags uint32
-	Pt POINT
+	Chrg       CHARRANGE
+	DwFlags    uint32
+	Pt         POINT
 	PvReserved unsafe.Pointer
 }
 
 type ENDROPFILES struct {
-	Nmhdr NMHDR
-	HDrop HANDLE
-	Cp int32
+	Nmhdr      NMHDR
+	HDrop      HANDLE
+	Cp         int32
 	FProtected BOOL
 }
 
 type ENPROTECTED struct {
-	Nmhdr NMHDR
-	Msg uint32
+	Nmhdr  NMHDR
+	Msg    uint32
 	WParam WPARAM
 	LParam LPARAM
-	Chrg CHARRANGE
+	Chrg   CHARRANGE
 }
 
 type ENSAVECLIPBOARD struct {
-	Nmhdr NMHDR
+	Nmhdr        NMHDR
 	CObjectCount int32
-	Cch int32
+	Cch          int32
 }
 
 type ENOLEOPFAILED struct {
 	Nmhdr NMHDR
-	Iob int32
+	Iob   int32
 	LOper int32
-	Hr HRESULT
+	Hr    HRESULT
 }
 
 type OBJECTPOSITIONS struct {
-	Nmhdr NMHDR
+	Nmhdr        NMHDR
 	CObjectCount int32
 	PcpPositions *int32
 }
 
 type ENLINK struct {
-	Nmhdr NMHDR
-	Msg uint32
+	Nmhdr  NMHDR
+	Msg    uint32
 	WParam WPARAM
 	LParam LPARAM
-	Chrg CHARRANGE
+	Chrg   CHARRANGE
 }
 
 type ENLOWFIRTF struct {
-	Nmhdr NMHDR
+	Nmhdr     NMHDR
 	SzControl PSTR
 }
 
 type ENCORRECTTEXT struct {
-	Nmhdr NMHDR
-	Chrg CHARRANGE
+	Nmhdr  NMHDR
+	Chrg   CHARRANGE
 	Seltyp RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
 }
 
 type PUNCTUATION struct {
-	ISize uint32
+	ISize         uint32
 	SzPunctuation PSTR
 }
 
 type COMPCOLOR struct {
-	CrText uint32
+	CrText       uint32
 	CrBackground uint32
-	DwEffects uint32
+	DwEffects    uint32
 }
 
 type REPASTESPECIAL struct {
 	DwAspect DVASPECT
-	DwParam uintptr
+	DwParam  uintptr
 }
 
 type SETTEXTEX struct {
-	Flags uint32
+	Flags    uint32
 	Codepage uint32
 }
 
 type GETTEXTEX struct {
-	Cb uint32
-	Flags GETTEXTEX_FLAGS
-	Codepage uint32
+	Cb            uint32
+	Flags         GETTEXTEX_FLAGS
+	Codepage      uint32
 	LpDefaultChar PSTR
 	LpUsedDefChar *int32
 }
 
 type GETTEXTLENGTHEX struct {
-	Flags GETTEXTLENGTHEX_FLAGS
+	Flags    GETTEXTLENGTHEX_FLAGS
 	Codepage uint32
 }
 
 type BIDIOPTIONS struct {
-	CbSize uint32
-	WMask uint16
+	CbSize   uint32
+	WMask    uint16
 	WEffects uint16
 }
 
 type Hyphresult struct {
-	Khyph KHYPH
+	Khyph   KHYPH
 	IchHyph int32
-	ChHyph uint16
+	ChHyph  uint16
 }
 
 type HYPHENATEINFO struct {
-	CbSize int16
+	CbSize          int16
 	DxHyphenateZone int16
-	PfnHyphenate uintptr
+	PfnHyphenate    uintptr
 }
 
 type CHANGENOTIFY struct {
@@ -1835,35 +1860,34 @@ type CARET_INFO struct {
 	Data [1]uint64
 }
 
-func (this *CARET_INFO) Hbitmap() *HBITMAP{
+func (this *CARET_INFO) Hbitmap() *HBITMAP {
 	return (*HBITMAP)(unsafe.Pointer(this))
 }
 
-func (this *CARET_INFO) HbitmapVal() HBITMAP{
+func (this *CARET_INFO) HbitmapVal() HBITMAP {
 	return *(*HBITMAP)(unsafe.Pointer(this))
 }
 
-func (this *CARET_INFO) CaretFlags() *CARET_FLAGS{
+func (this *CARET_INFO) CaretFlags() *CARET_FLAGS {
 	return (*CARET_FLAGS)(unsafe.Pointer(this))
 }
 
-func (this *CARET_INFO) CaretFlagsVal() CARET_FLAGS{
+func (this *CARET_INFO) CaretFlagsVal() CARET_FLAGS {
 	return *(*CARET_FLAGS)(unsafe.Pointer(this))
 }
 
 type REOBJECT struct {
 	CbStruct uint32
-	Cp int32
-	Clsid syscall.GUID
-	Poleobj *IOleObject
-	Pstg *IStorage
+	Cp       int32
+	Clsid    syscall.GUID
+	Poleobj  *IOleObject
+	Pstg     *IStorage
 	Polesite *IOleClientSite
-	Sizel SIZE
+	Sizel    SIZE
 	Dvaspect uint32
-	DwFlags REOBJECT_FLAGS
-	DwUser uint32
+	DwFlags  REOBJECT_FLAGS
+	DwUser   uint32
 }
-
 
 // func types
 
@@ -1876,7 +1900,6 @@ type EDITSTREAMCALLBACK func(dwCookie uintptr, pbBuff *uint8, cb int32, pcb *int
 type PCreateTextServices func(punkOuter *IUnknown, pITextHost *ITextHost, ppUnk **IUnknown) HRESULT
 
 type PShutdownTextServices func(pTextServices *IUnknown) HRESULT
-
 
 // coms
 
@@ -1904,24 +1927,24 @@ type ITextServicesInterface interface {
 
 type ITextServicesVtbl struct {
 	IUnknownVtbl
-	TxSendMessage uintptr
-	TxDraw uintptr
-	TxGetHScroll uintptr
-	TxGetVScroll uintptr
-	OnTxSetCursor uintptr
-	TxQueryHitPoint uintptr
-	OnTxInPlaceActivate uintptr
-	OnTxInPlaceDeactivate uintptr
-	OnTxUIActivate uintptr
-	OnTxUIDeactivate uintptr
-	TxGetText uintptr
-	TxSetText uintptr
-	TxGetCurTargetX uintptr
-	TxGetBaseLinePos uintptr
-	TxGetNaturalSize uintptr
-	TxGetDropTarget uintptr
+	TxSendMessage          uintptr
+	TxDraw                 uintptr
+	TxGetHScroll           uintptr
+	TxGetVScroll           uintptr
+	OnTxSetCursor          uintptr
+	TxQueryHitPoint        uintptr
+	OnTxInPlaceActivate    uintptr
+	OnTxInPlaceDeactivate  uintptr
+	OnTxUIActivate         uintptr
+	OnTxUIDeactivate       uintptr
+	TxGetText              uintptr
+	TxSetText              uintptr
+	TxGetCurTargetX        uintptr
+	TxGetBaseLinePos       uintptr
+	TxGetNaturalSize       uintptr
+	TxGetDropTarget        uintptr
 	OnTxPropertyBitsChange uintptr
-	TxGetCachedSize uintptr
+	TxGetCachedSize        uintptr
 }
 
 type ITextServices struct {
@@ -1932,92 +1955,92 @@ func (this *ITextServices) Vtbl() *ITextServicesVtbl {
 	return (*ITextServicesVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextServices) TxSendMessage(msg uint32, wparam WPARAM, lparam LPARAM, plresult *LRESULT) HRESULT{
+func (this *ITextServices) TxSendMessage(msg uint32, wparam WPARAM, lparam LPARAM, plresult *LRESULT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSendMessage, uintptr(unsafe.Pointer(this)), uintptr(msg), uintptr(wparam), uintptr(lparam), uintptr(unsafe.Pointer(plresult)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxDraw(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcBounds *RECTL, lprcWBounds *RECTL, lprcUpdate *RECT, pfnContinue uintptr, dwContinue uint32, lViewId int32) HRESULT{
+func (this *ITextServices) TxDraw(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcBounds *RECTL, lprcWBounds *RECTL, lprcUpdate *RECT, pfnContinue uintptr, dwContinue uint32, lViewId int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDraw, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(unsafe.Pointer(pvAspect)), uintptr(unsafe.Pointer(ptd)), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(lprcBounds)), uintptr(unsafe.Pointer(lprcWBounds)), uintptr(unsafe.Pointer(lprcUpdate)), pfnContinue, uintptr(dwContinue), uintptr(lViewId))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetHScroll(plMin *int32, plMax *int32, plPos *int32, plPage *int32, pfEnabled *BOOL) HRESULT{
+func (this *ITextServices) TxGetHScroll(plMin *int32, plMax *int32, plPos *int32, plPage *int32, pfEnabled *BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetHScroll, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plMin)), uintptr(unsafe.Pointer(plMax)), uintptr(unsafe.Pointer(plPos)), uintptr(unsafe.Pointer(plPage)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetVScroll(plMin *int32, plMax *int32, plPos *int32, plPage *int32, pfEnabled *BOOL) HRESULT{
+func (this *ITextServices) TxGetVScroll(plMin *int32, plMax *int32, plPos *int32, plPage *int32, pfEnabled *BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetVScroll, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plMin)), uintptr(unsafe.Pointer(plMax)), uintptr(unsafe.Pointer(plPos)), uintptr(unsafe.Pointer(plPage)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) OnTxSetCursor(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcClient *RECT, x int32, y int32) HRESULT{
+func (this *ITextServices) OnTxSetCursor(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcClient *RECT, x int32, y int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxSetCursor, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(unsafe.Pointer(pvAspect)), uintptr(unsafe.Pointer(ptd)), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(lprcClient)), uintptr(x), uintptr(y))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxQueryHitPoint(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcClient *RECT, x int32, y int32, pHitResult *uint32) HRESULT{
+func (this *ITextServices) TxQueryHitPoint(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcClient *RECT, x int32, y int32, pHitResult *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxQueryHitPoint, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(unsafe.Pointer(pvAspect)), uintptr(unsafe.Pointer(ptd)), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(lprcClient)), uintptr(x), uintptr(y), uintptr(unsafe.Pointer(pHitResult)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) OnTxInPlaceActivate(prcClient *RECT) HRESULT{
+func (this *ITextServices) OnTxInPlaceActivate(prcClient *RECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxInPlaceActivate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prcClient)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) OnTxInPlaceDeactivate() HRESULT{
+func (this *ITextServices) OnTxInPlaceDeactivate() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxInPlaceDeactivate, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) OnTxUIActivate() HRESULT{
+func (this *ITextServices) OnTxUIActivate() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxUIActivate, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) OnTxUIDeactivate() HRESULT{
+func (this *ITextServices) OnTxUIDeactivate() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxUIDeactivate, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetText(pbstrText *BSTR) HRESULT{
+func (this *ITextServices) TxGetText(pbstrText *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrText)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxSetText(pszText PWSTR) HRESULT{
+func (this *ITextServices) TxSetText(pszText PWSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszText)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetCurTargetX(param0 *int32) HRESULT{
+func (this *ITextServices) TxGetCurTargetX(param0 *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetCurTargetX, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(param0)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetBaseLinePos(param0 *int32) HRESULT{
+func (this *ITextServices) TxGetBaseLinePos(param0 *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetBaseLinePos, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(param0)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetNaturalSize(dwAspect uint32, hdcDraw HDC, hicTargetDev HDC, ptd *DVTARGETDEVICE, dwMode uint32, psizelExtent *SIZE, pwidth *int32, pheight *int32) HRESULT{
+func (this *ITextServices) TxGetNaturalSize(dwAspect uint32, hdcDraw HDC, hicTargetDev HDC, ptd *DVTARGETDEVICE, dwMode uint32, psizelExtent *SIZE, pwidth *int32, pheight *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetNaturalSize, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(ptd)), uintptr(dwMode), uintptr(unsafe.Pointer(psizelExtent)), uintptr(unsafe.Pointer(pwidth)), uintptr(unsafe.Pointer(pheight)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetDropTarget(ppDropTarget **IDropTarget) HRESULT{
+func (this *ITextServices) TxGetDropTarget(ppDropTarget **IDropTarget) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetDropTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDropTarget)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) OnTxPropertyBitsChange(dwMask uint32, dwBits uint32) HRESULT{
+func (this *ITextServices) OnTxPropertyBitsChange(dwMask uint32, dwBits uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxPropertyBitsChange, uintptr(unsafe.Pointer(this)), uintptr(dwMask), uintptr(dwBits))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices) TxGetCachedSize(pdwWidth *uint32, pdwHeight *uint32) HRESULT{
+func (this *ITextServices) TxGetCachedSize(pdwWidth *uint32, pdwHeight *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetCachedSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwWidth)), uintptr(unsafe.Pointer(pdwHeight)))
 	return HRESULT(ret)
 }
@@ -2067,44 +2090,44 @@ type ITextHostInterface interface {
 
 type ITextHostVtbl struct {
 	IUnknownVtbl
-	TxGetDC uintptr
-	TxReleaseDC uintptr
-	TxShowScrollBar uintptr
-	TxEnableScrollBar uintptr
-	TxSetScrollRange uintptr
-	TxSetScrollPos uintptr
-	TxInvalidateRect uintptr
-	TxViewChange uintptr
-	TxCreateCaret uintptr
-	TxShowCaret uintptr
-	TxSetCaretPos uintptr
-	TxSetTimer uintptr
-	TxKillTimer uintptr
-	TxScrollWindowEx uintptr
-	TxSetCapture uintptr
-	TxSetFocus uintptr
-	TxSetCursor uintptr
-	TxScreenToClient uintptr
-	TxClientToScreen uintptr
-	TxActivate uintptr
-	TxDeactivate uintptr
-	TxGetClientRect uintptr
-	TxGetViewInset uintptr
-	TxGetCharFormat uintptr
-	TxGetParaFormat uintptr
-	TxGetSysColor uintptr
-	TxGetBackStyle uintptr
-	TxGetMaxLength uintptr
-	TxGetScrollBars uintptr
-	TxGetPasswordChar uintptr
-	TxGetAcceleratorPos uintptr
-	TxGetExtent uintptr
-	OnTxCharFormatChange uintptr
-	OnTxParaFormatChange uintptr
-	TxGetPropertyBits uintptr
-	TxNotify uintptr
-	TxImmGetContext uintptr
-	TxImmReleaseContext uintptr
+	TxGetDC                uintptr
+	TxReleaseDC            uintptr
+	TxShowScrollBar        uintptr
+	TxEnableScrollBar      uintptr
+	TxSetScrollRange       uintptr
+	TxSetScrollPos         uintptr
+	TxInvalidateRect       uintptr
+	TxViewChange           uintptr
+	TxCreateCaret          uintptr
+	TxShowCaret            uintptr
+	TxSetCaretPos          uintptr
+	TxSetTimer             uintptr
+	TxKillTimer            uintptr
+	TxScrollWindowEx       uintptr
+	TxSetCapture           uintptr
+	TxSetFocus             uintptr
+	TxSetCursor            uintptr
+	TxScreenToClient       uintptr
+	TxClientToScreen       uintptr
+	TxActivate             uintptr
+	TxDeactivate           uintptr
+	TxGetClientRect        uintptr
+	TxGetViewInset         uintptr
+	TxGetCharFormat        uintptr
+	TxGetParaFormat        uintptr
+	TxGetSysColor          uintptr
+	TxGetBackStyle         uintptr
+	TxGetMaxLength         uintptr
+	TxGetScrollBars        uintptr
+	TxGetPasswordChar      uintptr
+	TxGetAcceleratorPos    uintptr
+	TxGetExtent            uintptr
+	OnTxCharFormatChange   uintptr
+	OnTxParaFormatChange   uintptr
+	TxGetPropertyBits      uintptr
+	TxNotify               uintptr
+	TxImmGetContext        uintptr
+	TxImmReleaseContext    uintptr
 	TxGetSelectionBarWidth uintptr
 }
 
@@ -2116,197 +2139,197 @@ func (this *ITextHost) Vtbl() *ITextHostVtbl {
 	return (*ITextHostVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextHost) TxGetDC() HDC{
+func (this *ITextHost) TxGetDC() HDC {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetDC, uintptr(unsafe.Pointer(this)))
 	return HDC(ret)
 }
 
-func (this *ITextHost) TxReleaseDC(hdc HDC) int32{
+func (this *ITextHost) TxReleaseDC(hdc HDC) int32 {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxReleaseDC, uintptr(unsafe.Pointer(this)), uintptr(hdc))
 	return int32(ret)
 }
 
-func (this *ITextHost) TxShowScrollBar(fnBar int32, fShow BOOL) BOOL{
+func (this *ITextHost) TxShowScrollBar(fnBar int32, fShow BOOL) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxShowScrollBar, uintptr(unsafe.Pointer(this)), uintptr(fnBar), uintptr(fShow))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxEnableScrollBar(fuSBFlags SCROLLBAR_CONSTANTS, fuArrowflags ENABLE_SCROLL_BAR_ARROWS) BOOL{
+func (this *ITextHost) TxEnableScrollBar(fuSBFlags SCROLLBAR_CONSTANTS, fuArrowflags ENABLE_SCROLL_BAR_ARROWS) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxEnableScrollBar, uintptr(unsafe.Pointer(this)), uintptr(fuSBFlags), uintptr(fuArrowflags))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxSetScrollRange(fnBar int32, nMinPos int32, nMaxPos int32, fRedraw BOOL) BOOL{
+func (this *ITextHost) TxSetScrollRange(fnBar int32, nMinPos int32, nMaxPos int32, fRedraw BOOL) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetScrollRange, uintptr(unsafe.Pointer(this)), uintptr(fnBar), uintptr(nMinPos), uintptr(nMaxPos), uintptr(fRedraw))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxSetScrollPos(fnBar int32, nPos int32, fRedraw BOOL) BOOL{
+func (this *ITextHost) TxSetScrollPos(fnBar int32, nPos int32, fRedraw BOOL) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetScrollPos, uintptr(unsafe.Pointer(this)), uintptr(fnBar), uintptr(nPos), uintptr(fRedraw))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxInvalidateRect(prc *RECT, fMode BOOL){
+func (this *ITextHost) TxInvalidateRect(prc *RECT, fMode BOOL) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxInvalidateRect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prc)), uintptr(fMode))
 
 }
 
-func (this *ITextHost) TxViewChange(fUpdate BOOL){
+func (this *ITextHost) TxViewChange(fUpdate BOOL) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxViewChange, uintptr(unsafe.Pointer(this)), uintptr(fUpdate))
 
 }
 
-func (this *ITextHost) TxCreateCaret(hbmp HBITMAP, xWidth int32, yHeight int32) BOOL{
+func (this *ITextHost) TxCreateCaret(hbmp HBITMAP, xWidth int32, yHeight int32) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxCreateCaret, uintptr(unsafe.Pointer(this)), uintptr(hbmp), uintptr(xWidth), uintptr(yHeight))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxShowCaret(fShow BOOL) BOOL{
+func (this *ITextHost) TxShowCaret(fShow BOOL) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxShowCaret, uintptr(unsafe.Pointer(this)), uintptr(fShow))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxSetCaretPos(x int32, y int32) BOOL{
+func (this *ITextHost) TxSetCaretPos(x int32, y int32) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetCaretPos, uintptr(unsafe.Pointer(this)), uintptr(x), uintptr(y))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxSetTimer(idTimer uint32, uTimeout uint32) BOOL{
+func (this *ITextHost) TxSetTimer(idTimer uint32, uTimeout uint32) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetTimer, uintptr(unsafe.Pointer(this)), uintptr(idTimer), uintptr(uTimeout))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxKillTimer(idTimer uint32){
+func (this *ITextHost) TxKillTimer(idTimer uint32) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxKillTimer, uintptr(unsafe.Pointer(this)), uintptr(idTimer))
 
 }
 
-func (this *ITextHost) TxScrollWindowEx(dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT, fuScroll SHOW_WINDOW_CMD){
+func (this *ITextHost) TxScrollWindowEx(dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT, fuScroll SHOW_WINDOW_CMD) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxScrollWindowEx, uintptr(unsafe.Pointer(this)), uintptr(dx), uintptr(dy), uintptr(unsafe.Pointer(lprcScroll)), uintptr(unsafe.Pointer(lprcClip)), uintptr(hrgnUpdate), uintptr(unsafe.Pointer(lprcUpdate)), uintptr(fuScroll))
 
 }
 
-func (this *ITextHost) TxSetCapture(fCapture BOOL){
+func (this *ITextHost) TxSetCapture(fCapture BOOL) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxSetCapture, uintptr(unsafe.Pointer(this)), uintptr(fCapture))
 
 }
 
-func (this *ITextHost) TxSetFocus(){
+func (this *ITextHost) TxSetFocus() {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxSetFocus, uintptr(unsafe.Pointer(this)))
 
 }
 
-func (this *ITextHost) TxSetCursor(hcur HCURSOR, fText BOOL){
+func (this *ITextHost) TxSetCursor(hcur HCURSOR, fText BOOL) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxSetCursor, uintptr(unsafe.Pointer(this)), uintptr(hcur), uintptr(fText))
 
 }
 
-func (this *ITextHost) TxScreenToClient(lppt *POINT) BOOL{
+func (this *ITextHost) TxScreenToClient(lppt *POINT) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxScreenToClient, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxClientToScreen(lppt *POINT) BOOL{
+func (this *ITextHost) TxClientToScreen(lppt *POINT) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxClientToScreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxActivate(plOldState *int32) HRESULT{
+func (this *ITextHost) TxActivate(plOldState *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxActivate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plOldState)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxDeactivate(lNewState int32) HRESULT{
+func (this *ITextHost) TxDeactivate(lNewState int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDeactivate, uintptr(unsafe.Pointer(this)), uintptr(lNewState))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetClientRect(prc *RECT) HRESULT{
+func (this *ITextHost) TxGetClientRect(prc *RECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetClientRect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetViewInset(prc *RECT) HRESULT{
+func (this *ITextHost) TxGetViewInset(prc *RECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetViewInset, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetCharFormat(ppCF **CHARFORMATW) HRESULT{
+func (this *ITextHost) TxGetCharFormat(ppCF **CHARFORMATW) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetCharFormat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppCF)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetParaFormat(ppPF **PARAFORMAT) HRESULT{
+func (this *ITextHost) TxGetParaFormat(ppPF **PARAFORMAT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetParaFormat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppPF)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetSysColor(nIndex int32) uint32{
+func (this *ITextHost) TxGetSysColor(nIndex int32) uint32 {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetSysColor, uintptr(unsafe.Pointer(this)), uintptr(nIndex))
 	return uint32(ret)
 }
 
-func (this *ITextHost) TxGetBackStyle(pstyle *TXTBACKSTYLE) HRESULT{
+func (this *ITextHost) TxGetBackStyle(pstyle *TXTBACKSTYLE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetBackStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstyle)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetMaxLength(plength *uint32) HRESULT{
+func (this *ITextHost) TxGetMaxLength(plength *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetMaxLength, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plength)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetScrollBars(pdwScrollBar *uint32) HRESULT{
+func (this *ITextHost) TxGetScrollBars(pdwScrollBar *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetScrollBars, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwScrollBar)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetPasswordChar(pch *int8) HRESULT{
+func (this *ITextHost) TxGetPasswordChar(pch *int8) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetPasswordChar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pch)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetAcceleratorPos(pcp *int32) HRESULT{
+func (this *ITextHost) TxGetAcceleratorPos(pcp *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetAcceleratorPos, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcp)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetExtent(lpExtent *SIZE) HRESULT{
+func (this *ITextHost) TxGetExtent(lpExtent *SIZE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetExtent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpExtent)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) OnTxCharFormatChange(pCF *CHARFORMATW) HRESULT{
+func (this *ITextHost) OnTxCharFormatChange(pCF *CHARFORMATW) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxCharFormatChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCF)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) OnTxParaFormatChange(pPF *PARAFORMAT) HRESULT{
+func (this *ITextHost) OnTxParaFormatChange(pPF *PARAFORMAT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxParaFormatChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPF)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetPropertyBits(dwMask uint32, pdwBits *uint32) HRESULT{
+func (this *ITextHost) TxGetPropertyBits(dwMask uint32, pdwBits *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetPropertyBits, uintptr(unsafe.Pointer(this)), uintptr(dwMask), uintptr(unsafe.Pointer(pdwBits)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxNotify(iNotify uint32, pv unsafe.Pointer) HRESULT{
+func (this *ITextHost) TxNotify(iNotify uint32, pv unsafe.Pointer) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxNotify, uintptr(unsafe.Pointer(this)), uintptr(iNotify), uintptr(unsafe.Pointer(pv)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxImmGetContext() HIMC{
+func (this *ITextHost) TxImmGetContext() HIMC {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxImmGetContext, uintptr(unsafe.Pointer(this)))
 	return HIMC(ret)
 }
 
-func (this *ITextHost) TxImmReleaseContext(himc HIMC){
+func (this *ITextHost) TxImmReleaseContext(himc HIMC) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxImmReleaseContext, uintptr(unsafe.Pointer(this)), uintptr(himc))
 
 }
 
-func (this *ITextHost) TxGetSelectionBarWidth(lSelBarWidth *int32) HRESULT{
+func (this *ITextHost) TxGetSelectionBarWidth(lSelBarWidth *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetSelectionBarWidth, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lSelBarWidth)))
 	return HRESULT(ret)
 }
@@ -2329,7 +2352,7 @@ func (this *IRicheditUiaOverrides) Vtbl() *IRicheditUiaOverridesVtbl {
 	return (*IRicheditUiaOverridesVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRicheditUiaOverrides) GetPropertyOverrideValue(propertyId int32, pRetValue *VARIANT) HRESULT{
+func (this *IRicheditUiaOverrides) GetPropertyOverrideValue(propertyId int32, pRetValue *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPropertyOverrideValue, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(unsafe.Pointer(pRetValue)))
 	return HRESULT(ret)
 }
@@ -2352,18 +2375,18 @@ type ITextHost2Interface interface {
 
 type ITextHost2Vtbl struct {
 	ITextHostVtbl
-	TxIsDoubleClickPending uintptr
-	TxGetWindow uintptr
-	TxSetForegroundWindow uintptr
-	TxGetPalette uintptr
-	TxGetEastAsianFlags uintptr
-	TxSetCursor2 uintptr
+	TxIsDoubleClickPending         uintptr
+	TxGetWindow                    uintptr
+	TxSetForegroundWindow          uintptr
+	TxGetPalette                   uintptr
+	TxGetEastAsianFlags            uintptr
+	TxSetCursor2                   uintptr
 	TxFreeTextServicesNotification uintptr
-	TxGetEditStyle uintptr
-	TxGetWindowStyles uintptr
-	TxShowDropCaret uintptr
-	TxDestroyCaret uintptr
-	TxGetHorzExtent uintptr
+	TxGetEditStyle                 uintptr
+	TxGetWindowStyles              uintptr
+	TxShowDropCaret                uintptr
+	TxDestroyCaret                 uintptr
+	TxGetHorzExtent                uintptr
 }
 
 type ITextHost2 struct {
@@ -2374,62 +2397,62 @@ func (this *ITextHost2) Vtbl() *ITextHost2Vtbl {
 	return (*ITextHost2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextHost2) TxIsDoubleClickPending() BOOL{
+func (this *ITextHost2) TxIsDoubleClickPending() BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxIsDoubleClickPending, uintptr(unsafe.Pointer(this)))
 	return BOOL(ret)
 }
 
-func (this *ITextHost2) TxGetWindow(phwnd *HWND) HRESULT{
+func (this *ITextHost2) TxGetWindow(phwnd *HWND) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetWindow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phwnd)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost2) TxSetForegroundWindow() HRESULT{
+func (this *ITextHost2) TxSetForegroundWindow() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetForegroundWindow, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost2) TxGetPalette() HPALETTE{
+func (this *ITextHost2) TxGetPalette() HPALETTE {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetPalette, uintptr(unsafe.Pointer(this)))
 	return HPALETTE(ret)
 }
 
-func (this *ITextHost2) TxGetEastAsianFlags(pFlags *int32) HRESULT{
+func (this *ITextHost2) TxGetEastAsianFlags(pFlags *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetEastAsianFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFlags)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost2) TxSetCursor2(hcur HCURSOR, bText BOOL) HCURSOR{
+func (this *ITextHost2) TxSetCursor2(hcur HCURSOR, bText BOOL) HCURSOR {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetCursor2, uintptr(unsafe.Pointer(this)), uintptr(hcur), uintptr(bText))
 	return HCURSOR(ret)
 }
 
-func (this *ITextHost2) TxFreeTextServicesNotification(){
+func (this *ITextHost2) TxFreeTextServicesNotification() {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxFreeTextServicesNotification, uintptr(unsafe.Pointer(this)))
 
 }
 
-func (this *ITextHost2) TxGetEditStyle(dwItem uint32, pdwData *uint32) HRESULT{
+func (this *ITextHost2) TxGetEditStyle(dwItem uint32, pdwData *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetEditStyle, uintptr(unsafe.Pointer(this)), uintptr(dwItem), uintptr(unsafe.Pointer(pdwData)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost2) TxGetWindowStyles(pdwStyle *uint32, pdwExStyle *uint32) HRESULT{
+func (this *ITextHost2) TxGetWindowStyles(pdwStyle *uint32, pdwExStyle *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetWindowStyles, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwStyle)), uintptr(unsafe.Pointer(pdwExStyle)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost2) TxShowDropCaret(fShow BOOL, hdc HDC, prc *RECT) HRESULT{
+func (this *ITextHost2) TxShowDropCaret(fShow BOOL, hdc HDC, prc *RECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxShowDropCaret, uintptr(unsafe.Pointer(this)), uintptr(fShow), uintptr(hdc), uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost2) TxDestroyCaret() HRESULT{
+func (this *ITextHost2) TxDestroyCaret() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDestroyCaret, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextHost2) TxGetHorzExtent(plHorzExtent *int32) HRESULT{
+func (this *ITextHost2) TxGetHorzExtent(plHorzExtent *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetHorzExtent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(plHorzExtent)))
 	return HRESULT(ret)
 }
@@ -2443,7 +2466,7 @@ type ITextServices2Interface interface {
 type ITextServices2Vtbl struct {
 	ITextServicesVtbl
 	TxGetNaturalSize2 uintptr
-	TxDrawD2D uintptr
+	TxDrawD2D         uintptr
 }
 
 type ITextServices2 struct {
@@ -2454,18 +2477,18 @@ func (this *ITextServices2) Vtbl() *ITextServices2Vtbl {
 	return (*ITextServices2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextServices2) TxGetNaturalSize2(dwAspect uint32, hdcDraw HDC, hicTargetDev HDC, ptd *DVTARGETDEVICE, dwMode uint32, psizelExtent *SIZE, pwidth *int32, pheight *int32, pascent *int32) HRESULT{
+func (this *ITextServices2) TxGetNaturalSize2(dwAspect uint32, hdcDraw HDC, hicTargetDev HDC, ptd *DVTARGETDEVICE, dwMode uint32, psizelExtent *SIZE, pwidth *int32, pheight *int32, pascent *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetNaturalSize2, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(ptd)), uintptr(dwMode), uintptr(unsafe.Pointer(psizelExtent)), uintptr(unsafe.Pointer(pwidth)), uintptr(unsafe.Pointer(pheight)), uintptr(unsafe.Pointer(pascent)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices2) TxDrawD2D(pRenderTarget *ID2D1RenderTarget, lprcBounds *RECTL, lprcUpdate *RECT, lViewId int32) HRESULT{
+func (this *ITextServices2) TxDrawD2D(pRenderTarget *ID2D1RenderTarget, lprcBounds *RECTL, lprcUpdate *RECT, lViewId int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDrawD2D, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRenderTarget)), uintptr(unsafe.Pointer(lprcBounds)), uintptr(unsafe.Pointer(lprcUpdate)), uintptr(lViewId))
 	return HRESULT(ret)
 }
 
 // 00020d00-0000-0000-c000-000000000046
-var IID_IRichEditOle = syscall.GUID{0x00020d00, 0x0000, 0x0000, 
+var IID_IRichEditOle = syscall.GUID{0x00020d00, 0x0000, 0x0000,
 	[8]byte{0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
 
 type IRichEditOleInterface interface {
@@ -2490,22 +2513,22 @@ type IRichEditOleInterface interface {
 
 type IRichEditOleVtbl struct {
 	IUnknownVtbl
-	GetClientSite uintptr
-	GetObjectCount uintptr
-	GetLinkCount uintptr
-	GetObject uintptr
-	InsertObject uintptr
-	ConvertObject uintptr
-	ActivateAs uintptr
-	SetHostNames uintptr
-	SetLinkAvailable uintptr
-	SetDvaspect uintptr
-	HandsOffStorage uintptr
-	SaveCompleted uintptr
-	InPlaceDeactivate uintptr
+	GetClientSite        uintptr
+	GetObjectCount       uintptr
+	GetLinkCount         uintptr
+	GetObject            uintptr
+	InsertObject         uintptr
+	ConvertObject        uintptr
+	ActivateAs           uintptr
+	SetHostNames         uintptr
+	SetLinkAvailable     uintptr
+	SetDvaspect          uintptr
+	HandsOffStorage      uintptr
+	SaveCompleted        uintptr
+	InPlaceDeactivate    uintptr
 	ContextSensitiveHelp uintptr
-	GetClipboardData uintptr
-	ImportDataObject uintptr
+	GetClipboardData     uintptr
+	ImportDataObject     uintptr
 }
 
 type IRichEditOle struct {
@@ -2516,88 +2539,88 @@ func (this *IRichEditOle) Vtbl() *IRichEditOleVtbl {
 	return (*IRichEditOleVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRichEditOle) GetClientSite(lplpolesite **IOleClientSite) HRESULT{
+func (this *IRichEditOle) GetClientSite(lplpolesite **IOleClientSite) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetClientSite, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lplpolesite)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) GetObjectCount() int32{
+func (this *IRichEditOle) GetObjectCount() int32 {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetObjectCount, uintptr(unsafe.Pointer(this)))
 	return int32(ret)
 }
 
-func (this *IRichEditOle) GetLinkCount() int32{
+func (this *IRichEditOle) GetLinkCount() int32 {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetLinkCount, uintptr(unsafe.Pointer(this)))
 	return int32(ret)
 }
 
-func (this *IRichEditOle) GetObject(iob int32, lpreobject *REOBJECT, dwFlags RICH_EDIT_GET_OBJECT_FLAGS) HRESULT{
+func (this *IRichEditOle) GetObject(iob int32, lpreobject *REOBJECT, dwFlags RICH_EDIT_GET_OBJECT_FLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetObject, uintptr(unsafe.Pointer(this)), uintptr(iob), uintptr(unsafe.Pointer(lpreobject)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) InsertObject(lpreobject *REOBJECT) HRESULT{
+func (this *IRichEditOle) InsertObject(lpreobject *REOBJECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InsertObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpreobject)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) ConvertObject(iob int32, rclsidNew *syscall.GUID, lpstrUserTypeNew PSTR) HRESULT{
+func (this *IRichEditOle) ConvertObject(iob int32, rclsidNew *syscall.GUID, lpstrUserTypeNew PSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ConvertObject, uintptr(unsafe.Pointer(this)), uintptr(iob), uintptr(unsafe.Pointer(rclsidNew)), uintptr(unsafe.Pointer(lpstrUserTypeNew)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) ActivateAs(rclsid *syscall.GUID, rclsidAs *syscall.GUID) HRESULT{
+func (this *IRichEditOle) ActivateAs(rclsid *syscall.GUID, rclsidAs *syscall.GUID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ActivateAs, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(rclsidAs)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) SetHostNames(lpstrContainerApp PSTR, lpstrContainerObj PSTR) HRESULT{
+func (this *IRichEditOle) SetHostNames(lpstrContainerApp PSTR, lpstrContainerObj PSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetHostNames, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpstrContainerApp)), uintptr(unsafe.Pointer(lpstrContainerObj)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) SetLinkAvailable(iob int32, fAvailable BOOL) HRESULT{
+func (this *IRichEditOle) SetLinkAvailable(iob int32, fAvailable BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetLinkAvailable, uintptr(unsafe.Pointer(this)), uintptr(iob), uintptr(fAvailable))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) SetDvaspect(iob int32, dvaspect uint32) HRESULT{
+func (this *IRichEditOle) SetDvaspect(iob int32, dvaspect uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDvaspect, uintptr(unsafe.Pointer(this)), uintptr(iob), uintptr(dvaspect))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) HandsOffStorage(iob int32) HRESULT{
+func (this *IRichEditOle) HandsOffStorage(iob int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HandsOffStorage, uintptr(unsafe.Pointer(this)), uintptr(iob))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) SaveCompleted(iob int32, lpstg *IStorage) HRESULT{
+func (this *IRichEditOle) SaveCompleted(iob int32, lpstg *IStorage) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SaveCompleted, uintptr(unsafe.Pointer(this)), uintptr(iob), uintptr(unsafe.Pointer(lpstg)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) InPlaceDeactivate() HRESULT{
+func (this *IRichEditOle) InPlaceDeactivate() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InPlaceDeactivate, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) ContextSensitiveHelp(fEnterMode BOOL) HRESULT{
+func (this *IRichEditOle) ContextSensitiveHelp(fEnterMode BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ContextSensitiveHelp, uintptr(unsafe.Pointer(this)), uintptr(fEnterMode))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpdataobj **IDataObject) HRESULT{
+func (this *IRichEditOle) GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpdataobj **IDataObject) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetClipboardData, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpchrg)), uintptr(reco), uintptr(unsafe.Pointer(lplpdataobj)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) ImportDataObject(lpdataobj *IDataObject, cf uint16, hMetaPict uintptr) HRESULT{
+func (this *IRichEditOle) ImportDataObject(lpdataobj *IDataObject, cf uint16, hMetaPict uintptr) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ImportDataObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpdataobj)), uintptr(cf), hMetaPict)
 	return HRESULT(ret)
 }
 
 // 00020d03-0000-0000-c000-000000000046
-var IID_IRichEditOleCallback = syscall.GUID{0x00020d03, 0x0000, 0x0000, 
+var IID_IRichEditOleCallback = syscall.GUID{0x00020d03, 0x0000, 0x0000,
 	[8]byte{0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
 
 type IRichEditOleCallbackInterface interface {
@@ -2616,16 +2639,16 @@ type IRichEditOleCallbackInterface interface {
 
 type IRichEditOleCallbackVtbl struct {
 	IUnknownVtbl
-	GetNewStorage uintptr
-	GetInPlaceContext uintptr
-	ShowContainerUI uintptr
-	QueryInsertObject uintptr
-	DeleteObject uintptr
-	QueryAcceptData uintptr
+	GetNewStorage        uintptr
+	GetInPlaceContext    uintptr
+	ShowContainerUI      uintptr
+	QueryInsertObject    uintptr
+	DeleteObject         uintptr
+	QueryAcceptData      uintptr
 	ContextSensitiveHelp uintptr
-	GetClipboardData uintptr
-	GetDragDropEffect uintptr
-	GetContextMenu uintptr
+	GetClipboardData     uintptr
+	GetDragDropEffect    uintptr
+	GetContextMenu       uintptr
 }
 
 type IRichEditOleCallback struct {
@@ -2636,58 +2659,58 @@ func (this *IRichEditOleCallback) Vtbl() *IRichEditOleCallbackVtbl {
 	return (*IRichEditOleCallbackVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRichEditOleCallback) GetNewStorage(lplpstg **IStorage) HRESULT{
+func (this *IRichEditOleCallback) GetNewStorage(lplpstg **IStorage) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNewStorage, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lplpstg)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) GetInPlaceContext(lplpFrame **IOleInPlaceFrame, lplpDoc **IOleInPlaceUIWindow, lpFrameInfo *OIFI) HRESULT{
+func (this *IRichEditOleCallback) GetInPlaceContext(lplpFrame **IOleInPlaceFrame, lplpDoc **IOleInPlaceUIWindow, lpFrameInfo *OIFI) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetInPlaceContext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lplpFrame)), uintptr(unsafe.Pointer(lplpDoc)), uintptr(unsafe.Pointer(lpFrameInfo)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) ShowContainerUI(fShow BOOL) HRESULT{
+func (this *IRichEditOleCallback) ShowContainerUI(fShow BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ShowContainerUI, uintptr(unsafe.Pointer(this)), uintptr(fShow))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) QueryInsertObject(lpclsid *syscall.GUID, lpstg *IStorage, cp int32) HRESULT{
+func (this *IRichEditOleCallback) QueryInsertObject(lpclsid *syscall.GUID, lpstg *IStorage, cp int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryInsertObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpclsid)), uintptr(unsafe.Pointer(lpstg)), uintptr(cp))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) DeleteObject(lpoleobj *IOleObject) HRESULT{
+func (this *IRichEditOleCallback) DeleteObject(lpoleobj *IOleObject) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DeleteObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpoleobj)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco uint32, fReally BOOL, hMetaPict uintptr) HRESULT{
+func (this *IRichEditOleCallback) QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco uint32, fReally BOOL, hMetaPict uintptr) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryAcceptData, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpdataobj)), uintptr(unsafe.Pointer(lpcfFormat)), uintptr(reco), uintptr(fReally), hMetaPict)
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) ContextSensitiveHelp(fEnterMode BOOL) HRESULT{
+func (this *IRichEditOleCallback) ContextSensitiveHelp(fEnterMode BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ContextSensitiveHelp, uintptr(unsafe.Pointer(this)), uintptr(fEnterMode))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpdataobj **IDataObject) HRESULT{
+func (this *IRichEditOleCallback) GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpdataobj **IDataObject) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetClipboardData, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpchrg)), uintptr(reco), uintptr(unsafe.Pointer(lplpdataobj)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) GetDragDropEffect(fDrag BOOL, grfKeyState uint32, pdwEffect *uint32) HRESULT{
+func (this *IRichEditOleCallback) GetDragDropEffect(fDrag BOOL, grfKeyState uint32, pdwEffect *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDragDropEffect, uintptr(unsafe.Pointer(this)), uintptr(fDrag), uintptr(grfKeyState), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) GetContextMenu(seltype RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, lpoleobj *IOleObject, lpchrg *CHARRANGE, lphmenu *HMENU) HRESULT{
+func (this *IRichEditOleCallback) GetContextMenu(seltype RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, lpoleobj *IOleObject, lpchrg *CHARRANGE, lphmenu *HMENU) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetContextMenu, uintptr(unsafe.Pointer(this)), uintptr(seltype), uintptr(unsafe.Pointer(lpoleobj)), uintptr(unsafe.Pointer(lpchrg)), uintptr(unsafe.Pointer(lphmenu)))
 	return HRESULT(ret)
 }
 
 // 8cc497c0-a1df-11ce-8098-00aa0047be5d
-var IID_ITextDocument = syscall.GUID{0x8cc497c0, 0xa1df, 0x11ce, 
+var IID_ITextDocument = syscall.GUID{0x8cc497c0, 0xa1df, 0x11ce,
 	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
 
 type ITextDocumentInterface interface {
@@ -2715,25 +2738,25 @@ type ITextDocumentInterface interface {
 
 type ITextDocumentVtbl struct {
 	IDispatchVtbl
-	GetName uintptr
-	GetSelection uintptr
-	GetStoryCount uintptr
-	GetStoryRanges uintptr
-	GetSaved uintptr
-	SetSaved uintptr
-	GetDefaultTabStop uintptr
-	SetDefaultTabStop uintptr
-	New uintptr
-	Open uintptr
-	Save uintptr
-	Freeze uintptr
-	Unfreeze uintptr
+	GetName             uintptr
+	GetSelection        uintptr
+	GetStoryCount       uintptr
+	GetStoryRanges      uintptr
+	GetSaved            uintptr
+	SetSaved            uintptr
+	GetDefaultTabStop   uintptr
+	SetDefaultTabStop   uintptr
+	New                 uintptr
+	Open                uintptr
+	Save                uintptr
+	Freeze              uintptr
+	Unfreeze            uintptr
 	BeginEditCollection uintptr
-	EndEditCollection uintptr
-	Undo uintptr
-	Redo uintptr
-	Range uintptr
-	RangeFromPoint uintptr
+	EndEditCollection   uintptr
+	Undo                uintptr
+	Redo                uintptr
+	Range               uintptr
+	RangeFromPoint      uintptr
 }
 
 type ITextDocument struct {
@@ -2744,103 +2767,103 @@ func (this *ITextDocument) Vtbl() *ITextDocumentVtbl {
 	return (*ITextDocumentVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextDocument) GetName(pName *BSTR) HRESULT{
+func (this *ITextDocument) GetName(pName *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pName)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) GetSelection(ppSel **ITextSelection) HRESULT{
+func (this *ITextDocument) GetSelection(ppSel **ITextSelection) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppSel)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) GetStoryCount(pCount *int32) HRESULT{
+func (this *ITextDocument) GetStoryCount(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStoryCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) GetStoryRanges(ppStories **ITextStoryRanges) HRESULT{
+func (this *ITextDocument) GetStoryRanges(ppStories **ITextStoryRanges) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStoryRanges, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppStories)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) GetSaved(pValue *int32) HRESULT{
+func (this *ITextDocument) GetSaved(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSaved, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) SetSaved(Value TomConstants) HRESULT{
+func (this *ITextDocument) SetSaved(Value TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSaved, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) GetDefaultTabStop(pValue *float32) HRESULT{
+func (this *ITextDocument) GetDefaultTabStop(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDefaultTabStop, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) SetDefaultTabStop(Value float32) HRESULT{
+func (this *ITextDocument) SetDefaultTabStop(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDefaultTabStop, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) New() HRESULT{
+func (this *ITextDocument) New() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().New, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Open(pVar *VARIANT, Flags int32, CodePage int32) HRESULT{
+func (this *ITextDocument) Open(pVar *VARIANT, Flags int32, CodePage int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Open, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)), uintptr(Flags), uintptr(CodePage))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Save(pVar *VARIANT, Flags int32, CodePage int32) HRESULT{
+func (this *ITextDocument) Save(pVar *VARIANT, Flags int32, CodePage int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Save, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)), uintptr(Flags), uintptr(CodePage))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Freeze(pCount *int32) HRESULT{
+func (this *ITextDocument) Freeze(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Freeze, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Unfreeze(pCount *int32) HRESULT{
+func (this *ITextDocument) Unfreeze(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Unfreeze, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) BeginEditCollection() HRESULT{
+func (this *ITextDocument) BeginEditCollection() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().BeginEditCollection, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) EndEditCollection() HRESULT{
+func (this *ITextDocument) EndEditCollection() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EndEditCollection, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Undo(Count int32, pCount *int32) HRESULT{
+func (this *ITextDocument) Undo(Count int32, pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Undo, uintptr(unsafe.Pointer(this)), uintptr(Count), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Redo(Count int32, pCount *int32) HRESULT{
+func (this *ITextDocument) Redo(Count int32, pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Redo, uintptr(unsafe.Pointer(this)), uintptr(Count), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Range(cpActive int32, cpAnchor int32, ppRange **ITextRange) HRESULT{
+func (this *ITextDocument) Range(cpActive int32, cpAnchor int32, ppRange **ITextRange) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Range, uintptr(unsafe.Pointer(this)), uintptr(cpActive), uintptr(cpAnchor), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) RangeFromPoint(x int32, y int32, ppRange **ITextRange) HRESULT{
+func (this *ITextDocument) RangeFromPoint(x int32, y int32, ppRange **ITextRange) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RangeFromPoint, uintptr(unsafe.Pointer(this)), uintptr(x), uintptr(y), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
 // 8cc497c2-a1df-11ce-8098-00aa0047be5d
-var IID_ITextRange = syscall.GUID{0x8cc497c2, 0xa1df, 0x11ce, 
+var IID_ITextRange = syscall.GUID{0x8cc497c2, 0xa1df, 0x11ce,
 	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
 
 type ITextRangeInterface interface {
@@ -2900,56 +2923,56 @@ type ITextRangeInterface interface {
 
 type ITextRangeVtbl struct {
 	IDispatchVtbl
-	GetText uintptr
-	SetText uintptr
-	GetChar uintptr
-	SetChar uintptr
-	GetDuplicate uintptr
-	GetFormattedText uintptr
-	SetFormattedText uintptr
-	GetStart uintptr
-	SetStart uintptr
-	GetEnd uintptr
-	SetEnd uintptr
-	GetFont uintptr
-	SetFont uintptr
-	GetPara uintptr
-	SetPara uintptr
-	GetStoryLength uintptr
-	GetStoryType uintptr
-	Collapse uintptr
-	Expand uintptr
-	GetIndex uintptr
-	SetIndex uintptr
-	SetRange uintptr
-	InRange uintptr
-	InStory uintptr
-	IsEqual uintptr
-	Select uintptr
-	StartOf uintptr
-	EndOf uintptr
-	Move uintptr
-	MoveStart uintptr
-	MoveEnd uintptr
-	MoveWhile uintptr
-	MoveStartWhile uintptr
-	MoveEndWhile uintptr
-	MoveUntil uintptr
-	MoveStartUntil uintptr
-	MoveEndUntil uintptr
-	FindText uintptr
-	FindTextStart uintptr
-	FindTextEnd uintptr
-	Delete uintptr
-	Cut uintptr
-	Copy uintptr
-	Paste uintptr
-	CanPaste uintptr
-	CanEdit uintptr
-	ChangeCase uintptr
-	GetPoint uintptr
-	SetPoint uintptr
-	ScrollIntoView uintptr
+	GetText           uintptr
+	SetText           uintptr
+	GetChar           uintptr
+	SetChar           uintptr
+	GetDuplicate      uintptr
+	GetFormattedText  uintptr
+	SetFormattedText  uintptr
+	GetStart          uintptr
+	SetStart          uintptr
+	GetEnd            uintptr
+	SetEnd            uintptr
+	GetFont           uintptr
+	SetFont           uintptr
+	GetPara           uintptr
+	SetPara           uintptr
+	GetStoryLength    uintptr
+	GetStoryType      uintptr
+	Collapse          uintptr
+	Expand            uintptr
+	GetIndex          uintptr
+	SetIndex          uintptr
+	SetRange          uintptr
+	InRange           uintptr
+	InStory           uintptr
+	IsEqual           uintptr
+	Select            uintptr
+	StartOf           uintptr
+	EndOf             uintptr
+	Move              uintptr
+	MoveStart         uintptr
+	MoveEnd           uintptr
+	MoveWhile         uintptr
+	MoveStartWhile    uintptr
+	MoveEndWhile      uintptr
+	MoveUntil         uintptr
+	MoveStartUntil    uintptr
+	MoveEndUntil      uintptr
+	FindText          uintptr
+	FindTextStart     uintptr
+	FindTextEnd       uintptr
+	Delete            uintptr
+	Cut               uintptr
+	Copy              uintptr
+	Paste             uintptr
+	CanPaste          uintptr
+	CanEdit           uintptr
+	ChangeCase        uintptr
+	GetPoint          uintptr
+	SetPoint          uintptr
+	ScrollIntoView    uintptr
 	GetEmbeddedObject uintptr
 }
 
@@ -2961,263 +2984,263 @@ func (this *ITextRange) Vtbl() *ITextRangeVtbl {
 	return (*ITextRangeVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextRange) GetText(pbstr *BSTR) HRESULT{
+func (this *ITextRange) GetText(pbstr *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetText(bstr BSTR) HRESULT{
+func (this *ITextRange) SetText(bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetChar(pChar *int32) HRESULT{
+func (this *ITextRange) GetChar(pChar *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetChar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pChar)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetChar(Char int32) HRESULT{
+func (this *ITextRange) SetChar(Char int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetChar, uintptr(unsafe.Pointer(this)), uintptr(Char))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetDuplicate(ppRange **ITextRange) HRESULT{
+func (this *ITextRange) GetDuplicate(ppRange **ITextRange) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDuplicate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetFormattedText(ppRange **ITextRange) HRESULT{
+func (this *ITextRange) GetFormattedText(ppRange **ITextRange) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFormattedText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetFormattedText(pRange *ITextRange) HRESULT{
+func (this *ITextRange) SetFormattedText(pRange *ITextRange) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFormattedText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetStart(pcpFirst *int32) HRESULT{
+func (this *ITextRange) GetStart(pcpFirst *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStart, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcpFirst)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetStart(cpFirst int32) HRESULT{
+func (this *ITextRange) SetStart(cpFirst int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetStart, uintptr(unsafe.Pointer(this)), uintptr(cpFirst))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetEnd(pcpLim *int32) HRESULT{
+func (this *ITextRange) GetEnd(pcpLim *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEnd, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcpLim)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetEnd(cpLim int32) HRESULT{
+func (this *ITextRange) SetEnd(cpLim int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEnd, uintptr(unsafe.Pointer(this)), uintptr(cpLim))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetFont(ppFont **ITextFont) HRESULT{
+func (this *ITextRange) GetFont(ppFont **ITextFont) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFont, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetFont(pFont *ITextFont) HRESULT{
+func (this *ITextRange) SetFont(pFont *ITextFont) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFont, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetPara(ppPara **ITextPara) HRESULT{
+func (this *ITextRange) GetPara(ppPara **ITextPara) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPara, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetPara(pPara *ITextPara) HRESULT{
+func (this *ITextRange) SetPara(pPara *ITextPara) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPara, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetStoryLength(pCount *int32) HRESULT{
+func (this *ITextRange) GetStoryLength(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStoryLength, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetStoryType(pValue *int32) HRESULT{
+func (this *ITextRange) GetStoryType(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStoryType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Collapse(bStart int32) HRESULT{
+func (this *ITextRange) Collapse(bStart int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Collapse, uintptr(unsafe.Pointer(this)), uintptr(bStart))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Expand(Unit int32, pDelta *int32) HRESULT{
+func (this *ITextRange) Expand(Unit int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Expand, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetIndex(Unit int32, pIndex *int32) HRESULT{
+func (this *ITextRange) GetIndex(Unit int32, pIndex *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetIndex, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(unsafe.Pointer(pIndex)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetIndex(Unit int32, Index int32, Extend int32) HRESULT{
+func (this *ITextRange) SetIndex(Unit int32, Index int32, Extend int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetIndex, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Index), uintptr(Extend))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetRange(cpAnchor int32, cpActive int32) HRESULT{
+func (this *ITextRange) SetRange(cpAnchor int32, cpActive int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetRange, uintptr(unsafe.Pointer(this)), uintptr(cpAnchor), uintptr(cpActive))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) InRange(pRange *ITextRange, pValue *int32) HRESULT{
+func (this *ITextRange) InRange(pRange *ITextRange, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) InStory(pRange *ITextRange, pValue *int32) HRESULT{
+func (this *ITextRange) InStory(pRange *ITextRange, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InStory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) IsEqual(pRange *ITextRange, pValue *int32) HRESULT{
+func (this *ITextRange) IsEqual(pRange *ITextRange, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsEqual, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Select() HRESULT{
+func (this *ITextRange) Select() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Select, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) StartOf(Unit int32, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextRange) StartOf(Unit int32, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().StartOf, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) EndOf(Unit int32, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextRange) EndOf(Unit int32, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EndOf, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Move(Unit int32, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) Move(Unit int32, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Move, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveStart(Unit int32, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveStart(Unit int32, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveStart, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveEnd(Unit int32, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveEnd(Unit int32, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveEnd, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveWhile(Cset *VARIANT, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveWhile(Cset *VARIANT, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveWhile, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Cset)), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveStartWhile(Cset *VARIANT, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveStartWhile(Cset *VARIANT, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveStartWhile, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Cset)), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveEndWhile(Cset *VARIANT, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveEndWhile(Cset *VARIANT, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveEndWhile, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Cset)), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveUntil, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Cset)), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveStartUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveStartUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveStartUntil, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Cset)), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) MoveEndUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) MoveEndUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveEndUntil, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Cset)), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) FindText(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT{
+func (this *ITextRange) FindText(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(Count), uintptr(Flags), uintptr(unsafe.Pointer(pLength)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) FindTextStart(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT{
+func (this *ITextRange) FindTextStart(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindTextStart, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(Count), uintptr(Flags), uintptr(unsafe.Pointer(pLength)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) FindTextEnd(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT{
+func (this *ITextRange) FindTextEnd(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindTextEnd, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(Count), uintptr(Flags), uintptr(unsafe.Pointer(pLength)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Delete(Unit int32, Count int32, pDelta *int32) HRESULT{
+func (this *ITextRange) Delete(Unit int32, Count int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Delete, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Cut(pVar *VARIANT) HRESULT{
+func (this *ITextRange) Cut(pVar *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Cut, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Copy(pVar *VARIANT) HRESULT{
+func (this *ITextRange) Copy(pVar *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Copy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) Paste(pVar *VARIANT, Format int32) HRESULT{
+func (this *ITextRange) Paste(pVar *VARIANT, Format int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Paste, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)), uintptr(Format))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) CanPaste(pVar *VARIANT, Format int32, pValue *int32) HRESULT{
+func (this *ITextRange) CanPaste(pVar *VARIANT, Format int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CanPaste, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)), uintptr(Format), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) CanEdit(pValue *int32) HRESULT{
+func (this *ITextRange) CanEdit(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CanEdit, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) ChangeCase(Type int32) HRESULT{
+func (this *ITextRange) ChangeCase(Type int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ChangeCase, uintptr(unsafe.Pointer(this)), uintptr(Type))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetPoint(Type int32, px *int32, py *int32) HRESULT{
+func (this *ITextRange) GetPoint(Type int32, px *int32, py *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPoint, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(px)), uintptr(unsafe.Pointer(py)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetPoint(x int32, y int32, Type int32, Extend int32) HRESULT{
+func (this *ITextRange) SetPoint(x int32, y int32, Type int32, Extend int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPoint, uintptr(unsafe.Pointer(this)), uintptr(x), uintptr(y), uintptr(Type), uintptr(Extend))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) ScrollIntoView(Value int32) HRESULT{
+func (this *ITextRange) ScrollIntoView(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ScrollIntoView, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetEmbeddedObject(ppObject **IUnknown) HRESULT{
+func (this *ITextRange) GetEmbeddedObject(ppObject **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEmbeddedObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppObject)))
 	return HRESULT(ret)
 }
 
 // 8cc497c1-a1df-11ce-8098-00aa0047be5d
-var IID_ITextSelection = syscall.GUID{0x8cc497c1, 0xa1df, 0x11ce, 
+var IID_ITextSelection = syscall.GUID{0x8cc497c1, 0xa1df, 0x11ce,
 	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
 
 type ITextSelectionInterface interface {
@@ -3236,16 +3259,16 @@ type ITextSelectionInterface interface {
 
 type ITextSelectionVtbl struct {
 	ITextRangeVtbl
-	GetFlags uintptr
-	SetFlags uintptr
-	GetType uintptr
-	MoveLeft uintptr
+	GetFlags  uintptr
+	SetFlags  uintptr
+	GetType   uintptr
+	MoveLeft  uintptr
 	MoveRight uintptr
-	MoveUp uintptr
-	MoveDown uintptr
-	HomeKey uintptr
-	EndKey uintptr
-	TypeText uintptr
+	MoveUp    uintptr
+	MoveDown  uintptr
+	HomeKey   uintptr
+	EndKey    uintptr
+	TypeText  uintptr
 }
 
 type ITextSelection struct {
@@ -3256,58 +3279,58 @@ func (this *ITextSelection) Vtbl() *ITextSelectionVtbl {
 	return (*ITextSelectionVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextSelection) GetFlags(pFlags *int32) HRESULT{
+func (this *ITextSelection) GetFlags(pFlags *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFlags)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) SetFlags(Flags int32) HRESULT{
+func (this *ITextSelection) SetFlags(Flags int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFlags, uintptr(unsafe.Pointer(this)), uintptr(Flags))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) GetType(pType *int32) HRESULT{
+func (this *ITextSelection) GetType(pType *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pType)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) MoveLeft(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextSelection) MoveLeft(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveLeft, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) MoveRight(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextSelection) MoveRight(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveRight, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) MoveUp(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextSelection) MoveUp(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveUp, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) MoveDown(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextSelection) MoveDown(Unit int32, Count int32, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveDown, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Count), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) HomeKey(Unit TomConstants, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextSelection) HomeKey(Unit TomConstants, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HomeKey, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) EndKey(Unit int32, Extend int32, pDelta *int32) HRESULT{
+func (this *ITextSelection) EndKey(Unit int32, Extend int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EndKey, uintptr(unsafe.Pointer(this)), uintptr(Unit), uintptr(Extend), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextSelection) TypeText(bstr BSTR) HRESULT{
+func (this *ITextSelection) TypeText(bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TypeText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
 // 8cc497c3-a1df-11ce-8098-00aa0047be5d
-var IID_ITextFont = syscall.GUID{0x8cc497c3, 0xa1df, 0x11ce, 
+var IID_ITextFont = syscall.GUID{0x8cc497c3, 0xa1df, 0x11ce,
 	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
 
 type ITextFontInterface interface {
@@ -3371,61 +3394,61 @@ type ITextFontInterface interface {
 
 type ITextFontVtbl struct {
 	IDispatchVtbl
-	GetDuplicate uintptr
-	SetDuplicate uintptr
-	CanChange uintptr
-	IsEqual uintptr
-	Reset uintptr
-	GetStyle uintptr
-	SetStyle uintptr
-	GetAllCaps uintptr
-	SetAllCaps uintptr
-	GetAnimation uintptr
-	SetAnimation uintptr
-	GetBackColor uintptr
-	SetBackColor uintptr
-	GetBold uintptr
-	SetBold uintptr
-	GetEmboss uintptr
-	SetEmboss uintptr
-	GetForeColor uintptr
-	SetForeColor uintptr
-	GetHidden uintptr
-	SetHidden uintptr
-	GetEngrave uintptr
-	SetEngrave uintptr
-	GetItalic uintptr
-	SetItalic uintptr
-	GetKerning uintptr
-	SetKerning uintptr
-	GetLanguageID uintptr
-	SetLanguageID uintptr
-	GetName uintptr
-	SetName uintptr
-	GetOutline uintptr
-	SetOutline uintptr
-	GetPosition uintptr
-	SetPosition uintptr
-	GetProtected uintptr
-	SetProtected uintptr
-	GetShadow uintptr
-	SetShadow uintptr
-	GetSize uintptr
-	SetSize uintptr
-	GetSmallCaps uintptr
-	SetSmallCaps uintptr
-	GetSpacing uintptr
-	SetSpacing uintptr
+	GetDuplicate     uintptr
+	SetDuplicate     uintptr
+	CanChange        uintptr
+	IsEqual          uintptr
+	Reset            uintptr
+	GetStyle         uintptr
+	SetStyle         uintptr
+	GetAllCaps       uintptr
+	SetAllCaps       uintptr
+	GetAnimation     uintptr
+	SetAnimation     uintptr
+	GetBackColor     uintptr
+	SetBackColor     uintptr
+	GetBold          uintptr
+	SetBold          uintptr
+	GetEmboss        uintptr
+	SetEmboss        uintptr
+	GetForeColor     uintptr
+	SetForeColor     uintptr
+	GetHidden        uintptr
+	SetHidden        uintptr
+	GetEngrave       uintptr
+	SetEngrave       uintptr
+	GetItalic        uintptr
+	SetItalic        uintptr
+	GetKerning       uintptr
+	SetKerning       uintptr
+	GetLanguageID    uintptr
+	SetLanguageID    uintptr
+	GetName          uintptr
+	SetName          uintptr
+	GetOutline       uintptr
+	SetOutline       uintptr
+	GetPosition      uintptr
+	SetPosition      uintptr
+	GetProtected     uintptr
+	SetProtected     uintptr
+	GetShadow        uintptr
+	SetShadow        uintptr
+	GetSize          uintptr
+	SetSize          uintptr
+	GetSmallCaps     uintptr
+	SetSmallCaps     uintptr
+	GetSpacing       uintptr
+	SetSpacing       uintptr
 	GetStrikeThrough uintptr
 	SetStrikeThrough uintptr
-	GetSubscript uintptr
-	SetSubscript uintptr
-	GetSuperscript uintptr
-	SetSuperscript uintptr
-	GetUnderline uintptr
-	SetUnderline uintptr
-	GetWeight uintptr
-	SetWeight uintptr
+	GetSubscript     uintptr
+	SetSubscript     uintptr
+	GetSuperscript   uintptr
+	SetSuperscript   uintptr
+	GetUnderline     uintptr
+	SetUnderline     uintptr
+	GetWeight        uintptr
+	SetWeight        uintptr
 }
 
 type ITextFont struct {
@@ -3436,283 +3459,283 @@ func (this *ITextFont) Vtbl() *ITextFontVtbl {
 	return (*ITextFontVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextFont) GetDuplicate(ppFont **ITextFont) HRESULT{
+func (this *ITextFont) GetDuplicate(ppFont **ITextFont) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDuplicate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetDuplicate(pFont *ITextFont) HRESULT{
+func (this *ITextFont) SetDuplicate(pFont *ITextFont) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDuplicate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) CanChange(pValue *int32) HRESULT{
+func (this *ITextFont) CanChange(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CanChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) IsEqual(pFont *ITextFont, pValue *int32) HRESULT{
+func (this *ITextFont) IsEqual(pFont *ITextFont, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsEqual, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFont)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) Reset(Value TomConstants) HRESULT{
+func (this *ITextFont) Reset(Value TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Reset, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetStyle(pValue *int32) HRESULT{
+func (this *ITextFont) GetStyle(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetStyle(Value int32) HRESULT{
+func (this *ITextFont) SetStyle(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetStyle, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetAllCaps(pValue *int32) HRESULT{
+func (this *ITextFont) GetAllCaps(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAllCaps, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetAllCaps(Value int32) HRESULT{
+func (this *ITextFont) SetAllCaps(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAllCaps, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetAnimation(pValue *int32) HRESULT{
+func (this *ITextFont) GetAnimation(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAnimation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetAnimation(Value int32) HRESULT{
+func (this *ITextFont) SetAnimation(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAnimation, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetBackColor(pValue *int32) HRESULT{
+func (this *ITextFont) GetBackColor(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBackColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetBackColor(Value int32) HRESULT{
+func (this *ITextFont) SetBackColor(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetBackColor, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetBold(pValue *int32) HRESULT{
+func (this *ITextFont) GetBold(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBold, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetBold(Value int32) HRESULT{
+func (this *ITextFont) SetBold(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetBold, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetEmboss(pValue *int32) HRESULT{
+func (this *ITextFont) GetEmboss(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEmboss, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetEmboss(Value int32) HRESULT{
+func (this *ITextFont) SetEmboss(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEmboss, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetForeColor(pValue *int32) HRESULT{
+func (this *ITextFont) GetForeColor(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetForeColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetForeColor(Value int32) HRESULT{
+func (this *ITextFont) SetForeColor(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetForeColor, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetHidden(pValue *int32) HRESULT{
+func (this *ITextFont) GetHidden(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetHidden, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetHidden(Value int32) HRESULT{
+func (this *ITextFont) SetHidden(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetHidden, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetEngrave(pValue *int32) HRESULT{
+func (this *ITextFont) GetEngrave(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEngrave, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetEngrave(Value int32) HRESULT{
+func (this *ITextFont) SetEngrave(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEngrave, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetItalic(pValue *int32) HRESULT{
+func (this *ITextFont) GetItalic(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetItalic, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetItalic(Value int32) HRESULT{
+func (this *ITextFont) SetItalic(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetItalic, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetKerning(pValue *float32) HRESULT{
+func (this *ITextFont) GetKerning(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetKerning, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetKerning(Value float32) HRESULT{
+func (this *ITextFont) SetKerning(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetKerning, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetLanguageID(pValue *int32) HRESULT{
+func (this *ITextFont) GetLanguageID(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetLanguageID, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetLanguageID(Value int32) HRESULT{
+func (this *ITextFont) SetLanguageID(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetLanguageID, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetName(pbstr *BSTR) HRESULT{
+func (this *ITextFont) GetName(pbstr *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetName(bstr BSTR) HRESULT{
+func (this *ITextFont) SetName(bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetName, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetOutline(pValue *int32) HRESULT{
+func (this *ITextFont) GetOutline(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetOutline, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetOutline(Value int32) HRESULT{
+func (this *ITextFont) SetOutline(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetOutline, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetPosition(pValue *float32) HRESULT{
+func (this *ITextFont) GetPosition(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPosition, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetPosition(Value float32) HRESULT{
+func (this *ITextFont) SetPosition(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPosition, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetProtected(pValue *int32) HRESULT{
+func (this *ITextFont) GetProtected(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProtected, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetProtected(Value int32) HRESULT{
+func (this *ITextFont) SetProtected(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProtected, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetShadow(pValue *int32) HRESULT{
+func (this *ITextFont) GetShadow(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetShadow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetShadow(Value int32) HRESULT{
+func (this *ITextFont) SetShadow(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetShadow, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetSize(pValue *float32) HRESULT{
+func (this *ITextFont) GetSize(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetSize(Value float32) HRESULT{
+func (this *ITextFont) SetSize(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSize, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetSmallCaps(pValue *int32) HRESULT{
+func (this *ITextFont) GetSmallCaps(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSmallCaps, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetSmallCaps(Value int32) HRESULT{
+func (this *ITextFont) SetSmallCaps(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSmallCaps, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetSpacing(pValue *float32) HRESULT{
+func (this *ITextFont) GetSpacing(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSpacing, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetSpacing(Value float32) HRESULT{
+func (this *ITextFont) SetSpacing(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSpacing, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetStrikeThrough(pValue *int32) HRESULT{
+func (this *ITextFont) GetStrikeThrough(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStrikeThrough, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetStrikeThrough(Value int32) HRESULT{
+func (this *ITextFont) SetStrikeThrough(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetStrikeThrough, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetSubscript(pValue *int32) HRESULT{
+func (this *ITextFont) GetSubscript(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSubscript, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetSubscript(Value int32) HRESULT{
+func (this *ITextFont) SetSubscript(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSubscript, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetSuperscript(pValue *int32) HRESULT{
+func (this *ITextFont) GetSuperscript(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSuperscript, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetSuperscript(Value int32) HRESULT{
+func (this *ITextFont) SetSuperscript(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSuperscript, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetUnderline(pValue *int32) HRESULT{
+func (this *ITextFont) GetUnderline(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetUnderline, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetUnderline(Value int32) HRESULT{
+func (this *ITextFont) SetUnderline(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetUnderline, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) GetWeight(pValue *int32) HRESULT{
+func (this *ITextFont) GetWeight(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetWeight, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont) SetWeight(Value int32) HRESULT{
+func (this *ITextFont) SetWeight(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetWeight, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
 // 8cc497c4-a1df-11ce-8098-00aa0047be5d
-var IID_ITextPara = syscall.GUID{0x8cc497c4, 0xa1df, 0x11ce, 
+var IID_ITextPara = syscall.GUID{0x8cc497c4, 0xa1df, 0x11ce,
 	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
 
 type ITextParaInterface interface {
@@ -3769,54 +3792,54 @@ type ITextParaInterface interface {
 
 type ITextParaVtbl struct {
 	IDispatchVtbl
-	GetDuplicate uintptr
-	SetDuplicate uintptr
-	CanChange uintptr
-	IsEqual uintptr
-	Reset uintptr
-	GetStyle uintptr
-	SetStyle uintptr
-	GetAlignment uintptr
-	SetAlignment uintptr
-	GetHyphenation uintptr
-	SetHyphenation uintptr
+	GetDuplicate       uintptr
+	SetDuplicate       uintptr
+	CanChange          uintptr
+	IsEqual            uintptr
+	Reset              uintptr
+	GetStyle           uintptr
+	SetStyle           uintptr
+	GetAlignment       uintptr
+	SetAlignment       uintptr
+	GetHyphenation     uintptr
+	SetHyphenation     uintptr
 	GetFirstLineIndent uintptr
-	GetKeepTogether uintptr
-	SetKeepTogether uintptr
-	GetKeepWithNext uintptr
-	SetKeepWithNext uintptr
-	GetLeftIndent uintptr
-	GetLineSpacing uintptr
+	GetKeepTogether    uintptr
+	SetKeepTogether    uintptr
+	GetKeepWithNext    uintptr
+	SetKeepWithNext    uintptr
+	GetLeftIndent      uintptr
+	GetLineSpacing     uintptr
 	GetLineSpacingRule uintptr
-	GetListAlignment uintptr
-	SetListAlignment uintptr
-	GetListLevelIndex uintptr
-	SetListLevelIndex uintptr
-	GetListStart uintptr
-	SetListStart uintptr
-	GetListTab uintptr
-	SetListTab uintptr
-	GetListType uintptr
-	SetListType uintptr
-	GetNoLineNumber uintptr
-	SetNoLineNumber uintptr
+	GetListAlignment   uintptr
+	SetListAlignment   uintptr
+	GetListLevelIndex  uintptr
+	SetListLevelIndex  uintptr
+	GetListStart       uintptr
+	SetListStart       uintptr
+	GetListTab         uintptr
+	SetListTab         uintptr
+	GetListType        uintptr
+	SetListType        uintptr
+	GetNoLineNumber    uintptr
+	SetNoLineNumber    uintptr
 	GetPageBreakBefore uintptr
 	SetPageBreakBefore uintptr
-	GetRightIndent uintptr
-	SetRightIndent uintptr
-	SetIndents uintptr
-	SetLineSpacing uintptr
-	GetSpaceAfter uintptr
-	SetSpaceAfter uintptr
-	GetSpaceBefore uintptr
-	SetSpaceBefore uintptr
-	GetWidowControl uintptr
-	SetWidowControl uintptr
-	GetTabCount uintptr
-	AddTab uintptr
-	ClearAllTabs uintptr
-	DeleteTab uintptr
-	GetTab uintptr
+	GetRightIndent     uintptr
+	SetRightIndent     uintptr
+	SetIndents         uintptr
+	SetLineSpacing     uintptr
+	GetSpaceAfter      uintptr
+	SetSpaceAfter      uintptr
+	GetSpaceBefore     uintptr
+	SetSpaceBefore     uintptr
+	GetWidowControl    uintptr
+	SetWidowControl    uintptr
+	GetTabCount        uintptr
+	AddTab             uintptr
+	ClearAllTabs       uintptr
+	DeleteTab          uintptr
+	GetTab             uintptr
 }
 
 type ITextPara struct {
@@ -3827,248 +3850,248 @@ func (this *ITextPara) Vtbl() *ITextParaVtbl {
 	return (*ITextParaVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextPara) GetDuplicate(ppPara **ITextPara) HRESULT{
+func (this *ITextPara) GetDuplicate(ppPara **ITextPara) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDuplicate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetDuplicate(pPara *ITextPara) HRESULT{
+func (this *ITextPara) SetDuplicate(pPara *ITextPara) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDuplicate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) CanChange(pValue *int32) HRESULT{
+func (this *ITextPara) CanChange(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CanChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) IsEqual(pPara *ITextPara, pValue *int32) HRESULT{
+func (this *ITextPara) IsEqual(pPara *ITextPara, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsEqual, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPara)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) Reset(Value int32) HRESULT{
+func (this *ITextPara) Reset(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Reset, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetStyle(pValue *int32) HRESULT{
+func (this *ITextPara) GetStyle(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStyle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetStyle(Value int32) HRESULT{
+func (this *ITextPara) SetStyle(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetStyle, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetAlignment(pValue *int32) HRESULT{
+func (this *ITextPara) GetAlignment(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAlignment, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetAlignment(Value int32) HRESULT{
+func (this *ITextPara) SetAlignment(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAlignment, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetHyphenation(pValue *TomConstants) HRESULT{
+func (this *ITextPara) GetHyphenation(pValue *TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetHyphenation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetHyphenation(Value int32) HRESULT{
+func (this *ITextPara) SetHyphenation(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetHyphenation, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetFirstLineIndent(pValue *float32) HRESULT{
+func (this *ITextPara) GetFirstLineIndent(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFirstLineIndent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetKeepTogether(pValue *TomConstants) HRESULT{
+func (this *ITextPara) GetKeepTogether(pValue *TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetKeepTogether, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetKeepTogether(Value int32) HRESULT{
+func (this *ITextPara) SetKeepTogether(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetKeepTogether, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetKeepWithNext(pValue *TomConstants) HRESULT{
+func (this *ITextPara) GetKeepWithNext(pValue *TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetKeepWithNext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetKeepWithNext(Value int32) HRESULT{
+func (this *ITextPara) SetKeepWithNext(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetKeepWithNext, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetLeftIndent(pValue *float32) HRESULT{
+func (this *ITextPara) GetLeftIndent(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetLeftIndent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetLineSpacing(pValue *float32) HRESULT{
+func (this *ITextPara) GetLineSpacing(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetLineSpacing, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetLineSpacingRule(pValue *int32) HRESULT{
+func (this *ITextPara) GetLineSpacingRule(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetLineSpacingRule, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetListAlignment(pValue *int32) HRESULT{
+func (this *ITextPara) GetListAlignment(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetListAlignment, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetListAlignment(Value int32) HRESULT{
+func (this *ITextPara) SetListAlignment(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetListAlignment, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetListLevelIndex(pValue *int32) HRESULT{
+func (this *ITextPara) GetListLevelIndex(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetListLevelIndex, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetListLevelIndex(Value int32) HRESULT{
+func (this *ITextPara) SetListLevelIndex(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetListLevelIndex, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetListStart(pValue *int32) HRESULT{
+func (this *ITextPara) GetListStart(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetListStart, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetListStart(Value int32) HRESULT{
+func (this *ITextPara) SetListStart(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetListStart, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetListTab(pValue *float32) HRESULT{
+func (this *ITextPara) GetListTab(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetListTab, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetListTab(Value float32) HRESULT{
+func (this *ITextPara) SetListTab(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetListTab, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetListType(pValue *int32) HRESULT{
+func (this *ITextPara) GetListType(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetListType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetListType(Value int32) HRESULT{
+func (this *ITextPara) SetListType(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetListType, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetNoLineNumber(pValue *int32) HRESULT{
+func (this *ITextPara) GetNoLineNumber(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNoLineNumber, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetNoLineNumber(Value int32) HRESULT{
+func (this *ITextPara) SetNoLineNumber(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetNoLineNumber, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetPageBreakBefore(pValue *int32) HRESULT{
+func (this *ITextPara) GetPageBreakBefore(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPageBreakBefore, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetPageBreakBefore(Value int32) HRESULT{
+func (this *ITextPara) SetPageBreakBefore(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPageBreakBefore, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetRightIndent(pValue *float32) HRESULT{
+func (this *ITextPara) GetRightIndent(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetRightIndent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetRightIndent(Value float32) HRESULT{
+func (this *ITextPara) SetRightIndent(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetRightIndent, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetIndents(First float32, Left float32, Right float32) HRESULT{
+func (this *ITextPara) SetIndents(First float32, Left float32, Right float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetIndents, uintptr(unsafe.Pointer(this)), uintptr(First), uintptr(Left), uintptr(Right))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetLineSpacing(Rule int32, Spacing float32) HRESULT{
+func (this *ITextPara) SetLineSpacing(Rule int32, Spacing float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetLineSpacing, uintptr(unsafe.Pointer(this)), uintptr(Rule), uintptr(Spacing))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetSpaceAfter(pValue *float32) HRESULT{
+func (this *ITextPara) GetSpaceAfter(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSpaceAfter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetSpaceAfter(Value float32) HRESULT{
+func (this *ITextPara) SetSpaceAfter(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSpaceAfter, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetSpaceBefore(pValue *float32) HRESULT{
+func (this *ITextPara) GetSpaceBefore(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSpaceBefore, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetSpaceBefore(Value float32) HRESULT{
+func (this *ITextPara) SetSpaceBefore(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSpaceBefore, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetWidowControl(pValue *int32) HRESULT{
+func (this *ITextPara) GetWidowControl(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetWidowControl, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) SetWidowControl(Value int32) HRESULT{
+func (this *ITextPara) SetWidowControl(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetWidowControl, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetTabCount(pCount *int32) HRESULT{
+func (this *ITextPara) GetTabCount(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetTabCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) AddTab(tbPos float32, tbAlign int32, tbLeader int32) HRESULT{
+func (this *ITextPara) AddTab(tbPos float32, tbAlign int32, tbLeader int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddTab, uintptr(unsafe.Pointer(this)), uintptr(tbPos), uintptr(tbAlign), uintptr(tbLeader))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) ClearAllTabs() HRESULT{
+func (this *ITextPara) ClearAllTabs() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ClearAllTabs, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) DeleteTab(tbPos float32) HRESULT{
+func (this *ITextPara) DeleteTab(tbPos float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DeleteTab, uintptr(unsafe.Pointer(this)), uintptr(tbPos))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara) GetTab(iTab int32, ptbPos *float32, ptbAlign *int32, ptbLeader *int32) HRESULT{
+func (this *ITextPara) GetTab(iTab int32, ptbPos *float32, ptbAlign *int32, ptbLeader *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetTab, uintptr(unsafe.Pointer(this)), uintptr(iTab), uintptr(unsafe.Pointer(ptbPos)), uintptr(unsafe.Pointer(ptbAlign)), uintptr(unsafe.Pointer(ptbLeader)))
 	return HRESULT(ret)
 }
 
 // 8cc497c5-a1df-11ce-8098-00aa0047be5d
-var IID_ITextStoryRanges = syscall.GUID{0x8cc497c5, 0xa1df, 0x11ce, 
+var IID_ITextStoryRanges = syscall.GUID{0x8cc497c5, 0xa1df, 0x11ce,
 	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
 
 type ITextStoryRangesInterface interface {
@@ -4081,7 +4104,7 @@ type ITextStoryRangesInterface interface {
 type ITextStoryRangesVtbl struct {
 	IDispatchVtbl
 	NewEnum_ uintptr
-	Item uintptr
+	Item     uintptr
 	GetCount uintptr
 }
 
@@ -4093,23 +4116,23 @@ func (this *ITextStoryRanges) Vtbl() *ITextStoryRangesVtbl {
 	return (*ITextStoryRangesVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextStoryRanges) NewEnum_(ppunkEnum **IUnknown) HRESULT{
+func (this *ITextStoryRanges) NewEnum_(ppunkEnum **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().NewEnum_, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunkEnum)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStoryRanges) Item(Index int32, ppRange **ITextRange) HRESULT{
+func (this *ITextStoryRanges) Item(Index int32, ppRange **ITextRange) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Item, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStoryRanges) GetCount(pCount *int32) HRESULT{
+func (this *ITextStoryRanges) GetCount(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
 // c241f5e0-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextDocument2 = syscall.GUID{0xc241f5e0, 0x7206, 0x11d8, 
+var IID_ITextDocument2 = syscall.GUID{0xc241f5e0, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextDocument2Interface interface {
@@ -4162,50 +4185,50 @@ type ITextDocument2Interface interface {
 
 type ITextDocument2Vtbl struct {
 	ITextDocumentVtbl
-	GetCaretType uintptr
-	SetCaretType uintptr
-	GetDisplays uintptr
-	GetDocumentFont uintptr
-	SetDocumentFont uintptr
-	GetDocumentPara uintptr
-	SetDocumentPara uintptr
-	GetEastAsianFlags uintptr
-	GetGenerator uintptr
-	SetIMEInProgress uintptr
-	GetNotificationMode uintptr
-	SetNotificationMode uintptr
-	GetSelection2 uintptr
-	GetStoryRanges2 uintptr
+	GetCaretType         uintptr
+	SetCaretType         uintptr
+	GetDisplays          uintptr
+	GetDocumentFont      uintptr
+	SetDocumentFont      uintptr
+	GetDocumentPara      uintptr
+	SetDocumentPara      uintptr
+	GetEastAsianFlags    uintptr
+	GetGenerator         uintptr
+	SetIMEInProgress     uintptr
+	GetNotificationMode  uintptr
+	SetNotificationMode  uintptr
+	GetSelection2        uintptr
+	GetStoryRanges2      uintptr
 	GetTypographyOptions uintptr
-	GetVersion uintptr
-	GetWindow uintptr
-	AttachMsgFilter uintptr
-	CheckTextLimit uintptr
-	GetCallManager uintptr
-	GetClientRect uintptr
-	GetEffectColor uintptr
-	GetImmContext uintptr
-	GetPreferredFont uintptr
-	GetProperty uintptr
-	GetStrings uintptr
-	Notify uintptr
-	Range2 uintptr
-	RangeFromPoint2 uintptr
-	ReleaseCallManager uintptr
-	ReleaseImmContext uintptr
-	SetEffectColor uintptr
-	SetProperty uintptr
+	GetVersion           uintptr
+	GetWindow            uintptr
+	AttachMsgFilter      uintptr
+	CheckTextLimit       uintptr
+	GetCallManager       uintptr
+	GetClientRect        uintptr
+	GetEffectColor       uintptr
+	GetImmContext        uintptr
+	GetPreferredFont     uintptr
+	GetProperty          uintptr
+	GetStrings           uintptr
+	Notify               uintptr
+	Range2               uintptr
+	RangeFromPoint2      uintptr
+	ReleaseCallManager   uintptr
+	ReleaseImmContext    uintptr
+	SetEffectColor       uintptr
+	SetProperty          uintptr
 	SetTypographyOptions uintptr
-	SysBeep uintptr
-	Update uintptr
-	UpdateWindow uintptr
-	GetMathProperties uintptr
-	SetMathProperties uintptr
-	GetActiveStory uintptr
-	SetActiveStory uintptr
-	GetMainStory uintptr
-	GetNewStory uintptr
-	GetStory uintptr
+	SysBeep              uintptr
+	Update               uintptr
+	UpdateWindow         uintptr
+	GetMathProperties    uintptr
+	SetMathProperties    uintptr
+	GetActiveStory       uintptr
+	SetActiveStory       uintptr
+	GetMainStory         uintptr
+	GetNewStory          uintptr
+	GetStory             uintptr
 }
 
 type ITextDocument2 struct {
@@ -4216,228 +4239,228 @@ func (this *ITextDocument2) Vtbl() *ITextDocument2Vtbl {
 	return (*ITextDocument2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextDocument2) GetCaretType(pValue *int32) HRESULT{
+func (this *ITextDocument2) GetCaretType(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCaretType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetCaretType(Value int32) HRESULT{
+func (this *ITextDocument2) SetCaretType(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCaretType, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetDisplays(ppDisplays **ITextDisplays) HRESULT{
+func (this *ITextDocument2) GetDisplays(ppDisplays **ITextDisplays) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDisplays, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisplays)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetDocumentFont(ppFont **ITextFont2) HRESULT{
+func (this *ITextDocument2) GetDocumentFont(ppFont **ITextFont2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDocumentFont, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetDocumentFont(pFont *ITextFont2) HRESULT{
+func (this *ITextDocument2) SetDocumentFont(pFont *ITextFont2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDocumentFont, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetDocumentPara(ppPara **ITextPara2) HRESULT{
+func (this *ITextDocument2) GetDocumentPara(ppPara **ITextPara2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDocumentPara, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetDocumentPara(pPara *ITextPara2) HRESULT{
+func (this *ITextDocument2) SetDocumentPara(pPara *ITextPara2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDocumentPara, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetEastAsianFlags(pFlags *TomConstants) HRESULT{
+func (this *ITextDocument2) GetEastAsianFlags(pFlags *TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEastAsianFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFlags)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetGenerator(pbstr *BSTR) HRESULT{
+func (this *ITextDocument2) GetGenerator(pbstr *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetGenerator, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetIMEInProgress(Value int32) HRESULT{
+func (this *ITextDocument2) SetIMEInProgress(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetIMEInProgress, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetNotificationMode(pValue *int32) HRESULT{
+func (this *ITextDocument2) GetNotificationMode(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNotificationMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetNotificationMode(Value int32) HRESULT{
+func (this *ITextDocument2) SetNotificationMode(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetNotificationMode, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetSelection2(ppSel **ITextSelection2) HRESULT{
+func (this *ITextDocument2) GetSelection2(ppSel **ITextSelection2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSelection2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppSel)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetStoryRanges2(ppStories **ITextStoryRanges2) HRESULT{
+func (this *ITextDocument2) GetStoryRanges2(ppStories **ITextStoryRanges2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStoryRanges2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppStories)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetTypographyOptions(pOptions *int32) HRESULT{
+func (this *ITextDocument2) GetTypographyOptions(pOptions *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetTypographyOptions, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pOptions)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetVersion(pValue *int32) HRESULT{
+func (this *ITextDocument2) GetVersion(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetVersion, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetWindow(pHwnd *int64) HRESULT{
+func (this *ITextDocument2) GetWindow(pHwnd *int64) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetWindow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHwnd)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) AttachMsgFilter(pFilter *IUnknown) HRESULT{
+func (this *ITextDocument2) AttachMsgFilter(pFilter *IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AttachMsgFilter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFilter)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) CheckTextLimit(cch int32, pcch *int32) HRESULT{
+func (this *ITextDocument2) CheckTextLimit(cch int32, pcch *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CheckTextLimit, uintptr(unsafe.Pointer(this)), uintptr(cch), uintptr(unsafe.Pointer(pcch)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetCallManager(ppVoid **IUnknown) HRESULT{
+func (this *ITextDocument2) GetCallManager(ppVoid **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCallManager, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppVoid)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetClientRect(Type TomConstants, pLeft *int32, pTop *int32, pRight *int32, pBottom *int32) HRESULT{
+func (this *ITextDocument2) GetClientRect(Type TomConstants, pLeft *int32, pTop *int32, pRight *int32, pBottom *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetClientRect, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pLeft)), uintptr(unsafe.Pointer(pTop)), uintptr(unsafe.Pointer(pRight)), uintptr(unsafe.Pointer(pBottom)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetEffectColor(Index int32, pValue *int32) HRESULT{
+func (this *ITextDocument2) GetEffectColor(Index int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEffectColor, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetImmContext(pContext *int64) HRESULT{
+func (this *ITextDocument2) GetImmContext(pContext *int64) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetImmContext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pContext)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetPreferredFont(cp int32, CharRep int32, Options int32, curCharRep int32, curFontSize int32, pbstr *BSTR, pPitchAndFamily *int32, pNewFontSize *int32) HRESULT{
+func (this *ITextDocument2) GetPreferredFont(cp int32, CharRep int32, Options int32, curCharRep int32, curFontSize int32, pbstr *BSTR, pPitchAndFamily *int32, pNewFontSize *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPreferredFont, uintptr(unsafe.Pointer(this)), uintptr(cp), uintptr(CharRep), uintptr(Options), uintptr(curCharRep), uintptr(curFontSize), uintptr(unsafe.Pointer(pbstr)), uintptr(unsafe.Pointer(pPitchAndFamily)), uintptr(unsafe.Pointer(pNewFontSize)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetProperty(Type int32, pValue *int32) HRESULT{
+func (this *ITextDocument2) GetProperty(Type int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetStrings(ppStrs **ITextStrings) HRESULT{
+func (this *ITextDocument2) GetStrings(ppStrs **ITextStrings) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStrings, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppStrs)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) Notify(Notify int32) HRESULT{
+func (this *ITextDocument2) Notify(Notify int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Notify, uintptr(unsafe.Pointer(this)), uintptr(Notify))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) Range2(cpActive int32, cpAnchor int32, ppRange **ITextRange2) HRESULT{
+func (this *ITextDocument2) Range2(cpActive int32, cpAnchor int32, ppRange **ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Range2, uintptr(unsafe.Pointer(this)), uintptr(cpActive), uintptr(cpAnchor), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) RangeFromPoint2(x int32, y int32, Type int32, ppRange **ITextRange2) HRESULT{
+func (this *ITextDocument2) RangeFromPoint2(x int32, y int32, Type int32, ppRange **ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RangeFromPoint2, uintptr(unsafe.Pointer(this)), uintptr(x), uintptr(y), uintptr(Type), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) ReleaseCallManager(pVoid *IUnknown) HRESULT{
+func (this *ITextDocument2) ReleaseCallManager(pVoid *IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ReleaseCallManager, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVoid)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) ReleaseImmContext(Context int64) HRESULT{
+func (this *ITextDocument2) ReleaseImmContext(Context int64) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ReleaseImmContext, uintptr(unsafe.Pointer(this)), uintptr(Context))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetEffectColor(Index int32, Value int32) HRESULT{
+func (this *ITextDocument2) SetEffectColor(Index int32, Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEffectColor, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetProperty(Type int32, Value int32) HRESULT{
+func (this *ITextDocument2) SetProperty(Type int32, Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetTypographyOptions(Options int32, Mask int32) HRESULT{
+func (this *ITextDocument2) SetTypographyOptions(Options int32, Mask int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetTypographyOptions, uintptr(unsafe.Pointer(this)), uintptr(Options), uintptr(Mask))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SysBeep() HRESULT{
+func (this *ITextDocument2) SysBeep() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SysBeep, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) Update(Value int32) HRESULT{
+func (this *ITextDocument2) Update(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Update, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) UpdateWindow() HRESULT{
+func (this *ITextDocument2) UpdateWindow() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().UpdateWindow, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetMathProperties(pOptions *int32) HRESULT{
+func (this *ITextDocument2) GetMathProperties(pOptions *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMathProperties, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pOptions)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetMathProperties(Options int32, Mask int32) HRESULT{
+func (this *ITextDocument2) SetMathProperties(Options int32, Mask int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetMathProperties, uintptr(unsafe.Pointer(this)), uintptr(Options), uintptr(Mask))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetActiveStory(ppStory **ITextStory) HRESULT{
+func (this *ITextDocument2) GetActiveStory(ppStory **ITextStory) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetActiveStory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppStory)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) SetActiveStory(pStory *ITextStory) HRESULT{
+func (this *ITextDocument2) SetActiveStory(pStory *ITextStory) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetActiveStory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pStory)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetMainStory(ppStory **ITextStory) HRESULT{
+func (this *ITextDocument2) GetMainStory(ppStory **ITextStory) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMainStory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppStory)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetNewStory(ppStory **ITextStory) HRESULT{
+func (this *ITextDocument2) GetNewStory(ppStory **ITextStory) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNewStory, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppStory)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2) GetStory(Index int32, ppStory **ITextStory) HRESULT{
+func (this *ITextDocument2) GetStory(Index int32, ppStory **ITextStory) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStory, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(ppStory)))
 	return HRESULT(ret)
 }
 
 // c241f5e2-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextRange2 = syscall.GUID{0xc241f5e2, 0x7206, 0x11d8, 
+var IID_ITextRange2 = syscall.GUID{0xc241f5e2, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextRange2Interface interface {
@@ -4486,46 +4509,46 @@ type ITextRange2Interface interface {
 
 type ITextRange2Vtbl struct {
 	ITextSelectionVtbl
-	GetCch uintptr
-	GetCells uintptr
-	GetColumn uintptr
-	GetCount uintptr
-	GetDuplicate2 uintptr
-	GetFont2 uintptr
-	SetFont2 uintptr
-	GetFormattedText2 uintptr
-	SetFormattedText2 uintptr
-	GetGravity uintptr
-	SetGravity uintptr
-	GetPara2 uintptr
-	SetPara2 uintptr
-	GetRow uintptr
-	GetStartPara uintptr
-	GetTable uintptr
-	GetURL uintptr
-	SetURL uintptr
-	AddSubrange uintptr
-	BuildUpMath uintptr
-	DeleteSubrange uintptr
-	Find uintptr
-	GetChar2 uintptr
-	GetDropCap uintptr
-	GetInlineObject uintptr
-	GetProperty uintptr
-	GetRect uintptr
-	GetSubrange uintptr
-	GetText2 uintptr
-	HexToUnicode uintptr
-	InsertTable uintptr
-	Linearize uintptr
-	SetActiveSubrange uintptr
-	SetDropCap uintptr
-	SetProperty uintptr
-	SetText2 uintptr
-	UnicodeToHex uintptr
-	SetInlineObject uintptr
+	GetCch              uintptr
+	GetCells            uintptr
+	GetColumn           uintptr
+	GetCount            uintptr
+	GetDuplicate2       uintptr
+	GetFont2            uintptr
+	SetFont2            uintptr
+	GetFormattedText2   uintptr
+	SetFormattedText2   uintptr
+	GetGravity          uintptr
+	SetGravity          uintptr
+	GetPara2            uintptr
+	SetPara2            uintptr
+	GetRow              uintptr
+	GetStartPara        uintptr
+	GetTable            uintptr
+	GetURL              uintptr
+	SetURL              uintptr
+	AddSubrange         uintptr
+	BuildUpMath         uintptr
+	DeleteSubrange      uintptr
+	Find                uintptr
+	GetChar2            uintptr
+	GetDropCap          uintptr
+	GetInlineObject     uintptr
+	GetProperty         uintptr
+	GetRect             uintptr
+	GetSubrange         uintptr
+	GetText2            uintptr
+	HexToUnicode        uintptr
+	InsertTable         uintptr
+	Linearize           uintptr
+	SetActiveSubrange   uintptr
+	SetDropCap          uintptr
+	SetProperty         uintptr
+	SetText2            uintptr
+	UnicodeToHex        uintptr
+	SetInlineObject     uintptr
 	GetMathFunctionType uintptr
-	InsertImage uintptr
+	InsertImage         uintptr
 }
 
 type ITextRange2 struct {
@@ -4536,208 +4559,208 @@ func (this *ITextRange2) Vtbl() *ITextRange2Vtbl {
 	return (*ITextRange2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextRange2) GetCch(pcch *int32) HRESULT{
+func (this *ITextRange2) GetCch(pcch *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCch, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcch)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetCells(ppCells **IUnknown) HRESULT{
+func (this *ITextRange2) GetCells(ppCells **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCells, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppCells)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetColumn(ppColumn **IUnknown) HRESULT{
+func (this *ITextRange2) GetColumn(ppColumn **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetColumn, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppColumn)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetCount(pCount *int32) HRESULT{
+func (this *ITextRange2) GetCount(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetDuplicate2(ppRange **ITextRange2) HRESULT{
+func (this *ITextRange2) GetDuplicate2(ppRange **ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDuplicate2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetFont2(ppFont **ITextFont2) HRESULT{
+func (this *ITextRange2) GetFont2(ppFont **ITextFont2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFont2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetFont2(pFont *ITextFont2) HRESULT{
+func (this *ITextRange2) SetFont2(pFont *ITextFont2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFont2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetFormattedText2(ppRange **ITextRange2) HRESULT{
+func (this *ITextRange2) GetFormattedText2(ppRange **ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFormattedText2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetFormattedText2(pRange *ITextRange2) HRESULT{
+func (this *ITextRange2) SetFormattedText2(pRange *ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFormattedText2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetGravity(pValue *int32) HRESULT{
+func (this *ITextRange2) GetGravity(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetGravity, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetGravity(Value int32) HRESULT{
+func (this *ITextRange2) SetGravity(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetGravity, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetPara2(ppPara **ITextPara2) HRESULT{
+func (this *ITextRange2) GetPara2(ppPara **ITextPara2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPara2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetPara2(pPara *ITextPara2) HRESULT{
+func (this *ITextRange2) SetPara2(pPara *ITextPara2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPara2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetRow(ppRow **ITextRow) HRESULT{
+func (this *ITextRange2) GetRow(ppRow **ITextRow) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetRow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppRow)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetStartPara(pValue *int32) HRESULT{
+func (this *ITextRange2) GetStartPara(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStartPara, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetTable(ppTable **IUnknown) HRESULT{
+func (this *ITextRange2) GetTable(ppTable **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetTable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppTable)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetURL(pbstr *BSTR) HRESULT{
+func (this *ITextRange2) GetURL(pbstr *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetURL, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetURL(bstr BSTR) HRESULT{
+func (this *ITextRange2) SetURL(bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetURL, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) AddSubrange(cp1 int32, cp2 int32, Activate int32) HRESULT{
+func (this *ITextRange2) AddSubrange(cp1 int32, cp2 int32, Activate int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddSubrange, uintptr(unsafe.Pointer(this)), uintptr(cp1), uintptr(cp2), uintptr(Activate))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) BuildUpMath(Flags int32) HRESULT{
+func (this *ITextRange2) BuildUpMath(Flags int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().BuildUpMath, uintptr(unsafe.Pointer(this)), uintptr(Flags))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) DeleteSubrange(cpFirst int32, cpLim int32) HRESULT{
+func (this *ITextRange2) DeleteSubrange(cpFirst int32, cpLim int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DeleteSubrange, uintptr(unsafe.Pointer(this)), uintptr(cpFirst), uintptr(cpLim))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) Find(pRange *ITextRange2, Count int32, Flags int32, pDelta *int32) HRESULT{
+func (this *ITextRange2) Find(pRange *ITextRange2, Count int32, Flags int32, pDelta *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Find, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)), uintptr(Count), uintptr(Flags), uintptr(unsafe.Pointer(pDelta)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetChar2(pChar *int32, Offset int32) HRESULT{
+func (this *ITextRange2) GetChar2(pChar *int32, Offset int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetChar2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pChar)), uintptr(Offset))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetDropCap(pcLine *int32, pPosition *int32) HRESULT{
+func (this *ITextRange2) GetDropCap(pcLine *int32, pPosition *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDropCap, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcLine)), uintptr(unsafe.Pointer(pPosition)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetInlineObject(pType *int32, pAlign *int32, pChar *int32, pChar1 *int32, pChar2 *int32, pCount *int32, pTeXStyle *int32, pcCol *int32, pLevel *int32) HRESULT{
+func (this *ITextRange2) GetInlineObject(pType *int32, pAlign *int32, pChar *int32, pChar1 *int32, pChar2 *int32, pCount *int32, pTeXStyle *int32, pcCol *int32, pLevel *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetInlineObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pType)), uintptr(unsafe.Pointer(pAlign)), uintptr(unsafe.Pointer(pChar)), uintptr(unsafe.Pointer(pChar1)), uintptr(unsafe.Pointer(pChar2)), uintptr(unsafe.Pointer(pCount)), uintptr(unsafe.Pointer(pTeXStyle)), uintptr(unsafe.Pointer(pcCol)), uintptr(unsafe.Pointer(pLevel)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetProperty(Type int32, pValue *int32) HRESULT{
+func (this *ITextRange2) GetProperty(Type int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetRect(Type int32, pLeft *int32, pTop *int32, pRight *int32, pBottom *int32, pHit *int32) HRESULT{
+func (this *ITextRange2) GetRect(Type int32, pLeft *int32, pTop *int32, pRight *int32, pBottom *int32, pHit *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetRect, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pLeft)), uintptr(unsafe.Pointer(pTop)), uintptr(unsafe.Pointer(pRight)), uintptr(unsafe.Pointer(pBottom)), uintptr(unsafe.Pointer(pHit)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetSubrange(iSubrange int32, pcpFirst *int32, pcpLim *int32) HRESULT{
+func (this *ITextRange2) GetSubrange(iSubrange int32, pcpFirst *int32, pcpLim *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSubrange, uintptr(unsafe.Pointer(this)), uintptr(iSubrange), uintptr(unsafe.Pointer(pcpFirst)), uintptr(unsafe.Pointer(pcpLim)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetText2(Flags int32, pbstr *BSTR) HRESULT{
+func (this *ITextRange2) GetText2(Flags int32, pbstr *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetText2, uintptr(unsafe.Pointer(this)), uintptr(Flags), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) HexToUnicode() HRESULT{
+func (this *ITextRange2) HexToUnicode() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HexToUnicode, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) InsertTable(cCol int32, cRow int32, AutoFit int32) HRESULT{
+func (this *ITextRange2) InsertTable(cCol int32, cRow int32, AutoFit int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InsertTable, uintptr(unsafe.Pointer(this)), uintptr(cCol), uintptr(cRow), uintptr(AutoFit))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) Linearize(Flags int32) HRESULT{
+func (this *ITextRange2) Linearize(Flags int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Linearize, uintptr(unsafe.Pointer(this)), uintptr(Flags))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetActiveSubrange(cpAnchor int32, cpActive int32) HRESULT{
+func (this *ITextRange2) SetActiveSubrange(cpAnchor int32, cpActive int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetActiveSubrange, uintptr(unsafe.Pointer(this)), uintptr(cpAnchor), uintptr(cpActive))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetDropCap(cLine int32, Position int32) HRESULT{
+func (this *ITextRange2) SetDropCap(cLine int32, Position int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDropCap, uintptr(unsafe.Pointer(this)), uintptr(cLine), uintptr(Position))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetProperty(Type int32, Value int32) HRESULT{
+func (this *ITextRange2) SetProperty(Type int32, Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetText2(Flags int32, bstr BSTR) HRESULT{
+func (this *ITextRange2) SetText2(Flags int32, bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetText2, uintptr(unsafe.Pointer(this)), uintptr(Flags), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) UnicodeToHex() HRESULT{
+func (this *ITextRange2) UnicodeToHex() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().UnicodeToHex, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) SetInlineObject(Type int32, Align int32, Char int32, Char1 int32, Char2 int32, Count int32, TeXStyle int32, cCol int32) HRESULT{
+func (this *ITextRange2) SetInlineObject(Type int32, Align int32, Char int32, Char1 int32, Char2 int32, Count int32, TeXStyle int32, cCol int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetInlineObject, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Align), uintptr(Char), uintptr(Char1), uintptr(Char2), uintptr(Count), uintptr(TeXStyle), uintptr(cCol))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) GetMathFunctionType(bstr BSTR, pValue *int32) HRESULT{
+func (this *ITextRange2) GetMathFunctionType(bstr BSTR, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMathFunctionType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) InsertImage(width int32, height int32, ascent int32, Type TEXT_ALIGN_OPTIONS, bstrAltText BSTR, pStream *IStream) HRESULT{
+func (this *ITextRange2) InsertImage(width int32, height int32, ascent int32, Type TEXT_ALIGN_OPTIONS, bstrAltText BSTR, pStream *IStream) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InsertImage, uintptr(unsafe.Pointer(this)), uintptr(width), uintptr(height), uintptr(ascent), uintptr(Type), uintptr(unsafe.Pointer(bstrAltText)), uintptr(unsafe.Pointer(pStream)))
 	return HRESULT(ret)
 }
 
 // c241f5e1-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextSelection2 = syscall.GUID{0xc241f5e1, 0x7206, 0x11d8, 
+var IID_ITextSelection2 = syscall.GUID{0xc241f5e1, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextSelection2Interface interface {
@@ -4757,7 +4780,7 @@ func (this *ITextSelection2) Vtbl() *ITextSelection2Vtbl {
 }
 
 // c241f5e3-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextFont2 = syscall.GUID{0xc241f5e3, 0x7206, 0x11d8, 
+var IID_ITextFont2 = syscall.GUID{0xc241f5e3, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextFont2Interface interface {
@@ -4812,52 +4835,52 @@ type ITextFont2Interface interface {
 
 type ITextFont2Vtbl struct {
 	ITextFontVtbl
-	GetCount uintptr
-	GetAutoLigatures uintptr
-	SetAutoLigatures uintptr
-	GetAutospaceAlpha uintptr
-	SetAutospaceAlpha uintptr
-	GetAutospaceNumeric uintptr
-	SetAutospaceNumeric uintptr
-	GetAutospaceParens uintptr
-	SetAutospaceParens uintptr
-	GetCharRep uintptr
-	SetCharRep uintptr
-	GetCompressionMode uintptr
-	SetCompressionMode uintptr
-	GetCookie uintptr
-	SetCookie uintptr
-	GetDoubleStrike uintptr
-	SetDoubleStrike uintptr
-	GetDuplicate2 uintptr
-	SetDuplicate2 uintptr
-	GetLinkType uintptr
-	GetMathZone uintptr
-	SetMathZone uintptr
-	GetModWidthPairs uintptr
-	SetModWidthPairs uintptr
-	GetModWidthSpace uintptr
-	SetModWidthSpace uintptr
-	GetOldNumbers uintptr
-	SetOldNumbers uintptr
-	GetOverlapping uintptr
-	SetOverlapping uintptr
-	GetPositionSubSuper uintptr
-	SetPositionSubSuper uintptr
-	GetScaling uintptr
-	SetScaling uintptr
-	GetSpaceExtension uintptr
-	SetSpaceExtension uintptr
+	GetCount                 uintptr
+	GetAutoLigatures         uintptr
+	SetAutoLigatures         uintptr
+	GetAutospaceAlpha        uintptr
+	SetAutospaceAlpha        uintptr
+	GetAutospaceNumeric      uintptr
+	SetAutospaceNumeric      uintptr
+	GetAutospaceParens       uintptr
+	SetAutospaceParens       uintptr
+	GetCharRep               uintptr
+	SetCharRep               uintptr
+	GetCompressionMode       uintptr
+	SetCompressionMode       uintptr
+	GetCookie                uintptr
+	SetCookie                uintptr
+	GetDoubleStrike          uintptr
+	SetDoubleStrike          uintptr
+	GetDuplicate2            uintptr
+	SetDuplicate2            uintptr
+	GetLinkType              uintptr
+	GetMathZone              uintptr
+	SetMathZone              uintptr
+	GetModWidthPairs         uintptr
+	SetModWidthPairs         uintptr
+	GetModWidthSpace         uintptr
+	SetModWidthSpace         uintptr
+	GetOldNumbers            uintptr
+	SetOldNumbers            uintptr
+	GetOverlapping           uintptr
+	SetOverlapping           uintptr
+	GetPositionSubSuper      uintptr
+	SetPositionSubSuper      uintptr
+	GetScaling               uintptr
+	SetScaling               uintptr
+	GetSpaceExtension        uintptr
+	SetSpaceExtension        uintptr
 	GetUnderlinePositionMode uintptr
 	SetUnderlinePositionMode uintptr
-	GetEffects uintptr
-	GetEffects2 uintptr
-	GetProperty uintptr
-	GetPropertyInfo uintptr
-	IsEqual2 uintptr
-	SetEffects uintptr
-	SetEffects2 uintptr
-	SetProperty uintptr
+	GetEffects               uintptr
+	GetEffects2              uintptr
+	GetProperty              uintptr
+	GetPropertyInfo          uintptr
+	IsEqual2                 uintptr
+	SetEffects               uintptr
+	SetEffects2              uintptr
+	SetProperty              uintptr
 }
 
 type ITextFont2 struct {
@@ -4868,238 +4891,238 @@ func (this *ITextFont2) Vtbl() *ITextFont2Vtbl {
 	return (*ITextFont2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextFont2) GetCount(pCount *int32) HRESULT{
+func (this *ITextFont2) GetCount(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetAutoLigatures(pValue *int32) HRESULT{
+func (this *ITextFont2) GetAutoLigatures(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAutoLigatures, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetAutoLigatures(Value int32) HRESULT{
+func (this *ITextFont2) SetAutoLigatures(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAutoLigatures, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetAutospaceAlpha(pValue *int32) HRESULT{
+func (this *ITextFont2) GetAutospaceAlpha(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAutospaceAlpha, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetAutospaceAlpha(Value int32) HRESULT{
+func (this *ITextFont2) SetAutospaceAlpha(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAutospaceAlpha, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetAutospaceNumeric(pValue *int32) HRESULT{
+func (this *ITextFont2) GetAutospaceNumeric(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAutospaceNumeric, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetAutospaceNumeric(Value int32) HRESULT{
+func (this *ITextFont2) SetAutospaceNumeric(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAutospaceNumeric, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetAutospaceParens(pValue *int32) HRESULT{
+func (this *ITextFont2) GetAutospaceParens(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAutospaceParens, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetAutospaceParens(Value int32) HRESULT{
+func (this *ITextFont2) SetAutospaceParens(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAutospaceParens, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetCharRep(pValue *int32) HRESULT{
+func (this *ITextFont2) GetCharRep(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCharRep, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetCharRep(Value int32) HRESULT{
+func (this *ITextFont2) SetCharRep(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCharRep, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetCompressionMode(pValue *int32) HRESULT{
+func (this *ITextFont2) GetCompressionMode(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCompressionMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetCompressionMode(Value int32) HRESULT{
+func (this *ITextFont2) SetCompressionMode(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCompressionMode, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetCookie(pValue *int32) HRESULT{
+func (this *ITextFont2) GetCookie(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCookie, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetCookie(Value int32) HRESULT{
+func (this *ITextFont2) SetCookie(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCookie, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetDoubleStrike(pValue *int32) HRESULT{
+func (this *ITextFont2) GetDoubleStrike(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDoubleStrike, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetDoubleStrike(Value int32) HRESULT{
+func (this *ITextFont2) SetDoubleStrike(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDoubleStrike, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetDuplicate2(ppFont **ITextFont2) HRESULT{
+func (this *ITextFont2) GetDuplicate2(ppFont **ITextFont2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDuplicate2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetDuplicate2(pFont *ITextFont2) HRESULT{
+func (this *ITextFont2) SetDuplicate2(pFont *ITextFont2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDuplicate2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetLinkType(pValue *int32) HRESULT{
+func (this *ITextFont2) GetLinkType(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetLinkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetMathZone(pValue *int32) HRESULT{
+func (this *ITextFont2) GetMathZone(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMathZone, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetMathZone(Value int32) HRESULT{
+func (this *ITextFont2) SetMathZone(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetMathZone, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetModWidthPairs(pValue *int32) HRESULT{
+func (this *ITextFont2) GetModWidthPairs(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetModWidthPairs, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetModWidthPairs(Value int32) HRESULT{
+func (this *ITextFont2) SetModWidthPairs(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetModWidthPairs, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetModWidthSpace(pValue *int32) HRESULT{
+func (this *ITextFont2) GetModWidthSpace(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetModWidthSpace, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetModWidthSpace(Value int32) HRESULT{
+func (this *ITextFont2) SetModWidthSpace(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetModWidthSpace, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetOldNumbers(pValue *int32) HRESULT{
+func (this *ITextFont2) GetOldNumbers(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetOldNumbers, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetOldNumbers(Value int32) HRESULT{
+func (this *ITextFont2) SetOldNumbers(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetOldNumbers, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetOverlapping(pValue *int32) HRESULT{
+func (this *ITextFont2) GetOverlapping(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetOverlapping, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetOverlapping(Value int32) HRESULT{
+func (this *ITextFont2) SetOverlapping(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetOverlapping, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetPositionSubSuper(pValue *int32) HRESULT{
+func (this *ITextFont2) GetPositionSubSuper(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPositionSubSuper, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetPositionSubSuper(Value int32) HRESULT{
+func (this *ITextFont2) SetPositionSubSuper(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPositionSubSuper, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetScaling(pValue *int32) HRESULT{
+func (this *ITextFont2) GetScaling(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetScaling, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetScaling(Value int32) HRESULT{
+func (this *ITextFont2) SetScaling(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetScaling, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetSpaceExtension(pValue *float32) HRESULT{
+func (this *ITextFont2) GetSpaceExtension(pValue *float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSpaceExtension, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetSpaceExtension(Value float32) HRESULT{
+func (this *ITextFont2) SetSpaceExtension(Value float32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSpaceExtension, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetUnderlinePositionMode(pValue *int32) HRESULT{
+func (this *ITextFont2) GetUnderlinePositionMode(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetUnderlinePositionMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetUnderlinePositionMode(Value int32) HRESULT{
+func (this *ITextFont2) SetUnderlinePositionMode(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetUnderlinePositionMode, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetEffects(pValue *int32, pMask *int32) HRESULT{
+func (this *ITextFont2) GetEffects(pValue *int32, pMask *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)), uintptr(unsafe.Pointer(pMask)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetEffects2(pValue *int32, pMask *int32) HRESULT{
+func (this *ITextFont2) GetEffects2(pValue *int32, pMask *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEffects2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)), uintptr(unsafe.Pointer(pMask)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetProperty(Type int32, pValue *int32) HRESULT{
+func (this *ITextFont2) GetProperty(Type int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) GetPropertyInfo(Index int32, pType *int32, pValue *int32) HRESULT{
+func (this *ITextFont2) GetPropertyInfo(Index int32, pType *int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPropertyInfo, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(pType)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) IsEqual2(pFont *ITextFont2, pB *int32) HRESULT{
+func (this *ITextFont2) IsEqual2(pFont *ITextFont2, pB *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsEqual2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFont)), uintptr(unsafe.Pointer(pB)))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetEffects(Value int32, Mask int32) HRESULT{
+func (this *ITextFont2) SetEffects(Value int32, Mask int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEffects, uintptr(unsafe.Pointer(this)), uintptr(Value), uintptr(Mask))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetEffects2(Value int32, Mask int32) HRESULT{
+func (this *ITextFont2) SetEffects2(Value int32, Mask int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEffects2, uintptr(unsafe.Pointer(this)), uintptr(Value), uintptr(Mask))
 	return HRESULT(ret)
 }
 
-func (this *ITextFont2) SetProperty(Type int32, Value int32) HRESULT{
+func (this *ITextFont2) SetProperty(Type int32, Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Value))
 	return HRESULT(ret)
 }
 
 // c241f5e4-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextPara2 = syscall.GUID{0xc241f5e4, 0x7206, 0x11d8, 
+var IID_ITextPara2 = syscall.GUID{0xc241f5e4, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextPara2Interface interface {
@@ -5124,22 +5147,22 @@ type ITextPara2Interface interface {
 
 type ITextPara2Vtbl struct {
 	ITextParaVtbl
-	GetBorders uintptr
-	GetDuplicate2 uintptr
-	SetDuplicate2 uintptr
-	GetFontAlignment uintptr
-	SetFontAlignment uintptr
-	GetHangingPunctuation uintptr
-	SetHangingPunctuation uintptr
-	GetSnapToGrid uintptr
-	SetSnapToGrid uintptr
+	GetBorders                uintptr
+	GetDuplicate2             uintptr
+	SetDuplicate2             uintptr
+	GetFontAlignment          uintptr
+	SetFontAlignment          uintptr
+	GetHangingPunctuation     uintptr
+	SetHangingPunctuation     uintptr
+	GetSnapToGrid             uintptr
+	SetSnapToGrid             uintptr
 	GetTrimPunctuationAtStart uintptr
 	SetTrimPunctuationAtStart uintptr
-	GetEffects uintptr
-	GetProperty uintptr
-	IsEqual2 uintptr
-	SetEffects uintptr
-	SetProperty uintptr
+	GetEffects                uintptr
+	GetProperty               uintptr
+	IsEqual2                  uintptr
+	SetEffects                uintptr
+	SetProperty               uintptr
 }
 
 type ITextPara2 struct {
@@ -5150,88 +5173,88 @@ func (this *ITextPara2) Vtbl() *ITextPara2Vtbl {
 	return (*ITextPara2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextPara2) GetBorders(ppBorders **IUnknown) HRESULT{
+func (this *ITextPara2) GetBorders(ppBorders **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBorders, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppBorders)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) GetDuplicate2(ppPara **ITextPara2) HRESULT{
+func (this *ITextPara2) GetDuplicate2(ppPara **ITextPara2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDuplicate2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) SetDuplicate2(pPara *ITextPara2) HRESULT{
+func (this *ITextPara2) SetDuplicate2(pPara *ITextPara2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDuplicate2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) GetFontAlignment(pValue *int32) HRESULT{
+func (this *ITextPara2) GetFontAlignment(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFontAlignment, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) SetFontAlignment(Value int32) HRESULT{
+func (this *ITextPara2) SetFontAlignment(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFontAlignment, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) GetHangingPunctuation(pValue *int32) HRESULT{
+func (this *ITextPara2) GetHangingPunctuation(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetHangingPunctuation, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) SetHangingPunctuation(Value int32) HRESULT{
+func (this *ITextPara2) SetHangingPunctuation(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetHangingPunctuation, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) GetSnapToGrid(pValue *int32) HRESULT{
+func (this *ITextPara2) GetSnapToGrid(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSnapToGrid, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) SetSnapToGrid(Value int32) HRESULT{
+func (this *ITextPara2) SetSnapToGrid(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSnapToGrid, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) GetTrimPunctuationAtStart(pValue *int32) HRESULT{
+func (this *ITextPara2) GetTrimPunctuationAtStart(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetTrimPunctuationAtStart, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) SetTrimPunctuationAtStart(Value int32) HRESULT{
+func (this *ITextPara2) SetTrimPunctuationAtStart(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetTrimPunctuationAtStart, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) GetEffects(pValue *int32, pMask *int32) HRESULT{
+func (this *ITextPara2) GetEffects(pValue *int32, pMask *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEffects, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)), uintptr(unsafe.Pointer(pMask)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) GetProperty(Type int32, pValue *int32) HRESULT{
+func (this *ITextPara2) GetProperty(Type int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) IsEqual2(pPara *ITextPara2, pB *int32) HRESULT{
+func (this *ITextPara2) IsEqual2(pPara *ITextPara2, pB *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsEqual2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPara)), uintptr(unsafe.Pointer(pB)))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) SetEffects(Value int32, Mask int32) HRESULT{
+func (this *ITextPara2) SetEffects(Value int32, Mask int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEffects, uintptr(unsafe.Pointer(this)), uintptr(Value), uintptr(Mask))
 	return HRESULT(ret)
 }
 
-func (this *ITextPara2) SetProperty(Type int32, Value int32) HRESULT{
+func (this *ITextPara2) SetProperty(Type int32, Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Value))
 	return HRESULT(ret)
 }
 
 // c241f5e5-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextStoryRanges2 = syscall.GUID{0xc241f5e5, 0x7206, 0x11d8, 
+var IID_ITextStoryRanges2 = syscall.GUID{0xc241f5e5, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextStoryRanges2Interface interface {
@@ -5252,13 +5275,13 @@ func (this *ITextStoryRanges2) Vtbl() *ITextStoryRanges2Vtbl {
 	return (*ITextStoryRanges2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextStoryRanges2) Item2(Index int32, ppRange **ITextRange2) HRESULT{
+func (this *ITextStoryRanges2) Item2(Index int32, ppRange **ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Item2, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
 // c241f5f3-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextStory = syscall.GUID{0xc241f5f3, 0x7206, 0x11d8, 
+var IID_ITextStory = syscall.GUID{0xc241f5f3, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextStoryInterface interface {
@@ -5279,18 +5302,18 @@ type ITextStoryInterface interface {
 
 type ITextStoryVtbl struct {
 	IUnknownVtbl
-	GetActive uintptr
-	SetActive uintptr
-	GetDisplay uintptr
-	GetIndex uintptr
-	GetType uintptr
-	SetType uintptr
-	GetProperty uintptr
-	GetRange uintptr
-	GetText uintptr
+	GetActive        uintptr
+	SetActive        uintptr
+	GetDisplay       uintptr
+	GetIndex         uintptr
+	GetType          uintptr
+	SetType          uintptr
+	GetProperty      uintptr
+	GetRange         uintptr
+	GetText          uintptr
 	SetFormattedText uintptr
-	SetProperty uintptr
-	SetText uintptr
+	SetProperty      uintptr
+	SetText          uintptr
 }
 
 type ITextStory struct {
@@ -5301,68 +5324,68 @@ func (this *ITextStory) Vtbl() *ITextStoryVtbl {
 	return (*ITextStoryVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextStory) GetActive(pValue *int32) HRESULT{
+func (this *ITextStory) GetActive(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetActive, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) SetActive(Value int32) HRESULT{
+func (this *ITextStory) SetActive(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetActive, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) GetDisplay(ppDisplay **IUnknown) HRESULT{
+func (this *ITextStory) GetDisplay(ppDisplay **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDisplay, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppDisplay)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) GetIndex(pValue *int32) HRESULT{
+func (this *ITextStory) GetIndex(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetIndex, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) GetType(pValue *int32) HRESULT{
+func (this *ITextStory) GetType(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) SetType(Value int32) HRESULT{
+func (this *ITextStory) SetType(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetType, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) GetProperty(Type int32, pValue *int32) HRESULT{
+func (this *ITextStory) GetProperty(Type int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) GetRange(cpActive int32, cpAnchor int32, ppRange **ITextRange2) HRESULT{
+func (this *ITextStory) GetRange(cpActive int32, cpAnchor int32, ppRange **ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetRange, uintptr(unsafe.Pointer(this)), uintptr(cpActive), uintptr(cpAnchor), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) GetText(Flags int32, pbstr *BSTR) HRESULT{
+func (this *ITextStory) GetText(Flags int32, pbstr *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetText, uintptr(unsafe.Pointer(this)), uintptr(Flags), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) SetFormattedText(pUnk *IUnknown) HRESULT{
+func (this *ITextStory) SetFormattedText(pUnk *IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFormattedText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pUnk)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) SetProperty(Type int32, Value int32) HRESULT{
+func (this *ITextStory) SetProperty(Type int32, Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextStory) SetText(Flags int32, bstr BSTR) HRESULT{
+func (this *ITextStory) SetText(Flags int32, bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetText, uintptr(unsafe.Pointer(this)), uintptr(Flags), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
 // c241f5e7-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextStrings = syscall.GUID{0xc241f5e7, 0x7206, 0x11d8, 
+var IID_ITextStrings = syscall.GUID{0xc241f5e7, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextStringsInterface interface {
@@ -5388,23 +5411,23 @@ type ITextStringsInterface interface {
 
 type ITextStringsVtbl struct {
 	IDispatchVtbl
-	Item uintptr
-	GetCount uintptr
-	Add uintptr
-	Append uintptr
-	Cat2 uintptr
-	CatTop2 uintptr
-	DeleteRange uintptr
-	EncodeFunction uintptr
-	GetCch uintptr
-	InsertNullStr uintptr
-	MoveBoundary uintptr
-	PrefixTop uintptr
-	Remove uintptr
+	Item             uintptr
+	GetCount         uintptr
+	Add              uintptr
+	Append           uintptr
+	Cat2             uintptr
+	CatTop2          uintptr
+	DeleteRange      uintptr
+	EncodeFunction   uintptr
+	GetCch           uintptr
+	InsertNullStr    uintptr
+	MoveBoundary     uintptr
+	PrefixTop        uintptr
+	Remove           uintptr
 	SetFormattedText uintptr
-	SetOpCp uintptr
-	SuffixTop uintptr
-	Swap uintptr
+	SetOpCp          uintptr
+	SuffixTop        uintptr
+	Swap             uintptr
 }
 
 type ITextStrings struct {
@@ -5415,93 +5438,93 @@ func (this *ITextStrings) Vtbl() *ITextStringsVtbl {
 	return (*ITextStringsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextStrings) Item(Index int32, ppRange **ITextRange2) HRESULT{
+func (this *ITextStrings) Item(Index int32, ppRange **ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Item, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(ppRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) GetCount(pCount *int32) HRESULT{
+func (this *ITextStrings) GetCount(pCount *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCount)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) Add(bstr BSTR) HRESULT{
+func (this *ITextStrings) Add(bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Add, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) Append(pRange *ITextRange2, iString int32) HRESULT{
+func (this *ITextStrings) Append(pRange *ITextRange2, iString int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Append, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)), uintptr(iString))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) Cat2(iString int32) HRESULT{
+func (this *ITextStrings) Cat2(iString int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Cat2, uintptr(unsafe.Pointer(this)), uintptr(iString))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) CatTop2(bstr BSTR) HRESULT{
+func (this *ITextStrings) CatTop2(bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CatTop2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) DeleteRange(pRange *ITextRange2) HRESULT{
+func (this *ITextStrings) DeleteRange(pRange *ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DeleteRange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) EncodeFunction(Type int32, Align int32, Char int32, Char1 int32, Char2 int32, Count int32, TeXStyle int32, cCol int32, pRange *ITextRange2) HRESULT{
+func (this *ITextStrings) EncodeFunction(Type int32, Align int32, Char int32, Char1 int32, Char2 int32, Count int32, TeXStyle int32, cCol int32, pRange *ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EncodeFunction, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Align), uintptr(Char), uintptr(Char1), uintptr(Char2), uintptr(Count), uintptr(TeXStyle), uintptr(cCol), uintptr(unsafe.Pointer(pRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) GetCch(iString int32, pcch *int32) HRESULT{
+func (this *ITextStrings) GetCch(iString int32, pcch *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCch, uintptr(unsafe.Pointer(this)), uintptr(iString), uintptr(unsafe.Pointer(pcch)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) InsertNullStr(iString int32) HRESULT{
+func (this *ITextStrings) InsertNullStr(iString int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InsertNullStr, uintptr(unsafe.Pointer(this)), uintptr(iString))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) MoveBoundary(iString int32, cch int32) HRESULT{
+func (this *ITextStrings) MoveBoundary(iString int32, cch int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveBoundary, uintptr(unsafe.Pointer(this)), uintptr(iString), uintptr(cch))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) PrefixTop(bstr BSTR) HRESULT{
+func (this *ITextStrings) PrefixTop(bstr BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().PrefixTop, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) Remove(iString int32, cString int32) HRESULT{
+func (this *ITextStrings) Remove(iString int32, cString int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Remove, uintptr(unsafe.Pointer(this)), uintptr(iString), uintptr(cString))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) SetFormattedText(pRangeD *ITextRange2, pRangeS *ITextRange2) HRESULT{
+func (this *ITextStrings) SetFormattedText(pRangeD *ITextRange2, pRangeS *ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetFormattedText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRangeD)), uintptr(unsafe.Pointer(pRangeS)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) SetOpCp(iString int32, cp int32) HRESULT{
+func (this *ITextStrings) SetOpCp(iString int32, cp int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetOpCp, uintptr(unsafe.Pointer(this)), uintptr(iString), uintptr(cp))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) SuffixTop(bstr BSTR, pRange *ITextRange2) HRESULT{
+func (this *ITextStrings) SuffixTop(bstr BSTR, pRange *ITextRange2) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SuffixTop, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(unsafe.Pointer(pRange)))
 	return HRESULT(ret)
 }
 
-func (this *ITextStrings) Swap() HRESULT{
+func (this *ITextStrings) Swap() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Swap, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
 // c241f5ef-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextRow = syscall.GUID{0xc241f5ef, 0x7206, 0x11d8, 
+var IID_ITextRow = syscall.GUID{0xc241f5ef, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextRowInterface interface {
@@ -5556,52 +5579,52 @@ type ITextRowInterface interface {
 
 type ITextRowVtbl struct {
 	IDispatchVtbl
-	GetAlignment uintptr
-	SetAlignment uintptr
-	GetCellCount uintptr
-	SetCellCount uintptr
-	GetCellCountCache uintptr
-	SetCellCountCache uintptr
-	GetCellIndex uintptr
-	SetCellIndex uintptr
-	GetCellMargin uintptr
-	SetCellMargin uintptr
-	GetHeight uintptr
-	SetHeight uintptr
-	GetIndent uintptr
-	SetIndent uintptr
-	GetKeepTogether uintptr
-	SetKeepTogether uintptr
-	GetKeepWithNext uintptr
-	SetKeepWithNext uintptr
-	GetNestLevel uintptr
-	GetRTL uintptr
-	SetRTL uintptr
-	GetCellAlignment uintptr
-	SetCellAlignment uintptr
-	GetCellColorBack uintptr
-	SetCellColorBack uintptr
-	GetCellColorFore uintptr
-	SetCellColorFore uintptr
-	GetCellMergeFlags uintptr
-	SetCellMergeFlags uintptr
-	GetCellShading uintptr
-	SetCellShading uintptr
+	GetAlignment        uintptr
+	SetAlignment        uintptr
+	GetCellCount        uintptr
+	SetCellCount        uintptr
+	GetCellCountCache   uintptr
+	SetCellCountCache   uintptr
+	GetCellIndex        uintptr
+	SetCellIndex        uintptr
+	GetCellMargin       uintptr
+	SetCellMargin       uintptr
+	GetHeight           uintptr
+	SetHeight           uintptr
+	GetIndent           uintptr
+	SetIndent           uintptr
+	GetKeepTogether     uintptr
+	SetKeepTogether     uintptr
+	GetKeepWithNext     uintptr
+	SetKeepWithNext     uintptr
+	GetNestLevel        uintptr
+	GetRTL              uintptr
+	SetRTL              uintptr
+	GetCellAlignment    uintptr
+	SetCellAlignment    uintptr
+	GetCellColorBack    uintptr
+	SetCellColorBack    uintptr
+	GetCellColorFore    uintptr
+	SetCellColorFore    uintptr
+	GetCellMergeFlags   uintptr
+	SetCellMergeFlags   uintptr
+	GetCellShading      uintptr
+	SetCellShading      uintptr
 	GetCellVerticalText uintptr
 	SetCellVerticalText uintptr
-	GetCellWidth uintptr
-	SetCellWidth uintptr
+	GetCellWidth        uintptr
+	SetCellWidth        uintptr
 	GetCellBorderColors uintptr
 	GetCellBorderWidths uintptr
 	SetCellBorderColors uintptr
 	SetCellBorderWidths uintptr
-	Apply uintptr
-	CanChange uintptr
-	GetProperty uintptr
-	Insert uintptr
-	IsEqual uintptr
-	Reset uintptr
-	SetProperty uintptr
+	Apply               uintptr
+	CanChange           uintptr
+	GetProperty         uintptr
+	Insert              uintptr
+	IsEqual             uintptr
+	Reset               uintptr
+	SetProperty         uintptr
 }
 
 type ITextRow struct {
@@ -5612,238 +5635,238 @@ func (this *ITextRow) Vtbl() *ITextRowVtbl {
 	return (*ITextRowVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextRow) GetAlignment(pValue *int32) HRESULT{
+func (this *ITextRow) GetAlignment(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAlignment, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetAlignment(Value int32) HRESULT{
+func (this *ITextRow) SetAlignment(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAlignment, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellCount(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellCount(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellCount, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellCount(Value int32) HRESULT{
+func (this *ITextRow) SetCellCount(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellCount, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellCountCache(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellCountCache(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellCountCache, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellCountCache(Value int32) HRESULT{
+func (this *ITextRow) SetCellCountCache(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellCountCache, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellIndex(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellIndex(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellIndex, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellIndex(Value int32) HRESULT{
+func (this *ITextRow) SetCellIndex(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellIndex, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellMargin(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellMargin(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellMargin, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellMargin(Value int32) HRESULT{
+func (this *ITextRow) SetCellMargin(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellMargin, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetHeight(pValue *int32) HRESULT{
+func (this *ITextRow) GetHeight(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetHeight, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetHeight(Value int32) HRESULT{
+func (this *ITextRow) SetHeight(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetHeight, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetIndent(pValue *int32) HRESULT{
+func (this *ITextRow) GetIndent(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetIndent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetIndent(Value int32) HRESULT{
+func (this *ITextRow) SetIndent(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetIndent, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetKeepTogether(pValue *int32) HRESULT{
+func (this *ITextRow) GetKeepTogether(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetKeepTogether, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetKeepTogether(Value int32) HRESULT{
+func (this *ITextRow) SetKeepTogether(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetKeepTogether, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetKeepWithNext(pValue *int32) HRESULT{
+func (this *ITextRow) GetKeepWithNext(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetKeepWithNext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetKeepWithNext(Value int32) HRESULT{
+func (this *ITextRow) SetKeepWithNext(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetKeepWithNext, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetNestLevel(pValue *int32) HRESULT{
+func (this *ITextRow) GetNestLevel(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNestLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetRTL(pValue *int32) HRESULT{
+func (this *ITextRow) GetRTL(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetRTL, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetRTL(Value int32) HRESULT{
+func (this *ITextRow) SetRTL(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetRTL, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellAlignment(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellAlignment(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellAlignment, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellAlignment(Value int32) HRESULT{
+func (this *ITextRow) SetCellAlignment(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellAlignment, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellColorBack(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellColorBack(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellColorBack, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellColorBack(Value int32) HRESULT{
+func (this *ITextRow) SetCellColorBack(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellColorBack, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellColorFore(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellColorFore(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellColorFore, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellColorFore(Value int32) HRESULT{
+func (this *ITextRow) SetCellColorFore(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellColorFore, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellMergeFlags(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellMergeFlags(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellMergeFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellMergeFlags(Value int32) HRESULT{
+func (this *ITextRow) SetCellMergeFlags(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellMergeFlags, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellShading(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellShading(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellShading, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellShading(Value int32) HRESULT{
+func (this *ITextRow) SetCellShading(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellShading, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellVerticalText(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellVerticalText(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellVerticalText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellVerticalText(Value int32) HRESULT{
+func (this *ITextRow) SetCellVerticalText(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellVerticalText, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellWidth(pValue *int32) HRESULT{
+func (this *ITextRow) GetCellWidth(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellWidth, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellWidth(Value int32) HRESULT{
+func (this *ITextRow) SetCellWidth(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellWidth, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellBorderColors(pcrLeft *int32, pcrTop *int32, pcrRight *int32, pcrBottom *int32) HRESULT{
+func (this *ITextRow) GetCellBorderColors(pcrLeft *int32, pcrTop *int32, pcrRight *int32, pcrBottom *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellBorderColors, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcrLeft)), uintptr(unsafe.Pointer(pcrTop)), uintptr(unsafe.Pointer(pcrRight)), uintptr(unsafe.Pointer(pcrBottom)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetCellBorderWidths(pduLeft *int32, pduTop *int32, pduRight *int32, pduBottom *int32) HRESULT{
+func (this *ITextRow) GetCellBorderWidths(pduLeft *int32, pduTop *int32, pduRight *int32, pduBottom *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCellBorderWidths, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pduLeft)), uintptr(unsafe.Pointer(pduTop)), uintptr(unsafe.Pointer(pduRight)), uintptr(unsafe.Pointer(pduBottom)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellBorderColors(crLeft int32, crTop int32, crRight int32, crBottom int32) HRESULT{
+func (this *ITextRow) SetCellBorderColors(crLeft int32, crTop int32, crRight int32, crBottom int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellBorderColors, uintptr(unsafe.Pointer(this)), uintptr(crLeft), uintptr(crTop), uintptr(crRight), uintptr(crBottom))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetCellBorderWidths(duLeft int32, duTop int32, duRight int32, duBottom int32) HRESULT{
+func (this *ITextRow) SetCellBorderWidths(duLeft int32, duTop int32, duRight int32, duBottom int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCellBorderWidths, uintptr(unsafe.Pointer(this)), uintptr(duLeft), uintptr(duTop), uintptr(duRight), uintptr(duBottom))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) Apply(cRow int32, Flags TomConstants) HRESULT{
+func (this *ITextRow) Apply(cRow int32, Flags TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Apply, uintptr(unsafe.Pointer(this)), uintptr(cRow), uintptr(Flags))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) CanChange(pValue *int32) HRESULT{
+func (this *ITextRow) CanChange(pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CanChange, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) GetProperty(Type int32, pValue *int32) HRESULT{
+func (this *ITextRow) GetProperty(Type int32, pValue *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pValue)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) Insert(cRow int32) HRESULT{
+func (this *ITextRow) Insert(cRow int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Insert, uintptr(unsafe.Pointer(this)), uintptr(cRow))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) IsEqual(pRow *ITextRow, pB *int32) HRESULT{
+func (this *ITextRow) IsEqual(pRow *ITextRow, pB *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsEqual, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRow)), uintptr(unsafe.Pointer(pB)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) Reset(Value int32) HRESULT{
+func (this *ITextRow) Reset(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Reset, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextRow) SetProperty(Type int32, Value int32) HRESULT{
+func (this *ITextRow) SetProperty(Type int32, Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProperty, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(Value))
 	return HRESULT(ret)
 }
 
 // c241f5f2-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextDisplays = syscall.GUID{0xc241f5f2, 0x7206, 0x11d8, 
+var IID_ITextDisplays = syscall.GUID{0xc241f5f2, 0x7206, 0x11d8,
 	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
 
 type ITextDisplaysInterface interface {
@@ -5863,7 +5886,7 @@ func (this *ITextDisplays) Vtbl() *ITextDisplaysVtbl {
 }
 
 // 01c25500-4268-11d1-883a-3c8b00c10000
-var IID_ITextDocument2Old = syscall.GUID{0x01c25500, 0x4268, 0x11d1, 
+var IID_ITextDocument2Old = syscall.GUID{0x01c25500, 0x4268, 0x11d1,
 	[8]byte{0x88, 0x3a, 0x3c, 0x8b, 0x00, 0xc1, 0x00, 0x00}}
 
 type ITextDocument2OldInterface interface {
@@ -5896,30 +5919,30 @@ type ITextDocument2OldInterface interface {
 
 type ITextDocument2OldVtbl struct {
 	ITextDocumentVtbl
-	AttachMsgFilter uintptr
-	SetEffectColor uintptr
-	GetEffectColor uintptr
-	GetCaretType uintptr
-	SetCaretType uintptr
-	GetImmContext uintptr
-	ReleaseImmContext uintptr
-	GetPreferredFont uintptr
+	AttachMsgFilter     uintptr
+	SetEffectColor      uintptr
+	GetEffectColor      uintptr
+	GetCaretType        uintptr
+	SetCaretType        uintptr
+	GetImmContext       uintptr
+	ReleaseImmContext   uintptr
+	GetPreferredFont    uintptr
 	GetNotificationMode uintptr
 	SetNotificationMode uintptr
-	GetClientRect uintptr
-	GetSelection2 uintptr
-	GetWindow uintptr
-	GetFEFlags uintptr
-	UpdateWindow uintptr
-	CheckTextLimit uintptr
-	IMEInProgress uintptr
-	SysBeep uintptr
-	Update uintptr
-	Notify uintptr
-	GetDocumentFont uintptr
-	GetDocumentPara uintptr
-	GetCallManager uintptr
-	ReleaseCallManager uintptr
+	GetClientRect       uintptr
+	GetSelection2       uintptr
+	GetWindow           uintptr
+	GetFEFlags          uintptr
+	UpdateWindow        uintptr
+	CheckTextLimit      uintptr
+	IMEInProgress       uintptr
+	SysBeep             uintptr
+	Update              uintptr
+	Notify              uintptr
+	GetDocumentFont     uintptr
+	GetDocumentPara     uintptr
+	GetCallManager      uintptr
+	ReleaseCallManager  uintptr
 }
 
 type ITextDocument2Old struct {
@@ -5930,128 +5953,124 @@ func (this *ITextDocument2Old) Vtbl() *ITextDocument2OldVtbl {
 	return (*ITextDocument2OldVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *ITextDocument2Old) AttachMsgFilter(pFilter *IUnknown) HRESULT{
+func (this *ITextDocument2Old) AttachMsgFilter(pFilter *IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AttachMsgFilter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFilter)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) SetEffectColor(Index int32, cr uint32) HRESULT{
+func (this *ITextDocument2Old) SetEffectColor(Index int32, cr uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEffectColor, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(cr))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetEffectColor(Index int32, pcr *uint32) HRESULT{
+func (this *ITextDocument2Old) GetEffectColor(Index int32, pcr *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEffectColor, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(pcr)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetCaretType(pCaretType *int32) HRESULT{
+func (this *ITextDocument2Old) GetCaretType(pCaretType *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCaretType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pCaretType)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) SetCaretType(CaretType int32) HRESULT{
+func (this *ITextDocument2Old) SetCaretType(CaretType int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetCaretType, uintptr(unsafe.Pointer(this)), uintptr(CaretType))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetImmContext(pContext *int64) HRESULT{
+func (this *ITextDocument2Old) GetImmContext(pContext *int64) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetImmContext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pContext)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) ReleaseImmContext(Context int64) HRESULT{
+func (this *ITextDocument2Old) ReleaseImmContext(Context int64) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ReleaseImmContext, uintptr(unsafe.Pointer(this)), uintptr(Context))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetPreferredFont(cp int32, CharRep int32, Option int32, CharRepCur int32, curFontSize int32, pbstr *BSTR, pPitchAndFamily *int32, pNewFontSize *int32) HRESULT{
+func (this *ITextDocument2Old) GetPreferredFont(cp int32, CharRep int32, Option int32, CharRepCur int32, curFontSize int32, pbstr *BSTR, pPitchAndFamily *int32, pNewFontSize *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPreferredFont, uintptr(unsafe.Pointer(this)), uintptr(cp), uintptr(CharRep), uintptr(Option), uintptr(CharRepCur), uintptr(curFontSize), uintptr(unsafe.Pointer(pbstr)), uintptr(unsafe.Pointer(pPitchAndFamily)), uintptr(unsafe.Pointer(pNewFontSize)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetNotificationMode(pMode *int32) HRESULT{
+func (this *ITextDocument2Old) GetNotificationMode(pMode *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNotificationMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pMode)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) SetNotificationMode(Mode int32) HRESULT{
+func (this *ITextDocument2Old) SetNotificationMode(Mode int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetNotificationMode, uintptr(unsafe.Pointer(this)), uintptr(Mode))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetClientRect(Type int32, pLeft *int32, pTop *int32, pRight *int32, pBottom *int32) HRESULT{
+func (this *ITextDocument2Old) GetClientRect(Type int32, pLeft *int32, pTop *int32, pRight *int32, pBottom *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetClientRect, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(pLeft)), uintptr(unsafe.Pointer(pTop)), uintptr(unsafe.Pointer(pRight)), uintptr(unsafe.Pointer(pBottom)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetSelection2(ppSel **ITextSelection) HRESULT{
+func (this *ITextDocument2Old) GetSelection2(ppSel **ITextSelection) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSelection2, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppSel)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetWindow(phWnd *int32) HRESULT{
+func (this *ITextDocument2Old) GetWindow(phWnd *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetWindow, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phWnd)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetFEFlags(pFlags *int32) HRESULT{
+func (this *ITextDocument2Old) GetFEFlags(pFlags *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetFEFlags, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pFlags)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) UpdateWindow() HRESULT{
+func (this *ITextDocument2Old) UpdateWindow() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().UpdateWindow, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) CheckTextLimit(cch int32, pcch *int32) HRESULT{
+func (this *ITextDocument2Old) CheckTextLimit(cch int32, pcch *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CheckTextLimit, uintptr(unsafe.Pointer(this)), uintptr(cch), uintptr(unsafe.Pointer(pcch)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) IMEInProgress(Value int32) HRESULT{
+func (this *ITextDocument2Old) IMEInProgress(Value int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IMEInProgress, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) SysBeep() HRESULT{
+func (this *ITextDocument2Old) SysBeep() HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SysBeep, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) Update(Mode int32) HRESULT{
+func (this *ITextDocument2Old) Update(Mode int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Update, uintptr(unsafe.Pointer(this)), uintptr(Mode))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) Notify(Notify int32) HRESULT{
+func (this *ITextDocument2Old) Notify(Notify int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Notify, uintptr(unsafe.Pointer(this)), uintptr(Notify))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetDocumentFont(ppITextFont **ITextFont) HRESULT{
+func (this *ITextDocument2Old) GetDocumentFont(ppITextFont **ITextFont) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDocumentFont, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppITextFont)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetDocumentPara(ppITextPara **ITextPara) HRESULT{
+func (this *ITextDocument2Old) GetDocumentPara(ppITextPara **ITextPara) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDocumentPara, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppITextPara)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetCallManager(ppVoid **IUnknown) HRESULT{
+func (this *ITextDocument2Old) GetCallManager(ppVoid **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCallManager, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppVoid)))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) ReleaseCallManager(pVoid *IUnknown) HRESULT{
+func (this *ITextDocument2Old) ReleaseCallManager(pVoid *IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ReleaseCallManager, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVoid)))
 	return HRESULT(ret)
 }
 
-
-var (
-)
-
-
+var ()
