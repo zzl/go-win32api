@@ -10,26 +10,9 @@ import (
 type HKL = uintptr
 type HTASK = uintptr
 
-//type RTL_UMS_SCHEDULER_REASON = int32
 type CONDITION_OPERATION = int32
 
 type IID = syscall.GUID
-
-//type UserHPALETTE struct {
-//	Data [2]uintptr
-//}
-//
-//type UserHGLOBAL struct {
-//	Data [2]uintptr
-//}
-//
-//type UserHMETAFILEPICT struct {
-//	Data [2]uintptr
-//}
-//
-//type UserHENHMETAFILE struct {
-//	Data [2]uintptr
-//}
 
 type POINTER_TOUCH_INFO struct {
 	Data [18]uint64
@@ -40,24 +23,6 @@ type POINTER_PEN_INFO struct {
 }
 
 type NETRESOURCEA struct {
-}
-
-//type UserHBITMAP struct {
-//}
-
-type opentype_feature_record struct {
-}
-
-type ID2D1RenderTarget struct {
-}
-
-type ICondition struct {
-}
-
-type IXMLDOMDocument struct {
-}
-
-type IDCompositionAnimation struct {
 }
 
 //
@@ -97,36 +62,6 @@ type TOOLINFO struct {
 const (
 	DATA_E_FORMATETC = DV_E_FORMATETC
 )
-
-//// Standard clipboard formats
-//const (
-//	CF_BITMAP          = 2
-//	CF_DIB             = 8
-//	CF_DIBV5           = 17
-//	CF_DIF             = 5
-//	CF_DSPBITMAP       = 0x0082
-//	CF_DSPENHMETAFILE  = 0x008E
-//	CF_DSPMETAFILEPICT = 0x0083
-//	CF_DSPTEXT         = 0x0081
-//	CF_ENHMETAFILE     = 14
-//	CF_GDIOBJFIRST     = 0x0300
-//	CF_GDIOBJLAST      = 0x03FF
-//	CF_HDROP           = 15
-//	CF_LOCALE          = 16
-//	CF_METAFILEPICT    = 3
-//	CF_OEMTEXT         = 7
-//	CF_OWNERDISPLAY    = 0x0080
-//	CF_PALETTE         = 9
-//	CF_PENDATA         = 10
-//	CF_PRIVATEFIRST    = 0x0200
-//	CF_PRIVATELAST     = 0x02FF
-//	CF_RIFF            = 11
-//	CF_SYLK            = 4
-//	CF_TEXT            = 1
-//	CF_TIFF            = 6
-//	CF_UNICODETEXT     = 13
-//	CF_WAVE            = 12
-//)
 
 //
 const DTN_FIRST = ^uint32(739)  // -740
@@ -193,10 +128,6 @@ const (
 	LVN_INCREMENTALSEARCH = LVN_FIRST - 63
 	LVN_BEGINSCROLL       = LVN_FIRST - 80
 	LVN_ENDSCROLL         = LVN_FIRST - 81
-)
-
-const (
-//LVM_INSERTCOLUMN = LVM_FIRST + 97
 )
 
 const (

@@ -1,29 +1,33 @@
 package win32
 
-import "unsafe"
-import "syscall"
+import (
+	"syscall"
+	"unsafe"
+)
 
-type BOOL = int32
-type BOOLEAN = uint8
-type BSTR = *uint16
-type HANDLE = uintptr
-type HINSTANCE = uintptr
-type HRESULT = int32
-type HWND = uintptr
-type LPARAM = uintptr
-type LRESULT = uintptr
-type NTSTATUS = int32
-type PSID = unsafe.Pointer
-type PSTR = *uint8
-type PWSTR = *uint16
-type WPARAM = uintptr
-type HRSRC = uintptr
-type CHAR = uint8
-type SHANDLE_PTR = uintptr
-type HANDLE_PTR = uintptr
+type (
+	BOOL        = int32
+	BOOLEAN     = byte
+	BSTR        = *uint16
+	HANDLE      = uintptr
+	HINSTANCE   = uintptr
+	HRESULT     = int32
+	HWND        = uintptr
+	LPARAM      = uintptr
+	LRESULT     = uintptr
+	NTSTATUS    = int32
+	PSID        = unsafe.Pointer
+	PSTR        = *byte
+	PWSTR       = *uint16
+	WPARAM      = uintptr
+	HRSRC       = uintptr
+	CHAR        = byte
+	SHANDLE_PTR = uintptr
+	HANDLE_PTR  = uintptr
+)
 
 const (
-	INVALID_HANDLE_VALUE                                                  HANDLE   = ^HANDLE(0)
+	INVALID_HANDLE_VALUE                                                  HANDLE   = ^HANDLE(0x0)
 	CO_E_NOTINITIALIZED                                                   HRESULT  = -2147221008
 	STILL_ACTIVE                                                          NTSTATUS = 259
 	EXCEPTION_ACCESS_VIOLATION                                            NTSTATUS = -1073741819
@@ -55,10 +59,10 @@ const (
 	E_OUTOFMEMORY                                                         HRESULT  = -2147024882
 	E_INVALIDARG                                                          HRESULT  = -2147024809
 	E_FAIL                                                                HRESULT  = -2147467259
-	STRICT                                                                uint32   = 1
-	MAX_PATH                                                              uint32   = 260
+	STRICT                                                                uint32   = 0x1
+	MAX_PATH                                                              uint32   = 0x104
 	STATUS_WAIT_0                                                         NTSTATUS = 0
-	FACILTIY_MUI_ERROR_CODE                                               uint32   = 11
+	FACILTIY_MUI_ERROR_CODE                                               uint32   = 0xb
 	STATUS_SUCCESS                                                        NTSTATUS = 0
 	STATUS_WAIT_1                                                         NTSTATUS = 1
 	STATUS_WAIT_2                                                         NTSTATUS = 2
@@ -2845,16 +2849,16 @@ const (
 	STATUS_IORING_COMPLETION_QUEUE_TOO_BIG                                NTSTATUS = -1069154299
 	STATUS_IORING_SUBMIT_IN_PROGRESS                                      NTSTATUS = -1069154298
 	STATUS_IORING_CORRUPT                                                 NTSTATUS = -1069154297
-	WINVER                                                                uint32   = 1280
-	APP_LOCAL_DEVICE_ID_SIZE                                              uint32   = 32
-	DM_UPDATE                                                             uint32   = 1
-	DM_COPY                                                               uint32   = 2
-	DM_PROMPT                                                             uint32   = 4
-	DM_MODIFY                                                             uint32   = 8
-	DM_IN_BUFFER                                                          uint32   = 8
-	DM_IN_PROMPT                                                          uint32   = 4
-	DM_OUT_BUFFER                                                         uint32   = 2
-	DM_OUT_DEFAULT                                                        uint32   = 1
+	WINVER                                                                uint32   = 0x500
+	APP_LOCAL_DEVICE_ID_SIZE                                              uint32   = 0x20
+	DM_UPDATE                                                             uint32   = 0x1
+	DM_COPY                                                               uint32   = 0x2
+	DM_PROMPT                                                             uint32   = 0x4
+	DM_MODIFY                                                             uint32   = 0x8
+	DM_IN_BUFFER                                                          uint32   = 0x8
+	DM_IN_PROMPT                                                          uint32   = 0x4
+	DM_OUT_BUFFER                                                         uint32   = 0x2
+	DM_OUT_DEFAULT                                                        uint32   = 0x1
 	SEC_E_OK                                                              HRESULT  = 0
 	RPC_X_NO_MORE_ENTRIES                                                 int32    = 1772
 	RPC_X_SS_CHAR_TRANS_OPEN_FAIL                                         int32    = 1773
@@ -2938,9 +2942,9 @@ const (
 	STORE_ERROR_UNLICENSED_USER                                           int32    = 15862
 	STORE_ERROR_PENDING_COM_TRANSACTION                                   int32    = 15863
 	STORE_ERROR_LICENSE_REVOKED                                           int32    = 15864
-	SEVERITY_SUCCESS                                                      uint32   = 0
-	SEVERITY_ERROR                                                        uint32   = 1
-	NOERROR                                                               uint32   = 0
+	SEVERITY_SUCCESS                                                      uint32   = 0x0
+	SEVERITY_ERROR                                                        uint32   = 0x1
+	NOERROR                                                               uint32   = 0x0
 	E_UNEXPECTED                                                          HRESULT  = -2147418113
 	E_NOINTERFACE                                                         HRESULT  = -2147467262
 	E_POINTER                                                             HRESULT  = -2147467261
@@ -3229,10 +3233,10 @@ const (
 	TPC_S_TRUNCATED                                                       HRESULT  = 262738
 	TPC_S_INTERRUPTED                                                     HRESULT  = 262739
 	TPC_S_NO_DATA_TO_PROCESS                                              HRESULT  = 262740
-	XACT_E_FIRST                                                          uint32   = 2147799040
-	XACT_E_LAST                                                           uint32   = 2147799083
-	XACT_S_FIRST                                                          uint32   = 315392
-	XACT_S_LAST                                                           uint32   = 315408
+	XACT_E_FIRST                                                          uint32   = 0x8004d000
+	XACT_E_LAST                                                           uint32   = 0x8004d02b
+	XACT_S_FIRST                                                          uint32   = 0x4d000
+	XACT_S_LAST                                                           uint32   = 0x4d010
 	XACT_E_ALREADYOTHERSINGLEPHASE                                        HRESULT  = -2147168256
 	XACT_E_CANTRETAIN                                                     HRESULT  = -2147168255
 	XACT_E_COMMITFAILED                                                   HRESULT  = -2147168254
@@ -3982,7 +3986,7 @@ const (
 	MSSIPOTF_E_PCONST_CHECK                                               HRESULT  = -2146865129
 	MSSIPOTF_E_STRUCTURE                                                  HRESULT  = -2146865128
 	ERROR_CRED_REQUIRES_CONFIRMATION                                      HRESULT  = -2146865127
-	NTE_OP_OK                                                             uint32   = 0
+	NTE_OP_OK                                                             uint32   = 0x0
 	TRUST_E_PROVIDER_UNKNOWN                                              HRESULT  = -2146762751
 	TRUST_E_ACTION_UNKNOWN                                                HRESULT  = -2146762750
 	TRUST_E_SUBJECT_FORM_UNKNOWN                                          HRESULT  = -2146762749
@@ -6347,8 +6351,8 @@ const (
 	IORING_E_COMPLETION_QUEUE_TOO_BIG                                     HRESULT  = -2142896123
 	IORING_E_SUBMIT_IN_PROGRESS                                           HRESULT  = -2142896122
 	IORING_E_CORRUPT                                                      HRESULT  = -2142896121
-	STATUS_SEVERITY_COERROR                                               uint32   = 2
-	STATUS_SEVERITY_COFAIL                                                uint32   = 3
+	STATUS_SEVERITY_COERROR                                               uint32   = 0x2
+	STATUS_SEVERITY_COFAIL                                                uint32   = 0x3
 	NOT_AN_ERROR1                                                         HRESULT  = 529920
 	QUERY_E_FAILED                                                        HRESULT  = -2147215872
 	QUERY_E_INVALIDQUERY                                                  HRESULT  = -2147215871
@@ -6484,76 +6488,76 @@ const (
 	CI_E_CARDINALITY_MISMATCH                                             HRESULT  = -2147215321
 	CI_E_CONFIG_DISK_FULL                                                 HRESULT  = -2147215320
 	CI_E_DISTRIBUTED_GROUPBY_UNSUPPORTED                                  HRESULT  = -2147215319
-	ROUTEBASE                                                             uint32   = 900
-	SUCCESS                                                               uint32   = 0
-	ERROR_ROUTER_STOPPED                                                  uint32   = 900
-	ERROR_ALREADY_CONNECTED                                               uint32   = 901
-	ERROR_UNKNOWN_PROTOCOL_ID                                             uint32   = 902
-	ERROR_DDM_NOT_RUNNING                                                 uint32   = 903
-	ERROR_INTERFACE_ALREADY_EXISTS                                        uint32   = 904
-	ERROR_NO_SUCH_INTERFACE                                               uint32   = 905
-	ERROR_INTERFACE_NOT_CONNECTED                                         uint32   = 906
-	ERROR_PROTOCOL_STOP_PENDING                                           uint32   = 907
-	ERROR_INTERFACE_CONNECTED                                             uint32   = 908
-	ERROR_NO_INTERFACE_CREDENTIALS_SET                                    uint32   = 909
-	ERROR_ALREADY_CONNECTING                                              uint32   = 910
-	ERROR_UPDATE_IN_PROGRESS                                              uint32   = 911
-	ERROR_INTERFACE_CONFIGURATION                                         uint32   = 912
-	ERROR_NOT_CLIENT_PORT                                                 uint32   = 913
-	ERROR_NOT_ROUTER_PORT                                                 uint32   = 914
-	ERROR_CLIENT_INTERFACE_ALREADY_EXISTS                                 uint32   = 915
-	ERROR_INTERFACE_DISABLED                                              uint32   = 916
-	ERROR_AUTH_PROTOCOL_REJECTED                                          uint32   = 917
-	ERROR_NO_AUTH_PROTOCOL_AVAILABLE                                      uint32   = 918
-	ERROR_PEER_REFUSED_AUTH                                               uint32   = 919
-	ERROR_REMOTE_NO_DIALIN_PERMISSION                                     uint32   = 920
-	ERROR_REMOTE_PASSWD_EXPIRED                                           uint32   = 921
-	ERROR_REMOTE_ACCT_DISABLED                                            uint32   = 922
-	ERROR_REMOTE_RESTRICTED_LOGON_HOURS                                   uint32   = 923
-	ERROR_REMOTE_AUTHENTICATION_FAILURE                                   uint32   = 924
-	ERROR_INTERFACE_HAS_NO_DEVICES                                        uint32   = 925
-	ERROR_IDLE_DISCONNECTED                                               uint32   = 926
-	ERROR_INTERFACE_UNREACHABLE                                           uint32   = 927
-	ERROR_SERVICE_IS_PAUSED                                               uint32   = 928
-	ERROR_INTERFACE_DISCONNECTED                                          uint32   = 929
-	ERROR_AUTH_SERVER_TIMEOUT                                             uint32   = 930
-	ERROR_PORT_LIMIT_REACHED                                              uint32   = 931
-	ERROR_PPP_SESSION_TIMEOUT                                             uint32   = 932
-	ERROR_MAX_LAN_INTERFACE_LIMIT                                         uint32   = 933
-	ERROR_MAX_WAN_INTERFACE_LIMIT                                         uint32   = 934
-	ERROR_MAX_CLIENT_INTERFACE_LIMIT                                      uint32   = 935
-	ERROR_BAP_DISCONNECTED                                                uint32   = 936
-	ERROR_USER_LIMIT                                                      uint32   = 937
-	ERROR_NO_RADIUS_SERVERS                                               uint32   = 938
-	ERROR_INVALID_RADIUS_RESPONSE                                         uint32   = 939
-	ERROR_DIALIN_HOURS_RESTRICTION                                        uint32   = 940
-	ERROR_ALLOWED_PORT_TYPE_RESTRICTION                                   uint32   = 941
-	ERROR_AUTH_PROTOCOL_RESTRICTION                                       uint32   = 942
-	ERROR_BAP_REQUIRED                                                    uint32   = 943
-	ERROR_DIALOUT_HOURS_RESTRICTION                                       uint32   = 944
-	ERROR_ROUTER_CONFIG_INCOMPATIBLE                                      uint32   = 945
-	WARNING_NO_MD5_MIGRATION                                              uint32   = 946
-	ERROR_PROTOCOL_ALREADY_INSTALLED                                      uint32   = 948
-	ERROR_INVALID_SIGNATURE_LENGTH                                        uint32   = 949
-	ERROR_INVALID_SIGNATURE                                               uint32   = 950
-	ERROR_NO_SIGNATURE                                                    uint32   = 951
-	ERROR_INVALID_PACKET_LENGTH_OR_ID                                     uint32   = 952
-	ERROR_INVALID_ATTRIBUTE_LENGTH                                        uint32   = 953
-	ERROR_INVALID_PACKET                                                  uint32   = 954
-	ERROR_AUTHENTICATOR_MISMATCH                                          uint32   = 955
-	ERROR_REMOTEACCESS_NOT_CONFIGURED                                     uint32   = 956
-	ROUTEBASEEND                                                          uint32   = 957
-	WIN32_MAXVER_                                                         uint32   = 2560
-	WIN32_WINDOWS_MAXVER_                                                 uint32   = 2560
-	NTDDI_MAXVER                                                          uint32   = 2560
-	WIN32_IE_MAXVER_                                                      uint32   = 2560
-	WIN32_WINNT_MAXVER_                                                   uint32   = 2560
-	WINVER_MAXVER                                                         uint32   = 2560
+	ROUTEBASE                                                             uint32   = 0x384
+	SUCCESS                                                               uint32   = 0x0
+	ERROR_ROUTER_STOPPED                                                  uint32   = 0x384
+	ERROR_ALREADY_CONNECTED                                               uint32   = 0x385
+	ERROR_UNKNOWN_PROTOCOL_ID                                             uint32   = 0x386
+	ERROR_DDM_NOT_RUNNING                                                 uint32   = 0x387
+	ERROR_INTERFACE_ALREADY_EXISTS                                        uint32   = 0x388
+	ERROR_NO_SUCH_INTERFACE                                               uint32   = 0x389
+	ERROR_INTERFACE_NOT_CONNECTED                                         uint32   = 0x38a
+	ERROR_PROTOCOL_STOP_PENDING                                           uint32   = 0x38b
+	ERROR_INTERFACE_CONNECTED                                             uint32   = 0x38c
+	ERROR_NO_INTERFACE_CREDENTIALS_SET                                    uint32   = 0x38d
+	ERROR_ALREADY_CONNECTING                                              uint32   = 0x38e
+	ERROR_UPDATE_IN_PROGRESS                                              uint32   = 0x38f
+	ERROR_INTERFACE_CONFIGURATION                                         uint32   = 0x390
+	ERROR_NOT_CLIENT_PORT                                                 uint32   = 0x391
+	ERROR_NOT_ROUTER_PORT                                                 uint32   = 0x392
+	ERROR_CLIENT_INTERFACE_ALREADY_EXISTS                                 uint32   = 0x393
+	ERROR_INTERFACE_DISABLED                                              uint32   = 0x394
+	ERROR_AUTH_PROTOCOL_REJECTED                                          uint32   = 0x395
+	ERROR_NO_AUTH_PROTOCOL_AVAILABLE                                      uint32   = 0x396
+	ERROR_PEER_REFUSED_AUTH                                               uint32   = 0x397
+	ERROR_REMOTE_NO_DIALIN_PERMISSION                                     uint32   = 0x398
+	ERROR_REMOTE_PASSWD_EXPIRED                                           uint32   = 0x399
+	ERROR_REMOTE_ACCT_DISABLED                                            uint32   = 0x39a
+	ERROR_REMOTE_RESTRICTED_LOGON_HOURS                                   uint32   = 0x39b
+	ERROR_REMOTE_AUTHENTICATION_FAILURE                                   uint32   = 0x39c
+	ERROR_INTERFACE_HAS_NO_DEVICES                                        uint32   = 0x39d
+	ERROR_IDLE_DISCONNECTED                                               uint32   = 0x39e
+	ERROR_INTERFACE_UNREACHABLE                                           uint32   = 0x39f
+	ERROR_SERVICE_IS_PAUSED                                               uint32   = 0x3a0
+	ERROR_INTERFACE_DISCONNECTED                                          uint32   = 0x3a1
+	ERROR_AUTH_SERVER_TIMEOUT                                             uint32   = 0x3a2
+	ERROR_PORT_LIMIT_REACHED                                              uint32   = 0x3a3
+	ERROR_PPP_SESSION_TIMEOUT                                             uint32   = 0x3a4
+	ERROR_MAX_LAN_INTERFACE_LIMIT                                         uint32   = 0x3a5
+	ERROR_MAX_WAN_INTERFACE_LIMIT                                         uint32   = 0x3a6
+	ERROR_MAX_CLIENT_INTERFACE_LIMIT                                      uint32   = 0x3a7
+	ERROR_BAP_DISCONNECTED                                                uint32   = 0x3a8
+	ERROR_USER_LIMIT                                                      uint32   = 0x3a9
+	ERROR_NO_RADIUS_SERVERS                                               uint32   = 0x3aa
+	ERROR_INVALID_RADIUS_RESPONSE                                         uint32   = 0x3ab
+	ERROR_DIALIN_HOURS_RESTRICTION                                        uint32   = 0x3ac
+	ERROR_ALLOWED_PORT_TYPE_RESTRICTION                                   uint32   = 0x3ad
+	ERROR_AUTH_PROTOCOL_RESTRICTION                                       uint32   = 0x3ae
+	ERROR_BAP_REQUIRED                                                    uint32   = 0x3af
+	ERROR_DIALOUT_HOURS_RESTRICTION                                       uint32   = 0x3b0
+	ERROR_ROUTER_CONFIG_INCOMPATIBLE                                      uint32   = 0x3b1
+	WARNING_NO_MD5_MIGRATION                                              uint32   = 0x3b2
+	ERROR_PROTOCOL_ALREADY_INSTALLED                                      uint32   = 0x3b4
+	ERROR_INVALID_SIGNATURE_LENGTH                                        uint32   = 0x3b5
+	ERROR_INVALID_SIGNATURE                                               uint32   = 0x3b6
+	ERROR_NO_SIGNATURE                                                    uint32   = 0x3b7
+	ERROR_INVALID_PACKET_LENGTH_OR_ID                                     uint32   = 0x3b8
+	ERROR_INVALID_ATTRIBUTE_LENGTH                                        uint32   = 0x3b9
+	ERROR_INVALID_PACKET                                                  uint32   = 0x3ba
+	ERROR_AUTHENTICATOR_MISMATCH                                          uint32   = 0x3bb
+	ERROR_REMOTEACCESS_NOT_CONFIGURED                                     uint32   = 0x3bc
+	ROUTEBASEEND                                                          uint32   = 0x3bd
+	WIN32_MAXVER_                                                         uint32   = 0xa00
+	WIN32_WINDOWS_MAXVER_                                                 uint32   = 0xa00
+	NTDDI_MAXVER                                                          uint32   = 0xa00
+	WIN32_IE_MAXVER_                                                      uint32   = 0xa00
+	WIN32_WINNT_MAXVER_                                                   uint32   = 0xa00
+	WINVER_MAXVER                                                         uint32   = 0xa00
 )
 
 // enums
 
-// enum WIN32_ERROR
+// enum
 type WIN32_ERROR uint32
 
 const (
@@ -9755,7 +9759,7 @@ const (
 	ERROR_QUERY_STORAGE_ERROR                                                      WIN32_ERROR = 2151284737
 )
 
-// enum NTSTATUS_FACILITY_CODE
+// enum
 type NTSTATUS_FACILITY_CODE uint32
 
 const (
@@ -9816,7 +9820,7 @@ const (
 	FACILITY_MAXIMUM_VALUE       NTSTATUS_FACILITY_CODE = 237
 )
 
-// enum DUPLICATE_HANDLE_OPTIONS
+// enum
 // flags
 type DUPLICATE_HANDLE_OPTIONS uint32
 
@@ -9825,7 +9829,7 @@ const (
 	DUPLICATE_SAME_ACCESS  DUPLICATE_HANDLE_OPTIONS = 2
 )
 
-// enum HANDLE_FLAGS
+// enum
 // flags
 type HANDLE_FLAGS uint32
 
@@ -9847,45 +9851,61 @@ type SYSTEMTIME struct {
 	WMilliseconds uint16
 }
 
-type DECIMAL_Anonymous2__Anonymous_ struct {
+type DECIMAL_Anonymous1_Anonymous struct {
+	Scale byte
+	Sign  byte
+}
+
+type DECIMAL_Anonymous1 struct {
+	DECIMAL_Anonymous1_Anonymous
+}
+
+func (this *DECIMAL_Anonymous1) Anonymous() *DECIMAL_Anonymous1_Anonymous {
+	return (*DECIMAL_Anonymous1_Anonymous)(unsafe.Pointer(this))
+}
+
+func (this *DECIMAL_Anonymous1) AnonymousVal() DECIMAL_Anonymous1_Anonymous {
+	return *(*DECIMAL_Anonymous1_Anonymous)(unsafe.Pointer(this))
+}
+
+func (this *DECIMAL_Anonymous1) Signscale() *uint16 {
+	return (*uint16)(unsafe.Pointer(this))
+}
+
+func (this *DECIMAL_Anonymous1) SignscaleVal() uint16 {
+	return *(*uint16)(unsafe.Pointer(this))
+}
+
+type DECIMAL_Anonymous2_Anonymous struct {
 	Lo32  uint32
 	Mid32 uint32
 }
 
-type DECIMAL_Anonymous2_ struct {
-	DECIMAL_Anonymous2__Anonymous_
+type DECIMAL_Anonymous2 struct {
+	DECIMAL_Anonymous2_Anonymous
 }
 
-func (this *DECIMAL_Anonymous2_) Lo64() *uint64 {
+func (this *DECIMAL_Anonymous2) Anonymous() *DECIMAL_Anonymous2_Anonymous {
+	return (*DECIMAL_Anonymous2_Anonymous)(unsafe.Pointer(this))
+}
+
+func (this *DECIMAL_Anonymous2) AnonymousVal() DECIMAL_Anonymous2_Anonymous {
+	return *(*DECIMAL_Anonymous2_Anonymous)(unsafe.Pointer(this))
+}
+
+func (this *DECIMAL_Anonymous2) Lo64() *uint64 {
 	return (*uint64)(unsafe.Pointer(this))
 }
 
-func (this *DECIMAL_Anonymous2_) Lo64Val() uint64 {
+func (this *DECIMAL_Anonymous2) Lo64Val() uint64 {
 	return *(*uint64)(unsafe.Pointer(this))
-}
-
-type DECIMAL_Anonymous1__Anonymous_ struct {
-	Scale uint8
-	Sign  uint8
-}
-
-type DECIMAL_Anonymous1_ struct {
-	DECIMAL_Anonymous1__Anonymous_
-}
-
-func (this *DECIMAL_Anonymous1_) Signscale() *uint16 {
-	return (*uint16)(unsafe.Pointer(this))
-}
-
-func (this *DECIMAL_Anonymous1_) SignscaleVal() uint16 {
-	return *(*uint16)(unsafe.Pointer(this))
 }
 
 type DECIMAL struct {
 	WReserved uint16
-	DECIMAL_Anonymous1_
+	DECIMAL_Anonymous1
 	Hi32 uint32
-	DECIMAL_Anonymous2_
+	DECIMAL_Anonymous2
 }
 
 type HSPRITE__ struct {
@@ -9944,7 +9964,7 @@ type POINTS struct {
 }
 
 type APP_LOCAL_DEVICE_ID struct {
-	Value [32]uint8
+	Value [32]byte
 }
 
 type UNICODE_STRING struct {
@@ -9958,26 +9978,34 @@ type FLOAT128 struct {
 	HighPart int64
 }
 
-type LARGE_INTEGER_Anonymous_ struct {
+type LARGE_INTEGER_Anonymous struct {
 	LowPart  uint32
 	HighPart int32
 }
 
-type LARGE_INTEGER_U_ struct {
+type LARGE_INTEGER_U struct {
 	LowPart  uint32
 	HighPart int32
 }
 
 type LARGE_INTEGER struct {
-	LARGE_INTEGER_Anonymous_
+	LARGE_INTEGER_Anonymous
 }
 
-func (this *LARGE_INTEGER) U() *LARGE_INTEGER_U_ {
-	return (*LARGE_INTEGER_U_)(unsafe.Pointer(this))
+func (this *LARGE_INTEGER) Anonymous() *LARGE_INTEGER_Anonymous {
+	return (*LARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
 }
 
-func (this *LARGE_INTEGER) UVal() LARGE_INTEGER_U_ {
-	return *(*LARGE_INTEGER_U_)(unsafe.Pointer(this))
+func (this *LARGE_INTEGER) AnonymousVal() LARGE_INTEGER_Anonymous {
+	return *(*LARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
+}
+
+func (this *LARGE_INTEGER) U() *LARGE_INTEGER_U {
+	return (*LARGE_INTEGER_U)(unsafe.Pointer(this))
+}
+
+func (this *LARGE_INTEGER) UVal() LARGE_INTEGER_U {
+	return *(*LARGE_INTEGER_U)(unsafe.Pointer(this))
 }
 
 func (this *LARGE_INTEGER) QuadPart() *int64 {
@@ -9988,26 +10016,34 @@ func (this *LARGE_INTEGER) QuadPartVal() int64 {
 	return *(*int64)(unsafe.Pointer(this))
 }
 
-type ULARGE_INTEGER_Anonymous_ struct {
+type ULARGE_INTEGER_Anonymous struct {
 	LowPart  uint32
 	HighPart uint32
 }
 
-type ULARGE_INTEGER_U_ struct {
+type ULARGE_INTEGER_U struct {
 	LowPart  uint32
 	HighPart uint32
 }
 
 type ULARGE_INTEGER struct {
-	ULARGE_INTEGER_Anonymous_
+	ULARGE_INTEGER_Anonymous
 }
 
-func (this *ULARGE_INTEGER) U() *ULARGE_INTEGER_U_ {
-	return (*ULARGE_INTEGER_U_)(unsafe.Pointer(this))
+func (this *ULARGE_INTEGER) Anonymous() *ULARGE_INTEGER_Anonymous {
+	return (*ULARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
 }
 
-func (this *ULARGE_INTEGER) UVal() ULARGE_INTEGER_U_ {
-	return *(*ULARGE_INTEGER_U_)(unsafe.Pointer(this))
+func (this *ULARGE_INTEGER) AnonymousVal() ULARGE_INTEGER_Anonymous {
+	return *(*ULARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
+}
+
+func (this *ULARGE_INTEGER) U() *ULARGE_INTEGER_U {
+	return (*ULARGE_INTEGER_U)(unsafe.Pointer(this))
+}
+
+func (this *ULARGE_INTEGER) UVal() ULARGE_INTEGER_U {
+	return *(*ULARGE_INTEGER_U)(unsafe.Pointer(this))
 }
 
 func (this *ULARGE_INTEGER) QuadPart() *uint64 {
@@ -10025,13 +10061,17 @@ type LUID struct {
 
 // func types
 
-type FARPROC func() uintptr
+type FARPROC = uintptr
+type FARPROC_func = func() uintptr
 
-type NEARPROC func() uintptr
+type NEARPROC = uintptr
+type NEARPROC_func = func() uintptr
 
-type PROC func() uintptr
+type PROC = uintptr
+type PROC_func = func() uintptr
 
-type PAPCFUNC func(Parameter uintptr)
+type PAPCFUNC = uintptr
+type PAPCFUNC_func = func(Parameter uintptr)
 
 var (
 	pSysAllocString        uintptr
@@ -10065,7 +10105,7 @@ func SysReAllocString(pbstr *BSTR, psz PWSTR) int32 {
 	return int32(ret)
 }
 
-func SysAllocStringLen(strIn *uint16, ui uint32) BSTR {
+func SysAllocStringLen(strIn PWSTR, ui uint32) BSTR {
 	addr := lazyAddr(&pSysAllocStringLen, libOleaut32, "SysAllocStringLen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(ui))
 	return (BSTR)(unsafe.Pointer(ret))
@@ -10085,12 +10125,12 @@ func SysAddRefString(bstrString BSTR) HRESULT {
 
 func SysReleaseString(bstrString BSTR) {
 	addr := lazyAddr(&pSysReleaseString, libOleaut32, "SysReleaseString")
-	_, _, _ = syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrString)))
+	syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrString)))
 }
 
 func SysFreeString(bstrString BSTR) {
 	addr := lazyAddr(&pSysFreeString, libOleaut32, "SysFreeString")
-	_, _, _ = syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrString)))
+	syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrString)))
 }
 
 func SysStringLen(pbstr BSTR) uint32 {

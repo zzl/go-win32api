@@ -22,7 +22,12 @@ var (
 	libUserenv  = windows.NewLazySystemDLL("userenv.dll")
 	libUxtheme  = windows.NewLazySystemDLL("uxtheme.dll")
 	libVersion  = windows.NewLazySystemDLL("version.dll")
-	libImagehlp = windows.NewLazySystemDLL("Imagehlp.dll")
+
+	//
+	libApi_ms_win_core_winrt_string_l1_1_0 = windows.NewLazySystemDLL(
+		"api-ms-win-core-winrt-string-l1-1-0.dll")
+	libApi_ms_win_core_winrt_l1_1_0 = windows.NewLazySystemDLL(
+		"api-ms-win-core-winrt-l1-1-0.dll")
 )
 
 func lazyAddr(pAddr *uintptr, lib *windows.LazyDLL, procName string) uintptr {

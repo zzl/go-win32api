@@ -2,11 +2,11 @@ package win32
 
 import (
 	"errors"
+	"log"
 	"strconv"
+	"strings"
 	"syscall"
 	"unsafe"
-	"log"
-	"strings"
 )
 
 func HRESULT_ToString(hr HRESULT) string {

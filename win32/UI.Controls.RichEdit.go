@@ -1,10 +1,12 @@
 package win32
 
-import "unsafe"
-import "syscall"
+import (
+	"syscall"
+	"unsafe"
+)
 
 const (
-	CchTextLimitDefault               uint32  = 32767
+	CchTextLimitDefault               uint32  = 0x7fff
 	MSFTEDIT_CLASS                    string  = "RICHEDIT50W"
 	CERICHEDIT_CLASSA                 string  = "RichEditCEA"
 	CERICHEDIT_CLASSW                 string  = "RichEditCEW"
@@ -12,453 +14,453 @@ const (
 	RICHEDIT_CLASS10A                 string  = "RICHEDIT"
 	RICHEDIT_CLASSW                   string  = "RichEdit20W"
 	RICHEDIT_CLASS                    string  = "RichEdit20W"
-	EM_CANPASTE                       uint32  = 1074
-	EM_DISPLAYBAND                    uint32  = 1075
-	EM_EXGETSEL                       uint32  = 1076
-	EM_EXLIMITTEXT                    uint32  = 1077
-	EM_EXLINEFROMCHAR                 uint32  = 1078
-	EM_EXSETSEL                       uint32  = 1079
-	EM_FINDTEXT                       uint32  = 1080
-	EM_FORMATRANGE                    uint32  = 1081
-	EM_GETCHARFORMAT                  uint32  = 1082
-	EM_GETEVENTMASK                   uint32  = 1083
-	EM_GETOLEINTERFACE                uint32  = 1084
-	EM_GETPARAFORMAT                  uint32  = 1085
-	EM_GETSELTEXT                     uint32  = 1086
-	EM_HIDESELECTION                  uint32  = 1087
-	EM_PASTESPECIAL                   uint32  = 1088
-	EM_REQUESTRESIZE                  uint32  = 1089
-	EM_SELECTIONTYPE                  uint32  = 1090
-	EM_SETBKGNDCOLOR                  uint32  = 1091
-	EM_SETCHARFORMAT                  uint32  = 1092
-	EM_SETEVENTMASK                   uint32  = 1093
-	EM_SETOLECALLBACK                 uint32  = 1094
-	EM_SETPARAFORMAT                  uint32  = 1095
-	EM_SETTARGETDEVICE                uint32  = 1096
-	EM_STREAMIN                       uint32  = 1097
-	EM_STREAMOUT                      uint32  = 1098
-	EM_GETTEXTRANGE                   uint32  = 1099
-	EM_FINDWORDBREAK                  uint32  = 1100
-	EM_SETOPTIONS                     uint32  = 1101
-	EM_GETOPTIONS                     uint32  = 1102
-	EM_FINDTEXTEX                     uint32  = 1103
-	EM_GETWORDBREAKPROCEX             uint32  = 1104
-	EM_SETWORDBREAKPROCEX             uint32  = 1105
-	EM_SETUNDOLIMIT                   uint32  = 1106
-	EM_REDO                           uint32  = 1108
-	EM_CANREDO                        uint32  = 1109
-	EM_GETUNDONAME                    uint32  = 1110
-	EM_GETREDONAME                    uint32  = 1111
-	EM_STOPGROUPTYPING                uint32  = 1112
-	EM_SETTEXTMODE                    uint32  = 1113
-	EM_GETTEXTMODE                    uint32  = 1114
-	EM_AUTOURLDETECT                  uint32  = 1115
-	AURL_ENABLEURL                    uint32  = 1
-	AURL_ENABLEEMAILADDR              uint32  = 2
-	AURL_ENABLETELNO                  uint32  = 4
-	AURL_ENABLEEAURLS                 uint32  = 8
-	AURL_ENABLEDRIVELETTERS           uint32  = 16
-	AURL_DISABLEMIXEDLGC              uint32  = 32
-	EM_GETAUTOURLDETECT               uint32  = 1116
-	EM_SETPALETTE                     uint32  = 1117
-	EM_GETTEXTEX                      uint32  = 1118
-	EM_GETTEXTLENGTHEX                uint32  = 1119
-	EM_SHOWSCROLLBAR                  uint32  = 1120
-	EM_SETTEXTEX                      uint32  = 1121
-	EM_SETPUNCTUATION                 uint32  = 1124
-	EM_GETPUNCTUATION                 uint32  = 1125
-	EM_SETWORDWRAPMODE                uint32  = 1126
-	EM_GETWORDWRAPMODE                uint32  = 1127
-	EM_SETIMECOLOR                    uint32  = 1128
-	EM_GETIMECOLOR                    uint32  = 1129
-	EM_SETIMEOPTIONS                  uint32  = 1130
-	EM_GETIMEOPTIONS                  uint32  = 1131
-	EM_CONVPOSITION                   uint32  = 1132
-	EM_SETLANGOPTIONS                 uint32  = 1144
-	EM_GETLANGOPTIONS                 uint32  = 1145
-	EM_GETIMECOMPMODE                 uint32  = 1146
-	EM_FINDTEXTW                      uint32  = 1147
-	EM_FINDTEXTEXW                    uint32  = 1148
-	EM_RECONVERSION                   uint32  = 1149
-	EM_SETIMEMODEBIAS                 uint32  = 1150
-	EM_GETIMEMODEBIAS                 uint32  = 1151
-	EM_SETBIDIOPTIONS                 uint32  = 1224
-	EM_GETBIDIOPTIONS                 uint32  = 1225
-	EM_SETTYPOGRAPHYOPTIONS           uint32  = 1226
-	EM_GETTYPOGRAPHYOPTIONS           uint32  = 1227
-	EM_SETEDITSTYLE                   uint32  = 1228
-	EM_GETEDITSTYLE                   uint32  = 1229
-	SES_EMULATESYSEDIT                uint32  = 1
-	SES_BEEPONMAXTEXT                 uint32  = 2
-	SES_EXTENDBACKCOLOR               uint32  = 4
-	SES_MAPCPS                        uint32  = 8
-	SES_HYPERLINKTOOLTIPS             uint32  = 8
-	SES_EMULATE10                     uint32  = 16
-	SES_DEFAULTLATINLIGA              uint32  = 16
-	SES_USECRLF                       uint32  = 32
-	SES_NOFOCUSLINKNOTIFY             uint32  = 32
-	SES_USEAIMM                       uint32  = 64
-	SES_NOIME                         uint32  = 128
-	SES_ALLOWBEEPS                    uint32  = 256
-	SES_UPPERCASE                     uint32  = 512
-	SES_LOWERCASE                     uint32  = 1024
-	SES_NOINPUTSEQUENCECHK            uint32  = 2048
-	SES_BIDI                          uint32  = 4096
-	SES_SCROLLONKILLFOCUS             uint32  = 8192
-	SES_XLTCRCRLFTOCR                 uint32  = 16384
-	SES_DRAFTMODE                     uint32  = 32768
-	SES_USECTF                        uint32  = 65536
-	SES_HIDEGRIDLINES                 uint32  = 131072
-	SES_USEATFONT                     uint32  = 262144
-	SES_CUSTOMLOOK                    uint32  = 524288
-	SES_LBSCROLLNOTIFY                uint32  = 1048576
-	SES_CTFALLOWEMBED                 uint32  = 2097152
-	SES_CTFALLOWSMARTTAG              uint32  = 4194304
-	SES_CTFALLOWPROOFING              uint32  = 8388608
-	SES_LOGICALCARET                  uint32  = 16777216
-	SES_WORDDRAGDROP                  uint32  = 33554432
-	SES_SMARTDRAGDROP                 uint32  = 67108864
-	SES_MULTISELECT                   uint32  = 134217728
-	SES_CTFNOLOCK                     uint32  = 268435456
-	SES_NOEALINEHEIGHTADJUST          uint32  = 536870912
-	SES_MAX                           uint32  = 536870912
-	IMF_AUTOKEYBOARD                  uint32  = 1
-	IMF_AUTOFONT                      uint32  = 2
-	IMF_IMECANCELCOMPLETE             uint32  = 4
-	IMF_IMEALWAYSSENDNOTIFY           uint32  = 8
-	IMF_AUTOFONTSIZEADJUST            uint32  = 16
-	IMF_UIFONTS                       uint32  = 32
-	IMF_NOIMPLICITLANG                uint32  = 64
-	IMF_DUALFONT                      uint32  = 128
-	IMF_NOKBDLIDFIXUP                 uint32  = 512
-	IMF_NORTFFONTSUBSTITUTE           uint32  = 1024
-	IMF_SPELLCHECKING                 uint32  = 2048
-	IMF_TKBPREDICTION                 uint32  = 4096
-	IMF_IMEUIINTEGRATION              uint32  = 8192
-	ICM_NOTOPEN                       uint32  = 0
-	ICM_LEVEL3                        uint32  = 1
-	ICM_LEVEL2                        uint32  = 2
-	ICM_LEVEL2_5                      uint32  = 3
-	ICM_LEVEL2_SUI                    uint32  = 4
-	ICM_CTF                           uint32  = 5
-	TO_ADVANCEDTYPOGRAPHY             uint32  = 1
-	TO_SIMPLELINEBREAK                uint32  = 2
-	TO_DISABLECUSTOMTEXTOUT           uint32  = 4
-	TO_ADVANCEDLAYOUT                 uint32  = 8
-	EM_OUTLINE                        uint32  = 1244
-	EM_GETSCROLLPOS                   uint32  = 1245
-	EM_SETSCROLLPOS                   uint32  = 1246
-	EM_SETFONTSIZE                    uint32  = 1247
-	EM_GETZOOM                        uint32  = 1248
-	EM_SETZOOM                        uint32  = 1249
-	EM_GETVIEWKIND                    uint32  = 1250
-	EM_SETVIEWKIND                    uint32  = 1251
-	EM_GETPAGE                        uint32  = 1252
-	EM_SETPAGE                        uint32  = 1253
-	EM_GETHYPHENATEINFO               uint32  = 1254
-	EM_SETHYPHENATEINFO               uint32  = 1255
-	EM_GETPAGEROTATE                  uint32  = 1259
-	EM_SETPAGEROTATE                  uint32  = 1260
-	EM_GETCTFMODEBIAS                 uint32  = 1261
-	EM_SETCTFMODEBIAS                 uint32  = 1262
-	EM_GETCTFOPENSTATUS               uint32  = 1264
-	EM_SETCTFOPENSTATUS               uint32  = 1265
-	EM_GETIMECOMPTEXT                 uint32  = 1266
-	EM_ISIME                          uint32  = 1267
-	EM_GETIMEPROPERTY                 uint32  = 1268
-	EM_GETQUERYRTFOBJ                 uint32  = 1293
-	EM_SETQUERYRTFOBJ                 uint32  = 1294
-	EPR_0                             uint32  = 0
-	EPR_270                           uint32  = 1
-	EPR_180                           uint32  = 2
-	EPR_90                            uint32  = 3
-	EPR_SE                            uint32  = 5
-	CTFMODEBIAS_DEFAULT               uint32  = 0
-	CTFMODEBIAS_FILENAME              uint32  = 1
-	CTFMODEBIAS_NAME                  uint32  = 2
-	CTFMODEBIAS_READING               uint32  = 3
-	CTFMODEBIAS_DATETIME              uint32  = 4
-	CTFMODEBIAS_CONVERSATION          uint32  = 5
-	CTFMODEBIAS_NUMERIC               uint32  = 6
-	CTFMODEBIAS_HIRAGANA              uint32  = 7
-	CTFMODEBIAS_KATAKANA              uint32  = 8
-	CTFMODEBIAS_HANGUL                uint32  = 9
-	CTFMODEBIAS_HALFWIDTHKATAKANA     uint32  = 10
-	CTFMODEBIAS_FULLWIDTHALPHANUMERIC uint32  = 11
-	CTFMODEBIAS_HALFWIDTHALPHANUMERIC uint32  = 12
-	IMF_SMODE_PLAURALCLAUSE           uint32  = 1
-	IMF_SMODE_NONE                    uint32  = 2
-	EMO_EXIT                          uint32  = 0
-	EMO_ENTER                         uint32  = 1
-	EMO_PROMOTE                       uint32  = 2
-	EMO_EXPAND                        uint32  = 3
-	EMO_MOVESELECTION                 uint32  = 4
-	EMO_GETVIEWMODE                   uint32  = 5
-	EMO_EXPANDSELECTION               uint32  = 0
-	EMO_EXPANDDOCUMENT                uint32  = 1
-	VM_NORMAL                         uint32  = 4
-	VM_OUTLINE                        uint32  = 2
-	VM_PAGE                           uint32  = 9
-	EM_INSERTTABLE                    uint32  = 1256
-	EM_GETAUTOCORRECTPROC             uint32  = 1257
-	EM_SETAUTOCORRECTPROC             uint32  = 1258
-	EM_CALLAUTOCORRECTPROC            uint32  = 1279
-	ATP_NOCHANGE                      uint32  = 0
-	ATP_CHANGE                        uint32  = 1
-	ATP_NODELIMITER                   uint32  = 2
-	ATP_REPLACEALLTEXT                uint32  = 4
-	EM_GETTABLEPARMS                  uint32  = 1289
-	EM_SETEDITSTYLEEX                 uint32  = 1299
-	EM_GETEDITSTYLEEX                 uint32  = 1300
-	SES_EX_NOTABLE                    uint32  = 4
-	SES_EX_NOMATH                     uint32  = 64
-	SES_EX_HANDLEFRIENDLYURL          uint32  = 256
-	SES_EX_NOTHEMING                  uint32  = 524288
-	SES_EX_NOACETATESELECTION         uint32  = 1048576
-	SES_EX_USESINGLELINE              uint32  = 2097152
-	SES_EX_MULTITOUCH                 uint32  = 134217728
-	SES_EX_HIDETEMPFORMAT             uint32  = 268435456
-	SES_EX_USEMOUSEWPARAM             uint32  = 536870912
-	EM_GETSTORYTYPE                   uint32  = 1314
-	EM_SETSTORYTYPE                   uint32  = 1315
-	EM_GETELLIPSISMODE                uint32  = 1329
-	EM_SETELLIPSISMODE                uint32  = 1330
-	ELLIPSIS_MASK                     uint32  = 3
-	ELLIPSIS_NONE                     uint32  = 0
-	ELLIPSIS_END                      uint32  = 1
-	ELLIPSIS_WORD                     uint32  = 3
-	EM_SETTABLEPARMS                  uint32  = 1331
-	EM_GETTOUCHOPTIONS                uint32  = 1334
-	EM_SETTOUCHOPTIONS                uint32  = 1335
-	EM_INSERTIMAGE                    uint32  = 1338
-	EM_SETUIANAME                     uint32  = 1344
-	EM_GETELLIPSISSTATE               uint32  = 1346
-	RTO_SHOWHANDLES                   uint32  = 1
-	RTO_DISABLEHANDLES                uint32  = 2
-	RTO_READINGMODE                   uint32  = 3
-	EN_MSGFILTER                      uint32  = 1792
-	EN_REQUESTRESIZE                  uint32  = 1793
-	EN_SELCHANGE                      uint32  = 1794
-	EN_DROPFILES                      uint32  = 1795
-	EN_PROTECTED                      uint32  = 1796
-	EN_CORRECTTEXT                    uint32  = 1797
-	EN_STOPNOUNDO                     uint32  = 1798
-	EN_IMECHANGE                      uint32  = 1799
-	EN_SAVECLIPBOARD                  uint32  = 1800
-	EN_OLEOPFAILED                    uint32  = 1801
-	EN_OBJECTPOSITIONS                uint32  = 1802
-	EN_LINK                           uint32  = 1803
-	EN_DRAGDROPDONE                   uint32  = 1804
-	EN_PARAGRAPHEXPANDED              uint32  = 1805
-	EN_PAGECHANGE                     uint32  = 1806
-	EN_LOWFIRTF                       uint32  = 1807
-	EN_ALIGNLTR                       uint32  = 1808
-	EN_ALIGNRTL                       uint32  = 1809
-	EN_CLIPFORMAT                     uint32  = 1810
-	EN_STARTCOMPOSITION               uint32  = 1811
-	EN_ENDCOMPOSITION                 uint32  = 1812
-	ENM_NONE                          uint32  = 0
-	ENM_CHANGE                        uint32  = 1
-	ENM_UPDATE                        uint32  = 2
-	ENM_SCROLL                        uint32  = 4
-	ENM_SCROLLEVENTS                  uint32  = 8
-	ENM_DRAGDROPDONE                  uint32  = 16
-	ENM_PARAGRAPHEXPANDED             uint32  = 32
-	ENM_PAGECHANGE                    uint32  = 64
-	ENM_CLIPFORMAT                    uint32  = 128
-	ENM_KEYEVENTS                     uint32  = 65536
-	ENM_MOUSEEVENTS                   uint32  = 131072
-	ENM_REQUESTRESIZE                 uint32  = 262144
-	ENM_SELCHANGE                     uint32  = 524288
-	ENM_DROPFILES                     uint32  = 1048576
-	ENM_PROTECTED                     uint32  = 2097152
-	ENM_CORRECTTEXT                   uint32  = 4194304
-	ENM_IMECHANGE                     uint32  = 8388608
-	ENM_LANGCHANGE                    uint32  = 16777216
-	ENM_OBJECTPOSITIONS               uint32  = 33554432
-	ENM_LINK                          uint32  = 67108864
-	ENM_LOWFIRTF                      uint32  = 134217728
-	ENM_STARTCOMPOSITION              uint32  = 268435456
-	ENM_ENDCOMPOSITION                uint32  = 536870912
-	ENM_GROUPTYPINGCHANGE             uint32  = 1073741824
-	ENM_HIDELINKTOOLTIP               uint32  = 2147483648
-	ES_SAVESEL                        uint32  = 32768
-	ES_SUNKEN                         uint32  = 16384
-	ES_DISABLENOSCROLL                uint32  = 8192
-	ES_SELECTIONBAR                   uint32  = 16777216
-	ES_NOOLEDRAGDROP                  uint32  = 8
-	ES_EX_NOCALLOLEINIT               uint32  = 0
-	ES_VERTICAL                       uint32  = 4194304
-	ES_NOIME                          uint32  = 524288
-	ES_SELFIME                        uint32  = 262144
-	ECO_AUTOWORDSELECTION             uint32  = 1
-	ECO_AUTOVSCROLL                   uint32  = 64
-	ECO_AUTOHSCROLL                   uint32  = 128
-	ECO_NOHIDESEL                     uint32  = 256
-	ECO_READONLY                      uint32  = 2048
-	ECO_WANTRETURN                    uint32  = 4096
-	ECO_SAVESEL                       uint32  = 32768
-	ECO_SELECTIONBAR                  uint32  = 16777216
-	ECO_VERTICAL                      uint32  = 4194304
-	ECOOP_SET                         uint32  = 1
-	ECOOP_OR                          uint32  = 2
-	ECOOP_AND                         uint32  = 3
-	ECOOP_XOR                         uint32  = 4
-	WB_MOVEWORDPREV                   uint32  = 4
-	WB_MOVEWORDNEXT                   uint32  = 5
-	WB_PREVBREAK                      uint32  = 6
-	WB_NEXTBREAK                      uint32  = 7
-	PC_FOLLOWING                      uint32  = 1
-	PC_LEADING                        uint32  = 2
-	PC_OVERFLOW                       uint32  = 3
-	PC_DELIMITER                      uint32  = 4
-	WBF_WORDWRAP                      uint32  = 16
-	WBF_WORDBREAK                     uint32  = 32
-	WBF_OVERFLOW                      uint32  = 64
-	WBF_LEVEL1                        uint32  = 128
-	WBF_LEVEL2                        uint32  = 256
-	WBF_CUSTOM                        uint32  = 512
-	IMF_FORCENONE                     uint32  = 1
-	IMF_FORCEENABLE                   uint32  = 2
-	IMF_FORCEDISABLE                  uint32  = 4
-	IMF_CLOSESTATUSWINDOW             uint32  = 8
-	IMF_VERTICAL                      uint32  = 32
-	IMF_FORCEACTIVE                   uint32  = 64
-	IMF_FORCEINACTIVE                 uint32  = 128
-	IMF_FORCEREMEMBER                 uint32  = 256
-	IMF_MULTIPLEEDIT                  uint32  = 1024
-	YHeightCharPtsMost                uint32  = 1638
-	SCF_SELECTION                     uint32  = 1
-	SCF_WORD                          uint32  = 2
-	SCF_DEFAULT                       uint32  = 0
-	SCF_ALL                           uint32  = 4
-	SCF_USEUIRULES                    uint32  = 8
-	SCF_ASSOCIATEFONT                 uint32  = 16
-	SCF_NOKBUPDATE                    uint32  = 32
-	SCF_ASSOCIATEFONT2                uint32  = 64
-	SCF_SMARTFONT                     uint32  = 128
-	SCF_CHARREPFROMLCID               uint32  = 256
-	SPF_DONTSETDEFAULT                uint32  = 2
-	SPF_SETDEFAULT                    uint32  = 4
-	SF_TEXT                           uint32  = 1
-	SF_RTF                            uint32  = 2
-	SF_RTFNOOBJS                      uint32  = 3
-	SF_TEXTIZED                       uint32  = 4
-	SF_UNICODE                        uint32  = 16
-	SF_USECODEPAGE                    uint32  = 32
-	SF_NCRFORNONASCII                 uint32  = 64
-	SFF_WRITEXTRAPAR                  uint32  = 128
-	SFF_SELECTION                     uint32  = 32768
-	SFF_PLAINRTF                      uint32  = 16384
-	SFF_PERSISTVIEWSCALE              uint32  = 8192
-	SFF_KEEPDOCINFO                   uint32  = 4096
-	SFF_PWD                           uint32  = 2048
-	SF_RTFVAL                         uint32  = 1792
-	MAX_TAB_STOPS                     uint32  = 32
-	LDefaultTab                       uint32  = 720
-	MAX_TABLE_CELLS                   uint32  = 63
-	PFM_SPACEBEFORE                   uint32  = 64
-	PFM_SPACEAFTER                    uint32  = 128
-	PFM_LINESPACING                   uint32  = 256
-	PFM_STYLE                         uint32  = 1024
-	PFM_BORDER                        uint32  = 2048
-	PFM_SHADING                       uint32  = 4096
-	PFM_NUMBERINGSTYLE                uint32  = 8192
-	PFM_NUMBERINGTAB                  uint32  = 16384
-	PFM_NUMBERINGSTART                uint32  = 32768
-	PFM_KEEP                          uint32  = 131072
-	PFM_KEEPNEXT                      uint32  = 262144
-	PFM_PAGEBREAKBEFORE               uint32  = 524288
-	PFM_NOLINENUMBER                  uint32  = 1048576
-	PFM_NOWIDOWCONTROL                uint32  = 2097152
-	PFM_DONOTHYPHEN                   uint32  = 4194304
-	PFM_SIDEBYSIDE                    uint32  = 8388608
-	PFM_COLLAPSED                     uint32  = 16777216
-	PFM_OUTLINELEVEL                  uint32  = 33554432
-	PFM_BOX                           uint32  = 67108864
-	PFM_RESERVED2                     uint32  = 134217728
-	PFM_TABLEROWDELIMITER             uint32  = 268435456
-	PFM_TEXTWRAPPINGBREAK             uint32  = 536870912
-	PFM_TABLE                         uint32  = 1073741824
-	PFN_BULLET                        uint32  = 1
-	PFN_ARABIC                        uint32  = 2
-	PFN_LCLETTER                      uint32  = 3
-	PFN_UCLETTER                      uint32  = 4
-	PFN_LCROMAN                       uint32  = 5
-	PFN_UCROMAN                       uint32  = 6
-	PFA_JUSTIFY                       uint32  = 4
-	PFA_FULL_INTERWORD                uint32  = 4
-	GCMF_GRIPPER                      uint32  = 1
-	GCMF_SPELLING                     uint32  = 2
-	GCMF_TOUCHMENU                    uint32  = 16384
-	GCMF_MOUSEMENU                    uint32  = 8192
-	OLEOP_DOVERB                      uint32  = 1
+	EM_CANPASTE                       uint32  = 0x432
+	EM_DISPLAYBAND                    uint32  = 0x433
+	EM_EXGETSEL                       uint32  = 0x434
+	EM_EXLIMITTEXT                    uint32  = 0x435
+	EM_EXLINEFROMCHAR                 uint32  = 0x436
+	EM_EXSETSEL                       uint32  = 0x437
+	EM_FINDTEXT                       uint32  = 0x438
+	EM_FORMATRANGE                    uint32  = 0x439
+	EM_GETCHARFORMAT                  uint32  = 0x43a
+	EM_GETEVENTMASK                   uint32  = 0x43b
+	EM_GETOLEINTERFACE                uint32  = 0x43c
+	EM_GETPARAFORMAT                  uint32  = 0x43d
+	EM_GETSELTEXT                     uint32  = 0x43e
+	EM_HIDESELECTION                  uint32  = 0x43f
+	EM_PASTESPECIAL                   uint32  = 0x440
+	EM_REQUESTRESIZE                  uint32  = 0x441
+	EM_SELECTIONTYPE                  uint32  = 0x442
+	EM_SETBKGNDCOLOR                  uint32  = 0x443
+	EM_SETCHARFORMAT                  uint32  = 0x444
+	EM_SETEVENTMASK                   uint32  = 0x445
+	EM_SETOLECALLBACK                 uint32  = 0x446
+	EM_SETPARAFORMAT                  uint32  = 0x447
+	EM_SETTARGETDEVICE                uint32  = 0x448
+	EM_STREAMIN                       uint32  = 0x449
+	EM_STREAMOUT                      uint32  = 0x44a
+	EM_GETTEXTRANGE                   uint32  = 0x44b
+	EM_FINDWORDBREAK                  uint32  = 0x44c
+	EM_SETOPTIONS                     uint32  = 0x44d
+	EM_GETOPTIONS                     uint32  = 0x44e
+	EM_FINDTEXTEX                     uint32  = 0x44f
+	EM_GETWORDBREAKPROCEX             uint32  = 0x450
+	EM_SETWORDBREAKPROCEX             uint32  = 0x451
+	EM_SETUNDOLIMIT                   uint32  = 0x452
+	EM_REDO                           uint32  = 0x454
+	EM_CANREDO                        uint32  = 0x455
+	EM_GETUNDONAME                    uint32  = 0x456
+	EM_GETREDONAME                    uint32  = 0x457
+	EM_STOPGROUPTYPING                uint32  = 0x458
+	EM_SETTEXTMODE                    uint32  = 0x459
+	EM_GETTEXTMODE                    uint32  = 0x45a
+	EM_AUTOURLDETECT                  uint32  = 0x45b
+	AURL_ENABLEURL                    uint32  = 0x1
+	AURL_ENABLEEMAILADDR              uint32  = 0x2
+	AURL_ENABLETELNO                  uint32  = 0x4
+	AURL_ENABLEEAURLS                 uint32  = 0x8
+	AURL_ENABLEDRIVELETTERS           uint32  = 0x10
+	AURL_DISABLEMIXEDLGC              uint32  = 0x20
+	EM_GETAUTOURLDETECT               uint32  = 0x45c
+	EM_SETPALETTE                     uint32  = 0x45d
+	EM_GETTEXTEX                      uint32  = 0x45e
+	EM_GETTEXTLENGTHEX                uint32  = 0x45f
+	EM_SHOWSCROLLBAR                  uint32  = 0x460
+	EM_SETTEXTEX                      uint32  = 0x461
+	EM_SETPUNCTUATION                 uint32  = 0x464
+	EM_GETPUNCTUATION                 uint32  = 0x465
+	EM_SETWORDWRAPMODE                uint32  = 0x466
+	EM_GETWORDWRAPMODE                uint32  = 0x467
+	EM_SETIMECOLOR                    uint32  = 0x468
+	EM_GETIMECOLOR                    uint32  = 0x469
+	EM_SETIMEOPTIONS                  uint32  = 0x46a
+	EM_GETIMEOPTIONS                  uint32  = 0x46b
+	EM_CONVPOSITION                   uint32  = 0x46c
+	EM_SETLANGOPTIONS                 uint32  = 0x478
+	EM_GETLANGOPTIONS                 uint32  = 0x479
+	EM_GETIMECOMPMODE                 uint32  = 0x47a
+	EM_FINDTEXTW                      uint32  = 0x47b
+	EM_FINDTEXTEXW                    uint32  = 0x47c
+	EM_RECONVERSION                   uint32  = 0x47d
+	EM_SETIMEMODEBIAS                 uint32  = 0x47e
+	EM_GETIMEMODEBIAS                 uint32  = 0x47f
+	EM_SETBIDIOPTIONS                 uint32  = 0x4c8
+	EM_GETBIDIOPTIONS                 uint32  = 0x4c9
+	EM_SETTYPOGRAPHYOPTIONS           uint32  = 0x4ca
+	EM_GETTYPOGRAPHYOPTIONS           uint32  = 0x4cb
+	EM_SETEDITSTYLE                   uint32  = 0x4cc
+	EM_GETEDITSTYLE                   uint32  = 0x4cd
+	SES_EMULATESYSEDIT                uint32  = 0x1
+	SES_BEEPONMAXTEXT                 uint32  = 0x2
+	SES_EXTENDBACKCOLOR               uint32  = 0x4
+	SES_MAPCPS                        uint32  = 0x8
+	SES_HYPERLINKTOOLTIPS             uint32  = 0x8
+	SES_EMULATE10                     uint32  = 0x10
+	SES_DEFAULTLATINLIGA              uint32  = 0x10
+	SES_USECRLF                       uint32  = 0x20
+	SES_NOFOCUSLINKNOTIFY             uint32  = 0x20
+	SES_USEAIMM                       uint32  = 0x40
+	SES_NOIME                         uint32  = 0x80
+	SES_ALLOWBEEPS                    uint32  = 0x100
+	SES_UPPERCASE                     uint32  = 0x200
+	SES_LOWERCASE                     uint32  = 0x400
+	SES_NOINPUTSEQUENCECHK            uint32  = 0x800
+	SES_BIDI                          uint32  = 0x1000
+	SES_SCROLLONKILLFOCUS             uint32  = 0x2000
+	SES_XLTCRCRLFTOCR                 uint32  = 0x4000
+	SES_DRAFTMODE                     uint32  = 0x8000
+	SES_USECTF                        uint32  = 0x10000
+	SES_HIDEGRIDLINES                 uint32  = 0x20000
+	SES_USEATFONT                     uint32  = 0x40000
+	SES_CUSTOMLOOK                    uint32  = 0x80000
+	SES_LBSCROLLNOTIFY                uint32  = 0x100000
+	SES_CTFALLOWEMBED                 uint32  = 0x200000
+	SES_CTFALLOWSMARTTAG              uint32  = 0x400000
+	SES_CTFALLOWPROOFING              uint32  = 0x800000
+	SES_LOGICALCARET                  uint32  = 0x1000000
+	SES_WORDDRAGDROP                  uint32  = 0x2000000
+	SES_SMARTDRAGDROP                 uint32  = 0x4000000
+	SES_MULTISELECT                   uint32  = 0x8000000
+	SES_CTFNOLOCK                     uint32  = 0x10000000
+	SES_NOEALINEHEIGHTADJUST          uint32  = 0x20000000
+	SES_MAX                           uint32  = 0x20000000
+	IMF_AUTOKEYBOARD                  uint32  = 0x1
+	IMF_AUTOFONT                      uint32  = 0x2
+	IMF_IMECANCELCOMPLETE             uint32  = 0x4
+	IMF_IMEALWAYSSENDNOTIFY           uint32  = 0x8
+	IMF_AUTOFONTSIZEADJUST            uint32  = 0x10
+	IMF_UIFONTS                       uint32  = 0x20
+	IMF_NOIMPLICITLANG                uint32  = 0x40
+	IMF_DUALFONT                      uint32  = 0x80
+	IMF_NOKBDLIDFIXUP                 uint32  = 0x200
+	IMF_NORTFFONTSUBSTITUTE           uint32  = 0x400
+	IMF_SPELLCHECKING                 uint32  = 0x800
+	IMF_TKBPREDICTION                 uint32  = 0x1000
+	IMF_IMEUIINTEGRATION              uint32  = 0x2000
+	ICM_NOTOPEN                       uint32  = 0x0
+	ICM_LEVEL3                        uint32  = 0x1
+	ICM_LEVEL2                        uint32  = 0x2
+	ICM_LEVEL2_5                      uint32  = 0x3
+	ICM_LEVEL2_SUI                    uint32  = 0x4
+	ICM_CTF                           uint32  = 0x5
+	TO_ADVANCEDTYPOGRAPHY             uint32  = 0x1
+	TO_SIMPLELINEBREAK                uint32  = 0x2
+	TO_DISABLECUSTOMTEXTOUT           uint32  = 0x4
+	TO_ADVANCEDLAYOUT                 uint32  = 0x8
+	EM_OUTLINE                        uint32  = 0x4dc
+	EM_GETSCROLLPOS                   uint32  = 0x4dd
+	EM_SETSCROLLPOS                   uint32  = 0x4de
+	EM_SETFONTSIZE                    uint32  = 0x4df
+	EM_GETZOOM                        uint32  = 0x4e0
+	EM_SETZOOM                        uint32  = 0x4e1
+	EM_GETVIEWKIND                    uint32  = 0x4e2
+	EM_SETVIEWKIND                    uint32  = 0x4e3
+	EM_GETPAGE                        uint32  = 0x4e4
+	EM_SETPAGE                        uint32  = 0x4e5
+	EM_GETHYPHENATEINFO               uint32  = 0x4e6
+	EM_SETHYPHENATEINFO               uint32  = 0x4e7
+	EM_GETPAGEROTATE                  uint32  = 0x4eb
+	EM_SETPAGEROTATE                  uint32  = 0x4ec
+	EM_GETCTFMODEBIAS                 uint32  = 0x4ed
+	EM_SETCTFMODEBIAS                 uint32  = 0x4ee
+	EM_GETCTFOPENSTATUS               uint32  = 0x4f0
+	EM_SETCTFOPENSTATUS               uint32  = 0x4f1
+	EM_GETIMECOMPTEXT                 uint32  = 0x4f2
+	EM_ISIME                          uint32  = 0x4f3
+	EM_GETIMEPROPERTY                 uint32  = 0x4f4
+	EM_GETQUERYRTFOBJ                 uint32  = 0x50d
+	EM_SETQUERYRTFOBJ                 uint32  = 0x50e
+	EPR_0                             uint32  = 0x0
+	EPR_270                           uint32  = 0x1
+	EPR_180                           uint32  = 0x2
+	EPR_90                            uint32  = 0x3
+	EPR_SE                            uint32  = 0x5
+	CTFMODEBIAS_DEFAULT               uint32  = 0x0
+	CTFMODEBIAS_FILENAME              uint32  = 0x1
+	CTFMODEBIAS_NAME                  uint32  = 0x2
+	CTFMODEBIAS_READING               uint32  = 0x3
+	CTFMODEBIAS_DATETIME              uint32  = 0x4
+	CTFMODEBIAS_CONVERSATION          uint32  = 0x5
+	CTFMODEBIAS_NUMERIC               uint32  = 0x6
+	CTFMODEBIAS_HIRAGANA              uint32  = 0x7
+	CTFMODEBIAS_KATAKANA              uint32  = 0x8
+	CTFMODEBIAS_HANGUL                uint32  = 0x9
+	CTFMODEBIAS_HALFWIDTHKATAKANA     uint32  = 0xa
+	CTFMODEBIAS_FULLWIDTHALPHANUMERIC uint32  = 0xb
+	CTFMODEBIAS_HALFWIDTHALPHANUMERIC uint32  = 0xc
+	IMF_SMODE_PLAURALCLAUSE           uint32  = 0x1
+	IMF_SMODE_NONE                    uint32  = 0x2
+	EMO_EXIT                          uint32  = 0x0
+	EMO_ENTER                         uint32  = 0x1
+	EMO_PROMOTE                       uint32  = 0x2
+	EMO_EXPAND                        uint32  = 0x3
+	EMO_MOVESELECTION                 uint32  = 0x4
+	EMO_GETVIEWMODE                   uint32  = 0x5
+	EMO_EXPANDSELECTION               uint32  = 0x0
+	EMO_EXPANDDOCUMENT                uint32  = 0x1
+	VM_NORMAL                         uint32  = 0x4
+	VM_OUTLINE                        uint32  = 0x2
+	VM_PAGE                           uint32  = 0x9
+	EM_INSERTTABLE                    uint32  = 0x4e8
+	EM_GETAUTOCORRECTPROC             uint32  = 0x4e9
+	EM_SETAUTOCORRECTPROC             uint32  = 0x4ea
+	EM_CALLAUTOCORRECTPROC            uint32  = 0x4ff
+	ATP_NOCHANGE                      uint32  = 0x0
+	ATP_CHANGE                        uint32  = 0x1
+	ATP_NODELIMITER                   uint32  = 0x2
+	ATP_REPLACEALLTEXT                uint32  = 0x4
+	EM_GETTABLEPARMS                  uint32  = 0x509
+	EM_SETEDITSTYLEEX                 uint32  = 0x513
+	EM_GETEDITSTYLEEX                 uint32  = 0x514
+	SES_EX_NOTABLE                    uint32  = 0x4
+	SES_EX_NOMATH                     uint32  = 0x40
+	SES_EX_HANDLEFRIENDLYURL          uint32  = 0x100
+	SES_EX_NOTHEMING                  uint32  = 0x80000
+	SES_EX_NOACETATESELECTION         uint32  = 0x100000
+	SES_EX_USESINGLELINE              uint32  = 0x200000
+	SES_EX_MULTITOUCH                 uint32  = 0x8000000
+	SES_EX_HIDETEMPFORMAT             uint32  = 0x10000000
+	SES_EX_USEMOUSEWPARAM             uint32  = 0x20000000
+	EM_GETSTORYTYPE                   uint32  = 0x522
+	EM_SETSTORYTYPE                   uint32  = 0x523
+	EM_GETELLIPSISMODE                uint32  = 0x531
+	EM_SETELLIPSISMODE                uint32  = 0x532
+	ELLIPSIS_MASK                     uint32  = 0x3
+	ELLIPSIS_NONE                     uint32  = 0x0
+	ELLIPSIS_END                      uint32  = 0x1
+	ELLIPSIS_WORD                     uint32  = 0x3
+	EM_SETTABLEPARMS                  uint32  = 0x533
+	EM_GETTOUCHOPTIONS                uint32  = 0x536
+	EM_SETTOUCHOPTIONS                uint32  = 0x537
+	EM_INSERTIMAGE                    uint32  = 0x53a
+	EM_SETUIANAME                     uint32  = 0x540
+	EM_GETELLIPSISSTATE               uint32  = 0x542
+	RTO_SHOWHANDLES                   uint32  = 0x1
+	RTO_DISABLEHANDLES                uint32  = 0x2
+	RTO_READINGMODE                   uint32  = 0x3
+	EN_MSGFILTER                      uint32  = 0x700
+	EN_REQUESTRESIZE                  uint32  = 0x701
+	EN_SELCHANGE                      uint32  = 0x702
+	EN_DROPFILES                      uint32  = 0x703
+	EN_PROTECTED                      uint32  = 0x704
+	EN_CORRECTTEXT                    uint32  = 0x705
+	EN_STOPNOUNDO                     uint32  = 0x706
+	EN_IMECHANGE                      uint32  = 0x707
+	EN_SAVECLIPBOARD                  uint32  = 0x708
+	EN_OLEOPFAILED                    uint32  = 0x709
+	EN_OBJECTPOSITIONS                uint32  = 0x70a
+	EN_LINK                           uint32  = 0x70b
+	EN_DRAGDROPDONE                   uint32  = 0x70c
+	EN_PARAGRAPHEXPANDED              uint32  = 0x70d
+	EN_PAGECHANGE                     uint32  = 0x70e
+	EN_LOWFIRTF                       uint32  = 0x70f
+	EN_ALIGNLTR                       uint32  = 0x710
+	EN_ALIGNRTL                       uint32  = 0x711
+	EN_CLIPFORMAT                     uint32  = 0x712
+	EN_STARTCOMPOSITION               uint32  = 0x713
+	EN_ENDCOMPOSITION                 uint32  = 0x714
+	ENM_NONE                          uint32  = 0x0
+	ENM_CHANGE                        uint32  = 0x1
+	ENM_UPDATE                        uint32  = 0x2
+	ENM_SCROLL                        uint32  = 0x4
+	ENM_SCROLLEVENTS                  uint32  = 0x8
+	ENM_DRAGDROPDONE                  uint32  = 0x10
+	ENM_PARAGRAPHEXPANDED             uint32  = 0x20
+	ENM_PAGECHANGE                    uint32  = 0x40
+	ENM_CLIPFORMAT                    uint32  = 0x80
+	ENM_KEYEVENTS                     uint32  = 0x10000
+	ENM_MOUSEEVENTS                   uint32  = 0x20000
+	ENM_REQUESTRESIZE                 uint32  = 0x40000
+	ENM_SELCHANGE                     uint32  = 0x80000
+	ENM_DROPFILES                     uint32  = 0x100000
+	ENM_PROTECTED                     uint32  = 0x200000
+	ENM_CORRECTTEXT                   uint32  = 0x400000
+	ENM_IMECHANGE                     uint32  = 0x800000
+	ENM_LANGCHANGE                    uint32  = 0x1000000
+	ENM_OBJECTPOSITIONS               uint32  = 0x2000000
+	ENM_LINK                          uint32  = 0x4000000
+	ENM_LOWFIRTF                      uint32  = 0x8000000
+	ENM_STARTCOMPOSITION              uint32  = 0x10000000
+	ENM_ENDCOMPOSITION                uint32  = 0x20000000
+	ENM_GROUPTYPINGCHANGE             uint32  = 0x40000000
+	ENM_HIDELINKTOOLTIP               uint32  = 0x80000000
+	ES_SAVESEL                        uint32  = 0x8000
+	ES_SUNKEN                         uint32  = 0x4000
+	ES_DISABLENOSCROLL                uint32  = 0x2000
+	ES_SELECTIONBAR                   uint32  = 0x1000000
+	ES_NOOLEDRAGDROP                  uint32  = 0x8
+	ES_EX_NOCALLOLEINIT               uint32  = 0x0
+	ES_VERTICAL                       uint32  = 0x400000
+	ES_NOIME                          uint32  = 0x80000
+	ES_SELFIME                        uint32  = 0x40000
+	ECO_AUTOWORDSELECTION             uint32  = 0x1
+	ECO_AUTOVSCROLL                   uint32  = 0x40
+	ECO_AUTOHSCROLL                   uint32  = 0x80
+	ECO_NOHIDESEL                     uint32  = 0x100
+	ECO_READONLY                      uint32  = 0x800
+	ECO_WANTRETURN                    uint32  = 0x1000
+	ECO_SAVESEL                       uint32  = 0x8000
+	ECO_SELECTIONBAR                  uint32  = 0x1000000
+	ECO_VERTICAL                      uint32  = 0x400000
+	ECOOP_SET                         uint32  = 0x1
+	ECOOP_OR                          uint32  = 0x2
+	ECOOP_AND                         uint32  = 0x3
+	ECOOP_XOR                         uint32  = 0x4
+	WB_MOVEWORDPREV                   uint32  = 0x4
+	WB_MOVEWORDNEXT                   uint32  = 0x5
+	WB_PREVBREAK                      uint32  = 0x6
+	WB_NEXTBREAK                      uint32  = 0x7
+	PC_FOLLOWING                      uint32  = 0x1
+	PC_LEADING                        uint32  = 0x2
+	PC_OVERFLOW                       uint32  = 0x3
+	PC_DELIMITER                      uint32  = 0x4
+	WBF_WORDWRAP                      uint32  = 0x10
+	WBF_WORDBREAK                     uint32  = 0x20
+	WBF_OVERFLOW                      uint32  = 0x40
+	WBF_LEVEL1                        uint32  = 0x80
+	WBF_LEVEL2                        uint32  = 0x100
+	WBF_CUSTOM                        uint32  = 0x200
+	IMF_FORCENONE                     uint32  = 0x1
+	IMF_FORCEENABLE                   uint32  = 0x2
+	IMF_FORCEDISABLE                  uint32  = 0x4
+	IMF_CLOSESTATUSWINDOW             uint32  = 0x8
+	IMF_VERTICAL                      uint32  = 0x20
+	IMF_FORCEACTIVE                   uint32  = 0x40
+	IMF_FORCEINACTIVE                 uint32  = 0x80
+	IMF_FORCEREMEMBER                 uint32  = 0x100
+	IMF_MULTIPLEEDIT                  uint32  = 0x400
+	YHeightCharPtsMost                uint32  = 0x666
+	SCF_SELECTION                     uint32  = 0x1
+	SCF_WORD                          uint32  = 0x2
+	SCF_DEFAULT                       uint32  = 0x0
+	SCF_ALL                           uint32  = 0x4
+	SCF_USEUIRULES                    uint32  = 0x8
+	SCF_ASSOCIATEFONT                 uint32  = 0x10
+	SCF_NOKBUPDATE                    uint32  = 0x20
+	SCF_ASSOCIATEFONT2                uint32  = 0x40
+	SCF_SMARTFONT                     uint32  = 0x80
+	SCF_CHARREPFROMLCID               uint32  = 0x100
+	SPF_DONTSETDEFAULT                uint32  = 0x2
+	SPF_SETDEFAULT                    uint32  = 0x4
+	SF_TEXT                           uint32  = 0x1
+	SF_RTF                            uint32  = 0x2
+	SF_RTFNOOBJS                      uint32  = 0x3
+	SF_TEXTIZED                       uint32  = 0x4
+	SF_UNICODE                        uint32  = 0x10
+	SF_USECODEPAGE                    uint32  = 0x20
+	SF_NCRFORNONASCII                 uint32  = 0x40
+	SFF_WRITEXTRAPAR                  uint32  = 0x80
+	SFF_SELECTION                     uint32  = 0x8000
+	SFF_PLAINRTF                      uint32  = 0x4000
+	SFF_PERSISTVIEWSCALE              uint32  = 0x2000
+	SFF_KEEPDOCINFO                   uint32  = 0x1000
+	SFF_PWD                           uint32  = 0x800
+	SF_RTFVAL                         uint32  = 0x700
+	MAX_TAB_STOPS                     uint32  = 0x20
+	LDefaultTab                       uint32  = 0x2d0
+	MAX_TABLE_CELLS                   uint32  = 0x3f
+	PFM_SPACEBEFORE                   uint32  = 0x40
+	PFM_SPACEAFTER                    uint32  = 0x80
+	PFM_LINESPACING                   uint32  = 0x100
+	PFM_STYLE                         uint32  = 0x400
+	PFM_BORDER                        uint32  = 0x800
+	PFM_SHADING                       uint32  = 0x1000
+	PFM_NUMBERINGSTYLE                uint32  = 0x2000
+	PFM_NUMBERINGTAB                  uint32  = 0x4000
+	PFM_NUMBERINGSTART                uint32  = 0x8000
+	PFM_KEEP                          uint32  = 0x20000
+	PFM_KEEPNEXT                      uint32  = 0x40000
+	PFM_PAGEBREAKBEFORE               uint32  = 0x80000
+	PFM_NOLINENUMBER                  uint32  = 0x100000
+	PFM_NOWIDOWCONTROL                uint32  = 0x200000
+	PFM_DONOTHYPHEN                   uint32  = 0x400000
+	PFM_SIDEBYSIDE                    uint32  = 0x800000
+	PFM_COLLAPSED                     uint32  = 0x1000000
+	PFM_OUTLINELEVEL                  uint32  = 0x2000000
+	PFM_BOX                           uint32  = 0x4000000
+	PFM_RESERVED2                     uint32  = 0x8000000
+	PFM_TABLEROWDELIMITER             uint32  = 0x10000000
+	PFM_TEXTWRAPPINGBREAK             uint32  = 0x20000000
+	PFM_TABLE                         uint32  = 0x40000000
+	PFN_BULLET                        uint32  = 0x1
+	PFN_ARABIC                        uint32  = 0x2
+	PFN_LCLETTER                      uint32  = 0x3
+	PFN_UCLETTER                      uint32  = 0x4
+	PFN_LCROMAN                       uint32  = 0x5
+	PFN_UCROMAN                       uint32  = 0x6
+	PFA_JUSTIFY                       uint32  = 0x4
+	PFA_FULL_INTERWORD                uint32  = 0x4
+	GCMF_GRIPPER                      uint32  = 0x1
+	GCMF_SPELLING                     uint32  = 0x2
+	GCMF_TOUCHMENU                    uint32  = 0x4000
+	GCMF_MOUSEMENU                    uint32  = 0x2000
+	OLEOP_DOVERB                      uint32  = 0x1
 	CF_RTF                            string  = "Rich Text Format"
 	CF_RTFNOOBJS                      string  = "Rich Text Format Without Objects"
 	CF_RETEXTOBJ                      string  = "RichEdit Text and Objects"
-	ST_DEFAULT                        uint32  = 0
-	ST_KEEPUNDO                       uint32  = 1
-	ST_SELECTION                      uint32  = 2
-	ST_NEWCHARS                       uint32  = 4
-	ST_UNICODE                        uint32  = 8
-	BOM_DEFPARADIR                    uint32  = 1
-	BOM_PLAINTEXT                     uint32  = 2
-	BOM_NEUTRALOVERRIDE               uint32  = 4
-	BOM_CONTEXTREADING                uint32  = 8
-	BOM_CONTEXTALIGNMENT              uint32  = 16
-	BOM_LEGACYBIDICLASS               uint32  = 64
-	BOM_UNICODEBIDI                   uint32  = 128
-	BOE_RTLDIR                        uint32  = 1
-	BOE_PLAINTEXT                     uint32  = 2
-	BOE_NEUTRALOVERRIDE               uint32  = 4
-	BOE_CONTEXTREADING                uint32  = 8
-	BOE_CONTEXTALIGNMENT              uint32  = 16
-	BOE_FORCERECALC                   uint32  = 32
-	BOE_LEGACYBIDICLASS               uint32  = 64
-	BOE_UNICODEBIDI                   uint32  = 128
-	FR_MATCHDIAC                      uint32  = 536870912
-	FR_MATCHKASHIDA                   uint32  = 1073741824
-	FR_MATCHALEFHAMZA                 uint32  = 2147483648
+	ST_DEFAULT                        uint32  = 0x0
+	ST_KEEPUNDO                       uint32  = 0x1
+	ST_SELECTION                      uint32  = 0x2
+	ST_NEWCHARS                       uint32  = 0x4
+	ST_UNICODE                        uint32  = 0x8
+	BOM_DEFPARADIR                    uint32  = 0x1
+	BOM_PLAINTEXT                     uint32  = 0x2
+	BOM_NEUTRALOVERRIDE               uint32  = 0x4
+	BOM_CONTEXTREADING                uint32  = 0x8
+	BOM_CONTEXTALIGNMENT              uint32  = 0x10
+	BOM_LEGACYBIDICLASS               uint32  = 0x40
+	BOM_UNICODEBIDI                   uint32  = 0x80
+	BOE_RTLDIR                        uint32  = 0x1
+	BOE_PLAINTEXT                     uint32  = 0x2
+	BOE_NEUTRALOVERRIDE               uint32  = 0x4
+	BOE_CONTEXTREADING                uint32  = 0x8
+	BOE_CONTEXTALIGNMENT              uint32  = 0x10
+	BOE_FORCERECALC                   uint32  = 0x20
+	BOE_LEGACYBIDICLASS               uint32  = 0x40
+	BOE_UNICODEBIDI                   uint32  = 0x80
+	FR_MATCHDIAC                      uint32  = 0x20000000
+	FR_MATCHKASHIDA                   uint32  = 0x40000000
+	FR_MATCHALEFHAMZA                 uint32  = 0x80000000
 	RICHEDIT60_CLASS                  string  = "RICHEDIT60W"
-	PFA_FULL_NEWSPAPER                uint32  = 5
-	PFA_FULL_INTERLETTER              uint32  = 6
-	PFA_FULL_SCALED                   uint32  = 7
-	PFA_FULL_GLYPHS                   uint32  = 8
-	AURL_ENABLEEA                     uint32  = 1
-	GCM_TOUCHMENU                     uint32  = 16384
-	GCM_MOUSEMENU                     uint32  = 8192
+	PFA_FULL_NEWSPAPER                uint32  = 0x5
+	PFA_FULL_INTERLETTER              uint32  = 0x6
+	PFA_FULL_SCALED                   uint32  = 0x7
+	PFA_FULL_GLYPHS                   uint32  = 0x8
+	AURL_ENABLEEA                     uint32  = 0x1
+	GCM_TOUCHMENU                     uint32  = 0x4000
+	GCM_MOUSEMENU                     uint32  = 0x2000
 	S_MSG_KEY_IGNORED                 HRESULT = 262657
-	TXTBIT_RICHTEXT                   uint32  = 1
-	TXTBIT_MULTILINE                  uint32  = 2
-	TXTBIT_READONLY                   uint32  = 4
-	TXTBIT_SHOWACCELERATOR            uint32  = 8
-	TXTBIT_USEPASSWORD                uint32  = 16
-	TXTBIT_HIDESELECTION              uint32  = 32
-	TXTBIT_SAVESELECTION              uint32  = 64
-	TXTBIT_AUTOWORDSEL                uint32  = 128
-	TXTBIT_VERTICAL                   uint32  = 256
-	TXTBIT_SELBARCHANGE               uint32  = 512
-	TXTBIT_WORDWRAP                   uint32  = 1024
-	TXTBIT_ALLOWBEEP                  uint32  = 2048
-	TXTBIT_DISABLEDRAG                uint32  = 4096
-	TXTBIT_VIEWINSETCHANGE            uint32  = 8192
-	TXTBIT_BACKSTYLECHANGE            uint32  = 16384
-	TXTBIT_MAXLENGTHCHANGE            uint32  = 32768
-	TXTBIT_SCROLLBARCHANGE            uint32  = 65536
-	TXTBIT_CHARFORMATCHANGE           uint32  = 131072
-	TXTBIT_PARAFORMATCHANGE           uint32  = 262144
-	TXTBIT_EXTENTCHANGE               uint32  = 524288
-	TXTBIT_CLIENTRECTCHANGE           uint32  = 1048576
-	TXTBIT_USECURRENTBKG              uint32  = 2097152
-	TXTBIT_NOTHREADREFCOUNT           uint32  = 4194304
-	TXTBIT_SHOWPASSWORD               uint32  = 8388608
-	TXTBIT_D2DDWRITE                  uint32  = 16777216
-	TXTBIT_D2DSIMPLETYPOGRAPHY        uint32  = 33554432
-	TXTBIT_D2DPIXELSNAPPED            uint32  = 67108864
-	TXTBIT_D2DSUBPIXELLINES           uint32  = 134217728
-	TXTBIT_FLASHLASTPASSWORDCHAR      uint32  = 268435456
-	TXTBIT_ADVANCEDINPUT              uint32  = 536870912
-	TXES_ISDIALOG                     uint32  = 1
+	TXTBIT_RICHTEXT                   uint32  = 0x1
+	TXTBIT_MULTILINE                  uint32  = 0x2
+	TXTBIT_READONLY                   uint32  = 0x4
+	TXTBIT_SHOWACCELERATOR            uint32  = 0x8
+	TXTBIT_USEPASSWORD                uint32  = 0x10
+	TXTBIT_HIDESELECTION              uint32  = 0x20
+	TXTBIT_SAVESELECTION              uint32  = 0x40
+	TXTBIT_AUTOWORDSEL                uint32  = 0x80
+	TXTBIT_VERTICAL                   uint32  = 0x100
+	TXTBIT_SELBARCHANGE               uint32  = 0x200
+	TXTBIT_WORDWRAP                   uint32  = 0x400
+	TXTBIT_ALLOWBEEP                  uint32  = 0x800
+	TXTBIT_DISABLEDRAG                uint32  = 0x1000
+	TXTBIT_VIEWINSETCHANGE            uint32  = 0x2000
+	TXTBIT_BACKSTYLECHANGE            uint32  = 0x4000
+	TXTBIT_MAXLENGTHCHANGE            uint32  = 0x8000
+	TXTBIT_SCROLLBARCHANGE            uint32  = 0x10000
+	TXTBIT_CHARFORMATCHANGE           uint32  = 0x20000
+	TXTBIT_PARAFORMATCHANGE           uint32  = 0x40000
+	TXTBIT_EXTENTCHANGE               uint32  = 0x80000
+	TXTBIT_CLIENTRECTCHANGE           uint32  = 0x100000
+	TXTBIT_USECURRENTBKG              uint32  = 0x200000
+	TXTBIT_NOTHREADREFCOUNT           uint32  = 0x400000
+	TXTBIT_SHOWPASSWORD               uint32  = 0x800000
+	TXTBIT_D2DDWRITE                  uint32  = 0x1000000
+	TXTBIT_D2DSIMPLETYPOGRAPHY        uint32  = 0x2000000
+	TXTBIT_D2DPIXELSNAPPED            uint32  = 0x4000000
+	TXTBIT_D2DSUBPIXELLINES           uint32  = 0x8000000
+	TXTBIT_FLASHLASTPASSWORDCHAR      uint32  = 0x10000000
+	TXTBIT_ADVANCEDINPUT              uint32  = 0x20000000
+	TXES_ISDIALOG                     uint32  = 0x1
 	REO_NULL                          int32   = 0
 	REO_READWRITEMASK                 int32   = 2047
 	RECO_PASTE                        int32   = 0
@@ -470,7 +472,7 @@ const (
 
 // enums
 
-// enum CFM_MASK
+// enum
 // flags
 type CFM_MASK uint32
 
@@ -520,7 +522,7 @@ const (
 	CFM_ALLEFFECTS    CFM_MASK = 2115207167
 )
 
-// enum CFE_EFFECTS
+// enum
 // flags
 type CFE_EFFECTS uint32
 
@@ -552,7 +554,7 @@ const (
 	CFE_MATHORDINARY  CFE_EFFECTS = 536870912
 )
 
-// enum PARAFORMAT_MASK
+// enum
 // flags
 type PARAFORMAT_MASK uint32
 
@@ -567,7 +569,7 @@ const (
 	PFM_TABSTOPS     PARAFORMAT_MASK = 16
 )
 
-// enum RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
+// enum
 // flags
 type RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE uint16
 
@@ -580,7 +582,7 @@ const (
 	GCM_RIGHTMOUSEDROP RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = 32768
 )
 
-// enum RICH_EDIT_GET_OBJECT_FLAGS
+// enum
 // flags
 type RICH_EDIT_GET_OBJECT_FLAGS uint32
 
@@ -592,7 +594,7 @@ const (
 	REO_GETOBJ_ALL_INTERFACES RICH_EDIT_GET_OBJECT_FLAGS = 7
 )
 
-// enum PARAFORMAT_BORDERS
+// enum
 // flags
 type PARAFORMAT_BORDERS uint16
 
@@ -606,7 +608,7 @@ const (
 	PARAFORMAT_BORDERS_AUTOCOLOR PARAFORMAT_BORDERS = 64
 )
 
-// enum PARAFORMAT_SHADING_STYLE
+// enum
 type PARAFORMAT_SHADING_STYLE uint16
 
 const (
@@ -625,7 +627,7 @@ const (
 	PARAFORMAT_SHADING_STYLE_LIGHT_TRELLIS   PARAFORMAT_SHADING_STYLE = 12
 )
 
-// enum GETTEXTEX_FLAGS
+// enum
 type GETTEXTEX_FLAGS uint32
 
 const (
@@ -636,7 +638,7 @@ const (
 	GT_USECRLF      GETTEXTEX_FLAGS = 1
 )
 
-// enum ENDCOMPOSITIONNOTIFY_CODE
+// enum
 type ENDCOMPOSITIONNOTIFY_CODE uint32
 
 const (
@@ -644,14 +646,14 @@ const (
 	ECN_NEWTEXT        ENDCOMPOSITIONNOTIFY_CODE = 2
 )
 
-// enum IMECOMPTEXT_FLAGS
+// enum
 type IMECOMPTEXT_FLAGS uint32
 
 const (
 	ICT_RESULTREADSTR IMECOMPTEXT_FLAGS = 1
 )
 
-// enum GETTEXTLENGTHEX_FLAGS
+// enum
 // flags
 type GETTEXTLENGTHEX_FLAGS uint32
 
@@ -664,7 +666,7 @@ const (
 	GTL_NUMBYTES GETTEXTLENGTHEX_FLAGS = 16
 )
 
-// enum REOBJECT_FLAGS
+// enum
 // flags
 type REOBJECT_FLAGS uint32
 
@@ -690,7 +692,7 @@ const (
 	REO_WRAPTEXTAROUND  REOBJECT_FLAGS = 512
 )
 
-// enum PARAFORMAT_NUMBERING_STYLE
+// enum
 type PARAFORMAT_NUMBERING_STYLE uint16
 
 const (
@@ -702,7 +704,7 @@ const (
 	PFNS_NEWNUMBER PARAFORMAT_NUMBERING_STYLE = 32768
 )
 
-// enum PARAFORMAT_ALIGNMENT
+// enum
 type PARAFORMAT_ALIGNMENT uint16
 
 const (
@@ -711,7 +713,7 @@ const (
 	PFA_RIGHT  PARAFORMAT_ALIGNMENT = 2
 )
 
-// enum TEXTMODE
+// enum
 type TEXTMODE int32
 
 const (
@@ -723,7 +725,7 @@ const (
 	TM_MULTICODEPAGE   TEXTMODE = 32
 )
 
-// enum UNDONAMEID
+// enum
 type UNDONAMEID int32
 
 const (
@@ -736,7 +738,7 @@ const (
 	UID_AUTOTABLE UNDONAMEID = 6
 )
 
-// enum KHYPH
+// enum
 type KHYPH int32
 
 const (
@@ -749,7 +751,7 @@ const (
 	KhyphDelAndChange KHYPH = 6
 )
 
-// enum TXTBACKSTYLE
+// enum
 type TXTBACKSTYLE int32
 
 const (
@@ -757,7 +759,7 @@ const (
 	TXTBACK_OPAQUE      TXTBACKSTYLE = 1
 )
 
-// enum TXTHITRESULT
+// enum
 type TXTHITRESULT int32
 
 const (
@@ -767,7 +769,7 @@ const (
 	TXTHITRESULT_HIT         TXTHITRESULT = 3
 )
 
-// enum TXTNATURALSIZE
+// enum
 type TXTNATURALSIZE int32
 
 const (
@@ -780,7 +782,7 @@ const (
 	TXTNS_EMU             TXTNATURALSIZE = -2147483648
 )
 
-// enum TXTVIEW
+// enum
 type TXTVIEW int32
 
 const (
@@ -788,7 +790,7 @@ const (
 	TXTVIEW_INACTIVE TXTVIEW = -1
 )
 
-// enum CHANGETYPE
+// enum
 type CHANGETYPE int32
 
 const (
@@ -798,7 +800,7 @@ const (
 	CN_NEWREDO     CHANGETYPE = 4
 )
 
-// enum CARET_FLAGS
+// enum
 type CARET_FLAGS int32
 
 const (
@@ -810,7 +812,7 @@ const (
 	CARET_ROTATE90 CARET_FLAGS = 128
 )
 
-// enum TomConstants
+// enum
 type TomConstants int32
 
 const (
@@ -1400,7 +1402,7 @@ const (
 	TomRowHeightActual                 TomConstants = 2059
 )
 
-// enum OBJECTTYPE
+// enum
 type OBJECTTYPE int32
 
 const (
@@ -1437,7 +1439,7 @@ const (
 	TomObjectMax        OBJECTTYPE = 33
 )
 
-// enum MANCODE
+// enum
 type MANCODE int32
 
 const (
@@ -1467,17 +1469,17 @@ type IMECOMPTEXT struct {
 }
 
 type TABLEROWPARMS struct {
-	CbRow        uint8
-	CbCell       uint8
-	CCell        uint8
-	CRow         uint8
+	CbRow        byte
+	CbCell       byte
+	CCell        byte
+	CRow         byte
 	DxCellMargin int32
 	DxIndent     int32
 	DyHeight     int32
 	Bitfield_    uint32
 	CpStartRow   int32
-	BTableLevel  uint8
-	ICell        uint8
+	BTableLevel  byte
+	ICell        byte
 }
 
 type TABLECELLPARMS struct {
@@ -1517,8 +1519,8 @@ type CHARFORMATA struct {
 	YHeight         int32
 	YOffset         int32
 	CrTextColor     uint32
-	BCharSet        uint8
-	BPitchAndFamily uint8
+	BCharSet        byte
+	BPitchAndFamily byte
 	SzFaceName      [32]CHAR
 }
 
@@ -1530,28 +1532,28 @@ type CHARFORMATW struct {
 	YHeight         int32
 	YOffset         int32
 	CrTextColor     uint32
-	BCharSet        uint8
-	BPitchAndFamily uint8
+	BCharSet        byte
+	BPitchAndFamily byte
 	SzFaceName      [32]uint16
 }
 
-type CHARFORMAT2W_Anonymous_ struct {
+type CHARFORMAT2W_Anonymous struct {
 	Data [1]uint32
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwReserved() *uint32 {
+func (this *CHARFORMAT2W_Anonymous) DwReserved() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwReservedVal() uint32 {
+func (this *CHARFORMAT2W_Anonymous) DwReservedVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwCookie() *uint32 {
+func (this *CHARFORMAT2W_Anonymous) DwCookie() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2W_Anonymous_) DwCookieVal() uint32 {
+func (this *CHARFORMAT2W_Anonymous) DwCookieVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
@@ -1562,32 +1564,32 @@ type CHARFORMAT2W struct {
 	SSpacing    int16
 	CrBackColor uint32
 	Lcid        uint32
-	CHARFORMAT2W_Anonymous_
+	CHARFORMAT2W_Anonymous
 	SStyle          int16
 	WKerning        uint16
-	BUnderlineType  uint8
-	BAnimation      uint8
-	BRevAuthor      uint8
-	BUnderlineColor uint8
+	BUnderlineType  byte
+	BAnimation      byte
+	BRevAuthor      byte
+	BUnderlineColor byte
 }
 
-type CHARFORMAT2A_Anonymous_ struct {
+type CHARFORMAT2A_Anonymous struct {
 	Data [1]uint32
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwReserved() *uint32 {
+func (this *CHARFORMAT2A_Anonymous) DwReserved() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwReservedVal() uint32 {
+func (this *CHARFORMAT2A_Anonymous) DwReservedVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwCookie() *uint32 {
+func (this *CHARFORMAT2A_Anonymous) DwCookie() *uint32 {
 	return (*uint32)(unsafe.Pointer(this))
 }
 
-func (this *CHARFORMAT2A_Anonymous_) DwCookieVal() uint32 {
+func (this *CHARFORMAT2A_Anonymous) DwCookieVal() uint32 {
 	return *(*uint32)(unsafe.Pointer(this))
 }
 
@@ -1597,13 +1599,13 @@ type CHARFORMAT2A struct {
 	SSpacing    int16
 	CrBackColor uint32
 	Lcid        uint32
-	CHARFORMAT2A_Anonymous_
+	CHARFORMAT2A_Anonymous
 	SStyle          int16
 	WKerning        uint16
-	BUnderlineType  uint8
-	BAnimation      uint8
-	BRevAuthor      uint8
-	BUnderlineColor uint8
+	BUnderlineType  byte
+	BAnimation      byte
+	BRevAuthor      byte
+	BUnderlineColor byte
 }
 
 type CHARRANGE struct {
@@ -1625,7 +1627,7 @@ type TEXTRANGEW struct {
 type EDITSTREAM struct {
 	DwCookie    uintptr
 	DwError     uint32
-	PfnCallback uintptr
+	PfnCallback EDITSTREAMCALLBACK
 }
 
 type FINDTEXTA struct {
@@ -1660,23 +1662,23 @@ type FORMATRANGE struct {
 	Chrg      CHARRANGE
 }
 
-type PARAFORMAT_Anonymous_ struct {
+type PARAFORMAT_Anonymous struct {
 	Data [1]uint16
 }
 
-func (this *PARAFORMAT_Anonymous_) WReserved() *uint16 {
+func (this *PARAFORMAT_Anonymous) WReserved() *uint16 {
 	return (*uint16)(unsafe.Pointer(this))
 }
 
-func (this *PARAFORMAT_Anonymous_) WReservedVal() uint16 {
+func (this *PARAFORMAT_Anonymous) WReservedVal() uint16 {
 	return *(*uint16)(unsafe.Pointer(this))
 }
 
-func (this *PARAFORMAT_Anonymous_) WEffects() *uint16 {
+func (this *PARAFORMAT_Anonymous) WEffects() *uint16 {
 	return (*uint16)(unsafe.Pointer(this))
 }
 
-func (this *PARAFORMAT_Anonymous_) WEffectsVal() uint16 {
+func (this *PARAFORMAT_Anonymous) WEffectsVal() uint16 {
 	return *(*uint16)(unsafe.Pointer(this))
 }
 
@@ -1684,7 +1686,7 @@ type PARAFORMAT struct {
 	CbSize     uint32
 	DwMask     PARAFORMAT_MASK
 	WNumbering uint16
-	PARAFORMAT_Anonymous_
+	PARAFORMAT_Anonymous
 	DxStartIndent int32
 	DxRightIndent int32
 	DxOffset      int32
@@ -1699,8 +1701,8 @@ type PARAFORMAT2 struct {
 	DySpaceAfter     int32
 	DyLineSpacing    int32
 	SStyle           int16
-	BLineSpacingRule uint8
-	BOutlineLevel    uint8
+	BLineSpacingRule byte
+	BOutlineLevel    byte
 	WShadingWeight   uint16
 	WShadingStyle    PARAFORMAT_SHADING_STYLE
 	WNumberingStart  uint16
@@ -1891,17 +1893,26 @@ type REOBJECT struct {
 
 // func types
 
-type AutoCorrectProc func(langid uint16, pszBefore PWSTR, pszAfter PWSTR, cchAfter int32, pcchReplaced *int32) int32
+type AutoCorrectProc = uintptr
+type AutoCorrectProc_func = func(langid uint16, pszBefore PWSTR, pszAfter PWSTR, cchAfter int32, pcchReplaced *int32) int32
 
-type EDITWORDBREAKPROCEX func(pchText PSTR, cchText int32, bCharSet uint8, action int32) int32
+type EDITWORDBREAKPROCEX = uintptr
+type EDITWORDBREAKPROCEX_func = func(pchText PSTR, cchText int32, bCharSet byte, action int32) int32
 
-type EDITSTREAMCALLBACK func(dwCookie uintptr, pbBuff *uint8, cb int32, pcb *int32) uint32
+type EDITSTREAMCALLBACK = uintptr
+type EDITSTREAMCALLBACK_func = func(dwCookie uintptr, pbBuff *byte, cb int32, pcb *int32) uint32
 
-type PCreateTextServices func(punkOuter *IUnknown, pITextHost *ITextHost, ppUnk **IUnknown) HRESULT
+type PCreateTextServices = uintptr
+type PCreateTextServices_func = func(punkOuter *IUnknown, pITextHost *ITextHost, ppUnk **IUnknown) HRESULT
 
-type PShutdownTextServices func(pTextServices *IUnknown) HRESULT
+type PShutdownTextServices = uintptr
+type PShutdownTextServices_func = func(pTextServices *IUnknown) HRESULT
 
-// coms
+// interfaces
+
+// 00000000-0000-0000-0000-000000000000
+var IID_ITextServices = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 
 type ITextServicesInterface interface {
 	IUnknownInterface
@@ -1956,12 +1967,12 @@ func (this *ITextServices) Vtbl() *ITextServicesVtbl {
 }
 
 func (this *ITextServices) TxSendMessage(msg uint32, wparam WPARAM, lparam LPARAM, plresult *LRESULT) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSendMessage, uintptr(unsafe.Pointer(this)), uintptr(msg), uintptr(wparam), uintptr(lparam), uintptr(unsafe.Pointer(plresult)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSendMessage, uintptr(unsafe.Pointer(this)), uintptr(msg), wparam, lparam, uintptr(unsafe.Pointer(plresult)))
 	return HRESULT(ret)
 }
 
 func (this *ITextServices) TxDraw(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcBounds *RECTL, lprcWBounds *RECTL, lprcUpdate *RECT, pfnContinue uintptr, dwContinue uint32, lViewId int32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDraw, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(unsafe.Pointer(pvAspect)), uintptr(unsafe.Pointer(ptd)), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(lprcBounds)), uintptr(unsafe.Pointer(lprcWBounds)), uintptr(unsafe.Pointer(lprcUpdate)), pfnContinue, uintptr(dwContinue), uintptr(lViewId))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDraw, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(pvAspect), uintptr(unsafe.Pointer(ptd)), hdcDraw, hicTargetDev, uintptr(unsafe.Pointer(lprcBounds)), uintptr(unsafe.Pointer(lprcWBounds)), uintptr(unsafe.Pointer(lprcUpdate)), pfnContinue, uintptr(dwContinue), uintptr(lViewId))
 	return HRESULT(ret)
 }
 
@@ -1976,12 +1987,12 @@ func (this *ITextServices) TxGetVScroll(plMin *int32, plMax *int32, plPos *int32
 }
 
 func (this *ITextServices) OnTxSetCursor(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcClient *RECT, x int32, y int32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxSetCursor, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(unsafe.Pointer(pvAspect)), uintptr(unsafe.Pointer(ptd)), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(lprcClient)), uintptr(x), uintptr(y))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().OnTxSetCursor, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(pvAspect), uintptr(unsafe.Pointer(ptd)), hdcDraw, hicTargetDev, uintptr(unsafe.Pointer(lprcClient)), uintptr(x), uintptr(y))
 	return HRESULT(ret)
 }
 
 func (this *ITextServices) TxQueryHitPoint(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcDraw HDC, hicTargetDev HDC, lprcClient *RECT, x int32, y int32, pHitResult *uint32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxQueryHitPoint, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(unsafe.Pointer(pvAspect)), uintptr(unsafe.Pointer(ptd)), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(lprcClient)), uintptr(x), uintptr(y), uintptr(unsafe.Pointer(pHitResult)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxQueryHitPoint, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(pvAspect), uintptr(unsafe.Pointer(ptd)), hdcDraw, hicTargetDev, uintptr(unsafe.Pointer(lprcClient)), uintptr(x), uintptr(y), uintptr(unsafe.Pointer(pHitResult)))
 	return HRESULT(ret)
 }
 
@@ -2026,7 +2037,7 @@ func (this *ITextServices) TxGetBaseLinePos(param0 *int32) HRESULT {
 }
 
 func (this *ITextServices) TxGetNaturalSize(dwAspect uint32, hdcDraw HDC, hicTargetDev HDC, ptd *DVTARGETDEVICE, dwMode uint32, psizelExtent *SIZE, pwidth *int32, pheight *int32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetNaturalSize, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(ptd)), uintptr(dwMode), uintptr(unsafe.Pointer(psizelExtent)), uintptr(unsafe.Pointer(pwidth)), uintptr(unsafe.Pointer(pheight)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetNaturalSize, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), hdcDraw, hicTargetDev, uintptr(unsafe.Pointer(ptd)), uintptr(dwMode), uintptr(unsafe.Pointer(psizelExtent)), uintptr(unsafe.Pointer(pwidth)), uintptr(unsafe.Pointer(pheight)))
 	return HRESULT(ret)
 }
 
@@ -2044,6 +2055,10 @@ func (this *ITextServices) TxGetCachedSize(pdwWidth *uint32, pdwHeight *uint32) 
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetCachedSize, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwWidth)), uintptr(unsafe.Pointer(pdwHeight)))
 	return HRESULT(ret)
 }
+
+// 00000000-0000-0000-0000-000000000000
+var IID_ITextHost = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 
 type ITextHostInterface interface {
 	IUnknownInterface
@@ -2141,11 +2156,11 @@ func (this *ITextHost) Vtbl() *ITextHostVtbl {
 
 func (this *ITextHost) TxGetDC() HDC {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetDC, uintptr(unsafe.Pointer(this)))
-	return HDC(ret)
+	return ret
 }
 
 func (this *ITextHost) TxReleaseDC(hdc HDC) int32 {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxReleaseDC, uintptr(unsafe.Pointer(this)), uintptr(hdc))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxReleaseDC, uintptr(unsafe.Pointer(this)), hdc)
 	return int32(ret)
 }
 
@@ -2171,16 +2186,14 @@ func (this *ITextHost) TxSetScrollPos(fnBar int32, nPos int32, fRedraw BOOL) BOO
 
 func (this *ITextHost) TxInvalidateRect(prc *RECT, fMode BOOL) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxInvalidateRect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prc)), uintptr(fMode))
-
 }
 
 func (this *ITextHost) TxViewChange(fUpdate BOOL) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxViewChange, uintptr(unsafe.Pointer(this)), uintptr(fUpdate))
-
 }
 
 func (this *ITextHost) TxCreateCaret(hbmp HBITMAP, xWidth int32, yHeight int32) BOOL {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxCreateCaret, uintptr(unsafe.Pointer(this)), uintptr(hbmp), uintptr(xWidth), uintptr(yHeight))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxCreateCaret, uintptr(unsafe.Pointer(this)), hbmp, uintptr(xWidth), uintptr(yHeight))
 	return BOOL(ret)
 }
 
@@ -2201,27 +2214,22 @@ func (this *ITextHost) TxSetTimer(idTimer uint32, uTimeout uint32) BOOL {
 
 func (this *ITextHost) TxKillTimer(idTimer uint32) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxKillTimer, uintptr(unsafe.Pointer(this)), uintptr(idTimer))
-
 }
 
 func (this *ITextHost) TxScrollWindowEx(dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT, fuScroll SHOW_WINDOW_CMD) {
-	_, _, _ = syscall.SyscallN(this.Vtbl().TxScrollWindowEx, uintptr(unsafe.Pointer(this)), uintptr(dx), uintptr(dy), uintptr(unsafe.Pointer(lprcScroll)), uintptr(unsafe.Pointer(lprcClip)), uintptr(hrgnUpdate), uintptr(unsafe.Pointer(lprcUpdate)), uintptr(fuScroll))
-
+	_, _, _ = syscall.SyscallN(this.Vtbl().TxScrollWindowEx, uintptr(unsafe.Pointer(this)), uintptr(dx), uintptr(dy), uintptr(unsafe.Pointer(lprcScroll)), uintptr(unsafe.Pointer(lprcClip)), hrgnUpdate, uintptr(unsafe.Pointer(lprcUpdate)), uintptr(fuScroll))
 }
 
 func (this *ITextHost) TxSetCapture(fCapture BOOL) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxSetCapture, uintptr(unsafe.Pointer(this)), uintptr(fCapture))
-
 }
 
 func (this *ITextHost) TxSetFocus() {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxSetFocus, uintptr(unsafe.Pointer(this)))
-
 }
 
 func (this *ITextHost) TxSetCursor(hcur HCURSOR, fText BOOL) {
-	_, _, _ = syscall.SyscallN(this.Vtbl().TxSetCursor, uintptr(unsafe.Pointer(this)), uintptr(hcur), uintptr(fText))
-
+	_, _, _ = syscall.SyscallN(this.Vtbl().TxSetCursor, uintptr(unsafe.Pointer(this)), hcur, uintptr(fText))
 }
 
 func (this *ITextHost) TxScreenToClient(lppt *POINT) BOOL {
@@ -2315,24 +2323,27 @@ func (this *ITextHost) TxGetPropertyBits(dwMask uint32, pdwBits *uint32) HRESULT
 }
 
 func (this *ITextHost) TxNotify(iNotify uint32, pv unsafe.Pointer) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxNotify, uintptr(unsafe.Pointer(this)), uintptr(iNotify), uintptr(unsafe.Pointer(pv)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxNotify, uintptr(unsafe.Pointer(this)), uintptr(iNotify), uintptr(pv))
 	return HRESULT(ret)
 }
 
 func (this *ITextHost) TxImmGetContext() HIMC {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxImmGetContext, uintptr(unsafe.Pointer(this)))
-	return HIMC(ret)
+	return ret
 }
 
 func (this *ITextHost) TxImmReleaseContext(himc HIMC) {
-	_, _, _ = syscall.SyscallN(this.Vtbl().TxImmReleaseContext, uintptr(unsafe.Pointer(this)), uintptr(himc))
-
+	_, _, _ = syscall.SyscallN(this.Vtbl().TxImmReleaseContext, uintptr(unsafe.Pointer(this)), himc)
 }
 
 func (this *ITextHost) TxGetSelectionBarWidth(lSelBarWidth *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetSelectionBarWidth, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lSelBarWidth)))
 	return HRESULT(ret)
 }
+
+// 00000000-0000-0000-0000-000000000000
+var IID_IRicheditUiaOverrides = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 
 type IRicheditUiaOverridesInterface interface {
 	IUnknownInterface
@@ -2356,6 +2367,10 @@ func (this *IRicheditUiaOverrides) GetPropertyOverrideValue(propertyId int32, pR
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPropertyOverrideValue, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(unsafe.Pointer(pRetValue)))
 	return HRESULT(ret)
 }
+
+// 00000000-0000-0000-0000-000000000000
+var IID_ITextHost2 = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
 
 type ITextHost2Interface interface {
 	ITextHostInterface
@@ -2414,7 +2429,7 @@ func (this *ITextHost2) TxSetForegroundWindow() HRESULT {
 
 func (this *ITextHost2) TxGetPalette() HPALETTE {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetPalette, uintptr(unsafe.Pointer(this)))
-	return HPALETTE(ret)
+	return ret
 }
 
 func (this *ITextHost2) TxGetEastAsianFlags(pFlags *int32) HRESULT {
@@ -2423,13 +2438,12 @@ func (this *ITextHost2) TxGetEastAsianFlags(pFlags *int32) HRESULT {
 }
 
 func (this *ITextHost2) TxSetCursor2(hcur HCURSOR, bText BOOL) HCURSOR {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetCursor2, uintptr(unsafe.Pointer(this)), uintptr(hcur), uintptr(bText))
-	return HCURSOR(ret)
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxSetCursor2, uintptr(unsafe.Pointer(this)), hcur, uintptr(bText))
+	return ret
 }
 
 func (this *ITextHost2) TxFreeTextServicesNotification() {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxFreeTextServicesNotification, uintptr(unsafe.Pointer(this)))
-
 }
 
 func (this *ITextHost2) TxGetEditStyle(dwItem uint32, pdwData *uint32) HRESULT {
@@ -2443,7 +2457,7 @@ func (this *ITextHost2) TxGetWindowStyles(pdwStyle *uint32, pdwExStyle *uint32) 
 }
 
 func (this *ITextHost2) TxShowDropCaret(fShow BOOL, hdc HDC, prc *RECT) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxShowDropCaret, uintptr(unsafe.Pointer(this)), uintptr(fShow), uintptr(hdc), uintptr(unsafe.Pointer(prc)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxShowDropCaret, uintptr(unsafe.Pointer(this)), uintptr(fShow), hdc, uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
@@ -2457,10 +2471,14 @@ func (this *ITextHost2) TxGetHorzExtent(plHorzExtent *int32) HRESULT {
 	return HRESULT(ret)
 }
 
+// 00000000-0000-0000-0000-000000000000
+var IID_ITextServices2 = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
+
 type ITextServices2Interface interface {
 	ITextServicesInterface
 	TxGetNaturalSize2(dwAspect uint32, hdcDraw HDC, hicTargetDev HDC, ptd *DVTARGETDEVICE, dwMode uint32, psizelExtent *SIZE, pwidth *int32, pheight *int32, pascent *int32) HRESULT
-	TxDrawD2D(pRenderTarget *ID2D1RenderTarget, lprcBounds *RECTL, lprcUpdate *RECT, lViewId int32) HRESULT
+	TxDrawD2D(pRenderTarget unsafe.Pointer, lprcBounds *RECTL, lprcUpdate *RECT, lViewId int32) HRESULT
 }
 
 type ITextServices2Vtbl struct {
@@ -2478,18 +2496,18 @@ func (this *ITextServices2) Vtbl() *ITextServices2Vtbl {
 }
 
 func (this *ITextServices2) TxGetNaturalSize2(dwAspect uint32, hdcDraw HDC, hicTargetDev HDC, ptd *DVTARGETDEVICE, dwMode uint32, psizelExtent *SIZE, pwidth *int32, pheight *int32, pascent *int32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetNaturalSize2, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), uintptr(hdcDraw), uintptr(hicTargetDev), uintptr(unsafe.Pointer(ptd)), uintptr(dwMode), uintptr(unsafe.Pointer(psizelExtent)), uintptr(unsafe.Pointer(pwidth)), uintptr(unsafe.Pointer(pheight)), uintptr(unsafe.Pointer(pascent)))
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetNaturalSize2, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), hdcDraw, hicTargetDev, uintptr(unsafe.Pointer(ptd)), uintptr(dwMode), uintptr(unsafe.Pointer(psizelExtent)), uintptr(unsafe.Pointer(pwidth)), uintptr(unsafe.Pointer(pheight)), uintptr(unsafe.Pointer(pascent)))
 	return HRESULT(ret)
 }
 
-func (this *ITextServices2) TxDrawD2D(pRenderTarget *ID2D1RenderTarget, lprcBounds *RECTL, lprcUpdate *RECT, lViewId int32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDrawD2D, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRenderTarget)), uintptr(unsafe.Pointer(lprcBounds)), uintptr(unsafe.Pointer(lprcUpdate)), uintptr(lViewId))
+func (this *ITextServices2) TxDrawD2D(pRenderTarget unsafe.Pointer, lprcBounds *RECTL, lprcUpdate *RECT, lViewId int32) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().TxDrawD2D, uintptr(unsafe.Pointer(this)), uintptr(pRenderTarget), uintptr(unsafe.Pointer(lprcBounds)), uintptr(unsafe.Pointer(lprcUpdate)), uintptr(lViewId))
 	return HRESULT(ret)
 }
 
-// 00020d00-0000-0000-c000-000000000046
-var IID_IRichEditOle = syscall.GUID{0x00020d00, 0x0000, 0x0000,
-	[8]byte{0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
+// 00020D00-0000-0000-C000-000000000046
+var IID_IRichEditOle = syscall.GUID{0x00020D00, 0x0000, 0x0000,
+	[8]byte{0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
 
 type IRichEditOleInterface interface {
 	IUnknownInterface
@@ -2619,9 +2637,9 @@ func (this *IRichEditOle) ImportDataObject(lpdataobj *IDataObject, cf uint16, hM
 	return HRESULT(ret)
 }
 
-// 00020d03-0000-0000-c000-000000000046
-var IID_IRichEditOleCallback = syscall.GUID{0x00020d03, 0x0000, 0x0000,
-	[8]byte{0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
+// 00020D03-0000-0000-C000-000000000046
+var IID_IRichEditOleCallback = syscall.GUID{0x00020D03, 0x0000, 0x0000,
+	[8]byte{0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
 
 type IRichEditOleCallbackInterface interface {
 	IUnknownInterface
@@ -2709,9 +2727,9 @@ func (this *IRichEditOleCallback) GetContextMenu(seltype RICH_EDIT_GET_CONTEXT_M
 	return HRESULT(ret)
 }
 
-// 8cc497c0-a1df-11ce-8098-00aa0047be5d
-var IID_ITextDocument = syscall.GUID{0x8cc497c0, 0xa1df, 0x11ce,
-	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
+// 8CC497C0-A1DF-11CE-8098-00AA0047BE5D
+var IID_ITextDocument = syscall.GUID{0x8CC497C0, 0xA1DF, 0x11CE,
+	[8]byte{0x80, 0x98, 0x00, 0xAA, 0x00, 0x47, 0xBE, 0x5D}}
 
 type ITextDocumentInterface interface {
 	IDispatchInterface
@@ -2862,9 +2880,9 @@ func (this *ITextDocument) RangeFromPoint(x int32, y int32, ppRange **ITextRange
 	return HRESULT(ret)
 }
 
-// 8cc497c2-a1df-11ce-8098-00aa0047be5d
-var IID_ITextRange = syscall.GUID{0x8cc497c2, 0xa1df, 0x11ce,
-	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
+// 8CC497C2-A1DF-11CE-8098-00AA0047BE5D
+var IID_ITextRange = syscall.GUID{0x8CC497C2, 0xA1DF, 0x11CE,
+	[8]byte{0x80, 0x98, 0x00, 0xAA, 0x00, 0x47, 0xBE, 0x5D}}
 
 type ITextRangeInterface interface {
 	IDispatchInterface
@@ -3239,9 +3257,9 @@ func (this *ITextRange) GetEmbeddedObject(ppObject **IUnknown) HRESULT {
 	return HRESULT(ret)
 }
 
-// 8cc497c1-a1df-11ce-8098-00aa0047be5d
-var IID_ITextSelection = syscall.GUID{0x8cc497c1, 0xa1df, 0x11ce,
-	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
+// 8CC497C1-A1DF-11CE-8098-00AA0047BE5D
+var IID_ITextSelection = syscall.GUID{0x8CC497C1, 0xA1DF, 0x11CE,
+	[8]byte{0x80, 0x98, 0x00, 0xAA, 0x00, 0x47, 0xBE, 0x5D}}
 
 type ITextSelectionInterface interface {
 	ITextRangeInterface
@@ -3329,9 +3347,9 @@ func (this *ITextSelection) TypeText(bstr BSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-// 8cc497c3-a1df-11ce-8098-00aa0047be5d
-var IID_ITextFont = syscall.GUID{0x8cc497c3, 0xa1df, 0x11ce,
-	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
+// 8CC497C3-A1DF-11CE-8098-00AA0047BE5D
+var IID_ITextFont = syscall.GUID{0x8CC497C3, 0xA1DF, 0x11CE,
+	[8]byte{0x80, 0x98, 0x00, 0xAA, 0x00, 0x47, 0xBE, 0x5D}}
 
 type ITextFontInterface interface {
 	IDispatchInterface
@@ -3734,9 +3752,9 @@ func (this *ITextFont) SetWeight(Value int32) HRESULT {
 	return HRESULT(ret)
 }
 
-// 8cc497c4-a1df-11ce-8098-00aa0047be5d
-var IID_ITextPara = syscall.GUID{0x8cc497c4, 0xa1df, 0x11ce,
-	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
+// 8CC497C4-A1DF-11CE-8098-00AA0047BE5D
+var IID_ITextPara = syscall.GUID{0x8CC497C4, 0xA1DF, 0x11CE,
+	[8]byte{0x80, 0x98, 0x00, 0xAA, 0x00, 0x47, 0xBE, 0x5D}}
 
 type ITextParaInterface interface {
 	IDispatchInterface
@@ -4090,9 +4108,9 @@ func (this *ITextPara) GetTab(iTab int32, ptbPos *float32, ptbAlign *int32, ptbL
 	return HRESULT(ret)
 }
 
-// 8cc497c5-a1df-11ce-8098-00aa0047be5d
-var IID_ITextStoryRanges = syscall.GUID{0x8cc497c5, 0xa1df, 0x11ce,
-	[8]byte{0x80, 0x98, 0x00, 0xaa, 0x00, 0x47, 0xbe, 0x5d}}
+// 8CC497C5-A1DF-11CE-8098-00AA0047BE5D
+var IID_ITextStoryRanges = syscall.GUID{0x8CC497C5, 0xA1DF, 0x11CE,
+	[8]byte{0x80, 0x98, 0x00, 0xAA, 0x00, 0x47, 0xBE, 0x5D}}
 
 type ITextStoryRangesInterface interface {
 	IDispatchInterface
@@ -4131,9 +4149,9 @@ func (this *ITextStoryRanges) GetCount(pCount *int32) HRESULT {
 	return HRESULT(ret)
 }
 
-// c241f5e0-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextDocument2 = syscall.GUID{0xc241f5e0, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5E0-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextDocument2 = syscall.GUID{0xC241F5E0, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextDocument2Interface interface {
 	ITextDocumentInterface
@@ -4459,9 +4477,9 @@ func (this *ITextDocument2) GetStory(Index int32, ppStory **ITextStory) HRESULT 
 	return HRESULT(ret)
 }
 
-// c241f5e2-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextRange2 = syscall.GUID{0xc241f5e2, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5E2-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextRange2 = syscall.GUID{0xC241F5E2, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextRange2Interface interface {
 	ITextSelectionInterface
@@ -4759,9 +4777,9 @@ func (this *ITextRange2) InsertImage(width int32, height int32, ascent int32, Ty
 	return HRESULT(ret)
 }
 
-// c241f5e1-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextSelection2 = syscall.GUID{0xc241f5e1, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5E1-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextSelection2 = syscall.GUID{0xC241F5E1, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextSelection2Interface interface {
 	ITextRange2Interface
@@ -4779,9 +4797,9 @@ func (this *ITextSelection2) Vtbl() *ITextSelection2Vtbl {
 	return (*ITextSelection2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-// c241f5e3-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextFont2 = syscall.GUID{0xc241f5e3, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5E3-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextFont2 = syscall.GUID{0xC241F5E3, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextFont2Interface interface {
 	ITextFontInterface
@@ -5121,9 +5139,9 @@ func (this *ITextFont2) SetProperty(Type int32, Value int32) HRESULT {
 	return HRESULT(ret)
 }
 
-// c241f5e4-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextPara2 = syscall.GUID{0xc241f5e4, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5E4-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextPara2 = syscall.GUID{0xC241F5E4, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextPara2Interface interface {
 	ITextParaInterface
@@ -5253,9 +5271,9 @@ func (this *ITextPara2) SetProperty(Type int32, Value int32) HRESULT {
 	return HRESULT(ret)
 }
 
-// c241f5e5-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextStoryRanges2 = syscall.GUID{0xc241f5e5, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5E5-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextStoryRanges2 = syscall.GUID{0xC241F5E5, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextStoryRanges2Interface interface {
 	ITextStoryRangesInterface
@@ -5280,9 +5298,9 @@ func (this *ITextStoryRanges2) Item2(Index int32, ppRange **ITextRange2) HRESULT
 	return HRESULT(ret)
 }
 
-// c241f5f3-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextStory = syscall.GUID{0xc241f5f3, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5F3-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextStory = syscall.GUID{0xC241F5F3, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextStoryInterface interface {
 	IUnknownInterface
@@ -5384,9 +5402,9 @@ func (this *ITextStory) SetText(Flags int32, bstr BSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-// c241f5e7-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextStrings = syscall.GUID{0xc241f5e7, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5E7-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextStrings = syscall.GUID{0xC241F5E7, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextStringsInterface interface {
 	IDispatchInterface
@@ -5523,9 +5541,9 @@ func (this *ITextStrings) Swap() HRESULT {
 	return HRESULT(ret)
 }
 
-// c241f5ef-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextRow = syscall.GUID{0xc241f5ef, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5EF-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextRow = syscall.GUID{0xC241F5EF, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextRowInterface interface {
 	IDispatchInterface
@@ -5865,9 +5883,9 @@ func (this *ITextRow) SetProperty(Type int32, Value int32) HRESULT {
 	return HRESULT(ret)
 }
 
-// c241f5f2-7206-11d8-a2c7-00a0d1d6c6b3
-var IID_ITextDisplays = syscall.GUID{0xc241f5f2, 0x7206, 0x11d8,
-	[8]byte{0xa2, 0xc7, 0x00, 0xa0, 0xd1, 0xd6, 0xc6, 0xb3}}
+// C241F5F2-7206-11D8-A2C7-00A0D1D6C6B3
+var IID_ITextDisplays = syscall.GUID{0xC241F5F2, 0x7206, 0x11D8,
+	[8]byte{0xA2, 0xC7, 0x00, 0xA0, 0xD1, 0xD6, 0xC6, 0xB3}}
 
 type ITextDisplaysInterface interface {
 	IDispatchInterface
@@ -5885,9 +5903,9 @@ func (this *ITextDisplays) Vtbl() *ITextDisplaysVtbl {
 	return (*ITextDisplaysVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-// 01c25500-4268-11d1-883a-3c8b00c10000
-var IID_ITextDocument2Old = syscall.GUID{0x01c25500, 0x4268, 0x11d1,
-	[8]byte{0x88, 0x3a, 0x3c, 0x8b, 0x00, 0xc1, 0x00, 0x00}}
+// 01C25500-4268-11D1-883A-3C8B00C10000
+var IID_ITextDocument2Old = syscall.GUID{0x01C25500, 0x4268, 0x11D1,
+	[8]byte{0x88, 0x3A, 0x3C, 0x8B, 0x00, 0xC1, 0x00, 0x00}}
 
 type ITextDocument2OldInterface interface {
 	ITextDocumentInterface
@@ -6072,5 +6090,3 @@ func (this *ITextDocument2Old) ReleaseCallManager(pVoid *IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ReleaseCallManager, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVoid)))
 	return HRESULT(ret)
 }
-
-var ()
