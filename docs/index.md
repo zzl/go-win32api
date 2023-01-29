@@ -1,3 +1,7 @@
+layout: page
+title: "PAGE-TITLE"
+permalink: /go-win32-api
+
 :ukraine:
 
 # go-win32api
