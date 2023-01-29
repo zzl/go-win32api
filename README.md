@@ -14,6 +14,14 @@ The code generator is avaiable [here](https://github.com/zzl/go-win32api-gen), y
 ## Status
 Currently only 64-bit architecture is targeted and tested.
 
+## Installation
+```
+go get github.com/zzl/go-win32api/v2
+```
+```go
+import "github.com/zzl/go-win32api/v2/win32"
+```
+
 ## About unions
 Union fields are mapped to accessor methods in Go. These methods has the same name as the fields, and return pointer values, so that they can be assigned with new values. 
 An additional value accessor method is also generated for each field, whose name is in the pattern of FieldName+Val.
