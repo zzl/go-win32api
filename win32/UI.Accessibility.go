@@ -14,515 +14,124 @@ type (
 )
 
 const (
-	ANRUS_PRIORITY_AUDIO_DYNAMIC_DUCK                    uint32  = 0x10
-	MSAA_MENU_SIG                                        int32   = -1441927155
-	DISPID_ACC_PARENT                                    int32   = -5000
-	DISPID_ACC_CHILDCOUNT                                int32   = -5001
-	DISPID_ACC_CHILD                                     int32   = -5002
-	DISPID_ACC_NAME                                      int32   = -5003
-	DISPID_ACC_VALUE                                     int32   = -5004
-	DISPID_ACC_DESCRIPTION                               int32   = -5005
-	DISPID_ACC_ROLE                                      int32   = -5006
-	DISPID_ACC_STATE                                     int32   = -5007
-	DISPID_ACC_HELP                                      int32   = -5008
-	DISPID_ACC_HELPTOPIC                                 int32   = -5009
-	DISPID_ACC_KEYBOARDSHORTCUT                          int32   = -5010
-	DISPID_ACC_FOCUS                                     int32   = -5011
-	DISPID_ACC_SELECTION                                 int32   = -5012
-	DISPID_ACC_DEFAULTACTION                             int32   = -5013
-	DISPID_ACC_SELECT                                    int32   = -5014
-	DISPID_ACC_LOCATION                                  int32   = -5015
-	DISPID_ACC_NAVIGATE                                  int32   = -5016
-	DISPID_ACC_HITTEST                                   int32   = -5017
-	DISPID_ACC_DODEFAULTACTION                           int32   = -5018
-	NAVDIR_MIN                                           uint32  = 0x0
-	NAVDIR_UP                                            uint32  = 0x1
-	NAVDIR_DOWN                                          uint32  = 0x2
-	NAVDIR_LEFT                                          uint32  = 0x3
-	NAVDIR_RIGHT                                         uint32  = 0x4
-	NAVDIR_NEXT                                          uint32  = 0x5
-	NAVDIR_PREVIOUS                                      uint32  = 0x6
-	NAVDIR_FIRSTCHILD                                    uint32  = 0x7
-	NAVDIR_LASTCHILD                                     uint32  = 0x8
-	NAVDIR_MAX                                           uint32  = 0x9
-	SELFLAG_NONE                                         uint32  = 0x0
-	SELFLAG_TAKEFOCUS                                    uint32  = 0x1
-	SELFLAG_TAKESELECTION                                uint32  = 0x2
-	SELFLAG_EXTENDSELECTION                              uint32  = 0x4
-	SELFLAG_ADDSELECTION                                 uint32  = 0x8
-	SELFLAG_REMOVESELECTION                              uint32  = 0x10
-	SELFLAG_VALID                                        uint32  = 0x1f
-	STATE_SYSTEM_NORMAL                                  uint32  = 0x0
-	STATE_SYSTEM_HASPOPUP                                uint32  = 0x40000000
-	ROLE_SYSTEM_TITLEBAR                                 uint32  = 0x1
-	ROLE_SYSTEM_MENUBAR                                  uint32  = 0x2
-	ROLE_SYSTEM_SCROLLBAR                                uint32  = 0x3
-	ROLE_SYSTEM_GRIP                                     uint32  = 0x4
-	ROLE_SYSTEM_SOUND                                    uint32  = 0x5
-	ROLE_SYSTEM_CURSOR                                   uint32  = 0x6
-	ROLE_SYSTEM_CARET                                    uint32  = 0x7
-	ROLE_SYSTEM_ALERT                                    uint32  = 0x8
-	ROLE_SYSTEM_WINDOW                                   uint32  = 0x9
-	ROLE_SYSTEM_CLIENT                                   uint32  = 0xa
-	ROLE_SYSTEM_MENUPOPUP                                uint32  = 0xb
-	ROLE_SYSTEM_MENUITEM                                 uint32  = 0xc
-	ROLE_SYSTEM_TOOLTIP                                  uint32  = 0xd
-	ROLE_SYSTEM_APPLICATION                              uint32  = 0xe
-	ROLE_SYSTEM_DOCUMENT                                 uint32  = 0xf
-	ROLE_SYSTEM_PANE                                     uint32  = 0x10
-	ROLE_SYSTEM_CHART                                    uint32  = 0x11
-	ROLE_SYSTEM_DIALOG                                   uint32  = 0x12
-	ROLE_SYSTEM_BORDER                                   uint32  = 0x13
-	ROLE_SYSTEM_GROUPING                                 uint32  = 0x14
-	ROLE_SYSTEM_SEPARATOR                                uint32  = 0x15
-	ROLE_SYSTEM_TOOLBAR                                  uint32  = 0x16
-	ROLE_SYSTEM_STATUSBAR                                uint32  = 0x17
-	ROLE_SYSTEM_TABLE                                    uint32  = 0x18
-	ROLE_SYSTEM_COLUMNHEADER                             uint32  = 0x19
-	ROLE_SYSTEM_ROWHEADER                                uint32  = 0x1a
-	ROLE_SYSTEM_COLUMN                                   uint32  = 0x1b
-	ROLE_SYSTEM_ROW                                      uint32  = 0x1c
-	ROLE_SYSTEM_CELL                                     uint32  = 0x1d
-	ROLE_SYSTEM_LINK                                     uint32  = 0x1e
-	ROLE_SYSTEM_HELPBALLOON                              uint32  = 0x1f
-	ROLE_SYSTEM_CHARACTER                                uint32  = 0x20
-	ROLE_SYSTEM_LIST                                     uint32  = 0x21
-	ROLE_SYSTEM_LISTITEM                                 uint32  = 0x22
-	ROLE_SYSTEM_OUTLINE                                  uint32  = 0x23
-	ROLE_SYSTEM_OUTLINEITEM                              uint32  = 0x24
-	ROLE_SYSTEM_PAGETAB                                  uint32  = 0x25
-	ROLE_SYSTEM_PROPERTYPAGE                             uint32  = 0x26
-	ROLE_SYSTEM_INDICATOR                                uint32  = 0x27
-	ROLE_SYSTEM_GRAPHIC                                  uint32  = 0x28
-	ROLE_SYSTEM_STATICTEXT                               uint32  = 0x29
-	ROLE_SYSTEM_TEXT                                     uint32  = 0x2a
-	ROLE_SYSTEM_PUSHBUTTON                               uint32  = 0x2b
-	ROLE_SYSTEM_CHECKBUTTON                              uint32  = 0x2c
-	ROLE_SYSTEM_RADIOBUTTON                              uint32  = 0x2d
-	ROLE_SYSTEM_COMBOBOX                                 uint32  = 0x2e
-	ROLE_SYSTEM_DROPLIST                                 uint32  = 0x2f
-	ROLE_SYSTEM_PROGRESSBAR                              uint32  = 0x30
-	ROLE_SYSTEM_DIAL                                     uint32  = 0x31
-	ROLE_SYSTEM_HOTKEYFIELD                              uint32  = 0x32
-	ROLE_SYSTEM_SLIDER                                   uint32  = 0x33
-	ROLE_SYSTEM_SPINBUTTON                               uint32  = 0x34
-	ROLE_SYSTEM_DIAGRAM                                  uint32  = 0x35
-	ROLE_SYSTEM_ANIMATION                                uint32  = 0x36
-	ROLE_SYSTEM_EQUATION                                 uint32  = 0x37
-	ROLE_SYSTEM_BUTTONDROPDOWN                           uint32  = 0x38
-	ROLE_SYSTEM_BUTTONMENU                               uint32  = 0x39
-	ROLE_SYSTEM_BUTTONDROPDOWNGRID                       uint32  = 0x3a
-	ROLE_SYSTEM_WHITESPACE                               uint32  = 0x3b
-	ROLE_SYSTEM_PAGETABLIST                              uint32  = 0x3c
-	ROLE_SYSTEM_CLOCK                                    uint32  = 0x3d
-	ROLE_SYSTEM_SPLITBUTTON                              uint32  = 0x3e
-	ROLE_SYSTEM_IPADDRESS                                uint32  = 0x3f
-	ROLE_SYSTEM_OUTLINEBUTTON                            uint32  = 0x40
-	UIA_E_ELEMENTNOTENABLED                              uint32  = 0x80040200
-	UIA_E_ELEMENTNOTAVAILABLE                            uint32  = 0x80040201
-	UIA_E_NOCLICKABLEPOINT                               uint32  = 0x80040202
-	UIA_E_PROXYASSEMBLYNOTLOADED                         uint32  = 0x80040203
-	UIA_E_NOTSUPPORTED                                   uint32  = 0x80040204
-	UIA_E_INVALIDOPERATION                               uint32  = 0x80131509
-	UIA_E_TIMEOUT                                        uint32  = 0x80131505
-	UiaAppendRuntimeId                                   uint32  = 0x3
-	UiaRootObjectId                                      int32   = -25
-	UIA_IAFP_DEFAULT                                     uint32  = 0x0
-	UIA_IAFP_UNWRAP_BRIDGE                               uint32  = 0x1
-	UIA_PFIA_DEFAULT                                     uint32  = 0x0
-	UIA_PFIA_UNWRAP_BRIDGE                               uint32  = 0x1
-	UIA_ScrollPatternNoScroll                            float64 = -1
-	UIA_InvokePatternId                                  int32   = 10000
-	UIA_SelectionPatternId                               int32   = 10001
-	UIA_ValuePatternId                                   int32   = 10002
-	UIA_RangeValuePatternId                              int32   = 10003
-	UIA_ScrollPatternId                                  int32   = 10004
-	UIA_ExpandCollapsePatternId                          int32   = 10005
-	UIA_GridPatternId                                    int32   = 10006
-	UIA_GridItemPatternId                                int32   = 10007
-	UIA_MultipleViewPatternId                            int32   = 10008
-	UIA_WindowPatternId                                  int32   = 10009
-	UIA_SelectionItemPatternId                           int32   = 10010
-	UIA_DockPatternId                                    int32   = 10011
-	UIA_TablePatternId                                   int32   = 10012
-	UIA_TableItemPatternId                               int32   = 10013
-	UIA_TextPatternId                                    int32   = 10014
-	UIA_TogglePatternId                                  int32   = 10015
-	UIA_TransformPatternId                               int32   = 10016
-	UIA_ScrollItemPatternId                              int32   = 10017
-	UIA_LegacyIAccessiblePatternId                       int32   = 10018
-	UIA_ItemContainerPatternId                           int32   = 10019
-	UIA_VirtualizedItemPatternId                         int32   = 10020
-	UIA_SynchronizedInputPatternId                       int32   = 10021
-	UIA_ObjectModelPatternId                             int32   = 10022
-	UIA_AnnotationPatternId                              int32   = 10023
-	UIA_TextPattern2Id                                   int32   = 10024
-	UIA_StylesPatternId                                  int32   = 10025
-	UIA_SpreadsheetPatternId                             int32   = 10026
-	UIA_SpreadsheetItemPatternId                         int32   = 10027
-	UIA_TransformPattern2Id                              int32   = 10028
-	UIA_TextChildPatternId                               int32   = 10029
-	UIA_DragPatternId                                    int32   = 10030
-	UIA_DropTargetPatternId                              int32   = 10031
-	UIA_TextEditPatternId                                int32   = 10032
-	UIA_CustomNavigationPatternId                        int32   = 10033
-	UIA_SelectionPattern2Id                              int32   = 10034
-	UIA_ToolTipOpenedEventId                             int32   = 20000
-	UIA_ToolTipClosedEventId                             int32   = 20001
-	UIA_StructureChangedEventId                          int32   = 20002
-	UIA_MenuOpenedEventId                                int32   = 20003
-	UIA_AutomationPropertyChangedEventId                 int32   = 20004
-	UIA_AutomationFocusChangedEventId                    int32   = 20005
-	UIA_AsyncContentLoadedEventId                        int32   = 20006
-	UIA_MenuClosedEventId                                int32   = 20007
-	UIA_LayoutInvalidatedEventId                         int32   = 20008
-	UIA_Invoke_InvokedEventId                            int32   = 20009
-	UIA_SelectionItem_ElementAddedToSelectionEventId     int32   = 20010
-	UIA_SelectionItem_ElementRemovedFromSelectionEventId int32   = 20011
-	UIA_SelectionItem_ElementSelectedEventId             int32   = 20012
-	UIA_Selection_InvalidatedEventId                     int32   = 20013
-	UIA_Text_TextSelectionChangedEventId                 int32   = 20014
-	UIA_Text_TextChangedEventId                          int32   = 20015
-	UIA_Window_WindowOpenedEventId                       int32   = 20016
-	UIA_Window_WindowClosedEventId                       int32   = 20017
-	UIA_MenuModeStartEventId                             int32   = 20018
-	UIA_MenuModeEndEventId                               int32   = 20019
-	UIA_InputReachedTargetEventId                        int32   = 20020
-	UIA_InputReachedOtherElementEventId                  int32   = 20021
-	UIA_InputDiscardedEventId                            int32   = 20022
-	UIA_SystemAlertEventId                               int32   = 20023
-	UIA_LiveRegionChangedEventId                         int32   = 20024
-	UIA_HostedFragmentRootsInvalidatedEventId            int32   = 20025
-	UIA_Drag_DragStartEventId                            int32   = 20026
-	UIA_Drag_DragCancelEventId                           int32   = 20027
-	UIA_Drag_DragCompleteEventId                         int32   = 20028
-	UIA_DropTarget_DragEnterEventId                      int32   = 20029
-	UIA_DropTarget_DragLeaveEventId                      int32   = 20030
-	UIA_DropTarget_DroppedEventId                        int32   = 20031
-	UIA_TextEdit_TextChangedEventId                      int32   = 20032
-	UIA_TextEdit_ConversionTargetChangedEventId          int32   = 20033
-	UIA_ChangesEventId                                   int32   = 20034
-	UIA_NotificationEventId                              int32   = 20035
-	UIA_ActiveTextPositionChangedEventId                 int32   = 20036
-	UIA_RuntimeIdPropertyId                              int32   = 30000
-	UIA_BoundingRectanglePropertyId                      int32   = 30001
-	UIA_ProcessIdPropertyId                              int32   = 30002
-	UIA_ControlTypePropertyId                            int32   = 30003
-	UIA_LocalizedControlTypePropertyId                   int32   = 30004
-	UIA_NamePropertyId                                   int32   = 30005
-	UIA_AcceleratorKeyPropertyId                         int32   = 30006
-	UIA_AccessKeyPropertyId                              int32   = 30007
-	UIA_HasKeyboardFocusPropertyId                       int32   = 30008
-	UIA_IsKeyboardFocusablePropertyId                    int32   = 30009
-	UIA_IsEnabledPropertyId                              int32   = 30010
-	UIA_AutomationIdPropertyId                           int32   = 30011
-	UIA_ClassNamePropertyId                              int32   = 30012
-	UIA_HelpTextPropertyId                               int32   = 30013
-	UIA_ClickablePointPropertyId                         int32   = 30014
-	UIA_CulturePropertyId                                int32   = 30015
-	UIA_IsControlElementPropertyId                       int32   = 30016
-	UIA_IsContentElementPropertyId                       int32   = 30017
-	UIA_LabeledByPropertyId                              int32   = 30018
-	UIA_IsPasswordPropertyId                             int32   = 30019
-	UIA_NativeWindowHandlePropertyId                     int32   = 30020
-	UIA_ItemTypePropertyId                               int32   = 30021
-	UIA_IsOffscreenPropertyId                            int32   = 30022
-	UIA_OrientationPropertyId                            int32   = 30023
-	UIA_FrameworkIdPropertyId                            int32   = 30024
-	UIA_IsRequiredForFormPropertyId                      int32   = 30025
-	UIA_ItemStatusPropertyId                             int32   = 30026
-	UIA_IsDockPatternAvailablePropertyId                 int32   = 30027
-	UIA_IsExpandCollapsePatternAvailablePropertyId       int32   = 30028
-	UIA_IsGridItemPatternAvailablePropertyId             int32   = 30029
-	UIA_IsGridPatternAvailablePropertyId                 int32   = 30030
-	UIA_IsInvokePatternAvailablePropertyId               int32   = 30031
-	UIA_IsMultipleViewPatternAvailablePropertyId         int32   = 30032
-	UIA_IsRangeValuePatternAvailablePropertyId           int32   = 30033
-	UIA_IsScrollPatternAvailablePropertyId               int32   = 30034
-	UIA_IsScrollItemPatternAvailablePropertyId           int32   = 30035
-	UIA_IsSelectionItemPatternAvailablePropertyId        int32   = 30036
-	UIA_IsSelectionPatternAvailablePropertyId            int32   = 30037
-	UIA_IsTablePatternAvailablePropertyId                int32   = 30038
-	UIA_IsTableItemPatternAvailablePropertyId            int32   = 30039
-	UIA_IsTextPatternAvailablePropertyId                 int32   = 30040
-	UIA_IsTogglePatternAvailablePropertyId               int32   = 30041
-	UIA_IsTransformPatternAvailablePropertyId            int32   = 30042
-	UIA_IsValuePatternAvailablePropertyId                int32   = 30043
-	UIA_IsWindowPatternAvailablePropertyId               int32   = 30044
-	UIA_ValueValuePropertyId                             int32   = 30045
-	UIA_ValueIsReadOnlyPropertyId                        int32   = 30046
-	UIA_RangeValueValuePropertyId                        int32   = 30047
-	UIA_RangeValueIsReadOnlyPropertyId                   int32   = 30048
-	UIA_RangeValueMinimumPropertyId                      int32   = 30049
-	UIA_RangeValueMaximumPropertyId                      int32   = 30050
-	UIA_RangeValueLargeChangePropertyId                  int32   = 30051
-	UIA_RangeValueSmallChangePropertyId                  int32   = 30052
-	UIA_ScrollHorizontalScrollPercentPropertyId          int32   = 30053
-	UIA_ScrollHorizontalViewSizePropertyId               int32   = 30054
-	UIA_ScrollVerticalScrollPercentPropertyId            int32   = 30055
-	UIA_ScrollVerticalViewSizePropertyId                 int32   = 30056
-	UIA_ScrollHorizontallyScrollablePropertyId           int32   = 30057
-	UIA_ScrollVerticallyScrollablePropertyId             int32   = 30058
-	UIA_SelectionSelectionPropertyId                     int32   = 30059
-	UIA_SelectionCanSelectMultiplePropertyId             int32   = 30060
-	UIA_SelectionIsSelectionRequiredPropertyId           int32   = 30061
-	UIA_GridRowCountPropertyId                           int32   = 30062
-	UIA_GridColumnCountPropertyId                        int32   = 30063
-	UIA_GridItemRowPropertyId                            int32   = 30064
-	UIA_GridItemColumnPropertyId                         int32   = 30065
-	UIA_GridItemRowSpanPropertyId                        int32   = 30066
-	UIA_GridItemColumnSpanPropertyId                     int32   = 30067
-	UIA_GridItemContainingGridPropertyId                 int32   = 30068
-	UIA_DockDockPositionPropertyId                       int32   = 30069
-	UIA_ExpandCollapseExpandCollapseStatePropertyId      int32   = 30070
-	UIA_MultipleViewCurrentViewPropertyId                int32   = 30071
-	UIA_MultipleViewSupportedViewsPropertyId             int32   = 30072
-	UIA_WindowCanMaximizePropertyId                      int32   = 30073
-	UIA_WindowCanMinimizePropertyId                      int32   = 30074
-	UIA_WindowWindowVisualStatePropertyId                int32   = 30075
-	UIA_WindowWindowInteractionStatePropertyId           int32   = 30076
-	UIA_WindowIsModalPropertyId                          int32   = 30077
-	UIA_WindowIsTopmostPropertyId                        int32   = 30078
-	UIA_SelectionItemIsSelectedPropertyId                int32   = 30079
-	UIA_SelectionItemSelectionContainerPropertyId        int32   = 30080
-	UIA_TableRowHeadersPropertyId                        int32   = 30081
-	UIA_TableColumnHeadersPropertyId                     int32   = 30082
-	UIA_TableRowOrColumnMajorPropertyId                  int32   = 30083
-	UIA_TableItemRowHeaderItemsPropertyId                int32   = 30084
-	UIA_TableItemColumnHeaderItemsPropertyId             int32   = 30085
-	UIA_ToggleToggleStatePropertyId                      int32   = 30086
-	UIA_TransformCanMovePropertyId                       int32   = 30087
-	UIA_TransformCanResizePropertyId                     int32   = 30088
-	UIA_TransformCanRotatePropertyId                     int32   = 30089
-	UIA_IsLegacyIAccessiblePatternAvailablePropertyId    int32   = 30090
-	UIA_LegacyIAccessibleChildIdPropertyId               int32   = 30091
-	UIA_LegacyIAccessibleNamePropertyId                  int32   = 30092
-	UIA_LegacyIAccessibleValuePropertyId                 int32   = 30093
-	UIA_LegacyIAccessibleDescriptionPropertyId           int32   = 30094
-	UIA_LegacyIAccessibleRolePropertyId                  int32   = 30095
-	UIA_LegacyIAccessibleStatePropertyId                 int32   = 30096
-	UIA_LegacyIAccessibleHelpPropertyId                  int32   = 30097
-	UIA_LegacyIAccessibleKeyboardShortcutPropertyId      int32   = 30098
-	UIA_LegacyIAccessibleSelectionPropertyId             int32   = 30099
-	UIA_LegacyIAccessibleDefaultActionPropertyId         int32   = 30100
-	UIA_AriaRolePropertyId                               int32   = 30101
-	UIA_AriaPropertiesPropertyId                         int32   = 30102
-	UIA_IsDataValidForFormPropertyId                     int32   = 30103
-	UIA_ControllerForPropertyId                          int32   = 30104
-	UIA_DescribedByPropertyId                            int32   = 30105
-	UIA_FlowsToPropertyId                                int32   = 30106
-	UIA_ProviderDescriptionPropertyId                    int32   = 30107
-	UIA_IsItemContainerPatternAvailablePropertyId        int32   = 30108
-	UIA_IsVirtualizedItemPatternAvailablePropertyId      int32   = 30109
-	UIA_IsSynchronizedInputPatternAvailablePropertyId    int32   = 30110
-	UIA_OptimizeForVisualContentPropertyId               int32   = 30111
-	UIA_IsObjectModelPatternAvailablePropertyId          int32   = 30112
-	UIA_AnnotationAnnotationTypeIdPropertyId             int32   = 30113
-	UIA_AnnotationAnnotationTypeNamePropertyId           int32   = 30114
-	UIA_AnnotationAuthorPropertyId                       int32   = 30115
-	UIA_AnnotationDateTimePropertyId                     int32   = 30116
-	UIA_AnnotationTargetPropertyId                       int32   = 30117
-	UIA_IsAnnotationPatternAvailablePropertyId           int32   = 30118
-	UIA_IsTextPattern2AvailablePropertyId                int32   = 30119
-	UIA_StylesStyleIdPropertyId                          int32   = 30120
-	UIA_StylesStyleNamePropertyId                        int32   = 30121
-	UIA_StylesFillColorPropertyId                        int32   = 30122
-	UIA_StylesFillPatternStylePropertyId                 int32   = 30123
-	UIA_StylesShapePropertyId                            int32   = 30124
-	UIA_StylesFillPatternColorPropertyId                 int32   = 30125
-	UIA_StylesExtendedPropertiesPropertyId               int32   = 30126
-	UIA_IsStylesPatternAvailablePropertyId               int32   = 30127
-	UIA_IsSpreadsheetPatternAvailablePropertyId          int32   = 30128
-	UIA_SpreadsheetItemFormulaPropertyId                 int32   = 30129
-	UIA_SpreadsheetItemAnnotationObjectsPropertyId       int32   = 30130
-	UIA_SpreadsheetItemAnnotationTypesPropertyId         int32   = 30131
-	UIA_IsSpreadsheetItemPatternAvailablePropertyId      int32   = 30132
-	UIA_Transform2CanZoomPropertyId                      int32   = 30133
-	UIA_IsTransformPattern2AvailablePropertyId           int32   = 30134
-	UIA_LiveSettingPropertyId                            int32   = 30135
-	UIA_IsTextChildPatternAvailablePropertyId            int32   = 30136
-	UIA_IsDragPatternAvailablePropertyId                 int32   = 30137
-	UIA_DragIsGrabbedPropertyId                          int32   = 30138
-	UIA_DragDropEffectPropertyId                         int32   = 30139
-	UIA_DragDropEffectsPropertyId                        int32   = 30140
-	UIA_IsDropTargetPatternAvailablePropertyId           int32   = 30141
-	UIA_DropTargetDropTargetEffectPropertyId             int32   = 30142
-	UIA_DropTargetDropTargetEffectsPropertyId            int32   = 30143
-	UIA_DragGrabbedItemsPropertyId                       int32   = 30144
-	UIA_Transform2ZoomLevelPropertyId                    int32   = 30145
-	UIA_Transform2ZoomMinimumPropertyId                  int32   = 30146
-	UIA_Transform2ZoomMaximumPropertyId                  int32   = 30147
-	UIA_FlowsFromPropertyId                              int32   = 30148
-	UIA_IsTextEditPatternAvailablePropertyId             int32   = 30149
-	UIA_IsPeripheralPropertyId                           int32   = 30150
-	UIA_IsCustomNavigationPatternAvailablePropertyId     int32   = 30151
-	UIA_PositionInSetPropertyId                          int32   = 30152
-	UIA_SizeOfSetPropertyId                              int32   = 30153
-	UIA_LevelPropertyId                                  int32   = 30154
-	UIA_AnnotationTypesPropertyId                        int32   = 30155
-	UIA_AnnotationObjectsPropertyId                      int32   = 30156
-	UIA_LandmarkTypePropertyId                           int32   = 30157
-	UIA_LocalizedLandmarkTypePropertyId                  int32   = 30158
-	UIA_FullDescriptionPropertyId                        int32   = 30159
-	UIA_FillColorPropertyId                              int32   = 30160
-	UIA_OutlineColorPropertyId                           int32   = 30161
-	UIA_FillTypePropertyId                               int32   = 30162
-	UIA_VisualEffectsPropertyId                          int32   = 30163
-	UIA_OutlineThicknessPropertyId                       int32   = 30164
-	UIA_CenterPointPropertyId                            int32   = 30165
-	UIA_RotationPropertyId                               int32   = 30166
-	UIA_SizePropertyId                                   int32   = 30167
-	UIA_IsSelectionPattern2AvailablePropertyId           int32   = 30168
-	UIA_Selection2FirstSelectedItemPropertyId            int32   = 30169
-	UIA_Selection2LastSelectedItemPropertyId             int32   = 30170
-	UIA_Selection2CurrentSelectedItemPropertyId          int32   = 30171
-	UIA_Selection2ItemCountPropertyId                    int32   = 30172
-	UIA_HeadingLevelPropertyId                           int32   = 30173
-	UIA_IsDialogPropertyId                               int32   = 30174
-	UIA_AnimationStyleAttributeId                        int32   = 40000
-	UIA_BackgroundColorAttributeId                       int32   = 40001
-	UIA_BulletStyleAttributeId                           int32   = 40002
-	UIA_CapStyleAttributeId                              int32   = 40003
-	UIA_CultureAttributeId                               int32   = 40004
-	UIA_FontNameAttributeId                              int32   = 40005
-	UIA_FontSizeAttributeId                              int32   = 40006
-	UIA_FontWeightAttributeId                            int32   = 40007
-	UIA_ForegroundColorAttributeId                       int32   = 40008
-	UIA_HorizontalTextAlignmentAttributeId               int32   = 40009
-	UIA_IndentationFirstLineAttributeId                  int32   = 40010
-	UIA_IndentationLeadingAttributeId                    int32   = 40011
-	UIA_IndentationTrailingAttributeId                   int32   = 40012
-	UIA_IsHiddenAttributeId                              int32   = 40013
-	UIA_IsItalicAttributeId                              int32   = 40014
-	UIA_IsReadOnlyAttributeId                            int32   = 40015
-	UIA_IsSubscriptAttributeId                           int32   = 40016
-	UIA_IsSuperscriptAttributeId                         int32   = 40017
-	UIA_MarginBottomAttributeId                          int32   = 40018
-	UIA_MarginLeadingAttributeId                         int32   = 40019
-	UIA_MarginTopAttributeId                             int32   = 40020
-	UIA_MarginTrailingAttributeId                        int32   = 40021
-	UIA_OutlineStylesAttributeId                         int32   = 40022
-	UIA_OverlineColorAttributeId                         int32   = 40023
-	UIA_OverlineStyleAttributeId                         int32   = 40024
-	UIA_StrikethroughColorAttributeId                    int32   = 40025
-	UIA_StrikethroughStyleAttributeId                    int32   = 40026
-	UIA_TabsAttributeId                                  int32   = 40027
-	UIA_TextFlowDirectionsAttributeId                    int32   = 40028
-	UIA_UnderlineColorAttributeId                        int32   = 40029
-	UIA_UnderlineStyleAttributeId                        int32   = 40030
-	UIA_AnnotationTypesAttributeId                       int32   = 40031
-	UIA_AnnotationObjectsAttributeId                     int32   = 40032
-	UIA_StyleNameAttributeId                             int32   = 40033
-	UIA_StyleIdAttributeId                               int32   = 40034
-	UIA_LinkAttributeId                                  int32   = 40035
-	UIA_IsActiveAttributeId                              int32   = 40036
-	UIA_SelectionActiveEndAttributeId                    int32   = 40037
-	UIA_CaretPositionAttributeId                         int32   = 40038
-	UIA_CaretBidiModeAttributeId                         int32   = 40039
-	UIA_LineSpacingAttributeId                           int32   = 40040
-	UIA_BeforeParagraphSpacingAttributeId                int32   = 40041
-	UIA_AfterParagraphSpacingAttributeId                 int32   = 40042
-	UIA_SayAsInterpretAsAttributeId                      int32   = 40043
-	UIA_ButtonControlTypeId                              int32   = 50000
-	UIA_CalendarControlTypeId                            int32   = 50001
-	UIA_CheckBoxControlTypeId                            int32   = 50002
-	UIA_ComboBoxControlTypeId                            int32   = 50003
-	UIA_EditControlTypeId                                int32   = 50004
-	UIA_HyperlinkControlTypeId                           int32   = 50005
-	UIA_ImageControlTypeId                               int32   = 50006
-	UIA_ListItemControlTypeId                            int32   = 50007
-	UIA_ListControlTypeId                                int32   = 50008
-	UIA_MenuControlTypeId                                int32   = 50009
-	UIA_MenuBarControlTypeId                             int32   = 50010
-	UIA_MenuItemControlTypeId                            int32   = 50011
-	UIA_ProgressBarControlTypeId                         int32   = 50012
-	UIA_RadioButtonControlTypeId                         int32   = 50013
-	UIA_ScrollBarControlTypeId                           int32   = 50014
-	UIA_SliderControlTypeId                              int32   = 50015
-	UIA_SpinnerControlTypeId                             int32   = 50016
-	UIA_StatusBarControlTypeId                           int32   = 50017
-	UIA_TabControlTypeId                                 int32   = 50018
-	UIA_TabItemControlTypeId                             int32   = 50019
-	UIA_TextControlTypeId                                int32   = 50020
-	UIA_ToolBarControlTypeId                             int32   = 50021
-	UIA_ToolTipControlTypeId                             int32   = 50022
-	UIA_TreeControlTypeId                                int32   = 50023
-	UIA_TreeItemControlTypeId                            int32   = 50024
-	UIA_CustomControlTypeId                              int32   = 50025
-	UIA_GroupControlTypeId                               int32   = 50026
-	UIA_ThumbControlTypeId                               int32   = 50027
-	UIA_DataGridControlTypeId                            int32   = 50028
-	UIA_DataItemControlTypeId                            int32   = 50029
-	UIA_DocumentControlTypeId                            int32   = 50030
-	UIA_SplitButtonControlTypeId                         int32   = 50031
-	UIA_WindowControlTypeId                              int32   = 50032
-	UIA_PaneControlTypeId                                int32   = 50033
-	UIA_HeaderControlTypeId                              int32   = 50034
-	UIA_HeaderItemControlTypeId                          int32   = 50035
-	UIA_TableControlTypeId                               int32   = 50036
-	UIA_TitleBarControlTypeId                            int32   = 50037
-	UIA_SeparatorControlTypeId                           int32   = 50038
-	UIA_SemanticZoomControlTypeId                        int32   = 50039
-	UIA_AppBarControlTypeId                              int32   = 50040
-	AnnotationType_Unknown                               int32   = 60000
-	AnnotationType_SpellingError                         int32   = 60001
-	AnnotationType_GrammarError                          int32   = 60002
-	AnnotationType_Comment                               int32   = 60003
-	AnnotationType_FormulaError                          int32   = 60004
-	AnnotationType_TrackChanges                          int32   = 60005
-	AnnotationType_Header                                int32   = 60006
-	AnnotationType_Footer                                int32   = 60007
-	AnnotationType_Highlighted                           int32   = 60008
-	AnnotationType_Endnote                               int32   = 60009
-	AnnotationType_Footnote                              int32   = 60010
-	AnnotationType_InsertionChange                       int32   = 60011
-	AnnotationType_DeletionChange                        int32   = 60012
-	AnnotationType_MoveChange                            int32   = 60013
-	AnnotationType_FormatChange                          int32   = 60014
-	AnnotationType_UnsyncedChange                        int32   = 60015
-	AnnotationType_EditingLockedChange                   int32   = 60016
-	AnnotationType_ExternalChange                        int32   = 60017
-	AnnotationType_ConflictingChange                     int32   = 60018
-	AnnotationType_Author                                int32   = 60019
-	AnnotationType_AdvancedProofingIssue                 int32   = 60020
-	AnnotationType_DataValidationError                   int32   = 60021
-	AnnotationType_CircularReferenceError                int32   = 60022
-	AnnotationType_Mathematics                           int32   = 60023
-	AnnotationType_Sensitive                             int32   = 60024
-	StyleId_Custom                                       int32   = 70000
-	StyleId_Heading1                                     int32   = 70001
-	StyleId_Heading2                                     int32   = 70002
-	StyleId_Heading3                                     int32   = 70003
-	StyleId_Heading4                                     int32   = 70004
-	StyleId_Heading5                                     int32   = 70005
-	StyleId_Heading6                                     int32   = 70006
-	StyleId_Heading7                                     int32   = 70007
-	StyleId_Heading8                                     int32   = 70008
-	StyleId_Heading9                                     int32   = 70009
-	StyleId_Title                                        int32   = 70010
-	StyleId_Subtitle                                     int32   = 70011
-	StyleId_Normal                                       int32   = 70012
-	StyleId_Emphasis                                     int32   = 70013
-	StyleId_Quote                                        int32   = 70014
-	StyleId_BulletedList                                 int32   = 70015
-	StyleId_NumberedList                                 int32   = 70016
-	UIA_CustomLandmarkTypeId                             int32   = 80000
-	UIA_FormLandmarkTypeId                               int32   = 80001
-	UIA_MainLandmarkTypeId                               int32   = 80002
-	UIA_NavigationLandmarkTypeId                         int32   = 80003
-	UIA_SearchLandmarkTypeId                             int32   = 80004
-	HeadingLevel_None                                    int32   = 80050
-	HeadingLevel1                                        int32   = 80051
-	HeadingLevel2                                        int32   = 80052
-	HeadingLevel3                                        int32   = 80053
-	HeadingLevel4                                        int32   = 80054
-	HeadingLevel5                                        int32   = 80055
-	HeadingLevel6                                        int32   = 80056
-	HeadingLevel7                                        int32   = 80057
-	HeadingLevel8                                        int32   = 80058
-	HeadingLevel9                                        int32   = 80059
-	UIA_SummaryChangeId                                  int32   = 90000
-	UIA_SayAsInterpretAsMetadataId                       int32   = 100000
+	ANRUS_PRIORITY_AUDIO_DYNAMIC_DUCK uint32  = 0x10
+	MSAA_MENU_SIG                     int32   = -1441927155
+	DISPID_ACC_PARENT                 int32   = -5000
+	DISPID_ACC_CHILDCOUNT             int32   = -5001
+	DISPID_ACC_CHILD                  int32   = -5002
+	DISPID_ACC_NAME                   int32   = -5003
+	DISPID_ACC_VALUE                  int32   = -5004
+	DISPID_ACC_DESCRIPTION            int32   = -5005
+	DISPID_ACC_ROLE                   int32   = -5006
+	DISPID_ACC_STATE                  int32   = -5007
+	DISPID_ACC_HELP                   int32   = -5008
+	DISPID_ACC_HELPTOPIC              int32   = -5009
+	DISPID_ACC_KEYBOARDSHORTCUT       int32   = -5010
+	DISPID_ACC_FOCUS                  int32   = -5011
+	DISPID_ACC_SELECTION              int32   = -5012
+	DISPID_ACC_DEFAULTACTION          int32   = -5013
+	DISPID_ACC_SELECT                 int32   = -5014
+	DISPID_ACC_LOCATION               int32   = -5015
+	DISPID_ACC_NAVIGATE               int32   = -5016
+	DISPID_ACC_HITTEST                int32   = -5017
+	DISPID_ACC_DODEFAULTACTION        int32   = -5018
+	NAVDIR_MIN                        uint32  = 0x0
+	NAVDIR_UP                         uint32  = 0x1
+	NAVDIR_DOWN                       uint32  = 0x2
+	NAVDIR_LEFT                       uint32  = 0x3
+	NAVDIR_RIGHT                      uint32  = 0x4
+	NAVDIR_NEXT                       uint32  = 0x5
+	NAVDIR_PREVIOUS                   uint32  = 0x6
+	NAVDIR_FIRSTCHILD                 uint32  = 0x7
+	NAVDIR_LASTCHILD                  uint32  = 0x8
+	NAVDIR_MAX                        uint32  = 0x9
+	SELFLAG_NONE                      uint32  = 0x0
+	SELFLAG_TAKEFOCUS                 uint32  = 0x1
+	SELFLAG_TAKESELECTION             uint32  = 0x2
+	SELFLAG_EXTENDSELECTION           uint32  = 0x4
+	SELFLAG_ADDSELECTION              uint32  = 0x8
+	SELFLAG_REMOVESELECTION           uint32  = 0x10
+	SELFLAG_VALID                     uint32  = 0x1f
+	STATE_SYSTEM_NORMAL               uint32  = 0x0
+	STATE_SYSTEM_HASPOPUP             uint32  = 0x40000000
+	ROLE_SYSTEM_TITLEBAR              uint32  = 0x1
+	ROLE_SYSTEM_MENUBAR               uint32  = 0x2
+	ROLE_SYSTEM_SCROLLBAR             uint32  = 0x3
+	ROLE_SYSTEM_GRIP                  uint32  = 0x4
+	ROLE_SYSTEM_SOUND                 uint32  = 0x5
+	ROLE_SYSTEM_CURSOR                uint32  = 0x6
+	ROLE_SYSTEM_CARET                 uint32  = 0x7
+	ROLE_SYSTEM_ALERT                 uint32  = 0x8
+	ROLE_SYSTEM_WINDOW                uint32  = 0x9
+	ROLE_SYSTEM_CLIENT                uint32  = 0xa
+	ROLE_SYSTEM_MENUPOPUP             uint32  = 0xb
+	ROLE_SYSTEM_MENUITEM              uint32  = 0xc
+	ROLE_SYSTEM_TOOLTIP               uint32  = 0xd
+	ROLE_SYSTEM_APPLICATION           uint32  = 0xe
+	ROLE_SYSTEM_DOCUMENT              uint32  = 0xf
+	ROLE_SYSTEM_PANE                  uint32  = 0x10
+	ROLE_SYSTEM_CHART                 uint32  = 0x11
+	ROLE_SYSTEM_DIALOG                uint32  = 0x12
+	ROLE_SYSTEM_BORDER                uint32  = 0x13
+	ROLE_SYSTEM_GROUPING              uint32  = 0x14
+	ROLE_SYSTEM_SEPARATOR             uint32  = 0x15
+	ROLE_SYSTEM_TOOLBAR               uint32  = 0x16
+	ROLE_SYSTEM_STATUSBAR             uint32  = 0x17
+	ROLE_SYSTEM_TABLE                 uint32  = 0x18
+	ROLE_SYSTEM_COLUMNHEADER          uint32  = 0x19
+	ROLE_SYSTEM_ROWHEADER             uint32  = 0x1a
+	ROLE_SYSTEM_COLUMN                uint32  = 0x1b
+	ROLE_SYSTEM_ROW                   uint32  = 0x1c
+	ROLE_SYSTEM_CELL                  uint32  = 0x1d
+	ROLE_SYSTEM_LINK                  uint32  = 0x1e
+	ROLE_SYSTEM_HELPBALLOON           uint32  = 0x1f
+	ROLE_SYSTEM_CHARACTER             uint32  = 0x20
+	ROLE_SYSTEM_LIST                  uint32  = 0x21
+	ROLE_SYSTEM_LISTITEM              uint32  = 0x22
+	ROLE_SYSTEM_OUTLINE               uint32  = 0x23
+	ROLE_SYSTEM_OUTLINEITEM           uint32  = 0x24
+	ROLE_SYSTEM_PAGETAB               uint32  = 0x25
+	ROLE_SYSTEM_PROPERTYPAGE          uint32  = 0x26
+	ROLE_SYSTEM_INDICATOR             uint32  = 0x27
+	ROLE_SYSTEM_GRAPHIC               uint32  = 0x28
+	ROLE_SYSTEM_STATICTEXT            uint32  = 0x29
+	ROLE_SYSTEM_TEXT                  uint32  = 0x2a
+	ROLE_SYSTEM_PUSHBUTTON            uint32  = 0x2b
+	ROLE_SYSTEM_CHECKBUTTON           uint32  = 0x2c
+	ROLE_SYSTEM_RADIOBUTTON           uint32  = 0x2d
+	ROLE_SYSTEM_COMBOBOX              uint32  = 0x2e
+	ROLE_SYSTEM_DROPLIST              uint32  = 0x2f
+	ROLE_SYSTEM_PROGRESSBAR           uint32  = 0x30
+	ROLE_SYSTEM_DIAL                  uint32  = 0x31
+	ROLE_SYSTEM_HOTKEYFIELD           uint32  = 0x32
+	ROLE_SYSTEM_SLIDER                uint32  = 0x33
+	ROLE_SYSTEM_SPINBUTTON            uint32  = 0x34
+	ROLE_SYSTEM_DIAGRAM               uint32  = 0x35
+	ROLE_SYSTEM_ANIMATION             uint32  = 0x36
+	ROLE_SYSTEM_EQUATION              uint32  = 0x37
+	ROLE_SYSTEM_BUTTONDROPDOWN        uint32  = 0x38
+	ROLE_SYSTEM_BUTTONMENU            uint32  = 0x39
+	ROLE_SYSTEM_BUTTONDROPDOWNGRID    uint32  = 0x3a
+	ROLE_SYSTEM_WHITESPACE            uint32  = 0x3b
+	ROLE_SYSTEM_PAGETABLIST           uint32  = 0x3c
+	ROLE_SYSTEM_CLOCK                 uint32  = 0x3d
+	ROLE_SYSTEM_SPLITBUTTON           uint32  = 0x3e
+	ROLE_SYSTEM_IPADDRESS             uint32  = 0x3f
+	ROLE_SYSTEM_OUTLINEBUTTON         uint32  = 0x40
+	UIA_E_ELEMENTNOTENABLED           uint32  = 0x80040200
+	UIA_E_ELEMENTNOTAVAILABLE         uint32  = 0x80040201
+	UIA_E_NOCLICKABLEPOINT            uint32  = 0x80040202
+	UIA_E_PROXYASSEMBLYNOTLOADED      uint32  = 0x80040203
+	UIA_E_NOTSUPPORTED                uint32  = 0x80040204
+	UIA_E_INVALIDOPERATION            uint32  = 0x80131509
+	UIA_E_TIMEOUT                     uint32  = 0x80131505
+	UiaAppendRuntimeId                uint32  = 0x3
+	UiaRootObjectId                   int32   = -25
+	UIA_IAFP_DEFAULT                  uint32  = 0x0
+	UIA_IAFP_UNWRAP_BRIDGE            uint32  = 0x1
+	UIA_PFIA_DEFAULT                  uint32  = 0x0
+	UIA_PFIA_UNWRAP_BRIDGE            uint32  = 0x1
+	UIA_ScrollPatternNoScroll         float64 = -1
 )
 
 var (
@@ -1769,6 +1378,13 @@ var (
 // enums
 
 // enum
+type UIA_CHANGE_ID uint32
+
+const (
+	UIA_SummaryChangeId UIA_CHANGE_ID = 90000
+)
+
+// enum
 // flags
 type STICKYKEYS_FLAGS uint32
 
@@ -1873,6 +1489,456 @@ const (
 	SSWF_NONE    SOUNDSENTRY_WINDOWS_EFFECT = 0
 	SSWF_TITLE   SOUNDSENTRY_WINDOWS_EFFECT = 1
 	SSWF_WINDOW  SOUNDSENTRY_WINDOWS_EFFECT = 2
+)
+
+// enum
+type UIA_PATTERN_ID uint32
+
+const (
+	UIA_InvokePatternId            UIA_PATTERN_ID = 10000
+	UIA_SelectionPatternId         UIA_PATTERN_ID = 10001
+	UIA_ValuePatternId             UIA_PATTERN_ID = 10002
+	UIA_RangeValuePatternId        UIA_PATTERN_ID = 10003
+	UIA_ScrollPatternId            UIA_PATTERN_ID = 10004
+	UIA_ExpandCollapsePatternId    UIA_PATTERN_ID = 10005
+	UIA_GridPatternId              UIA_PATTERN_ID = 10006
+	UIA_GridItemPatternId          UIA_PATTERN_ID = 10007
+	UIA_MultipleViewPatternId      UIA_PATTERN_ID = 10008
+	UIA_WindowPatternId            UIA_PATTERN_ID = 10009
+	UIA_SelectionItemPatternId     UIA_PATTERN_ID = 10010
+	UIA_DockPatternId              UIA_PATTERN_ID = 10011
+	UIA_TablePatternId             UIA_PATTERN_ID = 10012
+	UIA_TableItemPatternId         UIA_PATTERN_ID = 10013
+	UIA_TextPatternId              UIA_PATTERN_ID = 10014
+	UIA_TogglePatternId            UIA_PATTERN_ID = 10015
+	UIA_TransformPatternId         UIA_PATTERN_ID = 10016
+	UIA_ScrollItemPatternId        UIA_PATTERN_ID = 10017
+	UIA_LegacyIAccessiblePatternId UIA_PATTERN_ID = 10018
+	UIA_ItemContainerPatternId     UIA_PATTERN_ID = 10019
+	UIA_VirtualizedItemPatternId   UIA_PATTERN_ID = 10020
+	UIA_SynchronizedInputPatternId UIA_PATTERN_ID = 10021
+	UIA_ObjectModelPatternId       UIA_PATTERN_ID = 10022
+	UIA_AnnotationPatternId        UIA_PATTERN_ID = 10023
+	UIA_TextPattern2Id             UIA_PATTERN_ID = 10024
+	UIA_StylesPatternId            UIA_PATTERN_ID = 10025
+	UIA_SpreadsheetPatternId       UIA_PATTERN_ID = 10026
+	UIA_SpreadsheetItemPatternId   UIA_PATTERN_ID = 10027
+	UIA_TransformPattern2Id        UIA_PATTERN_ID = 10028
+	UIA_TextChildPatternId         UIA_PATTERN_ID = 10029
+	UIA_DragPatternId              UIA_PATTERN_ID = 10030
+	UIA_DropTargetPatternId        UIA_PATTERN_ID = 10031
+	UIA_TextEditPatternId          UIA_PATTERN_ID = 10032
+	UIA_CustomNavigationPatternId  UIA_PATTERN_ID = 10033
+	UIA_SelectionPattern2Id        UIA_PATTERN_ID = 10034
+)
+
+// enum
+type UIA_EVENT_ID uint32
+
+const (
+	UIA_ToolTipOpenedEventId                             UIA_EVENT_ID = 20000
+	UIA_ToolTipClosedEventId                             UIA_EVENT_ID = 20001
+	UIA_StructureChangedEventId                          UIA_EVENT_ID = 20002
+	UIA_MenuOpenedEventId                                UIA_EVENT_ID = 20003
+	UIA_AutomationPropertyChangedEventId                 UIA_EVENT_ID = 20004
+	UIA_AutomationFocusChangedEventId                    UIA_EVENT_ID = 20005
+	UIA_AsyncContentLoadedEventId                        UIA_EVENT_ID = 20006
+	UIA_MenuClosedEventId                                UIA_EVENT_ID = 20007
+	UIA_LayoutInvalidatedEventId                         UIA_EVENT_ID = 20008
+	UIA_Invoke_InvokedEventId                            UIA_EVENT_ID = 20009
+	UIA_SelectionItem_ElementAddedToSelectionEventId     UIA_EVENT_ID = 20010
+	UIA_SelectionItem_ElementRemovedFromSelectionEventId UIA_EVENT_ID = 20011
+	UIA_SelectionItem_ElementSelectedEventId             UIA_EVENT_ID = 20012
+	UIA_Selection_InvalidatedEventId                     UIA_EVENT_ID = 20013
+	UIA_Text_TextSelectionChangedEventId                 UIA_EVENT_ID = 20014
+	UIA_Text_TextChangedEventId                          UIA_EVENT_ID = 20015
+	UIA_Window_WindowOpenedEventId                       UIA_EVENT_ID = 20016
+	UIA_Window_WindowClosedEventId                       UIA_EVENT_ID = 20017
+	UIA_MenuModeStartEventId                             UIA_EVENT_ID = 20018
+	UIA_MenuModeEndEventId                               UIA_EVENT_ID = 20019
+	UIA_InputReachedTargetEventId                        UIA_EVENT_ID = 20020
+	UIA_InputReachedOtherElementEventId                  UIA_EVENT_ID = 20021
+	UIA_InputDiscardedEventId                            UIA_EVENT_ID = 20022
+	UIA_SystemAlertEventId                               UIA_EVENT_ID = 20023
+	UIA_LiveRegionChangedEventId                         UIA_EVENT_ID = 20024
+	UIA_HostedFragmentRootsInvalidatedEventId            UIA_EVENT_ID = 20025
+	UIA_Drag_DragStartEventId                            UIA_EVENT_ID = 20026
+	UIA_Drag_DragCancelEventId                           UIA_EVENT_ID = 20027
+	UIA_Drag_DragCompleteEventId                         UIA_EVENT_ID = 20028
+	UIA_DropTarget_DragEnterEventId                      UIA_EVENT_ID = 20029
+	UIA_DropTarget_DragLeaveEventId                      UIA_EVENT_ID = 20030
+	UIA_DropTarget_DroppedEventId                        UIA_EVENT_ID = 20031
+	UIA_TextEdit_TextChangedEventId                      UIA_EVENT_ID = 20032
+	UIA_TextEdit_ConversionTargetChangedEventId          UIA_EVENT_ID = 20033
+	UIA_ChangesEventId                                   UIA_EVENT_ID = 20034
+	UIA_NotificationEventId                              UIA_EVENT_ID = 20035
+	UIA_ActiveTextPositionChangedEventId                 UIA_EVENT_ID = 20036
+)
+
+// enum
+type UIA_PROPERTY_ID uint32
+
+const (
+	UIA_RuntimeIdPropertyId                           UIA_PROPERTY_ID = 30000
+	UIA_BoundingRectanglePropertyId                   UIA_PROPERTY_ID = 30001
+	UIA_ProcessIdPropertyId                           UIA_PROPERTY_ID = 30002
+	UIA_ControlTypePropertyId                         UIA_PROPERTY_ID = 30003
+	UIA_LocalizedControlTypePropertyId                UIA_PROPERTY_ID = 30004
+	UIA_NamePropertyId                                UIA_PROPERTY_ID = 30005
+	UIA_AcceleratorKeyPropertyId                      UIA_PROPERTY_ID = 30006
+	UIA_AccessKeyPropertyId                           UIA_PROPERTY_ID = 30007
+	UIA_HasKeyboardFocusPropertyId                    UIA_PROPERTY_ID = 30008
+	UIA_IsKeyboardFocusablePropertyId                 UIA_PROPERTY_ID = 30009
+	UIA_IsEnabledPropertyId                           UIA_PROPERTY_ID = 30010
+	UIA_AutomationIdPropertyId                        UIA_PROPERTY_ID = 30011
+	UIA_ClassNamePropertyId                           UIA_PROPERTY_ID = 30012
+	UIA_HelpTextPropertyId                            UIA_PROPERTY_ID = 30013
+	UIA_ClickablePointPropertyId                      UIA_PROPERTY_ID = 30014
+	UIA_CulturePropertyId                             UIA_PROPERTY_ID = 30015
+	UIA_IsControlElementPropertyId                    UIA_PROPERTY_ID = 30016
+	UIA_IsContentElementPropertyId                    UIA_PROPERTY_ID = 30017
+	UIA_LabeledByPropertyId                           UIA_PROPERTY_ID = 30018
+	UIA_IsPasswordPropertyId                          UIA_PROPERTY_ID = 30019
+	UIA_NativeWindowHandlePropertyId                  UIA_PROPERTY_ID = 30020
+	UIA_ItemTypePropertyId                            UIA_PROPERTY_ID = 30021
+	UIA_IsOffscreenPropertyId                         UIA_PROPERTY_ID = 30022
+	UIA_OrientationPropertyId                         UIA_PROPERTY_ID = 30023
+	UIA_FrameworkIdPropertyId                         UIA_PROPERTY_ID = 30024
+	UIA_IsRequiredForFormPropertyId                   UIA_PROPERTY_ID = 30025
+	UIA_ItemStatusPropertyId                          UIA_PROPERTY_ID = 30026
+	UIA_IsDockPatternAvailablePropertyId              UIA_PROPERTY_ID = 30027
+	UIA_IsExpandCollapsePatternAvailablePropertyId    UIA_PROPERTY_ID = 30028
+	UIA_IsGridItemPatternAvailablePropertyId          UIA_PROPERTY_ID = 30029
+	UIA_IsGridPatternAvailablePropertyId              UIA_PROPERTY_ID = 30030
+	UIA_IsInvokePatternAvailablePropertyId            UIA_PROPERTY_ID = 30031
+	UIA_IsMultipleViewPatternAvailablePropertyId      UIA_PROPERTY_ID = 30032
+	UIA_IsRangeValuePatternAvailablePropertyId        UIA_PROPERTY_ID = 30033
+	UIA_IsScrollPatternAvailablePropertyId            UIA_PROPERTY_ID = 30034
+	UIA_IsScrollItemPatternAvailablePropertyId        UIA_PROPERTY_ID = 30035
+	UIA_IsSelectionItemPatternAvailablePropertyId     UIA_PROPERTY_ID = 30036
+	UIA_IsSelectionPatternAvailablePropertyId         UIA_PROPERTY_ID = 30037
+	UIA_IsTablePatternAvailablePropertyId             UIA_PROPERTY_ID = 30038
+	UIA_IsTableItemPatternAvailablePropertyId         UIA_PROPERTY_ID = 30039
+	UIA_IsTextPatternAvailablePropertyId              UIA_PROPERTY_ID = 30040
+	UIA_IsTogglePatternAvailablePropertyId            UIA_PROPERTY_ID = 30041
+	UIA_IsTransformPatternAvailablePropertyId         UIA_PROPERTY_ID = 30042
+	UIA_IsValuePatternAvailablePropertyId             UIA_PROPERTY_ID = 30043
+	UIA_IsWindowPatternAvailablePropertyId            UIA_PROPERTY_ID = 30044
+	UIA_ValueValuePropertyId                          UIA_PROPERTY_ID = 30045
+	UIA_ValueIsReadOnlyPropertyId                     UIA_PROPERTY_ID = 30046
+	UIA_RangeValueValuePropertyId                     UIA_PROPERTY_ID = 30047
+	UIA_RangeValueIsReadOnlyPropertyId                UIA_PROPERTY_ID = 30048
+	UIA_RangeValueMinimumPropertyId                   UIA_PROPERTY_ID = 30049
+	UIA_RangeValueMaximumPropertyId                   UIA_PROPERTY_ID = 30050
+	UIA_RangeValueLargeChangePropertyId               UIA_PROPERTY_ID = 30051
+	UIA_RangeValueSmallChangePropertyId               UIA_PROPERTY_ID = 30052
+	UIA_ScrollHorizontalScrollPercentPropertyId       UIA_PROPERTY_ID = 30053
+	UIA_ScrollHorizontalViewSizePropertyId            UIA_PROPERTY_ID = 30054
+	UIA_ScrollVerticalScrollPercentPropertyId         UIA_PROPERTY_ID = 30055
+	UIA_ScrollVerticalViewSizePropertyId              UIA_PROPERTY_ID = 30056
+	UIA_ScrollHorizontallyScrollablePropertyId        UIA_PROPERTY_ID = 30057
+	UIA_ScrollVerticallyScrollablePropertyId          UIA_PROPERTY_ID = 30058
+	UIA_SelectionSelectionPropertyId                  UIA_PROPERTY_ID = 30059
+	UIA_SelectionCanSelectMultiplePropertyId          UIA_PROPERTY_ID = 30060
+	UIA_SelectionIsSelectionRequiredPropertyId        UIA_PROPERTY_ID = 30061
+	UIA_GridRowCountPropertyId                        UIA_PROPERTY_ID = 30062
+	UIA_GridColumnCountPropertyId                     UIA_PROPERTY_ID = 30063
+	UIA_GridItemRowPropertyId                         UIA_PROPERTY_ID = 30064
+	UIA_GridItemColumnPropertyId                      UIA_PROPERTY_ID = 30065
+	UIA_GridItemRowSpanPropertyId                     UIA_PROPERTY_ID = 30066
+	UIA_GridItemColumnSpanPropertyId                  UIA_PROPERTY_ID = 30067
+	UIA_GridItemContainingGridPropertyId              UIA_PROPERTY_ID = 30068
+	UIA_DockDockPositionPropertyId                    UIA_PROPERTY_ID = 30069
+	UIA_ExpandCollapseExpandCollapseStatePropertyId   UIA_PROPERTY_ID = 30070
+	UIA_MultipleViewCurrentViewPropertyId             UIA_PROPERTY_ID = 30071
+	UIA_MultipleViewSupportedViewsPropertyId          UIA_PROPERTY_ID = 30072
+	UIA_WindowCanMaximizePropertyId                   UIA_PROPERTY_ID = 30073
+	UIA_WindowCanMinimizePropertyId                   UIA_PROPERTY_ID = 30074
+	UIA_WindowWindowVisualStatePropertyId             UIA_PROPERTY_ID = 30075
+	UIA_WindowWindowInteractionStatePropertyId        UIA_PROPERTY_ID = 30076
+	UIA_WindowIsModalPropertyId                       UIA_PROPERTY_ID = 30077
+	UIA_WindowIsTopmostPropertyId                     UIA_PROPERTY_ID = 30078
+	UIA_SelectionItemIsSelectedPropertyId             UIA_PROPERTY_ID = 30079
+	UIA_SelectionItemSelectionContainerPropertyId     UIA_PROPERTY_ID = 30080
+	UIA_TableRowHeadersPropertyId                     UIA_PROPERTY_ID = 30081
+	UIA_TableColumnHeadersPropertyId                  UIA_PROPERTY_ID = 30082
+	UIA_TableRowOrColumnMajorPropertyId               UIA_PROPERTY_ID = 30083
+	UIA_TableItemRowHeaderItemsPropertyId             UIA_PROPERTY_ID = 30084
+	UIA_TableItemColumnHeaderItemsPropertyId          UIA_PROPERTY_ID = 30085
+	UIA_ToggleToggleStatePropertyId                   UIA_PROPERTY_ID = 30086
+	UIA_TransformCanMovePropertyId                    UIA_PROPERTY_ID = 30087
+	UIA_TransformCanResizePropertyId                  UIA_PROPERTY_ID = 30088
+	UIA_TransformCanRotatePropertyId                  UIA_PROPERTY_ID = 30089
+	UIA_IsLegacyIAccessiblePatternAvailablePropertyId UIA_PROPERTY_ID = 30090
+	UIA_LegacyIAccessibleChildIdPropertyId            UIA_PROPERTY_ID = 30091
+	UIA_LegacyIAccessibleNamePropertyId               UIA_PROPERTY_ID = 30092
+	UIA_LegacyIAccessibleValuePropertyId              UIA_PROPERTY_ID = 30093
+	UIA_LegacyIAccessibleDescriptionPropertyId        UIA_PROPERTY_ID = 30094
+	UIA_LegacyIAccessibleRolePropertyId               UIA_PROPERTY_ID = 30095
+	UIA_LegacyIAccessibleStatePropertyId              UIA_PROPERTY_ID = 30096
+	UIA_LegacyIAccessibleHelpPropertyId               UIA_PROPERTY_ID = 30097
+	UIA_LegacyIAccessibleKeyboardShortcutPropertyId   UIA_PROPERTY_ID = 30098
+	UIA_LegacyIAccessibleSelectionPropertyId          UIA_PROPERTY_ID = 30099
+	UIA_LegacyIAccessibleDefaultActionPropertyId      UIA_PROPERTY_ID = 30100
+	UIA_AriaRolePropertyId                            UIA_PROPERTY_ID = 30101
+	UIA_AriaPropertiesPropertyId                      UIA_PROPERTY_ID = 30102
+	UIA_IsDataValidForFormPropertyId                  UIA_PROPERTY_ID = 30103
+	UIA_ControllerForPropertyId                       UIA_PROPERTY_ID = 30104
+	UIA_DescribedByPropertyId                         UIA_PROPERTY_ID = 30105
+	UIA_FlowsToPropertyId                             UIA_PROPERTY_ID = 30106
+	UIA_ProviderDescriptionPropertyId                 UIA_PROPERTY_ID = 30107
+	UIA_IsItemContainerPatternAvailablePropertyId     UIA_PROPERTY_ID = 30108
+	UIA_IsVirtualizedItemPatternAvailablePropertyId   UIA_PROPERTY_ID = 30109
+	UIA_IsSynchronizedInputPatternAvailablePropertyId UIA_PROPERTY_ID = 30110
+	UIA_OptimizeForVisualContentPropertyId            UIA_PROPERTY_ID = 30111
+	UIA_IsObjectModelPatternAvailablePropertyId       UIA_PROPERTY_ID = 30112
+	UIA_AnnotationAnnotationTypeIdPropertyId          UIA_PROPERTY_ID = 30113
+	UIA_AnnotationAnnotationTypeNamePropertyId        UIA_PROPERTY_ID = 30114
+	UIA_AnnotationAuthorPropertyId                    UIA_PROPERTY_ID = 30115
+	UIA_AnnotationDateTimePropertyId                  UIA_PROPERTY_ID = 30116
+	UIA_AnnotationTargetPropertyId                    UIA_PROPERTY_ID = 30117
+	UIA_IsAnnotationPatternAvailablePropertyId        UIA_PROPERTY_ID = 30118
+	UIA_IsTextPattern2AvailablePropertyId             UIA_PROPERTY_ID = 30119
+	UIA_StylesStyleIdPropertyId                       UIA_PROPERTY_ID = 30120
+	UIA_StylesStyleNamePropertyId                     UIA_PROPERTY_ID = 30121
+	UIA_StylesFillColorPropertyId                     UIA_PROPERTY_ID = 30122
+	UIA_StylesFillPatternStylePropertyId              UIA_PROPERTY_ID = 30123
+	UIA_StylesShapePropertyId                         UIA_PROPERTY_ID = 30124
+	UIA_StylesFillPatternColorPropertyId              UIA_PROPERTY_ID = 30125
+	UIA_StylesExtendedPropertiesPropertyId            UIA_PROPERTY_ID = 30126
+	UIA_IsStylesPatternAvailablePropertyId            UIA_PROPERTY_ID = 30127
+	UIA_IsSpreadsheetPatternAvailablePropertyId       UIA_PROPERTY_ID = 30128
+	UIA_SpreadsheetItemFormulaPropertyId              UIA_PROPERTY_ID = 30129
+	UIA_SpreadsheetItemAnnotationObjectsPropertyId    UIA_PROPERTY_ID = 30130
+	UIA_SpreadsheetItemAnnotationTypesPropertyId      UIA_PROPERTY_ID = 30131
+	UIA_IsSpreadsheetItemPatternAvailablePropertyId   UIA_PROPERTY_ID = 30132
+	UIA_Transform2CanZoomPropertyId                   UIA_PROPERTY_ID = 30133
+	UIA_IsTransformPattern2AvailablePropertyId        UIA_PROPERTY_ID = 30134
+	UIA_LiveSettingPropertyId                         UIA_PROPERTY_ID = 30135
+	UIA_IsTextChildPatternAvailablePropertyId         UIA_PROPERTY_ID = 30136
+	UIA_IsDragPatternAvailablePropertyId              UIA_PROPERTY_ID = 30137
+	UIA_DragIsGrabbedPropertyId                       UIA_PROPERTY_ID = 30138
+	UIA_DragDropEffectPropertyId                      UIA_PROPERTY_ID = 30139
+	UIA_DragDropEffectsPropertyId                     UIA_PROPERTY_ID = 30140
+	UIA_IsDropTargetPatternAvailablePropertyId        UIA_PROPERTY_ID = 30141
+	UIA_DropTargetDropTargetEffectPropertyId          UIA_PROPERTY_ID = 30142
+	UIA_DropTargetDropTargetEffectsPropertyId         UIA_PROPERTY_ID = 30143
+	UIA_DragGrabbedItemsPropertyId                    UIA_PROPERTY_ID = 30144
+	UIA_Transform2ZoomLevelPropertyId                 UIA_PROPERTY_ID = 30145
+	UIA_Transform2ZoomMinimumPropertyId               UIA_PROPERTY_ID = 30146
+	UIA_Transform2ZoomMaximumPropertyId               UIA_PROPERTY_ID = 30147
+	UIA_FlowsFromPropertyId                           UIA_PROPERTY_ID = 30148
+	UIA_IsTextEditPatternAvailablePropertyId          UIA_PROPERTY_ID = 30149
+	UIA_IsPeripheralPropertyId                        UIA_PROPERTY_ID = 30150
+	UIA_IsCustomNavigationPatternAvailablePropertyId  UIA_PROPERTY_ID = 30151
+	UIA_PositionInSetPropertyId                       UIA_PROPERTY_ID = 30152
+	UIA_SizeOfSetPropertyId                           UIA_PROPERTY_ID = 30153
+	UIA_LevelPropertyId                               UIA_PROPERTY_ID = 30154
+	UIA_AnnotationTypesPropertyId                     UIA_PROPERTY_ID = 30155
+	UIA_AnnotationObjectsPropertyId                   UIA_PROPERTY_ID = 30156
+	UIA_LandmarkTypePropertyId                        UIA_PROPERTY_ID = 30157
+	UIA_LocalizedLandmarkTypePropertyId               UIA_PROPERTY_ID = 30158
+	UIA_FullDescriptionPropertyId                     UIA_PROPERTY_ID = 30159
+	UIA_FillColorPropertyId                           UIA_PROPERTY_ID = 30160
+	UIA_OutlineColorPropertyId                        UIA_PROPERTY_ID = 30161
+	UIA_FillTypePropertyId                            UIA_PROPERTY_ID = 30162
+	UIA_VisualEffectsPropertyId                       UIA_PROPERTY_ID = 30163
+	UIA_OutlineThicknessPropertyId                    UIA_PROPERTY_ID = 30164
+	UIA_CenterPointPropertyId                         UIA_PROPERTY_ID = 30165
+	UIA_RotationPropertyId                            UIA_PROPERTY_ID = 30166
+	UIA_SizePropertyId                                UIA_PROPERTY_ID = 30167
+	UIA_IsSelectionPattern2AvailablePropertyId        UIA_PROPERTY_ID = 30168
+	UIA_Selection2FirstSelectedItemPropertyId         UIA_PROPERTY_ID = 30169
+	UIA_Selection2LastSelectedItemPropertyId          UIA_PROPERTY_ID = 30170
+	UIA_Selection2CurrentSelectedItemPropertyId       UIA_PROPERTY_ID = 30171
+	UIA_Selection2ItemCountPropertyId                 UIA_PROPERTY_ID = 30172
+	UIA_HeadingLevelPropertyId                        UIA_PROPERTY_ID = 30173
+	UIA_IsDialogPropertyId                            UIA_PROPERTY_ID = 30174
+)
+
+// enum
+type UIA_TEXTATTRIBUTE_ID uint32
+
+const (
+	UIA_AnimationStyleAttributeId          UIA_TEXTATTRIBUTE_ID = 40000
+	UIA_BackgroundColorAttributeId         UIA_TEXTATTRIBUTE_ID = 40001
+	UIA_BulletStyleAttributeId             UIA_TEXTATTRIBUTE_ID = 40002
+	UIA_CapStyleAttributeId                UIA_TEXTATTRIBUTE_ID = 40003
+	UIA_CultureAttributeId                 UIA_TEXTATTRIBUTE_ID = 40004
+	UIA_FontNameAttributeId                UIA_TEXTATTRIBUTE_ID = 40005
+	UIA_FontSizeAttributeId                UIA_TEXTATTRIBUTE_ID = 40006
+	UIA_FontWeightAttributeId              UIA_TEXTATTRIBUTE_ID = 40007
+	UIA_ForegroundColorAttributeId         UIA_TEXTATTRIBUTE_ID = 40008
+	UIA_HorizontalTextAlignmentAttributeId UIA_TEXTATTRIBUTE_ID = 40009
+	UIA_IndentationFirstLineAttributeId    UIA_TEXTATTRIBUTE_ID = 40010
+	UIA_IndentationLeadingAttributeId      UIA_TEXTATTRIBUTE_ID = 40011
+	UIA_IndentationTrailingAttributeId     UIA_TEXTATTRIBUTE_ID = 40012
+	UIA_IsHiddenAttributeId                UIA_TEXTATTRIBUTE_ID = 40013
+	UIA_IsItalicAttributeId                UIA_TEXTATTRIBUTE_ID = 40014
+	UIA_IsReadOnlyAttributeId              UIA_TEXTATTRIBUTE_ID = 40015
+	UIA_IsSubscriptAttributeId             UIA_TEXTATTRIBUTE_ID = 40016
+	UIA_IsSuperscriptAttributeId           UIA_TEXTATTRIBUTE_ID = 40017
+	UIA_MarginBottomAttributeId            UIA_TEXTATTRIBUTE_ID = 40018
+	UIA_MarginLeadingAttributeId           UIA_TEXTATTRIBUTE_ID = 40019
+	UIA_MarginTopAttributeId               UIA_TEXTATTRIBUTE_ID = 40020
+	UIA_MarginTrailingAttributeId          UIA_TEXTATTRIBUTE_ID = 40021
+	UIA_OutlineStylesAttributeId           UIA_TEXTATTRIBUTE_ID = 40022
+	UIA_OverlineColorAttributeId           UIA_TEXTATTRIBUTE_ID = 40023
+	UIA_OverlineStyleAttributeId           UIA_TEXTATTRIBUTE_ID = 40024
+	UIA_StrikethroughColorAttributeId      UIA_TEXTATTRIBUTE_ID = 40025
+	UIA_StrikethroughStyleAttributeId      UIA_TEXTATTRIBUTE_ID = 40026
+	UIA_TabsAttributeId                    UIA_TEXTATTRIBUTE_ID = 40027
+	UIA_TextFlowDirectionsAttributeId      UIA_TEXTATTRIBUTE_ID = 40028
+	UIA_UnderlineColorAttributeId          UIA_TEXTATTRIBUTE_ID = 40029
+	UIA_UnderlineStyleAttributeId          UIA_TEXTATTRIBUTE_ID = 40030
+	UIA_AnnotationTypesAttributeId         UIA_TEXTATTRIBUTE_ID = 40031
+	UIA_AnnotationObjectsAttributeId       UIA_TEXTATTRIBUTE_ID = 40032
+	UIA_StyleNameAttributeId               UIA_TEXTATTRIBUTE_ID = 40033
+	UIA_StyleIdAttributeId                 UIA_TEXTATTRIBUTE_ID = 40034
+	UIA_LinkAttributeId                    UIA_TEXTATTRIBUTE_ID = 40035
+	UIA_IsActiveAttributeId                UIA_TEXTATTRIBUTE_ID = 40036
+	UIA_SelectionActiveEndAttributeId      UIA_TEXTATTRIBUTE_ID = 40037
+	UIA_CaretPositionAttributeId           UIA_TEXTATTRIBUTE_ID = 40038
+	UIA_CaretBidiModeAttributeId           UIA_TEXTATTRIBUTE_ID = 40039
+	UIA_LineSpacingAttributeId             UIA_TEXTATTRIBUTE_ID = 40040
+	UIA_BeforeParagraphSpacingAttributeId  UIA_TEXTATTRIBUTE_ID = 40041
+	UIA_AfterParagraphSpacingAttributeId   UIA_TEXTATTRIBUTE_ID = 40042
+	UIA_SayAsInterpretAsAttributeId        UIA_TEXTATTRIBUTE_ID = 40043
+)
+
+// enum
+type UIA_CONTROLTYPE_ID uint32
+
+const (
+	UIA_ButtonControlTypeId       UIA_CONTROLTYPE_ID = 50000
+	UIA_CalendarControlTypeId     UIA_CONTROLTYPE_ID = 50001
+	UIA_CheckBoxControlTypeId     UIA_CONTROLTYPE_ID = 50002
+	UIA_ComboBoxControlTypeId     UIA_CONTROLTYPE_ID = 50003
+	UIA_EditControlTypeId         UIA_CONTROLTYPE_ID = 50004
+	UIA_HyperlinkControlTypeId    UIA_CONTROLTYPE_ID = 50005
+	UIA_ImageControlTypeId        UIA_CONTROLTYPE_ID = 50006
+	UIA_ListItemControlTypeId     UIA_CONTROLTYPE_ID = 50007
+	UIA_ListControlTypeId         UIA_CONTROLTYPE_ID = 50008
+	UIA_MenuControlTypeId         UIA_CONTROLTYPE_ID = 50009
+	UIA_MenuBarControlTypeId      UIA_CONTROLTYPE_ID = 50010
+	UIA_MenuItemControlTypeId     UIA_CONTROLTYPE_ID = 50011
+	UIA_ProgressBarControlTypeId  UIA_CONTROLTYPE_ID = 50012
+	UIA_RadioButtonControlTypeId  UIA_CONTROLTYPE_ID = 50013
+	UIA_ScrollBarControlTypeId    UIA_CONTROLTYPE_ID = 50014
+	UIA_SliderControlTypeId       UIA_CONTROLTYPE_ID = 50015
+	UIA_SpinnerControlTypeId      UIA_CONTROLTYPE_ID = 50016
+	UIA_StatusBarControlTypeId    UIA_CONTROLTYPE_ID = 50017
+	UIA_TabControlTypeId          UIA_CONTROLTYPE_ID = 50018
+	UIA_TabItemControlTypeId      UIA_CONTROLTYPE_ID = 50019
+	UIA_TextControlTypeId         UIA_CONTROLTYPE_ID = 50020
+	UIA_ToolBarControlTypeId      UIA_CONTROLTYPE_ID = 50021
+	UIA_ToolTipControlTypeId      UIA_CONTROLTYPE_ID = 50022
+	UIA_TreeControlTypeId         UIA_CONTROLTYPE_ID = 50023
+	UIA_TreeItemControlTypeId     UIA_CONTROLTYPE_ID = 50024
+	UIA_CustomControlTypeId       UIA_CONTROLTYPE_ID = 50025
+	UIA_GroupControlTypeId        UIA_CONTROLTYPE_ID = 50026
+	UIA_ThumbControlTypeId        UIA_CONTROLTYPE_ID = 50027
+	UIA_DataGridControlTypeId     UIA_CONTROLTYPE_ID = 50028
+	UIA_DataItemControlTypeId     UIA_CONTROLTYPE_ID = 50029
+	UIA_DocumentControlTypeId     UIA_CONTROLTYPE_ID = 50030
+	UIA_SplitButtonControlTypeId  UIA_CONTROLTYPE_ID = 50031
+	UIA_WindowControlTypeId       UIA_CONTROLTYPE_ID = 50032
+	UIA_PaneControlTypeId         UIA_CONTROLTYPE_ID = 50033
+	UIA_HeaderControlTypeId       UIA_CONTROLTYPE_ID = 50034
+	UIA_HeaderItemControlTypeId   UIA_CONTROLTYPE_ID = 50035
+	UIA_TableControlTypeId        UIA_CONTROLTYPE_ID = 50036
+	UIA_TitleBarControlTypeId     UIA_CONTROLTYPE_ID = 50037
+	UIA_SeparatorControlTypeId    UIA_CONTROLTYPE_ID = 50038
+	UIA_SemanticZoomControlTypeId UIA_CONTROLTYPE_ID = 50039
+	UIA_AppBarControlTypeId       UIA_CONTROLTYPE_ID = 50040
+)
+
+// enum
+type UIA_ANNOTATIONTYPE uint32
+
+const (
+	AnnotationType_Unknown                UIA_ANNOTATIONTYPE = 60000
+	AnnotationType_SpellingError          UIA_ANNOTATIONTYPE = 60001
+	AnnotationType_GrammarError           UIA_ANNOTATIONTYPE = 60002
+	AnnotationType_Comment                UIA_ANNOTATIONTYPE = 60003
+	AnnotationType_FormulaError           UIA_ANNOTATIONTYPE = 60004
+	AnnotationType_TrackChanges           UIA_ANNOTATIONTYPE = 60005
+	AnnotationType_Header                 UIA_ANNOTATIONTYPE = 60006
+	AnnotationType_Footer                 UIA_ANNOTATIONTYPE = 60007
+	AnnotationType_Highlighted            UIA_ANNOTATIONTYPE = 60008
+	AnnotationType_Endnote                UIA_ANNOTATIONTYPE = 60009
+	AnnotationType_Footnote               UIA_ANNOTATIONTYPE = 60010
+	AnnotationType_InsertionChange        UIA_ANNOTATIONTYPE = 60011
+	AnnotationType_DeletionChange         UIA_ANNOTATIONTYPE = 60012
+	AnnotationType_MoveChange             UIA_ANNOTATIONTYPE = 60013
+	AnnotationType_FormatChange           UIA_ANNOTATIONTYPE = 60014
+	AnnotationType_UnsyncedChange         UIA_ANNOTATIONTYPE = 60015
+	AnnotationType_EditingLockedChange    UIA_ANNOTATIONTYPE = 60016
+	AnnotationType_ExternalChange         UIA_ANNOTATIONTYPE = 60017
+	AnnotationType_ConflictingChange      UIA_ANNOTATIONTYPE = 60018
+	AnnotationType_Author                 UIA_ANNOTATIONTYPE = 60019
+	AnnotationType_AdvancedProofingIssue  UIA_ANNOTATIONTYPE = 60020
+	AnnotationType_DataValidationError    UIA_ANNOTATIONTYPE = 60021
+	AnnotationType_CircularReferenceError UIA_ANNOTATIONTYPE = 60022
+	AnnotationType_Mathematics            UIA_ANNOTATIONTYPE = 60023
+	AnnotationType_Sensitive              UIA_ANNOTATIONTYPE = 60024
+)
+
+// enum
+type UIA_STYLE_ID uint32
+
+const (
+	StyleId_Custom       UIA_STYLE_ID = 70000
+	StyleId_Heading1     UIA_STYLE_ID = 70001
+	StyleId_Heading2     UIA_STYLE_ID = 70002
+	StyleId_Heading3     UIA_STYLE_ID = 70003
+	StyleId_Heading4     UIA_STYLE_ID = 70004
+	StyleId_Heading5     UIA_STYLE_ID = 70005
+	StyleId_Heading6     UIA_STYLE_ID = 70006
+	StyleId_Heading7     UIA_STYLE_ID = 70007
+	StyleId_Heading8     UIA_STYLE_ID = 70008
+	StyleId_Heading9     UIA_STYLE_ID = 70009
+	StyleId_Title        UIA_STYLE_ID = 70010
+	StyleId_Subtitle     UIA_STYLE_ID = 70011
+	StyleId_Normal       UIA_STYLE_ID = 70012
+	StyleId_Emphasis     UIA_STYLE_ID = 70013
+	StyleId_Quote        UIA_STYLE_ID = 70014
+	StyleId_BulletedList UIA_STYLE_ID = 70015
+	StyleId_NumberedList UIA_STYLE_ID = 70016
+)
+
+// enum
+type UIA_LANDMARKTYPE_ID uint32
+
+const (
+	UIA_CustomLandmarkTypeId     UIA_LANDMARKTYPE_ID = 80000
+	UIA_FormLandmarkTypeId       UIA_LANDMARKTYPE_ID = 80001
+	UIA_MainLandmarkTypeId       UIA_LANDMARKTYPE_ID = 80002
+	UIA_NavigationLandmarkTypeId UIA_LANDMARKTYPE_ID = 80003
+	UIA_SearchLandmarkTypeId     UIA_LANDMARKTYPE_ID = 80004
+)
+
+// enum
+type UIA_HEADINGLEVEL_ID uint32
+
+const (
+	HeadingLevel_None UIA_HEADINGLEVEL_ID = 80050
+	HeadingLevel1     UIA_HEADINGLEVEL_ID = 80051
+	HeadingLevel2     UIA_HEADINGLEVEL_ID = 80052
+	HeadingLevel3     UIA_HEADINGLEVEL_ID = 80053
+	HeadingLevel4     UIA_HEADINGLEVEL_ID = 80054
+	HeadingLevel5     UIA_HEADINGLEVEL_ID = 80055
+	HeadingLevel6     UIA_HEADINGLEVEL_ID = 80056
+	HeadingLevel7     UIA_HEADINGLEVEL_ID = 80057
+	HeadingLevel8     UIA_HEADINGLEVEL_ID = 80058
+	HeadingLevel9     UIA_HEADINGLEVEL_ID = 80059
+)
+
+// enum
+type UIA_METADATA_ID uint32
+
+const (
+	UIA_SayAsInterpretAsMetadataId UIA_METADATA_ID = 100000
 )
 
 // enum
@@ -2524,7 +2590,7 @@ type UiaCondition struct {
 
 type UiaPropertyCondition struct {
 	ConditionType ConditionType
-	PropertyId    int32
+	PropertyId    UIA_PROPERTY_ID
 	Value         VARIANT
 	Flags         PropertyConditionFlags
 }
@@ -2564,7 +2630,7 @@ type UiaEventArgs struct {
 
 type UiaPropertyChangedEventArgs struct {
 	Type       EventArgsType
-	EventId    int32
+	EventId    UIA_EVENT_ID
 	PropertyId int32
 	OldValue   VARIANT
 	NewValue   VARIANT
@@ -2736,67 +2802,6 @@ type WINEVENTPROC = uintptr
 type WINEVENTPROC_func = func(hWinEventHook HWINEVENTHOOK, event uint32, hwnd HWND, idObject int32, idChild int32, idEventThread uint32, dwmsEventTime uint32)
 
 // interfaces
-
-// 00000000-0000-0000-0000-000000000000
-var IID_IRicheditWindowlessAccessibility = syscall.GUID{0x00000000, 0x0000, 0x0000,
-	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
-
-type IRicheditWindowlessAccessibilityInterface interface {
-	IUnknownInterface
-	CreateProvider(pSite *IRawElementProviderWindowlessSite, ppProvider **IRawElementProviderSimple) HRESULT
-}
-
-type IRicheditWindowlessAccessibilityVtbl struct {
-	IUnknownVtbl
-	CreateProvider uintptr
-}
-
-type IRicheditWindowlessAccessibility struct {
-	IUnknown
-}
-
-func (this *IRicheditWindowlessAccessibility) Vtbl() *IRicheditWindowlessAccessibilityVtbl {
-	return (*IRicheditWindowlessAccessibilityVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
-}
-
-func (this *IRicheditWindowlessAccessibility) CreateProvider(pSite *IRawElementProviderWindowlessSite, ppProvider **IRawElementProviderSimple) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().CreateProvider, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pSite)), uintptr(unsafe.Pointer(ppProvider)))
-	return HRESULT(ret)
-}
-
-// 00000000-0000-0000-0000-000000000000
-var IID_IRichEditUiaInformation = syscall.GUID{0x00000000, 0x0000, 0x0000,
-	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
-
-type IRichEditUiaInformationInterface interface {
-	IUnknownInterface
-	GetBoundaryRectangle(pUiaRect *UiaRect) HRESULT
-	IsVisible() HRESULT
-}
-
-type IRichEditUiaInformationVtbl struct {
-	IUnknownVtbl
-	GetBoundaryRectangle uintptr
-	IsVisible            uintptr
-}
-
-type IRichEditUiaInformation struct {
-	IUnknown
-}
-
-func (this *IRichEditUiaInformation) Vtbl() *IRichEditUiaInformationVtbl {
-	return (*IRichEditUiaInformationVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
-}
-
-func (this *IRichEditUiaInformation) GetBoundaryRectangle(pUiaRect *UiaRect) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBoundaryRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pUiaRect)))
-	return HRESULT(ret)
-}
-
-func (this *IRichEditUiaInformation) IsVisible() HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().IsVisible, uintptr(unsafe.Pointer(this)))
-	return HRESULT(ret)
-}
 
 // 618736E0-3C3D-11CF-810C-00AA00389B71
 var IID_IAccessible = syscall.GUID{0x618736E0, 0x3C3D, 0x11CF,
@@ -3226,8 +3231,8 @@ var IID_IRawElementProviderSimple = syscall.GUID{0xD6DD68D1, 0x86FD, 0x4332,
 type IRawElementProviderSimpleInterface interface {
 	IUnknownInterface
 	Get_ProviderOptions(pRetVal *ProviderOptions) HRESULT
-	GetPatternProvider(patternId int32, pRetVal **IUnknown) HRESULT
-	GetPropertyValue(propertyId int32, pRetVal *VARIANT) HRESULT
+	GetPatternProvider(patternId UIA_PATTERN_ID, pRetVal **IUnknown) HRESULT
+	GetPropertyValue(propertyId UIA_PROPERTY_ID, pRetVal *VARIANT) HRESULT
 	Get_HostRawElementProvider(pRetVal **IRawElementProviderSimple) HRESULT
 }
 
@@ -3252,12 +3257,12 @@ func (this *IRawElementProviderSimple) Get_ProviderOptions(pRetVal *ProviderOpti
 	return HRESULT(ret)
 }
 
-func (this *IRawElementProviderSimple) GetPatternProvider(patternId int32, pRetVal **IUnknown) HRESULT {
+func (this *IRawElementProviderSimple) GetPatternProvider(patternId UIA_PATTERN_ID, pRetVal **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPatternProvider, uintptr(unsafe.Pointer(this)), uintptr(patternId), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
 
-func (this *IRawElementProviderSimple) GetPropertyValue(propertyId int32, pRetVal *VARIANT) HRESULT {
+func (this *IRawElementProviderSimple) GetPropertyValue(propertyId UIA_PROPERTY_ID, pRetVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPropertyValue, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
@@ -3348,7 +3353,7 @@ var IID_IRawElementProviderSimple3 = syscall.GUID{0xFCF5D820, 0xD7EC, 0x4613,
 
 type IRawElementProviderSimple3Interface interface {
 	IRawElementProviderSimple2Interface
-	GetMetadataValue(targetId int32, metadataId int32, returnVal *VARIANT) HRESULT
+	GetMetadataValue(targetId int32, metadataId UIA_METADATA_ID, returnVal *VARIANT) HRESULT
 }
 
 type IRawElementProviderSimple3Vtbl struct {
@@ -3364,7 +3369,7 @@ func (this *IRawElementProviderSimple3) Vtbl() *IRawElementProviderSimple3Vtbl {
 	return (*IRawElementProviderSimple3Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRawElementProviderSimple3) GetMetadataValue(targetId int32, metadataId int32, returnVal *VARIANT) HRESULT {
+func (this *IRawElementProviderSimple3) GetMetadataValue(targetId int32, metadataId UIA_METADATA_ID, returnVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMetadataValue, uintptr(unsafe.Pointer(this)), uintptr(targetId), uintptr(metadataId), uintptr(unsafe.Pointer(returnVal)))
 	return HRESULT(ret)
 }
@@ -3471,8 +3476,8 @@ var IID_IRawElementProviderAdviseEvents = syscall.GUID{0xA407B27B, 0x0F6D, 0x442
 
 type IRawElementProviderAdviseEventsInterface interface {
 	IUnknownInterface
-	AdviseEventAdded(eventId int32, propertyIDs *SAFEARRAY) HRESULT
-	AdviseEventRemoved(eventId int32, propertyIDs *SAFEARRAY) HRESULT
+	AdviseEventAdded(eventId UIA_EVENT_ID, propertyIDs *SAFEARRAY) HRESULT
+	AdviseEventRemoved(eventId UIA_EVENT_ID, propertyIDs *SAFEARRAY) HRESULT
 }
 
 type IRawElementProviderAdviseEventsVtbl struct {
@@ -3489,12 +3494,12 @@ func (this *IRawElementProviderAdviseEvents) Vtbl() *IRawElementProviderAdviseEv
 	return (*IRawElementProviderAdviseEventsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRawElementProviderAdviseEvents) AdviseEventAdded(eventId int32, propertyIDs *SAFEARRAY) HRESULT {
+func (this *IRawElementProviderAdviseEvents) AdviseEventAdded(eventId UIA_EVENT_ID, propertyIDs *SAFEARRAY) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AdviseEventAdded, uintptr(unsafe.Pointer(this)), uintptr(eventId), uintptr(unsafe.Pointer(propertyIDs)))
 	return HRESULT(ret)
 }
 
-func (this *IRawElementProviderAdviseEvents) AdviseEventRemoved(eventId int32, propertyIDs *SAFEARRAY) HRESULT {
+func (this *IRawElementProviderAdviseEvents) AdviseEventRemoved(eventId UIA_EVENT_ID, propertyIDs *SAFEARRAY) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AdviseEventRemoved, uintptr(unsafe.Pointer(this)), uintptr(eventId), uintptr(unsafe.Pointer(propertyIDs)))
 	return HRESULT(ret)
 }
@@ -3532,8 +3537,8 @@ var IID_IProxyProviderWinEventSink = syscall.GUID{0x4FD82B78, 0xA43E, 0x46AC,
 
 type IProxyProviderWinEventSinkInterface interface {
 	IUnknownInterface
-	AddAutomationPropertyChangedEvent(pProvider *IRawElementProviderSimple, id int32, newValue VARIANT) HRESULT
-	AddAutomationEvent(pProvider *IRawElementProviderSimple, id int32) HRESULT
+	AddAutomationPropertyChangedEvent(pProvider *IRawElementProviderSimple, id UIA_PROPERTY_ID, newValue VARIANT) HRESULT
+	AddAutomationEvent(pProvider *IRawElementProviderSimple, id UIA_EVENT_ID) HRESULT
 	AddStructureChangedEvent(pProvider *IRawElementProviderSimple, structureChangeType StructureChangeType, runtimeId *SAFEARRAY) HRESULT
 }
 
@@ -3552,12 +3557,12 @@ func (this *IProxyProviderWinEventSink) Vtbl() *IProxyProviderWinEventSinkVtbl {
 	return (*IProxyProviderWinEventSinkVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IProxyProviderWinEventSink) AddAutomationPropertyChangedEvent(pProvider *IRawElementProviderSimple, id int32, newValue VARIANT) HRESULT {
+func (this *IProxyProviderWinEventSink) AddAutomationPropertyChangedEvent(pProvider *IRawElementProviderSimple, id UIA_PROPERTY_ID, newValue VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddAutomationPropertyChangedEvent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pProvider)), uintptr(id), uintptr(unsafe.Pointer(&newValue)))
 	return HRESULT(ret)
 }
 
-func (this *IProxyProviderWinEventSink) AddAutomationEvent(pProvider *IRawElementProviderSimple, id int32) HRESULT {
+func (this *IProxyProviderWinEventSink) AddAutomationEvent(pProvider *IRawElementProviderSimple, id UIA_EVENT_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddAutomationEvent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pProvider)), uintptr(id))
 	return HRESULT(ret)
 }
@@ -4704,7 +4709,7 @@ var IID_IItemContainerProvider = syscall.GUID{0xE747770B, 0x39CE, 0x4382,
 
 type IItemContainerProviderInterface interface {
 	IUnknownInterface
-	FindItemByProperty(pStartAfter *IRawElementProviderSimple, propertyId int32, value VARIANT, pFound **IRawElementProviderSimple) HRESULT
+	FindItemByProperty(pStartAfter *IRawElementProviderSimple, propertyId UIA_PROPERTY_ID, value VARIANT, pFound **IRawElementProviderSimple) HRESULT
 }
 
 type IItemContainerProviderVtbl struct {
@@ -4720,7 +4725,7 @@ func (this *IItemContainerProvider) Vtbl() *IItemContainerProviderVtbl {
 	return (*IItemContainerProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IItemContainerProvider) FindItemByProperty(pStartAfter *IRawElementProviderSimple, propertyId int32, value VARIANT, pFound **IRawElementProviderSimple) HRESULT {
+func (this *IItemContainerProvider) FindItemByProperty(pStartAfter *IRawElementProviderSimple, propertyId UIA_PROPERTY_ID, value VARIANT, pFound **IRawElementProviderSimple) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindItemByProperty, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pStartAfter)), uintptr(propertyId), uintptr(unsafe.Pointer(&value)), uintptr(unsafe.Pointer(pFound)))
 	return HRESULT(ret)
 }
@@ -4785,7 +4790,7 @@ var IID_IAnnotationProvider = syscall.GUID{0xF95C7E80, 0xBD63, 0x4601,
 
 type IAnnotationProviderInterface interface {
 	IUnknownInterface
-	Get_AnnotationTypeId(retVal *int32) HRESULT
+	Get_AnnotationTypeId(retVal *UIA_ANNOTATIONTYPE) HRESULT
 	Get_AnnotationTypeName(retVal *BSTR) HRESULT
 	Get_Author(retVal *BSTR) HRESULT
 	Get_DateTime(retVal *BSTR) HRESULT
@@ -4809,7 +4814,7 @@ func (this *IAnnotationProvider) Vtbl() *IAnnotationProviderVtbl {
 	return (*IAnnotationProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IAnnotationProvider) Get_AnnotationTypeId(retVal *int32) HRESULT {
+func (this *IAnnotationProvider) Get_AnnotationTypeId(retVal *UIA_ANNOTATIONTYPE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -4840,7 +4845,7 @@ var IID_IStylesProvider = syscall.GUID{0x19B6B649, 0xF5D7, 0x4A6D,
 
 type IStylesProviderInterface interface {
 	IUnknownInterface
-	Get_StyleId(retVal *int32) HRESULT
+	Get_StyleId(retVal *UIA_STYLE_ID) HRESULT
 	Get_StyleName(retVal *BSTR) HRESULT
 	Get_FillColor(retVal *int32) HRESULT
 	Get_FillPatternStyle(retVal *BSTR) HRESULT
@@ -4868,7 +4873,7 @@ func (this *IStylesProvider) Vtbl() *IStylesProviderVtbl {
 	return (*IStylesProviderVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IStylesProvider) Get_StyleId(retVal *int32) HRESULT {
+func (this *IStylesProvider) Get_StyleId(retVal *UIA_STYLE_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_StyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -5125,9 +5130,9 @@ type ITextRangeProviderInterface interface {
 	Compare(range_ *ITextRangeProvider, pRetVal *BOOL) HRESULT
 	CompareEndpoints(endpoint TextPatternRangeEndpoint, targetRange *ITextRangeProvider, targetEndpoint TextPatternRangeEndpoint, pRetVal *int32) HRESULT
 	ExpandToEnclosingUnit(unit TextUnit) HRESULT
-	FindAttribute(attributeId int32, val VARIANT, backward BOOL, pRetVal **ITextRangeProvider) HRESULT
+	FindAttribute(attributeId UIA_TEXTATTRIBUTE_ID, val VARIANT, backward BOOL, pRetVal **ITextRangeProvider) HRESULT
 	FindText(text BSTR, backward BOOL, ignoreCase BOOL, pRetVal **ITextRangeProvider) HRESULT
-	GetAttributeValue(attributeId int32, pRetVal *VARIANT) HRESULT
+	GetAttributeValue(attributeId UIA_TEXTATTRIBUTE_ID, pRetVal *VARIANT) HRESULT
 	GetBoundingRectangles(pRetVal **SAFEARRAY) HRESULT
 	GetEnclosingElement(pRetVal **IRawElementProviderSimple) HRESULT
 	GetText(maxLength int32, pRetVal *BSTR) HRESULT
@@ -5191,7 +5196,7 @@ func (this *ITextRangeProvider) ExpandToEnclosingUnit(unit TextUnit) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ITextRangeProvider) FindAttribute(attributeId int32, val VARIANT, backward BOOL, pRetVal **ITextRangeProvider) HRESULT {
+func (this *ITextRangeProvider) FindAttribute(attributeId UIA_TEXTATTRIBUTE_ID, val VARIANT, backward BOOL, pRetVal **ITextRangeProvider) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindAttribute, uintptr(unsafe.Pointer(this)), uintptr(attributeId), uintptr(unsafe.Pointer(&val)), uintptr(backward), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
@@ -5201,7 +5206,7 @@ func (this *ITextRangeProvider) FindText(text BSTR, backward BOOL, ignoreCase BO
 	return HRESULT(ret)
 }
 
-func (this *ITextRangeProvider) GetAttributeValue(attributeId int32, pRetVal *VARIANT) HRESULT {
+func (this *ITextRangeProvider) GetAttributeValue(attributeId UIA_TEXTATTRIBUTE_ID, pRetVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAttributeValue, uintptr(unsafe.Pointer(this)), uintptr(attributeId), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
@@ -5601,18 +5606,18 @@ type IUIAutomationElementInterface interface {
 	FindFirstBuildCache(scope TreeScope, condition *IUIAutomationCondition, cacheRequest *IUIAutomationCacheRequest, found **IUIAutomationElement) HRESULT
 	FindAllBuildCache(scope TreeScope, condition *IUIAutomationCondition, cacheRequest *IUIAutomationCacheRequest, found **IUIAutomationElementArray) HRESULT
 	BuildUpdatedCache(cacheRequest *IUIAutomationCacheRequest, updatedElement **IUIAutomationElement) HRESULT
-	GetCurrentPropertyValue(propertyId int32, retVal *VARIANT) HRESULT
-	GetCurrentPropertyValueEx(propertyId int32, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT
-	GetCachedPropertyValue(propertyId int32, retVal *VARIANT) HRESULT
-	GetCachedPropertyValueEx(propertyId int32, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT
-	GetCurrentPatternAs(patternId int32, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT
-	GetCachedPatternAs(patternId int32, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT
-	GetCurrentPattern(patternId int32, patternObject **IUnknown) HRESULT
-	GetCachedPattern(patternId int32, patternObject **IUnknown) HRESULT
+	GetCurrentPropertyValue(propertyId UIA_PROPERTY_ID, retVal *VARIANT) HRESULT
+	GetCurrentPropertyValueEx(propertyId UIA_PROPERTY_ID, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT
+	GetCachedPropertyValue(propertyId UIA_PROPERTY_ID, retVal *VARIANT) HRESULT
+	GetCachedPropertyValueEx(propertyId UIA_PROPERTY_ID, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT
+	GetCurrentPatternAs(patternId UIA_PATTERN_ID, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT
+	GetCachedPatternAs(patternId UIA_PATTERN_ID, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT
+	GetCurrentPattern(patternId UIA_PATTERN_ID, patternObject **IUnknown) HRESULT
+	GetCachedPattern(patternId UIA_PATTERN_ID, patternObject **IUnknown) HRESULT
 	GetCachedParent(parent **IUIAutomationElement) HRESULT
 	GetCachedChildren(children **IUIAutomationElementArray) HRESULT
 	Get_CurrentProcessId(retVal *int32) HRESULT
-	Get_CurrentControlType(retVal *int32) HRESULT
+	Get_CurrentControlType(retVal *UIA_CONTROLTYPE_ID) HRESULT
 	Get_CurrentLocalizedControlType(retVal *BSTR) HRESULT
 	Get_CurrentName(retVal *BSTR) HRESULT
 	Get_CurrentAcceleratorKey(retVal *BSTR) HRESULT
@@ -5644,7 +5649,7 @@ type IUIAutomationElementInterface interface {
 	Get_CurrentFlowsTo(retVal **IUIAutomationElementArray) HRESULT
 	Get_CurrentProviderDescription(retVal *BSTR) HRESULT
 	Get_CachedProcessId(retVal *int32) HRESULT
-	Get_CachedControlType(retVal *int32) HRESULT
+	Get_CachedControlType(retVal *UIA_CONTROLTYPE_ID) HRESULT
 	Get_CachedLocalizedControlType(retVal *BSTR) HRESULT
 	Get_CachedName(retVal *BSTR) HRESULT
 	Get_CachedAcceleratorKey(retVal *BSTR) HRESULT
@@ -5807,42 +5812,42 @@ func (this *IUIAutomationElement) BuildUpdatedCache(cacheRequest *IUIAutomationC
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCurrentPropertyValue(propertyId int32, retVal *VARIANT) HRESULT {
+func (this *IUIAutomationElement) GetCurrentPropertyValue(propertyId UIA_PROPERTY_ID, retVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCurrentPropertyValue, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCurrentPropertyValueEx(propertyId int32, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT {
+func (this *IUIAutomationElement) GetCurrentPropertyValueEx(propertyId UIA_PROPERTY_ID, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCurrentPropertyValueEx, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(ignoreDefaultValue), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCachedPropertyValue(propertyId int32, retVal *VARIANT) HRESULT {
+func (this *IUIAutomationElement) GetCachedPropertyValue(propertyId UIA_PROPERTY_ID, retVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCachedPropertyValue, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCachedPropertyValueEx(propertyId int32, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT {
+func (this *IUIAutomationElement) GetCachedPropertyValueEx(propertyId UIA_PROPERTY_ID, ignoreDefaultValue BOOL, retVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCachedPropertyValueEx, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(ignoreDefaultValue), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCurrentPatternAs(patternId int32, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT {
+func (this *IUIAutomationElement) GetCurrentPatternAs(patternId UIA_PATTERN_ID, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCurrentPatternAs, uintptr(unsafe.Pointer(this)), uintptr(patternId), uintptr(unsafe.Pointer(riid)), uintptr(patternObject))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCachedPatternAs(patternId int32, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT {
+func (this *IUIAutomationElement) GetCachedPatternAs(patternId UIA_PATTERN_ID, riid *syscall.GUID, patternObject unsafe.Pointer) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCachedPatternAs, uintptr(unsafe.Pointer(this)), uintptr(patternId), uintptr(unsafe.Pointer(riid)), uintptr(patternObject))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCurrentPattern(patternId int32, patternObject **IUnknown) HRESULT {
+func (this *IUIAutomationElement) GetCurrentPattern(patternId UIA_PATTERN_ID, patternObject **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCurrentPattern, uintptr(unsafe.Pointer(this)), uintptr(patternId), uintptr(unsafe.Pointer(patternObject)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) GetCachedPattern(patternId int32, patternObject **IUnknown) HRESULT {
+func (this *IUIAutomationElement) GetCachedPattern(patternId UIA_PATTERN_ID, patternObject **IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCachedPattern, uintptr(unsafe.Pointer(this)), uintptr(patternId), uintptr(unsafe.Pointer(patternObject)))
 	return HRESULT(ret)
 }
@@ -5862,7 +5867,7 @@ func (this *IUIAutomationElement) Get_CurrentProcessId(retVal *int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) Get_CurrentControlType(retVal *int32) HRESULT {
+func (this *IUIAutomationElement) Get_CurrentControlType(retVal *UIA_CONTROLTYPE_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -6022,7 +6027,7 @@ func (this *IUIAutomationElement) Get_CachedProcessId(retVal *int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement) Get_CachedControlType(retVal *int32) HRESULT {
+func (this *IUIAutomationElement) Get_CachedControlType(retVal *UIA_CONTROLTYPE_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedControlType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -6269,7 +6274,7 @@ var IID_IUIAutomationPropertyCondition = syscall.GUID{0x99EBF2CB, 0x5578, 0x4267
 
 type IUIAutomationPropertyConditionInterface interface {
 	IUIAutomationConditionInterface
-	Get_PropertyId(propertyId *int32) HRESULT
+	Get_PropertyId(propertyId *UIA_PROPERTY_ID) HRESULT
 	Get_PropertyValue(propertyValue *VARIANT) HRESULT
 	Get_PropertyConditionFlags(flags *PropertyConditionFlags) HRESULT
 }
@@ -6289,7 +6294,7 @@ func (this *IUIAutomationPropertyCondition) Vtbl() *IUIAutomationPropertyConditi
 	return (*IUIAutomationPropertyConditionVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationPropertyCondition) Get_PropertyId(propertyId *int32) HRESULT {
+func (this *IUIAutomationPropertyCondition) Get_PropertyId(propertyId *UIA_PROPERTY_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_PropertyId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(propertyId)))
 	return HRESULT(ret)
 }
@@ -6419,8 +6424,8 @@ var IID_IUIAutomationCacheRequest = syscall.GUID{0xB32A92B5, 0xBC25, 0x4078,
 
 type IUIAutomationCacheRequestInterface interface {
 	IUnknownInterface
-	AddProperty(propertyId int32) HRESULT
-	AddPattern(patternId int32) HRESULT
+	AddProperty(propertyId UIA_PROPERTY_ID) HRESULT
+	AddPattern(patternId UIA_PATTERN_ID) HRESULT
 	Clone(clonedRequest **IUIAutomationCacheRequest) HRESULT
 	Get_TreeScope(scope *TreeScope) HRESULT
 	Put_TreeScope(scope TreeScope) HRESULT
@@ -6451,12 +6456,12 @@ func (this *IUIAutomationCacheRequest) Vtbl() *IUIAutomationCacheRequestVtbl {
 	return (*IUIAutomationCacheRequestVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationCacheRequest) AddProperty(propertyId int32) HRESULT {
+func (this *IUIAutomationCacheRequest) AddProperty(propertyId UIA_PROPERTY_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddProperty, uintptr(unsafe.Pointer(this)), uintptr(propertyId))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationCacheRequest) AddPattern(patternId int32) HRESULT {
+func (this *IUIAutomationCacheRequest) AddPattern(patternId UIA_PATTERN_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddPattern, uintptr(unsafe.Pointer(this)), uintptr(patternId))
 	return HRESULT(ret)
 }
@@ -6613,7 +6618,7 @@ var IID_IUIAutomationEventHandler = syscall.GUID{0x146C3C17, 0xF12E, 0x4E22,
 
 type IUIAutomationEventHandlerInterface interface {
 	IUnknownInterface
-	HandleAutomationEvent(sender *IUIAutomationElement, eventId int32) HRESULT
+	HandleAutomationEvent(sender *IUIAutomationElement, eventId UIA_EVENT_ID) HRESULT
 }
 
 type IUIAutomationEventHandlerVtbl struct {
@@ -6629,7 +6634,7 @@ func (this *IUIAutomationEventHandler) Vtbl() *IUIAutomationEventHandlerVtbl {
 	return (*IUIAutomationEventHandlerVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationEventHandler) HandleAutomationEvent(sender *IUIAutomationElement, eventId int32) HRESULT {
+func (this *IUIAutomationEventHandler) HandleAutomationEvent(sender *IUIAutomationElement, eventId UIA_EVENT_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HandleAutomationEvent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(sender)), uintptr(eventId))
 	return HRESULT(ret)
 }
@@ -6640,7 +6645,7 @@ var IID_IUIAutomationPropertyChangedEventHandler = syscall.GUID{0x40CD37D4, 0xC7
 
 type IUIAutomationPropertyChangedEventHandlerInterface interface {
 	IUnknownInterface
-	HandlePropertyChangedEvent(sender *IUIAutomationElement, propertyId int32, newValue VARIANT) HRESULT
+	HandlePropertyChangedEvent(sender *IUIAutomationElement, propertyId UIA_PROPERTY_ID, newValue VARIANT) HRESULT
 }
 
 type IUIAutomationPropertyChangedEventHandlerVtbl struct {
@@ -6656,7 +6661,7 @@ func (this *IUIAutomationPropertyChangedEventHandler) Vtbl() *IUIAutomationPrope
 	return (*IUIAutomationPropertyChangedEventHandlerVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationPropertyChangedEventHandler) HandlePropertyChangedEvent(sender *IUIAutomationElement, propertyId int32, newValue VARIANT) HRESULT {
+func (this *IUIAutomationPropertyChangedEventHandler) HandlePropertyChangedEvent(sender *IUIAutomationElement, propertyId UIA_PROPERTY_ID, newValue VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HandlePropertyChangedEvent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(sender)), uintptr(propertyId), uintptr(unsafe.Pointer(&newValue)))
 	return HRESULT(ret)
 }
@@ -8067,9 +8072,9 @@ type IUIAutomationTextRangeInterface interface {
 	Compare(range_ *IUIAutomationTextRange, areSame *BOOL) HRESULT
 	CompareEndpoints(srcEndPoint TextPatternRangeEndpoint, range_ *IUIAutomationTextRange, targetEndPoint TextPatternRangeEndpoint, compValue *int32) HRESULT
 	ExpandToEnclosingUnit(textUnit TextUnit) HRESULT
-	FindAttribute(attr int32, val VARIANT, backward BOOL, found **IUIAutomationTextRange) HRESULT
+	FindAttribute(attr UIA_TEXTATTRIBUTE_ID, val VARIANT, backward BOOL, found **IUIAutomationTextRange) HRESULT
 	FindText(text BSTR, backward BOOL, ignoreCase BOOL, found **IUIAutomationTextRange) HRESULT
-	GetAttributeValue(attr int32, value *VARIANT) HRESULT
+	GetAttributeValue(attr UIA_TEXTATTRIBUTE_ID, value *VARIANT) HRESULT
 	GetBoundingRectangles(boundingRects **SAFEARRAY) HRESULT
 	GetEnclosingElement(enclosingElement **IUIAutomationElement) HRESULT
 	GetText(maxLength int32, text *BSTR) HRESULT
@@ -8133,7 +8138,7 @@ func (this *IUIAutomationTextRange) ExpandToEnclosingUnit(textUnit TextUnit) HRE
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTextRange) FindAttribute(attr int32, val VARIANT, backward BOOL, found **IUIAutomationTextRange) HRESULT {
+func (this *IUIAutomationTextRange) FindAttribute(attr UIA_TEXTATTRIBUTE_ID, val VARIANT, backward BOOL, found **IUIAutomationTextRange) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindAttribute, uintptr(unsafe.Pointer(this)), uintptr(attr), uintptr(unsafe.Pointer(&val)), uintptr(backward), uintptr(unsafe.Pointer(found)))
 	return HRESULT(ret)
 }
@@ -8143,7 +8148,7 @@ func (this *IUIAutomationTextRange) FindText(text BSTR, backward BOOL, ignoreCas
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTextRange) GetAttributeValue(attr int32, value *VARIANT) HRESULT {
+func (this *IUIAutomationTextRange) GetAttributeValue(attr UIA_TEXTATTRIBUTE_ID, value *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAttributeValue, uintptr(unsafe.Pointer(this)), uintptr(attr), uintptr(unsafe.Pointer(value)))
 	return HRESULT(ret)
 }
@@ -8238,7 +8243,7 @@ type IUIAutomationTextRange3Interface interface {
 	IUIAutomationTextRange2Interface
 	GetEnclosingElementBuildCache(cacheRequest *IUIAutomationCacheRequest, enclosingElement **IUIAutomationElement) HRESULT
 	GetChildrenBuildCache(cacheRequest *IUIAutomationCacheRequest, children **IUIAutomationElementArray) HRESULT
-	GetAttributeValues(attributeIds *int32, attributeIdCount int32, attributeValues **SAFEARRAY) HRESULT
+	GetAttributeValues(attributeIds *UIA_TEXTATTRIBUTE_ID, attributeIdCount int32, attributeValues **SAFEARRAY) HRESULT
 }
 
 type IUIAutomationTextRange3Vtbl struct {
@@ -8266,7 +8271,7 @@ func (this *IUIAutomationTextRange3) GetChildrenBuildCache(cacheRequest *IUIAuto
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationTextRange3) GetAttributeValues(attributeIds *int32, attributeIdCount int32, attributeValues **SAFEARRAY) HRESULT {
+func (this *IUIAutomationTextRange3) GetAttributeValues(attributeIds *UIA_TEXTATTRIBUTE_ID, attributeIdCount int32, attributeValues **SAFEARRAY) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAttributeValues, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(attributeIds)), uintptr(attributeIdCount), uintptr(unsafe.Pointer(attributeValues)))
 	return HRESULT(ret)
 }
@@ -8683,7 +8688,7 @@ var IID_IUIAutomationItemContainerPattern = syscall.GUID{0xC690FDB2, 0x27A8, 0x4
 
 type IUIAutomationItemContainerPatternInterface interface {
 	IUnknownInterface
-	FindItemByProperty(pStartAfter *IUIAutomationElement, propertyId int32, value VARIANT, pFound **IUIAutomationElement) HRESULT
+	FindItemByProperty(pStartAfter *IUIAutomationElement, propertyId UIA_PROPERTY_ID, value VARIANT, pFound **IUIAutomationElement) HRESULT
 }
 
 type IUIAutomationItemContainerPatternVtbl struct {
@@ -8699,7 +8704,7 @@ func (this *IUIAutomationItemContainerPattern) Vtbl() *IUIAutomationItemContaine
 	return (*IUIAutomationItemContainerPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationItemContainerPattern) FindItemByProperty(pStartAfter *IUIAutomationElement, propertyId int32, value VARIANT, pFound **IUIAutomationElement) HRESULT {
+func (this *IUIAutomationItemContainerPattern) FindItemByProperty(pStartAfter *IUIAutomationElement, propertyId UIA_PROPERTY_ID, value VARIANT, pFound **IUIAutomationElement) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindItemByProperty, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pStartAfter)), uintptr(propertyId), uintptr(unsafe.Pointer(&value)), uintptr(unsafe.Pointer(pFound)))
 	return HRESULT(ret)
 }
@@ -8737,12 +8742,12 @@ var IID_IUIAutomationAnnotationPattern = syscall.GUID{0x9A175B21, 0x339E, 0x41B1
 
 type IUIAutomationAnnotationPatternInterface interface {
 	IUnknownInterface
-	Get_CurrentAnnotationTypeId(retVal *int32) HRESULT
+	Get_CurrentAnnotationTypeId(retVal *UIA_ANNOTATIONTYPE) HRESULT
 	Get_CurrentAnnotationTypeName(retVal *BSTR) HRESULT
 	Get_CurrentAuthor(retVal *BSTR) HRESULT
 	Get_CurrentDateTime(retVal *BSTR) HRESULT
 	Get_CurrentTarget(retVal **IUIAutomationElement) HRESULT
-	Get_CachedAnnotationTypeId(retVal *int32) HRESULT
+	Get_CachedAnnotationTypeId(retVal *UIA_ANNOTATIONTYPE) HRESULT
 	Get_CachedAnnotationTypeName(retVal *BSTR) HRESULT
 	Get_CachedAuthor(retVal *BSTR) HRESULT
 	Get_CachedDateTime(retVal *BSTR) HRESULT
@@ -8771,7 +8776,7 @@ func (this *IUIAutomationAnnotationPattern) Vtbl() *IUIAutomationAnnotationPatte
 	return (*IUIAutomationAnnotationPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationAnnotationPattern) Get_CurrentAnnotationTypeId(retVal *int32) HRESULT {
+func (this *IUIAutomationAnnotationPattern) Get_CurrentAnnotationTypeId(retVal *UIA_ANNOTATIONTYPE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentAnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -8796,7 +8801,7 @@ func (this *IUIAutomationAnnotationPattern) Get_CurrentTarget(retVal **IUIAutoma
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationAnnotationPattern) Get_CachedAnnotationTypeId(retVal *int32) HRESULT {
+func (this *IUIAutomationAnnotationPattern) Get_CachedAnnotationTypeId(retVal *UIA_ANNOTATIONTYPE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedAnnotationTypeId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -8827,7 +8832,7 @@ var IID_IUIAutomationStylesPattern = syscall.GUID{0x85B5F0A2, 0xBD79, 0x484A,
 
 type IUIAutomationStylesPatternInterface interface {
 	IUnknownInterface
-	Get_CurrentStyleId(retVal *int32) HRESULT
+	Get_CurrentStyleId(retVal *UIA_STYLE_ID) HRESULT
 	Get_CurrentStyleName(retVal *BSTR) HRESULT
 	Get_CurrentFillColor(retVal *int32) HRESULT
 	Get_CurrentFillPatternStyle(retVal *BSTR) HRESULT
@@ -8835,7 +8840,7 @@ type IUIAutomationStylesPatternInterface interface {
 	Get_CurrentFillPatternColor(retVal *int32) HRESULT
 	Get_CurrentExtendedProperties(retVal *BSTR) HRESULT
 	GetCurrentExtendedPropertiesAsArray(propertyArray **ExtendedProperty, propertyCount *int32) HRESULT
-	Get_CachedStyleId(retVal *int32) HRESULT
+	Get_CachedStyleId(retVal *UIA_STYLE_ID) HRESULT
 	Get_CachedStyleName(retVal *BSTR) HRESULT
 	Get_CachedFillColor(retVal *int32) HRESULT
 	Get_CachedFillPatternStyle(retVal *BSTR) HRESULT
@@ -8873,7 +8878,7 @@ func (this *IUIAutomationStylesPattern) Vtbl() *IUIAutomationStylesPatternVtbl {
 	return (*IUIAutomationStylesPatternVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationStylesPattern) Get_CurrentStyleId(retVal *int32) HRESULT {
+func (this *IUIAutomationStylesPattern) Get_CurrentStyleId(retVal *UIA_STYLE_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentStyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -8913,7 +8918,7 @@ func (this *IUIAutomationStylesPattern) GetCurrentExtendedPropertiesAsArray(prop
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationStylesPattern) Get_CachedStyleId(retVal *int32) HRESULT {
+func (this *IUIAutomationStylesPattern) Get_CachedStyleId(retVal *UIA_STYLE_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedStyleId, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -9489,9 +9494,9 @@ var IID_IUIAutomationElement5 = syscall.GUID{0x98141C1D, 0x0D0E, 0x4175,
 
 type IUIAutomationElement5Interface interface {
 	IUIAutomationElement4Interface
-	Get_CurrentLandmarkType(retVal *int32) HRESULT
+	Get_CurrentLandmarkType(retVal *UIA_LANDMARKTYPE_ID) HRESULT
 	Get_CurrentLocalizedLandmarkType(retVal *BSTR) HRESULT
-	Get_CachedLandmarkType(retVal *int32) HRESULT
+	Get_CachedLandmarkType(retVal *UIA_LANDMARKTYPE_ID) HRESULT
 	Get_CachedLocalizedLandmarkType(retVal *BSTR) HRESULT
 }
 
@@ -9511,7 +9516,7 @@ func (this *IUIAutomationElement5) Vtbl() *IUIAutomationElement5Vtbl {
 	return (*IUIAutomationElement5Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement5) Get_CurrentLandmarkType(retVal *int32) HRESULT {
+func (this *IUIAutomationElement5) Get_CurrentLandmarkType(retVal *UIA_LANDMARKTYPE_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -9521,7 +9526,7 @@ func (this *IUIAutomationElement5) Get_CurrentLocalizedLandmarkType(retVal *BSTR
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement5) Get_CachedLandmarkType(retVal *int32) HRESULT {
+func (this *IUIAutomationElement5) Get_CachedLandmarkType(retVal *UIA_LANDMARKTYPE_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedLandmarkType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -9575,7 +9580,7 @@ type IUIAutomationElement7Interface interface {
 	FindAllWithOptions(scope TreeScope, condition *IUIAutomationCondition, traversalOptions TreeTraversalOptions, root *IUIAutomationElement, found **IUIAutomationElementArray) HRESULT
 	FindFirstWithOptionsBuildCache(scope TreeScope, condition *IUIAutomationCondition, cacheRequest *IUIAutomationCacheRequest, traversalOptions TreeTraversalOptions, root *IUIAutomationElement, found **IUIAutomationElement) HRESULT
 	FindAllWithOptionsBuildCache(scope TreeScope, condition *IUIAutomationCondition, cacheRequest *IUIAutomationCacheRequest, traversalOptions TreeTraversalOptions, root *IUIAutomationElement, found **IUIAutomationElementArray) HRESULT
-	GetCurrentMetadataValue(targetId int32, metadataId int32, returnVal *VARIANT) HRESULT
+	GetCurrentMetadataValue(targetId int32, metadataId UIA_METADATA_ID, returnVal *VARIANT) HRESULT
 }
 
 type IUIAutomationElement7Vtbl struct {
@@ -9615,7 +9620,7 @@ func (this *IUIAutomationElement7) FindAllWithOptionsBuildCache(scope TreeScope,
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement7) GetCurrentMetadataValue(targetId int32, metadataId int32, returnVal *VARIANT) HRESULT {
+func (this *IUIAutomationElement7) GetCurrentMetadataValue(targetId int32, metadataId UIA_METADATA_ID, returnVal *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCurrentMetadataValue, uintptr(unsafe.Pointer(this)), uintptr(targetId), uintptr(metadataId), uintptr(unsafe.Pointer(returnVal)))
 	return HRESULT(ret)
 }
@@ -9626,8 +9631,8 @@ var IID_IUIAutomationElement8 = syscall.GUID{0x8C60217D, 0x5411, 0x4CDE,
 
 type IUIAutomationElement8Interface interface {
 	IUIAutomationElement7Interface
-	Get_CurrentHeadingLevel(retVal *int32) HRESULT
-	Get_CachedHeadingLevel(retVal *int32) HRESULT
+	Get_CurrentHeadingLevel(retVal *UIA_HEADINGLEVEL_ID) HRESULT
+	Get_CachedHeadingLevel(retVal *UIA_HEADINGLEVEL_ID) HRESULT
 }
 
 type IUIAutomationElement8Vtbl struct {
@@ -9644,12 +9649,12 @@ func (this *IUIAutomationElement8) Vtbl() *IUIAutomationElement8Vtbl {
 	return (*IUIAutomationElement8Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IUIAutomationElement8) Get_CurrentHeadingLevel(retVal *int32) HRESULT {
+func (this *IUIAutomationElement8) Get_CurrentHeadingLevel(retVal *UIA_HEADINGLEVEL_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CurrentHeadingLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationElement8) Get_CachedHeadingLevel(retVal *int32) HRESULT {
+func (this *IUIAutomationElement8) Get_CachedHeadingLevel(retVal *UIA_HEADINGLEVEL_ID) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_CachedHeadingLevel, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(retVal)))
 	return HRESULT(ret)
 }
@@ -9739,8 +9744,8 @@ type IUIAutomationProxyFactoryEntryInterface interface {
 	Put_AllowSubstringMatch(allowSubstringMatch BOOL) HRESULT
 	Put_CanCheckBaseClass(canCheckBaseClass BOOL) HRESULT
 	Put_NeedsAdviseEvents(adviseEvents BOOL) HRESULT
-	SetWinEventsForAutomationEvent(eventId int32, propertyId int32, winEvents *SAFEARRAY) HRESULT
-	GetWinEventsForAutomationEvent(eventId int32, propertyId int32, winEvents **SAFEARRAY) HRESULT
+	SetWinEventsForAutomationEvent(eventId UIA_EVENT_ID, propertyId UIA_PROPERTY_ID, winEvents *SAFEARRAY) HRESULT
+	GetWinEventsForAutomationEvent(eventId UIA_EVENT_ID, propertyId UIA_PROPERTY_ID, winEvents **SAFEARRAY) HRESULT
 }
 
 type IUIAutomationProxyFactoryEntryVtbl struct {
@@ -9823,12 +9828,12 @@ func (this *IUIAutomationProxyFactoryEntry) Put_NeedsAdviseEvents(adviseEvents B
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) SetWinEventsForAutomationEvent(eventId int32, propertyId int32, winEvents *SAFEARRAY) HRESULT {
+func (this *IUIAutomationProxyFactoryEntry) SetWinEventsForAutomationEvent(eventId UIA_EVENT_ID, propertyId UIA_PROPERTY_ID, winEvents *SAFEARRAY) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetWinEventsForAutomationEvent, uintptr(unsafe.Pointer(this)), uintptr(eventId), uintptr(propertyId), uintptr(unsafe.Pointer(winEvents)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationProxyFactoryEntry) GetWinEventsForAutomationEvent(eventId int32, propertyId int32, winEvents **SAFEARRAY) HRESULT {
+func (this *IUIAutomationProxyFactoryEntry) GetWinEventsForAutomationEvent(eventId UIA_EVENT_ID, propertyId UIA_PROPERTY_ID, winEvents **SAFEARRAY) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetWinEventsForAutomationEvent, uintptr(unsafe.Pointer(this)), uintptr(eventId), uintptr(propertyId), uintptr(unsafe.Pointer(winEvents)))
 	return HRESULT(ret)
 }
@@ -9923,10 +9928,10 @@ var IID_IUIAutomationEventHandlerGroup = syscall.GUID{0xC9EE12F2, 0xC13B, 0x4408
 type IUIAutomationEventHandlerGroupInterface interface {
 	IUnknownInterface
 	AddActiveTextPositionChangedEventHandler(scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationActiveTextPositionChangedEventHandler) HRESULT
-	AddAutomationEventHandler(eventId int32, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT
+	AddAutomationEventHandler(eventId UIA_EVENT_ID, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT
 	AddChangesEventHandler(scope TreeScope, changeTypes *int32, changesCount int32, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationChangesEventHandler) HRESULT
 	AddNotificationEventHandler(scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationNotificationEventHandler) HRESULT
-	AddPropertyChangedEventHandler(scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *int32, propertyCount int32) HRESULT
+	AddPropertyChangedEventHandler(scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *UIA_PROPERTY_ID, propertyCount int32) HRESULT
 	AddStructureChangedEventHandler(scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationStructureChangedEventHandler) HRESULT
 	AddTextEditTextChangedEventHandler(scope TreeScope, textEditChangeType TextEditChangeType, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationTextEditTextChangedEventHandler) HRESULT
 }
@@ -9955,7 +9960,7 @@ func (this *IUIAutomationEventHandlerGroup) AddActiveTextPositionChangedEventHan
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationEventHandlerGroup) AddAutomationEventHandler(eventId int32, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT {
+func (this *IUIAutomationEventHandlerGroup) AddAutomationEventHandler(eventId UIA_EVENT_ID, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddAutomationEventHandler, uintptr(unsafe.Pointer(this)), uintptr(eventId), uintptr(scope), uintptr(unsafe.Pointer(cacheRequest)), uintptr(unsafe.Pointer(handler)))
 	return HRESULT(ret)
 }
@@ -9970,7 +9975,7 @@ func (this *IUIAutomationEventHandlerGroup) AddNotificationEventHandler(scope Tr
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomationEventHandlerGroup) AddPropertyChangedEventHandler(scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *int32, propertyCount int32) HRESULT {
+func (this *IUIAutomationEventHandlerGroup) AddPropertyChangedEventHandler(scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *UIA_PROPERTY_ID, propertyCount int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddPropertyChangedEventHandler, uintptr(unsafe.Pointer(this)), uintptr(scope), uintptr(unsafe.Pointer(cacheRequest)), uintptr(unsafe.Pointer(handler)), uintptr(unsafe.Pointer(propertyArray)), uintptr(propertyCount))
 	return HRESULT(ret)
 }
@@ -10011,8 +10016,8 @@ type IUIAutomationInterface interface {
 	CreateCacheRequest(cacheRequest **IUIAutomationCacheRequest) HRESULT
 	CreateTrueCondition(newCondition **IUIAutomationCondition) HRESULT
 	CreateFalseCondition(newCondition **IUIAutomationCondition) HRESULT
-	CreatePropertyCondition(propertyId int32, value VARIANT, newCondition **IUIAutomationCondition) HRESULT
-	CreatePropertyConditionEx(propertyId int32, value VARIANT, flags PropertyConditionFlags, newCondition **IUIAutomationCondition) HRESULT
+	CreatePropertyCondition(propertyId UIA_PROPERTY_ID, value VARIANT, newCondition **IUIAutomationCondition) HRESULT
+	CreatePropertyConditionEx(propertyId UIA_PROPERTY_ID, value VARIANT, flags PropertyConditionFlags, newCondition **IUIAutomationCondition) HRESULT
 	CreateAndCondition(condition1 *IUIAutomationCondition, condition2 *IUIAutomationCondition, newCondition **IUIAutomationCondition) HRESULT
 	CreateAndConditionFromArray(conditions *SAFEARRAY, newCondition **IUIAutomationCondition) HRESULT
 	CreateAndConditionFromNativeArray(conditions **IUIAutomationCondition, conditionCount int32, newCondition **IUIAutomationCondition) HRESULT
@@ -10020,9 +10025,9 @@ type IUIAutomationInterface interface {
 	CreateOrConditionFromArray(conditions *SAFEARRAY, newCondition **IUIAutomationCondition) HRESULT
 	CreateOrConditionFromNativeArray(conditions **IUIAutomationCondition, conditionCount int32, newCondition **IUIAutomationCondition) HRESULT
 	CreateNotCondition(condition *IUIAutomationCondition, newCondition **IUIAutomationCondition) HRESULT
-	AddAutomationEventHandler(eventId int32, element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT
-	RemoveAutomationEventHandler(eventId int32, element *IUIAutomationElement, handler *IUIAutomationEventHandler) HRESULT
-	AddPropertyChangedEventHandlerNativeArray(element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *int32, propertyCount int32) HRESULT
+	AddAutomationEventHandler(eventId UIA_EVENT_ID, element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT
+	RemoveAutomationEventHandler(eventId UIA_EVENT_ID, element *IUIAutomationElement, handler *IUIAutomationEventHandler) HRESULT
+	AddPropertyChangedEventHandlerNativeArray(element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *UIA_PROPERTY_ID, propertyCount int32) HRESULT
 	AddPropertyChangedEventHandler(element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *SAFEARRAY) HRESULT
 	RemovePropertyChangedEventHandler(element *IUIAutomationElement, handler *IUIAutomationPropertyChangedEventHandler) HRESULT
 	AddStructureChangedEventHandler(element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationStructureChangedEventHandler) HRESULT
@@ -10037,8 +10042,8 @@ type IUIAutomationInterface interface {
 	SafeArrayToRectNativeArray(rects *SAFEARRAY, rectArray **RECT, rectArrayCount *int32) HRESULT
 	CreateProxyFactoryEntry(factory *IUIAutomationProxyFactory, factoryEntry **IUIAutomationProxyFactoryEntry) HRESULT
 	Get_ProxyFactoryMapping(factoryMapping **IUIAutomationProxyFactoryMapping) HRESULT
-	GetPropertyProgrammaticName(property int32, name *BSTR) HRESULT
-	GetPatternProgrammaticName(pattern int32, name *BSTR) HRESULT
+	GetPropertyProgrammaticName(property UIA_PROPERTY_ID, name *BSTR) HRESULT
+	GetPatternProgrammaticName(pattern UIA_PATTERN_ID, name *BSTR) HRESULT
 	PollForPotentialSupportedPatterns(pElement *IUIAutomationElement, patternIds **SAFEARRAY, patternNames **SAFEARRAY) HRESULT
 	PollForPotentialSupportedProperties(pElement *IUIAutomationElement, propertyIds **SAFEARRAY, propertyNames **SAFEARRAY) HRESULT
 	CheckNotSupported(value VARIANT, isNotSupported *BOOL) HRESULT
@@ -10215,12 +10220,12 @@ func (this *IUIAutomation) CreateFalseCondition(newCondition **IUIAutomationCond
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) CreatePropertyCondition(propertyId int32, value VARIANT, newCondition **IUIAutomationCondition) HRESULT {
+func (this *IUIAutomation) CreatePropertyCondition(propertyId UIA_PROPERTY_ID, value VARIANT, newCondition **IUIAutomationCondition) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CreatePropertyCondition, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(unsafe.Pointer(&value)), uintptr(unsafe.Pointer(newCondition)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) CreatePropertyConditionEx(propertyId int32, value VARIANT, flags PropertyConditionFlags, newCondition **IUIAutomationCondition) HRESULT {
+func (this *IUIAutomation) CreatePropertyConditionEx(propertyId UIA_PROPERTY_ID, value VARIANT, flags PropertyConditionFlags, newCondition **IUIAutomationCondition) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CreatePropertyConditionEx, uintptr(unsafe.Pointer(this)), uintptr(propertyId), uintptr(unsafe.Pointer(&value)), uintptr(flags), uintptr(unsafe.Pointer(newCondition)))
 	return HRESULT(ret)
 }
@@ -10260,17 +10265,17 @@ func (this *IUIAutomation) CreateNotCondition(condition *IUIAutomationCondition,
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) AddAutomationEventHandler(eventId int32, element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT {
+func (this *IUIAutomation) AddAutomationEventHandler(eventId UIA_EVENT_ID, element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationEventHandler) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddAutomationEventHandler, uintptr(unsafe.Pointer(this)), uintptr(eventId), uintptr(unsafe.Pointer(element)), uintptr(scope), uintptr(unsafe.Pointer(cacheRequest)), uintptr(unsafe.Pointer(handler)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) RemoveAutomationEventHandler(eventId int32, element *IUIAutomationElement, handler *IUIAutomationEventHandler) HRESULT {
+func (this *IUIAutomation) RemoveAutomationEventHandler(eventId UIA_EVENT_ID, element *IUIAutomationElement, handler *IUIAutomationEventHandler) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RemoveAutomationEventHandler, uintptr(unsafe.Pointer(this)), uintptr(eventId), uintptr(unsafe.Pointer(element)), uintptr(unsafe.Pointer(handler)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) AddPropertyChangedEventHandlerNativeArray(element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *int32, propertyCount int32) HRESULT {
+func (this *IUIAutomation) AddPropertyChangedEventHandlerNativeArray(element *IUIAutomationElement, scope TreeScope, cacheRequest *IUIAutomationCacheRequest, handler *IUIAutomationPropertyChangedEventHandler, propertyArray *UIA_PROPERTY_ID, propertyCount int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddPropertyChangedEventHandlerNativeArray, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(element)), uintptr(scope), uintptr(unsafe.Pointer(cacheRequest)), uintptr(unsafe.Pointer(handler)), uintptr(unsafe.Pointer(propertyArray)), uintptr(propertyCount))
 	return HRESULT(ret)
 }
@@ -10345,12 +10350,12 @@ func (this *IUIAutomation) Get_ProxyFactoryMapping(factoryMapping **IUIAutomatio
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) GetPropertyProgrammaticName(property int32, name *BSTR) HRESULT {
+func (this *IUIAutomation) GetPropertyProgrammaticName(property UIA_PROPERTY_ID, name *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPropertyProgrammaticName, uintptr(unsafe.Pointer(this)), uintptr(property), uintptr(unsafe.Pointer(name)))
 	return HRESULT(ret)
 }
 
-func (this *IUIAutomation) GetPatternProgrammaticName(pattern int32, name *BSTR) HRESULT {
+func (this *IUIAutomation) GetPatternProgrammaticName(pattern UIA_PATTERN_ID, name *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPatternProgrammaticName, uintptr(unsafe.Pointer(this)), uintptr(pattern), uintptr(unsafe.Pointer(name)))
 	return HRESULT(ret)
 }
@@ -10634,6 +10639,67 @@ func (this *IUIAutomation6) AddActiveTextPositionChangedEventHandler(element *IU
 
 func (this *IUIAutomation6) RemoveActiveTextPositionChangedEventHandler(element *IUIAutomationElement, handler *IUIAutomationActiveTextPositionChangedEventHandler) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RemoveActiveTextPositionChangedEventHandler, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(element)), uintptr(unsafe.Pointer(handler)))
+	return HRESULT(ret)
+}
+
+// 00000000-0000-0000-0000-000000000000
+var IID_IRicheditWindowlessAccessibility = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
+
+type IRicheditWindowlessAccessibilityInterface interface {
+	IUnknownInterface
+	CreateProvider(pSite *IRawElementProviderWindowlessSite, ppProvider **IRawElementProviderSimple) HRESULT
+}
+
+type IRicheditWindowlessAccessibilityVtbl struct {
+	IUnknownVtbl
+	CreateProvider uintptr
+}
+
+type IRicheditWindowlessAccessibility struct {
+	IUnknown
+}
+
+func (this *IRicheditWindowlessAccessibility) Vtbl() *IRicheditWindowlessAccessibilityVtbl {
+	return (*IRicheditWindowlessAccessibilityVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IRicheditWindowlessAccessibility) CreateProvider(pSite *IRawElementProviderWindowlessSite, ppProvider **IRawElementProviderSimple) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().CreateProvider, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pSite)), uintptr(unsafe.Pointer(ppProvider)))
+	return HRESULT(ret)
+}
+
+// 00000000-0000-0000-0000-000000000000
+var IID_IRichEditUiaInformation = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
+
+type IRichEditUiaInformationInterface interface {
+	IUnknownInterface
+	GetBoundaryRectangle(pUiaRect *UiaRect) HRESULT
+	IsVisible() HRESULT
+}
+
+type IRichEditUiaInformationVtbl struct {
+	IUnknownVtbl
+	GetBoundaryRectangle uintptr
+	IsVisible            uintptr
+}
+
+type IRichEditUiaInformation struct {
+	IUnknown
+}
+
+func (this *IRichEditUiaInformation) Vtbl() *IRichEditUiaInformationVtbl {
+	return (*IRichEditUiaInformationVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IRichEditUiaInformation) GetBoundaryRectangle(pUiaRect *UiaRect) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBoundaryRectangle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pUiaRect)))
+	return HRESULT(ret)
+}
+
+func (this *IRichEditUiaInformation) IsVisible() HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().IsVisible, uintptr(unsafe.Pointer(this)))
 	return HRESULT(ret)
 }
 

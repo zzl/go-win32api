@@ -140,6 +140,58 @@ const (
 	COPY_FILE_ENABLE_LOW_FREE_SPACE_MODE                               uint32 = 0x8000000
 	FAIL_FAST_GENERATE_EXCEPTION_ADDRESS                               uint32 = 0x1
 	FAIL_FAST_NO_HARD_ERROR_DLG                                        uint32 = 0x2
+	SP_SERIALCOMM                                                      uint32 = 0x1
+	PST_UNSPECIFIED                                                    uint32 = 0x0
+	PST_RS232                                                          uint32 = 0x1
+	PST_PARALLELPORT                                                   uint32 = 0x2
+	PST_RS422                                                          uint32 = 0x3
+	PST_RS423                                                          uint32 = 0x4
+	PST_RS449                                                          uint32 = 0x5
+	PST_MODEM                                                          uint32 = 0x6
+	PST_FAX                                                            uint32 = 0x21
+	PST_SCANNER                                                        uint32 = 0x22
+	PST_NETWORK_BRIDGE                                                 uint32 = 0x100
+	PST_LAT                                                            uint32 = 0x101
+	PST_TCPIP_TELNET                                                   uint32 = 0x102
+	PST_X25                                                            uint32 = 0x103
+	PCF_DTRDSR                                                         uint32 = 0x1
+	PCF_RTSCTS                                                         uint32 = 0x2
+	PCF_RLSD                                                           uint32 = 0x4
+	PCF_PARITY_CHECK                                                   uint32 = 0x8
+	PCF_XONXOFF                                                        uint32 = 0x10
+	PCF_SETXCHAR                                                       uint32 = 0x20
+	PCF_TOTALTIMEOUTS                                                  uint32 = 0x40
+	PCF_INTTIMEOUTS                                                    uint32 = 0x80
+	PCF_SPECIALCHARS                                                   uint32 = 0x100
+	PCF_16BITMODE                                                      uint32 = 0x200
+	SP_PARITY                                                          uint32 = 0x1
+	SP_BAUD                                                            uint32 = 0x2
+	SP_DATABITS                                                        uint32 = 0x4
+	SP_STOPBITS                                                        uint32 = 0x8
+	SP_HANDSHAKING                                                     uint32 = 0x10
+	SP_PARITY_CHECK                                                    uint32 = 0x20
+	SP_RLSD                                                            uint32 = 0x40
+	BAUD_075                                                           uint32 = 0x1
+	BAUD_110                                                           uint32 = 0x2
+	BAUD_134_5                                                         uint32 = 0x4
+	BAUD_150                                                           uint32 = 0x8
+	BAUD_300                                                           uint32 = 0x10
+	BAUD_600                                                           uint32 = 0x20
+	BAUD_1200                                                          uint32 = 0x40
+	BAUD_1800                                                          uint32 = 0x80
+	BAUD_2400                                                          uint32 = 0x100
+	BAUD_4800                                                          uint32 = 0x200
+	BAUD_7200                                                          uint32 = 0x400
+	BAUD_9600                                                          uint32 = 0x800
+	BAUD_14400                                                         uint32 = 0x1000
+	BAUD_19200                                                         uint32 = 0x2000
+	BAUD_38400                                                         uint32 = 0x4000
+	BAUD_56K                                                           uint32 = 0x8000
+	BAUD_128K                                                          uint32 = 0x10000
+	BAUD_115200                                                        uint32 = 0x20000
+	BAUD_57600                                                         uint32 = 0x40000
+	BAUD_USER                                                          uint32 = 0x10000000
+	COMMPROP_INITIALIZED                                               uint32 = 0xe73cf52e
 	DTR_CONTROL_DISABLE                                                uint32 = 0x0
 	DTR_CONTROL_ENABLE                                                 uint32 = 0x1
 	DTR_CONTROL_HANDSHAKE                                              uint32 = 0x2
@@ -172,11 +224,6 @@ const (
 	DRIVE_REMOTE                                                       uint32 = 0x4
 	DRIVE_CDROM                                                        uint32 = 0x5
 	DRIVE_RAMDISK                                                      uint32 = 0x6
-	FILE_TYPE_UNKNOWN                                                  uint32 = 0x0
-	FILE_TYPE_DISK                                                     uint32 = 0x1
-	FILE_TYPE_CHAR                                                     uint32 = 0x2
-	FILE_TYPE_PIPE                                                     uint32 = 0x3
-	FILE_TYPE_REMOTE                                                   uint32 = 0x8000
 	IGNORE                                                             uint32 = 0x0
 	INFINITE                                                           uint32 = 0xffffffff
 	CBR_110                                                            uint32 = 0x6e
@@ -838,6 +885,22 @@ type D3DHAL_CALLBACKS_ struct {
 type D3DHAL_GLOBALDRIVERDATA_ struct {
 }
 
+type TCP_REQUEST_QUERY_INFORMATION_EX32_XP struct {
+	ID      TDIObjectID
+	Context [4]uint32
+}
+
+type DELAYLOAD_INFO struct {
+	Size                uint32
+	DelayloadDescriptor *IMAGE_DELAYLOAD_DESCRIPTOR
+	ThunkAddress        *IMAGE_THUNK_DATA64
+	TargetDllName       PSTR
+	TargetApiDescriptor DELAYLOAD_PROC_DESCRIPTOR
+	TargetModuleBase    unsafe.Pointer
+	Unused              unsafe.Pointer
+	LastError           uint32
+}
+
 type IMAGE_THUNK_DATA64_U1 struct {
 	Data [1]uint64
 }
@@ -1444,22 +1507,17 @@ type TDIObjectID struct {
 	Toi_id     uint32
 }
 
-type Tcp_request_query_information_ex_xp struct {
+type TCP_REQUEST_QUERY_INFORMATION_EX_XP struct {
 	ID      TDIObjectID
-	Context [2]uintptr
+	Context [4]uintptr
 }
 
-type Tcp_request_query_information_ex32_xp struct {
-	ID      TDIObjectID
-	Context [4]uint32
-}
-
-type Tcp_request_query_information_ex_w2k struct {
+type TCP_REQUEST_QUERY_INFORMATION_EX_W2K struct {
 	ID      TDIObjectID
 	Context [16]byte
 }
 
-type Tcp_request_set_information_ex struct {
+type TCP_REQUEST_SET_INFORMATION_EX struct {
 	ID         TDIObjectID
 	BufferSize uint32
 	Buffer     [1]byte
@@ -1535,17 +1593,6 @@ func (this *DELAYLOAD_PROC_DESCRIPTOR_Description) OrdinalVal() uint32 {
 type DELAYLOAD_PROC_DESCRIPTOR struct {
 	ImportDescribedByName uint32
 	Description           DELAYLOAD_PROC_DESCRIPTOR_Description
-}
-
-type DELAYLOAD_INFO struct {
-	Size                uint32
-	DelayloadDescriptor *IMAGE_DELAYLOAD_DESCRIPTOR
-	ThunkAddress        *IMAGE_THUNK_DATA64
-	TargetDllName       PSTR
-	TargetApiDescriptor DELAYLOAD_PROC_DESCRIPTOR
-	TargetModuleBase    unsafe.Pointer
-	Unused              unsafe.Pointer
-	LastError           uint32
 }
 
 // func types
@@ -1838,7 +1885,7 @@ var IID_IEditionUpgradeBroker = syscall.GUID{0xFF19CBCF, 0x9455, 0x4937,
 
 type IEditionUpgradeBrokerInterface interface {
 	IUnknownInterface
-	InitializeParentWindow(parentHandle uint32) HRESULT
+	InitializeParentWindow(parentHandle OLE_HANDLE) HRESULT
 	UpdateOperatingSystem(parameter BSTR) HRESULT
 	ShowProductKeyUI() HRESULT
 	CanUpgrade() HRESULT
@@ -1860,7 +1907,7 @@ func (this *IEditionUpgradeBroker) Vtbl() *IEditionUpgradeBrokerVtbl {
 	return (*IEditionUpgradeBrokerVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IEditionUpgradeBroker) InitializeParentWindow(parentHandle uint32) HRESULT {
+func (this *IEditionUpgradeBroker) InitializeParentWindow(parentHandle OLE_HANDLE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InitializeParentWindow, uintptr(unsafe.Pointer(this)), uintptr(parentHandle))
 	return HRESULT(ret)
 }
@@ -1886,7 +1933,7 @@ var IID_IContainerActivationHelper = syscall.GUID{0xB524F93F, 0x80D5, 0x4EC7,
 
 type IContainerActivationHelperInterface interface {
 	IUnknownInterface
-	CanActivateClientVM(isAllowed *int16) HRESULT
+	CanActivateClientVM(isAllowed *VARIANT_BOOL) HRESULT
 }
 
 type IContainerActivationHelperVtbl struct {
@@ -1902,7 +1949,7 @@ func (this *IContainerActivationHelper) Vtbl() *IContainerActivationHelperVtbl {
 	return (*IContainerActivationHelperVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IContainerActivationHelper) CanActivateClientVM(isAllowed *int16) HRESULT {
+func (this *IContainerActivationHelper) CanActivateClientVM(isAllowed *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CanActivateClientVM, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(isAllowed)))
 	return HRESULT(ret)
 }
@@ -1989,6 +2036,14 @@ func (this *IDeleteBrowsingHistory) DeleteBrowsingHistory(dwFlags uint32) HRESUL
 }
 
 var (
+	pUaw_lstrcmpW                        uintptr
+	pUaw_lstrcmpiW                       uintptr
+	pUaw_lstrlenW                        uintptr
+	pUaw_wcschr                          uintptr
+	pUaw_wcscpy                          uintptr
+	pUaw_wcsicmp                         uintptr
+	pUaw_wcslen                          uintptr
+	pUaw_wcsrchr                         uintptr
 	pQueryThreadCycleTime                uintptr
 	pQueryProcessCycleTime               uintptr
 	pQueryIdleProcessorCycleTime         uintptr
@@ -2074,14 +2129,6 @@ var (
 	pReplacePartitionUnit                uintptr
 	pGetThreadEnabledXStateFeatures      uintptr
 	pEnableProcessOptionalXStateFeatures uintptr
-	pUaw_lstrcmpW                        uintptr
-	pUaw_lstrcmpiW                       uintptr
-	pUaw_lstrlenW                        uintptr
-	pUaw_wcschr                          uintptr
-	pUaw_wcscpy                          uintptr
-	pUaw_wcsicmp                         uintptr
-	pUaw_wcslen                          uintptr
-	pUaw_wcsrchr                         uintptr
 	pSendIMEMessageExA                   uintptr
 	pSendIMEMessageExW                   uintptr
 	pIMPGetIMEA                          uintptr
@@ -2094,6 +2141,54 @@ var (
 	pWINNLSEnableIME                     uintptr
 	pWINNLSGetEnableStatus               uintptr
 )
+
+func Uaw_lstrcmpW(String1 *uint16, String2 *uint16) int32 {
+	addr := lazyAddr(&pUaw_lstrcmpW, libKernel32, "uaw_lstrcmpW")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
+	return int32(ret)
+}
+
+func Uaw_lstrcmpiW(String1 *uint16, String2 *uint16) int32 {
+	addr := lazyAddr(&pUaw_lstrcmpiW, libKernel32, "uaw_lstrcmpiW")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
+	return int32(ret)
+}
+
+func Uaw_lstrlenW(String *uint16) int32 {
+	addr := lazyAddr(&pUaw_lstrlenW, libKernel32, "uaw_lstrlenW")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)))
+	return int32(ret)
+}
+
+func Uaw_wcschr(String *uint16, Character uint16) *uint16 {
+	addr := lazyAddr(&pUaw_wcschr, libKernel32, "uaw_wcschr")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)), uintptr(Character))
+	return (*uint16)(unsafe.Pointer(ret))
+}
+
+func Uaw_wcscpy(Destination *uint16, Source *uint16) *uint16 {
+	addr := lazyAddr(&pUaw_wcscpy, libKernel32, "uaw_wcscpy")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Destination)), uintptr(unsafe.Pointer(Source)))
+	return (*uint16)(unsafe.Pointer(ret))
+}
+
+func Uaw_wcsicmp(String1 *uint16, String2 *uint16) int32 {
+	addr := lazyAddr(&pUaw_wcsicmp, libKernel32, "uaw_wcsicmp")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
+	return int32(ret)
+}
+
+func Uaw_wcslen(String *uint16) uintptr {
+	addr := lazyAddr(&pUaw_wcslen, libKernel32, "uaw_wcslen")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)))
+	return ret
+}
+
+func Uaw_wcsrchr(String *uint16, Character uint16) *uint16 {
+	addr := lazyAddr(&pUaw_wcsrchr, libKernel32, "uaw_wcsrchr")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)), uintptr(Character))
+	return (*uint16)(unsafe.Pointer(ret))
+}
 
 func QueryThreadCycleTime(ThreadHandle HANDLE, CycleTime *uint64) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pQueryThreadCycleTime, libKernel32, "QueryThreadCycleTime")
@@ -2267,10 +2362,10 @@ func Llseek_(hFile int32, lOffset int32, iOrigin int32) (int32, WIN32_ERROR) {
 	return int32(ret), WIN32_ERROR(err)
 }
 
-func SignalObjectAndWait(hObjectToSignal HANDLE, hObjectToWaitOn HANDLE, dwMilliseconds uint32, bAlertable BOOL) (uint32, WIN32_ERROR) {
+func SignalObjectAndWait(hObjectToSignal HANDLE, hObjectToWaitOn HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
 	addr := lazyAddr(&pSignalObjectAndWait, libKernel32, "SignalObjectAndWait")
 	ret, _, err := syscall.SyscallN(addr, hObjectToSignal, hObjectToWaitOn, uintptr(dwMilliseconds), uintptr(bAlertable))
-	return uint32(ret), WIN32_ERROR(err)
+	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func OpenMutexA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) HANDLE {
@@ -2443,10 +2538,10 @@ func GetPrivateProfileIntA(lpAppName PSTR, lpKeyName PSTR, nDefault int32, lpFil
 
 var GetPrivateProfileInt = GetPrivateProfileIntW
 
-func GetPrivateProfileIntW(lpAppName PWSTR, lpKeyName PWSTR, nDefault int32, lpFileName PWSTR) uint32 {
+func GetPrivateProfileIntW(lpAppName PWSTR, lpKeyName PWSTR, nDefault int32, lpFileName PWSTR) int32 {
 	addr := lazyAddr(&pGetPrivateProfileIntW, libKernel32, "GetPrivateProfileIntW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(nDefault), uintptr(unsafe.Pointer(lpFileName)))
-	return uint32(ret)
+	return int32(ret)
 }
 
 func GetPrivateProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpDefault PSTR, lpReturnedString PSTR, nSize uint32, lpFileName PSTR) (uint32, WIN32_ERROR) {
@@ -2643,54 +2738,6 @@ func EnableProcessOptionalXStateFeatures(Features uint64) BOOL {
 	addr := lazyAddr(&pEnableProcessOptionalXStateFeatures, libKernel32, "EnableProcessOptionalXStateFeatures")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Features))
 	return BOOL(ret)
-}
-
-func Uaw_lstrcmpW(String1 *uint16, String2 *uint16) int32 {
-	addr := lazyAddr(&pUaw_lstrcmpW, libKernel32, "uaw_lstrcmpW")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
-	return int32(ret)
-}
-
-func Uaw_lstrcmpiW(String1 *uint16, String2 *uint16) int32 {
-	addr := lazyAddr(&pUaw_lstrcmpiW, libKernel32, "uaw_lstrcmpiW")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
-	return int32(ret)
-}
-
-func Uaw_lstrlenW(String *uint16) int32 {
-	addr := lazyAddr(&pUaw_lstrlenW, libKernel32, "uaw_lstrlenW")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)))
-	return int32(ret)
-}
-
-func Uaw_wcschr(String *uint16, Character uint16) *uint16 {
-	addr := lazyAddr(&pUaw_wcschr, libKernel32, "uaw_wcschr")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)), uintptr(Character))
-	return (*uint16)(unsafe.Pointer(ret))
-}
-
-func Uaw_wcscpy(Destination *uint16, Source *uint16) *uint16 {
-	addr := lazyAddr(&pUaw_wcscpy, libKernel32, "uaw_wcscpy")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Destination)), uintptr(unsafe.Pointer(Source)))
-	return (*uint16)(unsafe.Pointer(ret))
-}
-
-func Uaw_wcsicmp(String1 *uint16, String2 *uint16) int32 {
-	addr := lazyAddr(&pUaw_wcsicmp, libKernel32, "uaw_wcsicmp")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
-	return int32(ret)
-}
-
-func Uaw_wcslen(String *uint16) uintptr {
-	addr := lazyAddr(&pUaw_wcslen, libKernel32, "uaw_wcslen")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)))
-	return ret
-}
-
-func Uaw_wcsrchr(String *uint16, Character uint16) *uint16 {
-	addr := lazyAddr(&pUaw_wcsrchr, libKernel32, "uaw_wcsrchr")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)), uintptr(Character))
-	return (*uint16)(unsafe.Pointer(ret))
 }
 
 func SendIMEMessageExA(param0 HWND, param1 LPARAM) LRESULT {

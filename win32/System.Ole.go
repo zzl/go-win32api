@@ -5,6 +5,10 @@ import (
 	"unsafe"
 )
 
+type (
+	OLE_HANDLE = uint32
+)
+
 const (
 	CTL_E_ILLEGALFUNCTIONCALL                  int32   = -2146828283
 	CONNECT_E_FIRST                            int32   = -2147220992
@@ -22,12 +26,6 @@ const (
 	SELFREG_E_TYPELIB                          HRESULT = -2147220992
 	SELFREG_E_CLASS                            HRESULT = -2147220991
 	PERPROP_E_NOPAGEAVAILABLE                  HRESULT = -2147220992
-	PICTYPE_UNINITIALIZED                      int32   = -1
-	PICTYPE_NONE                               uint32  = 0x0
-	PICTYPE_BITMAP                             uint32  = 0x1
-	PICTYPE_METAFILE                           uint32  = 0x2
-	PICTYPE_ICON                               uint32  = 0x3
-	PICTYPE_ENHMETAFILE                        uint32  = 0x4
 	CONNECT_E_LAST                             HRESULT = -2147220977
 	CONNECT_S_FIRST                            HRESULT = 262656
 	CONNECT_S_LAST                             HRESULT = 262671
@@ -43,10 +41,6 @@ const (
 	VT_BLOB_PROPSET                            uint32  = 0x4b
 	VT_VERBOSE_ENUM                            uint32  = 0x4c
 	OCM__BASE                                  uint32  = 0x2000
-	LP_DEFAULT                                 uint32  = 0x0
-	LP_MONOCHROME                              uint32  = 0x1
-	LP_VGACOLOR                                uint32  = 0x2
-	LP_COLOR                                   uint32  = 0x4
 	DISPID_AUTOSIZE                            int32   = -500
 	DISPID_BACKCOLOR                           int32   = -501
 	DISPID_BACKSTYLE                           int32   = -502
@@ -179,11 +173,6 @@ const (
 	INSTALL_SCOPE_MACHINE                      uint32  = 0x1
 	INSTALL_SCOPE_USER                         uint32  = 0x2
 	MK_ALT                                     uint32  = 0x20
-	DROPEFFECT_NONE                            uint32  = 0x0
-	DROPEFFECT_COPY                            uint32  = 0x1
-	DROPEFFECT_MOVE                            uint32  = 0x2
-	DROPEFFECT_LINK                            uint32  = 0x4
-	DROPEFFECT_SCROLL                          uint32  = 0x80000000
 	DD_DEFSCROLLINSET                          uint32  = 0xb
 	DD_DEFSCROLLDELAY                          uint32  = 0x32
 	DD_DEFSCROLLINTERVAL                       uint32  = 0x32
@@ -197,18 +186,6 @@ const (
 	OF_GET                                     uint32  = 0x2
 	OF_HANDLER                                 uint32  = 0x4
 	WIN32                                      uint32  = 0x64
-	OLEIVERB_PRIMARY                           int32   = 0
-	OLEIVERB_SHOW                              int32   = -1
-	OLEIVERB_OPEN                              int32   = -2
-	OLEIVERB_HIDE                              int32   = -3
-	OLEIVERB_UIACTIVATE                        int32   = -4
-	OLEIVERB_INPLACEACTIVATE                   int32   = -5
-	OLEIVERB_DISCARDUNDOSTATE                  int32   = -6
-	EMBDHLP_INPROC_HANDLER                     int32   = 0
-	EMBDHLP_INPROC_SERVER                      int32   = 1
-	EMBDHLP_CREATENOW                          int32   = 0
-	EMBDHLP_DELAYCREATE                        int32   = 65536
-	OLECREATE_LEAVERUNNING                     uint32  = 0x1
 	IDC_OLEUIHELP                              uint32  = 0x63
 	IDC_IO_CREATENEW                           uint32  = 0x834
 	IDC_IO_CREATEFROMFILE                      uint32  = 0x835
@@ -374,20 +351,6 @@ const (
 	OLEUI_ERR_GLOBALMEMALLOC                   uint32  = 0x72
 	OLEUI_ERR_LOADSTRING                       uint32  = 0x73
 	OLEUI_ERR_STANDARDMAX                      uint32  = 0x74
-	IOF_SHOWHELP                               int32   = 1
-	IOF_SELECTCREATENEW                        int32   = 2
-	IOF_SELECTCREATEFROMFILE                   int32   = 4
-	IOF_CHECKLINK                              int32   = 8
-	IOF_CHECKDISPLAYASICON                     int32   = 16
-	IOF_CREATENEWOBJECT                        int32   = 32
-	IOF_CREATEFILEOBJECT                       int32   = 64
-	IOF_CREATELINKOBJECT                       int32   = 128
-	IOF_DISABLELINK                            int32   = 256
-	IOF_VERIFYSERVERSEXIST                     int32   = 512
-	IOF_DISABLEDISPLAYASICON                   int32   = 1024
-	IOF_HIDECHANGEICON                         int32   = 2048
-	IOF_SHOWINSERTCONTROL                      int32   = 4096
-	IOF_SELECTCREATECONTROL                    int32   = 8192
 	OLEUI_IOERR_LPSZFILEINVALID                uint32  = 0x74
 	OLEUI_IOERR_LPSZLABELINVALID               uint32  = 0x75
 	OLEUI_IOERR_HICONINVALID                   uint32  = 0x76
@@ -399,14 +362,6 @@ const (
 	OLEUI_IOERR_LPCLSIDEXCLUDEINVALID          uint32  = 0x7c
 	OLEUI_IOERR_CCHFILEINVALID                 uint32  = 0x7d
 	PS_MAXLINKTYPES                            uint32  = 0x8
-	PSF_SHOWHELP                               int32   = 1
-	PSF_SELECTPASTE                            int32   = 2
-	PSF_SELECTPASTELINK                        int32   = 4
-	PSF_CHECKDISPLAYASICON                     int32   = 8
-	PSF_DISABLEDISPLAYASICON                   int32   = 16
-	PSF_HIDECHANGEICON                         int32   = 32
-	PSF_STAYONCLIPBOARDCHANGE                  int32   = 64
-	PSF_NOREFRESHDATAOBJECT                    int32   = 128
 	OLEUI_IOERR_SRCDATAOBJECTINVALID           uint32  = 0x74
 	OLEUI_IOERR_ARRPASTEENTRIESINVALID         uint32  = 0x75
 	OLEUI_IOERR_ARRLINKTYPESINVALID            uint32  = 0x76
@@ -414,46 +369,19 @@ const (
 	OLEUI_PSERR_GETCLIPBOARDFAILED             uint32  = 0x78
 	OLEUI_ELERR_LINKCNTRNULL                   uint32  = 0x74
 	OLEUI_ELERR_LINKCNTRINVALID                uint32  = 0x75
-	ELF_SHOWHELP                               int32   = 1
-	ELF_DISABLEUPDATENOW                       int32   = 2
-	ELF_DISABLEOPENSOURCE                      int32   = 4
-	ELF_DISABLECHANGESOURCE                    int32   = 8
-	ELF_DISABLECANCELLINK                      int32   = 16
-	CIF_SHOWHELP                               int32   = 1
-	CIF_SELECTCURRENT                          int32   = 2
-	CIF_SELECTDEFAULT                          int32   = 4
-	CIF_SELECTFROMFILE                         int32   = 8
-	CIF_USEICONEXE                             int32   = 16
 	OLEUI_CIERR_MUSTHAVECLSID                  uint32  = 0x74
 	OLEUI_CIERR_MUSTHAVECURRENTMETAFILE        uint32  = 0x75
 	OLEUI_CIERR_SZICONEXEINVALID               uint32  = 0x76
 	PROP_HWND_CHGICONDLG                       string  = "HWND_CIDLG"
-	CF_SHOWHELPBUTTON                          int32   = 1
-	CF_SETCONVERTDEFAULT                       int32   = 2
-	CF_SETACTIVATEDEFAULT                      int32   = 4
-	CF_SELECTCONVERTTO                         int32   = 8
-	CF_SELECTACTIVATEAS                        int32   = 16
-	CF_DISABLEDISPLAYASICON                    int32   = 32
-	CF_DISABLEACTIVATEAS                       int32   = 64
-	CF_HIDECHANGEICON                          int32   = 128
-	CF_CONVERTONLY                             int32   = 256
 	OLEUI_CTERR_CLASSIDINVALID                 uint32  = 0x75
 	OLEUI_CTERR_DVASPECTINVALID                uint32  = 0x76
 	OLEUI_CTERR_CBFORMATINVALID                uint32  = 0x77
 	OLEUI_CTERR_HMETAPICTINVALID               uint32  = 0x78
 	OLEUI_CTERR_STRINGINVALID                  uint32  = 0x79
-	BZ_DISABLECANCELBUTTON                     int32   = 1
-	BZ_DISABLESWITCHTOBUTTON                   int32   = 2
-	BZ_DISABLERETRYBUTTON                      int32   = 4
-	BZ_NOTRESPONDINGDIALOG                     int32   = 8
 	OLEUI_BZERR_HTASKINVALID                   uint32  = 0x74
 	OLEUI_BZ_SWITCHTOSELECTED                  uint32  = 0x75
 	OLEUI_BZ_RETRYSELECTED                     uint32  = 0x76
 	OLEUI_BZ_CALLUNBLOCKED                     uint32  = 0x77
-	CSF_SHOWHELP                               int32   = 1
-	CSF_VALIDSOURCE                            int32   = 2
-	CSF_ONLYGETSOURCE                          int32   = 4
-	CSF_EXPLORER                               int32   = 8
 	OLEUI_CSERR_LINKCNTRNULL                   uint32  = 0x74
 	OLEUI_CSERR_LINKCNTRINVALID                uint32  = 0x75
 	OLEUI_CSERR_FROMNOTNULL                    uint32  = 0x76
@@ -462,13 +390,6 @@ const (
 	OLEUI_CSERR_SOURCEINVALID                  uint32  = 0x79
 	OLEUI_CSERR_SOURCEPARSERROR                uint32  = 0x7a
 	OLEUI_CSERR_SOURCEPARSEERROR               uint32  = 0x7a
-	VPF_SELECTRELATIVE                         int32   = 1
-	VPF_DISABLERELATIVE                        int32   = 2
-	VPF_DISABLESCALE                           int32   = 4
-	OPF_OBJECTISLINK                           int32   = 1
-	OPF_NOFILLDEFAULT                          int32   = 2
-	OPF_SHOWHELP                               int32   = 4
-	OPF_DISABLECONVERT                         int32   = 8
 	OLEUI_OPERR_SUBPROPNULL                    uint32  = 0x74
 	OLEUI_OPERR_SUBPROPINVALID                 uint32  = 0x75
 	OLEUI_OPERR_PROPSHEETNULL                  uint32  = 0x76
@@ -493,35 +414,6 @@ const (
 	OLEUI_OPERR_LINKINFOINVALID                uint32  = 0x89
 	OLEUI_QUERY_GETCLASSID                     uint32  = 0xff00
 	OLEUI_QUERY_LINKBROKEN                     uint32  = 0xff01
-	FADF_AUTO                                  uint32  = 0x1
-	FADF_STATIC                                uint32  = 0x2
-	FADF_EMBEDDED                              uint32  = 0x4
-	FADF_FIXEDSIZE                             uint32  = 0x10
-	FADF_RECORD                                uint32  = 0x20
-	FADF_HAVEIID                               uint32  = 0x40
-	FADF_HAVEVARTYPE                           uint32  = 0x80
-	FADF_BSTR                                  uint32  = 0x100
-	FADF_UNKNOWN                               uint32  = 0x200
-	FADF_DISPATCH                              uint32  = 0x400
-	FADF_VARIANT                               uint32  = 0x800
-	FADF_RESERVED                              uint32  = 0xf008
-	PARAMFLAG_NONE                             uint32  = 0x0
-	PARAMFLAG_FIN                              uint32  = 0x1
-	PARAMFLAG_FOUT                             uint32  = 0x2
-	PARAMFLAG_FLCID                            uint32  = 0x4
-	PARAMFLAG_FRETVAL                          uint32  = 0x8
-	PARAMFLAG_FOPT                             uint32  = 0x10
-	PARAMFLAG_FHASDEFAULT                      uint32  = 0x20
-	PARAMFLAG_FHASCUSTDATA                     uint32  = 0x40
-	IDLFLAG_NONE                               uint32  = 0x0
-	IDLFLAG_FIN                                uint32  = 0x1
-	IDLFLAG_FOUT                               uint32  = 0x2
-	IDLFLAG_FLCID                              uint32  = 0x4
-	IDLFLAG_FRETVAL                            uint32  = 0x8
-	IMPLTYPEFLAG_FDEFAULT                      uint32  = 0x1
-	IMPLTYPEFLAG_FSOURCE                       uint32  = 0x2
-	IMPLTYPEFLAG_FRESTRICTED                   uint32  = 0x4
-	IMPLTYPEFLAG_FDEFAULTVTABLE                uint32  = 0x8
 	DISPID_UNKNOWN                             int32   = -1
 	DISPID_VALUE                               uint32  = 0x0
 	DISPID_PROPERTYPUT                         int32   = -3
@@ -544,59 +436,28 @@ const (
 	VARIANT_CALENDAR_THAI                      uint32  = 0x20
 	VARIANT_CALENDAR_GREGORIAN                 uint32  = 0x40
 	VARIANT_USE_NLS                            uint32  = 0x80
+	VAR_TIMEVALUEONLY                          uint32  = 0x1
+	VAR_DATEVALUEONLY                          uint32  = 0x2
+	VAR_VALIDDATE                              uint32  = 0x4
+	VAR_CALENDAR_HIJRI                         uint32  = 0x8
+	VAR_LOCALBOOL                              uint32  = 0x10
+	VAR_FORMAT_NOSUBSTITUTE                    uint32  = 0x20
+	VAR_FOURDIGITYEARS                         uint32  = 0x40
 	LOCALE_USE_NLS                             uint32  = 0x10000000
+	VAR_CALENDAR_THAI                          uint32  = 0x80
+	VAR_CALENDAR_GREGORIAN                     uint32  = 0x100
 	VTDATEGRE_MAX                              uint32  = 0x2d2481
 	VTDATEGRE_MIN                              int32   = -657434
-	NUMPRS_LEADING_WHITE                       uint32  = 0x1
-	NUMPRS_TRAILING_WHITE                      uint32  = 0x2
-	NUMPRS_LEADING_PLUS                        uint32  = 0x4
-	NUMPRS_TRAILING_PLUS                       uint32  = 0x8
-	NUMPRS_LEADING_MINUS                       uint32  = 0x10
-	NUMPRS_TRAILING_MINUS                      uint32  = 0x20
-	NUMPRS_HEX_OCT                             uint32  = 0x40
-	NUMPRS_PARENS                              uint32  = 0x80
-	NUMPRS_DECIMAL                             uint32  = 0x100
-	NUMPRS_THOUSANDS                           uint32  = 0x200
-	NUMPRS_CURRENCY                            uint32  = 0x400
-	NUMPRS_EXPONENT                            uint32  = 0x800
-	NUMPRS_USE_ALL                             uint32  = 0x1000
-	NUMPRS_STD                                 uint32  = 0x1fff
-	NUMPRS_NEG                                 uint32  = 0x10000
-	NUMPRS_INEXACT                             uint32  = 0x20000
-	VARCMP_LT                                  uint32  = 0x0
-	VARCMP_EQ                                  uint32  = 0x1
-	VARCMP_GT                                  uint32  = 0x2
-	VARCMP_NULL                                uint32  = 0x3
 	MEMBERID_NIL                               int32   = -1
 	ID_DEFAULTINST                             int32   = -2
-	DISPATCH_METHOD                            uint32  = 0x1
-	DISPATCH_PROPERTYGET                       uint32  = 0x2
-	DISPATCH_PROPERTYPUT                       uint32  = 0x4
-	DISPATCH_PROPERTYPUTREF                    uint32  = 0x8
 	LOAD_TLB_AS_32BIT                          uint32  = 0x20
 	LOAD_TLB_AS_64BIT                          uint32  = 0x40
-	ACTIVEOBJECT_STRONG                        uint32  = 0x0
-	ACTIVEOBJECT_WEAK                          uint32  = 0x1
 	FdexNameCaseSensitive                      int32   = 1
 	FdexNameEnsure                             int32   = 2
 	FdexNameImplicit                           int32   = 4
 	FdexNameCaseInsensitive                    int32   = 8
 	FdexNameInternal                           int32   = 16
 	FdexNameNoDynamicProperties                int32   = 32
-	FdexPropCanGet                             int32   = 1
-	FdexPropCannotGet                          int32   = 2
-	FdexPropCanPut                             int32   = 4
-	FdexPropCannotPut                          int32   = 8
-	FdexPropCanPutRef                          int32   = 16
-	FdexPropCannotPutRef                       int32   = 32
-	FdexPropNoSideEffects                      int32   = 64
-	FdexPropDynamicType                        int32   = 128
-	FdexPropCanCall                            int32   = 256
-	FdexPropCannotCall                         int32   = 512
-	FdexPropCanConstruct                       int32   = 1024
-	FdexPropCannotConstruct                    int32   = 2048
-	FdexPropCanSourceEvents                    int32   = 4096
-	FdexPropCannotSourceEvents                 int32   = 8192
 	FdexEnumDefault                            int32   = 1
 	FdexEnumAll                                int32   = 2
 	DISPATCH_CONSTRUCT                         uint32  = 0x4000
@@ -698,6 +559,52 @@ var (
 // enums
 
 // enum
+type CLIPBOARD_FORMAT uint16
+
+const (
+	CF_TEXT            CLIPBOARD_FORMAT = 1
+	CF_BITMAP          CLIPBOARD_FORMAT = 2
+	CF_METAFILEPICT    CLIPBOARD_FORMAT = 3
+	CF_SYLK            CLIPBOARD_FORMAT = 4
+	CF_DIF             CLIPBOARD_FORMAT = 5
+	CF_TIFF            CLIPBOARD_FORMAT = 6
+	CF_OEMTEXT         CLIPBOARD_FORMAT = 7
+	CF_DIB             CLIPBOARD_FORMAT = 8
+	CF_PALETTE         CLIPBOARD_FORMAT = 9
+	CF_PENDATA         CLIPBOARD_FORMAT = 10
+	CF_RIFF            CLIPBOARD_FORMAT = 11
+	CF_WAVE            CLIPBOARD_FORMAT = 12
+	CF_UNICODETEXT     CLIPBOARD_FORMAT = 13
+	CF_ENHMETAFILE     CLIPBOARD_FORMAT = 14
+	CF_HDROP           CLIPBOARD_FORMAT = 15
+	CF_LOCALE          CLIPBOARD_FORMAT = 16
+	CF_DIBV5           CLIPBOARD_FORMAT = 17
+	CF_MAX             CLIPBOARD_FORMAT = 18
+	CF_OWNERDISPLAY    CLIPBOARD_FORMAT = 128
+	CF_DSPTEXT         CLIPBOARD_FORMAT = 129
+	CF_DSPBITMAP       CLIPBOARD_FORMAT = 130
+	CF_DSPMETAFILEPICT CLIPBOARD_FORMAT = 131
+	CF_DSPENHMETAFILE  CLIPBOARD_FORMAT = 142
+	CF_PRIVATEFIRST    CLIPBOARD_FORMAT = 512
+	CF_PRIVATELAST     CLIPBOARD_FORMAT = 767
+	CF_GDIOBJFIRST     CLIPBOARD_FORMAT = 768
+	CF_GDIOBJLAST      CLIPBOARD_FORMAT = 1023
+)
+
+// enum
+type OLEIVERB int32
+
+const (
+	OLEIVERB_PRIMARY          OLEIVERB = 0
+	OLEIVERB_SHOW             OLEIVERB = -1
+	OLEIVERB_OPEN             OLEIVERB = -2
+	OLEIVERB_HIDE             OLEIVERB = -3
+	OLEIVERB_UIACTIVATE       OLEIVERB = -4
+	OLEIVERB_INPLACEACTIVATE  OLEIVERB = -5
+	OLEIVERB_DISCARDUNDOSTATE OLEIVERB = -6
+)
+
+// enum
 // flags
 type UPDFCACHE_FLAGS uint32
 
@@ -738,61 +645,326 @@ const (
 )
 
 // enum
-type VARENUM int32
+// flags
+type DROPEFFECT uint32
 
 const (
-	VT_EMPTY            VARENUM = 0
-	VT_NULL             VARENUM = 1
-	VT_I2               VARENUM = 2
-	VT_I4               VARENUM = 3
-	VT_R4               VARENUM = 4
-	VT_R8               VARENUM = 5
-	VT_CY               VARENUM = 6
-	VT_DATE             VARENUM = 7
-	VT_BSTR             VARENUM = 8
-	VT_DISPATCH         VARENUM = 9
-	VT_ERROR            VARENUM = 10
-	VT_BOOL             VARENUM = 11
-	VT_VARIANT          VARENUM = 12
-	VT_UNKNOWN          VARENUM = 13
-	VT_DECIMAL          VARENUM = 14
-	VT_I1               VARENUM = 16
-	VT_UI1              VARENUM = 17
-	VT_UI2              VARENUM = 18
-	VT_UI4              VARENUM = 19
-	VT_I8               VARENUM = 20
-	VT_UI8              VARENUM = 21
-	VT_INT              VARENUM = 22
-	VT_UINT             VARENUM = 23
-	VT_VOID             VARENUM = 24
-	VT_HRESULT          VARENUM = 25
-	VT_PTR              VARENUM = 26
-	VT_SAFEARRAY        VARENUM = 27
-	VT_CARRAY           VARENUM = 28
-	VT_USERDEFINED      VARENUM = 29
-	VT_LPSTR            VARENUM = 30
-	VT_LPWSTR           VARENUM = 31
-	VT_RECORD           VARENUM = 36
-	VT_INT_PTR          VARENUM = 37
-	VT_UINT_PTR         VARENUM = 38
-	VT_FILETIME         VARENUM = 64
-	VT_BLOB             VARENUM = 65
-	VT_STREAM           VARENUM = 66
-	VT_STORAGE          VARENUM = 67
-	VT_STREAMED_OBJECT  VARENUM = 68
-	VT_STORED_OBJECT    VARENUM = 69
-	VT_BLOB_OBJECT      VARENUM = 70
-	VT_CF               VARENUM = 71
-	VT_CLSID            VARENUM = 72
-	VT_VERSIONED_STREAM VARENUM = 73
-	VT_BSTR_BLOB        VARENUM = 4095
-	VT_VECTOR           VARENUM = 4096
-	VT_ARRAY            VARENUM = 8192
-	VT_BYREF            VARENUM = 16384
-	VT_RESERVED         VARENUM = 32768
-	VT_ILLEGAL          VARENUM = 65535
-	VT_ILLEGALMASKED    VARENUM = 4095
-	VT_TYPEMASK         VARENUM = 4095
+	DROPEFFECT_NONE   DROPEFFECT = 0
+	DROPEFFECT_COPY   DROPEFFECT = 1
+	DROPEFFECT_MOVE   DROPEFFECT = 2
+	DROPEFFECT_LINK   DROPEFFECT = 4
+	DROPEFFECT_SCROLL DROPEFFECT = 2147483648
+)
+
+// enum
+// flags
+type KEYMODIFIERS uint32
+
+const (
+	KEYMOD_SHIFT   KEYMODIFIERS = 1
+	KEYMOD_CONTROL KEYMODIFIERS = 2
+	KEYMOD_ALT     KEYMODIFIERS = 4
+)
+
+// enum
+// flags
+type ACTIVEOBJECT_FLAGS uint32
+
+const (
+	ACTIVEOBJECT_STRONG ACTIVEOBJECT_FLAGS = 0
+	ACTIVEOBJECT_WEAK   ACTIVEOBJECT_FLAGS = 1
+)
+
+// enum
+// flags
+type BUSY_DIALOG_FLAGS uint32
+
+const (
+	BZ_DISABLECANCELBUTTON   BUSY_DIALOG_FLAGS = 1
+	BZ_DISABLESWITCHTOBUTTON BUSY_DIALOG_FLAGS = 2
+	BZ_DISABLERETRYBUTTON    BUSY_DIALOG_FLAGS = 4
+	BZ_NOTRESPONDINGDIALOG   BUSY_DIALOG_FLAGS = 8
+)
+
+// enum
+// flags
+type UI_CONVERT_FLAGS uint32
+
+const (
+	CF_SHOWHELPBUTTON       UI_CONVERT_FLAGS = 1
+	CF_SETCONVERTDEFAULT    UI_CONVERT_FLAGS = 2
+	CF_SETACTIVATEDEFAULT   UI_CONVERT_FLAGS = 4
+	CF_SELECTCONVERTTO      UI_CONVERT_FLAGS = 8
+	CF_SELECTACTIVATEAS     UI_CONVERT_FLAGS = 16
+	CF_DISABLEDISPLAYASICON UI_CONVERT_FLAGS = 32
+	CF_DISABLEACTIVATEAS    UI_CONVERT_FLAGS = 64
+	CF_HIDECHANGEICON       UI_CONVERT_FLAGS = 128
+	CF_CONVERTONLY          UI_CONVERT_FLAGS = 256
+)
+
+// enum
+// flags
+type CHANGE_ICON_FLAGS int32
+
+const (
+	CIF_SHOWHELP       CHANGE_ICON_FLAGS = 1
+	CIF_SELECTCURRENT  CHANGE_ICON_FLAGS = 2
+	CIF_SELECTDEFAULT  CHANGE_ICON_FLAGS = 4
+	CIF_SELECTFROMFILE CHANGE_ICON_FLAGS = 8
+	CIF_USEICONEXE     CHANGE_ICON_FLAGS = 16
+)
+
+// enum
+// flags
+type CHANGE_SOURCE_FLAGS uint32
+
+const (
+	CSF_SHOWHELP      CHANGE_SOURCE_FLAGS = 1
+	CSF_VALIDSOURCE   CHANGE_SOURCE_FLAGS = 2
+	CSF_ONLYGETSOURCE CHANGE_SOURCE_FLAGS = 4
+	CSF_EXPLORER      CHANGE_SOURCE_FLAGS = 8
+)
+
+// enum
+// flags
+type EDIT_LINKS_FLAGS uint32
+
+const (
+	ELF_SHOWHELP            EDIT_LINKS_FLAGS = 1
+	ELF_DISABLEUPDATENOW    EDIT_LINKS_FLAGS = 2
+	ELF_DISABLEOPENSOURCE   EDIT_LINKS_FLAGS = 4
+	ELF_DISABLECHANGESOURCE EDIT_LINKS_FLAGS = 8
+	ELF_DISABLECANCELLINK   EDIT_LINKS_FLAGS = 16
+)
+
+// enum
+// flags
+type INSERT_OBJECT_FLAGS uint32
+
+const (
+	IOF_SHOWHELP             INSERT_OBJECT_FLAGS = 1
+	IOF_SELECTCREATENEW      INSERT_OBJECT_FLAGS = 2
+	IOF_SELECTCREATEFROMFILE INSERT_OBJECT_FLAGS = 4
+	IOF_CHECKLINK            INSERT_OBJECT_FLAGS = 8
+	IOF_CHECKDISPLAYASICON   INSERT_OBJECT_FLAGS = 16
+	IOF_CREATENEWOBJECT      INSERT_OBJECT_FLAGS = 32
+	IOF_CREATEFILEOBJECT     INSERT_OBJECT_FLAGS = 64
+	IOF_CREATELINKOBJECT     INSERT_OBJECT_FLAGS = 128
+	IOF_DISABLELINK          INSERT_OBJECT_FLAGS = 256
+	IOF_VERIFYSERVERSEXIST   INSERT_OBJECT_FLAGS = 512
+	IOF_DISABLEDISPLAYASICON INSERT_OBJECT_FLAGS = 1024
+	IOF_HIDECHANGEICON       INSERT_OBJECT_FLAGS = 2048
+	IOF_SHOWINSERTCONTROL    INSERT_OBJECT_FLAGS = 4096
+	IOF_SELECTCREATECONTROL  INSERT_OBJECT_FLAGS = 8192
+)
+
+// enum
+// flags
+type OBJECT_PROPERTIES_FLAGS uint32
+
+const (
+	OPF_OBJECTISLINK   OBJECT_PROPERTIES_FLAGS = 1
+	OPF_NOFILLDEFAULT  OBJECT_PROPERTIES_FLAGS = 2
+	OPF_SHOWHELP       OBJECT_PROPERTIES_FLAGS = 4
+	OPF_DISABLECONVERT OBJECT_PROPERTIES_FLAGS = 8
+)
+
+// enum
+// flags
+type VIEW_OBJECT_PROPERTIES_FLAGS uint32
+
+const (
+	VPF_SELECTRELATIVE  VIEW_OBJECT_PROPERTIES_FLAGS = 1
+	VPF_DISABLERELATIVE VIEW_OBJECT_PROPERTIES_FLAGS = 2
+	VPF_DISABLESCALE    VIEW_OBJECT_PROPERTIES_FLAGS = 4
+)
+
+// enum
+// flags
+type PARAMFLAGS uint16
+
+const (
+	PARAMFLAG_NONE         PARAMFLAGS = 0
+	PARAMFLAG_FIN          PARAMFLAGS = 1
+	PARAMFLAG_FOUT         PARAMFLAGS = 2
+	PARAMFLAG_FLCID        PARAMFLAGS = 4
+	PARAMFLAG_FRETVAL      PARAMFLAGS = 8
+	PARAMFLAG_FOPT         PARAMFLAGS = 16
+	PARAMFLAG_FHASDEFAULT  PARAMFLAGS = 32
+	PARAMFLAG_FHASCUSTDATA PARAMFLAGS = 64
+)
+
+// enum
+// flags
+type NUMPARSE_FLAGS uint32
+
+const (
+	NUMPRS_LEADING_WHITE  NUMPARSE_FLAGS = 1
+	NUMPRS_TRAILING_WHITE NUMPARSE_FLAGS = 2
+	NUMPRS_LEADING_PLUS   NUMPARSE_FLAGS = 4
+	NUMPRS_TRAILING_PLUS  NUMPARSE_FLAGS = 8
+	NUMPRS_LEADING_MINUS  NUMPARSE_FLAGS = 16
+	NUMPRS_TRAILING_MINUS NUMPARSE_FLAGS = 32
+	NUMPRS_HEX_OCT        NUMPARSE_FLAGS = 64
+	NUMPRS_PARENS         NUMPARSE_FLAGS = 128
+	NUMPRS_DECIMAL        NUMPARSE_FLAGS = 256
+	NUMPRS_THOUSANDS      NUMPARSE_FLAGS = 512
+	NUMPRS_CURRENCY       NUMPARSE_FLAGS = 1024
+	NUMPRS_EXPONENT       NUMPARSE_FLAGS = 2048
+	NUMPRS_USE_ALL        NUMPARSE_FLAGS = 4096
+	NUMPRS_STD            NUMPARSE_FLAGS = 8191
+	NUMPRS_NEG            NUMPARSE_FLAGS = 65536
+	NUMPRS_INEXACT        NUMPARSE_FLAGS = 131072
+)
+
+// enum
+type PICTYPE int32
+
+const (
+	PICTYPE_UNINITIALIZED PICTYPE = -1
+	PICTYPE_NONE          PICTYPE = 0
+	PICTYPE_BITMAP        PICTYPE = 1
+	PICTYPE_METAFILE      PICTYPE = 2
+	PICTYPE_ICON          PICTYPE = 3
+	PICTYPE_ENHMETAFILE   PICTYPE = 4
+)
+
+// enum
+type VARCMP uint32
+
+const (
+	VARCMP_LT   VARCMP = 0
+	VARCMP_EQ   VARCMP = 1
+	VARCMP_GT   VARCMP = 2
+	VARCMP_NULL VARCMP = 3
+)
+
+// enum
+// flags
+type PASTE_SPECIAL_FLAGS uint32
+
+const (
+	PSF_SHOWHELP              PASTE_SPECIAL_FLAGS = 1
+	PSF_SELECTPASTE           PASTE_SPECIAL_FLAGS = 2
+	PSF_SELECTPASTELINK       PASTE_SPECIAL_FLAGS = 4
+	PSF_CHECKDISPLAYASICON    PASTE_SPECIAL_FLAGS = 8
+	PSF_DISABLEDISPLAYASICON  PASTE_SPECIAL_FLAGS = 16
+	PSF_HIDECHANGEICON        PASTE_SPECIAL_FLAGS = 32
+	PSF_STAYONCLIPBOARDCHANGE PASTE_SPECIAL_FLAGS = 64
+	PSF_NOREFRESHDATAOBJECT   PASTE_SPECIAL_FLAGS = 128
+)
+
+// enum
+// flags
+type EMBDHLP_FLAGS uint32
+
+const (
+	EMBDHLP_INPROC_HANDLER EMBDHLP_FLAGS = 0
+	EMBDHLP_INPROC_SERVER  EMBDHLP_FLAGS = 1
+	EMBDHLP_CREATENOW      EMBDHLP_FLAGS = 0
+	EMBDHLP_DELAYCREATE    EMBDHLP_FLAGS = 65536
+)
+
+// enum
+// flags
+type FDEX_PROP_FLAGS uint32
+
+const (
+	FdexPropCanGet             FDEX_PROP_FLAGS = 1
+	FdexPropCannotGet          FDEX_PROP_FLAGS = 2
+	FdexPropCanPut             FDEX_PROP_FLAGS = 4
+	FdexPropCannotPut          FDEX_PROP_FLAGS = 8
+	FdexPropCanPutRef          FDEX_PROP_FLAGS = 16
+	FdexPropCannotPutRef       FDEX_PROP_FLAGS = 32
+	FdexPropNoSideEffects      FDEX_PROP_FLAGS = 64
+	FdexPropDynamicType        FDEX_PROP_FLAGS = 128
+	FdexPropCanCall            FDEX_PROP_FLAGS = 256
+	FdexPropCannotCall         FDEX_PROP_FLAGS = 512
+	FdexPropCanConstruct       FDEX_PROP_FLAGS = 1024
+	FdexPropCannotConstruct    FDEX_PROP_FLAGS = 2048
+	FdexPropCanSourceEvents    FDEX_PROP_FLAGS = 4096
+	FdexPropCannotSourceEvents FDEX_PROP_FLAGS = 8192
+)
+
+// enum
+// flags
+type LOAD_PICTURE_FLAGS uint32
+
+const (
+	LP_DEFAULT    LOAD_PICTURE_FLAGS = 0
+	LP_MONOCHROME LOAD_PICTURE_FLAGS = 1
+	LP_VGACOLOR   LOAD_PICTURE_FLAGS = 2
+	LP_COLOR      LOAD_PICTURE_FLAGS = 4
+)
+
+// enum
+type OLECREATE uint32
+
+const (
+	OLECREATE_ZERO         OLECREATE = 0
+	OLECREATE_LEAVERUNNING OLECREATE = 1
+)
+
+// enum
+type VARFORMAT_FIRST_DAY int32
+
+const (
+	VARFORMAT_FIRST_DAY_SYSTEMDEFAULT VARFORMAT_FIRST_DAY = 0
+	VARFORMAT_FIRST_DAY_MONDAY        VARFORMAT_FIRST_DAY = 1
+	VARFORMAT_FIRST_DAY_TUESDAY       VARFORMAT_FIRST_DAY = 2
+	VARFORMAT_FIRST_DAY_WEDNESDAY     VARFORMAT_FIRST_DAY = 3
+	VARFORMAT_FIRST_DAY_THURSDAY      VARFORMAT_FIRST_DAY = 4
+	VARFORMAT_FIRST_DAY_FRIDAY        VARFORMAT_FIRST_DAY = 5
+	VARFORMAT_FIRST_DAY_SATURDAY      VARFORMAT_FIRST_DAY = 6
+	VARFORMAT_FIRST_DAY_SUNDAY        VARFORMAT_FIRST_DAY = 7
+)
+
+// enum
+type VARFORMAT_FIRST_WEEK int32
+
+const (
+	VARFORMAT_FIRST_WEEK_SYSTEMDEFAULT               VARFORMAT_FIRST_WEEK = 0
+	VARFORMAT_FIRST_WEEK_CONTAINS_JANUARY_FIRST      VARFORMAT_FIRST_WEEK = 1
+	VARFORMAT_FIRST_WEEK_LARGER_HALF_IN_CURRENT_YEAR VARFORMAT_FIRST_WEEK = 2
+	VARFORMAT_FIRST_WEEK_HAS_SEVEN_DAYS              VARFORMAT_FIRST_WEEK = 3
+)
+
+// enum
+type VARFORMAT_NAMED_FORMAT int32
+
+const (
+	VARFORMAT_NAMED_FORMAT_GENERALDATE VARFORMAT_NAMED_FORMAT = 0
+	VARFORMAT_NAMED_FORMAT_LONGDATE    VARFORMAT_NAMED_FORMAT = 1
+	VARFORMAT_NAMED_FORMAT_SHORTDATE   VARFORMAT_NAMED_FORMAT = 2
+	VARFORMAT_NAMED_FORMAT_LONGTIME    VARFORMAT_NAMED_FORMAT = 3
+	VARFORMAT_NAMED_FORMAT_SHORTTIME   VARFORMAT_NAMED_FORMAT = 4
+)
+
+// enum
+type VARFORMAT_LEADING_DIGIT int32
+
+const (
+	VARFORMAT_LEADING_DIGIT_SYSTEMDEFAULT VARFORMAT_LEADING_DIGIT = -2
+	VARFORMAT_LEADING_DIGIT_INCLUDED      VARFORMAT_LEADING_DIGIT = -1
+	VARFORMAT_LEADING_DIGIT_NOTINCLUDED   VARFORMAT_LEADING_DIGIT = 0
+)
+
+// enum
+type VARFORMAT_PARENTHESES int32
+
+const (
+	VARFORMAT_PARENTHESES_SYSTEMDEFAULT VARFORMAT_PARENTHESES = -2
+	VARFORMAT_PARENTHESES_USED          VARFORMAT_PARENTHESES = -1
+	VARFORMAT_PARENTHESES_NOTUSED       VARFORMAT_PARENTHESES = 0
+)
+
+// enum
+type VARFORMAT_GROUP int32
+
+const (
+	VARFORMAT_GROUP_SYSTEMDEFAULT VARFORMAT_GROUP = -2
+	VARFORMAT_GROUP_THOUSANDS     VARFORMAT_GROUP = -1
+	VARFORMAT_GROUP_NOTTHOUSANDS  VARFORMAT_GROUP = 0
 )
 
 // enum
@@ -831,44 +1003,6 @@ const (
 	TYPEFLAG_FDISPATCHABLE  TYPEFLAGS = 4096
 	TYPEFLAG_FREVERSEBIND   TYPEFLAGS = 8192
 	TYPEFLAG_FPROXY         TYPEFLAGS = 16384
-)
-
-// enum
-type FUNCFLAGS int32
-
-const (
-	FUNCFLAG_FRESTRICTED       FUNCFLAGS = 1
-	FUNCFLAG_FSOURCE           FUNCFLAGS = 2
-	FUNCFLAG_FBINDABLE         FUNCFLAGS = 4
-	FUNCFLAG_FREQUESTEDIT      FUNCFLAGS = 8
-	FUNCFLAG_FDISPLAYBIND      FUNCFLAGS = 16
-	FUNCFLAG_FDEFAULTBIND      FUNCFLAGS = 32
-	FUNCFLAG_FHIDDEN           FUNCFLAGS = 64
-	FUNCFLAG_FUSESGETLASTERROR FUNCFLAGS = 128
-	FUNCFLAG_FDEFAULTCOLLELEM  FUNCFLAGS = 256
-	FUNCFLAG_FUIDEFAULT        FUNCFLAGS = 512
-	FUNCFLAG_FNONBROWSABLE     FUNCFLAGS = 1024
-	FUNCFLAG_FREPLACEABLE      FUNCFLAGS = 2048
-	FUNCFLAG_FIMMEDIATEBIND    FUNCFLAGS = 4096
-)
-
-// enum
-type VARFLAGS int32
-
-const (
-	VARFLAG_FREADONLY        VARFLAGS = 1
-	VARFLAG_FSOURCE          VARFLAGS = 2
-	VARFLAG_FBINDABLE        VARFLAGS = 4
-	VARFLAG_FREQUESTEDIT     VARFLAGS = 8
-	VARFLAG_FDISPLAYBIND     VARFLAGS = 16
-	VARFLAG_FDEFAULTBIND     VARFLAGS = 32
-	VARFLAG_FHIDDEN          VARFLAGS = 64
-	VARFLAG_FRESTRICTED      VARFLAGS = 128
-	VARFLAG_FDEFAULTCOLLELEM VARFLAGS = 256
-	VARFLAG_FUIDEFAULT       VARFLAGS = 512
-	VARFLAG_FNONBROWSABLE    VARFLAGS = 1024
-	VARFLAG_FREPLACEABLE     VARFLAGS = 2048
-	VARFLAG_FIMMEDIATEBIND   VARFLAGS = 4096
 )
 
 // enum
@@ -1087,11 +1221,11 @@ const (
 )
 
 // enum
-type PictureAttributes int32
+type PICTUREATTRIBUTES int32
 
 const (
-	PICTURE_SCALABLE    PictureAttributes = 1
-	PICTURE_TRANSPARENT PictureAttributes = 2
+	PICTURE_SCALABLE    PICTUREATTRIBUTES = 1
+	PICTURE_TRANSPARENT PICTUREATTRIBUTES = 2
 )
 
 // enum
@@ -1133,26 +1267,18 @@ const (
 )
 
 // enum
-type DVASPECT2 int32
+type DVEXTENTMODE int32
 
 const (
-	DVASPECT_OPAQUE      DVASPECT2 = 16
-	DVASPECT_TRANSPARENT DVASPECT2 = 32
+	DVEXTENT_CONTENT  DVEXTENTMODE = 0
+	DVEXTENT_INTEGRAL DVEXTENTMODE = 1
 )
 
 // enum
-type ExtentMode int32
+type DVASPECTINFOFLAG int32
 
 const (
-	DVEXTENT_CONTENT  ExtentMode = 0
-	DVEXTENT_INTEGRAL ExtentMode = 1
-)
-
-// enum
-type AspectInfoFlag int32
-
-const (
-	DVASPECTINFOFLAG_CANOPTIMIZE AspectInfoFlag = 1
+	DVASPECTINFOFLAG_CANOPTIMIZE DVASPECTINFOFLAG = 1
 )
 
 // enum
@@ -1511,124 +1637,124 @@ const (
 
 // structs
 
-type WireSAFEARR_BSTR_ struct {
+type SAFEARR_BSTR struct {
 	Size  uint32
 	ABstr **FLAGGED_WORD_BLOB
 }
 
-type WireSAFEARR_UNKNOWN_ struct {
+type SAFEARR_UNKNOWN struct {
 	Size      uint32
 	ApUnknown **IUnknown
 }
 
-type WireSAFEARR_DISPATCH_ struct {
+type SAFEARR_DISPATCH struct {
 	Size       uint32
 	ApDispatch **IDispatch
 }
 
-type WireSAFEARR_VARIANT_ struct {
+type SAFEARR_VARIANT struct {
 	Size     uint32
 	AVariant **WireVARIANT_
 }
 
-type WireSAFEARR_BRECORD_ struct {
+type SAFEARR_BRECORD struct {
 	Size    uint32
 	ARecord **WireBRECORD_
 }
 
-type WireSAFEARR_HAVEIID_ struct {
+type SAFEARR_HAVEIID struct {
 	Size      uint32
 	ApUnknown **IUnknown
 	Iid       syscall.GUID
 }
 
-type WireSAFEARRAY_UNION_U_ struct {
+type SAFEARRAYUNION_U struct {
 	Data [4]uint64
 }
 
-func (this *WireSAFEARRAY_UNION_U_) BstrStr() *WireSAFEARR_BSTR_ {
-	return (*WireSAFEARR_BSTR_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) BstrStr() *SAFEARR_BSTR {
+	return (*SAFEARR_BSTR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) BstrStrVal() WireSAFEARR_BSTR_ {
-	return *(*WireSAFEARR_BSTR_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) BstrStrVal() SAFEARR_BSTR {
+	return *(*SAFEARR_BSTR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) UnknownStr() *WireSAFEARR_UNKNOWN_ {
-	return (*WireSAFEARR_UNKNOWN_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) UnknownStr() *SAFEARR_UNKNOWN {
+	return (*SAFEARR_UNKNOWN)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) UnknownStrVal() WireSAFEARR_UNKNOWN_ {
-	return *(*WireSAFEARR_UNKNOWN_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) UnknownStrVal() SAFEARR_UNKNOWN {
+	return *(*SAFEARR_UNKNOWN)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) DispatchStr() *WireSAFEARR_DISPATCH_ {
-	return (*WireSAFEARR_DISPATCH_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) DispatchStr() *SAFEARR_DISPATCH {
+	return (*SAFEARR_DISPATCH)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) DispatchStrVal() WireSAFEARR_DISPATCH_ {
-	return *(*WireSAFEARR_DISPATCH_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) DispatchStrVal() SAFEARR_DISPATCH {
+	return *(*SAFEARR_DISPATCH)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) VariantStr() *WireSAFEARR_VARIANT_ {
-	return (*WireSAFEARR_VARIANT_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) VariantStr() *SAFEARR_VARIANT {
+	return (*SAFEARR_VARIANT)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) VariantStrVal() WireSAFEARR_VARIANT_ {
-	return *(*WireSAFEARR_VARIANT_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) VariantStrVal() SAFEARR_VARIANT {
+	return *(*SAFEARR_VARIANT)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) RecordStr() *WireSAFEARR_BRECORD_ {
-	return (*WireSAFEARR_BRECORD_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) RecordStr() *SAFEARR_BRECORD {
+	return (*SAFEARR_BRECORD)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) RecordStrVal() WireSAFEARR_BRECORD_ {
-	return *(*WireSAFEARR_BRECORD_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) RecordStrVal() SAFEARR_BRECORD {
+	return *(*SAFEARR_BRECORD)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) HaveIidStr() *WireSAFEARR_HAVEIID_ {
-	return (*WireSAFEARR_HAVEIID_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) HaveIidStr() *SAFEARR_HAVEIID {
+	return (*SAFEARR_HAVEIID)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) HaveIidStrVal() WireSAFEARR_HAVEIID_ {
-	return *(*WireSAFEARR_HAVEIID_)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) HaveIidStrVal() SAFEARR_HAVEIID {
+	return *(*SAFEARR_HAVEIID)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) ByteStr() *BYTE_SIZEDARR {
+func (this *SAFEARRAYUNION_U) ByteStr() *BYTE_SIZEDARR {
 	return (*BYTE_SIZEDARR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) ByteStrVal() BYTE_SIZEDARR {
+func (this *SAFEARRAYUNION_U) ByteStrVal() BYTE_SIZEDARR {
 	return *(*BYTE_SIZEDARR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) WordStr() *SHORT_SIZEDARR {
-	return (*SHORT_SIZEDARR)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) WordStr() *WORD_SIZEDARR {
+	return (*WORD_SIZEDARR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) WordStrVal() SHORT_SIZEDARR {
-	return *(*SHORT_SIZEDARR)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) WordStrVal() WORD_SIZEDARR {
+	return *(*WORD_SIZEDARR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) LongStr() *LONG_SIZEDARR {
-	return (*LONG_SIZEDARR)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) LongStr() *DWORD_SIZEDARR {
+	return (*DWORD_SIZEDARR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) LongStrVal() LONG_SIZEDARR {
-	return *(*LONG_SIZEDARR)(unsafe.Pointer(this))
+func (this *SAFEARRAYUNION_U) LongStrVal() DWORD_SIZEDARR {
+	return *(*DWORD_SIZEDARR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) HyperStr() *HYPER_SIZEDARR {
+func (this *SAFEARRAYUNION_U) HyperStr() *HYPER_SIZEDARR {
 	return (*HYPER_SIZEDARR)(unsafe.Pointer(this))
 }
 
-func (this *WireSAFEARRAY_UNION_U_) HyperStrVal() HYPER_SIZEDARR {
+func (this *SAFEARRAYUNION_U) HyperStrVal() HYPER_SIZEDARR {
 	return *(*HYPER_SIZEDARR)(unsafe.Pointer(this))
 }
 
-type WireSAFEARRAY_UNION_ struct {
+type SAFEARRAYUNION struct {
 	SfType uint32
-	U      WireSAFEARRAY_UNION_U_
+	U      SAFEARRAYUNION_U
 }
 
 type WireSAFEARRAY_ struct {
@@ -1636,7 +1762,7 @@ type WireSAFEARRAY_ struct {
 	FFeatures     uint16
 	CbElements    uint32
 	CLocks        uint32
-	UArrayStructs WireSAFEARRAY_UNION_
+	UArrayStructs SAFEARRAYUNION
 	Rgsabound     [1]SAFEARRAYBOUND
 }
 
@@ -1699,12 +1825,12 @@ func (this *WireVARIANT_Anonymous_) DblValVal() float64 {
 	return *(*float64)(unsafe.Pointer(this))
 }
 
-func (this *WireVARIANT_Anonymous_) BoolVal() *int16 {
-	return (*int16)(unsafe.Pointer(this))
+func (this *WireVARIANT_Anonymous_) BoolVal() *VARIANT_BOOL {
+	return (*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *WireVARIANT_Anonymous_) BoolValVal() int16 {
-	return *(*int16)(unsafe.Pointer(this))
+func (this *WireVARIANT_Anonymous_) BoolValVal() VARIANT_BOOL {
+	return *(*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
 func (this *WireVARIANT_Anonymous_) Scode() *int32 {
@@ -1819,12 +1945,12 @@ func (this *WireVARIANT_Anonymous_) PdblValVal() *float64 {
 	return *(**float64)(unsafe.Pointer(this))
 }
 
-func (this *WireVARIANT_Anonymous_) PboolVal() **int16 {
-	return (**int16)(unsafe.Pointer(this))
+func (this *WireVARIANT_Anonymous_) PboolVal() **VARIANT_BOOL {
+	return (**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *WireVARIANT_Anonymous_) PboolValVal() *int16 {
-	return *(**int16)(unsafe.Pointer(this))
+func (this *WireVARIANT_Anonymous_) PboolValVal() *VARIANT_BOOL {
+	return *(**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
 func (this *WireVARIANT_Anonymous_) Pscode() **int32 {
@@ -2026,7 +2152,7 @@ type PARAMDESCEX struct {
 
 type PARAMDESC struct {
 	Pparamdescex *PARAMDESCEX
-	WParamFlags  uint16
+	WParamFlags  PARAMFLAGS
 }
 
 type CLEANLOCALSTORAGE struct {
@@ -2046,7 +2172,7 @@ type OBJECTDESCRIPTOR struct {
 	DwSrcOfCopy        uint32
 }
 
-type OIFI struct {
+type OLEINPLACEFRAMEINFO struct {
 	Cb            uint32
 	FMDIApp       BOOL
 	HwndFrame     HWND
@@ -2054,21 +2180,21 @@ type OIFI struct {
 	CAccelEntries uint32
 }
 
-type OleMenuGroupWidths struct {
+type OLEMENUGROUPWIDTHS struct {
 	Width [6]int32
 }
 
 type OLEVERB struct {
-	LVerb        int32
+	LVerb        OLEIVERB
 	LpszVerbName PWSTR
-	FuFlags      uint32
-	GrfAttribs   uint32
+	FuFlags      MENU_ITEM_FLAGS
+	GrfAttribs   OLEVERBATTRIB
 }
 
 type NUMPARSE struct {
 	CDig       int32
-	DwInFlags  uint32
-	DwOutFlags uint32
+	DwInFlags  NUMPARSE_FLAGS
+	DwOutFlags NUMPARSE_FLAGS
 	CchUsed    int32
 	NBaseShift int32
 	NPwr10     int32
@@ -2081,7 +2207,7 @@ type UDATE struct {
 
 type PARAMDATA struct {
 	SzName PWSTR
-	Vt     uint16
+	Vt     VARENUM
 }
 
 type METHODDATA struct {
@@ -2092,7 +2218,7 @@ type METHODDATA struct {
 	Cc       CALLCONV
 	CArgs    uint32
 	WFlags   uint16
-	VtReturn uint16
+	VtReturn VARENUM
 }
 
 type INTERFACEDATA struct {
@@ -2110,7 +2236,7 @@ type CONTROLINFO struct {
 	Cb      uint32
 	HAccel  HACCEL
 	CAccel  uint16
-	DwFlags uint32
+	DwFlags CTRLINFO
 }
 
 type POINTF struct {
@@ -2132,13 +2258,13 @@ type CAUUID struct {
 	PElems *syscall.GUID
 }
 
-type ExtentInfo struct {
+type DVEXTENTINFO struct {
 	Cb            uint32
 	DwExtentMode  uint32
 	SizelProposed SIZE
 }
 
-type AspectInfo struct {
+type DVASPECTINFO struct {
 	Cb      uint32
 	DwFlags uint32
 }
@@ -2159,7 +2285,7 @@ type QACONTAINER struct {
 	PAdviseSink         *IAdviseSinkEx
 	PPropertyNotifySink *IPropertyNotifySink
 	PUnkEventSink       *IUnknown
-	DwAmbientFlags      uint32
+	DwAmbientFlags      QACONTAINERFLAGS
 	ColorFore           uint32
 	ColorBack           uint32
 	PFont               *IFont
@@ -2174,11 +2300,11 @@ type QACONTAINER struct {
 
 type QACONTROL struct {
 	CbSize                    uint32
-	DwMiscStatus              uint32
-	DwViewStatus              uint32
+	DwMiscStatus              OLEMISC
+	DwViewStatus              VIEWSTATUS
 	DwEventCookie             uint32
 	DwPropNotifyCookie        uint32
-	DwPointerActivationPolicy uint32
+	DwPointerActivationPolicy POINTERINACTIVE
 }
 
 type OCPFIPARAMS struct {
@@ -2263,7 +2389,7 @@ func (this *PICTDESC_Anonymous) EmfVal() PICTDESC_Anonymous_Emf {
 
 type PICTDESC struct {
 	CbSizeofstruct uint32
-	PicType        uint32
+	PicType        PICTYPE
 	PICTDESC_Anonymous
 }
 
@@ -2281,8 +2407,8 @@ type PAGESET struct {
 }
 
 type OLECMD struct {
-	CmdID uint32
-	Cmdf  uint32
+	CmdID OLECMDID
+	Cmdf  OLECMDF
 }
 
 type OLECMDTEXT struct {
@@ -2295,7 +2421,7 @@ type OLECMDTEXT struct {
 type OLEUIINSERTOBJECT = OLEUIINSERTOBJECTW
 type OLEUIINSERTOBJECTW struct {
 	CbStruct         uint32
-	DwFlags          uint32
+	DwFlags          INSERT_OBJECT_FLAGS
 	HWndOwner        HWND
 	LpszCaption      PWSTR
 	LpfnHook         LPFNOLEUIHOOK
@@ -2320,7 +2446,7 @@ type OLEUIINSERTOBJECTW struct {
 
 type OLEUIINSERTOBJECTA struct {
 	CbStruct         uint32
-	DwFlags          uint32
+	DwFlags          INSERT_OBJECT_FLAGS
 	HWndOwner        HWND
 	LpszCaption      PSTR
 	LpfnHook         LPFNOLEUIHOOK
@@ -2363,7 +2489,7 @@ type OLEUIPASTEENTRYA struct {
 type OLEUIPASTESPECIAL = OLEUIPASTESPECIALW
 type OLEUIPASTESPECIALW struct {
 	CbStruct        uint32
-	DwFlags         uint32
+	DwFlags         PASTE_SPECIAL_FLAGS
 	HWndOwner       HWND
 	LpszCaption     PWSTR
 	LpfnHook        LPFNOLEUIHOOK
@@ -2386,7 +2512,7 @@ type OLEUIPASTESPECIALW struct {
 
 type OLEUIPASTESPECIALA struct {
 	CbStruct        uint32
-	DwFlags         uint32
+	DwFlags         PASTE_SPECIAL_FLAGS
 	HWndOwner       HWND
 	LpszCaption     PSTR
 	LpfnHook        LPFNOLEUIHOOK
@@ -2410,7 +2536,7 @@ type OLEUIPASTESPECIALA struct {
 type OLEUIEDITLINKS = OLEUIEDITLINKSW
 type OLEUIEDITLINKSW struct {
 	CbStruct             uint32
-	DwFlags              uint32
+	DwFlags              EDIT_LINKS_FLAGS
 	HWndOwner            HWND
 	LpszCaption          PWSTR
 	LpfnHook             LPFNOLEUIHOOK
@@ -2423,7 +2549,7 @@ type OLEUIEDITLINKSW struct {
 
 type OLEUIEDITLINKSA struct {
 	CbStruct             uint32
-	DwFlags              uint32
+	DwFlags              EDIT_LINKS_FLAGS
 	HWndOwner            HWND
 	LpszCaption          PSTR
 	LpfnHook             LPFNOLEUIHOOK
@@ -2437,7 +2563,7 @@ type OLEUIEDITLINKSA struct {
 type OLEUICHANGEICON = OLEUICHANGEICONW
 type OLEUICHANGEICONW struct {
 	CbStruct     uint32
-	DwFlags      uint32
+	DwFlags      CHANGE_ICON_FLAGS
 	HWndOwner    HWND
 	LpszCaption  PWSTR
 	LpfnHook     LPFNOLEUIHOOK
@@ -2453,7 +2579,7 @@ type OLEUICHANGEICONW struct {
 
 type OLEUICHANGEICONA struct {
 	CbStruct     uint32
-	DwFlags      uint32
+	DwFlags      CHANGE_ICON_FLAGS
 	HWndOwner    HWND
 	LpszCaption  PSTR
 	LpfnHook     LPFNOLEUIHOOK
@@ -2470,7 +2596,7 @@ type OLEUICHANGEICONA struct {
 type OLEUICONVERT = OLEUICONVERTW
 type OLEUICONVERTW struct {
 	CbStruct             uint32
-	DwFlags              uint32
+	DwFlags              UI_CONVERT_FLAGS
 	HWndOwner            HWND
 	LpszCaption          PWSTR
 	LpfnHook             LPFNOLEUIHOOK
@@ -2495,7 +2621,7 @@ type OLEUICONVERTW struct {
 
 type OLEUICONVERTA struct {
 	CbStruct             uint32
-	DwFlags              uint32
+	DwFlags              UI_CONVERT_FLAGS
 	HWndOwner            HWND
 	LpszCaption          PSTR
 	LpfnHook             LPFNOLEUIHOOK
@@ -2521,7 +2647,7 @@ type OLEUICONVERTA struct {
 type OLEUIBUSY = OLEUIBUSYW
 type OLEUIBUSYW struct {
 	CbStruct     uint32
-	DwFlags      uint32
+	DwFlags      BUSY_DIALOG_FLAGS
 	HWndOwner    HWND
 	LpszCaption  PWSTR
 	LpfnHook     LPFNOLEUIHOOK
@@ -2535,7 +2661,7 @@ type OLEUIBUSYW struct {
 
 type OLEUIBUSYA struct {
 	CbStruct     uint32
-	DwFlags      uint32
+	DwFlags      BUSY_DIALOG_FLAGS
 	HWndOwner    HWND
 	LpszCaption  PSTR
 	LpfnHook     LPFNOLEUIHOOK
@@ -2550,7 +2676,7 @@ type OLEUIBUSYA struct {
 type OLEUICHANGESOURCE = OLEUICHANGESOURCEW
 type OLEUICHANGESOURCEW struct {
 	CbStruct             uint32
-	DwFlags              uint32
+	DwFlags              CHANGE_SOURCE_FLAGS
 	HWndOwner            HWND
 	LpszCaption          PWSTR
 	LpfnHook             LPFNOLEUIHOOK
@@ -2570,7 +2696,7 @@ type OLEUICHANGESOURCEW struct {
 
 type OLEUICHANGESOURCEA struct {
 	CbStruct             uint32
-	DwFlags              uint32
+	DwFlags              CHANGE_SOURCE_FLAGS
 	HWndOwner            HWND
 	LpszCaption          PSTR
 	LpfnHook             LPFNOLEUIHOOK
@@ -2612,7 +2738,7 @@ type OLEUIGNRLPROPSA struct {
 type OLEUIVIEWPROPS = OLEUIVIEWPROPSW
 type OLEUIVIEWPROPSW struct {
 	CbStruct    uint32
-	DwFlags     uint32
+	DwFlags     VIEW_OBJECT_PROPERTIES_FLAGS
 	DwReserved1 [2]uint32
 	LpfnHook    LPFNOLEUIHOOK
 	LCustData   LPARAM
@@ -2624,7 +2750,7 @@ type OLEUIVIEWPROPSW struct {
 
 type OLEUIVIEWPROPSA struct {
 	CbStruct    uint32
-	DwFlags     uint32
+	DwFlags     VIEW_OBJECT_PROPERTIES_FLAGS
 	DwReserved1 [2]uint32
 	LpfnHook    LPFNOLEUIHOOK
 	LCustData   LPARAM
@@ -2658,7 +2784,7 @@ type OLEUILINKPROPSA struct {
 type OLEUIOBJECTPROPS = OLEUIOBJECTPROPSW
 type OLEUIOBJECTPROPSW struct {
 	CbStruct   uint32
-	DwFlags    uint32
+	DwFlags    OBJECT_PROPERTIES_FLAGS
 	LpPS       *PROPSHEETHEADERW_V2
 	DwObject   uint32
 	LpObjInfo  *IOleUIObjInfoW
@@ -2671,7 +2797,7 @@ type OLEUIOBJECTPROPSW struct {
 
 type OLEUIOBJECTPROPSA struct {
 	CbStruct   uint32
-	DwFlags    uint32
+	DwFlags    OBJECT_PROPERTIES_FLAGS
 	LpPS       *PROPSHEETHEADERA_V2
 	DwObject   uint32
 	LpObjInfo  *IOleUIObjInfoA
@@ -2703,7 +2829,7 @@ type ICreateTypeInfoInterface interface {
 	AddRefTypeInfo(pTInfo *ITypeInfo, phRefType *uint32) HRESULT
 	AddFuncDesc(index uint32, pFuncDesc *FUNCDESC) HRESULT
 	AddImplType(index uint32, hRefType uint32) HRESULT
-	SetImplTypeFlags(index uint32, implTypeFlags int32) HRESULT
+	SetImplTypeFlags(index uint32, implTypeFlags IMPLTYPEFLAGS) HRESULT
 	SetAlignment(cbAlignment uint16) HRESULT
 	SetSchema(pStrSchema PWSTR) HRESULT
 	AddVarDesc(index uint32, pVarDesc *VARDESC) HRESULT
@@ -2795,7 +2921,7 @@ func (this *ICreateTypeInfo) AddImplType(index uint32, hRefType uint32) HRESULT 
 	return HRESULT(ret)
 }
 
-func (this *ICreateTypeInfo) SetImplTypeFlags(index uint32, implTypeFlags int32) HRESULT {
+func (this *ICreateTypeInfo) SetImplTypeFlags(index uint32, implTypeFlags IMPLTYPEFLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetImplTypeFlags, uintptr(unsafe.Pointer(this)), uintptr(index), uintptr(implTypeFlags))
 	return HRESULT(ret)
 }
@@ -3360,8 +3486,8 @@ type IRecordInfoInterface interface {
 	GetTypeInfo(ppTypeInfo **ITypeInfo) HRESULT
 	GetField(pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT
 	GetFieldNoCopy(pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT, ppvDataCArray unsafe.Pointer) HRESULT
-	PutField(wFlags uint32, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT
-	PutFieldNoCopy(wFlags uint32, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT
+	PutField(wFlags INVOKEKIND, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT
+	PutFieldNoCopy(wFlags INVOKEKIND, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT
 	GetFieldNames(pcNames *uint32, rgBstrNames *BSTR) HRESULT
 	IsMatchingType(pRecordInfo *IRecordInfo) BOOL
 	RecordCreate() unsafe.Pointer
@@ -3442,12 +3568,12 @@ func (this *IRecordInfo) GetFieldNoCopy(pvData unsafe.Pointer, szFieldName PWSTR
 	return HRESULT(ret)
 }
 
-func (this *IRecordInfo) PutField(wFlags uint32, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT {
+func (this *IRecordInfo) PutField(wFlags INVOKEKIND, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().PutField, uintptr(unsafe.Pointer(this)), uintptr(wFlags), uintptr(pvData), uintptr(unsafe.Pointer(szFieldName)), uintptr(unsafe.Pointer(pvarField)))
 	return HRESULT(ret)
 }
 
-func (this *IRecordInfo) PutFieldNoCopy(wFlags uint32, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT {
+func (this *IRecordInfo) PutFieldNoCopy(wFlags INVOKEKIND, pvData unsafe.Pointer, szFieldName PWSTR, pvarField *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().PutFieldNoCopy, uintptr(unsafe.Pointer(this)), uintptr(wFlags), uintptr(pvData), uintptr(unsafe.Pointer(szFieldName)), uintptr(unsafe.Pointer(pvarField)))
 	return HRESULT(ret)
 }
@@ -3695,7 +3821,7 @@ var IID_IOleContainer = syscall.GUID{0x0000011B, 0x0000, 0x0000,
 
 type IOleContainerInterface interface {
 	IParseDisplayNameInterface
-	EnumObjects(grfFlags uint32, ppenum **IEnumUnknown) HRESULT
+	EnumObjects(grfFlags OLECONTF, ppenum **IEnumUnknown) HRESULT
 	LockContainer(fLock BOOL) HRESULT
 }
 
@@ -3713,7 +3839,7 @@ func (this *IOleContainer) Vtbl() *IOleContainerVtbl {
 	return (*IOleContainerVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IOleContainer) EnumObjects(grfFlags uint32, ppenum **IEnumUnknown) HRESULT {
+func (this *IOleContainer) EnumObjects(grfFlags OLECONTF, ppenum **IEnumUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EnumObjects, uintptr(unsafe.Pointer(this)), uintptr(grfFlags), uintptr(unsafe.Pointer(ppenum)))
 	return HRESULT(ret)
 }
@@ -3730,7 +3856,7 @@ var IID_IOleClientSite = syscall.GUID{0x00000118, 0x0000, 0x0000,
 type IOleClientSiteInterface interface {
 	IUnknownInterface
 	SaveObject() HRESULT
-	GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT
+	GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT
 	GetContainer(ppContainer **IOleContainer) HRESULT
 	ShowObject() HRESULT
 	OnShowWindow(fShow BOOL) HRESULT
@@ -3760,7 +3886,7 @@ func (this *IOleClientSite) SaveObject() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IOleClientSite) GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT {
+func (this *IOleClientSite) GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMoniker, uintptr(unsafe.Pointer(this)), uintptr(dwAssign), uintptr(dwWhichMoniker), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
@@ -3794,9 +3920,9 @@ type IOleObjectInterface interface {
 	SetClientSite(pClientSite *IOleClientSite) HRESULT
 	GetClientSite(ppClientSite **IOleClientSite) HRESULT
 	SetHostNames(szContainerApp PWSTR, szContainerObj PWSTR) HRESULT
-	Close(dwSaveOption uint32) HRESULT
-	SetMoniker(dwWhichMoniker uint32, pmk *IMoniker) HRESULT
-	GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT
+	Close(dwSaveOption OLECLOSE) HRESULT
+	SetMoniker(dwWhichMoniker OLEWHICHMK, pmk *IMoniker) HRESULT
+	GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT
 	InitFromData(pDataObject *IDataObject, fCreation BOOL, dwReserved uint32) HRESULT
 	GetClipboardData(dwReserved uint32, ppDataObject **IDataObject) HRESULT
 	DoVerb(iVerb int32, lpmsg *MSG, pActiveSite *IOleClientSite, lindex int32, hwndParent HWND, lprcPosRect *RECT) HRESULT
@@ -3804,13 +3930,13 @@ type IOleObjectInterface interface {
 	Update() HRESULT
 	IsUpToDate() HRESULT
 	GetUserClassID(pClsid *syscall.GUID) HRESULT
-	GetUserType(dwFormOfType uint32, pszUserType *PWSTR) HRESULT
-	SetExtent(dwDrawAspect uint32, psizel *SIZE) HRESULT
-	GetExtent(dwDrawAspect uint32, psizel *SIZE) HRESULT
+	GetUserType(dwFormOfType USERCLASSTYPE, pszUserType *PWSTR) HRESULT
+	SetExtent(dwDrawAspect DVASPECT, psizel *SIZE) HRESULT
+	GetExtent(dwDrawAspect DVASPECT, psizel *SIZE) HRESULT
 	Advise(pAdvSink *IAdviseSink, pdwConnection *uint32) HRESULT
 	Unadvise(dwConnection uint32) HRESULT
 	EnumAdvise(ppenumAdvise **IEnumSTATDATA) HRESULT
-	GetMiscStatus(dwAspect uint32, pdwStatus *uint32) HRESULT
+	GetMiscStatus(dwAspect DVASPECT, pdwStatus *OLEMISC) HRESULT
 	SetColorScheme(pLogpal *LOGPALETTE) HRESULT
 }
 
@@ -3862,17 +3988,17 @@ func (this *IOleObject) SetHostNames(szContainerApp PWSTR, szContainerObj PWSTR)
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) Close(dwSaveOption uint32) HRESULT {
+func (this *IOleObject) Close(dwSaveOption OLECLOSE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Close, uintptr(unsafe.Pointer(this)), uintptr(dwSaveOption))
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) SetMoniker(dwWhichMoniker uint32, pmk *IMoniker) HRESULT {
+func (this *IOleObject) SetMoniker(dwWhichMoniker OLEWHICHMK, pmk *IMoniker) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetMoniker, uintptr(unsafe.Pointer(this)), uintptr(dwWhichMoniker), uintptr(unsafe.Pointer(pmk)))
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT {
+func (this *IOleObject) GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMoniker, uintptr(unsafe.Pointer(this)), uintptr(dwAssign), uintptr(dwWhichMoniker), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
@@ -3912,17 +4038,17 @@ func (this *IOleObject) GetUserClassID(pClsid *syscall.GUID) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) GetUserType(dwFormOfType uint32, pszUserType *PWSTR) HRESULT {
+func (this *IOleObject) GetUserType(dwFormOfType USERCLASSTYPE, pszUserType *PWSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetUserType, uintptr(unsafe.Pointer(this)), uintptr(dwFormOfType), uintptr(unsafe.Pointer(pszUserType)))
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) SetExtent(dwDrawAspect uint32, psizel *SIZE) HRESULT {
+func (this *IOleObject) SetExtent(dwDrawAspect DVASPECT, psizel *SIZE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetExtent, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(unsafe.Pointer(psizel)))
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) GetExtent(dwDrawAspect uint32, psizel *SIZE) HRESULT {
+func (this *IOleObject) GetExtent(dwDrawAspect DVASPECT, psizel *SIZE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetExtent, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(unsafe.Pointer(psizel)))
 	return HRESULT(ret)
 }
@@ -3942,7 +4068,7 @@ func (this *IOleObject) EnumAdvise(ppenumAdvise **IEnumSTATDATA) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) GetMiscStatus(dwAspect uint32, pdwStatus *uint32) HRESULT {
+func (this *IOleObject) GetMiscStatus(dwAspect DVASPECT, pdwStatus *OLEMISC) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMiscStatus, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), uintptr(unsafe.Pointer(pdwStatus)))
 	return HRESULT(ret)
 }
@@ -4233,7 +4359,7 @@ var IID_IOleInPlaceFrame = syscall.GUID{0x00000116, 0x0000, 0x0000,
 
 type IOleInPlaceFrameInterface interface {
 	IOleInPlaceUIWindowInterface
-	InsertMenus(hmenuShared HMENU, lpMenuWidths *OleMenuGroupWidths) HRESULT
+	InsertMenus(hmenuShared HMENU, lpMenuWidths *OLEMENUGROUPWIDTHS) HRESULT
 	SetMenu(hmenuShared HMENU, holemenu uintptr, hwndActiveObject HWND) HRESULT
 	RemoveMenus(hmenuShared HMENU) HRESULT
 	SetStatusText(pszStatusText PWSTR) HRESULT
@@ -4259,7 +4385,7 @@ func (this *IOleInPlaceFrame) Vtbl() *IOleInPlaceFrameVtbl {
 	return (*IOleInPlaceFrameVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IOleInPlaceFrame) InsertMenus(hmenuShared HMENU, lpMenuWidths *OleMenuGroupWidths) HRESULT {
+func (this *IOleInPlaceFrame) InsertMenus(hmenuShared HMENU, lpMenuWidths *OLEMENUGROUPWIDTHS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InsertMenus, uintptr(unsafe.Pointer(this)), hmenuShared, uintptr(unsafe.Pointer(lpMenuWidths)))
 	return HRESULT(ret)
 }
@@ -4346,7 +4472,7 @@ type IOleInPlaceSiteInterface interface {
 	CanInPlaceActivate() HRESULT
 	OnInPlaceActivate() HRESULT
 	OnUIActivate() HRESULT
-	GetWindowContext(ppFrame **IOleInPlaceFrame, ppDoc **IOleInPlaceUIWindow, lprcPosRect *RECT, lprcClipRect *RECT, lpFrameInfo *OIFI) HRESULT
+	GetWindowContext(ppFrame **IOleInPlaceFrame, ppDoc **IOleInPlaceUIWindow, lprcPosRect *RECT, lprcClipRect *RECT, lpFrameInfo *OLEINPLACEFRAMEINFO) HRESULT
 	Scroll(scrollExtant SIZE) HRESULT
 	OnUIDeactivate(fUndoable BOOL) HRESULT
 	OnInPlaceDeactivate() HRESULT
@@ -4392,7 +4518,7 @@ func (this *IOleInPlaceSite) OnUIActivate() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IOleInPlaceSite) GetWindowContext(ppFrame **IOleInPlaceFrame, ppDoc **IOleInPlaceUIWindow, lprcPosRect *RECT, lprcClipRect *RECT, lpFrameInfo *OIFI) HRESULT {
+func (this *IOleInPlaceSite) GetWindowContext(ppFrame **IOleInPlaceFrame, ppDoc **IOleInPlaceUIWindow, lprcPosRect *RECT, lprcClipRect *RECT, lpFrameInfo *OLEINPLACEFRAMEINFO) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetWindowContext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppFrame)), uintptr(unsafe.Pointer(ppDoc)), uintptr(unsafe.Pointer(lprcPosRect)), uintptr(unsafe.Pointer(lprcClipRect)), uintptr(unsafe.Pointer(lpFrameInfo)))
 	return HRESULT(ret)
 }
@@ -4460,11 +4586,11 @@ var IID_IViewObject = syscall.GUID{0x0000010D, 0x0000, 0x0000,
 
 type IViewObjectInterface interface {
 	IUnknownInterface
-	Draw(dwDrawAspect uint32, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcTargetDev HDC, hdcDraw HDC, lprcBounds *RECTL, lprcWBounds *RECTL, pfnContinue uintptr, dwContinue uintptr) HRESULT
-	GetColorSet(dwDrawAspect uint32, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hicTargetDev HDC, ppColorSet **LOGPALETTE) HRESULT
-	Freeze(dwDrawAspect uint32, lindex int32, pvAspect unsafe.Pointer, pdwFreeze *uint32) HRESULT
+	Draw(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcTargetDev HDC, hdcDraw HDC, lprcBounds *RECTL, lprcWBounds *RECTL, pfnContinue uintptr, dwContinue uintptr) HRESULT
+	GetColorSet(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hicTargetDev HDC, ppColorSet **LOGPALETTE) HRESULT
+	Freeze(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, pdwFreeze *uint32) HRESULT
 	Unfreeze(dwFreeze uint32) HRESULT
-	SetAdvise(aspects uint32, advf uint32, pAdvSink *IAdviseSink) HRESULT
+	SetAdvise(aspects DVASPECT, advf ADVF, pAdvSink *IAdviseSink) HRESULT
 	GetAdvise(pAspects *uint32, pAdvf *uint32, ppAdvSink **IAdviseSink) HRESULT
 }
 
@@ -4486,17 +4612,17 @@ func (this *IViewObject) Vtbl() *IViewObjectVtbl {
 	return (*IViewObjectVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IViewObject) Draw(dwDrawAspect uint32, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcTargetDev HDC, hdcDraw HDC, lprcBounds *RECTL, lprcWBounds *RECTL, pfnContinue uintptr, dwContinue uintptr) HRESULT {
+func (this *IViewObject) Draw(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hdcTargetDev HDC, hdcDraw HDC, lprcBounds *RECTL, lprcWBounds *RECTL, pfnContinue uintptr, dwContinue uintptr) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Draw, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(pvAspect), uintptr(unsafe.Pointer(ptd)), hdcTargetDev, hdcDraw, uintptr(unsafe.Pointer(lprcBounds)), uintptr(unsafe.Pointer(lprcWBounds)), pfnContinue, dwContinue)
 	return HRESULT(ret)
 }
 
-func (this *IViewObject) GetColorSet(dwDrawAspect uint32, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hicTargetDev HDC, ppColorSet **LOGPALETTE) HRESULT {
+func (this *IViewObject) GetColorSet(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, ptd *DVTARGETDEVICE, hicTargetDev HDC, ppColorSet **LOGPALETTE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetColorSet, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(pvAspect), uintptr(unsafe.Pointer(ptd)), hicTargetDev, uintptr(unsafe.Pointer(ppColorSet)))
 	return HRESULT(ret)
 }
 
-func (this *IViewObject) Freeze(dwDrawAspect uint32, lindex int32, pvAspect unsafe.Pointer, pdwFreeze *uint32) HRESULT {
+func (this *IViewObject) Freeze(dwDrawAspect DVASPECT, lindex int32, pvAspect unsafe.Pointer, pdwFreeze *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Freeze, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(pvAspect), uintptr(unsafe.Pointer(pdwFreeze)))
 	return HRESULT(ret)
 }
@@ -4506,7 +4632,7 @@ func (this *IViewObject) Unfreeze(dwFreeze uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IViewObject) SetAdvise(aspects uint32, advf uint32, pAdvSink *IAdviseSink) HRESULT {
+func (this *IViewObject) SetAdvise(aspects DVASPECT, advf ADVF, pAdvSink *IAdviseSink) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetAdvise, uintptr(unsafe.Pointer(this)), uintptr(aspects), uintptr(advf), uintptr(unsafe.Pointer(pAdvSink)))
 	return HRESULT(ret)
 }
@@ -4522,7 +4648,7 @@ var IID_IViewObject2 = syscall.GUID{0x00000127, 0x0000, 0x0000,
 
 type IViewObject2Interface interface {
 	IViewObjectInterface
-	GetExtent(dwDrawAspect uint32, lindex int32, ptd *DVTARGETDEVICE, lpsizel *SIZE) HRESULT
+	GetExtent(dwDrawAspect DVASPECT, lindex int32, ptd *DVTARGETDEVICE, lpsizel *SIZE) HRESULT
 }
 
 type IViewObject2Vtbl struct {
@@ -4538,7 +4664,7 @@ func (this *IViewObject2) Vtbl() *IViewObject2Vtbl {
 	return (*IViewObject2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IViewObject2) GetExtent(dwDrawAspect uint32, lindex int32, ptd *DVTARGETDEVICE, lpsizel *SIZE) HRESULT {
+func (this *IViewObject2) GetExtent(dwDrawAspect DVASPECT, lindex int32, ptd *DVTARGETDEVICE, lpsizel *SIZE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetExtent, uintptr(unsafe.Pointer(this)), uintptr(dwDrawAspect), uintptr(lindex), uintptr(unsafe.Pointer(ptd)), uintptr(unsafe.Pointer(lpsizel)))
 	return HRESULT(ret)
 }
@@ -4549,8 +4675,8 @@ var IID_IDropSource = syscall.GUID{0x00000121, 0x0000, 0x0000,
 
 type IDropSourceInterface interface {
 	IUnknownInterface
-	QueryContinueDrag(fEscapePressed BOOL, grfKeyState uint32) HRESULT
-	GiveFeedback(dwEffect uint32) HRESULT
+	QueryContinueDrag(fEscapePressed BOOL, grfKeyState MODIFIERKEYS_FLAGS) HRESULT
+	GiveFeedback(dwEffect DROPEFFECT) HRESULT
 }
 
 type IDropSourceVtbl struct {
@@ -4567,12 +4693,12 @@ func (this *IDropSource) Vtbl() *IDropSourceVtbl {
 	return (*IDropSourceVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDropSource) QueryContinueDrag(fEscapePressed BOOL, grfKeyState uint32) HRESULT {
+func (this *IDropSource) QueryContinueDrag(fEscapePressed BOOL, grfKeyState MODIFIERKEYS_FLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryContinueDrag, uintptr(unsafe.Pointer(this)), uintptr(fEscapePressed), uintptr(grfKeyState))
 	return HRESULT(ret)
 }
 
-func (this *IDropSource) GiveFeedback(dwEffect uint32) HRESULT {
+func (this *IDropSource) GiveFeedback(dwEffect DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GiveFeedback, uintptr(unsafe.Pointer(this)), uintptr(dwEffect))
 	return HRESULT(ret)
 }
@@ -4583,10 +4709,10 @@ var IID_IDropTarget = syscall.GUID{0x00000122, 0x0000, 0x0000,
 
 type IDropTargetInterface interface {
 	IUnknownInterface
-	DragEnter(pDataObj *IDataObject, grfKeyState uint32, pt POINTL, pdwEffect *uint32) HRESULT
-	DragOver(grfKeyState uint32, pt POINTL, pdwEffect *uint32) HRESULT
+	DragEnter(pDataObj *IDataObject, grfKeyState MODIFIERKEYS_FLAGS, pt POINTL, pdwEffect *DROPEFFECT) HRESULT
+	DragOver(grfKeyState MODIFIERKEYS_FLAGS, pt POINTL, pdwEffect *DROPEFFECT) HRESULT
 	DragLeave() HRESULT
-	Drop(pDataObj *IDataObject, grfKeyState uint32, pt POINTL, pdwEffect *uint32) HRESULT
+	Drop(pDataObj *IDataObject, grfKeyState MODIFIERKEYS_FLAGS, pt POINTL, pdwEffect *DROPEFFECT) HRESULT
 }
 
 type IDropTargetVtbl struct {
@@ -4605,12 +4731,12 @@ func (this *IDropTarget) Vtbl() *IDropTargetVtbl {
 	return (*IDropTargetVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDropTarget) DragEnter(pDataObj *IDataObject, grfKeyState uint32, pt POINTL, pdwEffect *uint32) HRESULT {
+func (this *IDropTarget) DragEnter(pDataObj *IDataObject, grfKeyState MODIFIERKEYS_FLAGS, pt POINTL, pdwEffect *DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DragEnter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pDataObj)), uintptr(grfKeyState), *(*uintptr)(unsafe.Pointer(&pt)), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
 }
 
-func (this *IDropTarget) DragOver(grfKeyState uint32, pt POINTL, pdwEffect *uint32) HRESULT {
+func (this *IDropTarget) DragOver(grfKeyState MODIFIERKEYS_FLAGS, pt POINTL, pdwEffect *DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DragOver, uintptr(unsafe.Pointer(this)), uintptr(grfKeyState), *(*uintptr)(unsafe.Pointer(&pt)), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
 }
@@ -4620,7 +4746,7 @@ func (this *IDropTarget) DragLeave() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IDropTarget) Drop(pDataObj *IDataObject, grfKeyState uint32, pt POINTL, pdwEffect *uint32) HRESULT {
+func (this *IDropTarget) Drop(pDataObj *IDataObject, grfKeyState MODIFIERKEYS_FLAGS, pt POINTL, pdwEffect *DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Drop, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pDataObj)), uintptr(grfKeyState), *(*uintptr)(unsafe.Pointer(&pt)), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
 }
@@ -4928,7 +5054,7 @@ type IOleControlSiteInterface interface {
 	LockInPlaceActive(fLock BOOL) HRESULT
 	GetExtendedControl(ppDisp **IDispatch) HRESULT
 	TransformCoords(pPtlHimetric *POINTL, pPtfContainer *POINTF, dwFlags XFORMCOORDS) HRESULT
-	TranslateAccelerator(pMsg *MSG, grfModifiers uint32) HRESULT
+	TranslateAccelerator(pMsg *MSG, grfModifiers KEYMODIFIERS) HRESULT
 	OnFocus(fGotFocus BOOL) HRESULT
 	ShowPropertyFrame() HRESULT
 }
@@ -4972,7 +5098,7 @@ func (this *IOleControlSite) TransformCoords(pPtlHimetric *POINTL, pPtfContainer
 	return HRESULT(ret)
 }
 
-func (this *IOleControlSite) TranslateAccelerator(pMsg *MSG, grfModifiers uint32) HRESULT {
+func (this *IOleControlSite) TranslateAccelerator(pMsg *MSG, grfModifiers KEYMODIFIERS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TranslateAccelerator, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pMsg)), uintptr(grfModifiers))
 	return HRESULT(ret)
 }
@@ -5489,15 +5615,15 @@ var IID_IPicture = syscall.GUID{0x7BF80980, 0xBF32, 0x101A,
 
 type IPictureInterface interface {
 	IUnknownInterface
-	Get_Handle(pHandle *uint32) HRESULT
-	Get_hPal(phPal *uint32) HRESULT
+	Get_Handle(pHandle *OLE_HANDLE) HRESULT
+	Get_hPal(phPal *OLE_HANDLE) HRESULT
 	Get_Type(pType *int16) HRESULT
 	Get_Width(pWidth *int32) HRESULT
 	Get_Height(pHeight *int32) HRESULT
 	Render(hDC HDC, x int32, y int32, cx int32, cy int32, xSrc int32, ySrc int32, cxSrc int32, cySrc int32, pRcWBounds *RECT) HRESULT
-	Set_hPal(hPal uint32) HRESULT
+	Set_hPal(hPal OLE_HANDLE) HRESULT
 	Get_CurDC(phDC *HDC) HRESULT
-	SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *uint32) HRESULT
+	SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *OLE_HANDLE) HRESULT
 	Get_KeepOriginalFormat(pKeep *BOOL) HRESULT
 	Put_KeepOriginalFormat(keep BOOL) HRESULT
 	PictureChanged() HRESULT
@@ -5531,12 +5657,12 @@ func (this *IPicture) Vtbl() *IPictureVtbl {
 	return (*IPictureVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IPicture) Get_Handle(pHandle *uint32) HRESULT {
+func (this *IPicture) Get_Handle(pHandle *OLE_HANDLE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Handle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pHandle)))
 	return HRESULT(ret)
 }
 
-func (this *IPicture) Get_hPal(phPal *uint32) HRESULT {
+func (this *IPicture) Get_hPal(phPal *OLE_HANDLE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_hPal, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phPal)))
 	return HRESULT(ret)
 }
@@ -5561,7 +5687,7 @@ func (this *IPicture) Render(hDC HDC, x int32, y int32, cx int32, cy int32, xSrc
 	return HRESULT(ret)
 }
 
-func (this *IPicture) Set_hPal(hPal uint32) HRESULT {
+func (this *IPicture) Set_hPal(hPal OLE_HANDLE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Set_hPal, uintptr(unsafe.Pointer(this)), uintptr(hPal))
 	return HRESULT(ret)
 }
@@ -5571,7 +5697,7 @@ func (this *IPicture) Get_CurDC(phDC *HDC) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IPicture) SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *uint32) HRESULT {
+func (this *IPicture) SelectPicture(hDCIn HDC, phDCOut *HDC, phBmpOut *OLE_HANDLE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SelectPicture, uintptr(unsafe.Pointer(this)), hDCIn, uintptr(unsafe.Pointer(phDCOut)), uintptr(unsafe.Pointer(phBmpOut)))
 	return HRESULT(ret)
 }
@@ -5968,7 +6094,7 @@ type IViewObjectExInterface interface {
 	GetViewStatus(pdwStatus *uint32) HRESULT
 	QueryHitPoint(dwAspect uint32, pRectBounds *RECT, ptlLoc POINT, lCloseHint int32, pHitResult *uint32) HRESULT
 	QueryHitRect(dwAspect uint32, pRectBounds *RECT, pRectLoc *RECT, lCloseHint int32, pHitResult *uint32) HRESULT
-	GetNaturalExtent(dwAspect DVASPECT, lindex int32, ptd *DVTARGETDEVICE, hicTargetDev HDC, pExtentInfo *ExtentInfo, pSizel *SIZE) HRESULT
+	GetNaturalExtent(dwAspect DVASPECT, lindex int32, ptd *DVTARGETDEVICE, hicTargetDev HDC, pExtentInfo *DVEXTENTINFO, pSizel *SIZE) HRESULT
 }
 
 type IViewObjectExVtbl struct {
@@ -6008,7 +6134,7 @@ func (this *IViewObjectEx) QueryHitRect(dwAspect uint32, pRectBounds *RECT, pRec
 	return HRESULT(ret)
 }
 
-func (this *IViewObjectEx) GetNaturalExtent(dwAspect DVASPECT, lindex int32, ptd *DVTARGETDEVICE, hicTargetDev HDC, pExtentInfo *ExtentInfo, pSizel *SIZE) HRESULT {
+func (this *IViewObjectEx) GetNaturalExtent(dwAspect DVASPECT, lindex int32, ptd *DVTARGETDEVICE, hicTargetDev HDC, pExtentInfo *DVEXTENTINFO, pSizel *SIZE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNaturalExtent, uintptr(unsafe.Pointer(this)), uintptr(dwAspect), uintptr(lindex), uintptr(unsafe.Pointer(ptd)), hicTargetDev, uintptr(unsafe.Pointer(pExtentInfo)), uintptr(unsafe.Pointer(pSizel)))
 	return HRESULT(ret)
 }
@@ -6274,7 +6400,7 @@ var IID_IPointerInactive = syscall.GUID{0x55980BA0, 0x35AA, 0x11CF,
 
 type IPointerInactiveInterface interface {
 	IUnknownInterface
-	GetActivationPolicy(pdwPolicy *uint32) HRESULT
+	GetActivationPolicy(pdwPolicy *POINTERINACTIVE) HRESULT
 	OnInactiveMouseMove(pRectBounds *RECT, x int32, y int32, grfKeyState uint32) HRESULT
 	OnInactiveSetCursor(pRectBounds *RECT, x int32, y int32, dwMouseMsg uint32, fSetAlways BOOL) HRESULT
 }
@@ -6294,7 +6420,7 @@ func (this *IPointerInactive) Vtbl() *IPointerInactiveVtbl {
 	return (*IPointerInactiveVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IPointerInactive) GetActivationPolicy(pdwPolicy *uint32) HRESULT {
+func (this *IPointerInactive) GetActivationPolicy(pdwPolicy *POINTERINACTIVE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetActivationPolicy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwPolicy)))
 	return HRESULT(ret)
 }
@@ -7371,7 +7497,7 @@ type IDispatchExInterface interface {
 	InvokeEx(id int32, lcid uint32, wFlags uint16, pdp *DISPPARAMS, pvarRes *VARIANT, pei *EXCEPINFO, pspCaller *IServiceProvider) HRESULT
 	DeleteMemberByName(bstrName BSTR, grfdex uint32) HRESULT
 	DeleteMemberByDispID(id int32) HRESULT
-	GetMemberProperties(id int32, grfdexFetch uint32, pgrfdex *uint32) HRESULT
+	GetMemberProperties(id int32, grfdexFetch uint32, pgrfdex *FDEX_PROP_FLAGS) HRESULT
 	GetMemberName(id int32, pbstrName *BSTR) HRESULT
 	GetNextDispID(grfdex uint32, id int32, pid *int32) HRESULT
 	GetNameSpaceParent(ppunk **IUnknown) HRESULT
@@ -7417,7 +7543,7 @@ func (this *IDispatchEx) DeleteMemberByDispID(id int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IDispatchEx) GetMemberProperties(id int32, grfdexFetch uint32, pgrfdex *uint32) HRESULT {
+func (this *IDispatchEx) GetMemberProperties(id int32, grfdexFetch uint32, pgrfdex *FDEX_PROP_FLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMemberProperties, uintptr(unsafe.Pointer(this)), uintptr(id), uintptr(grfdexFetch), uintptr(unsafe.Pointer(pgrfdex)))
 	return HRESULT(ret)
 }
@@ -7505,7 +7631,7 @@ var IID_IVariantChangeType = syscall.GUID{0xA6EF9862, 0xC720, 0x11D0,
 
 type IVariantChangeTypeInterface interface {
 	IUnknownInterface
-	ChangeType(pvarDst *VARIANT, pvarSrc *VARIANT, lcid uint32, vtNew uint16) HRESULT
+	ChangeType(pvarDst *VARIANT, pvarSrc *VARIANT, lcid uint32, vtNew VARENUM) HRESULT
 }
 
 type IVariantChangeTypeVtbl struct {
@@ -7521,7 +7647,7 @@ func (this *IVariantChangeType) Vtbl() *IVariantChangeTypeVtbl {
 	return (*IVariantChangeTypeVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IVariantChangeType) ChangeType(pvarDst *VARIANT, pvarSrc *VARIANT, lcid uint32, vtNew uint16) HRESULT {
+func (this *IVariantChangeType) ChangeType(pvarDst *VARIANT, pvarSrc *VARIANT, lcid uint32, vtNew VARENUM) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ChangeType, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarDst)), uintptr(unsafe.Pointer(pvarSrc)), uintptr(lcid), uintptr(vtNew))
 	return HRESULT(ret)
 }
@@ -7586,7 +7712,7 @@ var IID_IProvideRuntimeContext = syscall.GUID{0x10E2414A, 0xEC59, 0x49D2,
 
 type IProvideRuntimeContextInterface interface {
 	IUnknownInterface
-	GetCurrentSourceContext(pdwContext *uintptr, pfExecutingGlobalCode *int16) HRESULT
+	GetCurrentSourceContext(pdwContext *uintptr, pfExecutingGlobalCode *VARIANT_BOOL) HRESULT
 }
 
 type IProvideRuntimeContextVtbl struct {
@@ -7602,7 +7728,7 @@ func (this *IProvideRuntimeContext) Vtbl() *IProvideRuntimeContextVtbl {
 	return (*IProvideRuntimeContextVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IProvideRuntimeContext) GetCurrentSourceContext(pdwContext *uintptr, pfExecutingGlobalCode *int16) HRESULT {
+func (this *IProvideRuntimeContext) GetCurrentSourceContext(pdwContext *uintptr, pfExecutingGlobalCode *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetCurrentSourceContext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwContext)), uintptr(unsafe.Pointer(pfExecutingGlobalCode)))
 	return HRESULT(ret)
 }
@@ -8069,7 +8195,7 @@ func SafeArrayAllocDescriptor(cDims uint32, ppsaOut **SAFEARRAY) HRESULT {
 	return HRESULT(ret)
 }
 
-func SafeArrayAllocDescriptorEx(vt uint16, cDims uint32, ppsaOut **SAFEARRAY) HRESULT {
+func SafeArrayAllocDescriptorEx(vt VARENUM, cDims uint32, ppsaOut **SAFEARRAY) HRESULT {
 	addr := lazyAddr(&pSafeArrayAllocDescriptorEx, libOleaut32, "SafeArrayAllocDescriptorEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(cDims), uintptr(unsafe.Pointer(ppsaOut)))
 	return HRESULT(ret)
@@ -8081,13 +8207,13 @@ func SafeArrayAllocData(psa *SAFEARRAY) HRESULT {
 	return HRESULT(ret)
 }
 
-func SafeArrayCreate(vt uint16, cDims uint32, rgsabound *SAFEARRAYBOUND) *SAFEARRAY {
+func SafeArrayCreate(vt VARENUM, cDims uint32, rgsabound *SAFEARRAYBOUND) *SAFEARRAY {
 	addr := lazyAddr(&pSafeArrayCreate, libOleaut32, "SafeArrayCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(cDims), uintptr(unsafe.Pointer(rgsabound)))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
 }
 
-func SafeArrayCreateEx(vt uint16, cDims uint32, rgsabound *SAFEARRAYBOUND, pvExtra unsafe.Pointer) *SAFEARRAY {
+func SafeArrayCreateEx(vt VARENUM, cDims uint32, rgsabound *SAFEARRAYBOUND, pvExtra unsafe.Pointer) *SAFEARRAY {
 	addr := lazyAddr(&pSafeArrayCreateEx, libOleaut32, "SafeArrayCreateEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(cDims), uintptr(unsafe.Pointer(rgsabound)), uintptr(pvExtra))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
@@ -8235,19 +8361,19 @@ func SafeArrayGetIID(psa *SAFEARRAY, pguid *syscall.GUID) HRESULT {
 	return HRESULT(ret)
 }
 
-func SafeArrayGetVartype(psa *SAFEARRAY, pvt *uint16) HRESULT {
+func SafeArrayGetVartype(psa *SAFEARRAY, pvt *VARENUM) HRESULT {
 	addr := lazyAddr(&pSafeArrayGetVartype, libOleaut32, "SafeArrayGetVartype")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(pvt)))
 	return HRESULT(ret)
 }
 
-func SafeArrayCreateVector(vt uint16, lLbound int32, cElements uint32) *SAFEARRAY {
+func SafeArrayCreateVector(vt VARENUM, lLbound int32, cElements uint32) *SAFEARRAY {
 	addr := lazyAddr(&pSafeArrayCreateVector, libOleaut32, "SafeArrayCreateVector")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(lLbound), uintptr(cElements))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
 }
 
-func SafeArrayCreateVectorEx(vt uint16, lLbound int32, cElements uint32, pvExtra unsafe.Pointer) *SAFEARRAY {
+func SafeArrayCreateVectorEx(vt VARENUM, lLbound int32, cElements uint32, pvExtra unsafe.Pointer) *SAFEARRAY {
 	addr := lazyAddr(&pSafeArrayCreateVectorEx, libOleaut32, "SafeArrayCreateVectorEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(lLbound), uintptr(cElements), uintptr(pvExtra))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
@@ -8276,13 +8402,13 @@ func VariantCopyInd(pvarDest *VARIANT, pvargSrc *VARIANT) HRESULT {
 	return HRESULT(ret)
 }
 
-func VariantChangeType(pvargDest *VARIANT, pvarSrc *VARIANT, wFlags uint16, vt uint16) HRESULT {
+func VariantChangeType(pvargDest *VARIANT, pvarSrc *VARIANT, wFlags uint16, vt VARENUM) HRESULT {
 	addr := lazyAddr(&pVariantChangeType, libOleaut32, "VariantChangeType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvargDest)), uintptr(unsafe.Pointer(pvarSrc)), uintptr(wFlags), uintptr(vt))
 	return HRESULT(ret)
 }
 
-func VariantChangeTypeEx(pvargDest *VARIANT, pvarSrc *VARIANT, lcid uint32, wFlags uint16, vt uint16) HRESULT {
+func VariantChangeTypeEx(pvargDest *VARIANT, pvarSrc *VARIANT, lcid uint32, wFlags uint16, vt VARENUM) HRESULT {
 	addr := lazyAddr(&pVariantChangeTypeEx, libOleaut32, "VariantChangeTypeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvargDest)), uintptr(unsafe.Pointer(pvarSrc)), uintptr(lcid), uintptr(wFlags), uintptr(vt))
 	return HRESULT(ret)
@@ -8354,7 +8480,7 @@ func VarUI1FromDisp(pdispIn *IDispatch, lcid uint32, pbOut *byte) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarUI1FromBool(boolIn int16, pbOut *byte) HRESULT {
+func VarUI1FromBool(boolIn VARIANT_BOOL, pbOut *byte) HRESULT {
 	addr := lazyAddr(&pVarUI1FromBool, libOleaut32, "VarUI1FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
@@ -8444,7 +8570,7 @@ func VarI2FromDisp(pdispIn *IDispatch, lcid uint32, psOut *int16) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarI2FromBool(boolIn int16, psOut *int16) HRESULT {
+func VarI2FromBool(boolIn VARIANT_BOOL, psOut *int16) HRESULT {
 	addr := lazyAddr(&pVarI2FromBool, libOleaut32, "VarI2FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
@@ -8534,7 +8660,7 @@ func VarI4FromDisp(pdispIn *IDispatch, lcid uint32, plOut *int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarI4FromBool(boolIn int16, plOut *int32) HRESULT {
+func VarI4FromBool(boolIn VARIANT_BOOL, plOut *int32) HRESULT {
 	addr := lazyAddr(&pVarI4FromBool, libOleaut32, "VarI4FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
@@ -8618,7 +8744,7 @@ func VarI8FromDisp(pdispIn *IDispatch, lcid uint32, pi64Out *int64) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarI8FromBool(boolIn int16, pi64Out *int64) HRESULT {
+func VarI8FromBool(boolIn VARIANT_BOOL, pi64Out *int64) HRESULT {
 	addr := lazyAddr(&pVarI8FromBool, libOleaut32, "VarI8FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
@@ -8708,7 +8834,7 @@ func VarR4FromDisp(pdispIn *IDispatch, lcid uint32, pfltOut *float32) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarR4FromBool(boolIn int16, pfltOut *float32) HRESULT {
+func VarR4FromBool(boolIn VARIANT_BOOL, pfltOut *float32) HRESULT {
 	addr := lazyAddr(&pVarR4FromBool, libOleaut32, "VarR4FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
@@ -8798,7 +8924,7 @@ func VarR8FromDisp(pdispIn *IDispatch, lcid uint32, pdblOut *float64) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarR8FromBool(boolIn int16, pdblOut *float64) HRESULT {
+func VarR8FromBool(boolIn VARIANT_BOOL, pdblOut *float64) HRESULT {
 	addr := lazyAddr(&pVarR8FromBool, libOleaut32, "VarR8FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
@@ -8888,7 +9014,7 @@ func VarDateFromDisp(pdispIn *IDispatch, lcid uint32, pdateOut *float64) HRESULT
 	return HRESULT(ret)
 }
 
-func VarDateFromBool(boolIn int16, pdateOut *float64) HRESULT {
+func VarDateFromBool(boolIn VARIANT_BOOL, pdateOut *float64) HRESULT {
 	addr := lazyAddr(&pVarDateFromBool, libOleaut32, "VarDateFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
@@ -8978,7 +9104,7 @@ func VarCyFromDisp(pdispIn *IDispatch, lcid uint32, pcyOut *CY) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarCyFromBool(boolIn int16, pcyOut *CY) HRESULT {
+func VarCyFromBool(boolIn VARIANT_BOOL, pcyOut *CY) HRESULT {
 	addr := lazyAddr(&pVarCyFromBool, libOleaut32, "VarCyFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
@@ -9068,7 +9194,7 @@ func VarBstrFromDisp(pdispIn *IDispatch, lcid uint32, dwFlags uint32, pbstrOut *
 	return HRESULT(ret)
 }
 
-func VarBstrFromBool(boolIn int16, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
+func VarBstrFromBool(boolIn VARIANT_BOOL, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
 	addr := lazyAddr(&pVarBstrFromBool, libOleaut32, "VarBstrFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
@@ -9104,91 +9230,91 @@ func VarBstrFromDec(pdecIn *DECIMAL, lcid uint32, dwFlags uint32, pbstrOut *BSTR
 	return HRESULT(ret)
 }
 
-func VarBoolFromUI1(bIn byte, pboolOut *int16) HRESULT {
+func VarBoolFromUI1(bIn byte, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromUI1, libOleaut32, "VarBoolFromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromI2(sIn int16, pboolOut *int16) HRESULT {
+func VarBoolFromI2(sIn int16, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromI2, libOleaut32, "VarBoolFromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromI4(lIn int32, pboolOut *int16) HRESULT {
+func VarBoolFromI4(lIn int32, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromI4, libOleaut32, "VarBoolFromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromI8(i64In int64, pboolOut *int16) HRESULT {
+func VarBoolFromI8(i64In int64, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromI8, libOleaut32, "VarBoolFromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromR4(fltIn float32, pboolOut *int16) HRESULT {
+func VarBoolFromR4(fltIn float32, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromR4, libOleaut32, "VarBoolFromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromR8(dblIn float64, pboolOut *int16) HRESULT {
+func VarBoolFromR8(dblIn float64, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromR8, libOleaut32, "VarBoolFromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromDate(dateIn float64, pboolOut *int16) HRESULT {
+func VarBoolFromDate(dateIn float64, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromDate, libOleaut32, "VarBoolFromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromCy(cyIn CY, pboolOut *int16) HRESULT {
+func VarBoolFromCy(cyIn CY, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromCy, libOleaut32, "VarBoolFromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pboolOut *int16) HRESULT {
+func VarBoolFromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromStr, libOleaut32, "VarBoolFromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromDisp(pdispIn *IDispatch, lcid uint32, pboolOut *int16) HRESULT {
+func VarBoolFromDisp(pdispIn *IDispatch, lcid uint32, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromDisp, libOleaut32, "VarBoolFromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromI1(cIn CHAR, pboolOut *int16) HRESULT {
+func VarBoolFromI1(cIn CHAR, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromI1, libOleaut32, "VarBoolFromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromUI2(uiIn uint16, pboolOut *int16) HRESULT {
+func VarBoolFromUI2(uiIn uint16, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromUI2, libOleaut32, "VarBoolFromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromUI4(ulIn uint32, pboolOut *int16) HRESULT {
+func VarBoolFromUI4(ulIn uint32, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromUI4, libOleaut32, "VarBoolFromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromUI8(i64In uint64, pboolOut *int16) HRESULT {
+func VarBoolFromUI8(i64In uint64, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromUI8, libOleaut32, "VarBoolFromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
-func VarBoolFromDec(pdecIn *DECIMAL, pboolOut *int16) HRESULT {
+func VarBoolFromDec(pdecIn *DECIMAL, pboolOut *VARIANT_BOOL) HRESULT {
 	addr := lazyAddr(&pVarBoolFromDec, libOleaut32, "VarBoolFromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
@@ -9254,7 +9380,7 @@ func VarI1FromDisp(pdispIn *IDispatch, lcid uint32, pcOut PSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarI1FromBool(boolIn int16, pcOut PSTR) HRESULT {
+func VarI1FromBool(boolIn VARIANT_BOOL, pcOut PSTR) HRESULT {
 	addr := lazyAddr(&pVarI1FromBool, libOleaut32, "VarI1FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
@@ -9344,7 +9470,7 @@ func VarUI2FromDisp(pdispIn *IDispatch, lcid uint32, puiOut *uint16) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarUI2FromBool(boolIn int16, puiOut *uint16) HRESULT {
+func VarUI2FromBool(boolIn VARIANT_BOOL, puiOut *uint16) HRESULT {
 	addr := lazyAddr(&pVarUI2FromBool, libOleaut32, "VarUI2FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
@@ -9434,7 +9560,7 @@ func VarUI4FromDisp(pdispIn *IDispatch, lcid uint32, pulOut *uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarUI4FromBool(boolIn int16, pulOut *uint32) HRESULT {
+func VarUI4FromBool(boolIn VARIANT_BOOL, pulOut *uint32) HRESULT {
 	addr := lazyAddr(&pVarUI4FromBool, libOleaut32, "VarUI4FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
@@ -9518,7 +9644,7 @@ func VarUI8FromDisp(pdispIn *IDispatch, lcid uint32, pi64Out *uint64) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarUI8FromBool(boolIn int16, pi64Out *uint64) HRESULT {
+func VarUI8FromBool(boolIn VARIANT_BOOL, pi64Out *uint64) HRESULT {
 	addr := lazyAddr(&pVarUI8FromBool, libOleaut32, "VarUI8FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
@@ -9608,7 +9734,7 @@ func VarDecFromDisp(pdispIn *IDispatch, lcid uint32, pdecOut *DECIMAL) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarDecFromBool(boolIn int16, pdecOut *DECIMAL) HRESULT {
+func VarDecFromBool(boolIn VARIANT_BOOL, pdecOut *DECIMAL) HRESULT {
 	addr := lazyAddr(&pVarDecFromBool, libOleaut32, "VarDecFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
@@ -9764,10 +9890,10 @@ func VarRound(pvarIn *VARIANT, cDecimals int32, pvarResult *VARIANT) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarCmp(pvarLeft *VARIANT, pvarRight *VARIANT, lcid uint32, dwFlags uint32) HRESULT {
+func VarCmp(pvarLeft *VARIANT, pvarRight *VARIANT, lcid uint32, dwFlags uint32) VARCMP {
 	addr := lazyAddr(&pVarCmp, libOleaut32, "VarCmp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(lcid), uintptr(dwFlags))
-	return HRESULT(ret)
+	return VARCMP(ret)
 }
 
 func VarDecAdd(pdecLeft *DECIMAL, pdecRight *DECIMAL, pdecResult *DECIMAL) HRESULT {
@@ -9824,16 +9950,16 @@ func VarDecRound(pdecIn *DECIMAL, cDecimals int32, pdecResult *DECIMAL) HRESULT 
 	return HRESULT(ret)
 }
 
-func VarDecCmp(pdecLeft *DECIMAL, pdecRight *DECIMAL) HRESULT {
+func VarDecCmp(pdecLeft *DECIMAL, pdecRight *DECIMAL) VARCMP {
 	addr := lazyAddr(&pVarDecCmp, libOleaut32, "VarDecCmp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(unsafe.Pointer(pdecRight)))
-	return HRESULT(ret)
+	return VARCMP(ret)
 }
 
-func VarDecCmpR8(pdecLeft *DECIMAL, dblRight float64) HRESULT {
+func VarDecCmpR8(pdecLeft *DECIMAL, dblRight float64) VARCMP {
 	addr := lazyAddr(&pVarDecCmpR8, libOleaut32, "VarDecCmpR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(dblRight))
-	return HRESULT(ret)
+	return VARCMP(ret)
 }
 
 func VarCyAdd(cyLeft CY, cyRight CY, pcyResult *CY) HRESULT {
@@ -9896,16 +10022,16 @@ func VarCyRound(cyIn CY, cDecimals int32, pcyResult *CY) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarCyCmp(cyLeft CY, cyRight CY) HRESULT {
+func VarCyCmp(cyLeft CY, cyRight CY) VARCMP {
 	addr := lazyAddr(&pVarCyCmp, libOleaut32, "VarCyCmp")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), *(*uintptr)(unsafe.Pointer(&cyRight)))
-	return HRESULT(ret)
+	return VARCMP(ret)
 }
 
-func VarCyCmpR8(cyLeft CY, dblRight float64) HRESULT {
+func VarCyCmpR8(cyLeft CY, dblRight float64) VARCMP {
 	addr := lazyAddr(&pVarCyCmpR8, libOleaut32, "VarCyCmpR8")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), uintptr(dblRight))
-	return HRESULT(ret)
+	return VARCMP(ret)
 }
 
 func VarBstrCat(bstrLeft BSTR, bstrRight BSTR, pbstrResult **uint16) HRESULT {
@@ -9926,10 +10052,10 @@ func VarR8Pow(dblLeft float64, dblRight float64, pdblResult *float64) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarR4CmpR8(fltLeft float32, dblRight float64) HRESULT {
+func VarR4CmpR8(fltLeft float32, dblRight float64) VARCMP {
 	addr := lazyAddr(&pVarR4CmpR8, libOleaut32, "VarR4CmpR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltLeft), uintptr(dblRight))
-	return HRESULT(ret)
+	return VARCMP(ret)
 }
 
 func VarR8Round(dblIn float64, cDecimals int32, pdblResult *float64) HRESULT {
@@ -9962,25 +10088,25 @@ func GetAltMonthNames(lcid uint32, prgp **PWSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-func VarFormat(pvarIn *VARIANT, pstrFormat PWSTR, iFirstDay int32, iFirstWeek int32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
+func VarFormat(pvarIn *VARIANT, pstrFormat PWSTR, iFirstDay VARFORMAT_FIRST_DAY, iFirstWeek VARFORMAT_FIRST_WEEK, dwFlags uint32, pbstrOut *BSTR) HRESULT {
 	addr := lazyAddr(&pVarFormat, libOleaut32, "VarFormat")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pstrFormat)), uintptr(iFirstDay), uintptr(iFirstWeek), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
-func VarFormatDateTime(pvarIn *VARIANT, iNamedFormat int32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
+func VarFormatDateTime(pvarIn *VARIANT, iNamedFormat VARFORMAT_NAMED_FORMAT, dwFlags uint32, pbstrOut *BSTR) HRESULT {
 	addr := lazyAddr(&pVarFormatDateTime, libOleaut32, "VarFormatDateTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(iNamedFormat), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
-func VarFormatNumber(pvarIn *VARIANT, iNumDig int32, iIncLead int32, iUseParens int32, iGroup int32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
+func VarFormatNumber(pvarIn *VARIANT, iNumDig int32, iIncLead VARFORMAT_LEADING_DIGIT, iUseParens VARFORMAT_PARENTHESES, iGroup VARFORMAT_GROUP, dwFlags uint32, pbstrOut *BSTR) HRESULT {
 	addr := lazyAddr(&pVarFormatNumber, libOleaut32, "VarFormatNumber")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(iNumDig), uintptr(iIncLead), uintptr(iUseParens), uintptr(iGroup), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
-func VarFormatPercent(pvarIn *VARIANT, iNumDig int32, iIncLead int32, iUseParens int32, iGroup int32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
+func VarFormatPercent(pvarIn *VARIANT, iNumDig int32, iIncLead VARFORMAT_LEADING_DIGIT, iUseParens VARFORMAT_PARENTHESES, iGroup VARFORMAT_GROUP, dwFlags uint32, pbstrOut *BSTR) HRESULT {
 	addr := lazyAddr(&pVarFormatPercent, libOleaut32, "VarFormatPercent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(iNumDig), uintptr(iIncLead), uintptr(iUseParens), uintptr(iGroup), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
@@ -10010,7 +10136,7 @@ func VarFormatFromTokens(pvarIn *VARIANT, pstrFormat PWSTR, pbTokCur *byte, dwFl
 	return HRESULT(ret)
 }
 
-func VarTokenizeFormatString(pstrFormat PWSTR, rgbTok *byte, cbTok int32, iFirstDay int32, iFirstWeek int32, lcid uint32, pcbActual *int32) HRESULT {
+func VarTokenizeFormatString(pstrFormat PWSTR, rgbTok *byte, cbTok int32, iFirstDay VARFORMAT_FIRST_DAY, iFirstWeek VARFORMAT_FIRST_WEEK, lcid uint32, pcbActual *int32) HRESULT {
 	addr := lazyAddr(&pVarTokenizeFormatString, libOleaut32, "VarTokenizeFormatString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstrFormat)), uintptr(unsafe.Pointer(rgbTok)), uintptr(cbTok), uintptr(iFirstDay), uintptr(iFirstWeek), uintptr(lcid), uintptr(unsafe.Pointer(pcbActual)))
 	return HRESULT(ret)
@@ -10088,7 +10214,7 @@ func CreateTypeLib2(syskind SYSKIND, szFile PWSTR, ppctlib **ICreateTypeLib2) HR
 	return HRESULT(ret)
 }
 
-func DispGetParam(pdispparams *DISPPARAMS, position uint32, vtTarg uint16, pvarResult *VARIANT, puArgErr *uint32) HRESULT {
+func DispGetParam(pdispparams *DISPPARAMS, position uint32, vtTarg VARENUM, pvarResult *VARIANT, puArgErr *uint32) HRESULT {
 	addr := lazyAddr(&pDispGetParam, libOleaut32, "DispGetParam")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispparams)), uintptr(position), uintptr(vtTarg), uintptr(unsafe.Pointer(pvarResult)), uintptr(unsafe.Pointer(puArgErr)))
 	return HRESULT(ret)
@@ -10118,13 +10244,13 @@ func CreateStdDispatch(punkOuter *IUnknown, pvThis unsafe.Pointer, ptinfo *IType
 	return HRESULT(ret)
 }
 
-func DispCallFunc(pvInstance unsafe.Pointer, oVft uintptr, cc CALLCONV, vtReturn uint16, cActuals uint32, prgvt *uint16, prgpvarg **VARIANT, pvargResult *VARIANT) HRESULT {
+func DispCallFunc(pvInstance unsafe.Pointer, oVft uintptr, cc CALLCONV, vtReturn VARENUM, cActuals uint32, prgvt *uint16, prgpvarg **VARIANT, pvargResult *VARIANT) HRESULT {
 	addr := lazyAddr(&pDispCallFunc, libOleaut32, "DispCallFunc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pvInstance), oVft, uintptr(cc), uintptr(vtReturn), uintptr(cActuals), uintptr(unsafe.Pointer(prgvt)), uintptr(unsafe.Pointer(prgpvarg)), uintptr(unsafe.Pointer(pvargResult)))
 	return HRESULT(ret)
 }
 
-func RegisterActiveObject(punk *IUnknown, rclsid *syscall.GUID, dwFlags uint32, pdwRegister *uint32) HRESULT {
+func RegisterActiveObject(punk *IUnknown, rclsid *syscall.GUID, dwFlags ACTIVEOBJECT_FLAGS, pdwRegister *uint32) HRESULT {
 	addr := lazyAddr(&pRegisterActiveObject, libOleaut32, "RegisterActiveObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(rclsid)), uintptr(dwFlags), uintptr(unsafe.Pointer(pdwRegister)))
 	return HRESULT(ret)
@@ -10205,79 +10331,79 @@ func OleQueryCreateFromData(pSrcDataObject *IDataObject) HRESULT {
 	return HRESULT(ret)
 }
 
-func OleCreate(rclsid *syscall.GUID, riid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreate(rclsid *syscall.GUID, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreate, libOle32, "OleCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateEx(rclsid *syscall.GUID, riid *syscall.GUID, dwFlags uint32, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateEx(rclsid *syscall.GUID, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateEx, libOle32, "OleCreateEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateFromData, libOle32, "OleCreateFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags uint32, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateFromDataEx, libOle32, "OleCreateFromDataEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateLinkFromData, libOle32, "OleCreateLinkFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags uint32, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateLinkFromDataEx, libOle32, "OleCreateLinkFromDataEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateStaticFromData(pSrcDataObj *IDataObject, iid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateStaticFromData(pSrcDataObj *IDataObject, iid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateStaticFromData, libOle32, "OleCreateStaticFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(iid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLink(pmkLinkSrc *IMoniker, riid *syscall.GUID, renderopt uint32, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLink(pmkLinkSrc *IMoniker, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateLink, libOle32, "OleCreateLink")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkLinkSrc)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkEx(pmkLinkSrc *IMoniker, riid *syscall.GUID, dwFlags uint32, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkEx(pmkLinkSrc *IMoniker, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateLinkEx, libOle32, "OleCreateLinkEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkLinkSrc)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkToFile(lpszFileName PWSTR, riid *syscall.GUID, renderopt uint32, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkToFile(lpszFileName PWSTR, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateLinkToFile, libOle32, "OleCreateLinkToFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkToFileEx(lpszFileName PWSTR, riid *syscall.GUID, dwFlags uint32, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkToFileEx(lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateLinkToFileEx, libOle32, "OleCreateLinkToFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromFile(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, renderopt uint32, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromFile(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateFromFile, libOle32, "OleCreateFromFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromFileEx(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, dwFlags uint32, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromFileEx(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateFromFileEx, libOle32, "OleCreateFromFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
@@ -10331,7 +10457,7 @@ func RevokeDragDrop(hwnd HWND) HRESULT {
 	return HRESULT(ret)
 }
 
-func DoDragDrop(pDataObj *IDataObject, pDropSource *IDropSource, dwOKEffects uint32, pdwEffect *uint32) HRESULT {
+func DoDragDrop(pDataObj *IDataObject, pDropSource *IDropSource, dwOKEffects DROPEFFECT, pdwEffect *DROPEFFECT) HRESULT {
 	addr := lazyAddr(&pDoDragDrop, libOle32, "DoDragDrop")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pDataObj)), uintptr(unsafe.Pointer(pDropSource)), uintptr(dwOKEffects), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
@@ -10367,7 +10493,7 @@ func OleIsCurrentClipboard(pDataObj *IDataObject) HRESULT {
 	return HRESULT(ret)
 }
 
-func OleCreateMenuDescriptor(hmenuCombined HMENU, lpMenuWidths *OleMenuGroupWidths) uintptr {
+func OleCreateMenuDescriptor(hmenuCombined HMENU, lpMenuWidths *OLEMENUGROUPWIDTHS) uintptr {
 	addr := lazyAddr(&pOleCreateMenuDescriptor, libOle32, "OleCreateMenuDescriptor")
 	ret, _, _ := syscall.SyscallN(addr, hmenuCombined, uintptr(unsafe.Pointer(lpMenuWidths)))
 	return ret
@@ -10385,13 +10511,13 @@ func OleDestroyMenuDescriptor(holemenu uintptr) HRESULT {
 	return HRESULT(ret)
 }
 
-func OleTranslateAccelerator(lpFrame *IOleInPlaceFrame, lpFrameInfo *OIFI, lpmsg *MSG) HRESULT {
+func OleTranslateAccelerator(lpFrame *IOleInPlaceFrame, lpFrameInfo *OLEINPLACEFRAMEINFO, lpmsg *MSG) HRESULT {
 	addr := lazyAddr(&pOleTranslateAccelerator, libOle32, "OleTranslateAccelerator")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFrame)), uintptr(unsafe.Pointer(lpFrameInfo)), uintptr(unsafe.Pointer(lpmsg)))
 	return HRESULT(ret)
 }
 
-func OleDuplicateData(hSrc HANDLE, cfFormat uint16, uiFlags uint32) HANDLE {
+func OleDuplicateData(hSrc HANDLE, cfFormat CLIPBOARD_FORMAT, uiFlags GLOBAL_ALLOC_FLAGS) HANDLE {
 	addr := lazyAddr(&pOleDuplicateData, libOle32, "OleDuplicateData")
 	ret, _, _ := syscall.SyscallN(addr, hSrc, uintptr(cfFormat), uintptr(uiFlags))
 	return ret
@@ -10438,7 +10564,7 @@ func OleCreateDefaultHandler(clsid *syscall.GUID, pUnkOuter *IUnknown, riid *sys
 	return HRESULT(ret)
 }
 
-func OleCreateEmbeddingHelper(clsid *syscall.GUID, pUnkOuter *IUnknown, flags uint32, pCF *IClassFactory, riid *syscall.GUID, lplpObj unsafe.Pointer) HRESULT {
+func OleCreateEmbeddingHelper(clsid *syscall.GUID, pUnkOuter *IUnknown, flags EMBDHLP_FLAGS, pCF *IClassFactory, riid *syscall.GUID, lplpObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleCreateEmbeddingHelper, libOle32, "OleCreateEmbeddingHelper")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(unsafe.Pointer(pUnkOuter)), uintptr(flags), uintptr(unsafe.Pointer(pCF)), uintptr(unsafe.Pointer(riid)), uintptr(lplpObj))
 	return HRESULT(ret)
@@ -10468,7 +10594,7 @@ func OleMetafilePictFromIconAndLabel(hIcon HICON, lpszLabel PWSTR, lpszSourceFil
 	return ret, WIN32_ERROR(err)
 }
 
-func OleRegGetUserType(clsid *syscall.GUID, dwFormOfType uint32, pszUserType *PWSTR) HRESULT {
+func OleRegGetUserType(clsid *syscall.GUID, dwFormOfType USERCLASSTYPE, pszUserType *PWSTR) HRESULT {
 	addr := lazyAddr(&pOleRegGetUserType, libOle32, "OleRegGetUserType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(dwFormOfType), uintptr(unsafe.Pointer(pszUserType)))
 	return HRESULT(ret)
@@ -10545,7 +10671,7 @@ func OleCreatePropertyFrameIndirect(lpParams *OCPFIPARAMS) HRESULT {
 	return HRESULT(ret)
 }
 
-func OleTranslateColor(clr uint32, hpal HPALETTE, lpcolorref *uint32) HRESULT {
+func OleTranslateColor(clr uint32, hpal HPALETTE, lpcolorref *COLORREF) HRESULT {
 	addr := lazyAddr(&pOleTranslateColor, libOleaut32, "OleTranslateColor")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(clr), hpal, uintptr(unsafe.Pointer(lpcolorref)))
 	return HRESULT(ret)
@@ -10569,7 +10695,7 @@ func OleLoadPicture(lpstream *IStream, lSize int32, fRunmode BOOL, riid *syscall
 	return HRESULT(ret)
 }
 
-func OleLoadPictureEx(lpstream *IStream, lSize int32, fRunmode BOOL, riid *syscall.GUID, xSizeDesired uint32, ySizeDesired uint32, dwFlags uint32, lplpvObj unsafe.Pointer) HRESULT {
+func OleLoadPictureEx(lpstream *IStream, lSize int32, fRunmode BOOL, riid *syscall.GUID, xSizeDesired uint32, ySizeDesired uint32, dwFlags LOAD_PICTURE_FLAGS, lplpvObj unsafe.Pointer) HRESULT {
 	addr := lazyAddr(&pOleLoadPictureEx, libOleaut32, "OleLoadPictureEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpstream)), uintptr(lSize), uintptr(fRunmode), uintptr(unsafe.Pointer(riid)), uintptr(xSizeDesired), uintptr(ySizeDesired), uintptr(dwFlags), uintptr(lplpvObj))
 	return HRESULT(ret)
@@ -10587,7 +10713,7 @@ func OleLoadPictureFile(varFileName VARIANT, lplpdispPicture **IDispatch) HRESUL
 	return HRESULT(ret)
 }
 
-func OleLoadPictureFileEx(varFileName VARIANT, xSizeDesired uint32, ySizeDesired uint32, dwFlags uint32, lplpdispPicture **IDispatch) HRESULT {
+func OleLoadPictureFileEx(varFileName VARIANT, xSizeDesired uint32, ySizeDesired uint32, dwFlags LOAD_PICTURE_FLAGS, lplpdispPicture **IDispatch) HRESULT {
 	addr := lazyAddr(&pOleLoadPictureFileEx, libOleaut32, "OleLoadPictureFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(&varFileName)), uintptr(xSizeDesired), uintptr(ySizeDesired), uintptr(dwFlags), uintptr(unsafe.Pointer(lplpdispPicture)))
 	return HRESULT(ret)

@@ -11,6 +11,7 @@ type (
 	HMENU   = uintptr
 	HCURSOR = uintptr
 	HACCEL  = uintptr
+	HDWP    = uintptr
 )
 
 const (
@@ -31,21 +32,6 @@ const (
 	ISOLATIONPOLICY_BROWSER_MANIFEST_RESOURCE_ID               uint32  = 0x5
 	MINIMUM_RESERVED_MANIFEST_RESOURCE_ID                      uint32  = 0x1
 	MAXIMUM_RESERVED_MANIFEST_RESOURCE_ID                      uint32  = 0x10
-	SB_LINEUP                                                  uint32  = 0x0
-	SB_LINELEFT                                                uint32  = 0x0
-	SB_LINEDOWN                                                uint32  = 0x1
-	SB_LINERIGHT                                               uint32  = 0x1
-	SB_PAGEUP                                                  uint32  = 0x2
-	SB_PAGELEFT                                                uint32  = 0x2
-	SB_PAGEDOWN                                                uint32  = 0x3
-	SB_PAGERIGHT                                               uint32  = 0x3
-	SB_THUMBPOSITION                                           uint32  = 0x4
-	SB_THUMBTRACK                                              uint32  = 0x5
-	SB_TOP                                                     uint32  = 0x6
-	SB_LEFT                                                    uint32  = 0x6
-	SB_BOTTOM                                                  uint32  = 0x7
-	SB_RIGHT                                                   uint32  = 0x7
-	SB_ENDSCROLL                                               uint32  = 0x8
 	HIDE_WINDOW                                                uint32  = 0x0
 	SHOW_OPENWINDOW                                            uint32  = 0x1
 	SHOW_ICONWINDOW                                            uint32  = 0x2
@@ -125,16 +111,6 @@ const (
 	INPUTLANGCHANGE_FORWARD                                    uint32  = 0x2
 	INPUTLANGCHANGE_BACKWARD                                   uint32  = 0x4
 	KL_NAMELENGTH                                              uint32  = 0x9
-	DESKTOP_READOBJECTS                                        int32   = 1
-	DESKTOP_CREATEWINDOW                                       int32   = 2
-	DESKTOP_CREATEMENU                                         int32   = 4
-	DESKTOP_HOOKCONTROL                                        int32   = 8
-	DESKTOP_JOURNALRECORD                                      int32   = 16
-	DESKTOP_JOURNALPLAYBACK                                    int32   = 32
-	DESKTOP_ENUMERATE                                          int32   = 64
-	DESKTOP_WRITEOBJECTS                                       int32   = 128
-	DESKTOP_SWITCHDESKTOP                                      int32   = 256
-	DF_ALLOWOTHERACCOUNTHOOK                                   int32   = 1
 	WINSTA_ENUMDESKTOPS                                        int32   = 1
 	WINSTA_READATTRIBUTES                                      int32   = 2
 	WINSTA_ACCESSCLIPBOARD                                     int32   = 4
@@ -318,6 +294,8 @@ const (
 	WM_MOUSEHWHEEL                                             uint32  = 0x20e
 	WM_MOUSELAST                                               uint32  = 0x20e
 	WHEEL_DELTA                                                uint32  = 0x78
+	XBUTTON1                                                   uint16  = 0x1
+	XBUTTON2                                                   uint16  = 0x2
 	WM_PARENTNOTIFY                                            uint32  = 0x210
 	WM_ENTERMENULOOP                                           uint32  = 0x211
 	WM_EXITMENULOOP                                            uint32  = 0x212
@@ -494,13 +472,6 @@ const (
 	WVR_HREDRAW                                                uint32  = 0x100
 	WVR_VREDRAW                                                uint32  = 0x200
 	WVR_VALIDRECTS                                             uint32  = 0x400
-	MK_LBUTTON                                                 uint32  = 0x1
-	MK_RBUTTON                                                 uint32  = 0x2
-	MK_SHIFT                                                   uint32  = 0x4
-	MK_CONTROL                                                 uint32  = 0x8
-	MK_MBUTTON                                                 uint32  = 0x10
-	MK_XBUTTON1                                                uint32  = 0x20
-	MK_XBUTTON2                                                uint32  = 0x40
 	PRF_CHECKVISIBLE                                           int32   = 1
 	PRF_NONCLIENT                                              int32   = 2
 	PRF_CLIENT                                                 int32   = 4
@@ -509,25 +480,6 @@ const (
 	PRF_OWNED                                                  int32   = 32
 	IDANI_OPEN                                                 uint32  = 0x1
 	IDANI_CAPTION                                              uint32  = 0x3
-	FVIRTKEY                                                   uint32  = 0x1
-	FNOINVERT                                                  uint32  = 0x2
-	FSHIFT                                                     uint32  = 0x4
-	FCONTROL                                                   uint32  = 0x8
-	FALT                                                       uint32  = 0x10
-	ODA_DRAWENTIRE                                             uint32  = 0x1
-	ODA_SELECT                                                 uint32  = 0x2
-	ODA_FOCUS                                                  uint32  = 0x4
-	ODS_SELECTED                                               uint32  = 0x1
-	ODS_GRAYED                                                 uint32  = 0x2
-	ODS_DISABLED                                               uint32  = 0x4
-	ODS_CHECKED                                                uint32  = 0x8
-	ODS_FOCUS                                                  uint32  = 0x10
-	ODS_DEFAULT                                                uint32  = 0x20
-	ODS_COMBOBOXEDIT                                           uint32  = 0x1000
-	ODS_HOTLIGHT                                               uint32  = 0x40
-	ODS_INACTIVE                                               uint32  = 0x80
-	ODS_NOACCEL                                                uint32  = 0x100
-	ODS_NOFOCUSRECT                                            uint32  = 0x200
 	IDHOT_SNAPWINDOW                                           int32   = -1
 	IDHOT_SNAPDESKTOP                                          int32   = -2
 	ENDSESSION_CLOSEAPP                                        uint32  = 0x1
@@ -591,11 +543,6 @@ const (
 	TOUCH_HIT_TESTING_PROXIMITY_CLOSEST                        uint32  = 0x0
 	TOUCH_HIT_TESTING_PROXIMITY_FARTHEST                       uint32  = 0xfff
 	GWFS_INCLUDE_ANCESTORS                                     uint32  = 0x1
-	MAPVK_VK_TO_VSC                                            uint32  = 0x0
-	MAPVK_VSC_TO_VK                                            uint32  = 0x1
-	MAPVK_VK_TO_CHAR                                           uint32  = 0x2
-	MAPVK_VSC_TO_VK_EX                                         uint32  = 0x3
-	MAPVK_VK_TO_VSC_EX                                         uint32  = 0x4
 	QS_TOUCH                                                   uint32  = 0x800
 	QS_POINTER                                                 uint32  = 0x1000
 	USER_TIMER_MAXIMUM                                         uint32  = 0x7fffffff
@@ -629,8 +576,6 @@ const (
 	DO_PRINTFILE                                               int32   = 1414419024
 	ASFW_ANY                                                   uint32  = 0xffffffff
 	DCX_EXCLUDEUPDATE                                          int32   = 256
-	HELPINFO_WINDOW                                            uint32  = 0x1
-	HELPINFO_MENUITEM                                          uint32  = 0x2
 	CTLCOLOR_MSGBOX                                            uint32  = 0x0
 	CTLCOLOR_EDIT                                              uint32  = 0x1
 	CTLCOLOR_LISTBOX                                           uint32  = 0x2
@@ -639,8 +584,6 @@ const (
 	CTLCOLOR_SCROLLBAR                                         uint32  = 0x5
 	CTLCOLOR_STATIC                                            uint32  = 0x6
 	CTLCOLOR_MAX                                               uint32  = 0x7
-	COLOR_BTNHIGHLIGHT                                         uint32  = 0x14
-	COLOR_BTNHILIGHT                                           uint32  = 0x14
 	GW_MAX                                                     uint32  = 0x5
 	SC_SIZE                                                    uint32  = 0xf000
 	SC_MOVE                                                    uint32  = 0xf010
@@ -804,38 +747,6 @@ const (
 	BM_SETDONTCLICK                                            uint32  = 0xf8
 	BST_PUSHED                                                 uint32  = 0x4
 	BST_FOCUS                                                  uint32  = 0x8
-	SS_LEFT                                                    int32   = 0
-	SS_CENTER                                                  int32   = 1
-	SS_RIGHT                                                   int32   = 2
-	SS_ICON                                                    int32   = 3
-	SS_BLACKRECT                                               int32   = 4
-	SS_GRAYRECT                                                int32   = 5
-	SS_WHITERECT                                               int32   = 6
-	SS_BLACKFRAME                                              int32   = 7
-	SS_GRAYFRAME                                               int32   = 8
-	SS_WHITEFRAME                                              int32   = 9
-	SS_USERITEM                                                int32   = 10
-	SS_SIMPLE                                                  int32   = 11
-	SS_LEFTNOWORDWRAP                                          int32   = 12
-	SS_OWNERDRAW                                               int32   = 13
-	SS_BITMAP                                                  int32   = 14
-	SS_ENHMETAFILE                                             int32   = 15
-	SS_ETCHEDHORZ                                              int32   = 16
-	SS_ETCHEDVERT                                              int32   = 17
-	SS_ETCHEDFRAME                                             int32   = 18
-	SS_TYPEMASK                                                int32   = 31
-	SS_REALSIZECONTROL                                         int32   = 64
-	SS_NOPREFIX                                                int32   = 128
-	SS_NOTIFY                                                  int32   = 256
-	SS_CENTERIMAGE                                             int32   = 512
-	SS_RIGHTJUST                                               int32   = 1024
-	SS_REALSIZEIMAGE                                           int32   = 2048
-	SS_SUNKEN                                                  int32   = 4096
-	SS_EDITCONTROL                                             int32   = 8192
-	SS_ENDELLIPSIS                                             int32   = 16384
-	SS_PATHELLIPSIS                                            int32   = 32768
-	SS_WORDELLIPSIS                                            int32   = 49152
-	SS_ELLIPSISMASK                                            int32   = 49152
 	STM_SETICON                                                uint32  = 0x170
 	STM_GETICON                                                uint32  = 0x171
 	STM_SETIMAGE                                               uint32  = 0x172
@@ -1108,8 +1019,6 @@ const (
 	ARW_HIDE                                                   int32   = 8
 	HCF_LOGONDESKTOP                                           uint32  = 0x100
 	HCF_DEFAULTDESKTOP                                         uint32  = 0x200
-	EDS_RAWMODE                                                uint32  = 0x2
-	EDS_ROTATEDMODE                                            uint32  = 0x4
 	EDD_GET_DEVICE_INTERFACE_NAME                              uint32  = 0x1
 	FKF_FILTERKEYSON                                           uint32  = 0x1
 	FKF_AVAILABLE                                              uint32  = 0x2
@@ -2146,7 +2055,6 @@ const (
 	SWP_NOSIZE         SET_WINDOW_POS_FLAGS = 1
 	SWP_NOZORDER       SET_WINDOW_POS_FLAGS = 4
 	SWP_SHOWWINDOW     SET_WINDOW_POS_FLAGS = 64
-	SWP__NOOWNERZORDER SET_WINDOW_POS_FLAGS = 512
 )
 
 // enum
@@ -2234,48 +2142,6 @@ const (
 	PM_QS_POSTMESSAGE PEEK_MESSAGE_REMOVE_TYPE = 9961472
 	PM_QS_PAINT       PEEK_MESSAGE_REMOVE_TYPE = 2097152
 	PM_QS_SENDMESSAGE PEEK_MESSAGE_REMOVE_TYPE = 4194304
-)
-
-// enum
-type SYS_COLOR_INDEX uint32
-
-const (
-	COLOR_3DDKSHADOW              SYS_COLOR_INDEX = 21
-	COLOR_3DFACE                  SYS_COLOR_INDEX = 15
-	COLOR_3DHIGHLIGHT             SYS_COLOR_INDEX = 20
-	COLOR_3DHILIGHT               SYS_COLOR_INDEX = 20
-	COLOR_3DLIGHT                 SYS_COLOR_INDEX = 22
-	COLOR_3DSHADOW                SYS_COLOR_INDEX = 16
-	COLOR_ACTIVEBORDER            SYS_COLOR_INDEX = 10
-	COLOR_ACTIVECAPTION           SYS_COLOR_INDEX = 2
-	COLOR_APPWORKSPACE            SYS_COLOR_INDEX = 12
-	COLOR_BACKGROUND              SYS_COLOR_INDEX = 1
-	COLOR_BTNFACE                 SYS_COLOR_INDEX = 15
-	COLOR_BTNHIGHLIGHT_           SYS_COLOR_INDEX = 20
-	COLOR_BTNHILIGHT_             SYS_COLOR_INDEX = 20
-	COLOR_BTNSHADOW               SYS_COLOR_INDEX = 16
-	COLOR_BTNTEXT                 SYS_COLOR_INDEX = 18
-	COLOR_CAPTIONTEXT             SYS_COLOR_INDEX = 9
-	COLOR_DESKTOP                 SYS_COLOR_INDEX = 1
-	COLOR_GRADIENTACTIVECAPTION   SYS_COLOR_INDEX = 27
-	COLOR_GRADIENTINACTIVECAPTION SYS_COLOR_INDEX = 28
-	COLOR_GRAYTEXT                SYS_COLOR_INDEX = 17
-	COLOR_HIGHLIGHT               SYS_COLOR_INDEX = 13
-	COLOR_HIGHLIGHTTEXT           SYS_COLOR_INDEX = 14
-	COLOR_HOTLIGHT                SYS_COLOR_INDEX = 26
-	COLOR_INACTIVEBORDER          SYS_COLOR_INDEX = 11
-	COLOR_INACTIVECAPTION         SYS_COLOR_INDEX = 3
-	COLOR_INACTIVECAPTIONTEXT     SYS_COLOR_INDEX = 19
-	COLOR_INFOBK                  SYS_COLOR_INDEX = 24
-	COLOR_INFOTEXT                SYS_COLOR_INDEX = 23
-	COLOR_MENU                    SYS_COLOR_INDEX = 4
-	COLOR_MENUHILIGHT             SYS_COLOR_INDEX = 29
-	COLOR_MENUBAR                 SYS_COLOR_INDEX = 30
-	COLOR_MENUTEXT                SYS_COLOR_INDEX = 7
-	COLOR_SCROLLBAR               SYS_COLOR_INDEX = 0
-	COLOR_WINDOW                  SYS_COLOR_INDEX = 5
-	COLOR_WINDOWFRAME             SYS_COLOR_INDEX = 6
-	COLOR_WINDOWTEXT              SYS_COLOR_INDEX = 8
 )
 
 // enum
@@ -2465,15 +2331,6 @@ const (
 
 // enum
 // flags
-type MOUSEHOOKSTRUCTEX_MOUSE_DATA uint32
-
-const (
-	XBUTTON1 MOUSEHOOKSTRUCTEX_MOUSE_DATA = 1
-	XBUTTON2 MOUSEHOOKSTRUCTEX_MOUSE_DATA = 2
-)
-
-// enum
-// flags
 type MENU_ITEM_MASK uint32
 
 const (
@@ -2598,6 +2455,39 @@ const (
 	LLKHF_UP                KBDLLHOOKSTRUCT_FLAGS = 128
 	LLKHF_INJECTED          KBDLLHOOKSTRUCT_FLAGS = 16
 	LLKHF_LOWER_IL_INJECTED KBDLLHOOKSTRUCT_FLAGS = 2
+)
+
+// enum
+// flags
+type ACCEL_VIRT_FLAGS byte
+
+const (
+	FVIRTKEY  ACCEL_VIRT_FLAGS = 1
+	FNOINVERT ACCEL_VIRT_FLAGS = 2
+	FSHIFT    ACCEL_VIRT_FLAGS = 4
+	FCONTROL  ACCEL_VIRT_FLAGS = 8
+	FALT      ACCEL_VIRT_FLAGS = 16
+)
+
+// enum
+type SCROLLBAR_COMMAND int32
+
+const (
+	SB_LINEUP        SCROLLBAR_COMMAND = 0
+	SB_LINELEFT      SCROLLBAR_COMMAND = 0
+	SB_LINEDOWN      SCROLLBAR_COMMAND = 1
+	SB_LINERIGHT     SCROLLBAR_COMMAND = 1
+	SB_PAGEUP        SCROLLBAR_COMMAND = 2
+	SB_PAGELEFT      SCROLLBAR_COMMAND = 2
+	SB_PAGEDOWN      SCROLLBAR_COMMAND = 3
+	SB_PAGERIGHT     SCROLLBAR_COMMAND = 3
+	SB_THUMBPOSITION SCROLLBAR_COMMAND = 4
+	SB_THUMBTRACK    SCROLLBAR_COMMAND = 5
+	SB_TOP           SCROLLBAR_COMMAND = 6
+	SB_LEFT          SCROLLBAR_COMMAND = 6
+	SB_RIGHT         SCROLLBAR_COMMAND = 7
+	SB_BOTTOM        SCROLLBAR_COMMAND = 7
+	SB_ENDSCROLL     SCROLLBAR_COMMAND = 8
 )
 
 // enum
@@ -2768,7 +2658,7 @@ type KBDLLHOOKSTRUCT struct {
 
 type MSLLHOOKSTRUCT struct {
 	Pt          POINT
-	MouseData   MOUSEHOOKSTRUCTEX_MOUSE_DATA
+	MouseData   uint32
 	Flags       uint32
 	Time        uint32
 	DwExtraInfo uintptr
@@ -2790,8 +2680,8 @@ type MOUSEHOOKSTRUCT struct {
 }
 
 type MOUSEHOOKSTRUCTEX struct {
-	MOUSEHOOKSTRUCT
-	MouseData MOUSEHOOKSTRUCTEX_MOUSE_DATA
+	Base      MOUSEHOOKSTRUCT
+	MouseData uint32
 }
 
 type HARDWAREHOOKSTRUCT struct {
@@ -2898,7 +2788,7 @@ type NCCALCSIZE_PARAMS struct {
 }
 
 type ACCEL struct {
-	FVirt byte
+	FVirt ACCEL_VIRT_FLAGS
 	Key   uint16
 	Cmd   uint16
 }
@@ -2955,7 +2845,7 @@ type UPDATELAYEREDWINDOWINFO struct {
 	Psize    *SIZE
 	HdcSrc   HDC
 	PptSrc   *POINT
-	CrKey    uint32
+	CrKey    COLORREF
 	Pblend   *BLENDFUNCTION
 	DwFlags  UPDATE_LAYERED_WINDOW_FLAGS
 	PrcDirty *RECT
@@ -3173,7 +3063,7 @@ type CLIENTCREATESTRUCT struct {
 	IdFirstChild uint32
 }
 
-type TouchPredictionParameters struct {
+type TOUCHPREDICTIONPARAMETERS struct {
 	CbSize          uint32
 	DwLatency       uint32
 	DwSampleTime    uint32
@@ -3278,8 +3168,8 @@ type WINDOWINFO struct {
 	CbSize          uint32
 	RcWindow        RECT
 	RcClient        RECT
-	DwStyle         uint32
-	DwExStyle       uint32
+	DwStyle         WINDOW_STYLE
+	DwExStyle       WINDOW_EX_STYLE
 	DwWindowStatus  uint32
 	CxWindowBorders uint32
 	CyWindowBorders uint32
@@ -3397,6 +3287,14 @@ type MSGBOXCALLBACK_func = func(lpHelpInfo *HELPINFO)
 var (
 	pLoadStringA                   uintptr
 	pLoadStringW                   uintptr
+	pGetWindowLongPtrA             uintptr
+	pGetWindowLongPtrW             uintptr
+	pSetWindowLongPtrA             uintptr
+	pSetWindowLongPtrW             uintptr
+	pGetClassLongPtrA              uintptr
+	pGetClassLongPtrW              uintptr
+	pSetClassLongPtrA              uintptr
+	pSetClassLongPtrW              uintptr
 	pWvsprintfA                    uintptr
 	pWvsprintfW                    uintptr
 	pWsprintfA                     uintptr
@@ -3665,28 +3563,18 @@ var (
 	pChildWindowFromPoint          uintptr
 	pClipCursor                    uintptr
 	pChildWindowFromPointEx        uintptr
-	pGetSysColor                   uintptr
-	pSetSysColors                  uintptr
 	pGetWindowWord                 uintptr
 	pSetWindowWord                 uintptr
 	pGetWindowLongA                uintptr
 	pGetWindowLongW                uintptr
 	pSetWindowLongA                uintptr
 	pSetWindowLongW                uintptr
-	pGetWindowLongPtrA             uintptr
-	pGetWindowLongPtrW             uintptr
-	pSetWindowLongPtrA             uintptr
-	pSetWindowLongPtrW             uintptr
 	pGetClassWord                  uintptr
 	pSetClassWord                  uintptr
 	pGetClassLongA                 uintptr
 	pGetClassLongW                 uintptr
 	pSetClassLongA                 uintptr
 	pSetClassLongW                 uintptr
-	pGetClassLongPtrA              uintptr
-	pGetClassLongPtrW              uintptr
-	pSetClassLongPtrA              uintptr
-	pSetClassLongPtrW              uintptr
 	pGetProcessDefaultLayout       uintptr
 	pSetProcessDefaultLayout       uintptr
 	pGetDesktopWindow              uintptr
@@ -3796,6 +3684,62 @@ func LoadStringW(hInstance HINSTANCE, uID uint32, lpBuffer PWSTR, cchBufferMax i
 	addr := lazyAddr(&pLoadStringW, libUser32, "LoadStringW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(uID), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cchBufferMax))
 	return int32(ret), WIN32_ERROR(err)
+}
+
+func GetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pGetWindowLongPtrA, libUser32, "GetWindowLongPtrA")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
+	return ret, WIN32_ERROR(err)
+}
+
+var GetWindowLongPtr = GetWindowLongPtrW
+
+func GetWindowLongPtrW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pGetWindowLongPtrW, libUser32, "GetWindowLongPtrW")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
+	return ret, WIN32_ERROR(err)
+}
+
+func SetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pSetWindowLongPtrA, libUser32, "SetWindowLongPtrA")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
+	return ret, WIN32_ERROR(err)
+}
+
+var SetWindowLongPtr = SetWindowLongPtrW
+
+func SetWindowLongPtrW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pSetWindowLongPtrW, libUser32, "SetWindowLongPtrW")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
+	return ret, WIN32_ERROR(err)
+}
+
+func GetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pGetClassLongPtrA, libUser32, "GetClassLongPtrA")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
+	return ret, WIN32_ERROR(err)
+}
+
+var GetClassLongPtr = GetClassLongPtrW
+
+func GetClassLongPtrW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pGetClassLongPtrW, libUser32, "GetClassLongPtrW")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
+	return ret, WIN32_ERROR(err)
+}
+
+func SetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pSetClassLongPtrA, libUser32, "SetClassLongPtrA")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
+	return ret, WIN32_ERROR(err)
+}
+
+var SetClassLongPtr = SetClassLongPtrW
+
+func SetClassLongPtrW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
+	addr := lazyAddr(&pSetClassLongPtrW, libUser32, "SetClassLongPtrW")
+	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
+	return ret, WIN32_ERROR(err)
 }
 
 func WvsprintfA(param0 PSTR, param1 PSTR, arglist *int8) (int32, WIN32_ERROR) {
@@ -4210,7 +4154,7 @@ func AnimateWindow(hWnd HWND, dwTime uint32, dwFlags ANIMATE_WINDOW_FLAGS) (BOOL
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func UpdateLayeredWindow(hWnd HWND, hdcDst HDC, pptDst *POINT, psize *SIZE, hdcSrc HDC, pptSrc *POINT, crKey uint32, pblend *BLENDFUNCTION, dwFlags UPDATE_LAYERED_WINDOW_FLAGS) (BOOL, WIN32_ERROR) {
+func UpdateLayeredWindow(hWnd HWND, hdcDst HDC, pptDst *POINT, psize *SIZE, hdcSrc HDC, pptSrc *POINT, crKey COLORREF, pblend *BLENDFUNCTION, dwFlags UPDATE_LAYERED_WINDOW_FLAGS) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pUpdateLayeredWindow, libUser32, "UpdateLayeredWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hdcDst, uintptr(unsafe.Pointer(pptDst)), uintptr(unsafe.Pointer(psize)), hdcSrc, uintptr(unsafe.Pointer(pptSrc)), uintptr(crKey), uintptr(unsafe.Pointer(pblend)), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -4222,13 +4166,13 @@ func UpdateLayeredWindowIndirect(hWnd HWND, pULWInfo *UPDATELAYEREDWINDOWINFO) B
 	return BOOL(ret)
 }
 
-func GetLayeredWindowAttributes(hwnd HWND, pcrKey *uint32, pbAlpha *byte, pdwFlags *LAYERED_WINDOW_ATTRIBUTES_FLAGS) (BOOL, WIN32_ERROR) {
+func GetLayeredWindowAttributes(hwnd HWND, pcrKey *COLORREF, pbAlpha *byte, pdwFlags *LAYERED_WINDOW_ATTRIBUTES_FLAGS) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pGetLayeredWindowAttributes, libUser32, "GetLayeredWindowAttributes")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pcrKey)), uintptr(unsafe.Pointer(pbAlpha)), uintptr(unsafe.Pointer(pdwFlags)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetLayeredWindowAttributes(hwnd HWND, crKey uint32, bAlpha byte, dwFlags LAYERED_WINDOW_ATTRIBUTES_FLAGS) (BOOL, WIN32_ERROR) {
+func SetLayeredWindowAttributes(hwnd HWND, crKey COLORREF, bAlpha byte, dwFlags LAYERED_WINDOW_ATTRIBUTES_FLAGS) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetLayeredWindowAttributes, libUser32, "SetLayeredWindowAttributes")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(crKey), uintptr(bAlpha), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -4306,19 +4250,19 @@ func SetWindowDisplayAffinity(hWnd HWND, dwAffinity WINDOW_DISPLAY_AFFINITY) (BO
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func BeginDeferWindowPos(nNumWindows int32) (uintptr, WIN32_ERROR) {
+func BeginDeferWindowPos(nNumWindows int32) (HDWP, WIN32_ERROR) {
 	addr := lazyAddr(&pBeginDeferWindowPos, libUser32, "BeginDeferWindowPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nNumWindows))
 	return ret, WIN32_ERROR(err)
 }
 
-func DeferWindowPos(hWinPosInfo uintptr, hWnd HWND, hWndInsertAfter HWND, x int32, y int32, cx int32, cy int32, uFlags SET_WINDOW_POS_FLAGS) (uintptr, WIN32_ERROR) {
+func DeferWindowPos(hWinPosInfo HDWP, hWnd HWND, hWndInsertAfter HWND, x int32, y int32, cx int32, cy int32, uFlags SET_WINDOW_POS_FLAGS) (HDWP, WIN32_ERROR) {
 	addr := lazyAddr(&pDeferWindowPos, libUser32, "DeferWindowPos")
 	ret, _, err := syscall.SyscallN(addr, hWinPosInfo, hWnd, hWndInsertAfter, uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), uintptr(uFlags))
 	return ret, WIN32_ERROR(err)
 }
 
-func EndDeferWindowPos(hWinPosInfo uintptr) (BOOL, WIN32_ERROR) {
+func EndDeferWindowPos(hWinPosInfo HDWP) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pEndDeferWindowPos, libUser32, "EndDeferWindowPos")
 	ret, _, err := syscall.SyscallN(addr, hWinPosInfo)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -5539,18 +5483,6 @@ func ChildWindowFromPointEx(hwnd HWND, pt POINT, flags CWP_FLAGS) HWND {
 	return ret
 }
 
-func GetSysColor(nIndex SYS_COLOR_INDEX) uint32 {
-	addr := lazyAddr(&pGetSysColor, libUser32, "GetSysColor")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(nIndex))
-	return uint32(ret)
-}
-
-func SetSysColors(cElements int32, lpaElements *int32, lpaRgbValues *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetSysColors, libUser32, "SetSysColors")
-	ret, _, err := syscall.SyscallN(addr, uintptr(cElements), uintptr(unsafe.Pointer(lpaElements)), uintptr(unsafe.Pointer(lpaRgbValues)))
-	return BOOL(ret), WIN32_ERROR(err)
-}
-
 func GetWindowWord(hWnd HWND, nIndex int32) uint16 {
 	addr := lazyAddr(&pGetWindowWord, libUser32, "GetWindowWord")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
@@ -5591,34 +5523,6 @@ func SetWindowLongW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong int32) (i
 	return int32(ret), WIN32_ERROR(err)
 }
 
-func GetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowLongPtrA, libUser32, "GetWindowLongPtrA")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
-	return ret, WIN32_ERROR(err)
-}
-
-var GetWindowLongPtr = GetWindowLongPtrW
-
-func GetWindowLongPtrW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowLongPtrW, libUser32, "GetWindowLongPtrW")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
-	return ret, WIN32_ERROR(err)
-}
-
-func SetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowLongPtrA, libUser32, "SetWindowLongPtrA")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
-	return ret, WIN32_ERROR(err)
-}
-
-var SetWindowLongPtr = SetWindowLongPtrW
-
-func SetWindowLongPtrW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowLongPtrW, libUser32, "SetWindowLongPtrW")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
-	return ret, WIN32_ERROR(err)
-}
-
 func GetClassWord(hWnd HWND, nIndex int32) (uint16, WIN32_ERROR) {
 	addr := lazyAddr(&pGetClassWord, libUser32, "GetClassWord")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
@@ -5657,34 +5561,6 @@ func SetClassLongW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong int32) (uin
 	addr := lazyAddr(&pSetClassLongW, libUser32, "SetClassLongW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), uintptr(dwNewLong))
 	return uint32(ret), WIN32_ERROR(err)
-}
-
-func GetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassLongPtrA, libUser32, "GetClassLongPtrA")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
-	return ret, WIN32_ERROR(err)
-}
-
-var GetClassLongPtr = GetClassLongPtrW
-
-func GetClassLongPtrW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassLongPtrW, libUser32, "GetClassLongPtrW")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
-	return ret, WIN32_ERROR(err)
-}
-
-func SetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetClassLongPtrA, libUser32, "SetClassLongPtrA")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
-	return ret, WIN32_ERROR(err)
-}
-
-var SetClassLongPtr = SetClassLongPtrW
-
-func SetClassLongPtrW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetClassLongPtrW, libUser32, "SetClassLongPtrW")
-	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
-	return ret, WIN32_ERROR(err)
 }
 
 func GetProcessDefaultLayout(pdwDefaultLayout *uint32) (BOOL, WIN32_ERROR) {

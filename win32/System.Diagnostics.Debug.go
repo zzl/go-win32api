@@ -1401,44 +1401,6 @@ const (
 )
 
 // enum
-type IMAGE_FILE_MACHINE uint16
-
-const (
-	IMAGE_FILE_MACHINE_AXP64       IMAGE_FILE_MACHINE = 644
-	IMAGE_FILE_MACHINE_I386        IMAGE_FILE_MACHINE = 332
-	IMAGE_FILE_MACHINE_IA64        IMAGE_FILE_MACHINE = 512
-	IMAGE_FILE_MACHINE_AMD64       IMAGE_FILE_MACHINE = 34404
-	IMAGE_FILE_MACHINE_UNKNOWN     IMAGE_FILE_MACHINE = 0
-	IMAGE_FILE_MACHINE_TARGET_HOST IMAGE_FILE_MACHINE = 1
-	IMAGE_FILE_MACHINE_R3000       IMAGE_FILE_MACHINE = 354
-	IMAGE_FILE_MACHINE_R4000       IMAGE_FILE_MACHINE = 358
-	IMAGE_FILE_MACHINE_R10000      IMAGE_FILE_MACHINE = 360
-	IMAGE_FILE_MACHINE_WCEMIPSV2   IMAGE_FILE_MACHINE = 361
-	IMAGE_FILE_MACHINE_ALPHA       IMAGE_FILE_MACHINE = 388
-	IMAGE_FILE_MACHINE_SH3         IMAGE_FILE_MACHINE = 418
-	IMAGE_FILE_MACHINE_SH3DSP      IMAGE_FILE_MACHINE = 419
-	IMAGE_FILE_MACHINE_SH3E        IMAGE_FILE_MACHINE = 420
-	IMAGE_FILE_MACHINE_SH4         IMAGE_FILE_MACHINE = 422
-	IMAGE_FILE_MACHINE_SH5         IMAGE_FILE_MACHINE = 424
-	IMAGE_FILE_MACHINE_ARM         IMAGE_FILE_MACHINE = 448
-	IMAGE_FILE_MACHINE_THUMB       IMAGE_FILE_MACHINE = 450
-	IMAGE_FILE_MACHINE_ARMNT       IMAGE_FILE_MACHINE = 452
-	IMAGE_FILE_MACHINE_AM33        IMAGE_FILE_MACHINE = 467
-	IMAGE_FILE_MACHINE_POWERPC     IMAGE_FILE_MACHINE = 496
-	IMAGE_FILE_MACHINE_POWERPCFP   IMAGE_FILE_MACHINE = 497
-	IMAGE_FILE_MACHINE_MIPS16      IMAGE_FILE_MACHINE = 614
-	IMAGE_FILE_MACHINE_ALPHA64     IMAGE_FILE_MACHINE = 644
-	IMAGE_FILE_MACHINE_MIPSFPU     IMAGE_FILE_MACHINE = 870
-	IMAGE_FILE_MACHINE_MIPSFPU16   IMAGE_FILE_MACHINE = 1126
-	IMAGE_FILE_MACHINE_TRICORE     IMAGE_FILE_MACHINE = 1312
-	IMAGE_FILE_MACHINE_CEF         IMAGE_FILE_MACHINE = 3311
-	IMAGE_FILE_MACHINE_EBC         IMAGE_FILE_MACHINE = 3772
-	IMAGE_FILE_MACHINE_M32R        IMAGE_FILE_MACHINE = 36929
-	IMAGE_FILE_MACHINE_ARM64       IMAGE_FILE_MACHINE = 43620
-	IMAGE_FILE_MACHINE_CEE         IMAGE_FILE_MACHINE = 49390
-)
-
-// enum
 type IMAGE_SUBSYSTEM uint16
 
 const (
@@ -3014,45 +2976,44 @@ const (
 )
 
 // enum
-// flags
-type OBJECT_ATTRIB_FLAG uint32
+type OBJECT_ATTRIB_FLAGS int32
 
 const (
-	OBJECT_ATTRIB_NO_ATTRIB            OBJECT_ATTRIB_FLAG = 0
-	OBJECT_ATTRIB_NO_NAME              OBJECT_ATTRIB_FLAG = 1
-	OBJECT_ATTRIB_NO_TYPE              OBJECT_ATTRIB_FLAG = 2
-	OBJECT_ATTRIB_NO_VALUE             OBJECT_ATTRIB_FLAG = 4
-	OBJECT_ATTRIB_VALUE_IS_INVALID     OBJECT_ATTRIB_FLAG = 8
-	OBJECT_ATTRIB_VALUE_IS_OBJECT      OBJECT_ATTRIB_FLAG = 16
-	OBJECT_ATTRIB_VALUE_IS_ENUM        OBJECT_ATTRIB_FLAG = 32
-	OBJECT_ATTRIB_VALUE_IS_CUSTOM      OBJECT_ATTRIB_FLAG = 64
-	OBJECT_ATTRIB_OBJECT_IS_EXPANDABLE OBJECT_ATTRIB_FLAG = 112
-	OBJECT_ATTRIB_VALUE_HAS_CODE       OBJECT_ATTRIB_FLAG = 128
-	OBJECT_ATTRIB_TYPE_IS_OBJECT       OBJECT_ATTRIB_FLAG = 256
-	OBJECT_ATTRIB_TYPE_HAS_CODE        OBJECT_ATTRIB_FLAG = 512
-	OBJECT_ATTRIB_TYPE_IS_EXPANDABLE   OBJECT_ATTRIB_FLAG = 256
-	OBJECT_ATTRIB_SLOT_IS_CATEGORY     OBJECT_ATTRIB_FLAG = 1024
-	OBJECT_ATTRIB_VALUE_READONLY       OBJECT_ATTRIB_FLAG = 2048
-	OBJECT_ATTRIB_ACCESS_PUBLIC        OBJECT_ATTRIB_FLAG = 4096
-	OBJECT_ATTRIB_ACCESS_PRIVATE       OBJECT_ATTRIB_FLAG = 8192
-	OBJECT_ATTRIB_ACCESS_PROTECTED     OBJECT_ATTRIB_FLAG = 16384
-	OBJECT_ATTRIB_ACCESS_FINAL         OBJECT_ATTRIB_FLAG = 32768
-	OBJECT_ATTRIB_STORAGE_GLOBAL       OBJECT_ATTRIB_FLAG = 65536
-	OBJECT_ATTRIB_STORAGE_STATIC       OBJECT_ATTRIB_FLAG = 131072
-	OBJECT_ATTRIB_STORAGE_FIELD        OBJECT_ATTRIB_FLAG = 262144
-	OBJECT_ATTRIB_STORAGE_VIRTUAL      OBJECT_ATTRIB_FLAG = 524288
-	OBJECT_ATTRIB_TYPE_IS_CONSTANT     OBJECT_ATTRIB_FLAG = 1048576
-	OBJECT_ATTRIB_TYPE_IS_SYNCHRONIZED OBJECT_ATTRIB_FLAG = 2097152
-	OBJECT_ATTRIB_TYPE_IS_VOLATILE     OBJECT_ATTRIB_FLAG = 4194304
-	OBJECT_ATTRIB_HAS_EXTENDED_ATTRIBS OBJECT_ATTRIB_FLAG = 8388608
-	OBJECT_ATTRIB_IS_CLASS             OBJECT_ATTRIB_FLAG = 16777216
-	OBJECT_ATTRIB_IS_FUNCTION          OBJECT_ATTRIB_FLAG = 33554432
-	OBJECT_ATTRIB_IS_VARIABLE          OBJECT_ATTRIB_FLAG = 67108864
-	OBJECT_ATTRIB_IS_PROPERTY          OBJECT_ATTRIB_FLAG = 134217728
-	OBJECT_ATTRIB_IS_MACRO             OBJECT_ATTRIB_FLAG = 268435456
-	OBJECT_ATTRIB_IS_TYPE              OBJECT_ATTRIB_FLAG = 536870912
-	OBJECT_ATTRIB_IS_INHERITED         OBJECT_ATTRIB_FLAG = 1073741824
-	OBJECT_ATTRIB_IS_INTERFACE         OBJECT_ATTRIB_FLAG = 2147483648
+	OBJECT_ATTRIB_NO_ATTRIB            OBJECT_ATTRIB_FLAGS = 0
+	OBJECT_ATTRIB_NO_NAME              OBJECT_ATTRIB_FLAGS = 1
+	OBJECT_ATTRIB_NO_TYPE              OBJECT_ATTRIB_FLAGS = 2
+	OBJECT_ATTRIB_NO_VALUE             OBJECT_ATTRIB_FLAGS = 4
+	OBJECT_ATTRIB_VALUE_IS_INVALID     OBJECT_ATTRIB_FLAGS = 8
+	OBJECT_ATTRIB_VALUE_IS_OBJECT      OBJECT_ATTRIB_FLAGS = 16
+	OBJECT_ATTRIB_VALUE_IS_ENUM        OBJECT_ATTRIB_FLAGS = 32
+	OBJECT_ATTRIB_VALUE_IS_CUSTOM      OBJECT_ATTRIB_FLAGS = 64
+	OBJECT_ATTRIB_OBJECT_IS_EXPANDABLE OBJECT_ATTRIB_FLAGS = 112
+	OBJECT_ATTRIB_VALUE_HAS_CODE       OBJECT_ATTRIB_FLAGS = 128
+	OBJECT_ATTRIB_TYPE_IS_OBJECT       OBJECT_ATTRIB_FLAGS = 256
+	OBJECT_ATTRIB_TYPE_HAS_CODE        OBJECT_ATTRIB_FLAGS = 512
+	OBJECT_ATTRIB_TYPE_IS_EXPANDABLE   OBJECT_ATTRIB_FLAGS = 256
+	OBJECT_ATTRIB_SLOT_IS_CATEGORY     OBJECT_ATTRIB_FLAGS = 1024
+	OBJECT_ATTRIB_VALUE_READONLY       OBJECT_ATTRIB_FLAGS = 2048
+	OBJECT_ATTRIB_ACCESS_PUBLIC        OBJECT_ATTRIB_FLAGS = 4096
+	OBJECT_ATTRIB_ACCESS_PRIVATE       OBJECT_ATTRIB_FLAGS = 8192
+	OBJECT_ATTRIB_ACCESS_PROTECTED     OBJECT_ATTRIB_FLAGS = 16384
+	OBJECT_ATTRIB_ACCESS_FINAL         OBJECT_ATTRIB_FLAGS = 32768
+	OBJECT_ATTRIB_STORAGE_GLOBAL       OBJECT_ATTRIB_FLAGS = 65536
+	OBJECT_ATTRIB_STORAGE_STATIC       OBJECT_ATTRIB_FLAGS = 131072
+	OBJECT_ATTRIB_STORAGE_FIELD        OBJECT_ATTRIB_FLAGS = 262144
+	OBJECT_ATTRIB_STORAGE_VIRTUAL      OBJECT_ATTRIB_FLAGS = 524288
+	OBJECT_ATTRIB_TYPE_IS_CONSTANT     OBJECT_ATTRIB_FLAGS = 1048576
+	OBJECT_ATTRIB_TYPE_IS_SYNCHRONIZED OBJECT_ATTRIB_FLAGS = 2097152
+	OBJECT_ATTRIB_TYPE_IS_VOLATILE     OBJECT_ATTRIB_FLAGS = 4194304
+	OBJECT_ATTRIB_HAS_EXTENDED_ATTRIBS OBJECT_ATTRIB_FLAGS = 8388608
+	OBJECT_ATTRIB_IS_CLASS             OBJECT_ATTRIB_FLAGS = 16777216
+	OBJECT_ATTRIB_IS_FUNCTION          OBJECT_ATTRIB_FLAGS = 33554432
+	OBJECT_ATTRIB_IS_VARIABLE          OBJECT_ATTRIB_FLAGS = 67108864
+	OBJECT_ATTRIB_IS_PROPERTY          OBJECT_ATTRIB_FLAGS = 134217728
+	OBJECT_ATTRIB_IS_MACRO             OBJECT_ATTRIB_FLAGS = 268435456
+	OBJECT_ATTRIB_IS_TYPE              OBJECT_ATTRIB_FLAGS = 536870912
+	OBJECT_ATTRIB_IS_INHERITED         OBJECT_ATTRIB_FLAGS = 1073741824
+	OBJECT_ATTRIB_IS_INTERFACE         OBJECT_ATTRIB_FLAGS = -2147483648
 )
 
 // enum
@@ -3104,16 +3065,16 @@ const (
 )
 
 // enum
-type BREAKRESUME_ACTION int32
+type BREAKRESUMEACTION int32
 
 const (
-	BREAKRESUMEACTION_ABORT         BREAKRESUME_ACTION = 0
-	BREAKRESUMEACTION_CONTINUE      BREAKRESUME_ACTION = 1
-	BREAKRESUMEACTION_STEP_INTO     BREAKRESUME_ACTION = 2
-	BREAKRESUMEACTION_STEP_OVER     BREAKRESUME_ACTION = 3
-	BREAKRESUMEACTION_STEP_OUT      BREAKRESUME_ACTION = 4
-	BREAKRESUMEACTION_IGNORE        BREAKRESUME_ACTION = 5
-	BREAKRESUMEACTION_STEP_DOCUMENT BREAKRESUME_ACTION = 6
+	BREAKRESUMEACTION_ABORT         BREAKRESUMEACTION = 0
+	BREAKRESUMEACTION_CONTINUE      BREAKRESUMEACTION = 1
+	BREAKRESUMEACTION_STEP_INTO     BREAKRESUMEACTION = 2
+	BREAKRESUMEACTION_STEP_OVER     BREAKRESUMEACTION = 3
+	BREAKRESUMEACTION_STEP_OUT      BREAKRESUMEACTION = 4
+	BREAKRESUMEACTION_IGNORE        BREAKRESUMEACTION = 5
+	BREAKRESUMEACTION_STEP_DOCUMENT BREAKRESUMEACTION = 6
 )
 
 // enum
@@ -3462,18 +3423,18 @@ const (
 )
 
 // enum
-type DUMP_TYPES_ int32
+type DUMP_TYPE int32
 
 const (
-	DUMP_TYPE_INVALID       DUMP_TYPES_ = -1
-	DUMP_TYPE_UNKNOWN       DUMP_TYPES_ = 0
-	DUMP_TYPE_FULL          DUMP_TYPES_ = 1
-	DUMP_TYPE_SUMMARY       DUMP_TYPES_ = 2
-	DUMP_TYPE_HEADER        DUMP_TYPES_ = 3
-	DUMP_TYPE_TRIAGE        DUMP_TYPES_ = 4
-	DUMP_TYPE_BITMAP_FULL   DUMP_TYPES_ = 5
-	DUMP_TYPE_BITMAP_KERNEL DUMP_TYPES_ = 6
-	DUMP_TYPE_AUTOMATIC     DUMP_TYPES_ = 7
+	DUMP_TYPE_INVALID       DUMP_TYPE = -1
+	DUMP_TYPE_UNKNOWN       DUMP_TYPE = 0
+	DUMP_TYPE_FULL          DUMP_TYPE = 1
+	DUMP_TYPE_SUMMARY       DUMP_TYPE = 2
+	DUMP_TYPE_HEADER        DUMP_TYPE = 3
+	DUMP_TYPE_TRIAGE        DUMP_TYPE = 4
+	DUMP_TYPE_BITMAP_FULL   DUMP_TYPE = 5
+	DUMP_TYPE_BITMAP_KERNEL DUMP_TYPE = 6
+	DUMP_TYPE_AUTOMATIC     DUMP_TYPE = 7
 )
 
 // enum
@@ -4241,7 +4202,7 @@ type ScriptDebugPosition struct {
 }
 
 type ScriptDebugEventInformation_U_ExceptionInformation struct {
-	IsUncaught bool
+	IsUncaught byte
 }
 
 type ScriptDebugEventInformation_U_BreakpointInformation struct {
@@ -4441,7 +4402,7 @@ type IOSPACE_EX64 struct {
 	AddressSpace  uint32
 }
 
-type GETSETBUSDATA_ struct {
+type BUSDATA struct {
 	BusDataType uint32
 	BusNumber   uint32
 	SlotNumber  uint32
@@ -5000,11 +4961,6 @@ type SYM_DUMP_PARAM struct {
 	Bitfield_       uint32
 }
 
-type M128A struct {
-	Low  uint64
-	High int64
-}
-
 type XSAVE_FORMAT struct {
 	ControlWord    uint16
 	StatusWord     uint16
@@ -5022,17 +4978,6 @@ type XSAVE_FORMAT struct {
 	FloatRegisters [8]M128A
 	XmmRegisters   [16]M128A
 	Reserved4      [96]byte
-}
-
-type XSAVE_AREA_HEADER struct {
-	Mask           uint64
-	CompactionMask uint64
-	Reserved2      [6]uint64
-}
-
-type XSAVE_AREA struct {
-	LegacyState XSAVE_FORMAT
-	Header      XSAVE_AREA_HEADER
 }
 
 type XSTATE_CONTEXT struct {
@@ -5241,6 +5186,55 @@ func (this *KNONVOLATILE_CONTEXT_POINTERS_Anonymous2) AnonymousVal() KNONVOLATIL
 type KNONVOLATILE_CONTEXT_POINTERS struct {
 	KNONVOLATILE_CONTEXT_POINTERS_Anonymous1
 	KNONVOLATILE_CONTEXT_POINTERS_Anonymous2
+}
+
+type UNWIND_HISTORY_TABLE_ENTRY struct {
+	ImageBase     uintptr
+	FunctionEntry *IMAGE_RUNTIME_FUNCTION_ENTRY
+}
+
+type UNWIND_HISTORY_TABLE struct {
+	Count       uint32
+	LocalHint   byte
+	GlobalHint  byte
+	Search      byte
+	Once        byte
+	LowAddress  uintptr
+	HighAddress uintptr
+	Entry       [12]UNWIND_HISTORY_TABLE_ENTRY
+}
+
+type LOADED_IMAGE struct {
+	ModuleName       PSTR
+	HFile            HANDLE
+	MappedAddress    *byte
+	FileHeader       *IMAGE_NT_HEADERS64
+	LastRvaSection   *IMAGE_SECTION_HEADER
+	NumberOfSections uint32
+	Sections         *IMAGE_SECTION_HEADER
+	Characteristics  IMAGE_FILE_CHARACTERISTICS2
+	FSystemImage     BOOLEAN
+	FDOSImage        BOOLEAN
+	FReadOnly        BOOLEAN
+	Version          byte
+	Links            LIST_ENTRY
+	SizeOfImage      uint32
+}
+
+type M128A struct {
+	Low  uint64
+	High int64
+}
+
+type XSAVE_AREA_HEADER struct {
+	Mask           uint64
+	CompactionMask uint64
+	Reserved2      [6]uint64
+}
+
+type XSAVE_AREA struct {
+	LegacyState XSAVE_FORMAT
+	Header      XSAVE_AREA_HEADER
 }
 
 type ARM64_NT_NEON128_Anonymous struct {
@@ -5965,22 +5959,6 @@ type IMAGE_COR20_HEADER struct {
 	VTableFixups            IMAGE_DATA_DIRECTORY
 	ExportAddressTableJumps IMAGE_DATA_DIRECTORY
 	ManagedNativeHeader     IMAGE_DATA_DIRECTORY
-}
-
-type UNWIND_HISTORY_TABLE_ENTRY struct {
-	ImageBase     uintptr
-	FunctionEntry *IMAGE_RUNTIME_FUNCTION_ENTRY
-}
-
-type UNWIND_HISTORY_TABLE struct {
-	Count       uint32
-	LocalHint   byte
-	GlobalHint  byte
-	Search      byte
-	Once        byte
-	LowAddress  uintptr
-	HighAddress uintptr
-	Entry       [12]UNWIND_HISTORY_TABLE_ENTRY
 }
 
 type WAITCHAIN_NODE_INFO_Anonymous_LockObject struct {
@@ -7245,23 +7223,6 @@ type PROFILER_HEAP_SUMMARY struct {
 	TotalHeapSize uint32
 }
 
-type LOADED_IMAGE struct {
-	ModuleName       PSTR
-	HFile            HANDLE
-	MappedAddress    *byte
-	FileHeader       *IMAGE_NT_HEADERS64
-	LastRvaSection   *IMAGE_SECTION_HEADER
-	NumberOfSections uint32
-	Sections         *IMAGE_SECTION_HEADER
-	Characteristics  IMAGE_FILE_CHARACTERISTICS2
-	FSystemImage     BOOLEAN
-	FDOSImage        BOOLEAN
-	FReadOnly        BOOLEAN
-	Version          byte
-	Links            LIST_ENTRY
-	SizeOfImage      uint32
-}
-
 type MODLOAD_DATA struct {
 	Ssize uint32
 	Ssig  MODLOAD_DATA_TYPE
@@ -7517,7 +7478,7 @@ type IMAGEHLP_DUPLICATE_SYMBOL64 struct {
 	SelectedSymbol uint32
 }
 
-type IMAGEHLP_JIT_SYMBOL_MAP_ struct {
+type IMAGEHLP_JIT_SYMBOLMAP struct {
 	SizeOfStruct uint32
 	Address      uint64
 	BaseOfImage  uint64
@@ -7696,7 +7657,7 @@ type JsDebugPropertyInfo struct {
 	Attr     JS_PROPERTY_ATTRIBUTES
 }
 
-type MIDL___MIDL_itf_jscript9diag_0000_0007_0001__ struct {
+type JS_NATIVE_FRAME struct {
 	InstructionOffset uint64
 	ReturnOffset      uint64
 	FrameOffset       uint64
@@ -28064,7 +28025,7 @@ type IModelObjectInterface interface {
 	GetContext(context **IDebugHostContext) HRESULT
 	GetKind(kind *ModelObjectKind) HRESULT
 	GetIntrinsicValue(intrinsicData *VARIANT) HRESULT
-	GetIntrinsicValueAs(vt uint16, intrinsicData *VARIANT) HRESULT
+	GetIntrinsicValueAs(vt VARENUM, intrinsicData *VARIANT) HRESULT
 	GetKeyValue(key PWSTR, object **IModelObject, metadata **IKeyStore) HRESULT
 	SetKeyValue(key PWSTR, object *IModelObject) HRESULT
 	EnumerateKeyValues(enumerator **IKeyEnumerator) HRESULT
@@ -28156,7 +28117,7 @@ func (this *IModelObject) GetIntrinsicValue(intrinsicData *VARIANT) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IModelObject) GetIntrinsicValueAs(vt uint16, intrinsicData *VARIANT) HRESULT {
+func (this *IModelObject) GetIntrinsicValueAs(vt VARENUM, intrinsicData *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetIntrinsicValueAs, uintptr(unsafe.Pointer(this)), uintptr(vt), uintptr(unsafe.Pointer(intrinsicData)))
 	return HRESULT(ret)
 }
@@ -34018,7 +33979,7 @@ var IID_IRemoteDebugApplication = syscall.GUID{0x51973C30, 0xCB0C, 0x11D0,
 
 type IRemoteDebugApplicationInterface interface {
 	IUnknownInterface
-	ResumeFromBreakPoint(prptFocus *IRemoteDebugApplicationThread, bra BREAKRESUME_ACTION, era ERRORRESUMEACTION) HRESULT
+	ResumeFromBreakPoint(prptFocus *IRemoteDebugApplicationThread, bra BREAKRESUMEACTION, era ERRORRESUMEACTION) HRESULT
 	CauseBreak() HRESULT
 	ConnectDebugger(pad *IApplicationDebugger) HRESULT
 	DisconnectDebugger() HRESULT
@@ -34054,7 +34015,7 @@ func (this *IRemoteDebugApplication) Vtbl() *IRemoteDebugApplicationVtbl {
 	return (*IRemoteDebugApplicationVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRemoteDebugApplication) ResumeFromBreakPoint(prptFocus *IRemoteDebugApplicationThread, bra BREAKRESUME_ACTION, era ERRORRESUMEACTION) HRESULT {
+func (this *IRemoteDebugApplication) ResumeFromBreakPoint(prptFocus *IRemoteDebugApplicationThread, bra BREAKRESUMEACTION, era ERRORRESUMEACTION) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ResumeFromBreakPoint, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(prptFocus)), uintptr(bra), uintptr(era))
 	return HRESULT(ret)
 }
@@ -34119,7 +34080,7 @@ type IDebugApplication32Interface interface {
 	StepOutComplete() HRESULT
 	DebugOutput(pstr PWSTR) HRESULT
 	StartDebugSession() HRESULT
-	HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUME_ACTION) HRESULT
+	HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUMEACTION) HRESULT
 	Close() HRESULT
 	GetBreakFlags(pabf *uint32, pprdatSteppingThread **IRemoteDebugApplicationThread) HRESULT
 	GetCurrentThread(pat **IDebugApplicationThread) HRESULT
@@ -34130,7 +34091,7 @@ type IDebugApplication32Interface interface {
 	SynchronousCallInDebuggerThread(pptc *IDebugThreadCall32, dwParam1 uint32, dwParam2 uint32, dwParam3 uint32) HRESULT
 	CreateApplicationNode(ppdanNew **IDebugApplicationNode) HRESULT
 	FireDebuggerEvent(riid *syscall.GUID, punk *IUnknown) HRESULT
-	HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUME_ACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT
+	HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUMEACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT
 	FCanJitDebug() BOOL
 	FIsAutoJitDebugEnabled() BOOL
 	AddGlobalExpressionContextProvider(pdsfs *IProvideExpressionContexts, pdwCookie *uint32) HRESULT
@@ -34189,7 +34150,7 @@ func (this *IDebugApplication32) StartDebugSession() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IDebugApplication32) HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUME_ACTION) HRESULT {
+func (this *IDebugApplication32) HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUMEACTION) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HandleBreakPoint, uintptr(unsafe.Pointer(this)), uintptr(br), uintptr(unsafe.Pointer(pbra)))
 	return HRESULT(ret)
 }
@@ -34244,7 +34205,7 @@ func (this *IDebugApplication32) FireDebuggerEvent(riid *syscall.GUID, punk *IUn
 	return HRESULT(ret)
 }
 
-func (this *IDebugApplication32) HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUME_ACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT {
+func (this *IDebugApplication32) HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUMEACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HandleRuntimeError, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pErrorDebug)), uintptr(unsafe.Pointer(pScriptSite)), uintptr(unsafe.Pointer(pbra)), uintptr(unsafe.Pointer(perra)), uintptr(unsafe.Pointer(pfCallOnScriptError)))
 	return HRESULT(ret)
 }
@@ -34279,7 +34240,7 @@ type IDebugApplication64Interface interface {
 	StepOutComplete() HRESULT
 	DebugOutput(pstr PWSTR) HRESULT
 	StartDebugSession() HRESULT
-	HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUME_ACTION) HRESULT
+	HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUMEACTION) HRESULT
 	Close() HRESULT
 	GetBreakFlags(pabf *uint32, pprdatSteppingThread **IRemoteDebugApplicationThread) HRESULT
 	GetCurrentThread(pat **IDebugApplicationThread) HRESULT
@@ -34290,7 +34251,7 @@ type IDebugApplication64Interface interface {
 	SynchronousCallInDebuggerThread(pptc *IDebugThreadCall64, dwParam1 uint64, dwParam2 uint64, dwParam3 uint64) HRESULT
 	CreateApplicationNode(ppdanNew **IDebugApplicationNode) HRESULT
 	FireDebuggerEvent(riid *syscall.GUID, punk *IUnknown) HRESULT
-	HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUME_ACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT
+	HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUMEACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT
 	FCanJitDebug() BOOL
 	FIsAutoJitDebugEnabled() BOOL
 	AddGlobalExpressionContextProvider(pdsfs *IProvideExpressionContexts, pdwCookie *uint64) HRESULT
@@ -34349,7 +34310,7 @@ func (this *IDebugApplication64) StartDebugSession() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IDebugApplication64) HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUME_ACTION) HRESULT {
+func (this *IDebugApplication64) HandleBreakPoint(br BREAKREASON, pbra *BREAKRESUMEACTION) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HandleBreakPoint, uintptr(unsafe.Pointer(this)), uintptr(br), uintptr(unsafe.Pointer(pbra)))
 	return HRESULT(ret)
 }
@@ -34404,7 +34365,7 @@ func (this *IDebugApplication64) FireDebuggerEvent(riid *syscall.GUID, punk *IUn
 	return HRESULT(ret)
 }
 
-func (this *IDebugApplication64) HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUME_ACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT {
+func (this *IDebugApplication64) HandleRuntimeError(pErrorDebug *IActiveScriptErrorDebug, pScriptSite *IActiveScriptSite, pbra *BREAKRESUMEACTION, perra *ERRORRESUMEACTION, pfCallOnScriptError *BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HandleRuntimeError, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pErrorDebug)), uintptr(unsafe.Pointer(pScriptSite)), uintptr(unsafe.Pointer(pbra)), uintptr(unsafe.Pointer(perra)), uintptr(unsafe.Pointer(pfCallOnScriptError)))
 	return HRESULT(ret)
 }
@@ -35103,7 +35064,7 @@ type IDebugFormatterInterface interface {
 	IUnknownInterface
 	GetStringForVariant(pvar *VARIANT, nRadix uint32, pbstrValue *BSTR) HRESULT
 	GetVariantForString(pwstrValue PWSTR, pvar *VARIANT) HRESULT
-	GetStringForVarType(vt uint16, ptdescArrayType *TYPEDESC, pbstr *BSTR) HRESULT
+	GetStringForVarType(vt VARENUM, ptdescArrayType *TYPEDESC, pbstr *BSTR) HRESULT
 }
 
 type IDebugFormatterVtbl struct {
@@ -35131,7 +35092,7 @@ func (this *IDebugFormatter) GetVariantForString(pwstrValue PWSTR, pvar *VARIANT
 	return HRESULT(ret)
 }
 
-func (this *IDebugFormatter) GetStringForVarType(vt uint16, ptdescArrayType *TYPEDESC, pbstr *BSTR) HRESULT {
+func (this *IDebugFormatter) GetStringForVarType(vt VARENUM, ptdescArrayType *TYPEDESC, pbstr *BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStringForVarType, uintptr(unsafe.Pointer(this)), uintptr(vt), uintptr(unsafe.Pointer(ptdescArrayType)), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
@@ -36068,7 +36029,7 @@ var IID_IWebAppDiagnosticsSetup = syscall.GUID{0x379BFBE1, 0xC6C9, 0x432A,
 
 type IWebAppDiagnosticsSetupInterface interface {
 	IUnknownInterface
-	DiagnosticsSupported(pRetVal *int16) HRESULT
+	DiagnosticsSupported(pRetVal *VARIANT_BOOL) HRESULT
 	CreateObjectWithSiteAtWebApp(rclsid *syscall.GUID, dwClsContext uint32, riid *syscall.GUID, hPassToObject uintptr) HRESULT
 }
 
@@ -36086,7 +36047,7 @@ func (this *IWebAppDiagnosticsSetup) Vtbl() *IWebAppDiagnosticsSetupVtbl {
 	return (*IWebAppDiagnosticsSetupVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IWebAppDiagnosticsSetup) DiagnosticsSupported(pRetVal *int16) HRESULT {
+func (this *IWebAppDiagnosticsSetup) DiagnosticsSupported(pRetVal *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DiagnosticsSupported, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pRetVal)))
 	return HRESULT(ret)
 }
@@ -36887,7 +36848,7 @@ var IID_IEnumJsStackFrames = syscall.GUID{0x5E7DA34B, 0xFB51, 0x4791,
 
 type IEnumJsStackFramesInterface interface {
 	IUnknownInterface
-	Next(cFrameCount uint32, pFrames *MIDL___MIDL_itf_jscript9diag_0000_0007_0001__, pcFetched *uint32) HRESULT
+	Next(cFrameCount uint32, pFrames *JS_NATIVE_FRAME, pcFetched *uint32) HRESULT
 	Reset() HRESULT
 }
 
@@ -36905,7 +36866,7 @@ func (this *IEnumJsStackFrames) Vtbl() *IEnumJsStackFramesVtbl {
 	return (*IEnumJsStackFramesVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IEnumJsStackFrames) Next(cFrameCount uint32, pFrames *MIDL___MIDL_itf_jscript9diag_0000_0007_0001__, pcFetched *uint32) HRESULT {
+func (this *IEnumJsStackFrames) Next(cFrameCount uint32, pFrames *JS_NATIVE_FRAME, pcFetched *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Next, uintptr(unsafe.Pointer(this)), uintptr(cFrameCount), uintptr(unsafe.Pointer(pFrames)), uintptr(unsafe.Pointer(pcFetched)))
 	return HRESULT(ret)
 }
@@ -37040,17 +37001,17 @@ var (
 	pFlushInstructionCache           uintptr
 	pWow64GetThreadContext           uintptr
 	pWow64SetThreadContext           uintptr
-	pRtlCaptureStackBackTrace        uintptr
-	pRtlCaptureContext               uintptr
 	pRtlCaptureContext2              uintptr
-	pRtlUnwind                       uintptr
 	pRtlAddFunctionTable             uintptr
 	pRtlDeleteFunctionTable          uintptr
 	pRtlInstallFunctionTableCallback uintptr
 	pRtlLookupFunctionEntry          uintptr
-	pRtlRestoreContext               uintptr
 	pRtlUnwindEx                     uintptr
 	pRtlVirtualUnwind                uintptr
+	pRtlCaptureStackBackTrace        uintptr
+	pRtlCaptureContext               uintptr
+	pRtlUnwind                       uintptr
+	pRtlRestoreContext               uintptr
 	pRtlRaiseException               uintptr
 	pRtlPcToFileHeader               uintptr
 	pIsDebuggerPresent               uintptr
@@ -37145,25 +37106,9 @@ func Wow64SetThreadContext(hThread HANDLE, lpContext *WOW64_CONTEXT) (BOOL, WIN3
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func RtlCaptureStackBackTrace(FramesToSkip uint32, FramesToCapture uint32, BackTrace unsafe.Pointer, BackTraceHash *uint32) uint16 {
-	addr := lazyAddr(&pRtlCaptureStackBackTrace, libKernel32, "RtlCaptureStackBackTrace")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(FramesToSkip), uintptr(FramesToCapture), uintptr(BackTrace), uintptr(unsafe.Pointer(BackTraceHash)))
-	return uint16(ret)
-}
-
-func RtlCaptureContext(ContextRecord *CONTEXT) {
-	addr := lazyAddr(&pRtlCaptureContext, libKernel32, "RtlCaptureContext")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ContextRecord)))
-}
-
 func RtlCaptureContext2(ContextRecord *CONTEXT) {
 	addr := lazyAddr(&pRtlCaptureContext2, libKernel32, "RtlCaptureContext2")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ContextRecord)))
-}
-
-func RtlUnwind(TargetFrame unsafe.Pointer, TargetIp unsafe.Pointer, ExceptionRecord *EXCEPTION_RECORD, ReturnValue unsafe.Pointer) {
-	addr := lazyAddr(&pRtlUnwind, libKernel32, "RtlUnwind")
-	syscall.SyscallN(addr, uintptr(TargetFrame), uintptr(TargetIp), uintptr(unsafe.Pointer(ExceptionRecord)), uintptr(ReturnValue))
 }
 
 func RtlAddFunctionTable(FunctionTable *IMAGE_RUNTIME_FUNCTION_ENTRY, EntryCount uint32, BaseAddress uint64) BOOLEAN {
@@ -37190,11 +37135,6 @@ func RtlLookupFunctionEntry(ControlPc uint64, ImageBase *uint64, HistoryTable *U
 	return (*IMAGE_RUNTIME_FUNCTION_ENTRY)(unsafe.Pointer(ret))
 }
 
-func RtlRestoreContext(ContextRecord *CONTEXT, ExceptionRecord *EXCEPTION_RECORD) {
-	addr := lazyAddr(&pRtlRestoreContext, libKernel32, "RtlRestoreContext")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ContextRecord)), uintptr(unsafe.Pointer(ExceptionRecord)))
-}
-
 func RtlUnwindEx(TargetFrame unsafe.Pointer, TargetIp unsafe.Pointer, ExceptionRecord *EXCEPTION_RECORD, ReturnValue unsafe.Pointer, ContextRecord *CONTEXT, HistoryTable *UNWIND_HISTORY_TABLE) {
 	addr := lazyAddr(&pRtlUnwindEx, libKernel32, "RtlUnwindEx")
 	syscall.SyscallN(addr, uintptr(TargetFrame), uintptr(TargetIp), uintptr(unsafe.Pointer(ExceptionRecord)), uintptr(ReturnValue), uintptr(unsafe.Pointer(ContextRecord)), uintptr(unsafe.Pointer(HistoryTable)))
@@ -37204,6 +37144,27 @@ func RtlVirtualUnwind(HandlerType RTL_VIRTUAL_UNWIND_HANDLER_TYPE, ImageBase uin
 	addr := lazyAddr(&pRtlVirtualUnwind, libKernel32, "RtlVirtualUnwind")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(HandlerType), uintptr(ImageBase), uintptr(ControlPc), uintptr(unsafe.Pointer(FunctionEntry)), uintptr(unsafe.Pointer(ContextRecord)), uintptr(HandlerData), uintptr(unsafe.Pointer(EstablisherFrame)), uintptr(unsafe.Pointer(ContextPointers)))
 	return EXCEPTION_ROUTINE(ret)
+}
+
+func RtlCaptureStackBackTrace(FramesToSkip uint32, FramesToCapture uint32, BackTrace unsafe.Pointer, BackTraceHash *uint32) uint16 {
+	addr := lazyAddr(&pRtlCaptureStackBackTrace, libKernel32, "RtlCaptureStackBackTrace")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(FramesToSkip), uintptr(FramesToCapture), uintptr(BackTrace), uintptr(unsafe.Pointer(BackTraceHash)))
+	return uint16(ret)
+}
+
+func RtlCaptureContext(ContextRecord *CONTEXT) {
+	addr := lazyAddr(&pRtlCaptureContext, libKernel32, "RtlCaptureContext")
+	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ContextRecord)))
+}
+
+func RtlUnwind(TargetFrame unsafe.Pointer, TargetIp unsafe.Pointer, ExceptionRecord *EXCEPTION_RECORD, ReturnValue unsafe.Pointer) {
+	addr := lazyAddr(&pRtlUnwind, libKernel32, "RtlUnwind")
+	syscall.SyscallN(addr, uintptr(TargetFrame), uintptr(TargetIp), uintptr(unsafe.Pointer(ExceptionRecord)), uintptr(ReturnValue))
+}
+
+func RtlRestoreContext(ContextRecord *CONTEXT, ExceptionRecord *EXCEPTION_RECORD) {
+	addr := lazyAddr(&pRtlRestoreContext, libKernel32, "RtlRestoreContext")
+	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ContextRecord)), uintptr(unsafe.Pointer(ExceptionRecord)))
 }
 
 func RtlRaiseException(ExceptionRecord *EXCEPTION_RECORD) {
@@ -37240,7 +37201,7 @@ func OutputDebugStringW(lpOutputString PWSTR) {
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpOutputString)))
 }
 
-func ContinueDebugEvent(dwProcessId uint32, dwThreadId uint32, dwContinueStatus uint32) (BOOL, WIN32_ERROR) {
+func ContinueDebugEvent(dwProcessId uint32, dwThreadId uint32, dwContinueStatus NTSTATUS) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pContinueDebugEvent, libKernel32, "ContinueDebugEvent")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwProcessId), uintptr(dwThreadId), uintptr(dwContinueStatus))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -37410,7 +37371,7 @@ func RegisterWaitChainCOMCallback(CallStateCallback PCOGETCALLSTATE, ActivationS
 	syscall.SyscallN(addr, CallStateCallback, ActivationStateCallback)
 }
 
-func MessageBeep(uType uint32) (BOOL, WIN32_ERROR) {
+func MessageBeep(uType MESSAGEBOX_STYLE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pMessageBeep, libUser32, "MessageBeep")
 	ret, _, err := syscall.SyscallN(addr, uintptr(uType))
 	return BOOL(ret), WIN32_ERROR(err)

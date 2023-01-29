@@ -15,6 +15,7 @@ type (
 )
 
 const (
+	MAXIMUM_REPARSE_DATA_BUFFER_SIZE                     uint32 = 0x4000
 	EA_CONTAINER_NAME                                    string = "ContainerName"
 	EA_CONTAINER_SIZE                                    string = "ContainerSize"
 	CLFS_BASELOG_EXTENSION                               string = ".blf"
@@ -136,6 +137,7 @@ const (
 	DISKQUOTA_USER_ACCOUNT_INVALID                       uint32 = 0x3
 	DISKQUOTA_USER_ACCOUNT_UNKNOWN                       uint32 = 0x4
 	DISKQUOTA_USER_ACCOUNT_UNRESOLVED                    uint32 = 0x5
+	INVALID_FILE_SIZE                                    uint32 = 0xffffffff
 	INVALID_SET_FILE_POINTER                             uint32 = 0xffffffff
 	INVALID_FILE_ATTRIBUTES                              uint32 = 0xffffffff
 	SHARE_NETNAME_PARMNUM                                uint32 = 0x1
@@ -443,7 +445,10 @@ const (
 	FILE_DELETE_CHILD         FILE_ACCESS_FLAGS = 64
 	FILE_READ_ATTRIBUTES      FILE_ACCESS_FLAGS = 128
 	FILE_WRITE_ATTRIBUTES     FILE_ACCESS_FLAGS = 256
+	DELETE                    FILE_ACCESS_FLAGS = 65536
 	READ_CONTROL              FILE_ACCESS_FLAGS = 131072
+	WRITE_DAC                 FILE_ACCESS_FLAGS = 262144
+	WRITE_OWNER               FILE_ACCESS_FLAGS = 524288
 	SYNCHRONIZE               FILE_ACCESS_FLAGS = 1048576
 	STANDARD_RIGHTS_REQUIRED  FILE_ACCESS_FLAGS = 983040
 	STANDARD_RIGHTS_READ      FILE_ACCESS_FLAGS = 131072
@@ -669,7 +674,7 @@ const (
 
 // enum
 // flags
-type LZOPENFILE_STYLE uint32
+type LZOPENFILE_STYLE uint16
 
 const (
 	OF_CANCEL           LZOPENFILE_STYLE = 2048
@@ -933,6 +938,29 @@ type SYMBOLIC_LINK_FLAGS uint32
 const (
 	SYMBOLIC_LINK_FLAG_DIRECTORY                 SYMBOLIC_LINK_FLAGS = 1
 	SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE SYMBOLIC_LINK_FLAGS = 2
+)
+
+// enum
+type COMPRESSION_FORMAT uint16
+
+const (
+	COMPRESSION_FORMAT_NONE        COMPRESSION_FORMAT = 0
+	COMPRESSION_FORMAT_DEFAULT     COMPRESSION_FORMAT = 1
+	COMPRESSION_FORMAT_LZNT1       COMPRESSION_FORMAT = 2
+	COMPRESSION_FORMAT_XPRESS      COMPRESSION_FORMAT = 3
+	COMPRESSION_FORMAT_XPRESS_HUFF COMPRESSION_FORMAT = 4
+	COMPRESSION_FORMAT_XP10        COMPRESSION_FORMAT = 5
+)
+
+// enum
+type FILE_TYPE uint32
+
+const (
+	FILE_TYPE_UNKNOWN FILE_TYPE = 0
+	FILE_TYPE_DISK    FILE_TYPE = 1
+	FILE_TYPE_CHAR    FILE_TYPE = 2
+	FILE_TYPE_PIPE    FILE_TYPE = 3
+	FILE_TYPE_REMOTE  FILE_TYPE = 32768
 )
 
 // enum
@@ -1705,6 +1733,10 @@ const (
 )
 
 // structs
+
+type FILE_DISPOSITION_INFO struct {
+	DeleteFile BOOLEAN
+}
 
 type WIN32_FIND_DATAA struct {
 	DwFileAttributes   uint32
@@ -4077,7 +4109,7 @@ type FILE_STREAM_INFO struct {
 
 type FILE_COMPRESSION_INFO struct {
 	CompressedFileSize   int64
-	CompressionFormat    uint16
+	CompressionFormat    COMPRESSION_FORMAT
 	CompressionUnitShift byte
 	ChunkShift           byte
 	ClusterShift         byte
@@ -4087,10 +4119,6 @@ type FILE_COMPRESSION_INFO struct {
 type FILE_ATTRIBUTE_TAG_INFO struct {
 	FileAttributes uint32
 	ReparseTag     uint32
-}
-
-type FILE_DISPOSITION_INFO struct {
-	DeleteFileA BOOLEAN
 }
 
 type FILE_ID_BOTH_DIR_INFO struct {
@@ -5151,7 +5179,7 @@ func FindNextFileA(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAA) (
 
 var FindNextFile = FindNextFileW
 
-func FindNextFileW(hFindFile HANDLE, lpFindFileData *WIN32_FIND_DATAW) (BOOL, WIN32_ERROR) {
+func FindNextFileW(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAW) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pFindNextFileW, libKernel32, "FindNextFileW")
 	ret, _, err := syscall.SyscallN(addr, hFindFile, uintptr(unsafe.Pointer(lpFindFileData)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -5279,10 +5307,10 @@ func GetFileSizeEx(hFile HANDLE, lpFileSize *int64) (BOOL, WIN32_ERROR) {
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetFileType(hFile HANDLE) (uint32, WIN32_ERROR) {
+func GetFileType(hFile HANDLE) (FILE_TYPE, WIN32_ERROR) {
 	addr := lazyAddr(&pGetFileType, libKernel32, "GetFileType")
 	ret, _, err := syscall.SyscallN(addr, hFile)
-	return uint32(ret), WIN32_ERROR(err)
+	return FILE_TYPE(ret), WIN32_ERROR(err)
 }
 
 func GetFinalPathNameByHandleA(hFile HANDLE, lpszFilePath PSTR, cchFilePath uint32, dwFlags FILE_NAME) (uint32, WIN32_ERROR) {
@@ -6106,7 +6134,7 @@ func CloseEncryptedFileRaw(pvContext unsafe.Pointer) {
 	syscall.SyscallN(addr, uintptr(pvContext))
 }
 
-func OpenFile(lpFileName PSTR, lpReOpenBuff *OFSTRUCT, uStyle LZOPENFILE_STYLE) (int32, WIN32_ERROR) {
+func OpenFile(lpFileName PSTR, lpReOpenBuff *OFSTRUCT, uStyle uint32) (int32, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenFile, libKernel32, "OpenFile")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpReOpenBuff)), uintptr(uStyle))
 	return int32(ret), WIN32_ERROR(err)

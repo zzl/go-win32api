@@ -266,41 +266,6 @@ type OBJECTID struct {
 	Uniquifier uint32
 }
 
-type EXCEPTION_REGISTRATION_RECORD struct {
-	Next    *EXCEPTION_REGISTRATION_RECORD
-	Handler EXCEPTION_ROUTINE
-}
-
-type NT_TIB_Anonymous struct {
-	Data [1]uint64
-}
-
-func (this *NT_TIB_Anonymous) FiberData() *unsafe.Pointer {
-	return (*unsafe.Pointer)(unsafe.Pointer(this))
-}
-
-func (this *NT_TIB_Anonymous) FiberDataVal() unsafe.Pointer {
-	return *(*unsafe.Pointer)(unsafe.Pointer(this))
-}
-
-func (this *NT_TIB_Anonymous) Version() *uint32 {
-	return (*uint32)(unsafe.Pointer(this))
-}
-
-func (this *NT_TIB_Anonymous) VersionVal() uint32 {
-	return *(*uint32)(unsafe.Pointer(this))
-}
-
-type NT_TIB struct {
-	ExceptionList *EXCEPTION_REGISTRATION_RECORD
-	StackBase     unsafe.Pointer
-	StackLimit    unsafe.Pointer
-	SubSystemTib  unsafe.Pointer
-	NT_TIB_Anonymous
-	ArbitraryUserPointer unsafe.Pointer
-	Self                 *NT_TIB
-}
-
 type SLIST_HEADER_Anonymous struct {
 	Alignment uint64
 	Region    uint64
@@ -341,6 +306,41 @@ type FLOATING_SAVE_AREA struct {
 	DataSelector  uint32
 	RegisterArea  [80]byte
 	Cr0NpxState   uint32
+}
+
+type EXCEPTION_REGISTRATION_RECORD struct {
+	Next    *EXCEPTION_REGISTRATION_RECORD
+	Handler EXCEPTION_ROUTINE
+}
+
+type NT_TIB_Anonymous struct {
+	Data [1]uint64
+}
+
+func (this *NT_TIB_Anonymous) FiberData() *unsafe.Pointer {
+	return (*unsafe.Pointer)(unsafe.Pointer(this))
+}
+
+func (this *NT_TIB_Anonymous) FiberDataVal() unsafe.Pointer {
+	return *(*unsafe.Pointer)(unsafe.Pointer(this))
+}
+
+func (this *NT_TIB_Anonymous) Version() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *NT_TIB_Anonymous) VersionVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
+type NT_TIB struct {
+	ExceptionList *EXCEPTION_REGISTRATION_RECORD
+	StackBase     unsafe.Pointer
+	StackLimit    unsafe.Pointer
+	SubSystemTib  unsafe.Pointer
+	NT_TIB_Anonymous
+	ArbitraryUserPointer unsafe.Pointer
+	Self                 *NT_TIB
 }
 
 // func types

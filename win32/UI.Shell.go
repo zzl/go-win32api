@@ -517,42 +517,6 @@ const (
 	SHCIDS_CANONICALONLY                                      int32   = 268435456
 	SHCIDS_BITMASK                                            int32   = -65536
 	SHCIDS_COLUMNMASK                                         int32   = 65535
-	SFGAO_CANCOPY                                             uint32  = 0x1
-	SFGAO_CANMOVE                                             uint32  = 0x2
-	SFGAO_CANLINK                                             uint32  = 0x4
-	SFGAO_STORAGE                                             int32   = 8
-	SFGAO_CANRENAME                                           int32   = 16
-	SFGAO_CANDELETE                                           int32   = 32
-	SFGAO_HASPROPSHEET                                        int32   = 64
-	SFGAO_DROPTARGET                                          int32   = 256
-	SFGAO_CAPABILITYMASK                                      int32   = 375
-	SFGAO_PLACEHOLDER                                         int32   = 2048
-	SFGAO_SYSTEM                                              int32   = 4096
-	SFGAO_ENCRYPTED                                           int32   = 8192
-	SFGAO_ISSLOW                                              int32   = 16384
-	SFGAO_GHOSTED                                             int32   = 32768
-	SFGAO_LINK                                                int32   = 65536
-	SFGAO_SHARE                                               int32   = 131072
-	SFGAO_READONLY                                            int32   = 262144
-	SFGAO_HIDDEN                                              int32   = 524288
-	SFGAO_DISPLAYATTRMASK                                     int32   = 1032192
-	SFGAO_FILESYSANCESTOR                                     int32   = 268435456
-	SFGAO_FOLDER                                              int32   = 536870912
-	SFGAO_FILESYSTEM                                          int32   = 1073741824
-	SFGAO_HASSUBFOLDER                                        int32   = -2147483648
-	SFGAO_CONTENTSMASK                                        int32   = -2147483648
-	SFGAO_VALIDATE                                            int32   = 16777216
-	SFGAO_REMOVABLE                                           int32   = 33554432
-	SFGAO_COMPRESSED                                          int32   = 67108864
-	SFGAO_BROWSABLE                                           int32   = 134217728
-	SFGAO_NONENUMERATED                                       int32   = 1048576
-	SFGAO_NEWCONTENT                                          int32   = 2097152
-	SFGAO_CANMONIKER                                          int32   = 4194304
-	SFGAO_HASSTORAGE                                          int32   = 4194304
-	SFGAO_STREAM                                              int32   = 4194304
-	SFGAO_STORAGEANCESTOR                                     int32   = 8388608
-	SFGAO_STORAGECAPMASK                                      int32   = 1891958792
-	SFGAO_PKEYSFGAOMASK                                       int32   = -2130427904
 	CONFLICT_RESOLUTION_CLSID_KEY                             string  = "ConflictResolutionCLSID"
 	STR_BIND_FORCE_FOLDER_SHORTCUT_RESOLVE                    string  = "Force Folder Shortcut Resolve"
 	STR_AVOID_DRIVE_RESTRICTION_POLICY                        string  = "Avoid Drive Restriction Policy"
@@ -894,18 +858,6 @@ const (
 	NIN_POPUPCLOSE                                            uint32  = 0x407
 	NOTIFYICON_VERSION                                        uint32  = 0x3
 	NOTIFYICON_VERSION_4                                      uint32  = 0x4
-	NIS_HIDDEN                                                uint32  = 0x1
-	NIS_SHAREDICON                                            uint32  = 0x2
-	NIIF_NONE                                                 uint32  = 0x0
-	NIIF_INFO                                                 uint32  = 0x1
-	NIIF_WARNING                                              uint32  = 0x2
-	NIIF_ERROR                                                uint32  = 0x3
-	NIIF_USER                                                 uint32  = 0x4
-	NIIF_ICON_MASK                                            uint32  = 0xf
-	NIIF_NOSOUND                                              uint32  = 0x10
-	NIIF_LARGE_ICON                                           uint32  = 0x20
-	NIIF_RESPECT_QUIET_TIME                                   uint32  = 0x80
-	SHGSI_ICONLOCATION                                        uint32  = 0x0
 	SHGNLI_PIDL                                               uint64  = 0x1
 	SHGNLI_PREFIXNAME                                         uint64  = 0x2
 	SHGNLI_NOUNIQUE                                           uint64  = 0x4
@@ -1037,18 +989,6 @@ const (
 	PLATFORM_BROWSERONLY                                      uint32  = 0x1
 	PLATFORM_INTEGRATED                                       uint32  = 0x2
 	ILMM_IE4                                                  uint32  = 0x0
-	SHACF_DEFAULT                                             uint32  = 0x0
-	SHACF_FILESYSTEM                                          uint32  = 0x1
-	SHACF_URLHISTORY                                          uint32  = 0x2
-	SHACF_URLMRU                                              uint32  = 0x4
-	SHACF_USETAB                                              uint32  = 0x8
-	SHACF_FILESYS_ONLY                                        uint32  = 0x10
-	SHACF_FILESYS_DIRS                                        uint32  = 0x20
-	SHACF_VIRTUAL_NAMESPACE                                   uint32  = 0x40
-	SHACF_AUTOSUGGEST_FORCE_ON                                uint32  = 0x10000000
-	SHACF_AUTOSUGGEST_FORCE_OFF                               uint32  = 0x20000000
-	SHACF_AUTOAPPEND_FORCE_ON                                 uint32  = 0x40000000
-	SHACF_AUTOAPPEND_FORCE_OFF                                uint32  = 0x80000000
 	DLLVER_PLATFORM_WINDOWS                                   uint32  = 0x1
 	DLLVER_PLATFORM_NT                                        uint32  = 0x2
 	DLLVER_MAJOR_MASK                                         uint64  = 0xffff000000000000
@@ -1318,9 +1258,6 @@ const (
 	E_TILE_NOTIFICATIONS_PLATFORM_FAILURE                     HRESULT = -2144927159
 	E_SHELL_EXTENSION_BLOCKED                                 HRESULT = -2144926975
 	E_IMAGEFEED_CHANGEDISABLED                                HRESULT = -2144926960
-	GPFIDL_DEFAULT                                            int32   = 0
-	GPFIDL_ALTNAME                                            int32   = 1
-	GPFIDL_UNCPRINTER                                         int32   = 2
 	ISHCUTCMDID_DOWNLOADICON                                  int32   = 0
 	ISHCUTCMDID_INTSHORTCUTCREATE                             int32   = 1
 	ISHCUTCMDID_COMMITHISTORY                                 int32   = 2
@@ -1334,25 +1271,6 @@ const (
 	DBCID_UPDATESIZE                                          int32   = 5
 	BMICON_LARGE                                              int32   = 0
 	BMICON_SMALL                                              int32   = 1
-	ASSOCF_NONE                                               int32   = 0
-	ASSOCF_INIT_NOREMAPCLSID                                  int32   = 1
-	ASSOCF_INIT_BYEXENAME                                     int32   = 2
-	ASSOCF_OPEN_BYEXENAME                                     int32   = 2
-	ASSOCF_INIT_DEFAULTTOSTAR                                 int32   = 4
-	ASSOCF_INIT_DEFAULTTOFOLDER                               int32   = 8
-	ASSOCF_NOUSERSETTINGS                                     int32   = 16
-	ASSOCF_NOTRUNCATE                                         int32   = 32
-	ASSOCF_VERIFY                                             int32   = 64
-	ASSOCF_REMAPRUNDLL                                        int32   = 128
-	ASSOCF_NOFIXUPS                                           int32   = 256
-	ASSOCF_IGNOREBASECLASS                                    int32   = 512
-	ASSOCF_INIT_IGNOREUNKNOWN                                 int32   = 1024
-	ASSOCF_INIT_FIXED_PROGID                                  int32   = 2048
-	ASSOCF_IS_PROTOCOL                                        int32   = 4096
-	ASSOCF_INIT_FOR_FILE                                      int32   = 8192
-	ASSOCF_IS_FULL_URI                                        int32   = 16384
-	ASSOCF_PER_MACHINE_ONLY                                   int32   = 32768
-	ASSOCF_APP_TO_APP                                         int32   = 65536
 	CTF_INSIST                                                int32   = 1
 	CTF_THREAD_REF                                            int32   = 2
 	CTF_PROCESS_REF                                           int32   = 4
@@ -2797,6 +2715,32 @@ const (
 )
 
 // enum
+// flags
+type ASSOCF uint32
+
+const (
+	ASSOCF_NONE                 ASSOCF = 0
+	ASSOCF_INIT_NOREMAPCLSID    ASSOCF = 1
+	ASSOCF_INIT_BYEXENAME       ASSOCF = 2
+	ASSOCF_OPEN_BYEXENAME       ASSOCF = 2
+	ASSOCF_INIT_DEFAULTTOSTAR   ASSOCF = 4
+	ASSOCF_INIT_DEFAULTTOFOLDER ASSOCF = 8
+	ASSOCF_NOUSERSETTINGS       ASSOCF = 16
+	ASSOCF_NOTRUNCATE           ASSOCF = 32
+	ASSOCF_VERIFY               ASSOCF = 64
+	ASSOCF_REMAPRUNDLL          ASSOCF = 128
+	ASSOCF_NOFIXUPS             ASSOCF = 256
+	ASSOCF_IGNOREBASECLASS      ASSOCF = 512
+	ASSOCF_INIT_IGNOREUNKNOWN   ASSOCF = 1024
+	ASSOCF_INIT_FIXED_PROGID    ASSOCF = 2048
+	ASSOCF_IS_PROTOCOL          ASSOCF = 4096
+	ASSOCF_INIT_FOR_FILE        ASSOCF = 8192
+	ASSOCF_IS_FULL_URI          ASSOCF = 16384
+	ASSOCF_PER_MACHINE_ONLY     ASSOCF = 32768
+	ASSOCF_APP_TO_APP           ASSOCF = 65536
+)
+
+// enum
 type NOTIFY_ICON_MESSAGE uint32
 
 const (
@@ -2865,14 +2809,89 @@ const (
 )
 
 // enum
-type SHGDNF_ int32
+// flags
+type SHELL_AUTOCOMPLETE_FLAGS uint32
 
 const (
-	SHGDN_NORMAL        SHGDNF_ = 0
-	SHGDN_INFOLDER      SHGDNF_ = 1
-	SHGDN_FOREDITING    SHGDNF_ = 4096
-	SHGDN_FORADDRESSBAR SHGDNF_ = 16384
-	SHGDN_FORPARSING    SHGDNF_ = 32768
+	SHACF_DEFAULT               SHELL_AUTOCOMPLETE_FLAGS = 0
+	SHACF_FILESYSTEM            SHELL_AUTOCOMPLETE_FLAGS = 1
+	SHACF_URLALL                SHELL_AUTOCOMPLETE_FLAGS = 6
+	SHACF_URLHISTORY            SHELL_AUTOCOMPLETE_FLAGS = 2
+	SHACF_URLMRU                SHELL_AUTOCOMPLETE_FLAGS = 4
+	SHACF_USETAB                SHELL_AUTOCOMPLETE_FLAGS = 8
+	SHACF_FILESYS_ONLY          SHELL_AUTOCOMPLETE_FLAGS = 16
+	SHACF_FILESYS_DIRS          SHELL_AUTOCOMPLETE_FLAGS = 32
+	SHACF_VIRTUAL_NAMESPACE     SHELL_AUTOCOMPLETE_FLAGS = 64
+	SHACF_AUTOSUGGEST_FORCE_ON  SHELL_AUTOCOMPLETE_FLAGS = 268435456
+	SHACF_AUTOSUGGEST_FORCE_OFF SHELL_AUTOCOMPLETE_FLAGS = 536870912
+	SHACF_AUTOAPPEND_FORCE_ON   SHELL_AUTOCOMPLETE_FLAGS = 1073741824
+	SHACF_AUTOAPPEND_FORCE_OFF  SHELL_AUTOCOMPLETE_FLAGS = 2147483648
+)
+
+// enum
+type HELP_INFO_TYPE int32
+
+const (
+	HELPINFO_WINDOW   HELP_INFO_TYPE = 1
+	HELPINFO_MENUITEM HELP_INFO_TYPE = 2
+)
+
+// enum
+type NOTIFY_ICON_INFOTIP_FLAGS uint32
+
+const (
+	NIIF_NONE               NOTIFY_ICON_INFOTIP_FLAGS = 0
+	NIIF_INFO               NOTIFY_ICON_INFOTIP_FLAGS = 1
+	NIIF_WARNING            NOTIFY_ICON_INFOTIP_FLAGS = 2
+	NIIF_ERROR              NOTIFY_ICON_INFOTIP_FLAGS = 3
+	NIIF_USER               NOTIFY_ICON_INFOTIP_FLAGS = 4
+	NIIF_ICON_MASK          NOTIFY_ICON_INFOTIP_FLAGS = 15
+	NIIF_NOSOUND            NOTIFY_ICON_INFOTIP_FLAGS = 16
+	NIIF_LARGE_ICON         NOTIFY_ICON_INFOTIP_FLAGS = 32
+	NIIF_RESPECT_QUIET_TIME NOTIFY_ICON_INFOTIP_FLAGS = 128
+)
+
+// enum
+type NOTIFY_ICON_STATE uint32
+
+const (
+	NIS_HIDDEN     NOTIFY_ICON_STATE = 1
+	NIS_SHAREDICON NOTIFY_ICON_STATE = 2
+)
+
+// enum
+type GPFIDL_FLAGS uint32
+
+const (
+	GPFIDL_DEFAULT    GPFIDL_FLAGS = 0
+	GPFIDL_ALTNAME    GPFIDL_FLAGS = 1
+	GPFIDL_UNCPRINTER GPFIDL_FLAGS = 2
+)
+
+// enum
+// flags
+type SHGSI_FLAGS uint32
+
+const (
+	SHGSI_ICONLOCATION  SHGSI_FLAGS = 0
+	SHGSI_ICON          SHGSI_FLAGS = 256
+	SHGSI_SYSICONINDEX  SHGSI_FLAGS = 16384
+	SHGSI_LINKOVERLAY   SHGSI_FLAGS = 32768
+	SHGSI_SELECTED      SHGSI_FLAGS = 65536
+	SHGSI_LARGEICON     SHGSI_FLAGS = 0
+	SHGSI_SMALLICON     SHGSI_FLAGS = 1
+	SHGSI_SHELLICONSIZE SHGSI_FLAGS = 4
+)
+
+// enum
+type SHGDNF uint32
+
+const (
+	SHGDN_NORMAL        SHGDNF = 0
+	SHGDN_INFOLDER      SHGDNF = 1
+	SHGDN_FOREDITING    SHGDNF = 4096
+	SHGDN_FORADDRESSBAR SHGDNF = 16384
+	SHGDN_FORPARSING    SHGDNF = 32768
 )
 
 // enum
@@ -3523,6 +3542,7 @@ const (
 )
 
 // enum
+// flags
 type FILEOPENDIALOGOPTIONS uint32
 
 const (
@@ -5751,31 +5771,31 @@ const (
 )
 
 // enum
-type HLSR_NOREDEF10_ int32
+type HLSR int32
 
 const (
-	HLSR_HOME          HLSR_NOREDEF10_ = 0
-	HLSR_SEARCHPAGE    HLSR_NOREDEF10_ = 1
-	HLSR_HISTORYFOLDER HLSR_NOREDEF10_ = 2
+	HLSR_HOME          HLSR = 0
+	HLSR_SEARCHPAGE    HLSR = 1
+	HLSR_HISTORYFOLDER HLSR = 2
 )
 
 // enum
-type HLSHORTCUTF__NOREDEF10_ int32
+type HLSHORTCUTF int32
 
 const (
-	HLSHORTCUTF_DEFAULT                     HLSHORTCUTF__NOREDEF10_ = 0
-	HLSHORTCUTF_DONTACTUALLYCREATE          HLSHORTCUTF__NOREDEF10_ = 1
-	HLSHORTCUTF_USEFILENAMEFROMFRIENDLYNAME HLSHORTCUTF__NOREDEF10_ = 2
-	HLSHORTCUTF_USEUNIQUEFILENAME           HLSHORTCUTF__NOREDEF10_ = 4
-	HLSHORTCUTF_MAYUSEEXISTINGSHORTCUT      HLSHORTCUTF__NOREDEF10_ = 8
+	HLSHORTCUTF_DEFAULT                     HLSHORTCUTF = 0
+	HLSHORTCUTF_DONTACTUALLYCREATE          HLSHORTCUTF = 1
+	HLSHORTCUTF_USEFILENAMEFROMFRIENDLYNAME HLSHORTCUTF = 2
+	HLSHORTCUTF_USEUNIQUEFILENAME           HLSHORTCUTF = 4
+	HLSHORTCUTF_MAYUSEEXISTINGSHORTCUT      HLSHORTCUTF = 8
 )
 
 // enum
-type HLTRANSLATEF_NOREDEF10_ int32
+type HLTRANSLATEF int32
 
 const (
-	HLTRANSLATEF_DEFAULT                HLTRANSLATEF_NOREDEF10_ = 0
-	HLTRANSLATEF_DONTAPPLYDEFAULTPREFIX HLTRANSLATEF_NOREDEF10_ = 1
+	HLTRANSLATEF_DEFAULT                HLTRANSLATEF = 0
+	HLTRANSLATEF_DONTAPPLYDEFAULTPREFIX HLTRANSLATEF = 1
 )
 
 // enum
@@ -5936,7 +5956,8 @@ const (
 )
 
 // enum
-type PATHCCH_OPTIONS int32
+// flags
+type PATHCCH_OPTIONS uint32
 
 const (
 	PATHCCH_NONE                            PATHCCH_OPTIONS = 0
@@ -5950,45 +5971,45 @@ const (
 )
 
 // enum
-type Iurl_seturl_flags int32
+type IURL_SETURL_FLAGS int32
 
 const (
-	IURL_SETURL_FL_GUESS_PROTOCOL       Iurl_seturl_flags = 1
-	IURL_SETURL_FL_USE_DEFAULT_PROTOCOL Iurl_seturl_flags = 2
+	IURL_SETURL_FL_GUESS_PROTOCOL       IURL_SETURL_FLAGS = 1
+	IURL_SETURL_FL_USE_DEFAULT_PROTOCOL IURL_SETURL_FLAGS = 2
 )
 
 // enum
-type Iurl_invokecommand_flags int32
+type IURL_INVOKECOMMAND_FLAGS int32
 
 const (
-	IURL_INVOKECOMMAND_FL_ALLOW_UI         Iurl_invokecommand_flags = 1
-	IURL_INVOKECOMMAND_FL_USE_DEFAULT_VERB Iurl_invokecommand_flags = 2
-	IURL_INVOKECOMMAND_FL_DDEWAIT          Iurl_invokecommand_flags = 4
-	IURL_INVOKECOMMAND_FL_ASYNCOK          Iurl_invokecommand_flags = 8
-	IURL_INVOKECOMMAND_FL_LOG_USAGE        Iurl_invokecommand_flags = 16
+	IURL_INVOKECOMMAND_FL_ALLOW_UI         IURL_INVOKECOMMAND_FLAGS = 1
+	IURL_INVOKECOMMAND_FL_USE_DEFAULT_VERB IURL_INVOKECOMMAND_FLAGS = 2
+	IURL_INVOKECOMMAND_FL_DDEWAIT          IURL_INVOKECOMMAND_FLAGS = 4
+	IURL_INVOKECOMMAND_FL_ASYNCOK          IURL_INVOKECOMMAND_FLAGS = 8
+	IURL_INVOKECOMMAND_FL_LOG_USAGE        IURL_INVOKECOMMAND_FLAGS = 16
 )
 
 // enum
-type Translateurl_in_flags int32
+type TRANSLATEURL_IN_FLAGS int32
 
 const (
-	TRANSLATEURL_FL_GUESS_PROTOCOL       Translateurl_in_flags = 1
-	TRANSLATEURL_FL_USE_DEFAULT_PROTOCOL Translateurl_in_flags = 2
+	TRANSLATEURL_FL_GUESS_PROTOCOL       TRANSLATEURL_IN_FLAGS = 1
+	TRANSLATEURL_FL_USE_DEFAULT_PROTOCOL TRANSLATEURL_IN_FLAGS = 2
 )
 
 // enum
-type Urlassociationdialog_in_flags int32
+type URLASSOCIATIONDIALOG_IN_FLAGS int32
 
 const (
-	URLASSOCDLG_FL_USE_DEFAULT_NAME Urlassociationdialog_in_flags = 1
-	URLASSOCDLG_FL_REGISTER_ASSOC   Urlassociationdialog_in_flags = 2
+	URLASSOCDLG_FL_USE_DEFAULT_NAME URLASSOCIATIONDIALOG_IN_FLAGS = 1
+	URLASSOCDLG_FL_REGISTER_ASSOC   URLASSOCIATIONDIALOG_IN_FLAGS = 2
 )
 
 // enum
-type Mimeassociationdialog_in_flags int32
+type MIMEASSOCIATIONDIALOG_IN_FLAGS int32
 
 const (
-	MIMEASSOCDLG_FL_REGISTER_ASSOC Mimeassociationdialog_in_flags = 1
+	MIMEASSOCDLG_FL_REGISTER_ASSOC MIMEASSOCIATIONDIALOG_IN_FLAGS = 1
 )
 
 // structs
@@ -6010,9 +6031,304 @@ type APPCATEGORYINFOLIST struct {
 	PCategoryInfo *APPCATEGORYINFO
 }
 
+type DRAGINFOA struct {
+	USize       uint32
+	Pt          POINT
+	FNC         BOOL
+	LpFileList  PSTR
+	GrfKeyState uint32
+}
+
+type DRAGINFO = DRAGINFOW
+type DRAGINFOW struct {
+	USize       uint32
+	Pt          POINT
+	FNC         BOOL
+	LpFileList  PWSTR
+	GrfKeyState uint32
+}
+
+type APPBARDATA struct {
+	CbSize           uint32
+	HWnd             HWND
+	UCallbackMessage uint32
+	UEdge            uint32
+	Rc               RECT
+	LParam           LPARAM
+}
+
+type SHFILEOPSTRUCTA struct {
+	Hwnd                  HWND
+	WFunc                 uint32
+	PFrom                 *int8
+	PTo                   *int8
+	FFlags                uint16
+	FAnyOperationsAborted BOOL
+	HNameMappings         unsafe.Pointer
+	LpszProgressTitle     PSTR
+}
+
+type SHFILEOPSTRUCT = SHFILEOPSTRUCTW
+type SHFILEOPSTRUCTW struct {
+	Hwnd                  HWND
+	WFunc                 uint32
+	PFrom                 PWSTR
+	PTo                   PWSTR
+	FFlags                uint16
+	FAnyOperationsAborted BOOL
+	HNameMappings         unsafe.Pointer
+	LpszProgressTitle     PWSTR
+}
+
+type SHNAMEMAPPINGA struct {
+	PszOldPath PSTR
+	PszNewPath PSTR
+	CchOldPath int32
+	CchNewPath int32
+}
+
+type SHNAMEMAPPING = SHNAMEMAPPINGW
+type SHNAMEMAPPINGW struct {
+	PszOldPath PWSTR
+	PszNewPath PWSTR
+	CchOldPath int32
+	CchNewPath int32
+}
+
+type SHELLEXECUTEINFOA_Anonymous struct {
+	Data [1]uint64
+}
+
+func (this *SHELLEXECUTEINFOA_Anonymous) HIcon() *HANDLE {
+	return (*HANDLE)(unsafe.Pointer(this))
+}
+
+func (this *SHELLEXECUTEINFOA_Anonymous) HIconVal() HANDLE {
+	return *(*HANDLE)(unsafe.Pointer(this))
+}
+
+func (this *SHELLEXECUTEINFOA_Anonymous) HMonitor() *HANDLE {
+	return (*HANDLE)(unsafe.Pointer(this))
+}
+
+func (this *SHELLEXECUTEINFOA_Anonymous) HMonitorVal() HANDLE {
+	return *(*HANDLE)(unsafe.Pointer(this))
+}
+
+type SHELLEXECUTEINFOA struct {
+	CbSize       uint32
+	FMask        uint32
+	Hwnd         HWND
+	LpVerb       PSTR
+	LpFile       PSTR
+	LpParameters PSTR
+	LpDirectory  PSTR
+	NShow        int32
+	HInstApp     HINSTANCE
+	LpIDList     unsafe.Pointer
+	LpClass      PSTR
+	HkeyClass    HKEY
+	DwHotKey     uint32
+	SHELLEXECUTEINFOA_Anonymous
+	HProcess HANDLE
+}
+
+type SHELLEXECUTEINFOW_Anonymous struct {
+	Data [1]uint64
+}
+
+func (this *SHELLEXECUTEINFOW_Anonymous) HIcon() *HANDLE {
+	return (*HANDLE)(unsafe.Pointer(this))
+}
+
+func (this *SHELLEXECUTEINFOW_Anonymous) HIconVal() HANDLE {
+	return *(*HANDLE)(unsafe.Pointer(this))
+}
+
+func (this *SHELLEXECUTEINFOW_Anonymous) HMonitor() *HANDLE {
+	return (*HANDLE)(unsafe.Pointer(this))
+}
+
+func (this *SHELLEXECUTEINFOW_Anonymous) HMonitorVal() HANDLE {
+	return *(*HANDLE)(unsafe.Pointer(this))
+}
+
+type SHELLEXECUTEINFO = SHELLEXECUTEINFOW
+type SHELLEXECUTEINFOW struct {
+	CbSize       uint32
+	FMask        uint32
+	Hwnd         HWND
+	LpVerb       PWSTR
+	LpFile       PWSTR
+	LpParameters PWSTR
+	LpDirectory  PWSTR
+	NShow        int32
+	HInstApp     HINSTANCE
+	LpIDList     unsafe.Pointer
+	LpClass      PWSTR
+	HkeyClass    HKEY
+	DwHotKey     uint32
+	SHELLEXECUTEINFOW_Anonymous
+	HProcess HANDLE
+}
+
+type SHCREATEPROCESSINFOW struct {
+	CbSize               uint32
+	FMask                uint32
+	Hwnd                 HWND
+	PszFile              PWSTR
+	PszParameters        PWSTR
+	PszCurrentDirectory  PWSTR
+	HUserToken           HANDLE
+	LpProcessAttributes  *SECURITY_ATTRIBUTES
+	LpThreadAttributes   *SECURITY_ATTRIBUTES
+	BInheritHandles      BOOL
+	DwCreationFlags      uint32
+	LpStartupInfo        *STARTUPINFOW
+	LpProcessInformation *PROCESS_INFORMATION
+}
+
+type ASSOCIATIONELEMENT struct {
+	Ac       ASSOCCLASS
+	HkClass  HKEY
+	PszClass PWSTR
+}
+
+type SHQUERYRBINFO struct {
+	CbSize      uint32
+	I64Size     int64
+	I64NumItems int64
+}
+
+type NOTIFYICONDATAA_Anonymous struct {
+	Data [1]uint32
+}
+
+func (this *NOTIFYICONDATAA_Anonymous) UTimeout() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *NOTIFYICONDATAA_Anonymous) UTimeoutVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
+func (this *NOTIFYICONDATAA_Anonymous) UVersion() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *NOTIFYICONDATAA_Anonymous) UVersionVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
+type NOTIFYICONDATAA struct {
+	CbSize           uint32
+	HWnd             HWND
+	UID              uint32
+	UFlags           NOTIFY_ICON_DATA_FLAGS
+	UCallbackMessage uint32
+	HIcon            HICON
+	SzTip            [128]CHAR
+	DwState          NOTIFY_ICON_STATE
+	DwStateMask      uint32
+	SzInfo           [256]CHAR
+	NOTIFYICONDATAA_Anonymous
+	SzInfoTitle  [64]CHAR
+	DwInfoFlags  NOTIFY_ICON_INFOTIP_FLAGS
+	GuidItem     syscall.GUID
+	HBalloonIcon HICON
+}
+
+type NOTIFYICONDATAW_Anonymous struct {
+	Data [1]uint32
+}
+
+func (this *NOTIFYICONDATAW_Anonymous) UTimeout() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *NOTIFYICONDATAW_Anonymous) UTimeoutVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
+func (this *NOTIFYICONDATAW_Anonymous) UVersion() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *NOTIFYICONDATAW_Anonymous) UVersionVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
+type NOTIFYICONDATA = NOTIFYICONDATAW
+type NOTIFYICONDATAW struct {
+	CbSize           uint32
+	HWnd             HWND
+	UID              uint32
+	UFlags           NOTIFY_ICON_DATA_FLAGS
+	UCallbackMessage uint32
+	HIcon            HICON
+	SzTip            [128]uint16
+	DwState          NOTIFY_ICON_STATE
+	DwStateMask      uint32
+	SzInfo           [256]uint16
+	NOTIFYICONDATAW_Anonymous
+	SzInfoTitle  [64]uint16
+	DwInfoFlags  NOTIFY_ICON_INFOTIP_FLAGS
+	GuidItem     syscall.GUID
+	HBalloonIcon HICON
+}
+
+type NOTIFYICONIDENTIFIER struct {
+	CbSize   uint32
+	HWnd     HWND
+	UID      uint32
+	GuidItem syscall.GUID
+}
+
+type SHFILEINFOA struct {
+	HIcon         HICON
+	IIcon         int32
+	DwAttributes  uint32
+	SzDisplayName [260]CHAR
+	SzTypeName    [80]CHAR
+}
+
+type SHFILEINFO = SHFILEINFOW
+type SHFILEINFOW struct {
+	HIcon         HICON
+	IIcon         int32
+	DwAttributes  uint32
+	SzDisplayName [260]uint16
+	SzTypeName    [80]uint16
+}
+
+type SHSTOCKICONINFO struct {
+	CbSize         uint32
+	HIcon          HICON
+	ISysImageIndex int32
+	IIcon          int32
+	SzPath         [260]uint16
+}
+
+type OPEN_PRINTER_PROPS_INFOA struct {
+	DwSize       uint32
+	PszSheetName PSTR
+	USheetIndex  uint32
+	DwFlags      uint32
+	BModal       BOOL
+}
+
+type OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOW
+type OPEN_PRINTER_PROPS_INFOW struct {
+	DwSize       uint32
+	PszSheetName PWSTR
+	USheetIndex  uint32
+	DwFlags      uint32
+	BModal       BOOL
+}
+
 type HELPINFO struct {
 	CbSize       uint32
-	IContextType int32
+	IContextType HELP_INFO_TYPE
 	ICtrlId      int32
 	HItemHandle  HANDLE
 	DwContextId  uintptr
@@ -6370,7 +6686,7 @@ type SHDRAGIMAGE struct {
 	SizeDragImage SIZE
 	PtOffset      POINT
 	HbmpDragImage HBITMAP
-	CrColorKey    uint32
+	CrColorKey    COLORREF
 }
 
 type DESKBANDINFO struct {
@@ -6381,7 +6697,7 @@ type DESKBANDINFO struct {
 	PtActual    POINTL
 	WszTitle    [256]uint16
 	DwModeFlags uint32
-	CrBkgnd     uint32
+	CrBkgnd     COLORREF
 }
 
 type THUMBBUTTON struct {
@@ -6546,7 +6862,7 @@ type NT_CONSOLE_PROPS struct {
 	UHistoryBufferSize      uint32
 	UNumberOfHistoryBuffers uint32
 	BHistoryNoDup           BOOL
-	ColorTable              [16]uint32
+	ColorTable              [16]COLORREF
 }
 
 type NT_FE_CONSOLE_PROPS struct {
@@ -6868,9 +7184,9 @@ type BANDINFOSFB struct {
 	DwMask      uint32
 	DwStateMask uint32
 	DwState     uint32
-	CrBkgnd     uint32
-	CrBtnLt     uint32
-	CrBtnDk     uint32
+	CrBkgnd     COLORREF
+	CrBtnLt     COLORREF
+	CrBtnDk     COLORREF
 	WViewMode   uint16
 	WAlign      uint16
 	Psf         *IShellFolder
@@ -6879,7 +7195,7 @@ type BANDINFOSFB struct {
 
 type SHCOLUMNINFO struct {
 	Scid           PROPERTYKEY
-	Vt             uint16
+	Vt             VARENUM
 	Fmt            uint32
 	CChars         uint32
 	CsFlags        uint32
@@ -6929,301 +7245,6 @@ type AASHELLMENUITEM struct {
 	UiReserved  uint32
 	LpName      *AASHELLMENUFILENAME
 	Psz         PWSTR
-}
-
-type DRAGINFOA struct {
-	USize       uint32
-	Pt          POINT
-	FNC         BOOL
-	LpFileList  PSTR
-	GrfKeyState uint32
-}
-
-type DRAGINFO = DRAGINFOW
-type DRAGINFOW struct {
-	USize       uint32
-	Pt          POINT
-	FNC         BOOL
-	LpFileList  PWSTR
-	GrfKeyState uint32
-}
-
-type APPBARDATA struct {
-	CbSize           uint32
-	HWnd             HWND
-	UCallbackMessage uint32
-	UEdge            uint32
-	Rc               RECT
-	LParam           LPARAM
-}
-
-type SHFILEOPSTRUCTA struct {
-	Hwnd                  HWND
-	WFunc                 uint32
-	PFrom                 *int8
-	PTo                   *int8
-	FFlags                uint16
-	FAnyOperationsAborted BOOL
-	HNameMappings         unsafe.Pointer
-	LpszProgressTitle     PSTR
-}
-
-type SHFILEOPSTRUCT = SHFILEOPSTRUCTW
-type SHFILEOPSTRUCTW struct {
-	Hwnd                  HWND
-	WFunc                 uint32
-	PFrom                 PWSTR
-	PTo                   PWSTR
-	FFlags                uint16
-	FAnyOperationsAborted BOOL
-	HNameMappings         unsafe.Pointer
-	LpszProgressTitle     PWSTR
-}
-
-type SHNAMEMAPPINGA struct {
-	PszOldPath PSTR
-	PszNewPath PSTR
-	CchOldPath int32
-	CchNewPath int32
-}
-
-type SHNAMEMAPPING = SHNAMEMAPPINGW
-type SHNAMEMAPPINGW struct {
-	PszOldPath PWSTR
-	PszNewPath PWSTR
-	CchOldPath int32
-	CchNewPath int32
-}
-
-type SHELLEXECUTEINFOA_Anonymous struct {
-	Data [1]uint64
-}
-
-func (this *SHELLEXECUTEINFOA_Anonymous) HIcon() *HANDLE {
-	return (*HANDLE)(unsafe.Pointer(this))
-}
-
-func (this *SHELLEXECUTEINFOA_Anonymous) HIconVal() HANDLE {
-	return *(*HANDLE)(unsafe.Pointer(this))
-}
-
-func (this *SHELLEXECUTEINFOA_Anonymous) HMonitor() *HANDLE {
-	return (*HANDLE)(unsafe.Pointer(this))
-}
-
-func (this *SHELLEXECUTEINFOA_Anonymous) HMonitorVal() HANDLE {
-	return *(*HANDLE)(unsafe.Pointer(this))
-}
-
-type SHELLEXECUTEINFOA struct {
-	CbSize       uint32
-	FMask        uint32
-	Hwnd         HWND
-	LpVerb       PSTR
-	LpFile       PSTR
-	LpParameters PSTR
-	LpDirectory  PSTR
-	NShow        int32
-	HInstApp     HINSTANCE
-	LpIDList     unsafe.Pointer
-	LpClass      PSTR
-	HkeyClass    HKEY
-	DwHotKey     uint32
-	SHELLEXECUTEINFOA_Anonymous
-	HProcess HANDLE
-}
-
-type SHELLEXECUTEINFOW_Anonymous struct {
-	Data [1]uint64
-}
-
-func (this *SHELLEXECUTEINFOW_Anonymous) HIcon() *HANDLE {
-	return (*HANDLE)(unsafe.Pointer(this))
-}
-
-func (this *SHELLEXECUTEINFOW_Anonymous) HIconVal() HANDLE {
-	return *(*HANDLE)(unsafe.Pointer(this))
-}
-
-func (this *SHELLEXECUTEINFOW_Anonymous) HMonitor() *HANDLE {
-	return (*HANDLE)(unsafe.Pointer(this))
-}
-
-func (this *SHELLEXECUTEINFOW_Anonymous) HMonitorVal() HANDLE {
-	return *(*HANDLE)(unsafe.Pointer(this))
-}
-
-type SHELLEXECUTEINFO = SHELLEXECUTEINFOW
-type SHELLEXECUTEINFOW struct {
-	CbSize       uint32
-	FMask        uint32
-	Hwnd         HWND
-	LpVerb       PWSTR
-	LpFile       PWSTR
-	LpParameters PWSTR
-	LpDirectory  PWSTR
-	NShow        int32
-	HInstApp     HINSTANCE
-	LpIDList     unsafe.Pointer
-	LpClass      PWSTR
-	HkeyClass    HKEY
-	DwHotKey     uint32
-	SHELLEXECUTEINFOW_Anonymous
-	HProcess HANDLE
-}
-
-type SHCREATEPROCESSINFOW struct {
-	CbSize               uint32
-	FMask                uint32
-	Hwnd                 HWND
-	PszFile              PWSTR
-	PszParameters        PWSTR
-	PszCurrentDirectory  PWSTR
-	HUserToken           HANDLE
-	LpProcessAttributes  *SECURITY_ATTRIBUTES
-	LpThreadAttributes   *SECURITY_ATTRIBUTES
-	BInheritHandles      BOOL
-	DwCreationFlags      uint32
-	LpStartupInfo        *STARTUPINFOW
-	LpProcessInformation *PROCESS_INFORMATION
-}
-
-type ASSOCIATIONELEMENT struct {
-	Ac       ASSOCCLASS
-	HkClass  HKEY
-	PszClass PWSTR
-}
-
-type SHQUERYRBINFO struct {
-	CbSize      uint32
-	I64Size     int64
-	I64NumItems int64
-}
-
-type NOTIFYICONDATAA_Anonymous struct {
-	Data [1]uint32
-}
-
-func (this *NOTIFYICONDATAA_Anonymous) UTimeout() *uint32 {
-	return (*uint32)(unsafe.Pointer(this))
-}
-
-func (this *NOTIFYICONDATAA_Anonymous) UTimeoutVal() uint32 {
-	return *(*uint32)(unsafe.Pointer(this))
-}
-
-func (this *NOTIFYICONDATAA_Anonymous) UVersion() *uint32 {
-	return (*uint32)(unsafe.Pointer(this))
-}
-
-func (this *NOTIFYICONDATAA_Anonymous) UVersionVal() uint32 {
-	return *(*uint32)(unsafe.Pointer(this))
-}
-
-type NOTIFYICONDATAA struct {
-	CbSize           uint32
-	HWnd             HWND
-	UID              uint32
-	UFlags           NOTIFY_ICON_DATA_FLAGS
-	UCallbackMessage uint32
-	HIcon            HICON
-	SzTip            [128]CHAR
-	DwState          uint32
-	DwStateMask      uint32
-	SzInfo           [256]CHAR
-	NOTIFYICONDATAA_Anonymous
-	SzInfoTitle  [64]CHAR
-	DwInfoFlags  uint32
-	GuidItem     syscall.GUID
-	HBalloonIcon HICON
-}
-
-type NOTIFYICONDATAW_Anonymous struct {
-	Data [1]uint32
-}
-
-func (this *NOTIFYICONDATAW_Anonymous) UTimeout() *uint32 {
-	return (*uint32)(unsafe.Pointer(this))
-}
-
-func (this *NOTIFYICONDATAW_Anonymous) UTimeoutVal() uint32 {
-	return *(*uint32)(unsafe.Pointer(this))
-}
-
-func (this *NOTIFYICONDATAW_Anonymous) UVersion() *uint32 {
-	return (*uint32)(unsafe.Pointer(this))
-}
-
-func (this *NOTIFYICONDATAW_Anonymous) UVersionVal() uint32 {
-	return *(*uint32)(unsafe.Pointer(this))
-}
-
-type NOTIFYICONDATA = NOTIFYICONDATAW
-type NOTIFYICONDATAW struct {
-	CbSize           uint32
-	HWnd             HWND
-	UID              uint32
-	UFlags           NOTIFY_ICON_DATA_FLAGS
-	UCallbackMessage uint32
-	HIcon            HICON
-	SzTip            [128]uint16
-	DwState          uint32
-	DwStateMask      uint32
-	SzInfo           [256]uint16
-	NOTIFYICONDATAW_Anonymous
-	SzInfoTitle  [64]uint16
-	DwInfoFlags  uint32
-	GuidItem     syscall.GUID
-	HBalloonIcon HICON
-}
-
-type NOTIFYICONIDENTIFIER struct {
-	CbSize   uint32
-	HWnd     HWND
-	UID      uint32
-	GuidItem syscall.GUID
-}
-
-type SHFILEINFOA struct {
-	HIcon         HICON
-	IIcon         int32
-	DwAttributes  uint32
-	SzDisplayName [260]CHAR
-	SzTypeName    [80]CHAR
-}
-
-type SHFILEINFO = SHFILEINFOW
-type SHFILEINFOW struct {
-	HIcon         HICON
-	IIcon         int32
-	DwAttributes  uint32
-	SzDisplayName [260]uint16
-	SzTypeName    [80]uint16
-}
-
-type SHSTOCKICONINFO struct {
-	CbSize         uint32
-	HIcon          HICON
-	ISysImageIndex int32
-	IIcon          int32
-	SzPath         [260]uint16
-}
-
-type OPEN_PRINTER_PROPS_INFOA struct {
-	DwSize       uint32
-	PszSheetName PSTR
-	USheetIndex  uint32
-	DwFlags      uint32
-	BModal       BOOL
-}
-
-type OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOW
-type OPEN_PRINTER_PROPS_INFOW struct {
-	DwSize       uint32
-	PszSheetName PWSTR
-	USheetIndex  uint32
-	DwFlags      uint32
-	BModal       BOOL
 }
 
 type NC_ADDRESS_NET_ADDRESS_INFO struct {
@@ -7633,15 +7654,15 @@ type PROFILEINFOW struct {
 	HProfile      HANDLE
 }
 
-type UrlinvokecommandinfoA struct {
+type URLINVOKECOMMANDINFOA struct {
 	DwcbSize   uint32
 	DwFlags    uint32
 	HwndParent HWND
 	PcszVerb   PSTR
 }
 
-type Urlinvokecommandinfo = UrlinvokecommandinfoW
-type UrlinvokecommandinfoW struct {
+type URLINVOKECOMMANDINFO = URLINVOKECOMMANDINFOW
+type URLINVOKECOMMANDINFOW struct {
 	DwcbSize   uint32
 	DwFlags    uint32
 	HwndParent HWND
@@ -8316,8 +8337,8 @@ type IShellFolderInterface interface {
 	CreateViewObject(hwndOwner HWND, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
 	GetAttributesOf(cidl uint32, apidl **ITEMIDLIST, rgfInOut *uint32) HRESULT
 	GetUIObjectOf(hwndOwner HWND, cidl uint32, apidl **ITEMIDLIST, riid *syscall.GUID, rgfReserved *uint32, ppv unsafe.Pointer) HRESULT
-	GetDisplayNameOf(pidl *ITEMIDLIST, uFlags uint32, pName *STRRET) HRESULT
-	SetNameOf(hwnd HWND, pidl *ITEMIDLIST, pszName PWSTR, uFlags uint32, ppidlOut **ITEMIDLIST) HRESULT
+	GetDisplayNameOf(pidl *ITEMIDLIST, uFlags SHGDNF, pName *STRRET) HRESULT
+	SetNameOf(hwnd HWND, pidl *ITEMIDLIST, pszName PWSTR, uFlags SHGDNF, ppidlOut **ITEMIDLIST) HRESULT
 }
 
 type IShellFolderVtbl struct {
@@ -8382,12 +8403,12 @@ func (this *IShellFolder) GetUIObjectOf(hwndOwner HWND, cidl uint32, apidl **ITE
 	return HRESULT(ret)
 }
 
-func (this *IShellFolder) GetDisplayNameOf(pidl *ITEMIDLIST, uFlags uint32, pName *STRRET) HRESULT {
+func (this *IShellFolder) GetDisplayNameOf(pidl *ITEMIDLIST, uFlags SHGDNF, pName *STRRET) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDisplayNameOf, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pidl)), uintptr(uFlags), uintptr(unsafe.Pointer(pName)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFolder) SetNameOf(hwnd HWND, pidl *ITEMIDLIST, pszName PWSTR, uFlags uint32, ppidlOut **ITEMIDLIST) HRESULT {
+func (this *IShellFolder) SetNameOf(hwnd HWND, pidl *ITEMIDLIST, pszName PWSTR, uFlags SHGDNF, ppidlOut **ITEMIDLIST) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetNameOf, uintptr(unsafe.Pointer(this)), hwnd, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszName)), uintptr(uFlags), uintptr(unsafe.Pointer(ppidlOut)))
 	return HRESULT(ret)
 }
@@ -9110,9 +9131,9 @@ var IID_IPreviewHandlerVisuals = syscall.GUID{0x196BF9A5, 0xB346, 0x4EF0,
 
 type IPreviewHandlerVisualsInterface interface {
 	IUnknownInterface
-	SetBackgroundColor(color uint32) HRESULT
+	SetBackgroundColor(color COLORREF) HRESULT
 	SetFont(plf *LOGFONTW) HRESULT
-	SetTextColor(color uint32) HRESULT
+	SetTextColor(color COLORREF) HRESULT
 }
 
 type IPreviewHandlerVisualsVtbl struct {
@@ -9130,7 +9151,7 @@ func (this *IPreviewHandlerVisuals) Vtbl() *IPreviewHandlerVisualsVtbl {
 	return (*IPreviewHandlerVisualsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IPreviewHandlerVisuals) SetBackgroundColor(color uint32) HRESULT {
+func (this *IPreviewHandlerVisuals) SetBackgroundColor(color COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetBackgroundColor, uintptr(unsafe.Pointer(this)), uintptr(color))
 	return HRESULT(ret)
 }
@@ -9140,7 +9161,7 @@ func (this *IPreviewHandlerVisuals) SetFont(plf *LOGFONTW) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IPreviewHandlerVisuals) SetTextColor(color uint32) HRESULT {
+func (this *IPreviewHandlerVisuals) SetTextColor(color COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetTextColor, uintptr(unsafe.Pointer(this)), uintptr(color))
 	return HRESULT(ret)
 }
@@ -9471,7 +9492,7 @@ var IID_IShellBrowser = syscall.GUID{0x000214E2, 0x0000, 0x0000,
 
 type IShellBrowserInterface interface {
 	IOleWindowInterface
-	InsertMenusSB(hmenuShared HMENU, lpMenuWidths *OleMenuGroupWidths) HRESULT
+	InsertMenusSB(hmenuShared HMENU, lpMenuWidths *OLEMENUGROUPWIDTHS) HRESULT
 	SetMenuSB(hmenuShared HMENU, holemenuRes uintptr, hwndActiveObject HWND) HRESULT
 	RemoveMenusSB(hmenuShared HMENU) HRESULT
 	SetStatusTextSB(pszStatusText PWSTR) HRESULT
@@ -9511,7 +9532,7 @@ func (this *IShellBrowser) Vtbl() *IShellBrowserVtbl {
 	return (*IShellBrowserVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellBrowser) InsertMenusSB(hmenuShared HMENU, lpMenuWidths *OleMenuGroupWidths) HRESULT {
+func (this *IShellBrowser) InsertMenusSB(hmenuShared HMENU, lpMenuWidths *OLEMENUGROUPWIDTHS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InsertMenusSB, uintptr(unsafe.Pointer(this)), hmenuShared, uintptr(unsafe.Pointer(lpMenuWidths)))
 	return HRESULT(ret)
 }
@@ -9646,7 +9667,7 @@ type IShellItemInterface interface {
 	BindToHandler(pbc *IBindCtx, bhid *syscall.GUID, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
 	GetParent(ppsi **IShellItem) HRESULT
 	GetDisplayName(sigdnName SIGDN, ppszName *PWSTR) HRESULT
-	GetAttributes(sfgaoMask uint32, psfgaoAttribs *uint32) HRESULT
+	GetAttributes(sfgaoMask SFGAO_FLAGS, psfgaoAttribs *SFGAO_FLAGS) HRESULT
 	Compare(psi *IShellItem, hint uint32, piOrder *int32) HRESULT
 }
 
@@ -9682,7 +9703,7 @@ func (this *IShellItem) GetDisplayName(sigdnName SIGDN, ppszName *PWSTR) HRESULT
 	return HRESULT(ret)
 }
 
-func (this *IShellItem) GetAttributes(sfgaoMask uint32, psfgaoAttribs *uint32) HRESULT {
+func (this *IShellItem) GetAttributes(sfgaoMask SFGAO_FLAGS, psfgaoAttribs *SFGAO_FLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAttributes, uintptr(unsafe.Pointer(this)), uintptr(sfgaoMask), uintptr(unsafe.Pointer(psfgaoAttribs)))
 	return HRESULT(ret)
 }
@@ -10378,7 +10399,7 @@ type IShellItemArrayInterface interface {
 	BindToHandler(pbc *IBindCtx, bhid *syscall.GUID, riid *syscall.GUID, ppvOut unsafe.Pointer) HRESULT
 	GetPropertyStore(flags GETPROPERTYSTOREFLAGS, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
 	GetPropertyDescriptionList(keyType *PROPERTYKEY, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
-	GetAttributes(AttribFlags SIATTRIBFLAGS, sfgaoMask uint32, psfgaoAttribs *uint32) HRESULT
+	GetAttributes(AttribFlags SIATTRIBFLAGS, sfgaoMask SFGAO_FLAGS, psfgaoAttribs *SFGAO_FLAGS) HRESULT
 	GetCount(pdwNumItems *uint32) HRESULT
 	GetItemAt(dwIndex uint32, ppsi **IShellItem) HRESULT
 	EnumItems(ppenumShellItems **IEnumShellItems) HRESULT
@@ -10418,7 +10439,7 @@ func (this *IShellItemArray) GetPropertyDescriptionList(keyType *PROPERTYKEY, ri
 	return HRESULT(ret)
 }
 
-func (this *IShellItemArray) GetAttributes(AttribFlags SIATTRIBFLAGS, sfgaoMask uint32, psfgaoAttribs *uint32) HRESULT {
+func (this *IShellItemArray) GetAttributes(AttribFlags SIATTRIBFLAGS, sfgaoMask SFGAO_FLAGS, psfgaoAttribs *SFGAO_FLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetAttributes, uintptr(unsafe.Pointer(this)), uintptr(AttribFlags), uintptr(sfgaoMask), uintptr(unsafe.Pointer(psfgaoAttribs)))
 	return HRESULT(ret)
 }
@@ -10642,10 +10663,10 @@ var IID_IDropTargetHelper = syscall.GUID{0x4657278B, 0x411B, 0x11D2,
 
 type IDropTargetHelperInterface interface {
 	IUnknownInterface
-	DragEnter(hwndTarget HWND, pDataObject *IDataObject, ppt *POINT, dwEffect uint32) HRESULT
+	DragEnter(hwndTarget HWND, pDataObject *IDataObject, ppt *POINT, dwEffect DROPEFFECT) HRESULT
 	DragLeave() HRESULT
-	DragOver(ppt *POINT, dwEffect uint32) HRESULT
-	Drop(pDataObject *IDataObject, ppt *POINT, dwEffect uint32) HRESULT
+	DragOver(ppt *POINT, dwEffect DROPEFFECT) HRESULT
+	Drop(pDataObject *IDataObject, ppt *POINT, dwEffect DROPEFFECT) HRESULT
 	Show(fShow BOOL) HRESULT
 }
 
@@ -10666,7 +10687,7 @@ func (this *IDropTargetHelper) Vtbl() *IDropTargetHelperVtbl {
 	return (*IDropTargetHelperVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IDropTargetHelper) DragEnter(hwndTarget HWND, pDataObject *IDataObject, ppt *POINT, dwEffect uint32) HRESULT {
+func (this *IDropTargetHelper) DragEnter(hwndTarget HWND, pDataObject *IDataObject, ppt *POINT, dwEffect DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DragEnter, uintptr(unsafe.Pointer(this)), hwndTarget, uintptr(unsafe.Pointer(pDataObject)), uintptr(unsafe.Pointer(ppt)), uintptr(dwEffect))
 	return HRESULT(ret)
 }
@@ -10676,12 +10697,12 @@ func (this *IDropTargetHelper) DragLeave() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IDropTargetHelper) DragOver(ppt *POINT, dwEffect uint32) HRESULT {
+func (this *IDropTargetHelper) DragOver(ppt *POINT, dwEffect DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DragOver, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppt)), uintptr(dwEffect))
 	return HRESULT(ret)
 }
 
-func (this *IDropTargetHelper) Drop(pDataObject *IDataObject, ppt *POINT, dwEffect uint32) HRESULT {
+func (this *IDropTargetHelper) Drop(pDataObject *IDataObject, ppt *POINT, dwEffect DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Drop, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pDataObject)), uintptr(unsafe.Pointer(ppt)), uintptr(dwEffect))
 	return HRESULT(ret)
 }
@@ -12016,7 +12037,7 @@ type IExplorerBrowserInterface interface {
 	IUnknownInterface
 	Initialize(hwndParent HWND, prc *RECT, pfs *FOLDERSETTINGS) HRESULT
 	Destroy() HRESULT
-	SetRect(phdwp *uintptr, rcBrowser RECT) HRESULT
+	SetRect(phdwp *HDWP, rcBrowser RECT) HRESULT
 	SetPropertyBag(pszPropertyBag PWSTR) HRESULT
 	SetEmptyText(pszEmptyText PWSTR) HRESULT
 	SetFolderSettings(pfs *FOLDERSETTINGS) HRESULT
@@ -12068,7 +12089,7 @@ func (this *IExplorerBrowser) Destroy() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IExplorerBrowser) SetRect(phdwp *uintptr, rcBrowser RECT) HRESULT {
+func (this *IExplorerBrowser) SetRect(phdwp *HDWP, rcBrowser RECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetRect, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(phdwp)), uintptr(unsafe.Pointer(&rcBrowser)))
 	return HRESULT(ret)
 }
@@ -15568,8 +15589,8 @@ type IDesktopWallpaperInterface interface {
 	GetMonitorDevicePathAt(monitorIndex uint32, monitorID *PWSTR) HRESULT
 	GetMonitorDevicePathCount(count *uint32) HRESULT
 	GetMonitorRECT(monitorID PWSTR, displayRect *RECT) HRESULT
-	SetBackgroundColor(color uint32) HRESULT
-	GetBackgroundColor(color *uint32) HRESULT
+	SetBackgroundColor(color COLORREF) HRESULT
+	GetBackgroundColor(color *COLORREF) HRESULT
 	SetPosition(position DESKTOP_WALLPAPER_POSITION) HRESULT
 	GetPosition(position *DESKTOP_WALLPAPER_POSITION) HRESULT
 	SetSlideshow(items *IShellItemArray) HRESULT
@@ -15634,12 +15655,12 @@ func (this *IDesktopWallpaper) GetMonitorRECT(monitorID PWSTR, displayRect *RECT
 	return HRESULT(ret)
 }
 
-func (this *IDesktopWallpaper) SetBackgroundColor(color uint32) HRESULT {
+func (this *IDesktopWallpaper) SetBackgroundColor(color COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetBackgroundColor, uintptr(unsafe.Pointer(this)), uintptr(color))
 	return HRESULT(ret)
 }
 
-func (this *IDesktopWallpaper) GetBackgroundColor(color *uint32) HRESULT {
+func (this *IDesktopWallpaper) GetBackgroundColor(color *COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBackgroundColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(color)))
 	return HRESULT(ret)
 }
@@ -17446,8 +17467,8 @@ var IID_IVisualProperties = syscall.GUID{0xE693CF68, 0xD967, 0x4112,
 type IVisualPropertiesInterface interface {
 	IUnknownInterface
 	SetWatermark(hbmp HBITMAP, vpwf VPWATERMARKFLAGS) HRESULT
-	SetColor(vpcf VPCOLORFLAGS, cr uint32) HRESULT
-	GetColor(vpcf VPCOLORFLAGS, pcr *uint32) HRESULT
+	SetColor(vpcf VPCOLORFLAGS, cr COLORREF) HRESULT
+	GetColor(vpcf VPCOLORFLAGS, pcr *COLORREF) HRESULT
 	SetItemHeight(cyItemInPixels int32) HRESULT
 	GetItemHeight(cyItemInPixels *int32) HRESULT
 	SetFont(plf *LOGFONTW, bRedraw BOOL) HRESULT
@@ -17480,12 +17501,12 @@ func (this *IVisualProperties) SetWatermark(hbmp HBITMAP, vpwf VPWATERMARKFLAGS)
 	return HRESULT(ret)
 }
 
-func (this *IVisualProperties) SetColor(vpcf VPCOLORFLAGS, cr uint32) HRESULT {
+func (this *IVisualProperties) SetColor(vpcf VPCOLORFLAGS, cr COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetColor, uintptr(unsafe.Pointer(this)), uintptr(vpcf), uintptr(cr))
 	return HRESULT(ret)
 }
 
-func (this *IVisualProperties) GetColor(vpcf VPCOLORFLAGS, pcr *uint32) HRESULT {
+func (this *IVisualProperties) GetColor(vpcf VPCOLORFLAGS, pcr *COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetColor, uintptr(unsafe.Pointer(this)), uintptr(vpcf), uintptr(unsafe.Pointer(pcr)))
 	return HRESULT(ret)
 }
@@ -18983,7 +19004,7 @@ type INameSpaceTreeControlCustomDrawInterface interface {
 	IUnknownInterface
 	PrePaint(hdc HDC, prc *RECT, plres *LRESULT) HRESULT
 	PostPaint(hdc HDC, prc *RECT) HRESULT
-	ItemPrePaint(hdc HDC, prc *RECT, pnstccdItem *NSTCCUSTOMDRAW, pclrText *uint32, pclrTextBk *uint32, plres *LRESULT) HRESULT
+	ItemPrePaint(hdc HDC, prc *RECT, pnstccdItem *NSTCCUSTOMDRAW, pclrText *COLORREF, pclrTextBk *COLORREF, plres *LRESULT) HRESULT
 	ItemPostPaint(hdc HDC, prc *RECT, pnstccdItem *NSTCCUSTOMDRAW) HRESULT
 }
 
@@ -19013,7 +19034,7 @@ func (this *INameSpaceTreeControlCustomDraw) PostPaint(hdc HDC, prc *RECT) HRESU
 	return HRESULT(ret)
 }
 
-func (this *INameSpaceTreeControlCustomDraw) ItemPrePaint(hdc HDC, prc *RECT, pnstccdItem *NSTCCUSTOMDRAW, pclrText *uint32, pclrTextBk *uint32, plres *LRESULT) HRESULT {
+func (this *INameSpaceTreeControlCustomDraw) ItemPrePaint(hdc HDC, prc *RECT, pnstccdItem *NSTCCUSTOMDRAW, pclrText *COLORREF, pclrTextBk *COLORREF, plres *LRESULT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ItemPrePaint, uintptr(unsafe.Pointer(this)), hdc, uintptr(unsafe.Pointer(prc)), uintptr(unsafe.Pointer(pnstccdItem)), uintptr(unsafe.Pointer(pclrText)), uintptr(unsafe.Pointer(pclrTextBk)), uintptr(unsafe.Pointer(plres)))
 	return HRESULT(ret)
 }
@@ -19327,7 +19348,7 @@ type IWebBrowserInterface interface {
 	Get_Parent(ppDisp **IDispatch) HRESULT
 	Get_Container(ppDisp **IDispatch) HRESULT
 	Get_Document(ppDisp **IDispatch) HRESULT
-	Get_TopLevelContainer(pBool *int16) HRESULT
+	Get_TopLevelContainer(pBool *VARIANT_BOOL) HRESULT
 	Get_Type(Type *BSTR) HRESULT
 	Get_Left(pl *int32) HRESULT
 	Put_Left(Left int32) HRESULT
@@ -19339,7 +19360,7 @@ type IWebBrowserInterface interface {
 	Put_Height(Height int32) HRESULT
 	Get_LocationName(LocationName *BSTR) HRESULT
 	Get_LocationURL(LocationURL *BSTR) HRESULT
-	Get_Busy(pBool *int16) HRESULT
+	Get_Busy(pBool *VARIANT_BOOL) HRESULT
 }
 
 type IWebBrowserVtbl struct {
@@ -19439,7 +19460,7 @@ func (this *IWebBrowser) Get_Document(ppDisp **IDispatch) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) Get_TopLevelContainer(pBool *int16) HRESULT {
+func (this *IWebBrowser) Get_TopLevelContainer(pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TopLevelContainer, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
@@ -19499,7 +19520,7 @@ func (this *IWebBrowser) Get_LocationURL(LocationURL *BSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser) Get_Busy(pBool *int16) HRESULT {
+func (this *IWebBrowser) Get_Busy(pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Busy, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
@@ -19538,18 +19559,18 @@ type IWebBrowserAppInterface interface {
 	Get_HWND(pHWND *SHANDLE_PTR) HRESULT
 	Get_FullName(FullName *BSTR) HRESULT
 	Get_Path(Path *BSTR) HRESULT
-	Get_Visible(pBool *int16) HRESULT
-	Put_Visible(Value int16) HRESULT
-	Get_StatusBar(pBool *int16) HRESULT
-	Put_StatusBar(Value int16) HRESULT
+	Get_Visible(pBool *VARIANT_BOOL) HRESULT
+	Put_Visible(Value VARIANT_BOOL) HRESULT
+	Get_StatusBar(pBool *VARIANT_BOOL) HRESULT
+	Put_StatusBar(Value VARIANT_BOOL) HRESULT
 	Get_StatusText(StatusText *BSTR) HRESULT
 	Put_StatusText(StatusText BSTR) HRESULT
 	Get_ToolBar(Value *int32) HRESULT
 	Put_ToolBar(Value int32) HRESULT
-	Get_MenuBar(Value *int16) HRESULT
-	Put_MenuBar(Value int16) HRESULT
-	Get_FullScreen(pbFullScreen *int16) HRESULT
-	Put_FullScreen(bFullScreen int16) HRESULT
+	Get_MenuBar(Value *VARIANT_BOOL) HRESULT
+	Put_MenuBar(Value VARIANT_BOOL) HRESULT
+	Get_FullScreen(pbFullScreen *VARIANT_BOOL) HRESULT
+	Put_FullScreen(bFullScreen VARIANT_BOOL) HRESULT
 }
 
 type IWebBrowserAppVtbl struct {
@@ -19624,22 +19645,22 @@ func (this *IWebBrowserApp) Get_Path(Path *BSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Get_Visible(pBool *int16) HRESULT {
+func (this *IWebBrowserApp) Get_Visible(pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Visible, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Put_Visible(Value int16) HRESULT {
+func (this *IWebBrowserApp) Put_Visible(Value VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Visible, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Get_StatusBar(pBool *int16) HRESULT {
+func (this *IWebBrowserApp) Get_StatusBar(pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_StatusBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Put_StatusBar(Value int16) HRESULT {
+func (this *IWebBrowserApp) Put_StatusBar(Value VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_StatusBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
@@ -19664,22 +19685,22 @@ func (this *IWebBrowserApp) Put_ToolBar(Value int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Get_MenuBar(Value *int16) HRESULT {
+func (this *IWebBrowserApp) Get_MenuBar(Value *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_MenuBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Put_MenuBar(Value int16) HRESULT {
+func (this *IWebBrowserApp) Put_MenuBar(Value VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_MenuBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Get_FullScreen(pbFullScreen *int16) HRESULT {
+func (this *IWebBrowserApp) Get_FullScreen(pbFullScreen *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_FullScreen, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbFullScreen)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowserApp) Put_FullScreen(bFullScreen int16) HRESULT {
+func (this *IWebBrowserApp) Put_FullScreen(bFullScreen VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_FullScreen, uintptr(unsafe.Pointer(this)), uintptr(bFullScreen))
 	return HRESULT(ret)
 }
@@ -19695,20 +19716,20 @@ type IWebBrowser2Interface interface {
 	ExecWB(cmdID OLECMDID, cmdexecopt OLECMDEXECOPT, pvaIn *VARIANT, pvaOut *VARIANT) HRESULT
 	ShowBrowserBar(pvaClsid *VARIANT, pvarShow *VARIANT, pvarSize *VARIANT) HRESULT
 	Get_ReadyState(plReadyState *READYSTATE) HRESULT
-	Get_Offline(pbOffline *int16) HRESULT
-	Put_Offline(bOffline int16) HRESULT
-	Get_Silent(pbSilent *int16) HRESULT
-	Put_Silent(bSilent int16) HRESULT
-	Get_RegisterAsBrowser(pbRegister *int16) HRESULT
-	Put_RegisterAsBrowser(bRegister int16) HRESULT
-	Get_RegisterAsDropTarget(pbRegister *int16) HRESULT
-	Put_RegisterAsDropTarget(bRegister int16) HRESULT
-	Get_TheaterMode(pbRegister *int16) HRESULT
-	Put_TheaterMode(bRegister int16) HRESULT
-	Get_AddressBar(Value *int16) HRESULT
-	Put_AddressBar(Value int16) HRESULT
-	Get_Resizable(Value *int16) HRESULT
-	Put_Resizable(Value int16) HRESULT
+	Get_Offline(pbOffline *VARIANT_BOOL) HRESULT
+	Put_Offline(bOffline VARIANT_BOOL) HRESULT
+	Get_Silent(pbSilent *VARIANT_BOOL) HRESULT
+	Put_Silent(bSilent VARIANT_BOOL) HRESULT
+	Get_RegisterAsBrowser(pbRegister *VARIANT_BOOL) HRESULT
+	Put_RegisterAsBrowser(bRegister VARIANT_BOOL) HRESULT
+	Get_RegisterAsDropTarget(pbRegister *VARIANT_BOOL) HRESULT
+	Put_RegisterAsDropTarget(bRegister VARIANT_BOOL) HRESULT
+	Get_TheaterMode(pbRegister *VARIANT_BOOL) HRESULT
+	Put_TheaterMode(bRegister VARIANT_BOOL) HRESULT
+	Get_AddressBar(Value *VARIANT_BOOL) HRESULT
+	Put_AddressBar(Value VARIANT_BOOL) HRESULT
+	Get_Resizable(Value *VARIANT_BOOL) HRESULT
+	Put_Resizable(Value VARIANT_BOOL) HRESULT
 }
 
 type IWebBrowser2Vtbl struct {
@@ -19767,72 +19788,72 @@ func (this *IWebBrowser2) Get_ReadyState(plReadyState *READYSTATE) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Get_Offline(pbOffline *int16) HRESULT {
+func (this *IWebBrowser2) Get_Offline(pbOffline *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Offline, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbOffline)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Put_Offline(bOffline int16) HRESULT {
+func (this *IWebBrowser2) Put_Offline(bOffline VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Offline, uintptr(unsafe.Pointer(this)), uintptr(bOffline))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Get_Silent(pbSilent *int16) HRESULT {
+func (this *IWebBrowser2) Get_Silent(pbSilent *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Silent, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbSilent)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Put_Silent(bSilent int16) HRESULT {
+func (this *IWebBrowser2) Put_Silent(bSilent VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Silent, uintptr(unsafe.Pointer(this)), uintptr(bSilent))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Get_RegisterAsBrowser(pbRegister *int16) HRESULT {
+func (this *IWebBrowser2) Get_RegisterAsBrowser(pbRegister *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RegisterAsBrowser, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Put_RegisterAsBrowser(bRegister int16) HRESULT {
+func (this *IWebBrowser2) Put_RegisterAsBrowser(bRegister VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_RegisterAsBrowser, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Get_RegisterAsDropTarget(pbRegister *int16) HRESULT {
+func (this *IWebBrowser2) Get_RegisterAsDropTarget(pbRegister *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_RegisterAsDropTarget, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Put_RegisterAsDropTarget(bRegister int16) HRESULT {
+func (this *IWebBrowser2) Put_RegisterAsDropTarget(bRegister VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_RegisterAsDropTarget, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Get_TheaterMode(pbRegister *int16) HRESULT {
+func (this *IWebBrowser2) Get_TheaterMode(pbRegister *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_TheaterMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbRegister)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Put_TheaterMode(bRegister int16) HRESULT {
+func (this *IWebBrowser2) Put_TheaterMode(bRegister VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_TheaterMode, uintptr(unsafe.Pointer(this)), uintptr(bRegister))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Get_AddressBar(Value *int16) HRESULT {
+func (this *IWebBrowser2) Get_AddressBar(Value *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_AddressBar, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Put_AddressBar(Value int16) HRESULT {
+func (this *IWebBrowser2) Put_AddressBar(Value VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_AddressBar, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Get_Resizable(Value *int16) HRESULT {
+func (this *IWebBrowser2) Get_Resizable(Value *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_Resizable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(Value)))
 	return HRESULT(ret)
 }
 
-func (this *IWebBrowser2) Put_Resizable(Value int16) HRESULT {
+func (this *IWebBrowser2) Put_Resizable(Value VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_Resizable, uintptr(unsafe.Pointer(this)), uintptr(Value))
 	return HRESULT(ret)
 }
@@ -19890,10 +19911,10 @@ type IShellWindowsInterface interface {
 	RegisterPending(lThreadId int32, pvarloc *VARIANT, pvarlocRoot *VARIANT, swClass int32, plCookie *int32) HRESULT
 	Revoke(lCookie int32) HRESULT
 	OnNavigate(lCookie int32, pvarLoc *VARIANT) HRESULT
-	OnActivated(lCookie int32, fActive int16) HRESULT
+	OnActivated(lCookie int32, fActive VARIANT_BOOL) HRESULT
 	FindWindowSW(pvarLoc *VARIANT, pvarLocRoot *VARIANT, swClass int32, phwnd *int32, swfwOptions int32, ppdispOut **IDispatch) HRESULT
 	OnCreated(lCookie int32, punk *IUnknown) HRESULT
-	ProcessAttachDetach(fAttach int16) HRESULT
+	ProcessAttachDetach(fAttach VARIANT_BOOL) HRESULT
 }
 
 type IShellWindowsVtbl struct {
@@ -19954,7 +19975,7 @@ func (this *IShellWindows) OnNavigate(lCookie int32, pvarLoc *VARIANT) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellWindows) OnActivated(lCookie int32, fActive int16) HRESULT {
+func (this *IShellWindows) OnActivated(lCookie int32, fActive VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnActivated, uintptr(unsafe.Pointer(this)), uintptr(lCookie), uintptr(fActive))
 	return HRESULT(ret)
 }
@@ -19969,7 +19990,7 @@ func (this *IShellWindows) OnCreated(lCookie int32, punk *IUnknown) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellWindows) ProcessAttachDetach(fAttach int16) HRESULT {
+func (this *IShellWindows) ProcessAttachDetach(fAttach VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ProcessAttachDetach, uintptr(unsafe.Pointer(this)), uintptr(fAttach))
 	return HRESULT(ret)
 }
@@ -19986,9 +20007,9 @@ type IShellUIHelperInterface interface {
 	AddFavorite(URL BSTR, Title *VARIANT) HRESULT
 	AddChannel(URL BSTR) HRESULT
 	AddDesktopComponent(URL BSTR, Type BSTR, Left *VARIANT, Top *VARIANT, Width *VARIANT, Height *VARIANT) HRESULT
-	IsSubscribed(URL BSTR, pBool *int16) HRESULT
+	IsSubscribed(URL BSTR, pBool *VARIANT_BOOL) HRESULT
 	NavigateAndFind(URL BSTR, strQuery BSTR, varTargetFrame *VARIANT) HRESULT
-	ImportExportFavorites(fImport int16, strImpExpPath BSTR) HRESULT
+	ImportExportFavorites(fImport VARIANT_BOOL, strImpExpPath BSTR) HRESULT
 	AutoCompleteSaveForm(Form *VARIANT) HRESULT
 	AutoScan(strSearch BSTR, strFailureUrl BSTR, pvarTargetFrame *VARIANT) HRESULT
 	AutoCompleteAttach(Reserved *VARIANT) HRESULT
@@ -20050,7 +20071,7 @@ func (this *IShellUIHelper) AddDesktopComponent(URL BSTR, Type BSTR, Left *VARIA
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper) IsSubscribed(URL BSTR, pBool *int16) HRESULT {
+func (this *IShellUIHelper) IsSubscribed(URL BSTR, pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsSubscribed, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(URL)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
@@ -20060,7 +20081,7 @@ func (this *IShellUIHelper) NavigateAndFind(URL BSTR, strQuery BSTR, varTargetFr
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper) ImportExportFavorites(fImport int16, strImpExpPath BSTR) HRESULT {
+func (this *IShellUIHelper) ImportExportFavorites(fImport VARIANT_BOOL, strImpExpPath BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ImportExportFavorites, uintptr(unsafe.Pointer(this)), uintptr(fImport), uintptr(unsafe.Pointer(strImpExpPath)))
 	return HRESULT(ret)
 }
@@ -20094,18 +20115,18 @@ type IShellUIHelper2Interface interface {
 	AddSearchProvider(URL BSTR) HRESULT
 	RunOnceShown() HRESULT
 	SkipRunOnce() HRESULT
-	CustomizeSettings(fSQM int16, fPhishing int16, bstrLocale BSTR) HRESULT
-	SqmEnabled(pfEnabled *int16) HRESULT
-	PhishingEnabled(pfEnabled *int16) HRESULT
+	CustomizeSettings(fSQM VARIANT_BOOL, fPhishing VARIANT_BOOL, bstrLocale BSTR) HRESULT
+	SqmEnabled(pfEnabled *VARIANT_BOOL) HRESULT
+	PhishingEnabled(pfEnabled *VARIANT_BOOL) HRESULT
 	BrandImageUri(pbstrUri *BSTR) HRESULT
 	SkipTabsWelcome() HRESULT
 	DiagnoseConnection() HRESULT
-	CustomizeClearType(fSet int16) HRESULT
+	CustomizeClearType(fSet VARIANT_BOOL) HRESULT
 	IsSearchProviderInstalled(URL BSTR, pdwResult *uint32) HRESULT
-	IsSearchMigrated(pfMigrated *int16) HRESULT
+	IsSearchMigrated(pfMigrated *VARIANT_BOOL) HRESULT
 	DefaultSearchProvider(pbstrName *BSTR) HRESULT
-	RunOnceRequiredSettingsComplete(fComplete int16) HRESULT
-	RunOnceHasShown(pfShown *int16) HRESULT
+	RunOnceRequiredSettingsComplete(fComplete VARIANT_BOOL) HRESULT
+	RunOnceHasShown(pfShown *VARIANT_BOOL) HRESULT
 	SearchGuideUrl(pbstrUrl *BSTR) HRESULT
 }
 
@@ -20152,17 +20173,17 @@ func (this *IShellUIHelper2) SkipRunOnce() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper2) CustomizeSettings(fSQM int16, fPhishing int16, bstrLocale BSTR) HRESULT {
+func (this *IShellUIHelper2) CustomizeSettings(fSQM VARIANT_BOOL, fPhishing VARIANT_BOOL, bstrLocale BSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CustomizeSettings, uintptr(unsafe.Pointer(this)), uintptr(fSQM), uintptr(fPhishing), uintptr(unsafe.Pointer(bstrLocale)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper2) SqmEnabled(pfEnabled *int16) HRESULT {
+func (this *IShellUIHelper2) SqmEnabled(pfEnabled *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SqmEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper2) PhishingEnabled(pfEnabled *int16) HRESULT {
+func (this *IShellUIHelper2) PhishingEnabled(pfEnabled *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().PhishingEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
@@ -20182,7 +20203,7 @@ func (this *IShellUIHelper2) DiagnoseConnection() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper2) CustomizeClearType(fSet int16) HRESULT {
+func (this *IShellUIHelper2) CustomizeClearType(fSet VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CustomizeClearType, uintptr(unsafe.Pointer(this)), uintptr(fSet))
 	return HRESULT(ret)
 }
@@ -20192,7 +20213,7 @@ func (this *IShellUIHelper2) IsSearchProviderInstalled(URL BSTR, pdwResult *uint
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper2) IsSearchMigrated(pfMigrated *int16) HRESULT {
+func (this *IShellUIHelper2) IsSearchMigrated(pfMigrated *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsSearchMigrated, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfMigrated)))
 	return HRESULT(ret)
 }
@@ -20202,12 +20223,12 @@ func (this *IShellUIHelper2) DefaultSearchProvider(pbstrName *BSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper2) RunOnceRequiredSettingsComplete(fComplete int16) HRESULT {
+func (this *IShellUIHelper2) RunOnceRequiredSettingsComplete(fComplete VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RunOnceRequiredSettingsComplete, uintptr(unsafe.Pointer(this)), uintptr(fComplete))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper2) RunOnceHasShown(pfShown *int16) HRESULT {
+func (this *IShellUIHelper2) RunOnceHasShown(pfShown *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RunOnceHasShown, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfShown)))
 	return HRESULT(ret)
 }
@@ -20225,14 +20246,14 @@ type IShellUIHelper3Interface interface {
 	IShellUIHelper2Interface
 	AddService(URL BSTR) HRESULT
 	IsServiceInstalled(URL BSTR, Verb BSTR, pdwResult *uint32) HRESULT
-	InPrivateFilteringEnabled(pfEnabled *int16) HRESULT
+	InPrivateFilteringEnabled(pfEnabled *VARIANT_BOOL) HRESULT
 	AddToFavoritesBar(URL BSTR, Title BSTR, Type *VARIANT) HRESULT
 	BuildNewTabPage() HRESULT
-	SetRecentlyClosedVisible(fVisible int16) HRESULT
-	SetActivitiesVisible(fVisible int16) HRESULT
+	SetRecentlyClosedVisible(fVisible VARIANT_BOOL) HRESULT
+	SetActivitiesVisible(fVisible VARIANT_BOOL) HRESULT
 	ContentDiscoveryReset() HRESULT
-	IsSuggestedSitesEnabled(pfEnabled *int16) HRESULT
-	EnableSuggestedSites(fEnable int16) HRESULT
+	IsSuggestedSitesEnabled(pfEnabled *VARIANT_BOOL) HRESULT
+	EnableSuggestedSites(fEnable VARIANT_BOOL) HRESULT
 	NavigateToSuggestedSites(bstrRelativeUrl BSTR) HRESULT
 	ShowTabsHelp() HRESULT
 	ShowInPrivateHelp() HRESULT
@@ -20273,7 +20294,7 @@ func (this *IShellUIHelper3) IsServiceInstalled(URL BSTR, Verb BSTR, pdwResult *
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper3) InPrivateFilteringEnabled(pfEnabled *int16) HRESULT {
+func (this *IShellUIHelper3) InPrivateFilteringEnabled(pfEnabled *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InPrivateFilteringEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
@@ -20288,12 +20309,12 @@ func (this *IShellUIHelper3) BuildNewTabPage() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper3) SetRecentlyClosedVisible(fVisible int16) HRESULT {
+func (this *IShellUIHelper3) SetRecentlyClosedVisible(fVisible VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetRecentlyClosedVisible, uintptr(unsafe.Pointer(this)), uintptr(fVisible))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper3) SetActivitiesVisible(fVisible int16) HRESULT {
+func (this *IShellUIHelper3) SetActivitiesVisible(fVisible VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetActivitiesVisible, uintptr(unsafe.Pointer(this)), uintptr(fVisible))
 	return HRESULT(ret)
 }
@@ -20303,12 +20324,12 @@ func (this *IShellUIHelper3) ContentDiscoveryReset() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper3) IsSuggestedSitesEnabled(pfEnabled *int16) HRESULT {
+func (this *IShellUIHelper3) IsSuggestedSitesEnabled(pfEnabled *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().IsSuggestedSitesEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper3) EnableSuggestedSites(fEnable int16) HRESULT {
+func (this *IShellUIHelper3) EnableSuggestedSites(fEnable VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EnableSuggestedSites, uintptr(unsafe.Pointer(this)), uintptr(fEnable))
 	return HRESULT(ret)
 }
@@ -20334,10 +20355,10 @@ var IID_IShellUIHelper4 = syscall.GUID{0xB36E6A53, 0x8073, 0x499E,
 
 type IShellUIHelper4Interface interface {
 	IShellUIHelper3Interface
-	MsIsSiteMode(pfSiteMode *int16) HRESULT
+	MsIsSiteMode(pfSiteMode *VARIANT_BOOL) HRESULT
 	MsSiteModeShowThumbBar() HRESULT
 	MsSiteModeAddThumbBarButton(bstrIconURL BSTR, bstrTooltip BSTR, pvarButtonID *VARIANT) HRESULT
-	MsSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled int16, fVisible int16) HRESULT
+	MsSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled VARIANT_BOOL, fVisible VARIANT_BOOL) HRESULT
 	MsSiteModeSetIconOverlay(IconUrl BSTR, pvarDescription *VARIANT) HRESULT
 	MsSiteModeClearIconOverlay() HRESULT
 	MsAddSiteMode() HRESULT
@@ -20348,10 +20369,10 @@ type IShellUIHelper4Interface interface {
 	MsSiteModeAddButtonStyle(uiButtonID VARIANT, bstrIconUrl BSTR, bstrTooltip BSTR, pvarStyleID *VARIANT) HRESULT
 	MsSiteModeShowButtonStyle(uiButtonID VARIANT, uiStyleID VARIANT) HRESULT
 	MsSiteModeActivate() HRESULT
-	MsIsSiteModeFirstRun(fPreserveState int16, puiFirstRun *VARIANT) HRESULT
+	MsIsSiteModeFirstRun(fPreserveState VARIANT_BOOL, puiFirstRun *VARIANT) HRESULT
 	MsAddTrackingProtectionList(URL BSTR, bstrFilterName BSTR) HRESULT
-	MsTrackingProtectionEnabled(pfEnabled *int16) HRESULT
-	MsActiveXFilteringEnabled(pfEnabled *int16) HRESULT
+	MsTrackingProtectionEnabled(pfEnabled *VARIANT_BOOL) HRESULT
+	MsActiveXFilteringEnabled(pfEnabled *VARIANT_BOOL) HRESULT
 }
 
 type IShellUIHelper4Vtbl struct {
@@ -20384,7 +20405,7 @@ func (this *IShellUIHelper4) Vtbl() *IShellUIHelper4Vtbl {
 	return (*IShellUIHelper4Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellUIHelper4) MsIsSiteMode(pfSiteMode *int16) HRESULT {
+func (this *IShellUIHelper4) MsIsSiteMode(pfSiteMode *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsIsSiteMode, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfSiteMode)))
 	return HRESULT(ret)
 }
@@ -20399,7 +20420,7 @@ func (this *IShellUIHelper4) MsSiteModeAddThumbBarButton(bstrIconURL BSTR, bstrT
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) MsSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled int16, fVisible int16) HRESULT {
+func (this *IShellUIHelper4) MsSiteModeUpdateThumbBarButton(ButtonID VARIANT, fEnabled VARIANT_BOOL, fVisible VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsSiteModeUpdateThumbBarButton, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(&ButtonID)), uintptr(fEnabled), uintptr(fVisible))
 	return HRESULT(ret)
 }
@@ -20454,7 +20475,7 @@ func (this *IShellUIHelper4) MsSiteModeActivate() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) MsIsSiteModeFirstRun(fPreserveState int16, puiFirstRun *VARIANT) HRESULT {
+func (this *IShellUIHelper4) MsIsSiteModeFirstRun(fPreserveState VARIANT_BOOL, puiFirstRun *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsIsSiteModeFirstRun, uintptr(unsafe.Pointer(this)), uintptr(fPreserveState), uintptr(unsafe.Pointer(puiFirstRun)))
 	return HRESULT(ret)
 }
@@ -20464,12 +20485,12 @@ func (this *IShellUIHelper4) MsAddTrackingProtectionList(URL BSTR, bstrFilterNam
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) MsTrackingProtectionEnabled(pfEnabled *int16) HRESULT {
+func (this *IShellUIHelper4) MsTrackingProtectionEnabled(pfEnabled *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsTrackingProtectionEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper4) MsActiveXFilteringEnabled(pfEnabled *int16) HRESULT {
+func (this *IShellUIHelper4) MsActiveXFilteringEnabled(pfEnabled *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsActiveXFilteringEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pfEnabled)))
 	return HRESULT(ret)
 }
@@ -20486,7 +20507,7 @@ type IShellUIHelper5Interface interface {
 	MsSiteModeClearBadge() HRESULT
 	MsDiagnoseConnectionUILess() HRESULT
 	MsLaunchNetworkClientHelp() HRESULT
-	MsChangeDefaultBrowser(fChange int16) HRESULT
+	MsChangeDefaultBrowser(fChange VARIANT_BOOL) HRESULT
 }
 
 type IShellUIHelper5Vtbl struct {
@@ -20538,7 +20559,7 @@ func (this *IShellUIHelper5) MsLaunchNetworkClientHelp() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper5) MsChangeDefaultBrowser(fChange int16) HRESULT {
+func (this *IShellUIHelper5) MsChangeDefaultBrowser(fChange VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsChangeDefaultBrowser, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
@@ -20553,11 +20574,11 @@ type IShellUIHelper6Interface interface {
 	MsStartPeriodicTileUpdate(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
 	MsStartPeriodicTileUpdateBatch(pollingUris VARIANT, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
 	MsClearTile() HRESULT
-	MsEnableTileNotificationQueue(fChange int16) HRESULT
+	MsEnableTileNotificationQueue(fChange VARIANT_BOOL) HRESULT
 	MsPinnedSiteState(pvarSiteState *VARIANT) HRESULT
-	MsEnableTileNotificationQueueForSquare150x150(fChange int16) HRESULT
-	MsEnableTileNotificationQueueForWide310x150(fChange int16) HRESULT
-	MsEnableTileNotificationQueueForSquare310x310(fChange int16) HRESULT
+	MsEnableTileNotificationQueueForSquare150x150(fChange VARIANT_BOOL) HRESULT
+	MsEnableTileNotificationQueueForWide310x150(fChange VARIANT_BOOL) HRESULT
+	MsEnableTileNotificationQueueForSquare310x310(fChange VARIANT_BOOL) HRESULT
 	MsScheduledTileNotification(bstrNotificationXml BSTR, bstrNotificationId BSTR, bstrNotificationTag BSTR, startTime VARIANT, expirationTime VARIANT) HRESULT
 	MsRemoveScheduledTileNotification(bstrNotificationId BSTR) HRESULT
 	MsStartPeriodicBadgeUpdate(pollingUri BSTR, startTime VARIANT, uiUpdateRecurrence VARIANT) HRESULT
@@ -20611,7 +20632,7 @@ func (this *IShellUIHelper6) MsClearTile() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) MsEnableTileNotificationQueue(fChange int16) HRESULT {
+func (this *IShellUIHelper6) MsEnableTileNotificationQueue(fChange VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueue, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
@@ -20621,17 +20642,17 @@ func (this *IShellUIHelper6) MsPinnedSiteState(pvarSiteState *VARIANT) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) MsEnableTileNotificationQueueForSquare150x150(fChange int16) HRESULT {
+func (this *IShellUIHelper6) MsEnableTileNotificationQueueForSquare150x150(fChange VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueueForSquare150x150, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) MsEnableTileNotificationQueueForWide310x150(fChange int16) HRESULT {
+func (this *IShellUIHelper6) MsEnableTileNotificationQueueForWide310x150(fChange VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueueForWide310x150, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper6) MsEnableTileNotificationQueueForSquare310x310(fChange int16) HRESULT {
+func (this *IShellUIHelper6) MsEnableTileNotificationQueueForSquare310x310(fChange VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MsEnableTileNotificationQueueForSquare310x310, uintptr(unsafe.Pointer(this)), uintptr(fChange))
 	return HRESULT(ret)
 }
@@ -20667,15 +20688,15 @@ var IID_IShellUIHelper7 = syscall.GUID{0x60E567C8, 0x9573, 0x4AB2,
 
 type IShellUIHelper7Interface interface {
 	IShellUIHelper6Interface
-	SetExperimentalFlag(bstrFlagString BSTR, vfFlag int16) HRESULT
-	GetExperimentalFlag(bstrFlagString BSTR, vfFlag *int16) HRESULT
+	SetExperimentalFlag(bstrFlagString BSTR, vfFlag VARIANT_BOOL) HRESULT
+	GetExperimentalFlag(bstrFlagString BSTR, vfFlag *VARIANT_BOOL) HRESULT
 	SetExperimentalValue(bstrValueString BSTR, dwValue uint32) HRESULT
 	GetExperimentalValue(bstrValueString BSTR, pdwValue *uint32) HRESULT
 	ResetAllExperimentalFlagsAndValues() HRESULT
-	GetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag *int16) HRESULT
-	SetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag int16) HRESULT
-	HasNeedIEAutoLaunchFlag(bstrUrl BSTR, exists *int16) HRESULT
-	LaunchIE(bstrUrl BSTR, automated int16) HRESULT
+	GetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag *VARIANT_BOOL) HRESULT
+	SetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag VARIANT_BOOL) HRESULT
+	HasNeedIEAutoLaunchFlag(bstrUrl BSTR, exists *VARIANT_BOOL) HRESULT
+	LaunchIE(bstrUrl BSTR, automated VARIANT_BOOL) HRESULT
 }
 
 type IShellUIHelper7Vtbl struct {
@@ -20699,12 +20720,12 @@ func (this *IShellUIHelper7) Vtbl() *IShellUIHelper7Vtbl {
 	return (*IShellUIHelper7Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellUIHelper7) SetExperimentalFlag(bstrFlagString BSTR, vfFlag int16) HRESULT {
+func (this *IShellUIHelper7) SetExperimentalFlag(bstrFlagString BSTR, vfFlag VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetExperimentalFlag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrFlagString)), uintptr(vfFlag))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper7) GetExperimentalFlag(bstrFlagString BSTR, vfFlag *int16) HRESULT {
+func (this *IShellUIHelper7) GetExperimentalFlag(bstrFlagString BSTR, vfFlag *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetExperimentalFlag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrFlagString)), uintptr(unsafe.Pointer(vfFlag)))
 	return HRESULT(ret)
 }
@@ -20724,22 +20745,22 @@ func (this *IShellUIHelper7) ResetAllExperimentalFlagsAndValues() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper7) GetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag *int16) HRESULT {
+func (this *IShellUIHelper7) GetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetNeedIEAutoLaunchFlag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrUrl)), uintptr(unsafe.Pointer(flag)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper7) SetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag int16) HRESULT {
+func (this *IShellUIHelper7) SetNeedIEAutoLaunchFlag(bstrUrl BSTR, flag VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetNeedIEAutoLaunchFlag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrUrl)), uintptr(flag))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper7) HasNeedIEAutoLaunchFlag(bstrUrl BSTR, exists *int16) HRESULT {
+func (this *IShellUIHelper7) HasNeedIEAutoLaunchFlag(bstrUrl BSTR, exists *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().HasNeedIEAutoLaunchFlag, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrUrl)), uintptr(unsafe.Pointer(exists)))
 	return HRESULT(ret)
 }
 
-func (this *IShellUIHelper7) LaunchIE(bstrUrl BSTR, automated int16) HRESULT {
+func (this *IShellUIHelper7) LaunchIE(bstrUrl BSTR, automated VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().LaunchIE, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrUrl)), uintptr(automated))
 	return HRESULT(ret)
 }
@@ -20875,9 +20896,9 @@ type IShellFavoritesNameSpaceInterface interface {
 	Export() HRESULT
 	InvokeContextMenuCommand(strCommand BSTR) HRESULT
 	MoveSelectionTo() HRESULT
-	Get_SubscriptionsEnabled(pBool *int16) HRESULT
-	CreateSubscriptionForSelection(pBool *int16) HRESULT
-	DeleteSubscriptionForSelection(pBool *int16) HRESULT
+	Get_SubscriptionsEnabled(pBool *VARIANT_BOOL) HRESULT
+	CreateSubscriptionForSelection(pBool *VARIANT_BOOL) HRESULT
+	DeleteSubscriptionForSelection(pBool *VARIANT_BOOL) HRESULT
 	SetRoot(bstrFullPath BSTR) HRESULT
 }
 
@@ -20951,17 +20972,17 @@ func (this *IShellFavoritesNameSpace) MoveSelectionTo() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellFavoritesNameSpace) Get_SubscriptionsEnabled(pBool *int16) HRESULT {
+func (this *IShellFavoritesNameSpace) Get_SubscriptionsEnabled(pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_SubscriptionsEnabled, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFavoritesNameSpace) CreateSubscriptionForSelection(pBool *int16) HRESULT {
+func (this *IShellFavoritesNameSpace) CreateSubscriptionForSelection(pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().CreateSubscriptionForSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
 
-func (this *IShellFavoritesNameSpace) DeleteSubscriptionForSelection(pBool *int16) HRESULT {
+func (this *IShellFavoritesNameSpace) DeleteSubscriptionForSelection(pBool *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().DeleteSubscriptionForSelection, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pBool)))
 	return HRESULT(ret)
 }
@@ -21350,10 +21371,10 @@ type FolderItemInterface interface {
 	Get_Path(pbs *BSTR) HRESULT
 	Get_GetLink(ppid **IDispatch) HRESULT
 	Get_GetFolder(ppid **IDispatch) HRESULT
-	Get_IsLink(pb *int16) HRESULT
-	Get_IsFolder(pb *int16) HRESULT
-	Get_IsFileSystem(pb *int16) HRESULT
-	Get_IsBrowsable(pb *int16) HRESULT
+	Get_IsLink(pb *VARIANT_BOOL) HRESULT
+	Get_IsFolder(pb *VARIANT_BOOL) HRESULT
+	Get_IsFileSystem(pb *VARIANT_BOOL) HRESULT
+	Get_IsBrowsable(pb *VARIANT_BOOL) HRESULT
 	Get_ModifyDate(pdt *float64) HRESULT
 	Put_ModifyDate(dt float64) HRESULT
 	Get_Size(pul *int32) HRESULT
@@ -21426,22 +21447,22 @@ func (this *FolderItem) Get_GetFolder(ppid **IDispatch) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) Get_IsLink(pb *int16) HRESULT {
+func (this *FolderItem) Get_IsLink(pb *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsLink, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) Get_IsFolder(pb *int16) HRESULT {
+func (this *FolderItem) Get_IsFolder(pb *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsFolder, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) Get_IsFileSystem(pb *int16) HRESULT {
+func (this *FolderItem) Get_IsFileSystem(pb *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsFileSystem, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
 
-func (this *FolderItem) Get_IsBrowsable(pb *int16) HRESULT {
+func (this *FolderItem) Get_IsBrowsable(pb *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_IsBrowsable, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pb)))
 	return HRESULT(ret)
 }
@@ -21733,7 +21754,7 @@ type Folder2Interface interface {
 	Get_Self(ppfi **FolderItem) HRESULT
 	Get_OfflineStatus(pul *int32) HRESULT
 	Synchronize() HRESULT
-	Get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *int16) HRESULT
+	Get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *VARIANT_BOOL) HRESULT
 	DismissedWebViewBarricade() HRESULT
 }
 
@@ -21769,7 +21790,7 @@ func (this *Folder2) Synchronize() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *Folder2) Get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *int16) HRESULT {
+func (this *Folder2) Get_HaveToShowWebViewBarricade(pbHaveToShowWebViewBarricade *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_HaveToShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbHaveToShowWebViewBarricade)))
 	return HRESULT(ret)
 }
@@ -21785,8 +21806,8 @@ var IID_Folder3 = syscall.GUID{0xA7AE5F64, 0xC4D7, 0x4D7F,
 
 type Folder3Interface interface {
 	Folder2Interface
-	Get_ShowWebViewBarricade(pbShowWebViewBarricade *int16) HRESULT
-	Put_ShowWebViewBarricade(bShowWebViewBarricade int16) HRESULT
+	Get_ShowWebViewBarricade(pbShowWebViewBarricade *VARIANT_BOOL) HRESULT
+	Put_ShowWebViewBarricade(bShowWebViewBarricade VARIANT_BOOL) HRESULT
 }
 
 type Folder3Vtbl struct {
@@ -21803,12 +21824,12 @@ func (this *Folder3) Vtbl() *Folder3Vtbl {
 	return (*Folder3Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *Folder3) Get_ShowWebViewBarricade(pbShowWebViewBarricade *int16) HRESULT {
+func (this *Folder3) Get_ShowWebViewBarricade(pbShowWebViewBarricade *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_ShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbShowWebViewBarricade)))
 	return HRESULT(ret)
 }
 
-func (this *Folder3) Put_ShowWebViewBarricade(bShowWebViewBarricade int16) HRESULT {
+func (this *Folder3) Put_ShowWebViewBarricade(bShowWebViewBarricade VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Put_ShowWebViewBarricade, uintptr(unsafe.Pointer(this)), uintptr(bShowWebViewBarricade))
 	return HRESULT(ret)
 }
@@ -22574,7 +22595,7 @@ type IShellDispatch4Interface interface {
 	WindowsSecurity() HRESULT
 	ToggleDesktop() HRESULT
 	ExplorerPolicy(bstrPolicyName BSTR, pValue *VARIANT) HRESULT
-	GetSetting(lSetting int32, pResult *int16) HRESULT
+	GetSetting(lSetting int32, pResult *VARIANT_BOOL) HRESULT
 }
 
 type IShellDispatch4Vtbl struct {
@@ -22608,7 +22629,7 @@ func (this *IShellDispatch4) ExplorerPolicy(bstrPolicyName BSTR, pValue *VARIANT
 	return HRESULT(ret)
 }
 
-func (this *IShellDispatch4) GetSetting(lSetting int32, pResult *int16) HRESULT {
+func (this *IShellDispatch4) GetSetting(lSetting int32, pResult *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetSetting, uintptr(unsafe.Pointer(this)), uintptr(lSetting), uintptr(unsafe.Pointer(pResult)))
 	return HRESULT(ret)
 }
@@ -22674,7 +22695,7 @@ var IID_IFileSearchBand = syscall.GUID{0x2D91EEA1, 0x9932, 0x11D2,
 type IFileSearchBandInterface interface {
 	IDispatchInterface
 	SetFocus() HRESULT
-	SetSearchParameters(pbstrSearchID *BSTR, bNavToResults int16, pvarScope *VARIANT, pvarQueryFile *VARIANT) HRESULT
+	SetSearchParameters(pbstrSearchID *BSTR, bNavToResults VARIANT_BOOL, pvarScope *VARIANT, pvarQueryFile *VARIANT) HRESULT
 	Get_SearchID(pbstrSearchID *BSTR) HRESULT
 	Get_Scope(pvarScope *VARIANT) HRESULT
 	Get_QueryFile(pvarFile *VARIANT) HRESULT
@@ -22702,7 +22723,7 @@ func (this *IFileSearchBand) SetFocus() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IFileSearchBand) SetSearchParameters(pbstrSearchID *BSTR, bNavToResults int16, pvarScope *VARIANT, pvarQueryFile *VARIANT) HRESULT {
+func (this *IFileSearchBand) SetSearchParameters(pbstrSearchID *BSTR, bNavToResults VARIANT_BOOL, pvarScope *VARIANT, pvarQueryFile *VARIANT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetSearchParameters, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pbstrSearchID)), uintptr(bNavToResults), uintptr(unsafe.Pointer(pvarScope)), uintptr(unsafe.Pointer(pvarQueryFile)))
 	return HRESULT(ret)
 }
@@ -22735,7 +22756,7 @@ type IWebWizardHostInterface interface {
 	Get_Caption(pbstrCaption *BSTR) HRESULT
 	Put_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT
 	Get_Property(bstrPropertyName BSTR, pvProperty *VARIANT) HRESULT
-	SetWizardButtons(vfEnableBack int16, vfEnableNext int16, vfLastPage int16) HRESULT
+	SetWizardButtons(vfEnableBack VARIANT_BOOL, vfEnableNext VARIANT_BOOL, vfLastPage VARIANT_BOOL) HRESULT
 	SetHeaderText(bstrHeaderTitle BSTR, bstrHeaderSubtitle BSTR) HRESULT
 }
 
@@ -22795,7 +22816,7 @@ func (this *IWebWizardHost) Get_Property(bstrPropertyName BSTR, pvProperty *VARI
 	return HRESULT(ret)
 }
 
-func (this *IWebWizardHost) SetWizardButtons(vfEnableBack int16, vfEnableNext int16, vfLastPage int16) HRESULT {
+func (this *IWebWizardHost) SetWizardButtons(vfEnableBack VARIANT_BOOL, vfEnableNext VARIANT_BOOL, vfLastPage VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetWizardButtons, uintptr(unsafe.Pointer(this)), uintptr(vfEnableBack), uintptr(vfEnableNext), uintptr(vfLastPage))
 	return HRESULT(ret)
 }
@@ -22838,7 +22859,7 @@ var IID_INewWDEvents = syscall.GUID{0x0751C551, 0x7568, 0x41C9,
 
 type INewWDEventsInterface interface {
 	IWebWizardHostInterface
-	PassportAuthenticate(bstrSignInUrl BSTR, pvfAuthenitcated *int16) HRESULT
+	PassportAuthenticate(bstrSignInUrl BSTR, pvfAuthenitcated *VARIANT_BOOL) HRESULT
 }
 
 type INewWDEventsVtbl struct {
@@ -22854,7 +22875,7 @@ func (this *INewWDEvents) Vtbl() *INewWDEventsVtbl {
 	return (*INewWDEventsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *INewWDEvents) PassportAuthenticate(bstrSignInUrl BSTR, pvfAuthenitcated *int16) HRESULT {
+func (this *INewWDEvents) PassportAuthenticate(bstrSignInUrl BSTR, pvfAuthenitcated *VARIANT_BOOL) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().PassportAuthenticate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstrSignInUrl)), uintptr(unsafe.Pointer(pvfAuthenitcated)))
 	return HRESULT(ret)
 }
@@ -24398,11 +24419,11 @@ var IID_IQueryAssociations = syscall.GUID{0xC46CA590, 0x3C3F, 0x11D2,
 
 type IQueryAssociationsInterface interface {
 	IUnknownInterface
-	Init(flags uint32, pszAssoc PWSTR, hkProgid HKEY, hwnd HWND) HRESULT
-	GetString(flags uint32, str ASSOCSTR, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT
-	GetKey(flags uint32, key ASSOCKEY, pszExtra PWSTR, phkeyOut *HKEY) HRESULT
-	GetData(flags uint32, data ASSOCDATA, pszExtra PWSTR, pvOut unsafe.Pointer, pcbOut *uint32) HRESULT
-	GetEnum(flags uint32, assocenum ASSOCENUM, pszExtra PWSTR, riid *syscall.GUID, ppvOut unsafe.Pointer) HRESULT
+	Init(flags ASSOCF, pszAssoc PWSTR, hkProgid HKEY, hwnd HWND) HRESULT
+	GetString(flags ASSOCF, str ASSOCSTR, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT
+	GetKey(flags ASSOCF, key ASSOCKEY, pszExtra PWSTR, phkeyOut *HKEY) HRESULT
+	GetData(flags ASSOCF, data ASSOCDATA, pszExtra PWSTR, pvOut unsafe.Pointer, pcbOut *uint32) HRESULT
+	GetEnum(flags ASSOCF, assocenum ASSOCENUM, pszExtra PWSTR, riid *syscall.GUID, ppvOut unsafe.Pointer) HRESULT
 }
 
 type IQueryAssociationsVtbl struct {
@@ -24422,27 +24443,27 @@ func (this *IQueryAssociations) Vtbl() *IQueryAssociationsVtbl {
 	return (*IQueryAssociationsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IQueryAssociations) Init(flags uint32, pszAssoc PWSTR, hkProgid HKEY, hwnd HWND) HRESULT {
+func (this *IQueryAssociations) Init(flags ASSOCF, pszAssoc PWSTR, hkProgid HKEY, hwnd HWND) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Init, uintptr(unsafe.Pointer(this)), uintptr(flags), uintptr(unsafe.Pointer(pszAssoc)), hkProgid, hwnd)
 	return HRESULT(ret)
 }
 
-func (this *IQueryAssociations) GetString(flags uint32, str ASSOCSTR, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
+func (this *IQueryAssociations) GetString(flags ASSOCF, str ASSOCSTR, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetString, uintptr(unsafe.Pointer(this)), uintptr(flags), uintptr(str), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
 }
 
-func (this *IQueryAssociations) GetKey(flags uint32, key ASSOCKEY, pszExtra PWSTR, phkeyOut *HKEY) HRESULT {
+func (this *IQueryAssociations) GetKey(flags ASSOCF, key ASSOCKEY, pszExtra PWSTR, phkeyOut *HKEY) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetKey, uintptr(unsafe.Pointer(this)), uintptr(flags), uintptr(key), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(phkeyOut)))
 	return HRESULT(ret)
 }
 
-func (this *IQueryAssociations) GetData(flags uint32, data ASSOCDATA, pszExtra PWSTR, pvOut unsafe.Pointer, pcbOut *uint32) HRESULT {
+func (this *IQueryAssociations) GetData(flags ASSOCF, data ASSOCDATA, pszExtra PWSTR, pvOut unsafe.Pointer, pcbOut *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetData, uintptr(unsafe.Pointer(this)), uintptr(flags), uintptr(data), uintptr(unsafe.Pointer(pszExtra)), uintptr(pvOut), uintptr(unsafe.Pointer(pcbOut)))
 	return HRESULT(ret)
 }
 
-func (this *IQueryAssociations) GetEnum(flags uint32, assocenum ASSOCENUM, pszExtra PWSTR, riid *syscall.GUID, ppvOut unsafe.Pointer) HRESULT {
+func (this *IQueryAssociations) GetEnum(flags ASSOCF, assocenum ASSOCENUM, pszExtra PWSTR, riid *syscall.GUID, ppvOut unsafe.Pointer) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEnum, uintptr(unsafe.Pointer(this)), uintptr(flags), uintptr(assocenum), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(riid)), uintptr(ppvOut))
 	return HRESULT(ret)
 }
@@ -29354,7 +29375,7 @@ type IUniformResourceLocatorAInterface interface {
 	IUnknownInterface
 	SetURL(pcszURL PSTR, dwInFlags uint32) HRESULT
 	GetURL(ppszURL *PSTR) HRESULT
-	InvokeCommand(purlici *UrlinvokecommandinfoA) HRESULT
+	InvokeCommand(purlici *URLINVOKECOMMANDINFOA) HRESULT
 }
 
 type IUniformResourceLocatorAVtbl struct {
@@ -29382,7 +29403,7 @@ func (this *IUniformResourceLocatorA) GetURL(ppszURL *PSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IUniformResourceLocatorA) InvokeCommand(purlici *UrlinvokecommandinfoA) HRESULT {
+func (this *IUniformResourceLocatorA) InvokeCommand(purlici *URLINVOKECOMMANDINFOA) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InvokeCommand, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(purlici)))
 	return HRESULT(ret)
 }
@@ -29395,7 +29416,7 @@ type IUniformResourceLocatorWInterface interface {
 	IUnknownInterface
 	SetURL(pcszURL PWSTR, dwInFlags uint32) HRESULT
 	GetURL(ppszURL *PWSTR) HRESULT
-	InvokeCommand(purlici *UrlinvokecommandinfoW) HRESULT
+	InvokeCommand(purlici *URLINVOKECOMMANDINFOW) HRESULT
 }
 
 type IUniformResourceLocatorWVtbl struct {
@@ -29423,7 +29444,7 @@ func (this *IUniformResourceLocatorW) GetURL(ppszURL *PWSTR) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IUniformResourceLocatorW) InvokeCommand(purlici *UrlinvokecommandinfoW) HRESULT {
+func (this *IUniformResourceLocatorW) InvokeCommand(purlici *URLINVOKECOMMANDINFOW) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InvokeCommand, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(purlici)))
 	return HRESULT(ret)
 }
@@ -30583,7 +30604,7 @@ func ILAppendID(pidl *ITEMIDLIST, pmkid *SHITEMID, fAppend BOOL) *ITEMIDLIST {
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
-func SHGetPathFromIDListEx(pidl *ITEMIDLIST, pszPath PWSTR, cchPath uint32, uOpts int32) BOOL {
+func SHGetPathFromIDListEx(pidl *ITEMIDLIST, pszPath PWSTR, cchPath uint32, uOpts GPFIDL_FLAGS) BOOL {
 	addr := lazyAddr(&pSHGetPathFromIDListEx, libShell32, "SHGetPathFromIDListEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszPath)), uintptr(cchPath), uintptr(uOpts))
 	return BOOL(ret)
@@ -30726,7 +30747,7 @@ func SHSetKnownFolderPath(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, psz
 	return HRESULT(ret)
 }
 
-func SHGetKnownFolderPath(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, ppszPath *PWSTR) HRESULT {
+func SHGetKnownFolderPath(rfid *syscall.GUID, dwFlags KNOWN_FOLDER_FLAG, hToken HANDLE, ppszPath *PWSTR) HRESULT {
 	addr := lazyAddr(&pSHGetKnownFolderPath, libShell32, "SHGetKnownFolderPath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rfid)), uintptr(dwFlags), hToken, uintptr(unsafe.Pointer(ppszPath)))
 	return HRESULT(ret)
@@ -30884,7 +30905,7 @@ func SHCreateStdEnumFmtEtc(cfmt uint32, afmt *FORMATETC, ppenumFormatEtc **IEnum
 	return HRESULT(ret)
 }
 
-func SHDoDragDrop(hwnd HWND, pdata *IDataObject, pdsrc *IDropSource, dwEffect uint32, pdwEffect *uint32) HRESULT {
+func SHDoDragDrop(hwnd HWND, pdata *IDataObject, pdsrc *IDropSource, dwEffect DROPEFFECT, pdwEffect *DROPEFFECT) HRESULT {
 	addr := lazyAddr(&pSHDoDragDrop, libShell32, "SHDoDragDrop")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pdata)), uintptr(unsafe.Pointer(pdsrc)), uintptr(dwEffect), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
@@ -31359,7 +31380,7 @@ func DragAcceptFiles(hWnd HWND, fAccept BOOL) {
 	syscall.SyscallN(addr, hWnd, uintptr(fAccept))
 }
 
-func ShellExecuteA(hwnd HWND, lpOperation PSTR, lpFile PSTR, lpParameters PSTR, lpDirectory PSTR, nShowCmd int32) HINSTANCE {
+func ShellExecuteA(hwnd HWND, lpOperation PSTR, lpFile PSTR, lpParameters PSTR, lpDirectory PSTR, nShowCmd SHOW_WINDOW_CMD) HINSTANCE {
 	addr := lazyAddr(&pShellExecuteA, libShell32, "ShellExecuteA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(lpOperation)), uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpParameters)), uintptr(unsafe.Pointer(lpDirectory)), uintptr(nShowCmd))
 	return ret
@@ -31367,7 +31388,7 @@ func ShellExecuteA(hwnd HWND, lpOperation PSTR, lpFile PSTR, lpParameters PSTR, 
 
 var ShellExecute = ShellExecuteW
 
-func ShellExecuteW(hwnd HWND, lpOperation PWSTR, lpFile PWSTR, lpParameters PWSTR, lpDirectory PWSTR, nShowCmd int32) HINSTANCE {
+func ShellExecuteW(hwnd HWND, lpOperation PWSTR, lpFile PWSTR, lpParameters PWSTR, lpDirectory PWSTR, nShowCmd SHOW_WINDOW_CMD) HINSTANCE {
 	addr := lazyAddr(&pShellExecuteW, libShell32, "ShellExecuteW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(lpOperation)), uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpParameters)), uintptr(unsafe.Pointer(lpDirectory)), uintptr(nShowCmd))
 	return ret
@@ -31602,7 +31623,7 @@ func SHGetFileInfoW(pszPath PWSTR, dwFileAttributes FILE_FLAGS_AND_ATTRIBUTES, p
 	return ret
 }
 
-func SHGetStockIconInfo(siid SHSTOCKICONID, uFlags uint32, psii *SHSTOCKICONINFO) HRESULT {
+func SHGetStockIconInfo(siid SHSTOCKICONID, uFlags SHGSI_FLAGS, psii *SHSTOCKICONINFO) HRESULT {
 	addr := lazyAddr(&pSHGetStockIconInfo, libShell32, "SHGetStockIconInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(siid), uintptr(uFlags), uintptr(unsafe.Pointer(psii)))
 	return HRESULT(ret)
@@ -31680,7 +31701,7 @@ func SHGetLocalizedName(pszPath PWSTR, pszResModule PWSTR, cch uint32, pidsRes *
 	return HRESULT(ret)
 }
 
-func ShellMessageBoxA(hAppInst HINSTANCE, hWnd HWND, lpcText PSTR, lpcTitle PSTR, fuStyle uint32) (int32, WIN32_ERROR) {
+func ShellMessageBoxA(hAppInst HINSTANCE, hWnd HWND, lpcText PSTR, lpcTitle PSTR, fuStyle MESSAGEBOX_STYLE) (int32, WIN32_ERROR) {
 	addr := lazyAddr(&pShellMessageBoxA, libShlwapi, "ShellMessageBoxA")
 	ret, _, err := syscall.SyscallN(addr, hAppInst, hWnd, uintptr(unsafe.Pointer(lpcText)), uintptr(unsafe.Pointer(lpcTitle)), uintptr(fuStyle))
 	return int32(ret), WIN32_ERROR(err)
@@ -31688,7 +31709,7 @@ func ShellMessageBoxA(hAppInst HINSTANCE, hWnd HWND, lpcText PSTR, lpcTitle PSTR
 
 var ShellMessageBox = ShellMessageBoxW
 
-func ShellMessageBoxW(hAppInst HINSTANCE, hWnd HWND, lpcText PWSTR, lpcTitle PWSTR, fuStyle uint32) (int32, WIN32_ERROR) {
+func ShellMessageBoxW(hAppInst HINSTANCE, hWnd HWND, lpcText PWSTR, lpcTitle PWSTR, fuStyle MESSAGEBOX_STYLE) (int32, WIN32_ERROR) {
 	addr := lazyAddr(&pShellMessageBoxW, libShlwapi, "ShellMessageBoxW")
 	ret, _, err := syscall.SyscallN(addr, hAppInst, hWnd, uintptr(unsafe.Pointer(lpcText)), uintptr(unsafe.Pointer(lpcTitle)), uintptr(fuStyle))
 	return int32(ret), WIN32_ERROR(err)
@@ -33358,10 +33379,10 @@ func SHDeleteKeyW(hkey HKEY, pszSubKey PWSTR) WIN32_ERROR {
 	return WIN32_ERROR(ret)
 }
 
-func SHRegDuplicateHKey(hkey HKEY) WIN32_ERROR {
+func SHRegDuplicateHKey(hkey HKEY) HKEY {
 	addr := lazyAddr(&pSHRegDuplicateHKey, libShlwapi, "SHRegDuplicateHKey")
 	ret, _, _ := syscall.SyscallN(addr, hkey)
-	return WIN32_ERROR(ret)
+	return ret
 }
 
 func SHDeleteValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR) WIN32_ERROR {
@@ -33690,18 +33711,18 @@ func SHRegGetIntW(hk HKEY, pwzKey PWSTR, iDefault int32) WIN32_ERROR {
 	return WIN32_ERROR(ret)
 }
 
-func SHRegGetBoolUSValueA(pszSubKey PSTR, pszValue PSTR, fIgnoreHKCU BOOL, fDefault BOOL) WIN32_ERROR {
+func SHRegGetBoolUSValueA(pszSubKey PSTR, pszValue PSTR, fIgnoreHKCU BOOL, fDefault BOOL) BOOL {
 	addr := lazyAddr(&pSHRegGetBoolUSValueA, libShlwapi, "SHRegGetBoolUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(fIgnoreHKCU), uintptr(fDefault))
-	return WIN32_ERROR(ret)
+	return BOOL(ret)
 }
 
 var SHRegGetBoolUSValue = SHRegGetBoolUSValueW
 
-func SHRegGetBoolUSValueW(pszSubKey PWSTR, pszValue PWSTR, fIgnoreHKCU BOOL, fDefault BOOL) WIN32_ERROR {
+func SHRegGetBoolUSValueW(pszSubKey PWSTR, pszValue PWSTR, fIgnoreHKCU BOOL, fDefault BOOL) BOOL {
 	addr := lazyAddr(&pSHRegGetBoolUSValueW, libShlwapi, "SHRegGetBoolUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(fIgnoreHKCU), uintptr(fDefault))
-	return WIN32_ERROR(ret)
+	return BOOL(ret)
 }
 
 func AssocCreate(clsid syscall.GUID, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
@@ -33710,7 +33731,7 @@ func AssocCreate(clsid syscall.GUID, riid *syscall.GUID, ppv unsafe.Pointer) HRE
 	return HRESULT(ret)
 }
 
-func AssocQueryStringA(flags uint32, str ASSOCSTR, pszAssoc PSTR, pszExtra PSTR, pszOut PSTR, pcchOut *uint32) HRESULT {
+func AssocQueryStringA(flags ASSOCF, str ASSOCSTR, pszAssoc PSTR, pszExtra PSTR, pszOut PSTR, pcchOut *uint32) HRESULT {
 	addr := lazyAddr(&pAssocQueryStringA, libShlwapi, "AssocQueryStringA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
@@ -33718,13 +33739,13 @@ func AssocQueryStringA(flags uint32, str ASSOCSTR, pszAssoc PSTR, pszExtra PSTR,
 
 var AssocQueryString = AssocQueryStringW
 
-func AssocQueryStringW(flags uint32, str ASSOCSTR, pszAssoc PWSTR, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
+func AssocQueryStringW(flags ASSOCF, str ASSOCSTR, pszAssoc PWSTR, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
 	addr := lazyAddr(&pAssocQueryStringW, libShlwapi, "AssocQueryStringW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
 }
 
-func AssocQueryStringByKeyA(flags uint32, str ASSOCSTR, hkAssoc HKEY, pszExtra PSTR, pszOut PSTR, pcchOut *uint32) HRESULT {
+func AssocQueryStringByKeyA(flags ASSOCF, str ASSOCSTR, hkAssoc HKEY, pszExtra PSTR, pszOut PSTR, pcchOut *uint32) HRESULT {
 	addr := lazyAddr(&pAssocQueryStringByKeyA, libShlwapi, "AssocQueryStringByKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), hkAssoc, uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
@@ -33732,13 +33753,13 @@ func AssocQueryStringByKeyA(flags uint32, str ASSOCSTR, hkAssoc HKEY, pszExtra P
 
 var AssocQueryStringByKey = AssocQueryStringByKeyW
 
-func AssocQueryStringByKeyW(flags uint32, str ASSOCSTR, hkAssoc HKEY, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
+func AssocQueryStringByKeyW(flags ASSOCF, str ASSOCSTR, hkAssoc HKEY, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
 	addr := lazyAddr(&pAssocQueryStringByKeyW, libShlwapi, "AssocQueryStringByKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), hkAssoc, uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
 }
 
-func AssocQueryKeyA(flags uint32, key ASSOCKEY, pszAssoc PSTR, pszExtra PSTR, phkeyOut *HKEY) HRESULT {
+func AssocQueryKeyA(flags ASSOCF, key ASSOCKEY, pszAssoc PSTR, pszExtra PSTR, phkeyOut *HKEY) HRESULT {
 	addr := lazyAddr(&pAssocQueryKeyA, libShlwapi, "AssocQueryKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(key), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(phkeyOut)))
 	return HRESULT(ret)
@@ -33746,7 +33767,7 @@ func AssocQueryKeyA(flags uint32, key ASSOCKEY, pszAssoc PSTR, pszExtra PSTR, ph
 
 var AssocQueryKey = AssocQueryKeyW
 
-func AssocQueryKeyW(flags uint32, key ASSOCKEY, pszAssoc PWSTR, pszExtra PWSTR, phkeyOut *HKEY) HRESULT {
+func AssocQueryKeyW(flags ASSOCF, key ASSOCKEY, pszAssoc PWSTR, pszExtra PWSTR, phkeyOut *HKEY) HRESULT {
 	addr := lazyAddr(&pAssocQueryKeyW, libShlwapi, "AssocQueryKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(key), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(phkeyOut)))
 	return HRESULT(ret)
@@ -34090,7 +34111,7 @@ func SHGetInverseCMAP(pbMap *byte, cbMap uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func SHAutoComplete(hwndEdit HWND, dwFlags uint32) HRESULT {
+func SHAutoComplete(hwndEdit HWND, dwFlags SHELL_AUTOCOMPLETE_FLAGS) HRESULT {
 	addr := lazyAddr(&pSHAutoComplete, libShlwapi, "SHAutoComplete")
 	ret, _, _ := syscall.SyscallN(addr, hwndEdit, uintptr(dwFlags))
 	return HRESULT(ret)
@@ -34144,21 +34165,21 @@ func SHCreateShellPalette(hdc HDC) HPALETTE {
 	return ret
 }
 
-func ColorRGBToHLS(clrRGB uint32, pwHue *uint16, pwLuminance *uint16, pwSaturation *uint16) {
+func ColorRGBToHLS(clrRGB COLORREF, pwHue *uint16, pwLuminance *uint16, pwSaturation *uint16) {
 	addr := lazyAddr(&pColorRGBToHLS, libShlwapi, "ColorRGBToHLS")
 	syscall.SyscallN(addr, uintptr(clrRGB), uintptr(unsafe.Pointer(pwHue)), uintptr(unsafe.Pointer(pwLuminance)), uintptr(unsafe.Pointer(pwSaturation)))
 }
 
-func ColorHLSToRGB(wHue uint16, wLuminance uint16, wSaturation uint16) uint32 {
+func ColorHLSToRGB(wHue uint16, wLuminance uint16, wSaturation uint16) COLORREF {
 	addr := lazyAddr(&pColorHLSToRGB, libShlwapi, "ColorHLSToRGB")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wHue), uintptr(wLuminance), uintptr(wSaturation))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func ColorAdjustLuma(clrRGB uint32, n int32, fScale BOOL) uint32 {
+func ColorAdjustLuma(clrRGB COLORREF, n int32, fScale BOOL) COLORREF {
 	addr := lazyAddr(&pColorAdjustLuma, libShlwapi, "ColorAdjustLuma")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(clrRGB), uintptr(n), uintptr(fScale))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
 func IsInternetESCEnabled() BOOL {

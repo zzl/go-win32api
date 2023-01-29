@@ -8,6 +8,7 @@ import (
 type (
 	EventLogHandle    = uintptr
 	EventSourceHandle = uintptr
+	EVT_HANDLE        = uintptr
 )
 
 const (
@@ -79,7 +80,7 @@ const (
 )
 
 // enum
-type EVT_RPC_LOGIN_FLAGS int32
+type EVT_RPC_LOGIN_FLAGS uint32
 
 const (
 	EvtRpcLoginAuthDefault   EVT_RPC_LOGIN_FLAGS = 0
@@ -89,7 +90,7 @@ const (
 )
 
 // enum
-type EVT_QUERY_FLAGS int32
+type EVT_QUERY_FLAGS uint32
 
 const (
 	EvtQueryChannelPath         EVT_QUERY_FLAGS = 1
@@ -100,7 +101,7 @@ const (
 )
 
 // enum
-type EVT_SEEK_FLAGS int32
+type EVT_SEEK_FLAGS uint32
 
 const (
 	EvtSeekRelativeToFirst    EVT_SEEK_FLAGS = 1
@@ -112,7 +113,7 @@ const (
 )
 
 // enum
-type EVT_SUBSCRIBE_FLAGS int32
+type EVT_SUBSCRIBE_FLAGS uint32
 
 const (
 	EvtSubscribeToFutureEvents      EVT_SUBSCRIBE_FLAGS = 1
@@ -157,7 +158,7 @@ const (
 )
 
 // enum
-type EVT_RENDER_CONTEXT_FLAGS int32
+type EVT_RENDER_CONTEXT_FLAGS uint32
 
 const (
 	EvtRenderContextValues EVT_RENDER_CONTEXT_FLAGS = 0
@@ -166,7 +167,7 @@ const (
 )
 
 // enum
-type EVT_RENDER_FLAGS int32
+type EVT_RENDER_FLAGS uint32
 
 const (
 	EvtRenderEventValues EVT_RENDER_FLAGS = 0
@@ -175,7 +176,7 @@ const (
 )
 
 // enum
-type EVT_FORMAT_MESSAGE_FLAGS int32
+type EVT_FORMAT_MESSAGE_FLAGS uint32
 
 const (
 	EvtFormatMessageEvent    EVT_FORMAT_MESSAGE_FLAGS = 1
@@ -190,7 +191,7 @@ const (
 )
 
 // enum
-type EVT_OPEN_LOG_FLAGS int32
+type EVT_OPEN_LOG_FLAGS uint32
 
 const (
 	EvtOpenChannelPath EVT_OPEN_LOG_FLAGS = 1
@@ -212,7 +213,7 @@ const (
 )
 
 // enum
-type EVT_EXPORTLOG_FLAGS int32
+type EVT_EXPORTLOG_FLAGS uint32
 
 const (
 	EvtExportLogChannelPath         EVT_EXPORTLOG_FLAGS = 1
@@ -285,7 +286,7 @@ const (
 )
 
 // enum
-type EVT_CHANNEL_REFERENCE_FLAGS int32
+type EVT_CHANNEL_REFERENCE_FLAGS uint32
 
 const (
 	EvtChannelReferenceImported EVT_CHANNEL_REFERENCE_FLAGS = 1
@@ -663,12 +664,12 @@ func (this *EVT_VARIANT_Anonymous) SizeTArrVal() *uintptr {
 	return *(**uintptr)(unsafe.Pointer(this))
 }
 
-func (this *EVT_VARIANT_Anonymous) EvtHandleVal() *uintptr {
-	return (*uintptr)(unsafe.Pointer(this))
+func (this *EVT_VARIANT_Anonymous) EvtHandleVal() *EVT_HANDLE {
+	return (*EVT_HANDLE)(unsafe.Pointer(this))
 }
 
-func (this *EVT_VARIANT_Anonymous) EvtHandleValVal() uintptr {
-	return *(*uintptr)(unsafe.Pointer(this))
+func (this *EVT_VARIANT_Anonymous) EvtHandleValVal() EVT_HANDLE {
+	return *(*EVT_HANDLE)(unsafe.Pointer(this))
 }
 
 func (this *EVT_VARIANT_Anonymous) XmlVal() *PWSTR {
@@ -734,7 +735,7 @@ type EVENTLOG_FULL_INFORMATION struct {
 // func types
 
 type EVT_SUBSCRIBE_CALLBACK = uintptr
-type EVT_SUBSCRIBE_CALLBACK_func = func(Action EVT_SUBSCRIBE_NOTIFY_ACTION, UserContext unsafe.Pointer, Event uintptr) uint32
+type EVT_SUBSCRIBE_CALLBACK_func = func(Action EVT_SUBSCRIBE_NOTIFY_ACTION, UserContext unsafe.Pointer, Event EVT_HANDLE) uint32
 
 var (
 	pClearEventLogA             uintptr

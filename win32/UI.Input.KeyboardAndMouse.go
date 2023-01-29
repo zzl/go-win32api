@@ -483,6 +483,17 @@ const (
 	VK_OEM_CLEAR                       VIRTUAL_KEY = 254
 )
 
+// enum
+type MAP_VIRTUAL_KEY_TYPE uint32
+
+const (
+	MAPVK_VK_TO_VSC    MAP_VIRTUAL_KEY_TYPE = 0
+	MAPVK_VSC_TO_VK    MAP_VIRTUAL_KEY_TYPE = 1
+	MAPVK_VK_TO_CHAR   MAP_VIRTUAL_KEY_TYPE = 2
+	MAPVK_VSC_TO_VK_EX MAP_VIRTUAL_KEY_TYPE = 3
+	MAPVK_VK_TO_VSC_EX MAP_VIRTUAL_KEY_TYPE = 4
+)
+
 // structs
 
 type VK_TO_BIT struct {
@@ -613,7 +624,7 @@ type VSC_LPWSTR struct {
 	Pwsz PWSTR
 }
 
-type TagKbdLayer struct {
+type KBDTABLES struct {
 	PCharModifiers  *MODIFIERS
 	PVkToWcharTable *VK_TO_WCHAR_TABLE
 	PDeadKey        *DEADKEY
@@ -632,25 +643,25 @@ type TagKbdLayer struct {
 	DwSubType       uint32
 }
 
-type VK_FUNCTION_PARAM_ struct {
+type VK_FPARAM struct {
 	NLSFEProcIndex byte
 	NLSFEProcParam uint32
 }
 
-type VK_TO_FUNCTION_TABLE_ struct {
+type VK_F_ struct {
 	Vk               byte
 	NLSFEProcType    byte
 	NLSFEProcCurrent byte
 	NLSFEProcSwitch  byte
-	NLSFEProc        [8]VK_FUNCTION_PARAM_
-	NLSFEProcAlt     [8]VK_FUNCTION_PARAM_
+	NLSFEProc        [8]VK_FPARAM
+	NLSFEProcAlt     [8]VK_FPARAM
 }
 
-type TagKbdNlsLayer struct {
+type KBDNLSTABLES struct {
 	OEMIdentifier     uint16
 	LayoutInformation uint16
 	NumOfVkToF        uint32
-	PVkToF            *VK_TO_FUNCTION_TABLE_
+	PVkToF            *VK_F_
 	NumOfMouseVKey    int32
 	PusMouseVKey      *uint16
 }
@@ -1033,7 +1044,7 @@ func Keybd_event(bVk byte, bScan byte, dwFlags KEYBD_EVENT_FLAGS, dwExtraInfo ui
 	syscall.SyscallN(addr, uintptr(bVk), uintptr(bScan), uintptr(dwFlags), dwExtraInfo)
 }
 
-func Mouse_event(dwFlags MOUSE_EVENT_FLAGS, dx int32, dy int32, dwData uint32, dwExtraInfo uintptr) {
+func Mouse_event(dwFlags MOUSE_EVENT_FLAGS, dx int32, dy int32, dwData int32, dwExtraInfo uintptr) {
 	addr := lazyAddr(&pMouse_event, libUser32, "mouse_event")
 	syscall.SyscallN(addr, uintptr(dwFlags), uintptr(dx), uintptr(dy), uintptr(dwData), dwExtraInfo)
 }
@@ -1050,7 +1061,7 @@ func GetLastInputInfo(plii *LASTINPUTINFO) BOOL {
 	return BOOL(ret)
 }
 
-func MapVirtualKeyA(uCode uint32, uMapType uint32) uint32 {
+func MapVirtualKeyA(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE) uint32 {
 	addr := lazyAddr(&pMapVirtualKeyA, libUser32, "MapVirtualKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType))
 	return uint32(ret)
@@ -1058,13 +1069,13 @@ func MapVirtualKeyA(uCode uint32, uMapType uint32) uint32 {
 
 var MapVirtualKey = MapVirtualKeyW
 
-func MapVirtualKeyW(uCode uint32, uMapType uint32) uint32 {
+func MapVirtualKeyW(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE) uint32 {
 	addr := lazyAddr(&pMapVirtualKeyW, libUser32, "MapVirtualKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType))
 	return uint32(ret)
 }
 
-func MapVirtualKeyExA(uCode uint32, uMapType uint32, dwhkl unsafe.Pointer) uint32 {
+func MapVirtualKeyExA(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE, dwhkl unsafe.Pointer) uint32 {
 	addr := lazyAddr(&pMapVirtualKeyExA, libUser32, "MapVirtualKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType), uintptr(dwhkl))
 	return uint32(ret)
@@ -1072,7 +1083,7 @@ func MapVirtualKeyExA(uCode uint32, uMapType uint32, dwhkl unsafe.Pointer) uint3
 
 var MapVirtualKeyEx = MapVirtualKeyExW
 
-func MapVirtualKeyExW(uCode uint32, uMapType uint32, dwhkl unsafe.Pointer) uint32 {
+func MapVirtualKeyExW(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE, dwhkl unsafe.Pointer) uint32 {
 	addr := lazyAddr(&pMapVirtualKeyExW, libUser32, "MapVirtualKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType), uintptr(dwhkl))
 	return uint32(ret)

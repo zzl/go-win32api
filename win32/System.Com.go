@@ -18,7 +18,6 @@ const (
 	STG_TOEND                                              int32  = -1
 	STG_LAYOUT_SEQUENTIAL                                  int32  = 0
 	STG_LAYOUT_INTERLEAVED                                 int32  = 1
-	CRT_INTERNAL_COMBASE_SYMBOL_PREFIX_                    string = "_"
 	COM_RIGHTS_EXECUTE                                     uint32 = 0x1
 	COM_RIGHTS_EXECUTE_LOCAL                               uint32 = 0x2
 	COM_RIGHTS_EXECUTE_REMOTE                              uint32 = 0x4
@@ -105,13 +104,102 @@ const (
 )
 
 // enum
-type DVASPECT int32
+// flags
+type ROT_FLAGS uint32
 
 const (
-	DVASPECT_CONTENT   DVASPECT = 1
-	DVASPECT_THUMBNAIL DVASPECT = 2
-	DVASPECT_ICON      DVASPECT = 4
-	DVASPECT_DOCPRINT  DVASPECT = 8
+	ROTFLAGS_REGISTRATIONKEEPSALIVE ROT_FLAGS = 1
+	ROTFLAGS_ALLOWANYCLIENT         ROT_FLAGS = 2
+)
+
+// enum
+// flags
+type ADVANCED_FEATURE_FLAGS uint16
+
+const (
+	FADF_AUTO        ADVANCED_FEATURE_FLAGS = 1
+	FADF_STATIC      ADVANCED_FEATURE_FLAGS = 2
+	FADF_EMBEDDED    ADVANCED_FEATURE_FLAGS = 4
+	FADF_FIXEDSIZE   ADVANCED_FEATURE_FLAGS = 16
+	FADF_RECORD      ADVANCED_FEATURE_FLAGS = 32
+	FADF_HAVEIID     ADVANCED_FEATURE_FLAGS = 64
+	FADF_HAVEVARTYPE ADVANCED_FEATURE_FLAGS = 128
+	FADF_BSTR        ADVANCED_FEATURE_FLAGS = 256
+	FADF_UNKNOWN     ADVANCED_FEATURE_FLAGS = 512
+	FADF_DISPATCH    ADVANCED_FEATURE_FLAGS = 1024
+	FADF_VARIANT     ADVANCED_FEATURE_FLAGS = 2048
+	FADF_RESERVED    ADVANCED_FEATURE_FLAGS = 61448
+)
+
+// enum
+// flags
+type IMPLTYPEFLAGS int32
+
+const (
+	IMPLTYPEFLAG_FDEFAULT       IMPLTYPEFLAGS = 1
+	IMPLTYPEFLAG_FSOURCE        IMPLTYPEFLAGS = 2
+	IMPLTYPEFLAG_FRESTRICTED    IMPLTYPEFLAGS = 4
+	IMPLTYPEFLAG_FDEFAULTVTABLE IMPLTYPEFLAGS = 8
+)
+
+// enum
+// flags
+type IDLFLAGS uint16
+
+const (
+	IDLFLAG_NONE    IDLFLAGS = 0
+	IDLFLAG_FIN     IDLFLAGS = 1
+	IDLFLAG_FOUT    IDLFLAGS = 2
+	IDLFLAG_FLCID   IDLFLAGS = 4
+	IDLFLAG_FRETVAL IDLFLAGS = 8
+)
+
+// enum
+// flags
+type DISPATCH_FLAGS uint16
+
+const (
+	DISPATCH_METHOD         DISPATCH_FLAGS = 1
+	DISPATCH_PROPERTYGET    DISPATCH_FLAGS = 2
+	DISPATCH_PROPERTYPUT    DISPATCH_FLAGS = 4
+	DISPATCH_PROPERTYPUTREF DISPATCH_FLAGS = 8
+)
+
+// enum
+// flags
+type STGM uint32
+
+const (
+	STGM_DIRECT           STGM = 0
+	STGM_TRANSACTED       STGM = 65536
+	STGM_SIMPLE           STGM = 134217728
+	STGM_READ             STGM = 0
+	STGM_WRITE            STGM = 1
+	STGM_READWRITE        STGM = 2
+	STGM_SHARE_DENY_NONE  STGM = 64
+	STGM_SHARE_DENY_READ  STGM = 48
+	STGM_SHARE_DENY_WRITE STGM = 32
+	STGM_SHARE_EXCLUSIVE  STGM = 16
+	STGM_PRIORITY         STGM = 262144
+	STGM_DELETEONRELEASE  STGM = 67108864
+	STGM_NOSCRATCH        STGM = 1048576
+	STGM_CREATE           STGM = 4096
+	STGM_CONVERT          STGM = 131072
+	STGM_FAILIFTHERE      STGM = 0
+	STGM_NOSNAPSHOT       STGM = 2097152
+	STGM_DIRECT_SWMR      STGM = 4194304
+)
+
+// enum
+type DVASPECT uint32
+
+const (
+	DVASPECT_CONTENT     DVASPECT = 1
+	DVASPECT_THUMBNAIL   DVASPECT = 2
+	DVASPECT_ICON        DVASPECT = 4
+	DVASPECT_DOCPRINT    DVASPECT = 8
+	DVASPECT_OPAQUE      DVASPECT = 16
+	DVASPECT_TRANSPARENT DVASPECT = 32
 )
 
 // enum
@@ -124,6 +212,73 @@ const (
 	STGC_ONLYIFCURRENT                      STGC = 2
 	STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE STGC = 4
 	STGC_CONSOLIDATE                        STGC = 8
+)
+
+// enum
+type STATFLAG int32
+
+const (
+	STATFLAG_DEFAULT STATFLAG = 0
+	STATFLAG_NONAME  STATFLAG = 1
+	STATFLAG_NOOPEN  STATFLAG = 2
+)
+
+// enum
+type VARENUM uint16
+
+const (
+	VT_EMPTY            VARENUM = 0
+	VT_NULL             VARENUM = 1
+	VT_I2               VARENUM = 2
+	VT_I4               VARENUM = 3
+	VT_R4               VARENUM = 4
+	VT_R8               VARENUM = 5
+	VT_CY               VARENUM = 6
+	VT_DATE             VARENUM = 7
+	VT_BSTR             VARENUM = 8
+	VT_DISPATCH         VARENUM = 9
+	VT_ERROR            VARENUM = 10
+	VT_BOOL             VARENUM = 11
+	VT_VARIANT          VARENUM = 12
+	VT_UNKNOWN          VARENUM = 13
+	VT_DECIMAL          VARENUM = 14
+	VT_I1               VARENUM = 16
+	VT_UI1              VARENUM = 17
+	VT_UI2              VARENUM = 18
+	VT_UI4              VARENUM = 19
+	VT_I8               VARENUM = 20
+	VT_UI8              VARENUM = 21
+	VT_INT              VARENUM = 22
+	VT_UINT             VARENUM = 23
+	VT_VOID             VARENUM = 24
+	VT_HRESULT          VARENUM = 25
+	VT_PTR              VARENUM = 26
+	VT_SAFEARRAY        VARENUM = 27
+	VT_CARRAY           VARENUM = 28
+	VT_USERDEFINED      VARENUM = 29
+	VT_LPSTR            VARENUM = 30
+	VT_LPWSTR           VARENUM = 31
+	VT_RECORD           VARENUM = 36
+	VT_INT_PTR          VARENUM = 37
+	VT_UINT_PTR         VARENUM = 38
+	VT_FILETIME         VARENUM = 64
+	VT_BLOB             VARENUM = 65
+	VT_STREAM           VARENUM = 66
+	VT_STORAGE          VARENUM = 67
+	VT_STREAMED_OBJECT  VARENUM = 68
+	VT_STORED_OBJECT    VARENUM = 69
+	VT_BLOB_OBJECT      VARENUM = 70
+	VT_CF               VARENUM = 71
+	VT_CLSID            VARENUM = 72
+	VT_VERSIONED_STREAM VARENUM = 73
+	VT_BSTR_BLOB        VARENUM = 4095
+	VT_VECTOR           VARENUM = 4096
+	VT_ARRAY            VARENUM = 8192
+	VT_BYREF            VARENUM = 16384
+	VT_RESERVED         VARENUM = 32768
+	VT_ILLEGAL          VARENUM = 65535
+	VT_ILLEGALMASKED    VARENUM = 4095
+	VT_TYPEMASK         VARENUM = 4095
 )
 
 // enum
@@ -257,6 +412,15 @@ const (
 	STREAM_SEEK_SET STREAM_SEEK = 0
 	STREAM_SEEK_CUR STREAM_SEEK = 1
 	STREAM_SEEK_END STREAM_SEEK = 2
+)
+
+// enum
+type LOCKTYPE int32
+
+const (
+	LOCK_WRITE     LOCKTYPE = 1
+	LOCK_EXCLUSIVE LOCKTYPE = 2
+	LOCK_ONLYONCE  LOCKTYPE = 4
 )
 
 // enum
@@ -452,13 +616,13 @@ const (
 )
 
 // enum
-type MKREDUCE int32
+type MKRREDUCE int32
 
 const (
-	MKRREDUCE_ONE         MKREDUCE = 196608
-	MKRREDUCE_TOUSER      MKREDUCE = 131072
-	MKRREDUCE_THROUGHUSER MKREDUCE = 65536
-	MKRREDUCE_ALL         MKREDUCE = 0
+	MKRREDUCE_ONE         MKRREDUCE = 196608
+	MKRREDUCE_TOUSER      MKRREDUCE = 131072
+	MKRREDUCE_THROUGHUSER MKRREDUCE = 65536
+	MKRREDUCE_ALL         MKRREDUCE = 0
 )
 
 // enum
@@ -692,6 +856,44 @@ const (
 )
 
 // enum
+type FUNCFLAGS uint16
+
+const (
+	FUNCFLAG_FRESTRICTED       FUNCFLAGS = 1
+	FUNCFLAG_FSOURCE           FUNCFLAGS = 2
+	FUNCFLAG_FBINDABLE         FUNCFLAGS = 4
+	FUNCFLAG_FREQUESTEDIT      FUNCFLAGS = 8
+	FUNCFLAG_FDISPLAYBIND      FUNCFLAGS = 16
+	FUNCFLAG_FDEFAULTBIND      FUNCFLAGS = 32
+	FUNCFLAG_FHIDDEN           FUNCFLAGS = 64
+	FUNCFLAG_FUSESGETLASTERROR FUNCFLAGS = 128
+	FUNCFLAG_FDEFAULTCOLLELEM  FUNCFLAGS = 256
+	FUNCFLAG_FUIDEFAULT        FUNCFLAGS = 512
+	FUNCFLAG_FNONBROWSABLE     FUNCFLAGS = 1024
+	FUNCFLAG_FREPLACEABLE      FUNCFLAGS = 2048
+	FUNCFLAG_FIMMEDIATEBIND    FUNCFLAGS = 4096
+)
+
+// enum
+type VARFLAGS uint16
+
+const (
+	VARFLAG_FREADONLY        VARFLAGS = 1
+	VARFLAG_FSOURCE          VARFLAGS = 2
+	VARFLAG_FBINDABLE        VARFLAGS = 4
+	VARFLAG_FREQUESTEDIT     VARFLAGS = 8
+	VARFLAG_FDISPLAYBIND     VARFLAGS = 16
+	VARFLAG_FDEFAULTBIND     VARFLAGS = 32
+	VARFLAG_FHIDDEN          VARFLAGS = 64
+	VARFLAG_FRESTRICTED      VARFLAGS = 128
+	VARFLAG_FDEFAULTCOLLELEM VARFLAGS = 256
+	VARFLAG_FUIDEFAULT       VARFLAGS = 512
+	VARFLAG_FNONBROWSABLE    VARFLAGS = 1024
+	VARFLAG_FREPLACEABLE     VARFLAGS = 2048
+	VARFLAG_FIMMEDIATEBIND   VARFLAGS = 4096
+)
+
+// enum
 type DESCKIND int32
 
 const (
@@ -882,12 +1084,12 @@ type BYTE_SIZEDARR struct {
 	PData  *byte
 }
 
-type SHORT_SIZEDARR struct {
+type WORD_SIZEDARR struct {
 	ClSize uint32
 	PData  *uint16
 }
 
-type LONG_SIZEDARR struct {
+type DWORD_SIZEDARR struct {
 	ClSize uint32
 	PData  *uint32
 }
@@ -928,8 +1130,8 @@ type STATSTG struct {
 	Mtime             FILETIME
 	Ctime             FILETIME
 	Atime             FILETIME
-	GrfMode           uint32
-	GrfLocksSupported uint32
+	GrfMode           STGM
+	GrfLocksSupported LOCKTYPE
 	Clsid             syscall.GUID
 	GrfStateBits      uint32
 	Reserved          uint32
@@ -984,7 +1186,7 @@ type BIND_OPTS struct {
 }
 
 type BIND_OPTS2 struct {
-	BIND_OPTS
+	Base           BIND_OPTS
 	DwTrackFlags   uint32
 	DwClassContext uint32
 	Locale         uint32
@@ -992,7 +1194,7 @@ type BIND_OPTS2 struct {
 }
 
 type BIND_OPTS3 struct {
-	BIND_OPTS2
+	Base BIND_OPTS2
 	Hwnd HWND
 }
 
@@ -1021,7 +1223,7 @@ type STATDATA struct {
 }
 
 type RemSTGMEDIUM struct {
-	Tymed          uint32
+	Tymed          TYMED
 	DwHandleType   uint32
 	PData          uint32
 	PUnkForRelease uint32
@@ -1090,7 +1292,7 @@ func (this *STGMEDIUM_Anonymous) PstgVal() *IStorage {
 }
 
 type STGMEDIUM struct {
-	Tymed uint32
+	Tymed TYMED
 	STGMEDIUM_Anonymous
 	PUnkForRelease *IUnknown
 }
@@ -1263,7 +1465,7 @@ type SAFEARRAYBOUND struct {
 
 type SAFEARRAY struct {
 	CDims      uint16
-	FFeatures  uint16
+	FFeatures  ADVANCED_FEATURE_FLAGS
 	CbElements uint32
 	CLocks     uint32
 	PvData     unsafe.Pointer
@@ -1327,20 +1529,20 @@ func (this *VARIANT_Anonymous_Anonymous_Anonymous) DblValVal() float64 {
 	return *(*float64)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BoolVal() *int16 {
-	return (*int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) BoolVal() *VARIANT_BOOL {
+	return (*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BoolValVal() int16 {
-	return *(*int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) BoolValVal() VARIANT_BOOL {
+	return *(*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__() *int16 {
-	return (*int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__() *VARIANT_BOOL {
+	return (*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__Val() int16 {
-	return *(*int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__Val() VARIANT_BOOL {
+	return *(*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
 func (this *VARIANT_Anonymous_Anonymous_Anonymous) Scode() *int32 {
@@ -1447,20 +1649,20 @@ func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdblValVal() *float64 {
 	return *(**float64)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PboolVal() **int16 {
-	return (**int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) PboolVal() **VARIANT_BOOL {
+	return (**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PboolValVal() *int16 {
-	return *(**int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) PboolValVal() *VARIANT_BOOL {
+	return *(**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_PBOOL__() **int16 {
-	return (**int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_PBOOL__() **VARIANT_BOOL {
+	return (**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_PBOOL__Val() *int16 {
-	return *(**int16)(unsafe.Pointer(this))
+func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_PBOOL__Val() *VARIANT_BOOL {
+	return *(**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
 func (this *VARIANT_Anonymous_Anonymous_Anonymous) Pscode() **int32 {
@@ -1648,7 +1850,7 @@ func (this *VARIANT_Anonymous_Anonymous_Anonymous) AnonymousVal() VARIANT_Anonym
 }
 
 type VARIANT_Anonymous_Anonymous struct {
-	Vt         uint16
+	Vt         VARENUM
 	WReserved1 uint16
 	WReserved2 uint16
 	WReserved3 uint16
@@ -1709,12 +1911,12 @@ func (this *TYPEDESC_Anonymous) HreftypeVal() uint32 {
 
 type TYPEDESC struct {
 	TYPEDESC_Anonymous
-	Vt uint16
+	Vt VARENUM
 }
 
 type IDLDESC struct {
 	DwReserved uintptr
-	WIDLFlags  uint16
+	WIDLFlags  IDLFLAGS
 }
 
 type ELEMDESC_Anonymous struct {
@@ -1794,7 +1996,7 @@ type FUNCDESC struct {
 	OVft              int16
 	CScodes           int16
 	ElemdescFunc      ELEMDESC
-	WFuncFlags        uint16
+	WFuncFlags        FUNCFLAGS
 }
 
 type VARDESC_Anonymous struct {
@@ -1822,7 +2024,7 @@ type VARDESC struct {
 	LpstrSchema PWSTR
 	VARDESC_Anonymous
 	ElemdescVar ELEMDESC
-	WVarFlags   uint16
+	WVarFlags   VARFLAGS
 	Varkind     VARKIND
 }
 
@@ -2446,9 +2648,9 @@ type IStreamInterface interface {
 	CopyTo(pstm *IStream, cb uint64, pcbRead *uint64, pcbWritten *uint64) HRESULT
 	Commit(grfCommitFlags STGC) HRESULT
 	Revert() HRESULT
-	LockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
+	LockRegion(libOffset uint64, cb uint64, dwLockType LOCKTYPE) HRESULT
 	UnlockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
-	Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT
+	Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT
 	Clone(ppstm **IStream) HRESULT
 }
 
@@ -2498,7 +2700,7 @@ func (this *IStream) Revert() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IStream) LockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT {
+func (this *IStream) LockRegion(libOffset uint64, cb uint64, dwLockType LOCKTYPE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().LockRegion, uintptr(unsafe.Pointer(this)), uintptr(libOffset), uintptr(cb), uintptr(dwLockType))
 	return HRESULT(ret)
 }
@@ -2508,7 +2710,7 @@ func (this *IStream) UnlockRegion(libOffset uint64, cb uint64, dwLockType uint32
 	return HRESULT(ret)
 }
 
-func (this *IStream) Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT {
+func (this *IStream) Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Stat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstatstg)), uintptr(grfStatFlag))
 	return HRESULT(ret)
 }
@@ -4262,7 +4464,7 @@ var IID_IRunningObjectTable = syscall.GUID{0x00000010, 0x0000, 0x0000,
 
 type IRunningObjectTableInterface interface {
 	IUnknownInterface
-	Register(grfFlags uint32, punkObject *IUnknown, pmkObjectName *IMoniker, pdwRegister *uint32) HRESULT
+	Register(grfFlags ROT_FLAGS, punkObject *IUnknown, pmkObjectName *IMoniker, pdwRegister *uint32) HRESULT
 	Revoke(dwRegister uint32) HRESULT
 	IsRunning(pmkObjectName *IMoniker) HRESULT
 	GetObject(pmkObjectName *IMoniker, ppunkObject **IUnknown) HRESULT
@@ -4290,7 +4492,7 @@ func (this *IRunningObjectTable) Vtbl() *IRunningObjectTableVtbl {
 	return (*IRunningObjectTableVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IRunningObjectTable) Register(grfFlags uint32, punkObject *IUnknown, pmkObjectName *IMoniker, pdwRegister *uint32) HRESULT {
+func (this *IRunningObjectTable) Register(grfFlags ROT_FLAGS, punkObject *IUnknown, pmkObjectName *IMoniker, pdwRegister *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Register, uintptr(unsafe.Pointer(this)), uintptr(grfFlags), uintptr(unsafe.Pointer(punkObject)), uintptr(unsafe.Pointer(pmkObjectName)), uintptr(unsafe.Pointer(pdwRegister)))
 	return HRESULT(ret)
 }
@@ -4559,7 +4761,7 @@ var IID_IPersistFile = syscall.GUID{0x0000010B, 0x0000, 0x0000,
 type IPersistFileInterface interface {
 	IPersistInterface
 	IsDirty() HRESULT
-	Load(pszFileName PWSTR, dwMode uint32) HRESULT
+	Load(pszFileName PWSTR, dwMode STGM) HRESULT
 	Save(pszFileName PWSTR, fRemember BOOL) HRESULT
 	SaveCompleted(pszFileName PWSTR) HRESULT
 	GetCurFile(ppszFileName *PWSTR) HRESULT
@@ -4587,7 +4789,7 @@ func (this *IPersistFile) IsDirty() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IPersistFile) Load(pszFileName PWSTR, dwMode uint32) HRESULT {
+func (this *IPersistFile) Load(pszFileName PWSTR, dwMode STGM) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Load, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pszFileName)), uintptr(dwMode))
 	return HRESULT(ret)
 }
@@ -6281,7 +6483,7 @@ type IDispatchInterface interface {
 	GetTypeInfoCount(pctinfo *uint32) HRESULT
 	GetTypeInfo(iTInfo uint32, lcid uint32, ppTInfo **ITypeInfo) HRESULT
 	GetIDsOfNames(riid *syscall.GUID, rgszNames *PWSTR, cNames uint32, lcid uint32, rgDispId *int32) HRESULT
-	Invoke(dispIdMember int32, riid *syscall.GUID, lcid uint32, wFlags uint16, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT
+	Invoke(dispIdMember int32, riid *syscall.GUID, lcid uint32, wFlags DISPATCH_FLAGS, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT
 }
 
 type IDispatchVtbl struct {
@@ -6315,7 +6517,7 @@ func (this *IDispatch) GetIDsOfNames(riid *syscall.GUID, rgszNames *PWSTR, cName
 	return HRESULT(ret)
 }
 
-func (this *IDispatch) Invoke(dispIdMember int32, riid *syscall.GUID, lcid uint32, wFlags uint16, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT {
+func (this *IDispatch) Invoke(dispIdMember int32, riid *syscall.GUID, lcid uint32, wFlags DISPATCH_FLAGS, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Invoke, uintptr(unsafe.Pointer(this)), uintptr(dispIdMember), uintptr(unsafe.Pointer(riid)), uintptr(lcid), uintptr(wFlags), uintptr(unsafe.Pointer(pDispParams)), uintptr(unsafe.Pointer(pVarResult)), uintptr(unsafe.Pointer(pExcepInfo)), uintptr(unsafe.Pointer(puArgErr)))
 	return HRESULT(ret)
 }
@@ -6366,9 +6568,9 @@ type ITypeInfoInterface interface {
 	GetVarDesc(index uint32, ppVarDesc **VARDESC) HRESULT
 	GetNames(memid int32, rgBstrNames *BSTR, cMaxNames uint32, pcNames *uint32) HRESULT
 	GetRefTypeOfImplType(index uint32, pRefType *uint32) HRESULT
-	GetImplTypeFlags(index uint32, pImplTypeFlags *int32) HRESULT
+	GetImplTypeFlags(index uint32, pImplTypeFlags *IMPLTYPEFLAGS) HRESULT
 	GetIDsOfNames(rgszNames *PWSTR, cNames uint32, pMemId *int32) HRESULT
-	Invoke(pvInstance unsafe.Pointer, memid int32, wFlags uint16, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT
+	Invoke(pvInstance unsafe.Pointer, memid int32, wFlags DISPATCH_FLAGS, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT
 	GetDocumentation(memid int32, pBstrName *BSTR, pBstrDocString *BSTR, pdwHelpContext *uint32, pBstrHelpFile *BSTR) HRESULT
 	GetDllEntry(memid int32, invKind INVOKEKIND, pBstrDllName *BSTR, pBstrName *BSTR, pwOrdinal *uint16) HRESULT
 	GetRefTypeInfo(hRefType uint32, ppTInfo **ITypeInfo) HRESULT
@@ -6442,7 +6644,7 @@ func (this *ITypeInfo) GetRefTypeOfImplType(index uint32, pRefType *uint32) HRES
 	return HRESULT(ret)
 }
 
-func (this *ITypeInfo) GetImplTypeFlags(index uint32, pImplTypeFlags *int32) HRESULT {
+func (this *ITypeInfo) GetImplTypeFlags(index uint32, pImplTypeFlags *IMPLTYPEFLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetImplTypeFlags, uintptr(unsafe.Pointer(this)), uintptr(index), uintptr(unsafe.Pointer(pImplTypeFlags)))
 	return HRESULT(ret)
 }
@@ -6452,7 +6654,7 @@ func (this *ITypeInfo) GetIDsOfNames(rgszNames *PWSTR, cNames uint32, pMemId *in
 	return HRESULT(ret)
 }
 
-func (this *ITypeInfo) Invoke(pvInstance unsafe.Pointer, memid int32, wFlags uint16, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT {
+func (this *ITypeInfo) Invoke(pvInstance unsafe.Pointer, memid int32, wFlags DISPATCH_FLAGS, pDispParams *DISPPARAMS, pVarResult *VARIANT, pExcepInfo *EXCEPINFO, puArgErr *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Invoke, uintptr(unsafe.Pointer(this)), uintptr(pvInstance), uintptr(memid), uintptr(wFlags), uintptr(unsafe.Pointer(pDispParams)), uintptr(unsafe.Pointer(pVarResult)), uintptr(unsafe.Pointer(pExcepInfo)), uintptr(unsafe.Pointer(puArgErr)))
 	return HRESULT(ret)
 }

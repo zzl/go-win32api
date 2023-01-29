@@ -194,6 +194,15 @@ var (
 // enums
 
 // enum
+type POWER_COOLING_MODE uint16
+
+const (
+	PO_TZ_ACTIVE       POWER_COOLING_MODE = 0
+	PO_TZ_PASSIVE      POWER_COOLING_MODE = 1
+	PO_TZ_INVALID_MODE POWER_COOLING_MODE = 2
+)
+
+// enum
 type POWER_PLATFORM_ROLE_VERSION uint32
 
 const (
@@ -525,6 +534,22 @@ const (
 )
 
 // structs
+
+type PROCESSOR_POWER_INFORMATION struct {
+	Number           uint32
+	MaxMhz           uint32
+	CurrentMhz       uint32
+	MhzLimit         uint32
+	MaxIdleState     uint32
+	CurrentIdleState uint32
+}
+
+type SYSTEM_POWER_INFORMATION struct {
+	MaxIdlenessAllowed uint32
+	Idleness           uint32
+	TimeRemaining      uint32
+	CoolingMode        POWER_COOLING_MODE
+}
 
 type GLOBAL_MACHINE_POWER_POLICY struct {
 	Revision                    uint32

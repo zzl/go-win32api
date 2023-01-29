@@ -14,11 +14,9 @@ type (
 )
 
 const (
-	WAIT_OBJECT_0                                         uint32 = 0x0
-	WAIT_ABANDONED                                        uint32 = 0x80
-	WAIT_ABANDONED_0                                      uint32 = 0x80
-	WAIT_IO_COMPLETION                                    uint32 = 0xc0
+	FLS_OUT_OF_INDEXES                                    uint32 = 0xffffffff
 	PRIVATE_NAMESPACE_FLAG_DESTROY                        uint32 = 0x1
+	TLS_OUT_OF_INDEXES                                    uint32 = 0xffffffff
 	PROC_THREAD_ATTRIBUTE_REPLACE_VALUE                   uint32 = 0x1
 	THREAD_POWER_THROTTLING_CURRENT_VERSION               uint32 = 0x1
 	THREAD_POWER_THROTTLING_EXECUTION_SPEED               uint32 = 0x1
@@ -36,7 +34,6 @@ const (
 	INIT_ONCE_INIT_FAILED                                 uint32 = 0x4
 	INIT_ONCE_CTX_RESERVED_BITS                           uint32 = 0x2
 	CONDITION_VARIABLE_LOCKMODE_SHARED                    uint32 = 0x1
-	MUTEX_MODIFY_STATE                                    uint32 = 0x1
 	CREATE_MUTEX_INITIAL_OWNER                            uint32 = 0x1
 	CREATE_WAITABLE_TIMER_MANUAL_RESET                    uint32 = 0x1
 	CREATE_WAITABLE_TIMER_HIGH_RESOLUTION                 uint32 = 0x2
@@ -274,6 +271,27 @@ const (
 	THREAD_WRITE_OWNER               THREAD_ACCESS_RIGHTS = 524288
 	THREAD_SYNCHRONIZE               THREAD_ACCESS_RIGHTS = 1048576
 	THREAD_STANDARD_RIGHTS_REQUIRED  THREAD_ACCESS_RIGHTS = 983040
+)
+
+// enum
+// flags
+type SYNCHRONIZATION_ACCESS_RIGHTS uint32
+
+const (
+	EVENT_ALL_ACCESS             SYNCHRONIZATION_ACCESS_RIGHTS = 2031619
+	EVENT_MODIFY_STATE           SYNCHRONIZATION_ACCESS_RIGHTS = 2
+	MUTEX_ALL_ACCESS             SYNCHRONIZATION_ACCESS_RIGHTS = 2031617
+	MUTEX_MODIFY_STATE           SYNCHRONIZATION_ACCESS_RIGHTS = 1
+	SEMAPHORE_ALL_ACCESS         SYNCHRONIZATION_ACCESS_RIGHTS = 2031619
+	SEMAPHORE_MODIFY_STATE       SYNCHRONIZATION_ACCESS_RIGHTS = 2
+	TIMER_ALL_ACCESS             SYNCHRONIZATION_ACCESS_RIGHTS = 2031619
+	TIMER_MODIFY_STATE           SYNCHRONIZATION_ACCESS_RIGHTS = 2
+	TIMER_QUERY_STATE            SYNCHRONIZATION_ACCESS_RIGHTS = 1
+	SYNCHRONIZATION_DELETE       SYNCHRONIZATION_ACCESS_RIGHTS = 65536
+	SYNCHRONIZATION_READ_CONTROL SYNCHRONIZATION_ACCESS_RIGHTS = 131072
+	SYNCHRONIZATION_WRITE_DAC    SYNCHRONIZATION_ACCESS_RIGHTS = 262144
+	SYNCHRONIZATION_WRITE_OWNER  SYNCHRONIZATION_ACCESS_RIGHTS = 524288
+	SYNCHRONIZATION_SYNCHRONIZE  SYNCHRONIZATION_ACCESS_RIGHTS = 1048576
 )
 
 // enum
@@ -619,7 +637,7 @@ type APP_MEMORY_INFORMATION struct {
 }
 
 type PROCESS_MACHINE_INFORMATION struct {
-	ProcessMachine    uint16
+	ProcessMachine    IMAGE_FILE_MACHINE
 	Res0              uint16
 	MachineAttributes MACHINE_ATTRIBUTES
 }
@@ -1385,10 +1403,10 @@ func ReleaseMutex(hMutex HANDLE) (BOOL, WIN32_ERROR) {
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WaitForSingleObject(hHandle HANDLE, dwMilliseconds uint32) (uint32, WIN32_ERROR) {
+func WaitForSingleObject(hHandle HANDLE, dwMilliseconds uint32) (WIN32_ERROR, WIN32_ERROR) {
 	addr := lazyAddr(&pWaitForSingleObject, libKernel32, "WaitForSingleObject")
 	ret, _, err := syscall.SyscallN(addr, hHandle, uintptr(dwMilliseconds))
-	return uint32(ret), WIN32_ERROR(err)
+	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func SleepEx(dwMilliseconds uint32, bAlertable BOOL) uint32 {
@@ -1397,16 +1415,16 @@ func SleepEx(dwMilliseconds uint32, bAlertable BOOL) uint32 {
 	return uint32(ret)
 }
 
-func WaitForSingleObjectEx(hHandle HANDLE, dwMilliseconds uint32, bAlertable BOOL) (uint32, WIN32_ERROR) {
+func WaitForSingleObjectEx(hHandle HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
 	addr := lazyAddr(&pWaitForSingleObjectEx, libKernel32, "WaitForSingleObjectEx")
 	ret, _, err := syscall.SyscallN(addr, hHandle, uintptr(dwMilliseconds), uintptr(bAlertable))
-	return uint32(ret), WIN32_ERROR(err)
+	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
-func WaitForMultipleObjectsEx(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32, bAlertable BOOL) (uint32, WIN32_ERROR) {
+func WaitForMultipleObjectsEx(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
 	addr := lazyAddr(&pWaitForMultipleObjectsEx, libKernel32, "WaitForMultipleObjectsEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(lpHandles)), uintptr(bWaitAll), uintptr(dwMilliseconds), uintptr(bAlertable))
-	return uint32(ret), WIN32_ERROR(err)
+	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func CreateMutexA(lpMutexAttributes *SECURITY_ATTRIBUTES, bInitialOwner BOOL, lpName PSTR) (HANDLE, WIN32_ERROR) {
@@ -1423,7 +1441,7 @@ func CreateMutexW(lpMutexAttributes *SECURITY_ATTRIBUTES, bInitialOwner BOOL, lp
 	return ret, WIN32_ERROR(err)
 }
 
-func OpenMutexW(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
+func OpenMutexW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenMutexW, libKernel32, "OpenMutexW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
@@ -1443,7 +1461,7 @@ func CreateEventW(lpEventAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, bIn
 	return ret, WIN32_ERROR(err)
 }
 
-func OpenEventA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) (HANDLE, WIN32_ERROR) {
+func OpenEventA(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PSTR) (HANDLE, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenEventA, libKernel32, "OpenEventA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
@@ -1451,19 +1469,19 @@ func OpenEventA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) (HANDL
 
 var OpenEvent = OpenEventW
 
-func OpenEventW(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
+func OpenEventW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenEventW, libKernel32, "OpenEventW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
-func OpenSemaphoreW(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
+func OpenSemaphoreW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenSemaphoreW, libKernel32, "OpenSemaphoreW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
-func OpenWaitableTimerW(dwDesiredAccess uint32, bInheritHandle BOOL, lpTimerName PWSTR) (HANDLE, WIN32_ERROR) {
+func OpenWaitableTimerW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpTimerName PWSTR) (HANDLE, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenWaitableTimerW, libKernel32, "OpenWaitableTimerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpTimerName)))
 	return ret, WIN32_ERROR(err)
@@ -1552,10 +1570,10 @@ func Sleep(dwMilliseconds uint32) {
 	syscall.SyscallN(addr, uintptr(dwMilliseconds))
 }
 
-func WaitForMultipleObjects(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32) (uint32, WIN32_ERROR) {
+func WaitForMultipleObjects(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32) (WIN32_ERROR, WIN32_ERROR) {
 	addr := lazyAddr(&pWaitForMultipleObjects, libKernel32, "WaitForMultipleObjects")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(lpHandles)), uintptr(bWaitAll), uintptr(dwMilliseconds))
-	return uint32(ret), WIN32_ERROR(err)
+	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 var CreateSemaphore = CreateSemaphoreW
@@ -1802,7 +1820,7 @@ func GetStartupInfoW(lpStartupInfo *STARTUPINFOW) {
 
 var CreateProcessAsUser = CreateProcessAsUserW
 
-func CreateProcessAsUserW(hToken HANDLE, lpApplicationName PWSTR, lpCommandLine PWSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags uint32, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
+func CreateProcessAsUserW(hToken HANDLE, lpApplicationName PWSTR, lpCommandLine PWSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateProcessAsUserW, libAdvapi32, "CreateProcessAsUserW")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(unsafe.Pointer(lpProcessAttributes)), uintptr(unsafe.Pointer(lpThreadAttributes)), uintptr(bInheritHandles), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -2074,7 +2092,7 @@ func SetThreadSelectedCpuSets(Thread HANDLE, CpuSetIds *uint32, CpuSetIdCount ui
 	return BOOL(ret)
 }
 
-func CreateProcessAsUserA(hToken HANDLE, lpApplicationName PSTR, lpCommandLine PSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags uint32, lpEnvironment unsafe.Pointer, lpCurrentDirectory PSTR, lpStartupInfo *STARTUPINFOA, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
+func CreateProcessAsUserA(hToken HANDLE, lpApplicationName PSTR, lpCommandLine PSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PSTR, lpStartupInfo *STARTUPINFOA, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateProcessAsUserA, libAdvapi32, "CreateProcessAsUserA")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(unsafe.Pointer(lpProcessAttributes)), uintptr(unsafe.Pointer(lpThreadAttributes)), uintptr(bInheritHandles), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -2381,7 +2399,7 @@ func IsWow64Process(hProcess HANDLE, Wow64Process *BOOL) (BOOL, WIN32_ERROR) {
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func IsWow64Process2(hProcess HANDLE, pProcessMachine *uint16, pNativeMachine *uint16) (BOOL, WIN32_ERROR) {
+func IsWow64Process2(hProcess HANDLE, pProcessMachine *IMAGE_FILE_MACHINE, pNativeMachine *IMAGE_FILE_MACHINE) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pIsWow64Process2, libKernel32, "IsWow64Process2")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(pProcessMachine)), uintptr(unsafe.Pointer(pNativeMachine)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -2709,13 +2727,13 @@ func GetStartupInfoA(lpStartupInfo *STARTUPINFOA) {
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpStartupInfo)))
 }
 
-func CreateProcessWithLogonW(lpUsername PWSTR, lpDomain PWSTR, lpPassword PWSTR, dwLogonFlags CREATE_PROCESS_LOGON_FLAGS, lpApplicationName PWSTR, lpCommandLine PWSTR, dwCreationFlags uint32, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
+func CreateProcessWithLogonW(lpUsername PWSTR, lpDomain PWSTR, lpPassword PWSTR, dwLogonFlags CREATE_PROCESS_LOGON_FLAGS, lpApplicationName PWSTR, lpCommandLine PWSTR, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateProcessWithLogonW, libAdvapi32, "CreateProcessWithLogonW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpUsername)), uintptr(unsafe.Pointer(lpDomain)), uintptr(unsafe.Pointer(lpPassword)), uintptr(dwLogonFlags), uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreateProcessWithTokenW(hToken HANDLE, dwLogonFlags CREATE_PROCESS_LOGON_FLAGS, lpApplicationName PWSTR, lpCommandLine PWSTR, dwCreationFlags uint32, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
+func CreateProcessWithTokenW(hToken HANDLE, dwLogonFlags CREATE_PROCESS_LOGON_FLAGS, lpApplicationName PWSTR, lpCommandLine PWSTR, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateProcessWithTokenW, libAdvapi32, "CreateProcessWithTokenW")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(dwLogonFlags), uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)

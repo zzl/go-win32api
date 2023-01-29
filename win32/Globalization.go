@@ -832,18 +832,6 @@ const (
 	CANITER_SKIP_ZEROES                       uint32  = 0x1
 	NUMSYS_NAME_CAPACITY                      uint32  = 0x8
 	U_HAVE_RBNF                               uint32  = 0x0
-	IME_CMODE_ALPHANUMERIC                    uint32  = 0x0
-	IME_CMODE_NATIVE                          uint32  = 0x1
-	IME_CMODE_CHINESE                         uint32  = 0x1
-	IME_CMODE_HANGUL                          uint32  = 0x1
-	IME_CMODE_JAPANESE                        uint32  = 0x1
-	IME_CMODE_KATAKANA                        uint32  = 0x2
-	IME_CMODE_LANGUAGE                        uint32  = 0x3
-	IME_CMODE_FULLSHAPE                       uint32  = 0x8
-	IME_CMODE_ROMAN                           uint32  = 0x10
-	IME_CMODE_CHARCODE                        uint32  = 0x20
-	IME_CMODE_HANJACONVERT                    uint32  = 0x40
-	IME_CMODE_NATIVESYMBOL                    uint32  = 0x80
 	MAX_MIMECP_NAME                           uint32  = 0x40
 	MAX_MIMECSET_NAME                         uint32  = 0x32
 	MAX_MIMEFACE_NAME                         uint32  = 0x20
@@ -4007,30 +3995,30 @@ const (
 )
 
 // enum
-type TagMLCONVCHARF int32
+type MLCONVCHAR int32
 
 const (
-	MLCONVCHARF_AUTODETECT     TagMLCONVCHARF = 1
-	MLCONVCHARF_ENTITIZE       TagMLCONVCHARF = 2
-	MLCONVCHARF_NCR_ENTITIZE   TagMLCONVCHARF = 2
-	MLCONVCHARF_NAME_ENTITIZE  TagMLCONVCHARF = 4
-	MLCONVCHARF_USEDEFCHAR     TagMLCONVCHARF = 8
-	MLCONVCHARF_NOBESTFITCHARS TagMLCONVCHARF = 16
-	MLCONVCHARF_DETECTJPN      TagMLCONVCHARF = 32
+	MLCONVCHARF_AUTODETECT     MLCONVCHAR = 1
+	MLCONVCHARF_ENTITIZE       MLCONVCHAR = 2
+	MLCONVCHARF_NCR_ENTITIZE   MLCONVCHAR = 2
+	MLCONVCHARF_NAME_ENTITIZE  MLCONVCHAR = 4
+	MLCONVCHARF_USEDEFCHAR     MLCONVCHAR = 8
+	MLCONVCHARF_NOBESTFITCHARS MLCONVCHAR = 16
+	MLCONVCHARF_DETECTJPN      MLCONVCHAR = 32
 )
 
 // enum
-type TagMLCPF int32
+type MLCP int32
 
 const (
-	MLDETECTF_MAILNEWS           TagMLCPF = 1
-	MLDETECTF_BROWSER            TagMLCPF = 2
-	MLDETECTF_VALID              TagMLCPF = 4
-	MLDETECTF_VALID_NLS          TagMLCPF = 8
-	MLDETECTF_PRESERVE_ORDER     TagMLCPF = 16
-	MLDETECTF_PREFERRED_ONLY     TagMLCPF = 32
-	MLDETECTF_FILTER_SPECIALCHAR TagMLCPF = 64
-	MLDETECTF_EURO_UTF8          TagMLCPF = 128
+	MLDETECTF_MAILNEWS           MLCP = 1
+	MLDETECTF_BROWSER            MLCP = 2
+	MLDETECTF_VALID              MLCP = 4
+	MLDETECTF_VALID_NLS          MLCP = 8
+	MLDETECTF_PRESERVE_ORDER     MLCP = 16
+	MLDETECTF_PREFERRED_ONLY     MLCP = 32
+	MLDETECTF_FILTER_SPECIALCHAR MLCP = 64
+	MLDETECTF_EURO_UTF8          MLCP = 128
 )
 
 // enum
@@ -4349,21 +4337,21 @@ type SCRIPT_DIGITSUBSTITUTE struct {
 	DwReserved uint32
 }
 
-type Opentype_feature_record struct {
+type OPENTYPE_FEATURE_RECORD struct {
 	TagFeature uint32
 	LParameter int32
 }
 
-type Textrange_properties struct {
-	PotfRecords *Opentype_feature_record
+type TEXTRANGE_PROPERTIES struct {
+	PotfRecords *OPENTYPE_FEATURE_RECORD
 	CotfRecords int32
 }
 
-type Script_charprop struct {
+type SCRIPT_CHARPROP struct {
 	Bitfield_ uint16
 }
 
-type Script_glyphprop struct {
+type SCRIPT_GLYPHPROP struct {
 	Sva      SCRIPT_VISATTR
 	Reserved uint16
 }
@@ -4730,7 +4718,7 @@ type DetectEncodingInfo struct {
 	NConfidence int32
 }
 
-type TagSCRIPFONTINFO struct {
+type SCRIPTFONTINFO struct {
 	Scripts int64
 	WszFont [32]uint16
 }
@@ -6463,7 +6451,7 @@ type IMLangFontLink2Interface interface {
 	ResetFontMapping() HRESULT
 	MapFont(hDC HDC, dwCodePages uint32, chSrc uint16, pFont *HFONT) HRESULT
 	GetFontUnicodeRanges(hDC HDC, puiRanges *uint32, pUranges *UNICODERANGE) HRESULT
-	GetScriptFontInfo(sid byte, dwFlags uint32, puiFonts *uint32, pScriptFont *TagSCRIPFONTINFO) HRESULT
+	GetScriptFontInfo(sid byte, dwFlags uint32, puiFonts *uint32, pScriptFont *SCRIPTFONTINFO) HRESULT
 	CodePageToScriptID(uiCodePage uint32, pSid *byte) HRESULT
 }
 
@@ -6511,7 +6499,7 @@ func (this *IMLangFontLink2) GetFontUnicodeRanges(hDC HDC, puiRanges *uint32, pU
 	return HRESULT(ret)
 }
 
-func (this *IMLangFontLink2) GetScriptFontInfo(sid byte, dwFlags uint32, puiFonts *uint32, pScriptFont *TagSCRIPFONTINFO) HRESULT {
+func (this *IMLangFontLink2) GetScriptFontInfo(sid byte, dwFlags uint32, puiFonts *uint32, pScriptFont *SCRIPTFONTINFO) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetScriptFontInfo, uintptr(unsafe.Pointer(this)), uintptr(sid), uintptr(dwFlags), uintptr(unsafe.Pointer(puiFonts)), uintptr(unsafe.Pointer(pScriptFont)))
 	return HRESULT(ret)
 }

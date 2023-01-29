@@ -85,31 +85,6 @@ const (
 )
 
 // enum
-// flags
-type STGM uint32
-
-const (
-	STGM_DIRECT           STGM = 0
-	STGM_TRANSACTED       STGM = 65536
-	STGM_SIMPLE           STGM = 134217728
-	STGM_READ             STGM = 0
-	STGM_WRITE            STGM = 1
-	STGM_READWRITE        STGM = 2
-	STGM_SHARE_DENY_NONE  STGM = 64
-	STGM_SHARE_DENY_READ  STGM = 48
-	STGM_SHARE_DENY_WRITE STGM = 32
-	STGM_SHARE_EXCLUSIVE  STGM = 16
-	STGM_PRIORITY         STGM = 262144
-	STGM_DELETEONRELEASE  STGM = 67108864
-	STGM_NOSCRATCH        STGM = 1048576
-	STGM_CREATE           STGM = 4096
-	STGM_CONVERT          STGM = 131072
-	STGM_FAILIFTHERE      STGM = 0
-	STGM_NOSNAPSHOT       STGM = 2097152
-	STGM_DIRECT_SWMR      STGM = 4194304
-)
-
-// enum
 type STGFMT uint32
 
 const (
@@ -128,24 +103,6 @@ const (
 	STGMOVE_MOVE        STGMOVE = 0
 	STGMOVE_COPY        STGMOVE = 1
 	STGMOVE_SHALLOWCOPY STGMOVE = 2
-)
-
-// enum
-type STATFLAG int32
-
-const (
-	STATFLAG_DEFAULT STATFLAG = 0
-	STATFLAG_NONAME  STATFLAG = 1
-	STATFLAG_NOOPEN  STATFLAG = 2
-)
-
-// enum
-type LOCKTYPE int32
-
-const (
-	LOCK_WRITE     LOCKTYPE = 1
-	LOCK_EXCLUSIVE LOCKTYPE = 2
-	LOCK_ONLYONCE  LOCKTYPE = 4
 )
 
 // enum
@@ -250,7 +207,7 @@ type CABSTRBLOB struct {
 
 type CABOOL struct {
 	CElems uint32
-	PElems *int16
+	PElems *VARIANT_BOOL
 }
 
 type CASCODE struct {
@@ -398,20 +355,20 @@ func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) DblValVal() float64 {
 	return *(*float64)(unsafe.Pointer(this))
 }
 
-func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) BoolVal() *int16 {
-	return (*int16)(unsafe.Pointer(this))
+func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) BoolVal() *VARIANT_BOOL {
+	return (*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) BoolValVal() int16 {
-	return *(*int16)(unsafe.Pointer(this))
+func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) BoolValVal() VARIANT_BOOL {
+	return *(*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__() *int16 {
-	return (*int16)(unsafe.Pointer(this))
+func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__() *VARIANT_BOOL {
+	return (*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__Val() int16 {
-	return *(*int16)(unsafe.Pointer(this))
+func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__Val() VARIANT_BOOL {
+	return *(*VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
 func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) Scode() *int32 {
@@ -806,12 +763,12 @@ func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) PdblValVal() *float64 {
 	return *(**float64)(unsafe.Pointer(this))
 }
 
-func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) PboolVal() **int16 {
-	return (**int16)(unsafe.Pointer(this))
+func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) PboolVal() **VARIANT_BOOL {
+	return (**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
-func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) PboolValVal() *int16 {
-	return *(**int16)(unsafe.Pointer(this))
+func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) PboolValVal() *VARIANT_BOOL {
+	return *(**VARIANT_BOOL)(unsafe.Pointer(this))
 }
 
 func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) PdecVal() **DECIMAL {
@@ -887,7 +844,7 @@ func (this *PROPVARIANT_Anonymous_Anonymous_Anonymous) PvarValVal() *PROPVARIANT
 }
 
 type PROPVARIANT_Anonymous_Anonymous struct {
-	Vt         uint16
+	Vt         VARENUM
 	WReserved1 uint16
 	WReserved2 uint16
 	WReserved3 uint16
@@ -946,7 +903,7 @@ type PROPSPEC struct {
 type STATPROPSTG struct {
 	LpwstrName PWSTR
 	Propid     uint32
-	Vt         uint16
+	Vt         VARENUM
 }
 
 type STATPROPSETSTG struct {
@@ -985,7 +942,7 @@ type OLESTREAM struct {
 
 type PROPBAG2 struct {
 	DwType   uint32
-	Vt       uint16
+	Vt       VARENUM
 	CfType   uint16
 	DwHint   uint32
 	PstrName PWSTR
@@ -1062,7 +1019,7 @@ type IStorageInterface interface {
 	SetElementTimes(pwcsName PWSTR, pctime *FILETIME, patime *FILETIME, pmtime *FILETIME) HRESULT
 	SetClass(clsid *syscall.GUID) HRESULT
 	SetStateBits(grfStateBits uint32, grfMask uint32) HRESULT
-	Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT
+	Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT
 }
 
 type IStorageVtbl struct {
@@ -1162,7 +1119,7 @@ func (this *IStorage) SetStateBits(grfStateBits uint32, grfMask uint32) HRESULT 
 	return HRESULT(ret)
 }
 
-func (this *IStorage) Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT {
+func (this *IStorage) Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Stat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstatstg)), uintptr(grfStatFlag))
 	return HRESULT(ret)
 }
@@ -1239,9 +1196,9 @@ type ILockBytesInterface interface {
 	WriteAt(ulOffset uint64, pv unsafe.Pointer, cb uint32, pcbWritten *uint32) HRESULT
 	Flush() HRESULT
 	SetSize(cb uint64) HRESULT
-	LockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
+	LockRegion(libOffset uint64, cb uint64, dwLockType LOCKTYPE) HRESULT
 	UnlockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
-	Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT
+	Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT
 }
 
 type ILockBytesVtbl struct {
@@ -1283,7 +1240,7 @@ func (this *ILockBytes) SetSize(cb uint64) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ILockBytes) LockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT {
+func (this *ILockBytes) LockRegion(libOffset uint64, cb uint64, dwLockType LOCKTYPE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().LockRegion, uintptr(unsafe.Pointer(this)), uintptr(libOffset), uintptr(cb), uintptr(dwLockType))
 	return HRESULT(ret)
 }
@@ -1293,7 +1250,7 @@ func (this *ILockBytes) UnlockRegion(libOffset uint64, cb uint64, dwLockType uin
 	return HRESULT(ret)
 }
 
-func (this *ILockBytes) Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT {
+func (this *ILockBytes) Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Stat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstatstg)), uintptr(grfStatFlag))
 	return HRESULT(ret)
 }
@@ -1935,7 +1892,7 @@ func StgOpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode STGM, snbExc
 	return HRESULT(ret)
 }
 
-func StgOpenStorageOnILockBytes(plkbyt *ILockBytes, pstgPriority *IStorage, grfMode uint32, snbExclude **uint16, reserved uint32, ppstgOpen **IStorage) HRESULT {
+func StgOpenStorageOnILockBytes(plkbyt *ILockBytes, pstgPriority *IStorage, grfMode STGM, snbExclude **uint16, reserved uint32, ppstgOpen **IStorage) HRESULT {
 	addr := lazyAddr(&pStgOpenStorageOnILockBytes, libOle32, "StgOpenStorageOnILockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plkbyt)), uintptr(unsafe.Pointer(pstgPriority)), uintptr(grfMode), uintptr(unsafe.Pointer(snbExclude)), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)

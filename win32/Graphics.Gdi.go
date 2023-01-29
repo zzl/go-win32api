@@ -24,11 +24,7 @@ type (
 
 const (
 	GDI_ERROR                                       int32  = -1
-	ERROR                                           uint32 = 0x0
-	NULLREGION                                      uint32 = 0x1
-	SIMPLEREGION                                    uint32 = 0x2
-	COMPLEXREGION                                   uint32 = 0x3
-	RGN_ERROR                                       uint32 = 0x0
+	ERROR                                           int32  = 0
 	MAXSTRETCHBLTMODE                               uint32 = 0x4
 	POLYFILL_LAST                                   uint32 = 0x2
 	LAYOUT_BTT                                      uint32 = 0x2
@@ -224,16 +220,6 @@ const (
 	LCS_GM_ABS_COLORIMETRIC                         int32  = 8
 	CM_OUT_OF_GAMUT                                 uint32 = 0xff
 	CM_IN_GAMUT                                     uint32 = 0x0
-	BI_RGB                                          int32  = 0
-	BI_RLE8                                         int32  = 1
-	BI_RLE4                                         int32  = 2
-	BI_BITFIELDS                                    int32  = 3
-	BI_JPEG                                         int32  = 4
-	BI_PNG                                          int32  = 5
-	TMPF_FIXED_PITCH                                uint32 = 0x1
-	TMPF_VECTOR                                     uint32 = 0x2
-	TMPF_DEVICE                                     uint32 = 0x8
-	TMPF_TRUETYPE                                   uint32 = 0x4
 	NTM_REGULAR                                     int32  = 64
 	NTM_BOLD                                        int32  = 32
 	NTM_ITALIC                                      int32  = 1
@@ -245,32 +231,8 @@ const (
 	NTM_DSIG                                        uint32 = 0x200000
 	LF_FACESIZE                                     uint32 = 0x20
 	LF_FULLFACESIZE                                 uint32 = 0x40
-	OUT_SCREEN_OUTLINE_PRECIS                       uint32 = 0x9
 	CLEARTYPE_NATURAL_QUALITY                       uint32 = 0x6
-	DEFAULT_PITCH                                   uint32 = 0x0
-	FIXED_PITCH                                     uint32 = 0x1
-	VARIABLE_PITCH                                  uint32 = 0x2
 	MONO_FONT                                       uint32 = 0x8
-	ANSI_CHARSET                                    uint32 = 0x0
-	DEFAULT_CHARSET                                 uint32 = 0x1
-	SYMBOL_CHARSET                                  uint32 = 0x2
-	SHIFTJIS_CHARSET                                uint32 = 0x80
-	HANGEUL_CHARSET                                 uint32 = 0x81
-	HANGUL_CHARSET                                  uint32 = 0x81
-	GB2312_CHARSET                                  uint32 = 0x86
-	CHINESEBIG5_CHARSET                             uint32 = 0x88
-	OEM_CHARSET                                     uint32 = 0xff
-	JOHAB_CHARSET                                   uint32 = 0x82
-	HEBREW_CHARSET                                  uint32 = 0xb1
-	ARABIC_CHARSET                                  uint32 = 0xb2
-	GREEK_CHARSET                                   uint32 = 0xa1
-	TURKISH_CHARSET                                 uint32 = 0xa2
-	VIETNAMESE_CHARSET                              uint32 = 0xa3
-	THAI_CHARSET                                    uint32 = 0xde
-	EASTEUROPE_CHARSET                              uint32 = 0xee
-	RUSSIAN_CHARSET                                 uint32 = 0xcc
-	MAC_CHARSET                                     uint32 = 0x4d
-	BALTIC_CHARSET                                  uint32 = 0xba
 	FS_LATIN1                                       int32  = 1
 	FS_LATIN2                                       int32  = 2
 	FS_CYRILLIC                                     int32  = 4
@@ -287,128 +249,16 @@ const (
 	FS_CHINESETRAD                                  int32  = 1048576
 	FS_JOHAB                                        int32  = 2097152
 	FS_SYMBOL                                       int32  = -2147483648
-	FW_DONTCARE                                     uint32 = 0x0
-	FW_THIN                                         uint32 = 0x64
-	FW_EXTRALIGHT                                   uint32 = 0xc8
-	FW_LIGHT                                        uint32 = 0x12c
-	FW_NORMAL                                       uint32 = 0x190
-	FW_MEDIUM                                       uint32 = 0x1f4
-	FW_SEMIBOLD                                     uint32 = 0x258
-	FW_BOLD                                         uint32 = 0x2bc
-	FW_EXTRABOLD                                    uint32 = 0x320
-	FW_HEAVY                                        uint32 = 0x384
-	FW_ULTRALIGHT                                   uint32 = 0xc8
-	FW_REGULAR                                      uint32 = 0x190
-	FW_DEMIBOLD                                     uint32 = 0x258
-	FW_ULTRABOLD                                    uint32 = 0x320
-	FW_BLACK                                        uint32 = 0x384
 	PANOSE_COUNT                                    uint32 = 0xa
 	PAN_FAMILYTYPE_INDEX                            uint32 = 0x0
 	PAN_SERIFSTYLE_INDEX                            uint32 = 0x1
-	PAN_WEIGHT_INDEX                                uint32 = 0x2
 	PAN_PROPORTION_INDEX                            uint32 = 0x3
-	PAN_CONTRAST_INDEX                              uint32 = 0x4
 	PAN_STROKEVARIATION_INDEX                       uint32 = 0x5
 	PAN_ARMSTYLE_INDEX                              uint32 = 0x6
 	PAN_LETTERFORM_INDEX                            uint32 = 0x7
-	PAN_MIDLINE_INDEX                               uint32 = 0x8
-	PAN_XHEIGHT_INDEX                               uint32 = 0x9
 	PAN_CULTURE_LATIN                               uint32 = 0x0
 	PAN_ANY                                         uint32 = 0x0
 	PAN_NO_FIT                                      uint32 = 0x1
-	PAN_FAMILY_TEXT_DISPLAY                         uint32 = 0x2
-	PAN_FAMILY_SCRIPT                               uint32 = 0x3
-	PAN_FAMILY_DECORATIVE                           uint32 = 0x4
-	PAN_FAMILY_PICTORIAL                            uint32 = 0x5
-	PAN_SERIF_COVE                                  uint32 = 0x2
-	PAN_SERIF_OBTUSE_COVE                           uint32 = 0x3
-	PAN_SERIF_SQUARE_COVE                           uint32 = 0x4
-	PAN_SERIF_OBTUSE_SQUARE_COVE                    uint32 = 0x5
-	PAN_SERIF_SQUARE                                uint32 = 0x6
-	PAN_SERIF_THIN                                  uint32 = 0x7
-	PAN_SERIF_BONE                                  uint32 = 0x8
-	PAN_SERIF_EXAGGERATED                           uint32 = 0x9
-	PAN_SERIF_TRIANGLE                              uint32 = 0xa
-	PAN_SERIF_NORMAL_SANS                           uint32 = 0xb
-	PAN_SERIF_OBTUSE_SANS                           uint32 = 0xc
-	PAN_SERIF_PERP_SANS                             uint32 = 0xd
-	PAN_SERIF_FLARED                                uint32 = 0xe
-	PAN_SERIF_ROUNDED                               uint32 = 0xf
-	PAN_WEIGHT_VERY_LIGHT                           uint32 = 0x2
-	PAN_WEIGHT_LIGHT                                uint32 = 0x3
-	PAN_WEIGHT_THIN                                 uint32 = 0x4
-	PAN_WEIGHT_BOOK                                 uint32 = 0x5
-	PAN_WEIGHT_MEDIUM                               uint32 = 0x6
-	PAN_WEIGHT_DEMI                                 uint32 = 0x7
-	PAN_WEIGHT_BOLD                                 uint32 = 0x8
-	PAN_WEIGHT_HEAVY                                uint32 = 0x9
-	PAN_WEIGHT_BLACK                                uint32 = 0xa
-	PAN_WEIGHT_NORD                                 uint32 = 0xb
-	PAN_PROP_OLD_STYLE                              uint32 = 0x2
-	PAN_PROP_MODERN                                 uint32 = 0x3
-	PAN_PROP_EVEN_WIDTH                             uint32 = 0x4
-	PAN_PROP_EXPANDED                               uint32 = 0x5
-	PAN_PROP_CONDENSED                              uint32 = 0x6
-	PAN_PROP_VERY_EXPANDED                          uint32 = 0x7
-	PAN_PROP_VERY_CONDENSED                         uint32 = 0x8
-	PAN_PROP_MONOSPACED                             uint32 = 0x9
-	PAN_CONTRAST_NONE                               uint32 = 0x2
-	PAN_CONTRAST_VERY_LOW                           uint32 = 0x3
-	PAN_CONTRAST_LOW                                uint32 = 0x4
-	PAN_CONTRAST_MEDIUM_LOW                         uint32 = 0x5
-	PAN_CONTRAST_MEDIUM                             uint32 = 0x6
-	PAN_CONTRAST_MEDIUM_HIGH                        uint32 = 0x7
-	PAN_CONTRAST_HIGH                               uint32 = 0x8
-	PAN_CONTRAST_VERY_HIGH                          uint32 = 0x9
-	PAN_STROKE_GRADUAL_DIAG                         uint32 = 0x2
-	PAN_STROKE_GRADUAL_TRAN                         uint32 = 0x3
-	PAN_STROKE_GRADUAL_VERT                         uint32 = 0x4
-	PAN_STROKE_GRADUAL_HORZ                         uint32 = 0x5
-	PAN_STROKE_RAPID_VERT                           uint32 = 0x6
-	PAN_STROKE_RAPID_HORZ                           uint32 = 0x7
-	PAN_STROKE_INSTANT_VERT                         uint32 = 0x8
-	PAN_STRAIGHT_ARMS_HORZ                          uint32 = 0x2
-	PAN_STRAIGHT_ARMS_WEDGE                         uint32 = 0x3
-	PAN_STRAIGHT_ARMS_VERT                          uint32 = 0x4
-	PAN_STRAIGHT_ARMS_SINGLE_SERIF                  uint32 = 0x5
-	PAN_STRAIGHT_ARMS_DOUBLE_SERIF                  uint32 = 0x6
-	PAN_BENT_ARMS_HORZ                              uint32 = 0x7
-	PAN_BENT_ARMS_WEDGE                             uint32 = 0x8
-	PAN_BENT_ARMS_VERT                              uint32 = 0x9
-	PAN_BENT_ARMS_SINGLE_SERIF                      uint32 = 0xa
-	PAN_BENT_ARMS_DOUBLE_SERIF                      uint32 = 0xb
-	PAN_LETT_NORMAL_CONTACT                         uint32 = 0x2
-	PAN_LETT_NORMAL_WEIGHTED                        uint32 = 0x3
-	PAN_LETT_NORMAL_BOXED                           uint32 = 0x4
-	PAN_LETT_NORMAL_FLATTENED                       uint32 = 0x5
-	PAN_LETT_NORMAL_ROUNDED                         uint32 = 0x6
-	PAN_LETT_NORMAL_OFF_CENTER                      uint32 = 0x7
-	PAN_LETT_NORMAL_SQUARE                          uint32 = 0x8
-	PAN_LETT_OBLIQUE_CONTACT                        uint32 = 0x9
-	PAN_LETT_OBLIQUE_WEIGHTED                       uint32 = 0xa
-	PAN_LETT_OBLIQUE_BOXED                          uint32 = 0xb
-	PAN_LETT_OBLIQUE_FLATTENED                      uint32 = 0xc
-	PAN_LETT_OBLIQUE_ROUNDED                        uint32 = 0xd
-	PAN_LETT_OBLIQUE_OFF_CENTER                     uint32 = 0xe
-	PAN_LETT_OBLIQUE_SQUARE                         uint32 = 0xf
-	PAN_MIDLINE_STANDARD_TRIMMED                    uint32 = 0x2
-	PAN_MIDLINE_STANDARD_POINTED                    uint32 = 0x3
-	PAN_MIDLINE_STANDARD_SERIFED                    uint32 = 0x4
-	PAN_MIDLINE_HIGH_TRIMMED                        uint32 = 0x5
-	PAN_MIDLINE_HIGH_POINTED                        uint32 = 0x6
-	PAN_MIDLINE_HIGH_SERIFED                        uint32 = 0x7
-	PAN_MIDLINE_CONSTANT_TRIMMED                    uint32 = 0x8
-	PAN_MIDLINE_CONSTANT_POINTED                    uint32 = 0x9
-	PAN_MIDLINE_CONSTANT_SERIFED                    uint32 = 0xa
-	PAN_MIDLINE_LOW_TRIMMED                         uint32 = 0xb
-	PAN_MIDLINE_LOW_POINTED                         uint32 = 0xc
-	PAN_MIDLINE_LOW_SERIFED                         uint32 = 0xd
-	PAN_XHEIGHT_CONSTANT_SMALL                      uint32 = 0x2
-	PAN_XHEIGHT_CONSTANT_STD                        uint32 = 0x3
-	PAN_XHEIGHT_CONSTANT_LARGE                      uint32 = 0x4
-	PAN_XHEIGHT_DUCKING_SMALL                       uint32 = 0x5
-	PAN_XHEIGHT_DUCKING_STD                         uint32 = 0x6
-	PAN_XHEIGHT_DUCKING_LARGE                       uint32 = 0x7
 	ELF_VENDOR_SIZE                                 uint32 = 0x4
 	ELF_VERSION                                     uint32 = 0x0
 	ELF_CULTURE_LATIN                               uint32 = 0x0
@@ -428,17 +278,6 @@ const (
 	RELATIVE                                        uint32 = 0x2
 	STOCK_LAST                                      uint32 = 0x13
 	CLR_INVALID                                     uint32 = 0xffffffff
-	BS_SOLID                                        uint32 = 0x0
-	BS_NULL                                         uint32 = 0x1
-	BS_HOLLOW                                       uint32 = 0x1
-	BS_HATCHED                                      uint32 = 0x2
-	BS_PATTERN                                      uint32 = 0x3
-	BS_INDEXED                                      uint32 = 0x4
-	BS_DIBPATTERN                                   uint32 = 0x5
-	BS_DIBPATTERNPT                                 uint32 = 0x6
-	BS_PATTERN8X8                                   uint32 = 0x7
-	BS_DIBPATTERN8X8                                uint32 = 0x8
-	BS_MONOPATTERN                                  uint32 = 0x9
 	HS_API_MAX                                      uint32 = 0xc
 	DT_PLOTTER                                      uint32 = 0x0
 	DT_RASDISPLAY                                   uint32 = 0x1
@@ -526,37 +365,6 @@ const (
 	SYSPAL_ERROR                                    uint32 = 0x0
 	CBM_INIT                                        int32  = 4
 	CCHFORMNAME                                     uint32 = 0x20
-	DM_SPECVERSION                                  uint32 = 0x401
-	DM_ORIENTATION                                  int32  = 1
-	DM_PAPERSIZE                                    int32  = 2
-	DM_PAPERLENGTH                                  int32  = 4
-	DM_PAPERWIDTH                                   int32  = 8
-	DM_SCALE                                        int32  = 16
-	DM_POSITION                                     int32  = 32
-	DM_NUP                                          int32  = 64
-	DM_DISPLAYORIENTATION                           int32  = 128
-	DM_COPIES                                       int32  = 256
-	DM_DEFAULTSOURCE                                int32  = 512
-	DM_PRINTQUALITY                                 int32  = 1024
-	DM_COLOR                                        int32  = 2048
-	DM_DUPLEX                                       int32  = 4096
-	DM_YRESOLUTION                                  int32  = 8192
-	DM_TTOPTION                                     int32  = 16384
-	DM_COLLATE                                      int32  = 32768
-	DM_FORMNAME                                     int32  = 65536
-	DM_LOGPIXELS                                    int32  = 131072
-	DM_BITSPERPEL                                   int32  = 262144
-	DM_PELSWIDTH                                    int32  = 524288
-	DM_PELSHEIGHT                                   int32  = 1048576
-	DM_DISPLAYFLAGS                                 int32  = 2097152
-	DM_DISPLAYFREQUENCY                             int32  = 4194304
-	DM_ICMMETHOD                                    int32  = 8388608
-	DM_ICMINTENT                                    int32  = 16777216
-	DM_MEDIATYPE                                    int32  = 33554432
-	DM_DITHERTYPE                                   int32  = 67108864
-	DM_PANNINGWIDTH                                 int32  = 134217728
-	DM_PANNINGHEIGHT                                int32  = 268435456
-	DM_DISPLAYFIXEDOUTPUT                           int32  = 536870912
 	DMORIENT_PORTRAIT                               uint32 = 0x1
 	DMORIENT_LANDSCAPE                              uint32 = 0x2
 	DMPAPER_LETTER                                  uint32 = 0x1
@@ -699,25 +507,6 @@ const (
 	DMRES_LOW                                       int32  = -2
 	DMRES_MEDIUM                                    int32  = -3
 	DMRES_HIGH                                      int32  = -4
-	DMCOLOR_MONOCHROME                              uint32 = 0x1
-	DMCOLOR_COLOR                                   uint32 = 0x2
-	DMDUP_SIMPLEX                                   uint32 = 0x1
-	DMDUP_VERTICAL                                  uint32 = 0x2
-	DMDUP_HORIZONTAL                                uint32 = 0x3
-	DMTT_BITMAP                                     uint32 = 0x1
-	DMTT_DOWNLOAD                                   uint32 = 0x2
-	DMTT_SUBDEV                                     uint32 = 0x3
-	DMTT_DOWNLOAD_OUTLINE                           uint32 = 0x4
-	DMCOLLATE_FALSE                                 uint32 = 0x0
-	DMCOLLATE_TRUE                                  uint32 = 0x1
-	DMDO_DEFAULT                                    uint32 = 0x0
-	DMDO_90                                         uint32 = 0x1
-	DMDO_180                                        uint32 = 0x2
-	DMDO_270                                        uint32 = 0x3
-	DMDFO_DEFAULT                                   uint32 = 0x0
-	DMDFO_STRETCH                                   uint32 = 0x1
-	DMDFO_CENTER                                    uint32 = 0x2
-	DM_INTERLACED                                   uint32 = 0x2
 	DMDISPLAYFLAGS_TEXTMODE                         uint32 = 0x4
 	DMNUP_SYSTEM                                    uint32 = 0x1
 	DMNUP_ONEUP                                     uint32 = 0x2
@@ -778,28 +567,6 @@ const (
 	DISPLAYCONFIG_PATH_PREFERRED_UNSCALED           uint32 = 0x4
 	DISPLAYCONFIG_PATH_SUPPORT_VIRTUAL_MODE         uint32 = 0x8
 	DISPLAYCONFIG_PATH_VALID_FLAGS                  uint32 = 0x1d
-	QDC_ALL_PATHS                                   uint32 = 0x1
-	QDC_ONLY_ACTIVE_PATHS                           uint32 = 0x2
-	QDC_DATABASE_CURRENT                            uint32 = 0x4
-	QDC_VIRTUAL_MODE_AWARE                          uint32 = 0x10
-	QDC_INCLUDE_HMD                                 uint32 = 0x20
-	QDC_VIRTUAL_REFRESH_RATE_AWARE                  uint32 = 0x40
-	SDC_TOPOLOGY_INTERNAL                           uint32 = 0x1
-	SDC_TOPOLOGY_CLONE                              uint32 = 0x2
-	SDC_TOPOLOGY_EXTEND                             uint32 = 0x4
-	SDC_TOPOLOGY_EXTERNAL                           uint32 = 0x8
-	SDC_TOPOLOGY_SUPPLIED                           uint32 = 0x10
-	SDC_USE_SUPPLIED_DISPLAY_CONFIG                 uint32 = 0x20
-	SDC_VALIDATE                                    uint32 = 0x40
-	SDC_APPLY                                       uint32 = 0x80
-	SDC_NO_OPTIMIZATION                             uint32 = 0x100
-	SDC_SAVE_TO_DATABASE                            uint32 = 0x200
-	SDC_ALLOW_CHANGES                               uint32 = 0x400
-	SDC_PATH_PERSIST_IF_REQUIRED                    uint32 = 0x800
-	SDC_FORCE_MODE_ENUMERATION                      uint32 = 0x1000
-	SDC_ALLOW_PATH_ORDER_CHANGES                    uint32 = 0x2000
-	SDC_VIRTUAL_MODE_AWARE                          uint32 = 0x8000
-	SDC_VIRTUAL_REFRESH_RATE_AWARE                  uint32 = 0x20000
 	RDH_RECTANGLES                                  uint32 = 0x1
 	SYSRGN                                          uint32 = 0x4
 	TT_POLYGON_TYPE                                 uint32 = 0x18
@@ -878,129 +645,6 @@ const (
 	FONTMAPPER_MAX                                  uint32 = 0xa
 	ENHMETA_SIGNATURE                               uint32 = 0x464d4520
 	ENHMETA_STOCK_OBJECT                            uint32 = 0x80000000
-	EMR_HEADER                                      uint32 = 0x1
-	EMR_POLYBEZIER                                  uint32 = 0x2
-	EMR_POLYGON                                     uint32 = 0x3
-	EMR_POLYLINE                                    uint32 = 0x4
-	EMR_POLYBEZIERTO                                uint32 = 0x5
-	EMR_POLYLINETO                                  uint32 = 0x6
-	EMR_POLYPOLYLINE                                uint32 = 0x7
-	EMR_POLYPOLYGON                                 uint32 = 0x8
-	EMR_SETWINDOWEXTEX                              uint32 = 0x9
-	EMR_SETWINDOWORGEX                              uint32 = 0xa
-	EMR_SETVIEWPORTEXTEX                            uint32 = 0xb
-	EMR_SETVIEWPORTORGEX                            uint32 = 0xc
-	EMR_SETBRUSHORGEX                               uint32 = 0xd
-	EMR_EOF                                         uint32 = 0xe
-	EMR_SETPIXELV                                   uint32 = 0xf
-	EMR_SETMAPPERFLAGS                              uint32 = 0x10
-	EMR_SETMAPMODE                                  uint32 = 0x11
-	EMR_SETBKMODE                                   uint32 = 0x12
-	EMR_SETPOLYFILLMODE                             uint32 = 0x13
-	EMR_SETROP2                                     uint32 = 0x14
-	EMR_SETSTRETCHBLTMODE                           uint32 = 0x15
-	EMR_SETTEXTALIGN                                uint32 = 0x16
-	EMR_SETCOLORADJUSTMENT                          uint32 = 0x17
-	EMR_SETTEXTCOLOR                                uint32 = 0x18
-	EMR_SETBKCOLOR                                  uint32 = 0x19
-	EMR_OFFSETCLIPRGN                               uint32 = 0x1a
-	EMR_MOVETOEX                                    uint32 = 0x1b
-	EMR_SETMETARGN                                  uint32 = 0x1c
-	EMR_EXCLUDECLIPRECT                             uint32 = 0x1d
-	EMR_INTERSECTCLIPRECT                           uint32 = 0x1e
-	EMR_SCALEVIEWPORTEXTEX                          uint32 = 0x1f
-	EMR_SCALEWINDOWEXTEX                            uint32 = 0x20
-	EMR_SAVEDC                                      uint32 = 0x21
-	EMR_RESTOREDC                                   uint32 = 0x22
-	EMR_SETWORLDTRANSFORM                           uint32 = 0x23
-	EMR_MODIFYWORLDTRANSFORM                        uint32 = 0x24
-	EMR_SELECTOBJECT                                uint32 = 0x25
-	EMR_CREATEPEN                                   uint32 = 0x26
-	EMR_CREATEBRUSHINDIRECT                         uint32 = 0x27
-	EMR_DELETEOBJECT                                uint32 = 0x28
-	EMR_ANGLEARC                                    uint32 = 0x29
-	EMR_ELLIPSE                                     uint32 = 0x2a
-	EMR_RECTANGLE                                   uint32 = 0x2b
-	EMR_ROUNDRECT                                   uint32 = 0x2c
-	EMR_ARC                                         uint32 = 0x2d
-	EMR_CHORD                                       uint32 = 0x2e
-	EMR_PIE                                         uint32 = 0x2f
-	EMR_SELECTPALETTE                               uint32 = 0x30
-	EMR_CREATEPALETTE                               uint32 = 0x31
-	EMR_SETPALETTEENTRIES                           uint32 = 0x32
-	EMR_RESIZEPALETTE                               uint32 = 0x33
-	EMR_REALIZEPALETTE                              uint32 = 0x34
-	EMR_EXTFLOODFILL                                uint32 = 0x35
-	EMR_LINETO                                      uint32 = 0x36
-	EMR_ARCTO                                       uint32 = 0x37
-	EMR_POLYDRAW                                    uint32 = 0x38
-	EMR_SETARCDIRECTION                             uint32 = 0x39
-	EMR_SETMITERLIMIT                               uint32 = 0x3a
-	EMR_BEGINPATH                                   uint32 = 0x3b
-	EMR_ENDPATH                                     uint32 = 0x3c
-	EMR_CLOSEFIGURE                                 uint32 = 0x3d
-	EMR_FILLPATH                                    uint32 = 0x3e
-	EMR_STROKEANDFILLPATH                           uint32 = 0x3f
-	EMR_STROKEPATH                                  uint32 = 0x40
-	EMR_FLATTENPATH                                 uint32 = 0x41
-	EMR_WIDENPATH                                   uint32 = 0x42
-	EMR_SELECTCLIPPATH                              uint32 = 0x43
-	EMR_ABORTPATH                                   uint32 = 0x44
-	EMR_GDICOMMENT                                  uint32 = 0x46
-	EMR_FILLRGN                                     uint32 = 0x47
-	EMR_FRAMERGN                                    uint32 = 0x48
-	EMR_INVERTRGN                                   uint32 = 0x49
-	EMR_PAINTRGN                                    uint32 = 0x4a
-	EMR_EXTSELECTCLIPRGN                            uint32 = 0x4b
-	EMR_BITBLT                                      uint32 = 0x4c
-	EMR_STRETCHBLT                                  uint32 = 0x4d
-	EMR_MASKBLT                                     uint32 = 0x4e
-	EMR_PLGBLT                                      uint32 = 0x4f
-	EMR_SETDIBITSTODEVICE                           uint32 = 0x50
-	EMR_STRETCHDIBITS                               uint32 = 0x51
-	EMR_EXTCREATEFONTINDIRECTW                      uint32 = 0x52
-	EMR_EXTTEXTOUTA                                 uint32 = 0x53
-	EMR_EXTTEXTOUTW                                 uint32 = 0x54
-	EMR_POLYBEZIER16                                uint32 = 0x55
-	EMR_POLYGON16                                   uint32 = 0x56
-	EMR_POLYLINE16                                  uint32 = 0x57
-	EMR_POLYBEZIERTO16                              uint32 = 0x58
-	EMR_POLYLINETO16                                uint32 = 0x59
-	EMR_POLYPOLYLINE16                              uint32 = 0x5a
-	EMR_POLYPOLYGON16                               uint32 = 0x5b
-	EMR_POLYDRAW16                                  uint32 = 0x5c
-	EMR_CREATEMONOBRUSH                             uint32 = 0x5d
-	EMR_CREATEDIBPATTERNBRUSHPT                     uint32 = 0x5e
-	EMR_EXTCREATEPEN                                uint32 = 0x5f
-	EMR_POLYTEXTOUTA                                uint32 = 0x60
-	EMR_POLYTEXTOUTW                                uint32 = 0x61
-	EMR_SETICMMODE                                  uint32 = 0x62
-	EMR_CREATECOLORSPACE                            uint32 = 0x63
-	EMR_SETCOLORSPACE                               uint32 = 0x64
-	EMR_DELETECOLORSPACE                            uint32 = 0x65
-	EMR_GLSRECORD                                   uint32 = 0x66
-	EMR_GLSBOUNDEDRECORD                            uint32 = 0x67
-	EMR_PIXELFORMAT                                 uint32 = 0x68
-	EMR_RESERVED_105                                uint32 = 0x69
-	EMR_RESERVED_106                                uint32 = 0x6a
-	EMR_RESERVED_107                                uint32 = 0x6b
-	EMR_RESERVED_108                                uint32 = 0x6c
-	EMR_RESERVED_109                                uint32 = 0x6d
-	EMR_RESERVED_110                                uint32 = 0x6e
-	EMR_COLORCORRECTPALETTE                         uint32 = 0x6f
-	EMR_SETICMPROFILEA                              uint32 = 0x70
-	EMR_SETICMPROFILEW                              uint32 = 0x71
-	EMR_ALPHABLEND                                  uint32 = 0x72
-	EMR_SETLAYOUT                                   uint32 = 0x73
-	EMR_TRANSPARENTBLT                              uint32 = 0x74
-	EMR_RESERVED_117                                uint32 = 0x75
-	EMR_GRADIENTFILL                                uint32 = 0x76
-	EMR_RESERVED_119                                uint32 = 0x77
-	EMR_RESERVED_120                                uint32 = 0x78
-	EMR_COLORMATCHTOTARGETW                         uint32 = 0x79
-	EMR_CREATECOLORSPACEW                           uint32 = 0x7a
-	EMR_MIN                                         uint32 = 0x1
-	EMR_MAX                                         uint32 = 0x7a
 	SETICMPROFILE_EMBEDED                           uint32 = 0x1
 	CREATECOLORSPACE_EMBEDED                        uint32 = 0x1
 	COLORMATCHTOTARGET_EMBEDED                      uint32 = 0x1
@@ -1294,29 +938,6 @@ const (
 )
 
 // enum
-type ROP_CODE uint32
-
-const (
-	SRCCOPY        ROP_CODE = 13369376
-	SRCPAINT       ROP_CODE = 15597702
-	SRCAND         ROP_CODE = 8913094
-	SRCINVERT      ROP_CODE = 6684742
-	SRCERASE       ROP_CODE = 4457256
-	NOTSRCCOPY     ROP_CODE = 3342344
-	NOTSRCERASE    ROP_CODE = 1114278
-	MERGECOPY      ROP_CODE = 12583114
-	MERGEPAINT     ROP_CODE = 12255782
-	PATCOPY        ROP_CODE = 15728673
-	PATPAINT       ROP_CODE = 16452105
-	PATINVERT      ROP_CODE = 5898313
-	DSTINVERT      ROP_CODE = 5570569
-	BLACKNESS      ROP_CODE = 66
-	WHITENESS      ROP_CODE = 16711778
-	NOMIRRORBITMAP ROP_CODE = 2147483648
-	CAPTUREBLT     ROP_CODE = 1073741824
-)
-
-// enum
 type DIB_USAGE uint32
 
 const (
@@ -1470,6 +1091,7 @@ const (
 )
 
 // enum
+// flags
 type TEXT_ALIGN_OPTIONS uint32
 
 const (
@@ -1649,17 +1271,18 @@ const (
 
 // enum
 // flags
-type FONT_CLIP_PRECISION uint32
+type FONT_CLIP_PRECISION byte
 
 const (
-	CLIP_CHARACTER_PRECIS FONT_CLIP_PRECISION = 1
 	CLIP_DEFAULT_PRECIS   FONT_CLIP_PRECISION = 0
+	CLIP_CHARACTER_PRECIS FONT_CLIP_PRECISION = 1
+	CLIP_STROKE_PRECIS    FONT_CLIP_PRECISION = 2
+	CLIP_MASK             FONT_CLIP_PRECISION = 15
+	CLIP_LH_ANGLES        FONT_CLIP_PRECISION = 16
+	CLIP_TT_ALWAYS        FONT_CLIP_PRECISION = 32
 	CLIP_DFA_DISABLE      FONT_CLIP_PRECISION = 64
 	CLIP_EMBEDDED         FONT_CLIP_PRECISION = 128
-	CLIP_LH_ANGLES        FONT_CLIP_PRECISION = 16
-	CLIP_MASK             FONT_CLIP_PRECISION = 15
-	CLIP_STROKE_PRECIS    FONT_CLIP_PRECISION = 2
-	CLIP_TT_ALWAYS        FONT_CLIP_PRECISION = 32
+	CLIP_DFA_OVERRIDE     FONT_CLIP_PRECISION = 64
 )
 
 // enum
@@ -1753,19 +1376,67 @@ const (
 )
 
 // enum
-type FONT_OUTPUT_PRECISION uint32
+type FONT_OUTPUT_PRECISION byte
 
 const (
-	OUT_CHARACTER_PRECIS FONT_OUTPUT_PRECISION = 2
-	OUT_DEFAULT_PRECIS   FONT_OUTPUT_PRECISION = 0
-	OUT_DEVICE_PRECIS    FONT_OUTPUT_PRECISION = 5
-	OUT_OUTLINE_PRECIS   FONT_OUTPUT_PRECISION = 8
-	OUT_PS_ONLY_PRECIS   FONT_OUTPUT_PRECISION = 10
-	OUT_RASTER_PRECIS    FONT_OUTPUT_PRECISION = 6
-	OUT_STRING_PRECIS    FONT_OUTPUT_PRECISION = 1
-	OUT_STROKE_PRECIS    FONT_OUTPUT_PRECISION = 3
-	OUT_TT_ONLY_PRECIS   FONT_OUTPUT_PRECISION = 7
-	OUT_TT_PRECIS        FONT_OUTPUT_PRECISION = 4
+	OUT_DEFAULT_PRECIS        FONT_OUTPUT_PRECISION = 0
+	OUT_STRING_PRECIS         FONT_OUTPUT_PRECISION = 1
+	OUT_CHARACTER_PRECIS      FONT_OUTPUT_PRECISION = 2
+	OUT_STROKE_PRECIS         FONT_OUTPUT_PRECISION = 3
+	OUT_TT_PRECIS             FONT_OUTPUT_PRECISION = 4
+	OUT_DEVICE_PRECIS         FONT_OUTPUT_PRECISION = 5
+	OUT_RASTER_PRECIS         FONT_OUTPUT_PRECISION = 6
+	OUT_TT_ONLY_PRECIS        FONT_OUTPUT_PRECISION = 7
+	OUT_OUTLINE_PRECIS        FONT_OUTPUT_PRECISION = 8
+	OUT_SCREEN_OUTLINE_PRECIS FONT_OUTPUT_PRECISION = 9
+	OUT_PS_ONLY_PRECIS        FONT_OUTPUT_PRECISION = 10
+)
+
+// enum
+type FONT_WEIGHT uint32
+
+const (
+	FW_DONTCARE   FONT_WEIGHT = 0
+	FW_THIN       FONT_WEIGHT = 100
+	FW_EXTRALIGHT FONT_WEIGHT = 200
+	FW_LIGHT      FONT_WEIGHT = 300
+	FW_NORMAL     FONT_WEIGHT = 400
+	FW_MEDIUM     FONT_WEIGHT = 500
+	FW_SEMIBOLD   FONT_WEIGHT = 600
+	FW_BOLD       FONT_WEIGHT = 700
+	FW_EXTRABOLD  FONT_WEIGHT = 800
+	FW_HEAVY      FONT_WEIGHT = 900
+	FW_ULTRALIGHT FONT_WEIGHT = 200
+	FW_REGULAR    FONT_WEIGHT = 400
+	FW_DEMIBOLD   FONT_WEIGHT = 600
+	FW_ULTRABOLD  FONT_WEIGHT = 800
+	FW_BLACK      FONT_WEIGHT = 900
+)
+
+// enum
+type FONT_CHARSET byte
+
+const (
+	ANSI_CHARSET        FONT_CHARSET = 0
+	DEFAULT_CHARSET     FONT_CHARSET = 1
+	SYMBOL_CHARSET      FONT_CHARSET = 2
+	SHIFTJIS_CHARSET    FONT_CHARSET = 128
+	HANGEUL_CHARSET     FONT_CHARSET = 129
+	HANGUL_CHARSET      FONT_CHARSET = 129
+	GB2312_CHARSET      FONT_CHARSET = 134
+	CHINESEBIG5_CHARSET FONT_CHARSET = 136
+	OEM_CHARSET         FONT_CHARSET = 255
+	JOHAB_CHARSET       FONT_CHARSET = 130
+	HEBREW_CHARSET      FONT_CHARSET = 177
+	ARABIC_CHARSET      FONT_CHARSET = 178
+	GREEK_CHARSET       FONT_CHARSET = 161
+	TURKISH_CHARSET     FONT_CHARSET = 162
+	VIETNAMESE_CHARSET  FONT_CHARSET = 163
+	THAI_CHARSET        FONT_CHARSET = 222
+	EASTEUROPE_CHARSET  FONT_CHARSET = 238
+	RUSSIAN_CHARSET     FONT_CHARSET = 204
+	MAC_CHARSET         FONT_CHARSET = 77
+	BALTIC_CHARSET      FONT_CHARSET = 186
 )
 
 // enum
@@ -1800,15 +1471,15 @@ const (
 )
 
 // enum
-type FONT_QUALITY uint32
+type FONT_QUALITY byte
 
 const (
-	ANTIALIASED_QUALITY    FONT_QUALITY = 4
-	CLEARTYPE_QUALITY      FONT_QUALITY = 5
 	DEFAULT_QUALITY        FONT_QUALITY = 0
 	DRAFT_QUALITY          FONT_QUALITY = 1
-	NONANTIALIASED_QUALITY FONT_QUALITY = 3
 	PROOF_QUALITY          FONT_QUALITY = 2
+	NONANTIALIASED_QUALITY FONT_QUALITY = 3
+	ANTIALIASED_QUALITY    FONT_QUALITY = 4
+	CLEARTYPE_QUALITY      FONT_QUALITY = 5
 )
 
 // enum
@@ -1868,6 +1539,48 @@ const (
 )
 
 // enum
+type SYS_COLOR_INDEX int32
+
+const (
+	COLOR_SCROLLBAR               SYS_COLOR_INDEX = 0
+	COLOR_BACKGROUND              SYS_COLOR_INDEX = 1
+	COLOR_ACTIVECAPTION           SYS_COLOR_INDEX = 2
+	COLOR_INACTIVECAPTION         SYS_COLOR_INDEX = 3
+	COLOR_MENU                    SYS_COLOR_INDEX = 4
+	COLOR_WINDOW                  SYS_COLOR_INDEX = 5
+	COLOR_WINDOWFRAME             SYS_COLOR_INDEX = 6
+	COLOR_MENUTEXT                SYS_COLOR_INDEX = 7
+	COLOR_WINDOWTEXT              SYS_COLOR_INDEX = 8
+	COLOR_CAPTIONTEXT             SYS_COLOR_INDEX = 9
+	COLOR_ACTIVEBORDER            SYS_COLOR_INDEX = 10
+	COLOR_INACTIVEBORDER          SYS_COLOR_INDEX = 11
+	COLOR_APPWORKSPACE            SYS_COLOR_INDEX = 12
+	COLOR_HIGHLIGHT               SYS_COLOR_INDEX = 13
+	COLOR_HIGHLIGHTTEXT           SYS_COLOR_INDEX = 14
+	COLOR_BTNFACE                 SYS_COLOR_INDEX = 15
+	COLOR_BTNSHADOW               SYS_COLOR_INDEX = 16
+	COLOR_GRAYTEXT                SYS_COLOR_INDEX = 17
+	COLOR_BTNTEXT                 SYS_COLOR_INDEX = 18
+	COLOR_INACTIVECAPTIONTEXT     SYS_COLOR_INDEX = 19
+	COLOR_BTNHIGHLIGHT            SYS_COLOR_INDEX = 20
+	COLOR_3DDKSHADOW              SYS_COLOR_INDEX = 21
+	COLOR_3DLIGHT                 SYS_COLOR_INDEX = 22
+	COLOR_INFOTEXT                SYS_COLOR_INDEX = 23
+	COLOR_INFOBK                  SYS_COLOR_INDEX = 24
+	COLOR_HOTLIGHT                SYS_COLOR_INDEX = 26
+	COLOR_GRADIENTACTIVECAPTION   SYS_COLOR_INDEX = 27
+	COLOR_GRADIENTINACTIVECAPTION SYS_COLOR_INDEX = 28
+	COLOR_MENUHILIGHT             SYS_COLOR_INDEX = 29
+	COLOR_MENUBAR                 SYS_COLOR_INDEX = 30
+	COLOR_DESKTOP                 SYS_COLOR_INDEX = 1
+	COLOR_3DFACE                  SYS_COLOR_INDEX = 15
+	COLOR_3DSHADOW                SYS_COLOR_INDEX = 16
+	COLOR_3DHIGHLIGHT             SYS_COLOR_INDEX = 20
+	COLOR_3DHILIGHT               SYS_COLOR_INDEX = 20
+	COLOR_BTNHILIGHT              SYS_COLOR_INDEX = 20
+)
+
+// enum
 type FONT_LICENSE_PRIVS uint32
 
 const (
@@ -1888,7 +1601,7 @@ const (
 )
 
 // enum
-type CREATE_FONT_PACKAGE_SUBSET_ENCODING uint32
+type CREATE_FONT_PACKAGE_SUBSET_ENCODING uint16
 
 const (
 	TTFCFP_STD_MAC_CHAR_SET CREATE_FONT_PACKAGE_SUBSET_ENCODING = 0
@@ -1948,19 +1661,52 @@ const (
 )
 
 // enum
-type FONT_PITCH_AND_FAMILY uint32
+type FONT_PITCH byte
 
 const (
-	FF_DECORATIVE FONT_PITCH_AND_FAMILY = 80
-	FF_DONTCARE   FONT_PITCH_AND_FAMILY = 0
-	FF_MODERN     FONT_PITCH_AND_FAMILY = 48
-	FF_ROMAN      FONT_PITCH_AND_FAMILY = 16
-	FF_SCRIPT     FONT_PITCH_AND_FAMILY = 64
-	FF_SWISS      FONT_PITCH_AND_FAMILY = 32
+	DEFAULT_PITCH  FONT_PITCH = 0
+	FIXED_PITCH    FONT_PITCH = 1
+	VARIABLE_PITCH FONT_PITCH = 2
 )
 
 // enum
-type CREATE_FONT_PACKAGE_SUBSET_PLATFORM uint32
+type FONT_FAMILY byte
+
+const (
+	FF_DECORATIVE FONT_FAMILY = 80
+	FF_DONTCARE   FONT_FAMILY = 0
+	FF_MODERN     FONT_FAMILY = 48
+	FF_ROMAN      FONT_FAMILY = 16
+	FF_SCRIPT     FONT_FAMILY = 64
+	FF_SWISS      FONT_FAMILY = 32
+)
+
+// enum
+// flags
+type ROP_CODE uint32
+
+const (
+	BLACKNESS      ROP_CODE = 66
+	NOTSRCERASE    ROP_CODE = 1114278
+	NOTSRCCOPY     ROP_CODE = 3342344
+	SRCERASE       ROP_CODE = 4457256
+	DSTINVERT      ROP_CODE = 5570569
+	PATINVERT      ROP_CODE = 5898313
+	SRCINVERT      ROP_CODE = 6684742
+	SRCAND         ROP_CODE = 8913094
+	MERGEPAINT     ROP_CODE = 12255782
+	MERGECOPY      ROP_CODE = 12583114
+	SRCCOPY        ROP_CODE = 13369376
+	SRCPAINT       ROP_CODE = 15597702
+	PATCOPY        ROP_CODE = 15728673
+	PATPAINT       ROP_CODE = 16452105
+	WHITENESS      ROP_CODE = 16711778
+	CAPTUREBLT     ROP_CODE = 1073741824
+	NOMIRRORBITMAP ROP_CODE = 2147483648
+)
+
+// enum
+type CREATE_FONT_PACKAGE_SUBSET_PLATFORM uint16
 
 const (
 	TTFCFP_UNICODE_PLATFORMID CREATE_FONT_PACKAGE_SUBSET_PLATFORM = 0
@@ -1979,6 +1725,472 @@ const (
 	MM_LOMETRIC    HDC_MAP_MODE = 2
 	MM_TEXT        HDC_MAP_MODE = 1
 	MM_TWIPS       HDC_MAP_MODE = 6
+)
+
+// enum
+type GDI_REGION_TYPE int32
+
+const (
+	RGN_ERROR     GDI_REGION_TYPE = 0
+	NULLREGION    GDI_REGION_TYPE = 1
+	SIMPLEREGION  GDI_REGION_TYPE = 2
+	COMPLEXREGION GDI_REGION_TYPE = 3
+)
+
+// enum
+type BRUSH_STYLE uint32
+
+const (
+	BS_SOLID         BRUSH_STYLE = 0
+	BS_NULL          BRUSH_STYLE = 1
+	BS_HOLLOW        BRUSH_STYLE = 1
+	BS_HATCHED       BRUSH_STYLE = 2
+	BS_PATTERN       BRUSH_STYLE = 3
+	BS_INDEXED       BRUSH_STYLE = 4
+	BS_DIBPATTERN    BRUSH_STYLE = 5
+	BS_DIBPATTERNPT  BRUSH_STYLE = 6
+	BS_PATTERN8X8    BRUSH_STYLE = 7
+	BS_DIBPATTERN8X8 BRUSH_STYLE = 8
+	BS_MONOPATTERN   BRUSH_STYLE = 9
+)
+
+// enum
+// flags
+type TMPF_FLAGS byte
+
+const (
+	TMPF_FIXED_PITCH TMPF_FLAGS = 1
+	TMPF_VECTOR      TMPF_FLAGS = 2
+	TMPF_DEVICE      TMPF_FLAGS = 8
+	TMPF_TRUETYPE    TMPF_FLAGS = 4
+)
+
+// enum
+type BI_COMPRESSION int32
+
+const (
+	BI_RGB       BI_COMPRESSION = 0
+	BI_RLE8      BI_COMPRESSION = 1
+	BI_RLE4      BI_COMPRESSION = 2
+	BI_BITFIELDS BI_COMPRESSION = 3
+	BI_JPEG      BI_COMPRESSION = 4
+	BI_PNG       BI_COMPRESSION = 5
+)
+
+// enum
+type ENHANCED_METAFILE_RECORD_TYPE uint32
+
+const (
+	EMR_HEADER                  ENHANCED_METAFILE_RECORD_TYPE = 1
+	EMR_POLYBEZIER              ENHANCED_METAFILE_RECORD_TYPE = 2
+	EMR_POLYGON                 ENHANCED_METAFILE_RECORD_TYPE = 3
+	EMR_POLYLINE                ENHANCED_METAFILE_RECORD_TYPE = 4
+	EMR_POLYBEZIERTO            ENHANCED_METAFILE_RECORD_TYPE = 5
+	EMR_POLYLINETO              ENHANCED_METAFILE_RECORD_TYPE = 6
+	EMR_POLYPOLYLINE            ENHANCED_METAFILE_RECORD_TYPE = 7
+	EMR_POLYPOLYGON             ENHANCED_METAFILE_RECORD_TYPE = 8
+	EMR_SETWINDOWEXTEX          ENHANCED_METAFILE_RECORD_TYPE = 9
+	EMR_SETWINDOWORGEX          ENHANCED_METAFILE_RECORD_TYPE = 10
+	EMR_SETVIEWPORTEXTEX        ENHANCED_METAFILE_RECORD_TYPE = 11
+	EMR_SETVIEWPORTORGEX        ENHANCED_METAFILE_RECORD_TYPE = 12
+	EMR_SETBRUSHORGEX           ENHANCED_METAFILE_RECORD_TYPE = 13
+	EMR_EOF                     ENHANCED_METAFILE_RECORD_TYPE = 14
+	EMR_SETPIXELV               ENHANCED_METAFILE_RECORD_TYPE = 15
+	EMR_SETMAPPERFLAGS          ENHANCED_METAFILE_RECORD_TYPE = 16
+	EMR_SETMAPMODE              ENHANCED_METAFILE_RECORD_TYPE = 17
+	EMR_SETBKMODE               ENHANCED_METAFILE_RECORD_TYPE = 18
+	EMR_SETPOLYFILLMODE         ENHANCED_METAFILE_RECORD_TYPE = 19
+	EMR_SETROP2                 ENHANCED_METAFILE_RECORD_TYPE = 20
+	EMR_SETSTRETCHBLTMODE       ENHANCED_METAFILE_RECORD_TYPE = 21
+	EMR_SETTEXTALIGN            ENHANCED_METAFILE_RECORD_TYPE = 22
+	EMR_SETCOLORADJUSTMENT      ENHANCED_METAFILE_RECORD_TYPE = 23
+	EMR_SETTEXTCOLOR            ENHANCED_METAFILE_RECORD_TYPE = 24
+	EMR_SETBKCOLOR              ENHANCED_METAFILE_RECORD_TYPE = 25
+	EMR_OFFSETCLIPRGN           ENHANCED_METAFILE_RECORD_TYPE = 26
+	EMR_MOVETOEX                ENHANCED_METAFILE_RECORD_TYPE = 27
+	EMR_SETMETARGN              ENHANCED_METAFILE_RECORD_TYPE = 28
+	EMR_EXCLUDECLIPRECT         ENHANCED_METAFILE_RECORD_TYPE = 29
+	EMR_INTERSECTCLIPRECT       ENHANCED_METAFILE_RECORD_TYPE = 30
+	EMR_SCALEVIEWPORTEXTEX      ENHANCED_METAFILE_RECORD_TYPE = 31
+	EMR_SCALEWINDOWEXTEX        ENHANCED_METAFILE_RECORD_TYPE = 32
+	EMR_SAVEDC                  ENHANCED_METAFILE_RECORD_TYPE = 33
+	EMR_RESTOREDC               ENHANCED_METAFILE_RECORD_TYPE = 34
+	EMR_SETWORLDTRANSFORM       ENHANCED_METAFILE_RECORD_TYPE = 35
+	EMR_MODIFYWORLDTRANSFORM    ENHANCED_METAFILE_RECORD_TYPE = 36
+	EMR_SELECTOBJECT            ENHANCED_METAFILE_RECORD_TYPE = 37
+	EMR_CREATEPEN               ENHANCED_METAFILE_RECORD_TYPE = 38
+	EMR_CREATEBRUSHINDIRECT     ENHANCED_METAFILE_RECORD_TYPE = 39
+	EMR_DELETEOBJECT            ENHANCED_METAFILE_RECORD_TYPE = 40
+	EMR_ANGLEARC                ENHANCED_METAFILE_RECORD_TYPE = 41
+	EMR_ELLIPSE                 ENHANCED_METAFILE_RECORD_TYPE = 42
+	EMR_RECTANGLE               ENHANCED_METAFILE_RECORD_TYPE = 43
+	EMR_ROUNDRECT               ENHANCED_METAFILE_RECORD_TYPE = 44
+	EMR_ARC                     ENHANCED_METAFILE_RECORD_TYPE = 45
+	EMR_CHORD                   ENHANCED_METAFILE_RECORD_TYPE = 46
+	EMR_PIE                     ENHANCED_METAFILE_RECORD_TYPE = 47
+	EMR_SELECTPALETTE           ENHANCED_METAFILE_RECORD_TYPE = 48
+	EMR_CREATEPALETTE           ENHANCED_METAFILE_RECORD_TYPE = 49
+	EMR_SETPALETTEENTRIES       ENHANCED_METAFILE_RECORD_TYPE = 50
+	EMR_RESIZEPALETTE           ENHANCED_METAFILE_RECORD_TYPE = 51
+	EMR_REALIZEPALETTE          ENHANCED_METAFILE_RECORD_TYPE = 52
+	EMR_EXTFLOODFILL            ENHANCED_METAFILE_RECORD_TYPE = 53
+	EMR_LINETO                  ENHANCED_METAFILE_RECORD_TYPE = 54
+	EMR_ARCTO                   ENHANCED_METAFILE_RECORD_TYPE = 55
+	EMR_POLYDRAW                ENHANCED_METAFILE_RECORD_TYPE = 56
+	EMR_SETARCDIRECTION         ENHANCED_METAFILE_RECORD_TYPE = 57
+	EMR_SETMITERLIMIT           ENHANCED_METAFILE_RECORD_TYPE = 58
+	EMR_BEGINPATH               ENHANCED_METAFILE_RECORD_TYPE = 59
+	EMR_ENDPATH                 ENHANCED_METAFILE_RECORD_TYPE = 60
+	EMR_CLOSEFIGURE             ENHANCED_METAFILE_RECORD_TYPE = 61
+	EMR_FILLPATH                ENHANCED_METAFILE_RECORD_TYPE = 62
+	EMR_STROKEANDFILLPATH       ENHANCED_METAFILE_RECORD_TYPE = 63
+	EMR_STROKEPATH              ENHANCED_METAFILE_RECORD_TYPE = 64
+	EMR_FLATTENPATH             ENHANCED_METAFILE_RECORD_TYPE = 65
+	EMR_WIDENPATH               ENHANCED_METAFILE_RECORD_TYPE = 66
+	EMR_SELECTCLIPPATH          ENHANCED_METAFILE_RECORD_TYPE = 67
+	EMR_ABORTPATH               ENHANCED_METAFILE_RECORD_TYPE = 68
+	EMR_GDICOMMENT              ENHANCED_METAFILE_RECORD_TYPE = 70
+	EMR_FILLRGN                 ENHANCED_METAFILE_RECORD_TYPE = 71
+	EMR_FRAMERGN                ENHANCED_METAFILE_RECORD_TYPE = 72
+	EMR_INVERTRGN               ENHANCED_METAFILE_RECORD_TYPE = 73
+	EMR_PAINTRGN                ENHANCED_METAFILE_RECORD_TYPE = 74
+	EMR_EXTSELECTCLIPRGN        ENHANCED_METAFILE_RECORD_TYPE = 75
+	EMR_BITBLT                  ENHANCED_METAFILE_RECORD_TYPE = 76
+	EMR_STRETCHBLT              ENHANCED_METAFILE_RECORD_TYPE = 77
+	EMR_MASKBLT                 ENHANCED_METAFILE_RECORD_TYPE = 78
+	EMR_PLGBLT                  ENHANCED_METAFILE_RECORD_TYPE = 79
+	EMR_SETDIBITSTODEVICE       ENHANCED_METAFILE_RECORD_TYPE = 80
+	EMR_STRETCHDIBITS           ENHANCED_METAFILE_RECORD_TYPE = 81
+	EMR_EXTCREATEFONTINDIRECTW  ENHANCED_METAFILE_RECORD_TYPE = 82
+	EMR_EXTTEXTOUTA             ENHANCED_METAFILE_RECORD_TYPE = 83
+	EMR_EXTTEXTOUTW             ENHANCED_METAFILE_RECORD_TYPE = 84
+	EMR_POLYBEZIER16            ENHANCED_METAFILE_RECORD_TYPE = 85
+	EMR_POLYGON16               ENHANCED_METAFILE_RECORD_TYPE = 86
+	EMR_POLYLINE16              ENHANCED_METAFILE_RECORD_TYPE = 87
+	EMR_POLYBEZIERTO16          ENHANCED_METAFILE_RECORD_TYPE = 88
+	EMR_POLYLINETO16            ENHANCED_METAFILE_RECORD_TYPE = 89
+	EMR_POLYPOLYLINE16          ENHANCED_METAFILE_RECORD_TYPE = 90
+	EMR_POLYPOLYGON16           ENHANCED_METAFILE_RECORD_TYPE = 91
+	EMR_POLYDRAW16              ENHANCED_METAFILE_RECORD_TYPE = 92
+	EMR_CREATEMONOBRUSH         ENHANCED_METAFILE_RECORD_TYPE = 93
+	EMR_CREATEDIBPATTERNBRUSHPT ENHANCED_METAFILE_RECORD_TYPE = 94
+	EMR_EXTCREATEPEN            ENHANCED_METAFILE_RECORD_TYPE = 95
+	EMR_POLYTEXTOUTA            ENHANCED_METAFILE_RECORD_TYPE = 96
+	EMR_POLYTEXTOUTW            ENHANCED_METAFILE_RECORD_TYPE = 97
+	EMR_SETICMMODE              ENHANCED_METAFILE_RECORD_TYPE = 98
+	EMR_CREATECOLORSPACE        ENHANCED_METAFILE_RECORD_TYPE = 99
+	EMR_SETCOLORSPACE           ENHANCED_METAFILE_RECORD_TYPE = 100
+	EMR_DELETECOLORSPACE        ENHANCED_METAFILE_RECORD_TYPE = 101
+	EMR_GLSRECORD               ENHANCED_METAFILE_RECORD_TYPE = 102
+	EMR_GLSBOUNDEDRECORD        ENHANCED_METAFILE_RECORD_TYPE = 103
+	EMR_PIXELFORMAT             ENHANCED_METAFILE_RECORD_TYPE = 104
+	EMR_RESERVED_105            ENHANCED_METAFILE_RECORD_TYPE = 105
+	EMR_RESERVED_106            ENHANCED_METAFILE_RECORD_TYPE = 106
+	EMR_RESERVED_107            ENHANCED_METAFILE_RECORD_TYPE = 107
+	EMR_RESERVED_108            ENHANCED_METAFILE_RECORD_TYPE = 108
+	EMR_RESERVED_109            ENHANCED_METAFILE_RECORD_TYPE = 109
+	EMR_RESERVED_110            ENHANCED_METAFILE_RECORD_TYPE = 110
+	EMR_COLORCORRECTPALETTE     ENHANCED_METAFILE_RECORD_TYPE = 111
+	EMR_SETICMPROFILEA          ENHANCED_METAFILE_RECORD_TYPE = 112
+	EMR_SETICMPROFILEW          ENHANCED_METAFILE_RECORD_TYPE = 113
+	EMR_ALPHABLEND              ENHANCED_METAFILE_RECORD_TYPE = 114
+	EMR_SETLAYOUT               ENHANCED_METAFILE_RECORD_TYPE = 115
+	EMR_TRANSPARENTBLT          ENHANCED_METAFILE_RECORD_TYPE = 116
+	EMR_RESERVED_117            ENHANCED_METAFILE_RECORD_TYPE = 117
+	EMR_GRADIENTFILL            ENHANCED_METAFILE_RECORD_TYPE = 118
+	EMR_RESERVED_119            ENHANCED_METAFILE_RECORD_TYPE = 119
+	EMR_RESERVED_120            ENHANCED_METAFILE_RECORD_TYPE = 120
+	EMR_COLORMATCHTOTARGETW     ENHANCED_METAFILE_RECORD_TYPE = 121
+	EMR_CREATECOLORSPACEW       ENHANCED_METAFILE_RECORD_TYPE = 122
+	EMR_MIN                     ENHANCED_METAFILE_RECORD_TYPE = 1
+	EMR_MAX                     ENHANCED_METAFILE_RECORD_TYPE = 122
+)
+
+// enum
+// flags
+type DEVMODE_FIELD_FLAGS uint32
+
+const (
+	DM_SPECVERSION        DEVMODE_FIELD_FLAGS = 1025
+	DM_ORIENTATION        DEVMODE_FIELD_FLAGS = 1
+	DM_PAPERSIZE          DEVMODE_FIELD_FLAGS = 2
+	DM_PAPERLENGTH        DEVMODE_FIELD_FLAGS = 4
+	DM_PAPERWIDTH         DEVMODE_FIELD_FLAGS = 8
+	DM_SCALE              DEVMODE_FIELD_FLAGS = 16
+	DM_POSITION           DEVMODE_FIELD_FLAGS = 32
+	DM_NUP                DEVMODE_FIELD_FLAGS = 64
+	DM_DISPLAYORIENTATION DEVMODE_FIELD_FLAGS = 128
+	DM_COPIES             DEVMODE_FIELD_FLAGS = 256
+	DM_DEFAULTSOURCE      DEVMODE_FIELD_FLAGS = 512
+	DM_PRINTQUALITY       DEVMODE_FIELD_FLAGS = 1024
+	DM_COLOR              DEVMODE_FIELD_FLAGS = 2048
+	DM_DUPLEX             DEVMODE_FIELD_FLAGS = 4096
+	DM_YRESOLUTION        DEVMODE_FIELD_FLAGS = 8192
+	DM_TTOPTION           DEVMODE_FIELD_FLAGS = 16384
+	DM_COLLATE            DEVMODE_FIELD_FLAGS = 32768
+	DM_FORMNAME           DEVMODE_FIELD_FLAGS = 65536
+	DM_LOGPIXELS          DEVMODE_FIELD_FLAGS = 131072
+	DM_BITSPERPEL         DEVMODE_FIELD_FLAGS = 262144
+	DM_PELSWIDTH          DEVMODE_FIELD_FLAGS = 524288
+	DM_PELSHEIGHT         DEVMODE_FIELD_FLAGS = 1048576
+	DM_DISPLAYFLAGS       DEVMODE_FIELD_FLAGS = 2097152
+	DM_DISPLAYFREQUENCY   DEVMODE_FIELD_FLAGS = 4194304
+	DM_ICMMETHOD          DEVMODE_FIELD_FLAGS = 8388608
+	DM_ICMINTENT          DEVMODE_FIELD_FLAGS = 16777216
+	DM_MEDIATYPE          DEVMODE_FIELD_FLAGS = 33554432
+	DM_DITHERTYPE         DEVMODE_FIELD_FLAGS = 67108864
+	DM_PANNINGWIDTH       DEVMODE_FIELD_FLAGS = 134217728
+	DM_PANNINGHEIGHT      DEVMODE_FIELD_FLAGS = 268435456
+	DM_DISPLAYFIXEDOUTPUT DEVMODE_FIELD_FLAGS = 536870912
+	DM_INTERLACED         DEVMODE_FIELD_FLAGS = 2
+	DM_UPDATE             DEVMODE_FIELD_FLAGS = 1
+	DM_COPY               DEVMODE_FIELD_FLAGS = 2
+	DM_PROMPT             DEVMODE_FIELD_FLAGS = 4
+	DM_MODIFY             DEVMODE_FIELD_FLAGS = 8
+	DM_IN_BUFFER          DEVMODE_FIELD_FLAGS = 8
+	DM_IN_PROMPT          DEVMODE_FIELD_FLAGS = 4
+	DM_OUT_BUFFER         DEVMODE_FIELD_FLAGS = 2
+	DM_OUT_DEFAULT        DEVMODE_FIELD_FLAGS = 1
+)
+
+// enum
+type DEVMODE_COLOR uint16
+
+const (
+	DMCOLOR_MONOCHROME DEVMODE_COLOR = 1
+	DMCOLOR_COLOR      DEVMODE_COLOR = 2
+)
+
+// enum
+type DEVMODE_DUPLEX uint16
+
+const (
+	DMDUP_SIMPLEX    DEVMODE_DUPLEX = 1
+	DMDUP_VERTICAL   DEVMODE_DUPLEX = 2
+	DMDUP_HORIZONTAL DEVMODE_DUPLEX = 3
+)
+
+// enum
+type DEVMODE_COLLATE uint16
+
+const (
+	DMCOLLATE_FALSE DEVMODE_COLLATE = 0
+	DMCOLLATE_TRUE  DEVMODE_COLLATE = 1
+)
+
+// enum
+type DEVMODE_DISPLAY_ORIENTATION uint32
+
+const (
+	DMDO_DEFAULT DEVMODE_DISPLAY_ORIENTATION = 0
+	DMDO_90      DEVMODE_DISPLAY_ORIENTATION = 1
+	DMDO_180     DEVMODE_DISPLAY_ORIENTATION = 2
+	DMDO_270     DEVMODE_DISPLAY_ORIENTATION = 3
+)
+
+// enum
+type DEVMODE_DISPLAY_FIXED_OUTPUT uint32
+
+const (
+	DMDFO_DEFAULT DEVMODE_DISPLAY_FIXED_OUTPUT = 0
+	DMDFO_STRETCH DEVMODE_DISPLAY_FIXED_OUTPUT = 1
+	DMDFO_CENTER  DEVMODE_DISPLAY_FIXED_OUTPUT = 2
+)
+
+// enum
+type DEVMODE_TRUETYPE_OPTION uint16
+
+const (
+	DMTT_BITMAP           DEVMODE_TRUETYPE_OPTION = 1
+	DMTT_DOWNLOAD         DEVMODE_TRUETYPE_OPTION = 2
+	DMTT_SUBDEV           DEVMODE_TRUETYPE_OPTION = 3
+	DMTT_DOWNLOAD_OUTLINE DEVMODE_TRUETYPE_OPTION = 4
+)
+
+// enum
+type PAN_FAMILY_TYPE uint32
+
+const (
+	PAN_FAMILY_ANY          PAN_FAMILY_TYPE = 0
+	PAN_FAMILY_NO_FIT       PAN_FAMILY_TYPE = 1
+	PAN_FAMILY_TEXT_DISPLAY PAN_FAMILY_TYPE = 2
+	PAN_FAMILY_SCRIPT       PAN_FAMILY_TYPE = 3
+	PAN_FAMILY_DECORATIVE   PAN_FAMILY_TYPE = 4
+	PAN_FAMILY_PICTORIAL    PAN_FAMILY_TYPE = 5
+)
+
+// enum
+type PAN_SERIF_STYLE uint32
+
+const (
+	PAN_SERIF_ANY                PAN_SERIF_STYLE = 0
+	PAN_SERIF_NO_FIT             PAN_SERIF_STYLE = 1
+	PAN_SERIF_COVE               PAN_SERIF_STYLE = 2
+	PAN_SERIF_OBTUSE_COVE        PAN_SERIF_STYLE = 3
+	PAN_SERIF_SQUARE_COVE        PAN_SERIF_STYLE = 4
+	PAN_SERIF_OBTUSE_SQUARE_COVE PAN_SERIF_STYLE = 5
+	PAN_SERIF_SQUARE             PAN_SERIF_STYLE = 6
+	PAN_SERIF_THIN               PAN_SERIF_STYLE = 7
+	PAN_SERIF_BONE               PAN_SERIF_STYLE = 8
+	PAN_SERIF_EXAGGERATED        PAN_SERIF_STYLE = 9
+	PAN_SERIF_TRIANGLE           PAN_SERIF_STYLE = 10
+	PAN_SERIF_NORMAL_SANS        PAN_SERIF_STYLE = 11
+	PAN_SERIF_OBTUSE_SANS        PAN_SERIF_STYLE = 12
+	PAN_SERIF_PERP_SANS          PAN_SERIF_STYLE = 13
+	PAN_SERIF_FLARED             PAN_SERIF_STYLE = 14
+	PAN_SERIF_ROUNDED            PAN_SERIF_STYLE = 15
+)
+
+// enum
+type PAN_WEIGHT uint32
+
+const (
+	PAN_WEIGHT_ANY        PAN_WEIGHT = 0
+	PAN_WEIGHT_NO_FIT     PAN_WEIGHT = 1
+	PAN_WEIGHT_INDEX      PAN_WEIGHT = 2
+	PAN_WEIGHT_VERY_LIGHT PAN_WEIGHT = 2
+	PAN_WEIGHT_LIGHT      PAN_WEIGHT = 3
+	PAN_WEIGHT_THIN       PAN_WEIGHT = 4
+	PAN_WEIGHT_BOOK       PAN_WEIGHT = 5
+	PAN_WEIGHT_MEDIUM     PAN_WEIGHT = 6
+	PAN_WEIGHT_DEMI       PAN_WEIGHT = 7
+	PAN_WEIGHT_BOLD       PAN_WEIGHT = 8
+	PAN_WEIGHT_HEAVY      PAN_WEIGHT = 9
+	PAN_WEIGHT_BLACK      PAN_WEIGHT = 10
+	PAN_WEIGHT_NORD       PAN_WEIGHT = 11
+)
+
+// enum
+type PAN_STROKE_VARIATION uint32
+
+const (
+	PAN_STROKE_ANY          PAN_STROKE_VARIATION = 0
+	PAN_STROKE_NO_FIT       PAN_STROKE_VARIATION = 1
+	PAN_STROKE_GRADUAL_DIAG PAN_STROKE_VARIATION = 2
+	PAN_STROKE_GRADUAL_TRAN PAN_STROKE_VARIATION = 3
+	PAN_STROKE_GRADUAL_VERT PAN_STROKE_VARIATION = 4
+	PAN_STROKE_GRADUAL_HORZ PAN_STROKE_VARIATION = 5
+	PAN_STROKE_RAPID_VERT   PAN_STROKE_VARIATION = 6
+	PAN_STROKE_RAPID_HORZ   PAN_STROKE_VARIATION = 7
+	PAN_STROKE_INSTANT_VERT PAN_STROKE_VARIATION = 8
+)
+
+// enum
+type PAN_PROPORTION uint32
+
+const (
+	PAN_PROP_ANY            PAN_PROPORTION = 0
+	PAN_PROP_NO_FIT         PAN_PROPORTION = 1
+	PAN_PROP_OLD_STYLE      PAN_PROPORTION = 2
+	PAN_PROP_MODERN         PAN_PROPORTION = 3
+	PAN_PROP_EVEN_WIDTH     PAN_PROPORTION = 4
+	PAN_PROP_EXPANDED       PAN_PROPORTION = 5
+	PAN_PROP_CONDENSED      PAN_PROPORTION = 6
+	PAN_PROP_VERY_EXPANDED  PAN_PROPORTION = 7
+	PAN_PROP_VERY_CONDENSED PAN_PROPORTION = 8
+	PAN_PROP_MONOSPACED     PAN_PROPORTION = 9
+)
+
+// enum
+type PAN_CONTRAST uint32
+
+const (
+	PAN_CONTRAST_ANY         PAN_CONTRAST = 0
+	PAN_CONTRAST_NO_FIT      PAN_CONTRAST = 1
+	PAN_CONTRAST_INDEX       PAN_CONTRAST = 4
+	PAN_CONTRAST_NONE        PAN_CONTRAST = 2
+	PAN_CONTRAST_VERY_LOW    PAN_CONTRAST = 3
+	PAN_CONTRAST_LOW         PAN_CONTRAST = 4
+	PAN_CONTRAST_MEDIUM_LOW  PAN_CONTRAST = 5
+	PAN_CONTRAST_MEDIUM      PAN_CONTRAST = 6
+	PAN_CONTRAST_MEDIUM_HIGH PAN_CONTRAST = 7
+	PAN_CONTRAST_HIGH        PAN_CONTRAST = 8
+	PAN_CONTRAST_VERY_HIGH   PAN_CONTRAST = 9
+)
+
+// enum
+type PAN_ARM_STYLE uint32
+
+const (
+	PAN_ARM_ANY                    PAN_ARM_STYLE = 0
+	PAN_ARM_NO_FIT                 PAN_ARM_STYLE = 1
+	PAN_STRAIGHT_ARMS_HORZ         PAN_ARM_STYLE = 2
+	PAN_STRAIGHT_ARMS_WEDGE        PAN_ARM_STYLE = 3
+	PAN_STRAIGHT_ARMS_VERT         PAN_ARM_STYLE = 4
+	PAN_STRAIGHT_ARMS_SINGLE_SERIF PAN_ARM_STYLE = 5
+	PAN_STRAIGHT_ARMS_DOUBLE_SERIF PAN_ARM_STYLE = 6
+	PAN_BENT_ARMS_HORZ             PAN_ARM_STYLE = 7
+	PAN_BENT_ARMS_WEDGE            PAN_ARM_STYLE = 8
+	PAN_BENT_ARMS_VERT             PAN_ARM_STYLE = 9
+	PAN_BENT_ARMS_SINGLE_SERIF     PAN_ARM_STYLE = 10
+	PAN_BENT_ARMS_DOUBLE_SERIF     PAN_ARM_STYLE = 11
+)
+
+// enum
+type PAN_LETT_FORM uint32
+
+const (
+	PAN_LETT_FORM_ANY           PAN_LETT_FORM = 0
+	PAN_LETT_FORM_NO_FIT        PAN_LETT_FORM = 1
+	PAN_LETT_NORMAL_CONTACT     PAN_LETT_FORM = 2
+	PAN_LETT_NORMAL_WEIGHTED    PAN_LETT_FORM = 3
+	PAN_LETT_NORMAL_BOXED       PAN_LETT_FORM = 4
+	PAN_LETT_NORMAL_FLATTENED   PAN_LETT_FORM = 5
+	PAN_LETT_NORMAL_ROUNDED     PAN_LETT_FORM = 6
+	PAN_LETT_NORMAL_OFF_CENTER  PAN_LETT_FORM = 7
+	PAN_LETT_NORMAL_SQUARE      PAN_LETT_FORM = 8
+	PAN_LETT_OBLIQUE_CONTACT    PAN_LETT_FORM = 9
+	PAN_LETT_OBLIQUE_WEIGHTED   PAN_LETT_FORM = 10
+	PAN_LETT_OBLIQUE_BOXED      PAN_LETT_FORM = 11
+	PAN_LETT_OBLIQUE_FLATTENED  PAN_LETT_FORM = 12
+	PAN_LETT_OBLIQUE_ROUNDED    PAN_LETT_FORM = 13
+	PAN_LETT_OBLIQUE_OFF_CENTER PAN_LETT_FORM = 14
+	PAN_LETT_OBLIQUE_SQUARE     PAN_LETT_FORM = 15
+)
+
+// enum
+type PAN_MIDLINE uint32
+
+const (
+	PAN_MIDLINE_ANY              PAN_MIDLINE = 0
+	PAN_MIDLINE_NO_FIT           PAN_MIDLINE = 1
+	PAN_MIDLINE_INDEX            PAN_MIDLINE = 8
+	PAN_MIDLINE_STANDARD_TRIMMED PAN_MIDLINE = 2
+	PAN_MIDLINE_STANDARD_POINTED PAN_MIDLINE = 3
+	PAN_MIDLINE_STANDARD_SERIFED PAN_MIDLINE = 4
+	PAN_MIDLINE_HIGH_TRIMMED     PAN_MIDLINE = 5
+	PAN_MIDLINE_HIGH_POINTED     PAN_MIDLINE = 6
+	PAN_MIDLINE_HIGH_SERIFED     PAN_MIDLINE = 7
+	PAN_MIDLINE_CONSTANT_TRIMMED PAN_MIDLINE = 8
+	PAN_MIDLINE_CONSTANT_POINTED PAN_MIDLINE = 9
+	PAN_MIDLINE_CONSTANT_SERIFED PAN_MIDLINE = 10
+	PAN_MIDLINE_LOW_TRIMMED      PAN_MIDLINE = 11
+	PAN_MIDLINE_LOW_POINTED      PAN_MIDLINE = 12
+	PAN_MIDLINE_LOW_SERIFED      PAN_MIDLINE = 13
+)
+
+// enum
+type PAN_XHEIGHT uint32
+
+const (
+	PAN_XHEIGHT_ANY            PAN_XHEIGHT = 0
+	PAN_XHEIGHT_NO_FIT         PAN_XHEIGHT = 1
+	PAN_XHEIGHT_INDEX          PAN_XHEIGHT = 9
+	PAN_XHEIGHT_CONSTANT_SMALL PAN_XHEIGHT = 2
+	PAN_XHEIGHT_CONSTANT_STD   PAN_XHEIGHT = 3
+	PAN_XHEIGHT_CONSTANT_LARGE PAN_XHEIGHT = 4
+	PAN_XHEIGHT_DUCKING_SMALL  PAN_XHEIGHT = 5
+	PAN_XHEIGHT_DUCKING_STD    PAN_XHEIGHT = 6
+	PAN_XHEIGHT_DUCKING_LARGE  PAN_XHEIGHT = 7
+)
+
+// enum
+// flags
+type ENUM_DISPLAY_SETTINGS_FLAGS uint32
+
+const (
+	EDS_RAWMODE     ENUM_DISPLAY_SETTINGS_FLAGS = 2
+	EDS_ROTATEDMODE ENUM_DISPLAY_SETTINGS_FLAGS = 4
 )
 
 // enum
@@ -2064,7 +2276,7 @@ type BITMAPINFOHEADER struct {
 	BiHeight        int32
 	BiPlanes        uint16
 	BiBitCount      uint16
-	BiCompression   uint32
+	BiCompression   BI_COMPRESSION
 	BiSizeImage     uint32
 	BiXPelsPerMeter int32
 	BiYPelsPerMeter int32
@@ -2078,7 +2290,7 @@ type BITMAPV4HEADER struct {
 	BV4Height        int32
 	BV4Planes        uint16
 	BV4BitCount      uint16
-	BV4V4Compression uint32
+	BV4V4Compression BI_COMPRESSION
 	BV4SizeImage     uint32
 	BV4XPelsPerMeter int32
 	BV4YPelsPerMeter int32
@@ -2101,7 +2313,7 @@ type BITMAPV5HEADER struct {
 	BV5Height        int32
 	BV5Planes        uint16
 	BV5BitCount      uint16
-	BV5Compression   uint32
+	BV5Compression   BI_COMPRESSION
 	BV5SizeImage     uint32
 	BV5XPelsPerMeter int32
 	BV5YPelsPerMeter int32
@@ -2161,7 +2373,7 @@ type METAHEADER struct {
 }
 
 type ENHMETARECORD struct {
-	IType uint32
+	IType ENHANCED_METAFILE_RECORD_TYPE
 	NSize uint32
 	DParm [1]uint32
 }
@@ -2207,7 +2419,7 @@ type TEXTMETRICA struct {
 	TmItalic           byte
 	TmUnderlined       byte
 	TmStruckOut        byte
-	TmPitchAndFamily   byte
+	TmPitchAndFamily   TMPF_FLAGS
 	TmCharSet          byte
 }
 
@@ -2231,7 +2443,7 @@ type TEXTMETRICW struct {
 	TmItalic           byte
 	TmUnderlined       byte
 	TmStruckOut        byte
-	TmPitchAndFamily   byte
+	TmPitchAndFamily   TMPF_FLAGS
 	TmCharSet          byte
 }
 
@@ -2254,7 +2466,7 @@ type NEWTEXTMETRICA struct {
 	TmItalic           byte
 	TmUnderlined       byte
 	TmStruckOut        byte
-	TmPitchAndFamily   byte
+	TmPitchAndFamily   TMPF_FLAGS
 	TmCharSet          byte
 	NtmFlags           uint32
 	NtmSizeEM          uint32
@@ -2282,7 +2494,7 @@ type NEWTEXTMETRICW struct {
 	TmItalic           byte
 	TmUnderlined       byte
 	TmStruckOut        byte
-	TmPitchAndFamily   byte
+	TmPitchAndFamily   TMPF_FLAGS
 	TmCharSet          byte
 	NtmFlags           uint32
 	NtmSizeEM          uint32
@@ -2299,38 +2511,38 @@ type PELARRAY struct {
 }
 
 type LOGBRUSH struct {
-	LbStyle uint32
-	LbColor uint32
+	LbStyle BRUSH_STYLE
+	LbColor COLORREF
 	LbHatch uintptr
 }
 
 type LOGBRUSH32 struct {
-	LbStyle uint32
-	LbColor uint32
+	LbStyle BRUSH_STYLE
+	LbColor COLORREF
 	LbHatch uint32
 }
 
 type LOGPEN struct {
-	LopnStyle uint32
+	LopnStyle PEN_STYLE
 	LopnWidth POINT
-	LopnColor uint32
+	LopnColor COLORREF
 }
 
 type EXTLOGPEN struct {
-	ElpPenStyle   uint32
+	ElpPenStyle   PEN_STYLE
 	ElpWidth      uint32
 	ElpBrushStyle uint32
-	ElpColor      uint32
+	ElpColor      COLORREF
 	ElpHatch      uintptr
 	ElpNumEntries uint32
 	ElpStyleEntry [1]uint32
 }
 
 type EXTLOGPEN32 struct {
-	ElpPenStyle   uint32
+	ElpPenStyle   PEN_STYLE
 	ElpWidth      uint32
 	ElpBrushStyle uint32
-	ElpColor      uint32
+	ElpColor      COLORREF
 	ElpHatch      uint32
 	ElpNumEntries uint32
 	ElpStyleEntry [1]uint32
@@ -2358,10 +2570,10 @@ type LOGFONTA struct {
 	LfItalic         byte
 	LfUnderline      byte
 	LfStrikeOut      byte
-	LfCharSet        byte
-	LfOutPrecision   byte
-	LfClipPrecision  byte
-	LfQuality        byte
+	LfCharSet        FONT_CHARSET
+	LfOutPrecision   FONT_OUTPUT_PRECISION
+	LfClipPrecision  FONT_CLIP_PRECISION
+	LfQuality        FONT_QUALITY
 	LfPitchAndFamily byte
 	LfFaceName       [32]CHAR
 }
@@ -2376,10 +2588,10 @@ type LOGFONTW struct {
 	LfItalic         byte
 	LfUnderline      byte
 	LfStrikeOut      byte
-	LfCharSet        byte
-	LfOutPrecision   byte
-	LfClipPrecision  byte
-	LfQuality        byte
+	LfCharSet        FONT_CHARSET
+	LfOutPrecision   FONT_OUTPUT_PRECISION
+	LfClipPrecision  FONT_CLIP_PRECISION
+	LfQuality        FONT_QUALITY
 	LfPitchAndFamily byte
 	LfFaceName       [32]uint16
 }
@@ -2413,16 +2625,16 @@ type ENUMLOGFONTEXW struct {
 }
 
 type PANOSE struct {
-	BFamilyType      byte
-	BSerifStyle      byte
-	BWeight          byte
-	BProportion      byte
-	BContrast        byte
-	BStrokeVariation byte
-	BArmStyle        byte
-	BLetterform      byte
-	BMidline         byte
-	BXHeight         byte
+	BFamilyType      PAN_FAMILY_TYPE
+	BSerifStyle      PAN_SERIF_STYLE
+	BWeight          PAN_WEIGHT
+	BProportion      PAN_PROPORTION
+	BContrast        PAN_CONTRAST
+	BStrokeVariation PAN_STROKE_VARIATION
+	BArmStyle        PAN_ARM_STYLE
+	BLetterform      PAN_LETT_FORM
+	BMidline         PAN_MIDLINE
+	BXHeight         PAN_XHEIGHT
 }
 
 type EXTLOGFONTA struct {
@@ -2465,8 +2677,8 @@ type DEVMODEA_Anonymous1_Anonymous1 struct {
 
 type DEVMODEA_Anonymous1_Anonymous2 struct {
 	DmPosition           POINTL
-	DmDisplayOrientation uint32
-	DmDisplayFixedOutput uint32
+	DmDisplayOrientation DEVMODE_DISPLAY_ORIENTATION
+	DmDisplayFixedOutput DEVMODE_DISPLAY_FIXED_OUTPUT
 }
 
 type DEVMODEA_Anonymous1 struct {
@@ -2515,13 +2727,13 @@ type DEVMODEA struct {
 	DmDriverVersion uint16
 	DmSize          uint16
 	DmDriverExtra   uint16
-	DmFields        uint32
+	DmFields        DEVMODE_FIELD_FLAGS
 	DEVMODEA_Anonymous1
-	DmColor       int16
-	DmDuplex      int16
+	DmColor       DEVMODE_COLOR
+	DmDuplex      DEVMODE_DUPLEX
 	DmYResolution int16
-	DmTTOption    int16
-	DmCollate     int16
+	DmTTOption    DEVMODE_TRUETYPE_OPTION
+	DmCollate     DEVMODE_COLLATE
 	DmFormName    [32]byte
 	DmLogPixels   uint16
 	DmBitsPerPel  uint32
@@ -2552,8 +2764,8 @@ type DEVMODEW_Anonymous1_Anonymous1 struct {
 
 type DEVMODEW_Anonymous1_Anonymous2 struct {
 	DmPosition           POINTL
-	DmDisplayOrientation uint32
-	DmDisplayFixedOutput uint32
+	DmDisplayOrientation DEVMODE_DISPLAY_ORIENTATION
+	DmDisplayFixedOutput DEVMODE_DISPLAY_FIXED_OUTPUT
 }
 
 type DEVMODEW_Anonymous1 struct {
@@ -2603,13 +2815,13 @@ type DEVMODEW struct {
 	DmDriverVersion uint16
 	DmSize          uint16
 	DmDriverExtra   uint16
-	DmFields        uint32
+	DmFields        DEVMODE_FIELD_FLAGS
 	DEVMODEW_Anonymous1
-	DmColor       int16
-	DmDuplex      int16
+	DmColor       DEVMODE_COLOR
+	DmDuplex      DEVMODE_DUPLEX
 	DmYResolution int16
-	DmTTOption    int16
-	DmCollate     int16
+	DmTTOption    DEVMODE_TRUETYPE_OPTION
+	DmCollate     DEVMODE_COLLATE
 	DmFormName    [32]uint16
 	DmLogPixels   uint16
 	DmBitsPerPel  uint32
@@ -2944,7 +3156,7 @@ type KERNINGPAIR struct {
 }
 
 type EMR struct {
-	IType uint32
+	IType ENHANCED_METAFILE_RECORD_TYPE
 	NSize uint32
 }
 
@@ -2988,7 +3200,7 @@ type EMRSETMAPPERFLAGS struct {
 
 type EMRSETTEXTCOLOR struct {
 	Emr     EMR
-	CrColor uint32
+	CrColor COLORREF
 }
 
 type EMRSELECTOBJECT struct {
@@ -3079,19 +3291,19 @@ type EMRSETWORLDTRANSFORM struct {
 type EMRMODIFYWORLDTRANSFORM struct {
 	Emr   EMR
 	Xform XFORM
-	IMode uint32
+	IMode MODIFY_WORLD_TRANSFORM_MODE
 }
 
 type EMRSETPIXELV struct {
 	Emr      EMR
 	PtlPixel POINTL
-	CrColor  uint32
+	CrColor  COLORREF
 }
 
 type EMREXTFLOODFILL struct {
 	Emr      EMR
 	PtlStart POINTL
-	CrColor  uint32
+	CrColor  COLORREF
 	IMode    uint32
 }
 
@@ -3196,7 +3408,7 @@ type EMRFRAMERGN struct {
 type EMREXTSELECTCLIPRGN struct {
 	Emr       EMR
 	CbRgnData uint32
-	IMode     uint32
+	IMode     RGN_COMBINE_MODE
 	RgnData   [1]byte
 }
 
@@ -3230,7 +3442,7 @@ type EMRBITBLT struct {
 	XSrc         int32
 	YSrc         int32
 	XformSrc     XFORM
-	CrBkColorSrc uint32
+	CrBkColorSrc COLORREF
 	IUsageSrc    uint32
 	OffBmiSrc    uint32
 	CbBmiSrc     uint32
@@ -3249,7 +3461,7 @@ type EMRSTRETCHBLT struct {
 	XSrc         int32
 	YSrc         int32
 	XformSrc     XFORM
-	CrBkColorSrc uint32
+	CrBkColorSrc COLORREF
 	IUsageSrc    uint32
 	OffBmiSrc    uint32
 	CbBmiSrc     uint32
@@ -3270,7 +3482,7 @@ type EMRMASKBLT struct {
 	XSrc         int32
 	YSrc         int32
 	XformSrc     XFORM
-	CrBkColorSrc uint32
+	CrBkColorSrc COLORREF
 	IUsageSrc    uint32
 	OffBmiSrc    uint32
 	CbBmiSrc     uint32
@@ -3294,7 +3506,7 @@ type EMRPLGBLT struct {
 	CxSrc        int32
 	CySrc        int32
 	XformSrc     XFORM
-	CrBkColorSrc uint32
+	CrBkColorSrc COLORREF
 	IUsageSrc    uint32
 	OffBmiSrc    uint32
 	CbBmiSrc     uint32
@@ -3448,7 +3660,7 @@ type EMRSETICMPROFILE struct {
 	Data    [1]byte
 }
 
-type COLORMATCHTOTARGET struct {
+type EMRCOLORMATCHTOTARGET struct {
 	Emr      EMR
 	DwAction uint32
 	DwFlags  uint32
@@ -3457,7 +3669,7 @@ type COLORMATCHTOTARGET struct {
 	Data     [1]byte
 }
 
-type COLORCORRECTPALETTE struct {
+type EMRCOLORCORRECTPALETTE struct {
 	Emr         EMR
 	IhPalette   uint32
 	NFirstEntry uint32
@@ -3476,7 +3688,7 @@ type EMRALPHABLEND struct {
 	XSrc         int32
 	YSrc         int32
 	XformSrc     XFORM
-	CrBkColorSrc uint32
+	CrBkColorSrc COLORREF
 	IUsageSrc    uint32
 	OffBmiSrc    uint32
 	CbBmiSrc     uint32
@@ -3506,7 +3718,7 @@ type EMRTRANSPARENTBLT struct {
 	XSrc         int32
 	YSrc         int32
 	XformSrc     XFORM
-	CrBkColorSrc uint32
+	CrBkColorSrc COLORREF
 	IUsageSrc    uint32
 	OffBmiSrc    uint32
 	CbBmiSrc     uint32
@@ -3971,7 +4183,9 @@ var (
 	pClientToScreen               uintptr
 	pScreenToClient               uintptr
 	pMapWindowPoints              uintptr
+	pGetSysColor                  uintptr
 	pGetSysColorBrush             uintptr
+	pSetSysColors                 uintptr
 	pDrawFocusRect                uintptr
 	pFillRect                     uintptr
 	pFrameRect                    uintptr
@@ -4063,10 +4277,10 @@ func CloseMetaFile(hdc HDC) HMETAFILE {
 	return ret
 }
 
-func CombineRgn(hrgnDst HRGN, hrgnSrc1 HRGN, hrgnSrc2 HRGN, iMode RGN_COMBINE_MODE) int32 {
+func CombineRgn(hrgnDst HRGN, hrgnSrc1 HRGN, hrgnSrc2 HRGN, iMode RGN_COMBINE_MODE) GDI_REGION_TYPE {
 	addr := lazyAddr(&pCombineRgn, libGdi32, "CombineRgn")
 	ret, _, _ := syscall.SyscallN(addr, hrgnDst, hrgnSrc1, hrgnSrc2, uintptr(iMode))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func CopyMetaFileA(param0 HMETAFILE, param1 PSTR) HMETAFILE {
@@ -4177,7 +4391,7 @@ func CreateFontIndirectW(lplf *LOGFONTW) HFONT {
 	return ret
 }
 
-func CreateFontA(cHeight int32, cWidth int32, cEscapement int32, cOrientation int32, cWeight int32, bItalic uint32, bUnderline uint32, bStrikeOut uint32, iCharSet uint32, iOutPrecision FONT_OUTPUT_PRECISION, iClipPrecision FONT_CLIP_PRECISION, iQuality FONT_QUALITY, iPitchAndFamily FONT_PITCH_AND_FAMILY, pszFaceName PSTR) HFONT {
+func CreateFontA(cHeight int32, cWidth int32, cEscapement int32, cOrientation int32, cWeight int32, bItalic uint32, bUnderline uint32, bStrikeOut uint32, iCharSet uint32, iOutPrecision uint32, iClipPrecision uint32, iQuality uint32, iPitchAndFamily uint32, pszFaceName PSTR) HFONT {
 	addr := lazyAddr(&pCreateFontA, libGdi32, "CreateFontA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cHeight), uintptr(cWidth), uintptr(cEscapement), uintptr(cOrientation), uintptr(cWeight), uintptr(bItalic), uintptr(bUnderline), uintptr(bStrikeOut), uintptr(iCharSet), uintptr(iOutPrecision), uintptr(iClipPrecision), uintptr(iQuality), uintptr(iPitchAndFamily), uintptr(unsafe.Pointer(pszFaceName)))
 	return ret
@@ -4185,13 +4399,13 @@ func CreateFontA(cHeight int32, cWidth int32, cEscapement int32, cOrientation in
 
 var CreateFont = CreateFontW
 
-func CreateFontW(cHeight int32, cWidth int32, cEscapement int32, cOrientation int32, cWeight int32, bItalic uint32, bUnderline uint32, bStrikeOut uint32, iCharSet uint32, iOutPrecision FONT_OUTPUT_PRECISION, iClipPrecision FONT_CLIP_PRECISION, iQuality FONT_QUALITY, iPitchAndFamily FONT_PITCH_AND_FAMILY, pszFaceName PWSTR) HFONT {
+func CreateFontW(cHeight int32, cWidth int32, cEscapement int32, cOrientation int32, cWeight int32, bItalic uint32, bUnderline uint32, bStrikeOut uint32, iCharSet uint32, iOutPrecision uint32, iClipPrecision uint32, iQuality uint32, iPitchAndFamily uint32, pszFaceName PWSTR) HFONT {
 	addr := lazyAddr(&pCreateFontW, libGdi32, "CreateFontW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cHeight), uintptr(cWidth), uintptr(cEscapement), uintptr(cOrientation), uintptr(cWeight), uintptr(bItalic), uintptr(bUnderline), uintptr(bStrikeOut), uintptr(iCharSet), uintptr(iOutPrecision), uintptr(iClipPrecision), uintptr(iQuality), uintptr(iPitchAndFamily), uintptr(unsafe.Pointer(pszFaceName)))
 	return ret
 }
 
-func CreateHatchBrush(iHatch HATCH_BRUSH_STYLE, color uint32) HBRUSH {
+func CreateHatchBrush(iHatch HATCH_BRUSH_STYLE, color COLORREF) HBRUSH {
 	addr := lazyAddr(&pCreateHatchBrush, libGdi32, "CreateHatchBrush")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iHatch), uintptr(color))
 	return ret
@@ -4231,7 +4445,7 @@ func CreatePalette(plpal *LOGPALETTE) HPALETTE {
 	return ret
 }
 
-func CreatePen(iStyle PEN_STYLE, cWidth int32, color uint32) HPEN {
+func CreatePen(iStyle PEN_STYLE, cWidth int32, color COLORREF) HPEN {
 	addr := lazyAddr(&pCreatePen, libGdi32, "CreatePen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iStyle), uintptr(cWidth), uintptr(color))
 	return ret
@@ -4287,7 +4501,7 @@ func CreateScalableFontResourceW(fdwHidden uint32, lpszFont PWSTR, lpszFile PWST
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreateSolidBrush(color uint32) HBRUSH {
+func CreateSolidBrush(color COLORREF) HBRUSH {
 	addr := lazyAddr(&pCreateSolidBrush, libGdi32, "CreateSolidBrush")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(color))
 	return ret
@@ -4377,10 +4591,10 @@ func EqualRgn(hrgn1 HRGN, hrgn2 HRGN) BOOL {
 	return BOOL(ret)
 }
 
-func ExcludeClipRect(hdc HDC, left int32, top int32, right int32, bottom int32) int32 {
+func ExcludeClipRect(hdc HDC, left int32, top int32, right int32, bottom int32) GDI_REGION_TYPE {
 	addr := lazyAddr(&pExcludeClipRect, libGdi32, "ExcludeClipRect")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func ExtCreateRegion(lpx *XFORM, nCount uint32, lpData *RGNDATA) HRGN {
@@ -4389,7 +4603,7 @@ func ExtCreateRegion(lpx *XFORM, nCount uint32, lpData *RGNDATA) HRGN {
 	return ret
 }
 
-func ExtFloodFill(hdc HDC, x int32, y int32, color uint32, type_ EXT_FLOOD_FILL_TYPE) BOOL {
+func ExtFloodFill(hdc HDC, x int32, y int32, color COLORREF, type_ EXT_FLOOD_FILL_TYPE) BOOL {
 	addr := lazyAddr(&pExtFloodFill, libGdi32, "ExtFloodFill")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color), uintptr(type_))
 	return BOOL(ret)
@@ -4401,7 +4615,7 @@ func FillRgn(hdc HDC, hrgn HRGN, hbr HBRUSH) BOOL {
 	return BOOL(ret)
 }
 
-func FloodFill(hdc HDC, x int32, y int32, color uint32) BOOL {
+func FloodFill(hdc HDC, x int32, y int32, color COLORREF) BOOL {
 	addr := lazyAddr(&pFloodFill, libGdi32, "FloodFill")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color))
 	return BOOL(ret)
@@ -4413,10 +4627,10 @@ func FrameRgn(hdc HDC, hrgn HRGN, hbr HBRUSH, w int32, h int32) BOOL {
 	return BOOL(ret)
 }
 
-func GetROP2(hdc HDC) int32 {
+func GetROP2(hdc HDC) R2_MODE {
 	addr := lazyAddr(&pGetROP2, libGdi32, "GetROP2")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return int32(ret)
+	return R2_MODE(ret)
 }
 
 func GetAspectRatioFilterEx(hdc HDC, lpsize *SIZE) BOOL {
@@ -4425,28 +4639,28 @@ func GetAspectRatioFilterEx(hdc HDC, lpsize *SIZE) BOOL {
 	return BOOL(ret)
 }
 
-func GetBkColor(hdc HDC) uint32 {
+func GetBkColor(hdc HDC) COLORREF {
 	addr := lazyAddr(&pGetBkColor, libGdi32, "GetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func GetDCBrushColor(hdc HDC) uint32 {
+func GetDCBrushColor(hdc HDC) COLORREF {
 	addr := lazyAddr(&pGetDCBrushColor, libGdi32, "GetDCBrushColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func GetDCPenColor(hdc HDC) uint32 {
+func GetDCPenColor(hdc HDC) COLORREF {
 	addr := lazyAddr(&pGetDCPenColor, libGdi32, "GetDCPenColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func GetBkMode(hdc HDC) int32 {
+func GetBkMode(hdc HDC) BACKGROUND_MODE {
 	addr := lazyAddr(&pGetBkMode, libGdi32, "GetBkMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return int32(ret)
+	return BACKGROUND_MODE(ret)
 }
 
 func GetBitmapBits(hbit HBITMAP, cb int32, lpvBits unsafe.Pointer) int32 {
@@ -4543,10 +4757,10 @@ func GetCharABCWidthsFloatW(hdc HDC, iFirst uint32, iLast uint32, lpABC *ABCFLOA
 	return BOOL(ret)
 }
 
-func GetClipBox(hdc HDC, lprect *RECT) int32 {
+func GetClipBox(hdc HDC, lprect *RECT) GDI_REGION_TYPE {
 	addr := lazyAddr(&pGetClipBox, libGdi32, "GetClipBox")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lprect)))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func GetClipRgn(hdc HDC, hrgn HRGN) int32 {
@@ -4611,10 +4825,10 @@ func GetGraphicsMode(hdc HDC) int32 {
 	return int32(ret)
 }
 
-func GetMapMode(hdc HDC) int32 {
+func GetMapMode(hdc HDC) HDC_MAP_MODE {
 	addr := lazyAddr(&pGetMapMode, libGdi32, "GetMapMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return int32(ret)
+	return HDC_MAP_MODE(ret)
 }
 
 func GetMetaFileBitsEx(hMF HMETAFILE, cbBuffer uint32, lpData unsafe.Pointer) uint32 {
@@ -4637,13 +4851,13 @@ func GetMetaFileW(lpName PWSTR) HMETAFILE {
 	return ret
 }
 
-func GetNearestColor(hdc HDC, color uint32) uint32 {
+func GetNearestColor(hdc HDC, color COLORREF) COLORREF {
 	addr := lazyAddr(&pGetNearestColor, libGdi32, "GetNearestColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func GetNearestPaletteIndex(h HPALETTE, color uint32) uint32 {
+func GetNearestPaletteIndex(h HPALETTE, color COLORREF) uint32 {
 	addr := lazyAddr(&pGetNearestPaletteIndex, libGdi32, "GetNearestPaletteIndex")
 	ret, _, _ := syscall.SyscallN(addr, h, uintptr(color))
 	return uint32(ret)
@@ -4675,10 +4889,10 @@ func GetPaletteEntries(hpal HPALETTE, iStart uint32, cEntries uint32, pPalEntrie
 	return uint32(ret)
 }
 
-func GetPixel(hdc HDC, x int32, y int32) uint32 {
+func GetPixel(hdc HDC, x int32, y int32) COLORREF {
 	addr := lazyAddr(&pGetPixel, libGdi32, "GetPixel")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
 func GetPolyFillMode(hdc HDC) int32 {
@@ -4705,10 +4919,10 @@ func GetRegionData(hrgn HRGN, nCount uint32, lpRgnData *RGNDATA) uint32 {
 	return uint32(ret)
 }
 
-func GetRgnBox(hrgn HRGN, lprc *RECT) int32 {
+func GetRgnBox(hrgn HRGN, lprc *RECT) GDI_REGION_TYPE {
 	addr := lazyAddr(&pGetRgnBox, libGdi32, "GetRgnBox")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(unsafe.Pointer(lprc)))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func GetStockObject(i GET_STOCK_OBJECT_FLAGS) HGDIOBJ {
@@ -4741,16 +4955,16 @@ func GetTextCharacterExtra(hdc HDC) int32 {
 	return int32(ret)
 }
 
-func GetTextAlign(hdc HDC) uint32 {
+func GetTextAlign(hdc HDC) TEXT_ALIGN_OPTIONS {
 	addr := lazyAddr(&pGetTextAlign, libGdi32, "GetTextAlign")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return uint32(ret)
+	return TEXT_ALIGN_OPTIONS(ret)
 }
 
-func GetTextColor(hdc HDC) uint32 {
+func GetTextColor(hdc HDC) COLORREF {
 	addr := lazyAddr(&pGetTextColor, libGdi32, "GetTextColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
 func GetTextExtentPointA(hdc HDC, lpString PSTR, c int32, lpsz *SIZE) BOOL {
@@ -4937,10 +5151,10 @@ func GetWindowOrgEx(hdc HDC, lppoint *POINT) BOOL {
 	return BOOL(ret)
 }
 
-func IntersectClipRect(hdc HDC, left int32, top int32, right int32, bottom int32) int32 {
+func IntersectClipRect(hdc HDC, left int32, top int32, right int32, bottom int32) GDI_REGION_TYPE {
 	addr := lazyAddr(&pIntersectClipRect, libGdi32, "IntersectClipRect")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func InvertRgn(hdc HDC, hrgn HRGN) BOOL {
@@ -4973,16 +5187,16 @@ func PlgBlt(hdcDest HDC, lpPoint *POINT, hdcSrc HDC, xSrc int32, ySrc int32, wid
 	return BOOL(ret)
 }
 
-func OffsetClipRgn(hdc HDC, x int32, y int32) int32 {
+func OffsetClipRgn(hdc HDC, x int32, y int32) GDI_REGION_TYPE {
 	addr := lazyAddr(&pOffsetClipRgn, libGdi32, "OffsetClipRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
-func OffsetRgn(hrgn HRGN, x int32, y int32) int32 {
+func OffsetRgn(hrgn HRGN, x int32, y int32) GDI_REGION_TYPE {
 	addr := lazyAddr(&pOffsetRgn, libGdi32, "OffsetRgn")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(x), uintptr(y))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func PatBlt(hdc HDC, x int32, y int32, w int32, h int32, rop ROP_CODE) BOOL {
@@ -5103,22 +5317,22 @@ func SaveDC(hdc HDC) int32 {
 	return int32(ret)
 }
 
-func SelectClipRgn(hdc HDC, hrgn HRGN) int32 {
+func SelectClipRgn(hdc HDC, hrgn HRGN) GDI_REGION_TYPE {
 	addr := lazyAddr(&pSelectClipRgn, libGdi32, "SelectClipRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn)
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
-func ExtSelectClipRgn(hdc HDC, hrgn HRGN, mode RGN_COMBINE_MODE) int32 {
+func ExtSelectClipRgn(hdc HDC, hrgn HRGN, mode RGN_COMBINE_MODE) GDI_REGION_TYPE {
 	addr := lazyAddr(&pExtSelectClipRgn, libGdi32, "ExtSelectClipRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn, uintptr(mode))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
-func SetMetaRgn(hdc HDC) int32 {
+func SetMetaRgn(hdc HDC) GDI_REGION_TYPE {
 	addr := lazyAddr(&pSetMetaRgn, libGdi32, "SetMetaRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func SelectObject(hdc HDC, h HGDIOBJ) HGDIOBJ {
@@ -5133,22 +5347,22 @@ func SelectPalette(hdc HDC, hPal HPALETTE, bForceBkgd BOOL) HPALETTE {
 	return ret
 }
 
-func SetBkColor(hdc HDC, color uint32) uint32 {
+func SetBkColor(hdc HDC, color COLORREF) COLORREF {
 	addr := lazyAddr(&pSetBkColor, libGdi32, "SetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func SetDCBrushColor(hdc HDC, color uint32) uint32 {
+func SetDCBrushColor(hdc HDC, color COLORREF) COLORREF {
 	addr := lazyAddr(&pSetDCBrushColor, libGdi32, "SetDCBrushColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func SetDCPenColor(hdc HDC, color uint32) uint32 {
+func SetDCPenColor(hdc HDC, color COLORREF) COLORREF {
 	addr := lazyAddr(&pSetDCPenColor, libGdi32, "SetDCPenColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
 func SetBkMode(hdc HDC, mode BACKGROUND_MODE) int32 {
@@ -5223,13 +5437,13 @@ func SetPaletteEntries(hpal HPALETTE, iStart uint32, cEntries uint32, pPalEntrie
 	return uint32(ret)
 }
 
-func SetPixel(hdc HDC, x int32, y int32, color uint32) uint32 {
+func SetPixel(hdc HDC, x int32, y int32, color COLORREF) COLORREF {
 	addr := lazyAddr(&pSetPixel, libGdi32, "SetPixel")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func SetPixelV(hdc HDC, x int32, y int32, color uint32) BOOL {
+func SetPixelV(hdc HDC, x int32, y int32, color COLORREF) BOOL {
 	addr := lazyAddr(&pSetPixelV, libGdi32, "SetPixelV")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color))
 	return BOOL(ret)
@@ -5283,10 +5497,10 @@ func SetTextCharacterExtra(hdc HDC, extra int32) int32 {
 	return int32(ret)
 }
 
-func SetTextColor(hdc HDC, color uint32) uint32 {
+func SetTextColor(hdc HDC, color COLORREF) COLORREF {
 	addr := lazyAddr(&pSetTextColor, libGdi32, "SetTextColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
 func SetTextAlign(hdc HDC, align TEXT_ALIGN_OPTIONS) uint32 {
@@ -6073,10 +6287,10 @@ func GetUpdateRect(hWnd HWND, lpRect *RECT, bErase BOOL) BOOL {
 	return BOOL(ret)
 }
 
-func GetUpdateRgn(hWnd HWND, hRgn HRGN, bErase BOOL) int32 {
+func GetUpdateRgn(hWnd HWND, hRgn HRGN, bErase BOOL) GDI_REGION_TYPE {
 	addr := lazyAddr(&pGetUpdateRgn, libUser32, "GetUpdateRgn")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hRgn, uintptr(bErase))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func SetWindowRgn(hWnd HWND, hRgn HRGN, bRedraw BOOL) int32 {
@@ -6085,16 +6299,16 @@ func SetWindowRgn(hWnd HWND, hRgn HRGN, bRedraw BOOL) int32 {
 	return int32(ret)
 }
 
-func GetWindowRgn(hWnd HWND, hRgn HRGN) int32 {
+func GetWindowRgn(hWnd HWND, hRgn HRGN) GDI_REGION_TYPE {
 	addr := lazyAddr(&pGetWindowRgn, libUser32, "GetWindowRgn")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hRgn)
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
-func GetWindowRgnBox(hWnd HWND, lprc *RECT) int32 {
+func GetWindowRgnBox(hWnd HWND, lprc *RECT) GDI_REGION_TYPE {
 	addr := lazyAddr(&pGetWindowRgnBox, libUser32, "GetWindowRgnBox")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lprc)))
-	return int32(ret)
+	return GDI_REGION_TYPE(ret)
 }
 
 func ExcludeUpdateRgn(hDC HDC, hWnd HWND) int32 {
@@ -6157,10 +6371,22 @@ func MapWindowPoints(hWndFrom HWND, hWndTo HWND, lpPoints *POINT, cPoints uint32
 	return int32(ret)
 }
 
-func GetSysColorBrush(nIndex int32) HBRUSH {
+func GetSysColor(nIndex SYS_COLOR_INDEX) uint32 {
+	addr := lazyAddr(&pGetSysColor, libUser32, "GetSysColor")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(nIndex))
+	return uint32(ret)
+}
+
+func GetSysColorBrush(nIndex SYS_COLOR_INDEX) HBRUSH {
 	addr := lazyAddr(&pGetSysColorBrush, libUser32, "GetSysColorBrush")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nIndex))
 	return ret
+}
+
+func SetSysColors(cElements int32, lpaElements *int32, lpaRgbValues *COLORREF) (BOOL, WIN32_ERROR) {
+	addr := lazyAddr(&pSetSysColors, libUser32, "SetSysColors")
+	ret, _, err := syscall.SyscallN(addr, uintptr(cElements), uintptr(unsafe.Pointer(lpaElements)), uintptr(unsafe.Pointer(lpaRgbValues)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DrawFocusRect(hDC HDC, lprc *RECT) BOOL {
@@ -6309,7 +6535,7 @@ func EnumDisplaySettingsW(lpszDeviceName PWSTR, iModeNum ENUM_DISPLAY_SETTINGS_M
 	return BOOL(ret)
 }
 
-func EnumDisplaySettingsExA(lpszDeviceName PSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEA, dwFlags uint32) BOOL {
+func EnumDisplaySettingsExA(lpszDeviceName PSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEA, dwFlags ENUM_DISPLAY_SETTINGS_FLAGS) BOOL {
 	addr := lazyAddr(&pEnumDisplaySettingsExA, libUser32, "EnumDisplaySettingsExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(iModeNum), uintptr(unsafe.Pointer(lpDevMode)), uintptr(dwFlags))
 	return BOOL(ret)
@@ -6317,7 +6543,7 @@ func EnumDisplaySettingsExA(lpszDeviceName PSTR, iModeNum ENUM_DISPLAY_SETTINGS_
 
 var EnumDisplaySettingsEx = EnumDisplaySettingsExW
 
-func EnumDisplaySettingsExW(lpszDeviceName PWSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEW, dwFlags uint32) BOOL {
+func EnumDisplaySettingsExW(lpszDeviceName PWSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEW, dwFlags ENUM_DISPLAY_SETTINGS_FLAGS) BOOL {
 	addr := lazyAddr(&pEnumDisplaySettingsExW, libUser32, "EnumDisplaySettingsExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(iModeNum), uintptr(unsafe.Pointer(lpDevMode)), uintptr(dwFlags))
 	return BOOL(ret)

@@ -107,7 +107,7 @@ var (
 	pGetWindowDpiHostingBehavior            uintptr
 )
 
-func OpenThemeDataForDpi(hwnd HWND, pszClassList PWSTR, dpi uint32) uintptr {
+func OpenThemeDataForDpi(hwnd HWND, pszClassList PWSTR, dpi uint32) HTHEME {
 	addr := lazyAddr(&pOpenThemeDataForDpi, libUxtheme, "OpenThemeDataForDpi")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszClassList)), uintptr(dpi))
 	return ret
@@ -137,7 +137,7 @@ func GetDialogDpiChangeBehavior(hDlg HWND) (DIALOG_DPI_CHANGE_BEHAVIORS, WIN32_E
 	return DIALOG_DPI_CHANGE_BEHAVIORS(ret), WIN32_ERROR(err)
 }
 
-func GetSystemMetricsForDpi(nIndex int32, dpi uint32) (int32, WIN32_ERROR) {
+func GetSystemMetricsForDpi(nIndex SYSTEM_METRICS_INDEX, dpi uint32) (int32, WIN32_ERROR) {
 	addr := lazyAddr(&pGetSystemMetricsForDpi, libUser32, "GetSystemMetricsForDpi")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nIndex), uintptr(dpi))
 	return int32(ret), WIN32_ERROR(err)

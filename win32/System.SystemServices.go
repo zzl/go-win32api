@@ -603,9 +603,6 @@ const (
 	EXCEPTION_COLLIDED_UNWIND                                    uint32   = 0x40
 	EXCEPTION_SOFTWARE_ORIGINATE                                 uint32   = 0x80
 	EXCEPTION_MAXIMUM_PARAMETERS                                 uint32   = 0xf
-	DELETE                                                       uint32   = 0x10000
-	WRITE_DAC                                                    uint32   = 0x40000
-	WRITE_OWNER                                                  uint32   = 0x80000
 	ACCESS_SYSTEM_SECURITY                                       uint32   = 0x1000000
 	MAXIMUM_ALLOWED                                              uint32   = 0x2000000
 	GENERIC_READ                                                 uint32   = 0x80000000
@@ -866,20 +863,6 @@ const (
 	SYSTEM_ACCESS_FILTER_NOCONSTRAINT_MASK                       uint32   = 0xffffffff
 	SECURITY_DESCRIPTOR_REVISION                                 uint32   = 0x1
 	SECURITY_DESCRIPTOR_REVISION1                                uint32   = 0x1
-	SE_OWNER_DEFAULTED                                           uint32   = 0x1
-	SE_GROUP_DEFAULTED                                           uint32   = 0x2
-	SE_DACL_PRESENT                                              uint32   = 0x4
-	SE_DACL_DEFAULTED                                            uint32   = 0x8
-	SE_SACL_PRESENT                                              uint32   = 0x10
-	SE_SACL_DEFAULTED                                            uint32   = 0x20
-	SE_DACL_AUTO_INHERIT_REQ                                     uint32   = 0x100
-	SE_SACL_AUTO_INHERIT_REQ                                     uint32   = 0x200
-	SE_DACL_AUTO_INHERITED                                       uint32   = 0x400
-	SE_SACL_AUTO_INHERITED                                       uint32   = 0x800
-	SE_DACL_PROTECTED                                            uint32   = 0x1000
-	SE_SACL_PROTECTED                                            uint32   = 0x2000
-	SE_RM_CONTROL_VALID                                          uint32   = 0x4000
-	SE_SELF_RELATIVE                                             uint32   = 0x8000
 	ACCESS_OBJECT_GUID                                           uint32   = 0x0
 	ACCESS_PROPERTY_SET_GUID                                     uint32   = 0x1
 	ACCESS_PROPERTY_GUID                                         uint32   = 0x2
@@ -900,42 +883,6 @@ const (
 	SE_SECURITY_DESCRIPTOR_VALID_FLAGS                           uint32   = 0x7
 	SE_ACCESS_CHECK_FLAG_NO_LEARNING_MODE_LOGGING                uint32   = 0x8
 	SE_ACCESS_CHECK_VALID_FLAGS                                  uint32   = 0x8
-	SE_CREATE_TOKEN_NAME                                         string   = "SeCreateTokenPrivilege"
-	SE_ASSIGNPRIMARYTOKEN_NAME                                   string   = "SeAssignPrimaryTokenPrivilege"
-	SE_LOCK_MEMORY_NAME                                          string   = "SeLockMemoryPrivilege"
-	SE_INCREASE_QUOTA_NAME                                       string   = "SeIncreaseQuotaPrivilege"
-	SE_UNSOLICITED_INPUT_NAME                                    string   = "SeUnsolicitedInputPrivilege"
-	SE_MACHINE_ACCOUNT_NAME                                      string   = "SeMachineAccountPrivilege"
-	SE_TCB_NAME                                                  string   = "SeTcbPrivilege"
-	SE_SECURITY_NAME                                             string   = "SeSecurityPrivilege"
-	SE_TAKE_OWNERSHIP_NAME                                       string   = "SeTakeOwnershipPrivilege"
-	SE_LOAD_DRIVER_NAME                                          string   = "SeLoadDriverPrivilege"
-	SE_SYSTEM_PROFILE_NAME                                       string   = "SeSystemProfilePrivilege"
-	SE_SYSTEMTIME_NAME                                           string   = "SeSystemtimePrivilege"
-	SE_PROF_SINGLE_PROCESS_NAME                                  string   = "SeProfileSingleProcessPrivilege"
-	SE_INC_BASE_PRIORITY_NAME                                    string   = "SeIncreaseBasePriorityPrivilege"
-	SE_CREATE_PAGEFILE_NAME                                      string   = "SeCreatePagefilePrivilege"
-	SE_CREATE_PERMANENT_NAME                                     string   = "SeCreatePermanentPrivilege"
-	SE_BACKUP_NAME                                               string   = "SeBackupPrivilege"
-	SE_RESTORE_NAME                                              string   = "SeRestorePrivilege"
-	SE_SHUTDOWN_NAME                                             string   = "SeShutdownPrivilege"
-	SE_DEBUG_NAME                                                string   = "SeDebugPrivilege"
-	SE_AUDIT_NAME                                                string   = "SeAuditPrivilege"
-	SE_SYSTEM_ENVIRONMENT_NAME                                   string   = "SeSystemEnvironmentPrivilege"
-	SE_CHANGE_NOTIFY_NAME                                        string   = "SeChangeNotifyPrivilege"
-	SE_REMOTE_SHUTDOWN_NAME                                      string   = "SeRemoteShutdownPrivilege"
-	SE_UNDOCK_NAME                                               string   = "SeUndockPrivilege"
-	SE_SYNC_AGENT_NAME                                           string   = "SeSyncAgentPrivilege"
-	SE_ENABLE_DELEGATION_NAME                                    string   = "SeEnableDelegationPrivilege"
-	SE_MANAGE_VOLUME_NAME                                        string   = "SeManageVolumePrivilege"
-	SE_IMPERSONATE_NAME                                          string   = "SeImpersonatePrivilege"
-	SE_CREATE_GLOBAL_NAME                                        string   = "SeCreateGlobalPrivilege"
-	SE_TRUSTED_CREDMAN_ACCESS_NAME                               string   = "SeTrustedCredManAccessPrivilege"
-	SE_RELABEL_NAME                                              string   = "SeRelabelPrivilege"
-	SE_INC_WORKING_SET_NAME                                      string   = "SeIncreaseWorkingSetPrivilege"
-	SE_TIME_ZONE_NAME                                            string   = "SeTimeZonePrivilege"
-	SE_CREATE_SYMBOLIC_LINK_NAME                                 string   = "SeCreateSymbolicLinkPrivilege"
-	SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME                    string   = "SeDelegateSessionUserImpersonatePrivilege"
 	SE_ACTIVATE_AS_USER_CAPABILITY                               string   = "activateAsUser"
 	SE_CONSTRAINED_IMPERSONATION_CAPABILITY                      string   = "constrainedImpersonation"
 	SE_SESSION_IMPERSONATION_CAPABILITY                          string   = "sessionImpersonation"
@@ -1015,11 +962,7 @@ const (
 	JOB_OBJECT_UI_VALID_FLAGS                                    uint32   = 0xff
 	MEMORY_PARTITION_QUERY_ACCESS                                uint32   = 0x1
 	MEMORY_PARTITION_MODIFY_ACCESS                               uint32   = 0x2
-	EVENT_MODIFY_STATE                                           uint32   = 0x2
 	MUTANT_QUERY_STATE                                           uint32   = 0x1
-	SEMAPHORE_MODIFY_STATE                                       uint32   = 0x2
-	TIMER_QUERY_STATE                                            uint32   = 0x1
-	TIMER_MODIFY_STATE                                           uint32   = 0x2
 	TIME_ZONE_ID_UNKNOWN                                         uint32   = 0x0
 	TIME_ZONE_ID_STANDARD                                        uint32   = 0x1
 	TIME_ZONE_ID_DAYLIGHT                                        uint32   = 0x2
@@ -1371,7 +1314,7 @@ const (
 	IMAGE_OS2_SIGNATURE                                          uint16   = 0x454e
 	IMAGE_OS2_SIGNATURE_LE                                       uint16   = 0x454c
 	IMAGE_VXD_SIGNATURE                                          uint16   = 0x454c
-	IMAGE_NT_SIGNATURE                                           uint16   = 0x4550
+	IMAGE_NT_SIGNATURE                                           uint32   = 0x4550
 	IMAGE_SIZEOF_FILE_HEADER                                     uint32   = 0x14
 	IMAGE_NUMBEROF_DIRECTORY_ENTRIES                             uint32   = 0x10
 	IMAGE_SIZEOF_SHORT_NAME                                      uint32   = 0x8
@@ -1938,12 +1881,6 @@ const (
 	FAST_FAIL_INVALID_FAST_FAIL_CODE                             uint32   = 0xffffffff
 	IS_TEXT_UNICODE_DBCS_LEADBYTE                                uint32   = 0x400
 	IS_TEXT_UNICODE_UTF8                                         uint32   = 0x800
-	COMPRESSION_FORMAT_NONE                                      uint32   = 0x0
-	COMPRESSION_FORMAT_DEFAULT                                   uint32   = 0x1
-	COMPRESSION_FORMAT_LZNT1                                     uint32   = 0x2
-	COMPRESSION_FORMAT_XPRESS                                    uint32   = 0x3
-	COMPRESSION_FORMAT_XPRESS_HUFF                               uint32   = 0x4
-	COMPRESSION_FORMAT_XP10                                      uint32   = 0x5
 	COMPRESSION_ENGINE_STANDARD                                  uint32   = 0x0
 	COMPRESSION_ENGINE_MAXIMUM                                   uint32   = 0x100
 	COMPRESSION_ENGINE_HIBER                                     uint32   = 0x200
@@ -2739,8 +2676,6 @@ const (
 	D3DFVF_TEXTUREFORMAT1                                        uint32   = 0x3
 	D3DFVF_TEXTUREFORMAT3                                        uint32   = 0x1
 	D3DFVF_TEXTUREFORMAT4                                        uint32   = 0x2
-	ROTFLAGS_REGISTRATIONKEEPSALIVE                              uint32   = 0x1
-	ROTFLAGS_ALLOWANYCLIENT                                      uint32   = 0x2
 	ROT_COMPARE_MAX                                              uint32   = 0x800
 	WDT_INPROC_CALL                                              uint32   = 0x48746457
 	WDT_REMOTE_CALL                                              uint32   = 0x52746457
@@ -3754,55 +3689,6 @@ const (
 
 // enum
 // flags
-type CHOOSECOLOR_FLAGS uint32
-
-const (
-	CC_RGBINIT              CHOOSECOLOR_FLAGS = 1
-	CC_FULLOPEN             CHOOSECOLOR_FLAGS = 2
-	CC_PREVENTFULLOPEN      CHOOSECOLOR_FLAGS = 4
-	CC_SHOWHELP             CHOOSECOLOR_FLAGS = 8
-	CC_ENABLEHOOK           CHOOSECOLOR_FLAGS = 16
-	CC_ENABLETEMPLATE       CHOOSECOLOR_FLAGS = 32
-	CC_ENABLETEMPLATEHANDLE CHOOSECOLOR_FLAGS = 64
-	CC_SOLIDCOLOR           CHOOSECOLOR_FLAGS = 128
-	CC_ANYCOLOR             CHOOSECOLOR_FLAGS = 256
-)
-
-// enum
-type CLIPBOARD_FORMATS uint32
-
-const (
-	CF_TEXT            CLIPBOARD_FORMATS = 1
-	CF_BITMAP          CLIPBOARD_FORMATS = 2
-	CF_METAFILEPICT    CLIPBOARD_FORMATS = 3
-	CF_SYLK            CLIPBOARD_FORMATS = 4
-	CF_DIF             CLIPBOARD_FORMATS = 5
-	CF_TIFF            CLIPBOARD_FORMATS = 6
-	CF_OEMTEXT         CLIPBOARD_FORMATS = 7
-	CF_DIB             CLIPBOARD_FORMATS = 8
-	CF_PALETTE         CLIPBOARD_FORMATS = 9
-	CF_PENDATA         CLIPBOARD_FORMATS = 10
-	CF_RIFF            CLIPBOARD_FORMATS = 11
-	CF_WAVE            CLIPBOARD_FORMATS = 12
-	CF_UNICODETEXT     CLIPBOARD_FORMATS = 13
-	CF_ENHMETAFILE     CLIPBOARD_FORMATS = 14
-	CF_HDROP           CLIPBOARD_FORMATS = 15
-	CF_LOCALE          CLIPBOARD_FORMATS = 16
-	CF_DIBV5           CLIPBOARD_FORMATS = 17
-	CF_MAX             CLIPBOARD_FORMATS = 18
-	CF_OWNERDISPLAY    CLIPBOARD_FORMATS = 128
-	CF_DSPTEXT         CLIPBOARD_FORMATS = 129
-	CF_DSPBITMAP       CLIPBOARD_FORMATS = 130
-	CF_DSPMETAFILEPICT CLIPBOARD_FORMATS = 131
-	CF_DSPENHMETAFILE  CLIPBOARD_FORMATS = 142
-	CF_PRIVATEFIRST    CLIPBOARD_FORMATS = 512
-	CF_PRIVATELAST     CLIPBOARD_FORMATS = 767
-	CF_GDIOBJFIRST     CLIPBOARD_FORMATS = 768
-	CF_GDIOBJLAST      CLIPBOARD_FORMATS = 1023
-)
-
-// enum
-// flags
 type GESTURECONFIG_FLAGS uint32
 
 const (
@@ -3927,6 +3813,113 @@ type DEV_BROADCAST_VOLUME_FLAGS uint16
 const (
 	DBTF_MEDIA DEV_BROADCAST_VOLUME_FLAGS = 1
 	DBTF_NET   DEV_BROADCAST_VOLUME_FLAGS = 2
+)
+
+// enum
+// flags
+type MODIFIERKEYS_FLAGS uint32
+
+const (
+	MK_LBUTTON  MODIFIERKEYS_FLAGS = 1
+	MK_RBUTTON  MODIFIERKEYS_FLAGS = 2
+	MK_SHIFT    MODIFIERKEYS_FLAGS = 4
+	MK_CONTROL  MODIFIERKEYS_FLAGS = 8
+	MK_MBUTTON  MODIFIERKEYS_FLAGS = 16
+	MK_XBUTTON1 MODIFIERKEYS_FLAGS = 32
+	MK_XBUTTON2 MODIFIERKEYS_FLAGS = 64
+)
+
+// enum
+type STATIC_STYLES uint32
+
+const (
+	SS_LEFT            STATIC_STYLES = 0
+	SS_CENTER          STATIC_STYLES = 1
+	SS_RIGHT           STATIC_STYLES = 2
+	SS_ICON            STATIC_STYLES = 3
+	SS_BLACKRECT       STATIC_STYLES = 4
+	SS_GRAYRECT        STATIC_STYLES = 5
+	SS_WHITERECT       STATIC_STYLES = 6
+	SS_BLACKFRAME      STATIC_STYLES = 7
+	SS_GRAYFRAME       STATIC_STYLES = 8
+	SS_WHITEFRAME      STATIC_STYLES = 9
+	SS_USERITEM        STATIC_STYLES = 10
+	SS_SIMPLE          STATIC_STYLES = 11
+	SS_LEFTNOWORDWRAP  STATIC_STYLES = 12
+	SS_OWNERDRAW       STATIC_STYLES = 13
+	SS_BITMAP          STATIC_STYLES = 14
+	SS_ENHMETAFILE     STATIC_STYLES = 15
+	SS_ETCHEDHORZ      STATIC_STYLES = 16
+	SS_ETCHEDVERT      STATIC_STYLES = 17
+	SS_ETCHEDFRAME     STATIC_STYLES = 18
+	SS_TYPEMASK        STATIC_STYLES = 31
+	SS_REALSIZECONTROL STATIC_STYLES = 64
+	SS_NOPREFIX        STATIC_STYLES = 128
+	SS_NOTIFY          STATIC_STYLES = 256
+	SS_CENTERIMAGE     STATIC_STYLES = 512
+	SS_RIGHTJUST       STATIC_STYLES = 1024
+	SS_REALSIZEIMAGE   STATIC_STYLES = 2048
+	SS_SUNKEN          STATIC_STYLES = 4096
+	SS_EDITCONTROL     STATIC_STYLES = 8192
+	SS_ENDELLIPSIS     STATIC_STYLES = 16384
+	SS_PATHELLIPSIS    STATIC_STYLES = 32768
+	SS_WORDELLIPSIS    STATIC_STYLES = 49152
+	SS_ELLIPSISMASK    STATIC_STYLES = 49152
+)
+
+// enum
+// flags
+type RECO_FLAGS uint32
+
+const (
+	RECO_PASTE RECO_FLAGS = 0
+	RECO_DROP  RECO_FLAGS = 1
+	RECO_COPY  RECO_FLAGS = 2
+	RECO_CUT   RECO_FLAGS = 3
+	RECO_DRAG  RECO_FLAGS = 4
+)
+
+// enum
+// flags
+type SFGAO_FLAGS uint32
+
+const (
+	SFGAO_CANCOPY         SFGAO_FLAGS = 1
+	SFGAO_CANMOVE         SFGAO_FLAGS = 2
+	SFGAO_CANLINK         SFGAO_FLAGS = 4
+	SFGAO_STORAGE         SFGAO_FLAGS = 8
+	SFGAO_CANRENAME       SFGAO_FLAGS = 16
+	SFGAO_CANDELETE       SFGAO_FLAGS = 32
+	SFGAO_HASPROPSHEET    SFGAO_FLAGS = 64
+	SFGAO_DROPTARGET      SFGAO_FLAGS = 256
+	SFGAO_CAPABILITYMASK  SFGAO_FLAGS = 375
+	SFGAO_PLACEHOLDER     SFGAO_FLAGS = 2048
+	SFGAO_SYSTEM          SFGAO_FLAGS = 4096
+	SFGAO_ENCRYPTED       SFGAO_FLAGS = 8192
+	SFGAO_ISSLOW          SFGAO_FLAGS = 16384
+	SFGAO_GHOSTED         SFGAO_FLAGS = 32768
+	SFGAO_LINK            SFGAO_FLAGS = 65536
+	SFGAO_SHARE           SFGAO_FLAGS = 131072
+	SFGAO_READONLY        SFGAO_FLAGS = 262144
+	SFGAO_HIDDEN          SFGAO_FLAGS = 524288
+	SFGAO_DISPLAYATTRMASK SFGAO_FLAGS = 1032192
+	SFGAO_FILESYSANCESTOR SFGAO_FLAGS = 268435456
+	SFGAO_FOLDER          SFGAO_FLAGS = 536870912
+	SFGAO_FILESYSTEM      SFGAO_FLAGS = 1073741824
+	SFGAO_HASSUBFOLDER    SFGAO_FLAGS = 2147483648
+	SFGAO_CONTENTSMASK    SFGAO_FLAGS = 2147483648
+	SFGAO_VALIDATE        SFGAO_FLAGS = 16777216
+	SFGAO_REMOVABLE       SFGAO_FLAGS = 33554432
+	SFGAO_COMPRESSED      SFGAO_FLAGS = 67108864
+	SFGAO_BROWSABLE       SFGAO_FLAGS = 134217728
+	SFGAO_NONENUMERATED   SFGAO_FLAGS = 1048576
+	SFGAO_NEWCONTENT      SFGAO_FLAGS = 2097152
+	SFGAO_CANMONIKER      SFGAO_FLAGS = 4194304
+	SFGAO_HASSTORAGE      SFGAO_FLAGS = 4194304
+	SFGAO_STREAM          SFGAO_FLAGS = 4194304
+	SFGAO_STORAGEANCESTOR SFGAO_FLAGS = 8388608
+	SFGAO_STORAGECAPMASK  SFGAO_FLAGS = 1891958792
+	SFGAO_PKEYSFGAOMASK   SFGAO_FLAGS = 2164539392
 )
 
 // enum
@@ -4297,36 +4290,36 @@ const (
 )
 
 // enum
-type CM_SERVICE_NODE_TYPE int32
+type SERVICE_NODE_TYPE int32
 
 const (
-	DriverType               CM_SERVICE_NODE_TYPE = 1
-	FileSystemType           CM_SERVICE_NODE_TYPE = 2
-	Win32ServiceOwnProcess   CM_SERVICE_NODE_TYPE = 16
-	Win32ServiceShareProcess CM_SERVICE_NODE_TYPE = 32
-	AdapterType              CM_SERVICE_NODE_TYPE = 4
-	RecognizerType           CM_SERVICE_NODE_TYPE = 8
+	DriverType               SERVICE_NODE_TYPE = 1
+	FileSystemType           SERVICE_NODE_TYPE = 2
+	Win32ServiceOwnProcess   SERVICE_NODE_TYPE = 16
+	Win32ServiceShareProcess SERVICE_NODE_TYPE = 32
+	AdapterType              SERVICE_NODE_TYPE = 4
+	RecognizerType           SERVICE_NODE_TYPE = 8
 )
 
 // enum
-type CM_SERVICE_LOAD_TYPE int32
+type SERVICE_LOAD_TYPE int32
 
 const (
-	BootLoad    CM_SERVICE_LOAD_TYPE = 0
-	SystemLoad  CM_SERVICE_LOAD_TYPE = 1
-	AutoLoad    CM_SERVICE_LOAD_TYPE = 2
-	DemandLoad  CM_SERVICE_LOAD_TYPE = 3
-	DisableLoad CM_SERVICE_LOAD_TYPE = 4
+	BootLoad    SERVICE_LOAD_TYPE = 0
+	SystemLoad  SERVICE_LOAD_TYPE = 1
+	AutoLoad    SERVICE_LOAD_TYPE = 2
+	DemandLoad  SERVICE_LOAD_TYPE = 3
+	DisableLoad SERVICE_LOAD_TYPE = 4
 )
 
 // enum
-type CM_ERROR_CONTROL_TYPE int32
+type SERVICE_ERROR_TYPE int32
 
 const (
-	IgnoreError   CM_ERROR_CONTROL_TYPE = 0
-	NormalError   CM_ERROR_CONTROL_TYPE = 1
-	SevereError   CM_ERROR_CONTROL_TYPE = 2
-	CriticalError CM_ERROR_CONTROL_TYPE = 3
+	IgnoreError   SERVICE_ERROR_TYPE = 0
+	NormalError   SERVICE_ERROR_TYPE = 1
+	SevereError   SERVICE_ERROR_TYPE = 2
+	CriticalError SERVICE_ERROR_TYPE = 3
 )
 
 // enum
@@ -4450,7 +4443,7 @@ type RemHPALETTE struct {
 	Data   [1]byte
 }
 
-type RemBRUSH struct {
+type RemHBRUSH struct {
 	CbData uint32
 	Data   [1]byte
 }
@@ -4920,6 +4913,14 @@ type DEV_BROADCAST_USERDEFINED_ struct {
 type AtlThunkData_t struct {
 }
 
+type REARRANGE_FILE_DATA32 struct {
+	SourceStartingOffset uint64
+	TargetOffset         uint64
+	SourceFileHandle     uint32
+	Length               uint32
+	Flags                uint32
+}
+
 type XSAVE_CET_U_FORMAT struct {
 	Ia32CetUMsr   uint64
 	Ia32Pl3SspMsr uint64
@@ -5016,16 +5017,6 @@ func (this *DISPATCHER_CONTEXT_NONVOLREG_ARM64) Anonymous() *DISPATCHER_CONTEXT_
 
 func (this *DISPATCHER_CONTEXT_NONVOLREG_ARM64) AnonymousVal() DISPATCHER_CONTEXT_NONVOLREG_ARM64_Anonymous {
 	return *(*DISPATCHER_CONTEXT_NONVOLREG_ARM64_Anonymous)(unsafe.Pointer(this))
-}
-
-type SECURITY_DESCRIPTOR_RELATIVE struct {
-	Revision byte
-	Sbz1     byte
-	Control  uint16
-	Owner    uint32
-	Group    uint32
-	Sacl     uint32
-	Dacl     uint32
 }
 
 type SECURITY_OBJECT_AI_PARAMS struct {
@@ -5645,6 +5636,16 @@ type PROCESS_MITIGATION_REDIRECTION_TRUST_POLICY struct {
 	PROCESS_MITIGATION_REDIRECTION_TRUST_POLICY_Anonymous
 }
 
+type JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V1 struct {
+	MaxIops          int64
+	MaxBandwidth     int64
+	ReservationIops  int64
+	VolumeName       PWSTR
+	BaseIoSize       uint32
+	ControlFlags     int32//?JOB_OBJECT_IO_RATE_CONTROL_FLAGS
+	VolumeNameLength uint16
+}
+
 type SILOOBJECT_BASIC_INFORMATION struct {
 	SiloId            uint32
 	SiloParentId      uint32
@@ -5736,14 +5737,6 @@ type REARRANGE_FILE_DATA struct {
 	SourceStartingOffset uint64
 	TargetOffset         uint64
 	SourceFileHandle     HANDLE
-	Length               uint32
-	Flags                uint32
-}
-
-type REARRANGE_FILE_DATA32 struct {
-	SourceStartingOffset uint64
-	TargetOffset         uint64
-	SourceFileHandle     uint32
 	Length               uint32
 	Flags                uint32
 }

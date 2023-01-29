@@ -12,6 +12,7 @@ type (
 	HTREEITEM               = uintptr
 	HDSA                    = uintptr
 	HDPA                    = uintptr
+	HTHEME                  = uintptr
 )
 
 const (
@@ -25,368 +26,7 @@ const (
 	EM_GETLIMITTEXT               uint32    = 0xd5
 	EM_POSFROMCHAR                uint32    = 0xd6
 	EM_CHARFROMPOS                uint32    = 0xd7
-	CtlFirst                      uint32    = 0x400
-	CtlLast                       uint32    = 0x4ff
-	Psh1                          uint32    = 0x400
-	Psh2                          uint32    = 0x401
-	Psh3                          uint32    = 0x402
-	Psh4                          uint32    = 0x403
-	Psh5                          uint32    = 0x404
-	Psh6                          uint32    = 0x405
-	Psh7                          uint32    = 0x406
-	Psh8                          uint32    = 0x407
-	Psh9                          uint32    = 0x408
-	Psh10                         uint32    = 0x409
-	Psh11                         uint32    = 0x40a
-	Psh12                         uint32    = 0x40b
-	Psh13                         uint32    = 0x40c
-	Psh14                         uint32    = 0x40d
-	Psh15                         uint32    = 0x40e
-	PshHelp                       uint32    = 0x40e
-	Psh16                         uint32    = 0x40f
-	Chx1                          uint32    = 0x410
-	Chx2                          uint32    = 0x411
-	Chx3                          uint32    = 0x412
-	Chx4                          uint32    = 0x413
-	Chx5                          uint32    = 0x414
-	Chx6                          uint32    = 0x415
-	Chx7                          uint32    = 0x416
-	Chx8                          uint32    = 0x417
-	Chx9                          uint32    = 0x418
-	Chx10                         uint32    = 0x419
-	Chx11                         uint32    = 0x41a
-	Chx12                         uint32    = 0x41b
-	Chx13                         uint32    = 0x41c
-	Chx14                         uint32    = 0x41d
-	Chx15                         uint32    = 0x41e
-	Chx16                         uint32    = 0x41f
-	Rad1                          uint32    = 0x420
-	Rad2                          uint32    = 0x421
-	Rad3                          uint32    = 0x422
-	Rad4                          uint32    = 0x423
-	Rad5                          uint32    = 0x424
-	Rad6                          uint32    = 0x425
-	Rad7                          uint32    = 0x426
-	Rad8                          uint32    = 0x427
-	Rad9                          uint32    = 0x428
-	Rad10                         uint32    = 0x429
-	Rad11                         uint32    = 0x42a
-	Rad12                         uint32    = 0x42b
-	Rad13                         uint32    = 0x42c
-	Rad14                         uint32    = 0x42d
-	Rad15                         uint32    = 0x42e
-	Rad16                         uint32    = 0x42f
-	Grp1                          uint32    = 0x430
-	Grp2                          uint32    = 0x431
-	Grp3                          uint32    = 0x432
-	Grp4                          uint32    = 0x433
-	Frm1                          uint32    = 0x434
-	Frm2                          uint32    = 0x435
-	Frm3                          uint32    = 0x436
-	Frm4                          uint32    = 0x437
-	Rct1                          uint32    = 0x438
-	Rct2                          uint32    = 0x439
-	Rct3                          uint32    = 0x43a
-	Rct4                          uint32    = 0x43b
-	Ico1                          uint32    = 0x43c
-	Ico2                          uint32    = 0x43d
-	Ico3                          uint32    = 0x43e
-	Ico4                          uint32    = 0x43f
-	Stc1                          uint32    = 0x440
-	Stc2                          uint32    = 0x441
-	Stc3                          uint32    = 0x442
-	Stc4                          uint32    = 0x443
-	Stc5                          uint32    = 0x444
-	Stc6                          uint32    = 0x445
-	Stc7                          uint32    = 0x446
-	Stc8                          uint32    = 0x447
-	Stc9                          uint32    = 0x448
-	Stc10                         uint32    = 0x449
-	Stc11                         uint32    = 0x44a
-	Stc12                         uint32    = 0x44b
-	Stc13                         uint32    = 0x44c
-	Stc14                         uint32    = 0x44d
-	Stc15                         uint32    = 0x44e
-	Stc16                         uint32    = 0x44f
-	Stc17                         uint32    = 0x450
-	Stc18                         uint32    = 0x451
-	Stc19                         uint32    = 0x452
-	Stc20                         uint32    = 0x453
-	Stc21                         uint32    = 0x454
-	Stc22                         uint32    = 0x455
-	Stc23                         uint32    = 0x456
-	Stc24                         uint32    = 0x457
-	Stc25                         uint32    = 0x458
-	Stc26                         uint32    = 0x459
-	Stc27                         uint32    = 0x45a
-	Stc28                         uint32    = 0x45b
-	Stc29                         uint32    = 0x45c
-	Stc30                         uint32    = 0x45d
-	Stc31                         uint32    = 0x45e
-	Stc32                         uint32    = 0x45f
-	Lst1                          uint32    = 0x460
-	Lst2                          uint32    = 0x461
-	Lst3                          uint32    = 0x462
-	Lst4                          uint32    = 0x463
-	Lst5                          uint32    = 0x464
-	Lst6                          uint32    = 0x465
-	Lst7                          uint32    = 0x466
-	Lst8                          uint32    = 0x467
-	Lst9                          uint32    = 0x468
-	Lst10                         uint32    = 0x469
-	Lst11                         uint32    = 0x46a
-	Lst12                         uint32    = 0x46b
-	Lst13                         uint32    = 0x46c
-	Lst14                         uint32    = 0x46d
-	Lst15                         uint32    = 0x46e
-	Lst16                         uint32    = 0x46f
-	Cmb1                          uint32    = 0x470
-	Cmb2                          uint32    = 0x471
-	Cmb3                          uint32    = 0x472
-	Cmb4                          uint32    = 0x473
-	Cmb5                          uint32    = 0x474
-	Cmb6                          uint32    = 0x475
-	Cmb7                          uint32    = 0x476
-	Cmb8                          uint32    = 0x477
-	Cmb9                          uint32    = 0x478
-	Cmb10                         uint32    = 0x479
-	Cmb11                         uint32    = 0x47a
-	Cmb12                         uint32    = 0x47b
-	Cmb13                         uint32    = 0x47c
-	Cmb14                         uint32    = 0x47d
-	Cmb15                         uint32    = 0x47e
-	Cmb16                         uint32    = 0x47f
-	Edt1                          uint32    = 0x480
-	Edt2                          uint32    = 0x481
-	Edt3                          uint32    = 0x482
-	Edt4                          uint32    = 0x483
-	Edt5                          uint32    = 0x484
-	Edt6                          uint32    = 0x485
-	Edt7                          uint32    = 0x486
-	Edt8                          uint32    = 0x487
-	Edt9                          uint32    = 0x488
-	Edt10                         uint32    = 0x489
-	Edt11                         uint32    = 0x48a
-	Edt12                         uint32    = 0x48b
-	Edt13                         uint32    = 0x48c
-	Edt14                         uint32    = 0x48d
-	Edt15                         uint32    = 0x48e
-	Edt16                         uint32    = 0x48f
-	Scr1                          uint32    = 0x490
-	Scr2                          uint32    = 0x491
-	Scr3                          uint32    = 0x492
-	Scr4                          uint32    = 0x493
-	Scr5                          uint32    = 0x494
-	Scr6                          uint32    = 0x495
-	Scr7                          uint32    = 0x496
-	Scr8                          uint32    = 0x497
-	Ctl1                          uint32    = 0x4a0
-	FILEOPENORD                   uint32    = 0x600
-	MULTIFILEOPENORD              uint32    = 0x601
-	PRINTDLGORD                   uint32    = 0x602
-	PRNSETUPDLGORD                uint32    = 0x603
-	FINDDLGORD                    uint32    = 0x604
-	REPLACEDLGORD                 uint32    = 0x605
-	FONTDLGORD                    uint32    = 0x606
-	FORMATDLGORD31                uint32    = 0x607
-	FORMATDLGORD30                uint32    = 0x608
-	RUNDLGORD                     uint32    = 0x609
-	PAGESETUPDLGORD               uint32    = 0x60a
-	NEWFILEOPENORD                uint32    = 0x60b
-	PRINTDLGEXORD                 uint32    = 0x60d
-	PAGESETUPDLGORDMOTIF          uint32    = 0x60e
-	COLORMGMTDLGORD               uint32    = 0x60f
-	NEWFILEOPENV2ORD              uint32    = 0x610
-	NEWFILEOPENV3ORD              uint32    = 0x611
-	NEWFORMATDLGWITHLINK          uint32    = 0x637
-	IDC_MANAGE_LINK               uint32    = 0x638
 	WM_CTLCOLOR                   uint32    = 0x19
-	ILDRF_IMAGELOWQUALITY         uint32    = 0x1
-	ILDRF_OVERLAYLOWQUALITY       uint32    = 0x10
-	ILR_DEFAULT                   uint32    = 0x0
-	ILR_HORIZONTAL_LEFT           uint32    = 0x0
-	ILR_HORIZONTAL_CENTER         uint32    = 0x1
-	ILR_HORIZONTAL_RIGHT          uint32    = 0x2
-	ILR_VERTICAL_TOP              uint32    = 0x0
-	ILR_VERTICAL_CENTER           uint32    = 0x10
-	ILR_VERTICAL_BOTTOM           uint32    = 0x20
-	ILR_SCALE_CLIP                uint32    = 0x0
-	ILR_SCALE_ASPECTRATIO         uint32    = 0x100
-	ILGOS_ALWAYS                  uint32    = 0x0
-	ILGOS_FROMSTANDBY             uint32    = 0x1
-	ILFIP_ALWAYS                  uint32    = 0x0
-	ILFIP_FROMSTANDBY             uint32    = 0x1
-	ILDI_PURGE                    uint32    = 0x1
-	ILDI_STANDBY                  uint32    = 0x2
-	ILDI_RESETACCESS              uint32    = 0x4
-	ILDI_QUERYACCESS              uint32    = 0x8
-	MAXPROPPAGES                  uint32    = 0x64
-	PSP_DEFAULT                   uint32    = 0x0
-	PSP_DLGINDIRECT               uint32    = 0x1
-	PSP_USEHICON                  uint32    = 0x2
-	PSP_USEICONID                 uint32    = 0x4
-	PSP_USETITLE                  uint32    = 0x8
-	PSP_RTLREADING                uint32    = 0x10
-	PSP_HASHELP                   uint32    = 0x20
-	PSP_USEREFPARENT              uint32    = 0x40
-	PSP_USECALLBACK               uint32    = 0x80
-	PSP_PREMATURE                 uint32    = 0x400
-	PSP_HIDEHEADER                uint32    = 0x800
-	PSP_USEHEADERTITLE            uint32    = 0x1000
-	PSP_USEHEADERSUBTITLE         uint32    = 0x2000
-	PSP_USEFUSIONCONTEXT          uint32    = 0x4000
-	PSH_DEFAULT                   uint32    = 0x0
-	PSH_PROPTITLE                 uint32    = 0x1
-	PSH_USEHICON                  uint32    = 0x2
-	PSH_USEICONID                 uint32    = 0x4
-	PSH_PROPSHEETPAGE             uint32    = 0x8
-	PSH_WIZARDHASFINISH           uint32    = 0x10
-	PSH_WIZARD                    uint32    = 0x20
-	PSH_USEPSTARTPAGE             uint32    = 0x40
-	PSH_NOAPPLYNOW                uint32    = 0x80
-	PSH_USECALLBACK               uint32    = 0x100
-	PSH_HASHELP                   uint32    = 0x200
-	PSH_MODELESS                  uint32    = 0x400
-	PSH_RTLREADING                uint32    = 0x800
-	PSH_WIZARDCONTEXTHELP         uint32    = 0x1000
-	PSH_WIZARD97                  uint32    = 0x2000
-	PSH_WATERMARK                 uint32    = 0x8000
-	PSH_USEHBMWATERMARK           uint32    = 0x10000
-	PSH_USEHPLWATERMARK           uint32    = 0x20000
-	PSH_STRETCHWATERMARK          uint32    = 0x40000
-	PSH_HEADER                    uint32    = 0x80000
-	PSH_USEHBMHEADER              uint32    = 0x100000
-	PSH_USEPAGELANG               uint32    = 0x200000
-	PSH_WIZARD_LITE               uint32    = 0x400000
-	PSH_NOCONTEXTHELP             uint32    = 0x2000000
-	PSH_AEROWIZARD                uint32    = 0x4000
-	PSH_RESIZABLE                 uint32    = 0x4000000
-	PSH_HEADERBITMAP              uint32    = 0x8000000
-	PSH_NOMARGIN                  uint32    = 0x10000000
-	PSCB_INITIALIZED              uint32    = 0x1
-	PSCB_PRECREATE                uint32    = 0x2
-	PSCB_BUTTONPRESSED            uint32    = 0x3
-	PSNRET_NOERROR                uint32    = 0x0
-	PSNRET_INVALID                uint32    = 0x1
-	PSNRET_INVALID_NOCHANGEPAGE   uint32    = 0x2
-	PSNRET_MESSAGEHANDLED         uint32    = 0x3
-	PSM_SETCURSEL                 uint32    = 0x465
-	PSM_REMOVEPAGE                uint32    = 0x466
-	PSM_ADDPAGE                   uint32    = 0x467
-	PSM_CHANGED                   uint32    = 0x468
-	PSM_RESTARTWINDOWS            uint32    = 0x469
-	PSM_REBOOTSYSTEM              uint32    = 0x46a
-	PSM_CANCELTOCLOSE             uint32    = 0x46b
-	PSM_QUERYSIBLINGS             uint32    = 0x46c
-	PSM_UNCHANGED                 uint32    = 0x46d
-	PSM_APPLY                     uint32    = 0x46e
-	PSM_SETTITLEA                 uint32    = 0x46f
-	PSM_SETTITLEW                 uint32    = 0x478
-	PSM_SETTITLE                  uint32    = 0x478
-	PSM_SETWIZBUTTONS             uint32    = 0x470
-	PSWIZB_BACK                   uint32    = 0x1
-	PSWIZB_NEXT                   uint32    = 0x2
-	PSWIZB_FINISH                 uint32    = 0x4
-	PSWIZB_DISABLEDFINISH         uint32    = 0x8
-	PSWIZBF_ELEVATIONREQUIRED     uint32    = 0x1
-	PSWIZB_CANCEL                 uint32    = 0x10
-	PSM_PRESSBUTTON               uint32    = 0x471
-	PSBTN_BACK                    uint32    = 0x0
-	PSBTN_NEXT                    uint32    = 0x1
-	PSBTN_FINISH                  uint32    = 0x2
-	PSBTN_OK                      uint32    = 0x3
-	PSBTN_APPLYNOW                uint32    = 0x4
-	PSBTN_CANCEL                  uint32    = 0x5
-	PSBTN_HELP                    uint32    = 0x6
-	PSBTN_MAX                     uint32    = 0x6
-	PSM_SETCURSELID               uint32    = 0x472
-	PSM_SETFINISHTEXTA            uint32    = 0x473
-	PSM_SETFINISHTEXTW            uint32    = 0x479
-	PSM_SETFINISHTEXT             uint32    = 0x479
-	PSM_GETTABCONTROL             uint32    = 0x474
-	PSM_ISDIALOGMESSAGE           uint32    = 0x475
-	PSM_GETCURRENTPAGEHWND        uint32    = 0x476
-	PSM_INSERTPAGE                uint32    = 0x477
-	PSM_SETHEADERTITLEA           uint32    = 0x47d
-	PSM_SETHEADERTITLEW           uint32    = 0x47e
-	PSM_SETHEADERTITLE            uint32    = 0x47e
-	PSM_SETHEADERSUBTITLEA        uint32    = 0x47f
-	PSM_SETHEADERSUBTITLEW        uint32    = 0x480
-	PSM_SETHEADERSUBTITLE         uint32    = 0x480
-	PSM_HWNDTOINDEX               uint32    = 0x481
-	PSM_INDEXTOHWND               uint32    = 0x482
-	PSM_PAGETOINDEX               uint32    = 0x483
-	PSM_INDEXTOPAGE               uint32    = 0x484
-	PSM_IDTOINDEX                 uint32    = 0x485
-	PSM_INDEXTOID                 uint32    = 0x486
-	PSM_GETRESULT                 uint32    = 0x487
-	PSM_RECALCPAGESIZES           uint32    = 0x488
-	PSM_SETNEXTTEXTW              uint32    = 0x489
-	PSM_SETNEXTTEXT               uint32    = 0x489
-	PSWIZB_SHOW                   uint32    = 0x0
-	PSWIZB_RESTORE                uint32    = 0x1
-	PSM_SHOWWIZBUTTONS            uint32    = 0x48a
-	PSM_ENABLEWIZBUTTONS          uint32    = 0x48b
-	PSM_SETBUTTONTEXTW            uint32    = 0x48c
-	PSM_SETBUTTONTEXT             uint32    = 0x48c
-	ID_PSRESTARTWINDOWS           uint32    = 0x2
-	WIZ_CXDLG                     uint32    = 0x114
-	WIZ_CYDLG                     uint32    = 0x8c
-	WIZ_CXBMP                     uint32    = 0x50
-	WIZ_BODYX                     uint32    = 0x5c
-	WIZ_BODYCX                    uint32    = 0xb8
-	PROP_SM_CXDLG                 uint32    = 0xd4
-	PROP_SM_CYDLG                 uint32    = 0xbc
-	PROP_MED_CXDLG                uint32    = 0xe3
-	PROP_MED_CYDLG                uint32    = 0xd7
-	PROP_LG_CXDLG                 uint32    = 0xfc
-	PROP_LG_CYDLG                 uint32    = 0xda
-	DA_LAST                       uint32    = 0x7fffffff
-	DA_ERR                        int32     = -1
-	DSA_APPEND                    uint32    = 0x7fffffff
-	DSA_ERR                       int32     = -1
-	DPAM_SORTED                   uint32    = 0x1
-	DPAM_NORMAL                   uint32    = 0x2
-	DPAM_UNION                    uint32    = 0x4
-	DPAM_INTERSECT                uint32    = 0x8
-	DPAS_SORTED                   uint32    = 0x1
-	DPAS_INSERTBEFORE             uint32    = 0x2
-	DPAS_INSERTAFTER              uint32    = 0x4
-	DPA_APPEND                    uint32    = 0x7fffffff
-	DPA_ERR                       int32     = -1
-	MAX_THEMECOLOR                uint32    = 0x40
-	MAX_THEMESIZE                 uint32    = 0x40
-	DTBG_CLIPRECT                 uint32    = 0x1
-	DTBG_DRAWSOLID                uint32    = 0x2
-	DTBG_OMITBORDER               uint32    = 0x4
-	DTBG_OMITCONTENT              uint32    = 0x8
-	DTBG_COMPUTINGREGION          uint32    = 0x10
-	DTBG_MIRRORDC                 uint32    = 0x20
-	DTBG_NOMIRROR                 uint32    = 0x40
-	DTT_GRAYED                    uint32    = 0x1
-	DTT_FLAGS2VALIDBITS           uint32    = 0x1
-	HTTB_BACKGROUNDSEG            uint32    = 0x0
-	HTTB_FIXEDBORDER              uint32    = 0x2
-	HTTB_CAPTION                  uint32    = 0x4
-	HTTB_RESIZINGBORDER_LEFT      uint32    = 0x10
-	HTTB_RESIZINGBORDER_TOP       uint32    = 0x20
-	HTTB_RESIZINGBORDER_RIGHT     uint32    = 0x40
-	HTTB_RESIZINGBORDER_BOTTOM    uint32    = 0x80
-	HTTB_SIZINGTEMPLATE           uint32    = 0x100
-	HTTB_SYSTEMSIZINGMARGINS      uint32    = 0x200
-	MAX_INTLIST_COUNT             uint32    = 0x192
-	ETDT_DISABLE                  uint32    = 0x1
-	ETDT_ENABLE                   uint32    = 0x2
-	ETDT_USETABTEXTURE            uint32    = 0x4
-	ETDT_USEAEROWIZARDTABTEXTURE  uint32    = 0x8
-	SZ_THDOCPROP_DISPLAYNAME      string    = "DisplayName"
-	SZ_THDOCPROP_CANONICALNAME    string    = "ThemeName"
-	SZ_THDOCPROP_TOOLTIP          string    = "ToolTip"
-	SZ_THDOCPROP_AUTHOR           string    = "author"
-	WTNCA_NODRAWCAPTION           uint32    = 0x1
-	WTNCA_NODRAWICON              uint32    = 0x2
-	WTNCA_NOSYSMENU               uint32    = 0x4
-	WTNCA_NOMIRRORHELP            uint32    = 0x8
 	ODT_HEADER                    uint32    = 0x64
 	LVM_FIRST                     uint32    = 0x1000
 	TV_FIRST                      uint32    = 0x1100
@@ -426,31 +66,9 @@ const (
 	CDRF_NOTIFYPOSTERASE          uint32    = 0x40
 	CDDS_POSTERASE                uint32    = 0x4
 	CDDS_ITEM                     uint32    = 0x10000
-	CDIS_SELECTED                 uint32    = 0x1
-	CDIS_GRAYED                   uint32    = 0x2
-	CDIS_DISABLED                 uint32    = 0x4
-	CDIS_CHECKED                  uint32    = 0x8
-	CDIS_FOCUS                    uint32    = 0x10
-	CDIS_DEFAULT                  uint32    = 0x20
-	CDIS_HOT                      uint32    = 0x40
-	CDIS_MARKED                   uint32    = 0x80
-	CDIS_INDETERMINATE            uint32    = 0x100
-	CDIS_SHOWKEYBOARDCUES         uint32    = 0x200
-	CDIS_NEARHOT                  uint32    = 0x400
-	CDIS_OTHERSIDEHOT             uint32    = 0x800
-	CDIS_DROPHILITED              uint32    = 0x1000
 	NM_GETCUSTOMSPLITRECT         uint32    = 0xfffffb21
 	CLR_NONE                      int32     = -1
 	CLR_DEFAULT                   int32     = -16777216
-	ILD_TRANSPARENT               uint32    = 0x1
-	ILD_IMAGE                     uint32    = 0x20
-	ILD_ROP                       uint32    = 0x40
-	ILD_BLEND25                   uint32    = 0x2
-	ILD_OVERLAYMASK               uint32    = 0xf00
-	ILD_PRESERVEALPHA             uint32    = 0x1000
-	ILD_SCALE                     uint32    = 0x2000
-	ILD_DPISCALE                  uint32    = 0x4000
-	ILD_ASYNC                     uint32    = 0x8000
 	CLR_HILIGHT                   int32     = -16777216
 	ILS_NORMAL                    uint32    = 0x0
 	ILS_GLOW                      uint32    = 0x1
@@ -459,8 +77,6 @@ const (
 	ILS_ALPHA                     uint32    = 0x8
 	ILGT_NORMAL                   uint32    = 0x0
 	ILGT_ASYNC                    uint32    = 0x1
-	ILP_NORMAL                    uint32    = 0x0
-	ILP_DOWNLEVEL                 uint32    = 0x1
 	WC_HEADERA                    string    = "SysHeader32"
 	WC_HEADERW                    string    = "SysHeader32"
 	WC_HEADER                     string    = "SysHeader32"
@@ -475,27 +91,6 @@ const (
 	HDS_CHECKBOXES                uint32    = 0x400
 	HDS_NOSIZING                  uint32    = 0x800
 	HDS_OVERFLOW                  uint32    = 0x1000
-	HDFT_ISSTRING                 uint32    = 0x0
-	HDFT_ISNUMBER                 uint32    = 0x1
-	HDFT_ISDATE                   uint32    = 0x2
-	HDFT_HASNOVALUE               uint32    = 0x8000
-	HDF_LEFT                      uint32    = 0x0
-	HDF_RIGHT                     uint32    = 0x1
-	HDF_CENTER                    uint32    = 0x2
-	HDF_JUSTIFYMASK               uint32    = 0x3
-	HDF_RTLREADING                uint32    = 0x4
-	HDF_BITMAP                    uint32    = 0x2000
-	HDF_STRING                    uint32    = 0x4000
-	HDF_OWNERDRAW                 uint32    = 0x8000
-	HDF_IMAGE                     uint32    = 0x800
-	HDF_BITMAP_ON_RIGHT           uint32    = 0x1000
-	HDF_SORTUP                    uint32    = 0x400
-	HDF_SORTDOWN                  uint32    = 0x200
-	HDF_CHECKBOX                  uint32    = 0x40
-	HDF_CHECKED                   uint32    = 0x80
-	HDF_FIXEDWIDTH                uint32    = 0x100
-	HDF_SPLITBUTTON               uint32    = 0x1000000
-	HDIS_FOCUSED                  uint32    = 0x1
 	HDM_GETITEMCOUNT              uint32    = 0x1200
 	HDM_INSERTITEMA               uint32    = 0x1201
 	HDM_INSERTITEMW               uint32    = 0x120a
@@ -508,19 +103,6 @@ const (
 	HDM_SETITEMW                  uint32    = 0x120c
 	HDM_SETITEM                   uint32    = 0x120c
 	HDM_LAYOUT                    uint32    = 0x1205
-	HHT_NOWHERE                   uint32    = 0x1
-	HHT_ONHEADER                  uint32    = 0x2
-	HHT_ONDIVIDER                 uint32    = 0x4
-	HHT_ONDIVOPEN                 uint32    = 0x8
-	HHT_ONFILTER                  uint32    = 0x10
-	HHT_ONFILTERBUTTON            uint32    = 0x20
-	HHT_ABOVE                     uint32    = 0x100
-	HHT_BELOW                     uint32    = 0x200
-	HHT_TORIGHT                   uint32    = 0x400
-	HHT_TOLEFT                    uint32    = 0x800
-	HHT_ONITEMSTATEICON           uint32    = 0x1000
-	HHT_ONDROPDOWN                uint32    = 0x2000
-	HHT_ONOVERFLOW                uint32    = 0x4000
 	HDSIL_NORMAL                  uint32    = 0x0
 	HDSIL_STATE                   uint32    = 0x1
 	HDM_HITTEST                   uint32    = 0x1206
@@ -861,7 +443,6 @@ const (
 	TTS_BALLOON                   uint32    = 0x40
 	TTS_CLOSE                     uint32    = 0x80
 	TTS_USEVISUALSTYLE            uint32    = 0x100
-	TTF_DI_SETITEM                uint32    = 0x8000
 	TTDT_AUTOMATIC                uint32    = 0x0
 	TTDT_RESHOW                   uint32    = 0x1
 	TTDT_AUTOPOP                  uint32    = 0x2
@@ -1125,15 +706,6 @@ const (
 	LWS_USEVISUALSTYLE            uint32    = 0x8
 	LWS_USECUSTOMTEXT             uint32    = 0x10
 	LWS_RIGHT                     uint32    = 0x20
-	LIF_ITEMINDEX                 uint32    = 0x1
-	LIF_STATE                     uint32    = 0x2
-	LIF_ITEMID                    uint32    = 0x4
-	LIF_URL                       uint32    = 0x8
-	LIS_FOCUSED                   uint32    = 0x1
-	LIS_ENABLED                   uint32    = 0x2
-	LIS_VISITED                   uint32    = 0x4
-	LIS_HOTTRACK                  uint32    = 0x8
-	LIS_DEFAULTCOLORS             uint32    = 0x10
 	LM_HITTEST                    uint32    = 0x700
 	LM_GETIDEALHEIGHT             uint32    = 0x701
 	LM_SETITEM                    uint32    = 0x702
@@ -1175,23 +747,6 @@ const (
 	LVSIL_GROUPHEADER             uint32    = 0x3
 	LVM_SETIMAGELIST              uint32    = 0x1003
 	LVM_GETITEMCOUNT              uint32    = 0x1004
-	LVIF_TEXT                     uint32    = 0x1
-	LVIF_IMAGE                    uint32    = 0x2
-	LVIF_PARAM                    uint32    = 0x4
-	LVIF_STATE                    uint32    = 0x8
-	LVIF_INDENT                   uint32    = 0x10
-	LVIF_NORECOMPUTE              uint32    = 0x800
-	LVIF_GROUPID                  uint32    = 0x100
-	LVIF_COLUMNS                  uint32    = 0x200
-	LVIF_COLFMT                   uint32    = 0x10000
-	LVIS_FOCUSED                  uint32    = 0x1
-	LVIS_SELECTED                 uint32    = 0x2
-	LVIS_CUT                      uint32    = 0x4
-	LVIS_DROPHILITED              uint32    = 0x8
-	LVIS_GLOW                     uint32    = 0x10
-	LVIS_ACTIVATING               uint32    = 0x20
-	LVIS_OVERLAYMASK              uint32    = 0xf00
-	LVIS_STATEIMAGEMASK           uint32    = 0xf000
 	I_INDENTCALLBACK              int32     = -1
 	I_IMAGECALLBACK               int32     = -1
 	I_IMAGENONE                   int32     = -2
@@ -1248,10 +803,6 @@ const (
 	LVM_EDITLABELW                uint32    = 0x1076
 	LVM_EDITLABEL                 uint32    = 0x1076
 	LVM_GETEDITCONTROL            uint32    = 0x1018
-	LVCFMT_LINE_BREAK             uint32    = 0x100000
-	LVCFMT_FILL                   uint32    = 0x200000
-	LVCFMT_WRAP                   uint32    = 0x400000
-	LVCFMT_NO_TITLE               uint32    = 0x800000
 	LVM_GETCOLUMNA                uint32    = 0x1019
 	LVM_GETCOLUMNW                uint32    = 0x105f
 	LVM_GETCOLUMN                 uint32    = 0x105f
@@ -1348,16 +899,6 @@ const (
 	LVM_SETTOOLTIPS               uint32    = 0x104a
 	LVM_GETTOOLTIPS               uint32    = 0x104e
 	LVM_SORTITEMSEX               uint32    = 0x1051
-	LVBKIF_SOURCE_NONE            uint32    = 0x0
-	LVBKIF_SOURCE_HBITMAP         uint32    = 0x1
-	LVBKIF_SOURCE_URL             uint32    = 0x2
-	LVBKIF_SOURCE_MASK            uint32    = 0x3
-	LVBKIF_STYLE_NORMAL           uint32    = 0x0
-	LVBKIF_STYLE_TILE             uint32    = 0x10
-	LVBKIF_STYLE_MASK             uint32    = 0x10
-	LVBKIF_FLAG_TILEOFFSET        uint32    = 0x100
-	LVBKIF_TYPE_WATERMARK         uint32    = 0x10000000
-	LVBKIF_FLAG_ALPHABLEND        uint32    = 0x20000000
 	LVM_SETBKIMAGEA               uint32    = 0x1044
 	LVM_SETBKIMAGEW               uint32    = 0x108a
 	LVM_GETBKIMAGEA               uint32    = 0x1045
@@ -1382,18 +923,6 @@ const (
 	LVGF_ITEMS                    uint32    = 0x4000
 	LVGF_SUBSET                   uint32    = 0x8000
 	LVGF_SUBSETITEMS              uint32    = 0x10000
-	LVGS_NORMAL                   uint32    = 0x0
-	LVGS_COLLAPSED                uint32    = 0x1
-	LVGS_HIDDEN                   uint32    = 0x2
-	LVGS_NOHEADER                 uint32    = 0x4
-	LVGS_COLLAPSIBLE              uint32    = 0x8
-	LVGS_FOCUSED                  uint32    = 0x10
-	LVGS_SELECTED                 uint32    = 0x20
-	LVGS_SUBSETED                 uint32    = 0x40
-	LVGS_SUBSETLINKFOCUSED        uint32    = 0x80
-	LVGA_FOOTER_LEFT              uint32    = 0x8
-	LVGA_FOOTER_CENTER            uint32    = 0x10
-	LVGA_FOOTER_RIGHT             uint32    = 0x20
 	LVM_INSERTGROUP               uint32    = 0x1091
 	LVM_SETGROUPINFO              uint32    = 0x1093
 	LVM_GETGROUPINFO              uint32    = 0x1095
@@ -1420,18 +949,11 @@ const (
 	LVM_HASGROUP                  uint32    = 0x10a1
 	LVM_GETGROUPSTATE             uint32    = 0x105c
 	LVM_GETFOCUSEDGROUP           uint32    = 0x105d
-	LVTVIF_AUTOSIZE               uint32    = 0x0
-	LVTVIF_FIXEDWIDTH             uint32    = 0x1
-	LVTVIF_FIXEDHEIGHT            uint32    = 0x2
-	LVTVIF_FIXEDSIZE              uint32    = 0x3
-	LVTVIM_TILESIZE               uint32    = 0x1
-	LVTVIM_COLUMNS                uint32    = 0x2
-	LVTVIM_LABELMARGIN            uint32    = 0x4
+	LVTVIF_EXTENDED               uint32    = 0x4
 	LVM_SETTILEVIEWINFO           uint32    = 0x10a2
 	LVM_GETTILEVIEWINFO           uint32    = 0x10a3
 	LVM_SETTILEINFO               uint32    = 0x10a4
 	LVM_GETTILEINFO               uint32    = 0x10a5
-	LVIM_AFTER                    uint32    = 0x1
 	LVM_SETINSERTMARK             uint32    = 0x10a6
 	LVM_GETINSERTMARK             uint32    = 0x10a7
 	LVM_INSERTMARKHITTEST         uint32    = 0x10a8
@@ -1464,8 +986,6 @@ const (
 	LVKF_SHIFT                    uint32    = 0x4
 	LVCDRF_NOSELECT               uint32    = 0x10000
 	LVCDRF_NOGROUPFRAME           uint32    = 0x20000
-	LVIF_DI_SETITEM               uint32    = 0x1000
-	LVGIT_UNFOLDED                uint32    = 0x1
 	LVNSCH_DEFAULT                int32     = -1
 	LVNSCH_ERROR                  int32     = -2
 	LVNSCH_IGNORE                 int32     = -3
@@ -1499,29 +1019,11 @@ const (
 	TVS_EX_EXCLUSIONCHECKBOXES    uint32    = 0x100
 	TVS_EX_DIMMEDCHECKBOXES       uint32    = 0x200
 	TVS_EX_DRAWIMAGEASYNC         uint32    = 0x400
-	TVIS_SELECTED                 uint32    = 0x2
-	TVIS_CUT                      uint32    = 0x4
-	TVIS_DROPHILITED              uint32    = 0x8
-	TVIS_BOLD                     uint32    = 0x10
-	TVIS_EXPANDED                 uint32    = 0x20
-	TVIS_EXPANDEDONCE             uint32    = 0x40
-	TVIS_EXPANDPARTIAL            uint32    = 0x80
-	TVIS_OVERLAYMASK              uint32    = 0xf00
-	TVIS_STATEIMAGEMASK           uint32    = 0xf000
-	TVIS_USERMASK                 uint32    = 0xf000
-	TVIS_EX_FLAT                  uint32    = 0x1
-	TVIS_EX_DISABLED              uint32    = 0x2
-	TVIS_EX_ALL                   uint32    = 0x2
 	TVM_INSERTITEMA               uint32    = 0x1100
 	TVM_INSERTITEMW               uint32    = 0x1132
 	TVM_INSERTITEM                uint32    = 0x1132
 	TVM_DELETEITEM                uint32    = 0x1101
 	TVM_EXPAND                    uint32    = 0x1102
-	TVE_COLLAPSE                  uint32    = 0x1
-	TVE_EXPAND                    uint32    = 0x2
-	TVE_TOGGLE                    uint32    = 0x3
-	TVE_EXPANDPARTIAL             uint32    = 0x4000
-	TVE_COLLAPSERESET             uint32    = 0x8000
 	TVM_GETITEMRECT               uint32    = 0x1104
 	TVM_GETCOUNT                  uint32    = 0x1105
 	TVM_GETINDENT                 uint32    = 0x1106
@@ -1595,9 +1097,6 @@ const (
 	TVM_GETSELECTEDCOUNT          uint32    = 0x1146
 	TVM_SHOWINFOTIP               uint32    = 0x1147
 	TVM_GETITEMPARTRECT           uint32    = 0x1148
-	TVC_UNKNOWN                   uint32    = 0x0
-	TVC_BYMOUSE                   uint32    = 0x1
-	TVC_BYKEYBOARD                uint32    = 0x2
 	TVNRET_DEFAULT                uint32    = 0x0
 	TVNRET_SKIPOLD                uint32    = 0x1
 	TVNRET_SKIPNEW                uint32    = 0x2
@@ -1665,8 +1164,6 @@ const (
 	TCM_GETIMAGELIST              uint32    = 0x1302
 	TCM_SETIMAGELIST              uint32    = 0x1303
 	TCM_GETITEMCOUNT              uint32    = 0x1304
-	TCIS_BUTTONPRESSED            uint32    = 0x1
-	TCIS_HIGHLIGHTED              uint32    = 0x2
 	TCM_GETITEMA                  uint32    = 0x1305
 	TCM_GETITEMW                  uint32    = 0x133c
 	TCM_GETITEM                   uint32    = 0x133c
@@ -1738,15 +1235,6 @@ const (
 	MCM_SETTODAY                  uint32    = 0x100c
 	MCM_GETTODAY                  uint32    = 0x100d
 	MCM_HITTEST                   uint32    = 0x100e
-	MCHT_TITLE                    uint32    = 0x10000
-	MCHT_CALENDAR                 uint32    = 0x20000
-	MCHT_TODAYLINK                uint32    = 0x30000
-	MCHT_CALENDARCONTROL          uint32    = 0x100000
-	MCHT_NEXT                     uint32    = 0x1000000
-	MCHT_PREV                     uint32    = 0x2000000
-	MCHT_NOWHERE                  uint32    = 0x0
-	MCHT_TITLEBK                  uint32    = 0x10000
-	MCHT_CALENDARBK               uint32    = 0x20000
 	MCM_SETFIRSTDAYOFWEEK         uint32    = 0x100f
 	MCM_GETFIRSTDAYOFWEEK         uint32    = 0x1010
 	MCM_GETRANGE                  uint32    = 0x1011
@@ -1756,11 +1244,6 @@ const (
 	MCM_GETMAXTODAYWIDTH          uint32    = 0x1015
 	MCM_SETUNICODEFORMAT          uint32    = 0x2005
 	MCM_GETUNICODEFORMAT          uint32    = 0x2006
-	MCMV_MONTH                    uint32    = 0x0
-	MCMV_YEAR                     uint32    = 0x1
-	MCMV_DECADE                   uint32    = 0x2
-	MCMV_CENTURY                  uint32    = 0x3
-	MCMV_MAX                      uint32    = 0x3
 	MCM_GETCURRENTVIEW            uint32    = 0x1016
 	MCM_GETCALENDARCOUNT          uint32    = 0x1017
 	MCM_GETCALENDARGRIDINFO       uint32    = 0x1018
@@ -1812,8 +1295,6 @@ const (
 	GDTR_MIN                      uint32    = 0x1
 	GDTR_MAX                      uint32    = 0x2
 	GDT_ERROR                     int32     = -1
-	GDT_VALID                     uint32    = 0x0
-	GDT_NONE                      uint32    = 0x1
 	IPM_CLEARADDRESS              uint32    = 0x464
 	IPM_SETADDRESS                uint32    = 0x465
 	IPM_GETADDRESS                uint32    = 0x466
@@ -1942,6 +1423,420 @@ const (
 	FSB_FLAT_MODE                 uint32    = 0x2
 	FSB_ENCARTA_MODE              uint32    = 0x1
 	FSB_REGULAR_MODE              uint32    = 0x0
+	ILDRF_IMAGELOWQUALITY         uint32    = 0x1
+	ILDRF_OVERLAYLOWQUALITY       uint32    = 0x10
+	ILR_DEFAULT                   uint32    = 0x0
+	ILR_HORIZONTAL_LEFT           uint32    = 0x0
+	ILR_HORIZONTAL_CENTER         uint32    = 0x1
+	ILR_HORIZONTAL_RIGHT          uint32    = 0x2
+	ILR_VERTICAL_TOP              uint32    = 0x0
+	ILR_VERTICAL_CENTER           uint32    = 0x10
+	ILR_VERTICAL_BOTTOM           uint32    = 0x20
+	ILR_SCALE_CLIP                uint32    = 0x0
+	ILR_SCALE_ASPECTRATIO         uint32    = 0x100
+	ILGOS_ALWAYS                  uint32    = 0x0
+	ILGOS_FROMSTANDBY             uint32    = 0x1
+	ILFIP_ALWAYS                  uint32    = 0x0
+	ILFIP_FROMSTANDBY             uint32    = 0x1
+	ILDI_PURGE                    uint32    = 0x1
+	ILDI_STANDBY                  uint32    = 0x2
+	ILDI_RESETACCESS              uint32    = 0x4
+	ILDI_QUERYACCESS              uint32    = 0x8
+	CCHCCCLASS                    uint32    = 0x20
+	CCHCCDESC                     uint32    = 0x20
+	CCHCCTEXT                     uint32    = 0x100
+	CCF_NOTEXT                    uint32    = 0x1
+	CtlFirst                      uint32    = 0x400
+	CtlLast                       uint32    = 0x4ff
+	Psh1                          uint32    = 0x400
+	Psh2                          uint32    = 0x401
+	Psh3                          uint32    = 0x402
+	Psh4                          uint32    = 0x403
+	Psh5                          uint32    = 0x404
+	Psh6                          uint32    = 0x405
+	Psh7                          uint32    = 0x406
+	Psh8                          uint32    = 0x407
+	Psh9                          uint32    = 0x408
+	Psh10                         uint32    = 0x409
+	Psh11                         uint32    = 0x40a
+	Psh12                         uint32    = 0x40b
+	Psh13                         uint32    = 0x40c
+	Psh14                         uint32    = 0x40d
+	Psh15                         uint32    = 0x40e
+	PshHelp                       uint32    = 0x40e
+	Psh16                         uint32    = 0x40f
+	Chx1                          uint32    = 0x410
+	Chx2                          uint32    = 0x411
+	Chx3                          uint32    = 0x412
+	Chx4                          uint32    = 0x413
+	Chx5                          uint32    = 0x414
+	Chx6                          uint32    = 0x415
+	Chx7                          uint32    = 0x416
+	Chx8                          uint32    = 0x417
+	Chx9                          uint32    = 0x418
+	Chx10                         uint32    = 0x419
+	Chx11                         uint32    = 0x41a
+	Chx12                         uint32    = 0x41b
+	Chx13                         uint32    = 0x41c
+	Chx14                         uint32    = 0x41d
+	Chx15                         uint32    = 0x41e
+	Chx16                         uint32    = 0x41f
+	Rad1                          uint32    = 0x420
+	Rad2                          uint32    = 0x421
+	Rad3                          uint32    = 0x422
+	Rad4                          uint32    = 0x423
+	Rad5                          uint32    = 0x424
+	Rad6                          uint32    = 0x425
+	Rad7                          uint32    = 0x426
+	Rad8                          uint32    = 0x427
+	Rad9                          uint32    = 0x428
+	Rad10                         uint32    = 0x429
+	Rad11                         uint32    = 0x42a
+	Rad12                         uint32    = 0x42b
+	Rad13                         uint32    = 0x42c
+	Rad14                         uint32    = 0x42d
+	Rad15                         uint32    = 0x42e
+	Rad16                         uint32    = 0x42f
+	Grp1                          uint32    = 0x430
+	Grp2                          uint32    = 0x431
+	Grp3                          uint32    = 0x432
+	Grp4                          uint32    = 0x433
+	Frm1                          uint32    = 0x434
+	Frm2                          uint32    = 0x435
+	Frm3                          uint32    = 0x436
+	Frm4                          uint32    = 0x437
+	Rct1                          uint32    = 0x438
+	Rct2                          uint32    = 0x439
+	Rct3                          uint32    = 0x43a
+	Rct4                          uint32    = 0x43b
+	Ico1                          uint32    = 0x43c
+	Ico2                          uint32    = 0x43d
+	Ico3                          uint32    = 0x43e
+	Ico4                          uint32    = 0x43f
+	Stc1                          uint32    = 0x440
+	Stc2                          uint32    = 0x441
+	Stc3                          uint32    = 0x442
+	Stc4                          uint32    = 0x443
+	Stc5                          uint32    = 0x444
+	Stc6                          uint32    = 0x445
+	Stc7                          uint32    = 0x446
+	Stc8                          uint32    = 0x447
+	Stc9                          uint32    = 0x448
+	Stc10                         uint32    = 0x449
+	Stc11                         uint32    = 0x44a
+	Stc12                         uint32    = 0x44b
+	Stc13                         uint32    = 0x44c
+	Stc14                         uint32    = 0x44d
+	Stc15                         uint32    = 0x44e
+	Stc16                         uint32    = 0x44f
+	Stc17                         uint32    = 0x450
+	Stc18                         uint32    = 0x451
+	Stc19                         uint32    = 0x452
+	Stc20                         uint32    = 0x453
+	Stc21                         uint32    = 0x454
+	Stc22                         uint32    = 0x455
+	Stc23                         uint32    = 0x456
+	Stc24                         uint32    = 0x457
+	Stc25                         uint32    = 0x458
+	Stc26                         uint32    = 0x459
+	Stc27                         uint32    = 0x45a
+	Stc28                         uint32    = 0x45b
+	Stc29                         uint32    = 0x45c
+	Stc30                         uint32    = 0x45d
+	Stc31                         uint32    = 0x45e
+	Stc32                         uint32    = 0x45f
+	Lst1                          uint32    = 0x460
+	Lst2                          uint32    = 0x461
+	Lst3                          uint32    = 0x462
+	Lst4                          uint32    = 0x463
+	Lst5                          uint32    = 0x464
+	Lst6                          uint32    = 0x465
+	Lst7                          uint32    = 0x466
+	Lst8                          uint32    = 0x467
+	Lst9                          uint32    = 0x468
+	Lst10                         uint32    = 0x469
+	Lst11                         uint32    = 0x46a
+	Lst12                         uint32    = 0x46b
+	Lst13                         uint32    = 0x46c
+	Lst14                         uint32    = 0x46d
+	Lst15                         uint32    = 0x46e
+	Lst16                         uint32    = 0x46f
+	Cmb1                          uint32    = 0x470
+	Cmb2                          uint32    = 0x471
+	Cmb3                          uint32    = 0x472
+	Cmb4                          uint32    = 0x473
+	Cmb5                          uint32    = 0x474
+	Cmb6                          uint32    = 0x475
+	Cmb7                          uint32    = 0x476
+	Cmb8                          uint32    = 0x477
+	Cmb9                          uint32    = 0x478
+	Cmb10                         uint32    = 0x479
+	Cmb11                         uint32    = 0x47a
+	Cmb12                         uint32    = 0x47b
+	Cmb13                         uint32    = 0x47c
+	Cmb14                         uint32    = 0x47d
+	Cmb15                         uint32    = 0x47e
+	Cmb16                         uint32    = 0x47f
+	Edt1                          uint32    = 0x480
+	Edt2                          uint32    = 0x481
+	Edt3                          uint32    = 0x482
+	Edt4                          uint32    = 0x483
+	Edt5                          uint32    = 0x484
+	Edt6                          uint32    = 0x485
+	Edt7                          uint32    = 0x486
+	Edt8                          uint32    = 0x487
+	Edt9                          uint32    = 0x488
+	Edt10                         uint32    = 0x489
+	Edt11                         uint32    = 0x48a
+	Edt12                         uint32    = 0x48b
+	Edt13                         uint32    = 0x48c
+	Edt14                         uint32    = 0x48d
+	Edt15                         uint32    = 0x48e
+	Edt16                         uint32    = 0x48f
+	Scr1                          uint32    = 0x490
+	Scr2                          uint32    = 0x491
+	Scr3                          uint32    = 0x492
+	Scr4                          uint32    = 0x493
+	Scr5                          uint32    = 0x494
+	Scr6                          uint32    = 0x495
+	Scr7                          uint32    = 0x496
+	Scr8                          uint32    = 0x497
+	Ctl1                          uint32    = 0x4a0
+	FILEOPENORD                   uint32    = 0x600
+	MULTIFILEOPENORD              uint32    = 0x601
+	PRINTDLGORD                   uint32    = 0x602
+	PRNSETUPDLGORD                uint32    = 0x603
+	FINDDLGORD                    uint32    = 0x604
+	REPLACEDLGORD                 uint32    = 0x605
+	FONTDLGORD                    uint32    = 0x606
+	FORMATDLGORD31                uint32    = 0x607
+	FORMATDLGORD30                uint32    = 0x608
+	RUNDLGORD                     uint32    = 0x609
+	PAGESETUPDLGORD               uint32    = 0x60a
+	NEWFILEOPENORD                uint32    = 0x60b
+	PRINTDLGEXORD                 uint32    = 0x60d
+	PAGESETUPDLGORDMOTIF          uint32    = 0x60e
+	COLORMGMTDLGORD               uint32    = 0x60f
+	NEWFILEOPENV2ORD              uint32    = 0x610
+	NEWFILEOPENV3ORD              uint32    = 0x611
+	NEWFORMATDLGWITHLINK          uint32    = 0x637
+	IDC_MANAGE_LINK               uint32    = 0x638
+	DA_LAST                       uint32    = 0x7fffffff
+	DA_ERR                        int32     = -1
+	DSA_APPEND                    uint32    = 0x7fffffff
+	DSA_ERR                       int32     = -1
+	DPAM_SORTED                   uint32    = 0x1
+	DPAM_NORMAL                   uint32    = 0x2
+	DPAM_UNION                    uint32    = 0x4
+	DPAM_INTERSECT                uint32    = 0x8
+	DPAS_SORTED                   uint32    = 0x1
+	DPAS_INSERTBEFORE             uint32    = 0x2
+	DPAS_INSERTAFTER              uint32    = 0x4
+	DPA_APPEND                    uint32    = 0x7fffffff
+	DPA_ERR                       int32     = -1
+	MAXPROPPAGES                  uint32    = 0x64
+	PSP_DEFAULT                   uint32    = 0x0
+	PSP_DLGINDIRECT               uint32    = 0x1
+	PSP_USEHICON                  uint32    = 0x2
+	PSP_USEICONID                 uint32    = 0x4
+	PSP_USETITLE                  uint32    = 0x8
+	PSP_RTLREADING                uint32    = 0x10
+	PSP_HASHELP                   uint32    = 0x20
+	PSP_USEREFPARENT              uint32    = 0x40
+	PSP_USECALLBACK               uint32    = 0x80
+	PSP_PREMATURE                 uint32    = 0x400
+	PSP_HIDEHEADER                uint32    = 0x800
+	PSP_USEHEADERTITLE            uint32    = 0x1000
+	PSP_USEHEADERSUBTITLE         uint32    = 0x2000
+	PSP_USEFUSIONCONTEXT          uint32    = 0x4000
+	PSH_DEFAULT                   uint32    = 0x0
+	PSH_PROPTITLE                 uint32    = 0x1
+	PSH_USEHICON                  uint32    = 0x2
+	PSH_USEICONID                 uint32    = 0x4
+	PSH_PROPSHEETPAGE             uint32    = 0x8
+	PSH_WIZARDHASFINISH           uint32    = 0x10
+	PSH_WIZARD                    uint32    = 0x20
+	PSH_USEPSTARTPAGE             uint32    = 0x40
+	PSH_NOAPPLYNOW                uint32    = 0x80
+	PSH_USECALLBACK               uint32    = 0x100
+	PSH_HASHELP                   uint32    = 0x200
+	PSH_MODELESS                  uint32    = 0x400
+	PSH_RTLREADING                uint32    = 0x800
+	PSH_WIZARDCONTEXTHELP         uint32    = 0x1000
+	PSH_WIZARD97                  uint32    = 0x2000
+	PSH_WATERMARK                 uint32    = 0x8000
+	PSH_USEHBMWATERMARK           uint32    = 0x10000
+	PSH_USEHPLWATERMARK           uint32    = 0x20000
+	PSH_STRETCHWATERMARK          uint32    = 0x40000
+	PSH_HEADER                    uint32    = 0x80000
+	PSH_USEHBMHEADER              uint32    = 0x100000
+	PSH_USEPAGELANG               uint32    = 0x200000
+	PSH_WIZARD_LITE               uint32    = 0x400000
+	PSH_NOCONTEXTHELP             uint32    = 0x2000000
+	PSH_AEROWIZARD                uint32    = 0x4000
+	PSH_RESIZABLE                 uint32    = 0x4000000
+	PSH_HEADERBITMAP              uint32    = 0x8000000
+	PSH_NOMARGIN                  uint32    = 0x10000000
+	PSCB_INITIALIZED              uint32    = 0x1
+	PSCB_PRECREATE                uint32    = 0x2
+	PSCB_BUTTONPRESSED            uint32    = 0x3
+	PSNRET_NOERROR                uint32    = 0x0
+	PSNRET_INVALID                uint32    = 0x1
+	PSNRET_INVALID_NOCHANGEPAGE   uint32    = 0x2
+	PSNRET_MESSAGEHANDLED         uint32    = 0x3
+	PSM_SETCURSEL                 uint32    = 0x465
+	PSM_REMOVEPAGE                uint32    = 0x466
+	PSM_ADDPAGE                   uint32    = 0x467
+	PSM_CHANGED                   uint32    = 0x468
+	PSM_RESTARTWINDOWS            uint32    = 0x469
+	PSM_REBOOTSYSTEM              uint32    = 0x46a
+	PSM_CANCELTOCLOSE             uint32    = 0x46b
+	PSM_QUERYSIBLINGS             uint32    = 0x46c
+	PSM_UNCHANGED                 uint32    = 0x46d
+	PSM_APPLY                     uint32    = 0x46e
+	PSM_SETTITLEA                 uint32    = 0x46f
+	PSM_SETTITLEW                 uint32    = 0x478
+	PSM_SETTITLE                  uint32    = 0x478
+	PSM_SETWIZBUTTONS             uint32    = 0x470
+	PSWIZB_BACK                   uint32    = 0x1
+	PSWIZB_NEXT                   uint32    = 0x2
+	PSWIZB_FINISH                 uint32    = 0x4
+	PSWIZB_DISABLEDFINISH         uint32    = 0x8
+	PSWIZBF_ELEVATIONREQUIRED     uint32    = 0x1
+	PSWIZB_CANCEL                 uint32    = 0x10
+	PSM_PRESSBUTTON               uint32    = 0x471
+	PSBTN_BACK                    uint32    = 0x0
+	PSBTN_NEXT                    uint32    = 0x1
+	PSBTN_FINISH                  uint32    = 0x2
+	PSBTN_OK                      uint32    = 0x3
+	PSBTN_APPLYNOW                uint32    = 0x4
+	PSBTN_CANCEL                  uint32    = 0x5
+	PSBTN_HELP                    uint32    = 0x6
+	PSBTN_MAX                     uint32    = 0x6
+	PSM_SETCURSELID               uint32    = 0x472
+	PSM_SETFINISHTEXTA            uint32    = 0x473
+	PSM_SETFINISHTEXTW            uint32    = 0x479
+	PSM_SETFINISHTEXT             uint32    = 0x479
+	PSM_GETTABCONTROL             uint32    = 0x474
+	PSM_ISDIALOGMESSAGE           uint32    = 0x475
+	PSM_GETCURRENTPAGEHWND        uint32    = 0x476
+	PSM_INSERTPAGE                uint32    = 0x477
+	PSM_SETHEADERTITLEA           uint32    = 0x47d
+	PSM_SETHEADERTITLEW           uint32    = 0x47e
+	PSM_SETHEADERTITLE            uint32    = 0x47e
+	PSM_SETHEADERSUBTITLEA        uint32    = 0x47f
+	PSM_SETHEADERSUBTITLEW        uint32    = 0x480
+	PSM_SETHEADERSUBTITLE         uint32    = 0x480
+	PSM_HWNDTOINDEX               uint32    = 0x481
+	PSM_INDEXTOHWND               uint32    = 0x482
+	PSM_PAGETOINDEX               uint32    = 0x483
+	PSM_INDEXTOPAGE               uint32    = 0x484
+	PSM_IDTOINDEX                 uint32    = 0x485
+	PSM_INDEXTOID                 uint32    = 0x486
+	PSM_GETRESULT                 uint32    = 0x487
+	PSM_RECALCPAGESIZES           uint32    = 0x488
+	PSM_SETNEXTTEXTW              uint32    = 0x489
+	PSM_SETNEXTTEXT               uint32    = 0x489
+	PSWIZB_SHOW                   uint32    = 0x0
+	PSWIZB_RESTORE                uint32    = 0x1
+	PSM_SHOWWIZBUTTONS            uint32    = 0x48a
+	PSM_ENABLEWIZBUTTONS          uint32    = 0x48b
+	PSM_SETBUTTONTEXTW            uint32    = 0x48c
+	PSM_SETBUTTONTEXT             uint32    = 0x48c
+	ID_PSRESTARTWINDOWS           uint32    = 0x2
+	WIZ_CXDLG                     uint32    = 0x114
+	WIZ_CYDLG                     uint32    = 0x8c
+	WIZ_CXBMP                     uint32    = 0x50
+	WIZ_BODYX                     uint32    = 0x5c
+	WIZ_BODYCX                    uint32    = 0xb8
+	PROP_SM_CXDLG                 uint32    = 0xd4
+	PROP_SM_CYDLG                 uint32    = 0xbc
+	PROP_MED_CXDLG                uint32    = 0xe3
+	PROP_MED_CYDLG                uint32    = 0xd7
+	PROP_LG_CXDLG                 uint32    = 0xfc
+	PROP_LG_CYDLG                 uint32    = 0xda
+	MAX_THEMECOLOR                uint32    = 0x40
+	MAX_THEMESIZE                 uint32    = 0x40
+	DTBG_CLIPRECT                 uint32    = 0x1
+	DTBG_DRAWSOLID                uint32    = 0x2
+	DTBG_OMITBORDER               uint32    = 0x4
+	DTBG_OMITCONTENT              uint32    = 0x8
+	DTBG_COMPUTINGREGION          uint32    = 0x10
+	DTBG_MIRRORDC                 uint32    = 0x20
+	DTBG_NOMIRROR                 uint32    = 0x40
+	DTT_GRAYED                    uint32    = 0x1
+	DTT_FLAGS2VALIDBITS           uint32    = 0x1
+	MAX_INTLIST_COUNT             uint32    = 0x192
+	ETDT_DISABLE                  uint32    = 0x1
+	ETDT_ENABLE                   uint32    = 0x2
+	ETDT_USETABTEXTURE            uint32    = 0x4
+	ETDT_USEAEROWIZARDTABTEXTURE  uint32    = 0x8
+	SZ_THDOCPROP_DISPLAYNAME      string    = "DisplayName"
+	SZ_THDOCPROP_CANONICALNAME    string    = "ThemeName"
+	SZ_THDOCPROP_TOOLTIP          string    = "ToolTip"
+	SZ_THDOCPROP_AUTHOR           string    = "author"
+	WTNCA_NODRAWCAPTION           uint32    = 0x1
+	WTNCA_NODRAWICON              uint32    = 0x2
+	WTNCA_NOSYSMENU               uint32    = 0x4
+	WTNCA_NOMIRRORHELP            uint32    = 0x8
+	TMTVS_RESERVEDLOW             uint32    = 0x186a0
+	TMTVS_RESERVEDHIGH            uint32    = 0x4e1f
+	VSCLASS_AEROWIZARDSTYLE       string    = "AEROWIZARDSTYLE"
+	VSCLASS_AEROWIZARD            string    = "AEROWIZARD"
+	VSCLASS_BUTTONSTYLE           string    = "BUTTONSTYLE"
+	VSCLASS_BUTTON                string    = "BUTTON"
+	VSCLASS_COMBOBOXSTYLE         string    = "COMBOBOXSTYLE"
+	VSCLASS_COMBOBOX              string    = "COMBOBOX"
+	VSCLASS_COMMUNICATIONSSTYLE   string    = "COMMUNICATIONSSTYLE"
+	VSCLASS_COMMUNICATIONS        string    = "COMMUNICATIONS"
+	VSCLASS_CONTROLPANELSTYLE     string    = "CONTROLPANELSTYLE"
+	VSCLASS_CONTROLPANEL          string    = "CONTROLPANEL"
+	VSCLASS_DATEPICKERSTYLE       string    = "DATEPICKERSTYLE"
+	VSCLASS_DATEPICKER            string    = "DATEPICKER"
+	VSCLASS_DRAGDROPSTYLE         string    = "DRAGDROPSTYLE"
+	VSCLASS_DRAGDROP              string    = "DRAGDROP"
+	VSCLASS_EDITSTYLE             string    = "EDITSTYLE"
+	VSCLASS_EDIT                  string    = "EDIT"
+	VSCLASS_EXPLORERBARSTYLE      string    = "EXPLORERBARSTYLE"
+	VSCLASS_EXPLORERBAR           string    = "EXPLORERBAR"
+	VSCLASS_FLYOUTSTYLE           string    = "FLYOUTSTYLE"
+	VSCLASS_FLYOUT                string    = "FLYOUT"
+	VSCLASS_HEADERSTYLE           string    = "HEADERSTYLE"
+	VSCLASS_HEADER                string    = "HEADER"
+	VSCLASS_LISTBOXSTYLE          string    = "LISTBOXSTYLE"
+	VSCLASS_LISTBOX               string    = "LISTBOX"
+	VSCLASS_LISTVIEWSTYLE         string    = "LISTVIEWSTYLE"
+	VSCLASS_LISTVIEW              string    = "LISTVIEW"
+	VSCLASS_MENUSTYLE             string    = "MENUSTYLE"
+	VSCLASS_MENU                  string    = "MENU"
+	VSCLASS_NAVIGATION            string    = "NAVIGATION"
+	VSCLASS_PROGRESSSTYLE         string    = "PROGRESSSTYLE"
+	VSCLASS_PROGRESS              string    = "PROGRESS"
+	VSCLASS_REBARSTYLE            string    = "REBARSTYLE"
+	VSCLASS_REBAR                 string    = "REBAR"
+	VSCLASS_SCROLLBARSTYLE        string    = "SCROLLBARSTYLE"
+	VSCLASS_SCROLLBAR             string    = "SCROLLBAR"
+	VSCLASS_SPINSTYLE             string    = "SPINSTYLE"
+	VSCLASS_SPIN                  string    = "SPIN"
+	VSCLASS_STATUSSTYLE           string    = "STATUSSTYLE"
+	VSCLASS_STATUS                string    = "STATUS"
+	VSCLASS_TABSTYLE              string    = "TABSTYLE"
+	VSCLASS_TAB                   string    = "TAB"
+	VSCLASS_TASKDIALOGSTYLE       string    = "TASKDIALOGSTYLE"
+	VSCLASS_TASKDIALOG            string    = "TASKDIALOG"
+	VSCLASS_TEXTSTYLE             string    = "TEXTSTYLE"
+	VSCLASS_TOOLBARSTYLE          string    = "TOOLBARSTYLE"
+	VSCLASS_TOOLBAR               string    = "TOOLBAR"
+	VSCLASS_TOOLTIPSTYLE          string    = "TOOLTIPSTYLE"
+	VSCLASS_TOOLTIP               string    = "TOOLTIP"
+	VSCLASS_TRACKBARSTYLE         string    = "TRACKBARSTYLE"
+	VSCLASS_TRACKBAR              string    = "TRACKBAR"
+	VSCLASS_TREEVIEWSTYLE         string    = "TREEVIEWSTYLE"
+	VSCLASS_TREEVIEW              string    = "TREEVIEW"
+	VSCLASS_USERTILE              string    = "USERTILE"
+	VSCLASS_TEXTSELECTIONGRIPPER  string    = "TEXTSELECTIONGRIPPER"
+	VSCLASS_WINDOWSTYLE           string    = "WINDOWSTYLE"
+	VSCLASS_WINDOW                string    = "WINDOW"
 	VSCLASS_LINK                  string    = "LINK"
 	VSCLASS_EMPTYMARKUP           string    = "EMPTYMARKUP"
 	VSCLASS_STATIC                string    = "STATIC"
@@ -1953,10 +1848,6 @@ const (
 	VSCLASS_TASKBAND              string    = "TASKBAND"
 	VSCLASS_STARTPANEL            string    = "STARTPANEL"
 	VSCLASS_MENUBAND              string    = "MENUBAND"
-	CCHCCCLASS                    uint32    = 0x20
-	CCHCCDESC                     uint32    = 0x20
-	CCHCCTEXT                     uint32    = 0x100
-	CCF_NOTEXT                    uint32    = 0x1
 	EM_GETSEL                     uint32    = 0xb0
 	EM_SETSEL                     uint32    = 0xb1
 	EM_GETRECT                    uint32    = 0xb2
@@ -1992,6 +1883,17 @@ const (
 	EM_SETIMESTATUS               uint32    = 0xd8
 	EM_GETIMESTATUS               uint32    = 0xd9
 	EM_ENABLEFEATURE              uint32    = 0xda
+)
+
+var (
+	//TD_WARNING_ICON     = PWSTR(unsafe.Pointer(uintptr(-1)))
+	//TD_ERROR_ICON       = PWSTR(unsafe.Pointer(uintptr(-2)))
+	//TD_INFORMATION_ICON = PWSTR(unsafe.Pointer(uintptr(-3)))
+	//TD_SHIELD_ICON      = PWSTR(unsafe.Pointer(uintptr(-4)))
+	TD_WARNING_ICON     = PWSTR(unsafe.Pointer(^uintptr(0)))
+	TD_ERROR_ICON       = PWSTR(unsafe.Pointer(^uintptr(1)))
+	TD_INFORMATION_ICON = PWSTR(unsafe.Pointer(^uintptr(2)))
+	TD_SHIELD_ICON      = PWSTR(unsafe.Pointer(^uintptr(3)))
 )
 
 // enums
@@ -2260,6 +2162,17 @@ const (
 )
 
 // enum
+// flags
+type SET_THEME_APP_PROPERTIES_FLAGS uint32
+
+const (
+	ALLOW_NONCLIENT  SET_THEME_APP_PROPERTIES_FLAGS = 1
+	ALLOW_CONTROLS   SET_THEME_APP_PROPERTIES_FLAGS = 2
+	ALLOW_WEBCONTENT SET_THEME_APP_PROPERTIES_FLAGS = 4
+	VALIDBITS        SET_THEME_APP_PROPERTIES_FLAGS = 7
+)
+
+// enum
 type DRAGLISTINFO_NOTIFICATION_FLAGS uint32
 
 const (
@@ -2345,12 +2258,21 @@ const (
 type IMAGE_LIST_DRAW_STYLE uint32
 
 const (
-	ILD_BLEND    IMAGE_LIST_DRAW_STYLE = 4
-	ILD_BLEND50  IMAGE_LIST_DRAW_STYLE = 4
-	ILD_FOCUS    IMAGE_LIST_DRAW_STYLE = 2
-	ILD_MASK     IMAGE_LIST_DRAW_STYLE = 16
-	ILD_NORMAL   IMAGE_LIST_DRAW_STYLE = 0
-	ILD_SELECTED IMAGE_LIST_DRAW_STYLE = 4
+	ILD_NORMAL        IMAGE_LIST_DRAW_STYLE = 0
+	ILD_TRANSPARENT   IMAGE_LIST_DRAW_STYLE = 1
+	ILD_BLEND25       IMAGE_LIST_DRAW_STYLE = 2
+	ILD_FOCUS         IMAGE_LIST_DRAW_STYLE = 2
+	ILD_BLEND50       IMAGE_LIST_DRAW_STYLE = 4
+	ILD_SELECTED      IMAGE_LIST_DRAW_STYLE = 4
+	ILD_BLEND         IMAGE_LIST_DRAW_STYLE = 4
+	ILD_MASK          IMAGE_LIST_DRAW_STYLE = 16
+	ILD_IMAGE         IMAGE_LIST_DRAW_STYLE = 32
+	ILD_ROP           IMAGE_LIST_DRAW_STYLE = 64
+	ILD_OVERLAYMASK   IMAGE_LIST_DRAW_STYLE = 3840
+	ILD_PRESERVEALPHA IMAGE_LIST_DRAW_STYLE = 4096
+	ILD_SCALE         IMAGE_LIST_DRAW_STYLE = 8192
+	ILD_DPISCALE      IMAGE_LIST_DRAW_STYLE = 16384
+	ILD_ASYNC         IMAGE_LIST_DRAW_STYLE = 32768
 )
 
 // enum
@@ -2626,24 +2548,39 @@ const (
 
 // enum
 // flags
-type TTTOOLINFO_FLAGS uint32
+type TOOLTIP_FLAGS uint32
 
 const (
-	TTF_ABSOLUTE    TTTOOLINFO_FLAGS = 128
-	TTF_CENTERTIP   TTTOOLINFO_FLAGS = 2
-	TTF_IDISHWND    TTTOOLINFO_FLAGS = 1
-	TTF_PARSELINKS  TTTOOLINFO_FLAGS = 4096
-	TTF_RTLREADING  TTTOOLINFO_FLAGS = 4
-	TTF_SUBCLASS    TTTOOLINFO_FLAGS = 16
-	TTF_TRACK       TTTOOLINFO_FLAGS = 32
-	TTF_TRANSPARENT TTTOOLINFO_FLAGS = 256
+	TTF_IDISHWND    TOOLTIP_FLAGS = 1
+	TTF_CENTERTIP   TOOLTIP_FLAGS = 2
+	TTF_RTLREADING  TOOLTIP_FLAGS = 4
+	TTF_SUBCLASS    TOOLTIP_FLAGS = 16
+	TTF_TRACK       TOOLTIP_FLAGS = 32
+	TTF_ABSOLUTE    TOOLTIP_FLAGS = 128
+	TTF_TRANSPARENT TOOLTIP_FLAGS = 256
+	TTF_PARSELINKS  TOOLTIP_FLAGS = 4096
+	TTF_DI_SETITEM  TOOLTIP_FLAGS = 32768
 )
 
 // enum
+// flags
 type LVTILEVIEWINFO_FLAGS uint32
 
 const (
-	LVTVIF_EXTENDED LVTILEVIEWINFO_FLAGS = 4
+	LVTVIF_AUTOSIZE    LVTILEVIEWINFO_FLAGS = 0
+	LVTVIF_FIXEDWIDTH  LVTILEVIEWINFO_FLAGS = 1
+	LVTVIF_FIXEDHEIGHT LVTILEVIEWINFO_FLAGS = 2
+	LVTVIF_FIXEDSIZE   LVTILEVIEWINFO_FLAGS = 3
+)
+
+// enum
+// flags
+type LVTILEVIEWINFO_MASK uint32
+
+const (
+	LVTVIM_TILESIZE    LVTILEVIEWINFO_MASK = 1
+	LVTVIM_COLUMNS     LVTILEVIEWINFO_MASK = 2
+	LVTVIM_LABELMARGIN LVTILEVIEWINFO_MASK = 4
 )
 
 // enum
@@ -2782,15 +2719,6 @@ const (
 )
 
 // enum
-type NMLVCUSTOMDRAW_ALIGN uint32
-
-const (
-	LVGA_HEADER_CENTER NMLVCUSTOMDRAW_ALIGN = 2
-	LVGA_HEADER_LEFT   NMLVCUSTOMDRAW_ALIGN = 1
-	LVGA_HEADER_RIGHT  NMLVCUSTOMDRAW_ALIGN = 4
-)
-
-// enum
 // flags
 type MCGRIDINFO_FLAGS uint32
 
@@ -2900,6 +2828,374 @@ const (
 	ILC_PERITEMMIRROR    IMAGELIST_CREATION_FLAGS = 32768
 	ILC_ORIGINALSIZE     IMAGELIST_CREATION_FLAGS = 65536
 	ILC_HIGHQUALITYSCALE IMAGELIST_CREATION_FLAGS = 131072
+)
+
+// enum
+// flags
+type DTTOPTS_FLAGS uint32
+
+const (
+	DTT_TEXTCOLOR    DTTOPTS_FLAGS = 1
+	DTT_BORDERCOLOR  DTTOPTS_FLAGS = 2
+	DTT_SHADOWCOLOR  DTTOPTS_FLAGS = 4
+	DTT_SHADOWTYPE   DTTOPTS_FLAGS = 8
+	DTT_SHADOWOFFSET DTTOPTS_FLAGS = 16
+	DTT_BORDERSIZE   DTTOPTS_FLAGS = 32
+	DTT_FONTPROP     DTTOPTS_FLAGS = 64
+	DTT_COLORPROP    DTTOPTS_FLAGS = 128
+	DTT_STATEID      DTTOPTS_FLAGS = 256
+	DTT_CALCRECT     DTTOPTS_FLAGS = 512
+	DTT_APPLYOVERLAY DTTOPTS_FLAGS = 1024
+	DTT_GLOWSIZE     DTTOPTS_FLAGS = 2048
+	DTT_CALLBACK     DTTOPTS_FLAGS = 4096
+	DTT_COMPOSITED   DTTOPTS_FLAGS = 8192
+	DTT_VALIDBITS    DTTOPTS_FLAGS = 12287
+)
+
+// enum
+type NMLVGETINFOTIP_FLAGS uint32
+
+const (
+	LVGIT_UNFOLDED NMLVGETINFOTIP_FLAGS = 1
+	LVGIT_ZERO     NMLVGETINFOTIP_FLAGS = 0
+)
+
+// enum
+type LIST_VIEW_ITEM_STATE_FLAGS uint32
+
+const (
+	LVIS_FOCUSED        LIST_VIEW_ITEM_STATE_FLAGS = 1
+	LVIS_SELECTED       LIST_VIEW_ITEM_STATE_FLAGS = 2
+	LVIS_CUT            LIST_VIEW_ITEM_STATE_FLAGS = 4
+	LVIS_DROPHILITED    LIST_VIEW_ITEM_STATE_FLAGS = 8
+	LVIS_GLOW           LIST_VIEW_ITEM_STATE_FLAGS = 16
+	LVIS_ACTIVATING     LIST_VIEW_ITEM_STATE_FLAGS = 32
+	LVIS_OVERLAYMASK    LIST_VIEW_ITEM_STATE_FLAGS = 3840
+	LVIS_STATEIMAGEMASK LIST_VIEW_ITEM_STATE_FLAGS = 61440
+)
+
+// enum
+// flags
+type NM_TREEVIEW_ACTION uint32
+
+const (
+	TVE_COLLAPSE      NM_TREEVIEW_ACTION = 1
+	TVE_EXPAND        NM_TREEVIEW_ACTION = 2
+	TVE_TOGGLE        NM_TREEVIEW_ACTION = 3
+	TVE_EXPANDPARTIAL NM_TREEVIEW_ACTION = 16384
+	TVE_COLLAPSERESET NM_TREEVIEW_ACTION = 32768
+	TVC_UNKNOWN       NM_TREEVIEW_ACTION = 0
+	TVC_BYMOUSE       NM_TREEVIEW_ACTION = 1
+	TVC_BYKEYBOARD    NM_TREEVIEW_ACTION = 2
+)
+
+// enum
+type MONTH_CALDENDAR_MESSAGES_VIEW uint32
+
+const (
+	MCMV_MONTH   MONTH_CALDENDAR_MESSAGES_VIEW = 0
+	MCMV_YEAR    MONTH_CALDENDAR_MESSAGES_VIEW = 1
+	MCMV_DECADE  MONTH_CALDENDAR_MESSAGES_VIEW = 2
+	MCMV_CENTURY MONTH_CALDENDAR_MESSAGES_VIEW = 3
+	MCMV_MAX     MONTH_CALDENDAR_MESSAGES_VIEW = 3
+)
+
+// enum
+type TAB_CONTROL_ITEM_STATE uint32
+
+const (
+	TCIS_BUTTONPRESSED TAB_CONTROL_ITEM_STATE = 1
+	TCIS_HIGHLIGHTED   TAB_CONTROL_ITEM_STATE = 2
+)
+
+// enum
+type TREE_VIEW_ITEM_STATE_FLAGS uint32
+
+const (
+	TVIS_SELECTED       TREE_VIEW_ITEM_STATE_FLAGS = 2
+	TVIS_CUT            TREE_VIEW_ITEM_STATE_FLAGS = 4
+	TVIS_DROPHILITED    TREE_VIEW_ITEM_STATE_FLAGS = 8
+	TVIS_BOLD           TREE_VIEW_ITEM_STATE_FLAGS = 16
+	TVIS_EXPANDED       TREE_VIEW_ITEM_STATE_FLAGS = 32
+	TVIS_EXPANDEDONCE   TREE_VIEW_ITEM_STATE_FLAGS = 64
+	TVIS_EXPANDPARTIAL  TREE_VIEW_ITEM_STATE_FLAGS = 128
+	TVIS_OVERLAYMASK    TREE_VIEW_ITEM_STATE_FLAGS = 3840
+	TVIS_STATEIMAGEMASK TREE_VIEW_ITEM_STATE_FLAGS = 61440
+	TVIS_USERMASK       TREE_VIEW_ITEM_STATE_FLAGS = 61440
+	TVIS_EX_FLAT        TREE_VIEW_ITEM_STATE_FLAGS = 1
+	TVIS_EX_DISABLED    TREE_VIEW_ITEM_STATE_FLAGS = 2
+	TVIS_EX_ALL         TREE_VIEW_ITEM_STATE_FLAGS = 2
+)
+
+// enum
+type HEADER_CONTROL_FORMAT_FLAGS int32
+
+const (
+	HDF_LEFT            HEADER_CONTROL_FORMAT_FLAGS = 0
+	HDF_RIGHT           HEADER_CONTROL_FORMAT_FLAGS = 1
+	HDF_CENTER          HEADER_CONTROL_FORMAT_FLAGS = 2
+	HDF_JUSTIFYMASK     HEADER_CONTROL_FORMAT_FLAGS = 3
+	HDF_RTLREADING      HEADER_CONTROL_FORMAT_FLAGS = 4
+	HDF_BITMAP          HEADER_CONTROL_FORMAT_FLAGS = 8192
+	HDF_STRING          HEADER_CONTROL_FORMAT_FLAGS = 16384
+	HDF_OWNERDRAW       HEADER_CONTROL_FORMAT_FLAGS = 32768
+	HDF_IMAGE           HEADER_CONTROL_FORMAT_FLAGS = 2048
+	HDF_BITMAP_ON_RIGHT HEADER_CONTROL_FORMAT_FLAGS = 4096
+	HDF_SORTUP          HEADER_CONTROL_FORMAT_FLAGS = 1024
+	HDF_SORTDOWN        HEADER_CONTROL_FORMAT_FLAGS = 512
+	HDF_CHECKBOX        HEADER_CONTROL_FORMAT_FLAGS = 64
+	HDF_CHECKED         HEADER_CONTROL_FORMAT_FLAGS = 128
+	HDF_FIXEDWIDTH      HEADER_CONTROL_FORMAT_FLAGS = 256
+	HDF_SPLITBUTTON     HEADER_CONTROL_FORMAT_FLAGS = 16777216
+)
+
+// enum
+type HEADER_CONTROL_FORMAT_TYPE uint32
+
+const (
+	HDFT_ISSTRING   HEADER_CONTROL_FORMAT_TYPE = 0
+	HDFT_ISNUMBER   HEADER_CONTROL_FORMAT_TYPE = 1
+	HDFT_ISDATE     HEADER_CONTROL_FORMAT_TYPE = 2
+	HDFT_HASNOVALUE HEADER_CONTROL_FORMAT_TYPE = 32768
+)
+
+// enum
+type HEADER_CONTROL_FORMAT_STATE uint32
+
+const (
+	HDIS_FOCUSED HEADER_CONTROL_FORMAT_STATE = 1
+)
+
+// enum
+// flags
+type HEADER_HITTEST_INFO_FLAGS uint32
+
+const (
+	HHT_NOWHERE         HEADER_HITTEST_INFO_FLAGS = 1
+	HHT_ONHEADER        HEADER_HITTEST_INFO_FLAGS = 2
+	HHT_ONDIVIDER       HEADER_HITTEST_INFO_FLAGS = 4
+	HHT_ONDIVOPEN       HEADER_HITTEST_INFO_FLAGS = 8
+	HHT_ONFILTER        HEADER_HITTEST_INFO_FLAGS = 16
+	HHT_ONFILTERBUTTON  HEADER_HITTEST_INFO_FLAGS = 32
+	HHT_ABOVE           HEADER_HITTEST_INFO_FLAGS = 256
+	HHT_BELOW           HEADER_HITTEST_INFO_FLAGS = 512
+	HHT_TORIGHT         HEADER_HITTEST_INFO_FLAGS = 1024
+	HHT_TOLEFT          HEADER_HITTEST_INFO_FLAGS = 2048
+	HHT_ONITEMSTATEICON HEADER_HITTEST_INFO_FLAGS = 4096
+	HHT_ONDROPDOWN      HEADER_HITTEST_INFO_FLAGS = 8192
+	HHT_ONOVERFLOW      HEADER_HITTEST_INFO_FLAGS = 16384
+)
+
+// enum
+// flags
+type IMAGE_LIST_WRITE_STREAM_FLAGS uint32
+
+const (
+	ILP_NORMAL    IMAGE_LIST_WRITE_STREAM_FLAGS = 0
+	ILP_DOWNLEVEL IMAGE_LIST_WRITE_STREAM_FLAGS = 1
+)
+
+// enum
+// flags
+type LIST_ITEM_FLAGS uint32
+
+const (
+	LIF_ITEMINDEX LIST_ITEM_FLAGS = 1
+	LIF_STATE     LIST_ITEM_FLAGS = 2
+	LIF_ITEMID    LIST_ITEM_FLAGS = 4
+	LIF_URL       LIST_ITEM_FLAGS = 8
+)
+
+// enum
+// flags
+type LIST_ITEM_STATE_FLAGS uint32
+
+const (
+	LIS_FOCUSED       LIST_ITEM_STATE_FLAGS = 1
+	LIS_ENABLED       LIST_ITEM_STATE_FLAGS = 2
+	LIS_VISITED       LIST_ITEM_STATE_FLAGS = 4
+	LIS_HOTTRACK      LIST_ITEM_STATE_FLAGS = 8
+	LIS_DEFAULTCOLORS LIST_ITEM_STATE_FLAGS = 16
+)
+
+// enum
+// flags
+type LIST_VIEW_BACKGROUND_IMAGE_FLAGS uint32
+
+const (
+	LVBKIF_SOURCE_NONE     LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 0
+	LVBKIF_SOURCE_HBITMAP  LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 1
+	LVBKIF_SOURCE_URL      LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 2
+	LVBKIF_SOURCE_MASK     LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 3
+	LVBKIF_STYLE_NORMAL    LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 0
+	LVBKIF_STYLE_TILE      LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 16
+	LVBKIF_STYLE_MASK      LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 16
+	LVBKIF_FLAG_TILEOFFSET LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 256
+	LVBKIF_TYPE_WATERMARK  LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 268435456
+	LVBKIF_FLAG_ALPHABLEND LIST_VIEW_BACKGROUND_IMAGE_FLAGS = 536870912
+)
+
+// enum
+// flags
+type LIST_VIEW_GROUP_STATE_FLAGS uint32
+
+const (
+	LVGS_NORMAL            LIST_VIEW_GROUP_STATE_FLAGS = 0
+	LVGS_COLLAPSED         LIST_VIEW_GROUP_STATE_FLAGS = 1
+	LVGS_HIDDEN            LIST_VIEW_GROUP_STATE_FLAGS = 2
+	LVGS_NOHEADER          LIST_VIEW_GROUP_STATE_FLAGS = 4
+	LVGS_COLLAPSIBLE       LIST_VIEW_GROUP_STATE_FLAGS = 8
+	LVGS_FOCUSED           LIST_VIEW_GROUP_STATE_FLAGS = 16
+	LVGS_SELECTED          LIST_VIEW_GROUP_STATE_FLAGS = 32
+	LVGS_SUBSETED          LIST_VIEW_GROUP_STATE_FLAGS = 64
+	LVGS_SUBSETLINKFOCUSED LIST_VIEW_GROUP_STATE_FLAGS = 128
+)
+
+// enum
+// flags
+type LIST_VIEW_GROUP_ALIGN_FLAGS uint32
+
+const (
+	LVGA_HEADER_LEFT   LIST_VIEW_GROUP_ALIGN_FLAGS = 1
+	LVGA_HEADER_CENTER LIST_VIEW_GROUP_ALIGN_FLAGS = 2
+	LVGA_HEADER_RIGHT  LIST_VIEW_GROUP_ALIGN_FLAGS = 4
+	LVGA_FOOTER_LEFT   LIST_VIEW_GROUP_ALIGN_FLAGS = 8
+	LVGA_FOOTER_CENTER LIST_VIEW_GROUP_ALIGN_FLAGS = 16
+	LVGA_FOOTER_RIGHT  LIST_VIEW_GROUP_ALIGN_FLAGS = 32
+)
+
+// enum
+// flags
+type LIST_VIEW_INSERT_MARK_FLAGS uint32
+
+const (
+	LVIM_AFTER LIST_VIEW_INSERT_MARK_FLAGS = 1
+)
+
+// enum
+// flags
+type LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS int32
+
+const (
+	LVCFMT_LINE_BREAK         LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS = 1048576
+	LVCFMT_FILL               LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS = 2097152
+	LVCFMT_WRAP               LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS = 4194304
+	LVCFMT_NO_TITLE           LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS = 8388608
+	LVCFMT_TILE_PLACEMENTMASK LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS = 3145728
+)
+
+// enum
+// flags
+type MCHITTESTINFO_HIT_FLAGS uint32
+
+const (
+	MCHT_TITLE            MCHITTESTINFO_HIT_FLAGS = 65536
+	MCHT_CALENDAR         MCHITTESTINFO_HIT_FLAGS = 131072
+	MCHT_TODAYLINK        MCHITTESTINFO_HIT_FLAGS = 196608
+	MCHT_CALENDARCONTROL  MCHITTESTINFO_HIT_FLAGS = 1048576
+	MCHT_NEXT             MCHITTESTINFO_HIT_FLAGS = 16777216
+	MCHT_PREV             MCHITTESTINFO_HIT_FLAGS = 33554432
+	MCHT_NOWHERE          MCHITTESTINFO_HIT_FLAGS = 0
+	MCHT_TITLEBK          MCHITTESTINFO_HIT_FLAGS = 65536
+	MCHT_TITLEMONTH       MCHITTESTINFO_HIT_FLAGS = 65537
+	MCHT_TITLEYEAR        MCHITTESTINFO_HIT_FLAGS = 65538
+	MCHT_TITLEBTNNEXT     MCHITTESTINFO_HIT_FLAGS = 16842755
+	MCHT_TITLEBTNPREV     MCHITTESTINFO_HIT_FLAGS = 33619971
+	MCHT_CALENDARBK       MCHITTESTINFO_HIT_FLAGS = 131072
+	MCHT_CALENDARDATE     MCHITTESTINFO_HIT_FLAGS = 131073
+	MCHT_CALENDARDATENEXT MCHITTESTINFO_HIT_FLAGS = 16908289
+	MCHT_CALENDARDATEPREV MCHITTESTINFO_HIT_FLAGS = 33685505
+	MCHT_CALENDARDAY      MCHITTESTINFO_HIT_FLAGS = 131074
+	MCHT_CALENDARWEEKNUM  MCHITTESTINFO_HIT_FLAGS = 131075
+	MCHT_CALENDARDATEMIN  MCHITTESTINFO_HIT_FLAGS = 131076
+	MCHT_CALENDARDATEMAX  MCHITTESTINFO_HIT_FLAGS = 131077
+)
+
+// enum
+// flags
+type NMCUSTOMDRAW_DRAW_STATE_FLAGS uint32
+
+const (
+	CDIS_SELECTED         NMCUSTOMDRAW_DRAW_STATE_FLAGS = 1
+	CDIS_GRAYED           NMCUSTOMDRAW_DRAW_STATE_FLAGS = 2
+	CDIS_DISABLED         NMCUSTOMDRAW_DRAW_STATE_FLAGS = 4
+	CDIS_CHECKED          NMCUSTOMDRAW_DRAW_STATE_FLAGS = 8
+	CDIS_FOCUS            NMCUSTOMDRAW_DRAW_STATE_FLAGS = 16
+	CDIS_DEFAULT          NMCUSTOMDRAW_DRAW_STATE_FLAGS = 32
+	CDIS_HOT              NMCUSTOMDRAW_DRAW_STATE_FLAGS = 64
+	CDIS_MARKED           NMCUSTOMDRAW_DRAW_STATE_FLAGS = 128
+	CDIS_INDETERMINATE    NMCUSTOMDRAW_DRAW_STATE_FLAGS = 256
+	CDIS_SHOWKEYBOARDCUES NMCUSTOMDRAW_DRAW_STATE_FLAGS = 512
+	CDIS_NEARHOT          NMCUSTOMDRAW_DRAW_STATE_FLAGS = 1024
+	CDIS_OTHERSIDEHOT     NMCUSTOMDRAW_DRAW_STATE_FLAGS = 2048
+	CDIS_DROPHILITED      NMCUSTOMDRAW_DRAW_STATE_FLAGS = 4096
+)
+
+// enum
+type NMDATETIMECHANGE_FLAGS uint32
+
+const (
+	GDT_NONE  NMDATETIMECHANGE_FLAGS = 1
+	GDT_VALID NMDATETIMECHANGE_FLAGS = 0
+)
+
+// enum
+// flags
+type LIST_VIEW_ITEM_FLAGS uint32
+
+const (
+	LVIF_TEXT        LIST_VIEW_ITEM_FLAGS = 1
+	LVIF_IMAGE       LIST_VIEW_ITEM_FLAGS = 2
+	LVIF_PARAM       LIST_VIEW_ITEM_FLAGS = 4
+	LVIF_STATE       LIST_VIEW_ITEM_FLAGS = 8
+	LVIF_INDENT      LIST_VIEW_ITEM_FLAGS = 16
+	LVIF_NORECOMPUTE LIST_VIEW_ITEM_FLAGS = 2048
+	LVIF_GROUPID     LIST_VIEW_ITEM_FLAGS = 256
+	LVIF_COLUMNS     LIST_VIEW_ITEM_FLAGS = 512
+	LVIF_COLFMT      LIST_VIEW_ITEM_FLAGS = 65536
+	LVIF_DI_SETITEM  LIST_VIEW_ITEM_FLAGS = 4096
+)
+
+// enum
+type ODA_FLAGS uint32
+
+const (
+	ODA_DRAWENTIRE ODA_FLAGS = 1
+	ODA_SELECT     ODA_FLAGS = 2
+	ODA_FOCUS      ODA_FLAGS = 4
+)
+
+// enum
+type ODS_FLAGS uint32
+
+const (
+	ODS_SELECTED     ODS_FLAGS = 1
+	ODS_GRAYED       ODS_FLAGS = 2
+	ODS_DISABLED     ODS_FLAGS = 4
+	ODS_CHECKED      ODS_FLAGS = 8
+	ODS_FOCUS        ODS_FLAGS = 16
+	ODS_DEFAULT      ODS_FLAGS = 32
+	ODS_COMBOBOXEDIT ODS_FLAGS = 4096
+	ODS_HOTLIGHT     ODS_FLAGS = 64
+	ODS_INACTIVE     ODS_FLAGS = 128
+	ODS_NOACCEL      ODS_FLAGS = 256
+	ODS_NOFOCUSRECT  ODS_FLAGS = 512
+)
+
+// enum
+type HIT_TEST_BACKGROUND_OPTIONS uint32
+
+const (
+	HTTB_BACKGROUNDSEG         HIT_TEST_BACKGROUND_OPTIONS = 0
+	HTTB_FIXEDBORDER           HIT_TEST_BACKGROUND_OPTIONS = 2
+	HTTB_CAPTION               HIT_TEST_BACKGROUND_OPTIONS = 4
+	HTTB_RESIZINGBORDER_LEFT   HIT_TEST_BACKGROUND_OPTIONS = 16
+	HTTB_RESIZINGBORDER_TOP    HIT_TEST_BACKGROUND_OPTIONS = 32
+	HTTB_RESIZINGBORDER_RIGHT  HIT_TEST_BACKGROUND_OPTIONS = 64
+	HTTB_RESIZINGBORDER_BOTTOM HIT_TEST_BACKGROUND_OPTIONS = 128
+	HTTB_RESIZINGBORDER        HIT_TEST_BACKGROUND_OPTIONS = 240
+	HTTB_SIZINGTEMPLATE        HIT_TEST_BACKGROUND_OPTIONS = 256
+	HTTB_SYSTEMSIZINGMARGINS   HIT_TEST_BACKGROUND_OPTIONS = 512
 )
 
 // enum
@@ -3125,6 +3421,2006 @@ const (
 	BPAS_LINEAR BP_ANIMATIONSTYLE = 1
 	BPAS_CUBIC  BP_ANIMATIONSTYLE = 2
 	BPAS_SINE   BP_ANIMATIONSTYLE = 3
+)
+
+// enum
+type AEROWIZARDPARTS int32
+
+const (
+	AW_TITLEBAR    AEROWIZARDPARTS = 1
+	AW_HEADERAREA  AEROWIZARDPARTS = 2
+	AW_CONTENTAREA AEROWIZARDPARTS = 3
+	AW_COMMANDAREA AEROWIZARDPARTS = 4
+	AW_BUTTON      AEROWIZARDPARTS = 5
+)
+
+// enum
+type TITLEBARSTATES int32
+
+const (
+	AW_S_TITLEBAR_ACTIVE   TITLEBARSTATES = 1
+	AW_S_TITLEBAR_INACTIVE TITLEBARSTATES = 2
+)
+
+// enum
+type HEADERAREASTATES int32
+
+const (
+	AW_S_HEADERAREA_NOMARGIN HEADERAREASTATES = 1
+)
+
+// enum
+type CONTENTAREASTATES int32
+
+const (
+	AW_S_CONTENTAREA_NOMARGIN CONTENTAREASTATES = 1
+)
+
+// enum
+type BUTTONPARTS int32
+
+const (
+	BP_PUSHBUTTON             BUTTONPARTS = 1
+	BP_RADIOBUTTON            BUTTONPARTS = 2
+	BP_CHECKBOX               BUTTONPARTS = 3
+	BP_GROUPBOX               BUTTONPARTS = 4
+	BP_USERBUTTON             BUTTONPARTS = 5
+	BP_COMMANDLINK            BUTTONPARTS = 6
+	BP_COMMANDLINKGLYPH       BUTTONPARTS = 7
+	BP_RADIOBUTTON_HCDISABLED BUTTONPARTS = 8
+	BP_CHECKBOX_HCDISABLED    BUTTONPARTS = 9
+	BP_GROUPBOX_HCDISABLED    BUTTONPARTS = 10
+	BP_PUSHBUTTONDROPDOWN     BUTTONPARTS = 11
+)
+
+// enum
+type PUSHBUTTONSTATES int32
+
+const (
+	PBS_NORMAL              PUSHBUTTONSTATES = 1
+	PBS_HOT                 PUSHBUTTONSTATES = 2
+	PBS_PRESSED             PUSHBUTTONSTATES = 3
+	PBS_DISABLED            PUSHBUTTONSTATES = 4
+	PBS_DEFAULTED           PUSHBUTTONSTATES = 5
+	PBS_DEFAULTED_ANIMATING PUSHBUTTONSTATES = 6
+)
+
+// enum
+type RADIOBUTTONSTATES int32
+
+const (
+	RBS_UNCHECKEDNORMAL   RADIOBUTTONSTATES = 1
+	RBS_UNCHECKEDHOT      RADIOBUTTONSTATES = 2
+	RBS_UNCHECKEDPRESSED  RADIOBUTTONSTATES = 3
+	RBS_UNCHECKEDDISABLED RADIOBUTTONSTATES = 4
+	RBS_CHECKEDNORMAL     RADIOBUTTONSTATES = 5
+	RBS_CHECKEDHOT        RADIOBUTTONSTATES = 6
+	RBS_CHECKEDPRESSED    RADIOBUTTONSTATES = 7
+	RBS_CHECKEDDISABLED   RADIOBUTTONSTATES = 8
+)
+
+// enum
+type CHECKBOXSTATES int32
+
+const (
+	CBS_UNCHECKEDNORMAL   CHECKBOXSTATES = 1
+	CBS_UNCHECKEDHOT      CHECKBOXSTATES = 2
+	CBS_UNCHECKEDPRESSED  CHECKBOXSTATES = 3
+	CBS_UNCHECKEDDISABLED CHECKBOXSTATES = 4
+	CBS_CHECKEDNORMAL     CHECKBOXSTATES = 5
+	CBS_CHECKEDHOT        CHECKBOXSTATES = 6
+	CBS_CHECKEDPRESSED    CHECKBOXSTATES = 7
+	CBS_CHECKEDDISABLED   CHECKBOXSTATES = 8
+	CBS_MIXEDNORMAL       CHECKBOXSTATES = 9
+	CBS_MIXEDHOT          CHECKBOXSTATES = 10
+	CBS_MIXEDPRESSED      CHECKBOXSTATES = 11
+	CBS_MIXEDDISABLED     CHECKBOXSTATES = 12
+	CBS_IMPLICITNORMAL    CHECKBOXSTATES = 13
+	CBS_IMPLICITHOT       CHECKBOXSTATES = 14
+	CBS_IMPLICITPRESSED   CHECKBOXSTATES = 15
+	CBS_IMPLICITDISABLED  CHECKBOXSTATES = 16
+	CBS_EXCLUDEDNORMAL    CHECKBOXSTATES = 17
+	CBS_EXCLUDEDHOT       CHECKBOXSTATES = 18
+	CBS_EXCLUDEDPRESSED   CHECKBOXSTATES = 19
+	CBS_EXCLUDEDDISABLED  CHECKBOXSTATES = 20
+)
+
+// enum
+type GROUPBOXSTATES int32
+
+const (
+	GBS_NORMAL   GROUPBOXSTATES = 1
+	GBS_DISABLED GROUPBOXSTATES = 2
+)
+
+// enum
+type COMMANDLINKSTATES int32
+
+const (
+	CMDLS_NORMAL              COMMANDLINKSTATES = 1
+	CMDLS_HOT                 COMMANDLINKSTATES = 2
+	CMDLS_PRESSED             COMMANDLINKSTATES = 3
+	CMDLS_DISABLED            COMMANDLINKSTATES = 4
+	CMDLS_DEFAULTED           COMMANDLINKSTATES = 5
+	CMDLS_DEFAULTED_ANIMATING COMMANDLINKSTATES = 6
+)
+
+// enum
+type COMMANDLINKGLYPHSTATES int32
+
+const (
+	CMDLGS_NORMAL    COMMANDLINKGLYPHSTATES = 1
+	CMDLGS_HOT       COMMANDLINKGLYPHSTATES = 2
+	CMDLGS_PRESSED   COMMANDLINKGLYPHSTATES = 3
+	CMDLGS_DISABLED  COMMANDLINKGLYPHSTATES = 4
+	CMDLGS_DEFAULTED COMMANDLINKGLYPHSTATES = 5
+)
+
+// enum
+type PUSHBUTTONDROPDOWNSTATES int32
+
+const (
+	PBDDS_NORMAL   PUSHBUTTONDROPDOWNSTATES = 1
+	PBDDS_DISABLED PUSHBUTTONDROPDOWNSTATES = 2
+)
+
+// enum
+type COMBOBOXPARTS int32
+
+const (
+	CP_DROPDOWNBUTTON        COMBOBOXPARTS = 1
+	CP_BACKGROUND            COMBOBOXPARTS = 2
+	CP_TRANSPARENTBACKGROUND COMBOBOXPARTS = 3
+	CP_BORDER                COMBOBOXPARTS = 4
+	CP_READONLY              COMBOBOXPARTS = 5
+	CP_DROPDOWNBUTTONRIGHT   COMBOBOXPARTS = 6
+	CP_DROPDOWNBUTTONLEFT    COMBOBOXPARTS = 7
+	CP_CUEBANNER             COMBOBOXPARTS = 8
+	CP_DROPDOWNITEM          COMBOBOXPARTS = 9
+)
+
+// enum
+type COMBOBOXSTYLESTATES int32
+
+const (
+	CBXS_NORMAL   COMBOBOXSTYLESTATES = 1
+	CBXS_HOT      COMBOBOXSTYLESTATES = 2
+	CBXS_PRESSED  COMBOBOXSTYLESTATES = 3
+	CBXS_DISABLED COMBOBOXSTYLESTATES = 4
+)
+
+// enum
+type DROPDOWNBUTTONRIGHTSTATES int32
+
+const (
+	CBXSR_NORMAL   DROPDOWNBUTTONRIGHTSTATES = 1
+	CBXSR_HOT      DROPDOWNBUTTONRIGHTSTATES = 2
+	CBXSR_PRESSED  DROPDOWNBUTTONRIGHTSTATES = 3
+	CBXSR_DISABLED DROPDOWNBUTTONRIGHTSTATES = 4
+)
+
+// enum
+type DROPDOWNBUTTONLEFTSTATES int32
+
+const (
+	CBXSL_NORMAL   DROPDOWNBUTTONLEFTSTATES = 1
+	CBXSL_HOT      DROPDOWNBUTTONLEFTSTATES = 2
+	CBXSL_PRESSED  DROPDOWNBUTTONLEFTSTATES = 3
+	CBXSL_DISABLED DROPDOWNBUTTONLEFTSTATES = 4
+)
+
+// enum
+type TRANSPARENTBACKGROUNDSTATES int32
+
+const (
+	CBTBS_NORMAL   TRANSPARENTBACKGROUNDSTATES = 1
+	CBTBS_HOT      TRANSPARENTBACKGROUNDSTATES = 2
+	CBTBS_DISABLED TRANSPARENTBACKGROUNDSTATES = 3
+	CBTBS_FOCUSED  TRANSPARENTBACKGROUNDSTATES = 4
+)
+
+// enum
+type BORDERSTATES int32
+
+const (
+	CBB_NORMAL   BORDERSTATES = 1
+	CBB_HOT      BORDERSTATES = 2
+	CBB_FOCUSED  BORDERSTATES = 3
+	CBB_DISABLED BORDERSTATES = 4
+)
+
+// enum
+type READONLYSTATES int32
+
+const (
+	CBRO_NORMAL   READONLYSTATES = 1
+	CBRO_HOT      READONLYSTATES = 2
+	CBRO_PRESSED  READONLYSTATES = 3
+	CBRO_DISABLED READONLYSTATES = 4
+)
+
+// enum
+type CUEBANNERSTATES int32
+
+const (
+	CBCB_NORMAL   CUEBANNERSTATES = 1
+	CBCB_HOT      CUEBANNERSTATES = 2
+	CBCB_PRESSED  CUEBANNERSTATES = 3
+	CBCB_DISABLED CUEBANNERSTATES = 4
+)
+
+// enum
+type DROPDOWNITEMSTATES int32
+
+const (
+	CBDI_NORMAL      DROPDOWNITEMSTATES = 1
+	CBDI_HIGHLIGHTED DROPDOWNITEMSTATES = 2
+)
+
+// enum
+type COMMUNICATIONSPARTS int32
+
+const (
+	CSST_TAB COMMUNICATIONSPARTS = 1
+)
+
+// enum
+type TABSTATES int32
+
+const (
+	CSTB_NORMAL   TABSTATES = 1
+	CSTB_HOT      TABSTATES = 2
+	CSTB_SELECTED TABSTATES = 3
+)
+
+// enum
+type CONTROLPANELPARTS int32
+
+const (
+	CPANEL_NAVIGATIONPANE      CONTROLPANELPARTS = 1
+	CPANEL_CONTENTPANE         CONTROLPANELPARTS = 2
+	CPANEL_NAVIGATIONPANELABEL CONTROLPANELPARTS = 3
+	CPANEL_CONTENTPANELABEL    CONTROLPANELPARTS = 4
+	CPANEL_TITLE               CONTROLPANELPARTS = 5
+	CPANEL_BODYTEXT            CONTROLPANELPARTS = 6
+	CPANEL_HELPLINK            CONTROLPANELPARTS = 7
+	CPANEL_TASKLINK            CONTROLPANELPARTS = 8
+	CPANEL_GROUPTEXT           CONTROLPANELPARTS = 9
+	CPANEL_CONTENTLINK         CONTROLPANELPARTS = 10
+	CPANEL_SECTIONTITLELINK    CONTROLPANELPARTS = 11
+	CPANEL_LARGECOMMANDAREA    CONTROLPANELPARTS = 12
+	CPANEL_SMALLCOMMANDAREA    CONTROLPANELPARTS = 13
+	CPANEL_BUTTON              CONTROLPANELPARTS = 14
+	CPANEL_MESSAGETEXT         CONTROLPANELPARTS = 15
+	CPANEL_NAVIGATIONPANELINE  CONTROLPANELPARTS = 16
+	CPANEL_CONTENTPANELINE     CONTROLPANELPARTS = 17
+	CPANEL_BANNERAREA          CONTROLPANELPARTS = 18
+	CPANEL_BODYTITLE           CONTROLPANELPARTS = 19
+)
+
+// enum
+type HELPLINKSTATES int32
+
+const (
+	CPHL_NORMAL   HELPLINKSTATES = 1
+	CPHL_HOT      HELPLINKSTATES = 2
+	CPHL_PRESSED  HELPLINKSTATES = 3
+	CPHL_DISABLED HELPLINKSTATES = 4
+)
+
+// enum
+type TASKLINKSTATES int32
+
+const (
+	CPTL_NORMAL   TASKLINKSTATES = 1
+	CPTL_HOT      TASKLINKSTATES = 2
+	CPTL_PRESSED  TASKLINKSTATES = 3
+	CPTL_DISABLED TASKLINKSTATES = 4
+	CPTL_PAGE     TASKLINKSTATES = 5
+)
+
+// enum
+type CONTENTLINKSTATES int32
+
+const (
+	CPCL_NORMAL   CONTENTLINKSTATES = 1
+	CPCL_HOT      CONTENTLINKSTATES = 2
+	CPCL_PRESSED  CONTENTLINKSTATES = 3
+	CPCL_DISABLED CONTENTLINKSTATES = 4
+)
+
+// enum
+type SECTIONTITLELINKSTATES int32
+
+const (
+	CPSTL_NORMAL SECTIONTITLELINKSTATES = 1
+	CPSTL_HOT    SECTIONTITLELINKSTATES = 2
+)
+
+// enum
+type DATEPICKERPARTS int32
+
+const (
+	DP_DATETEXT                DATEPICKERPARTS = 1
+	DP_DATEBORDER              DATEPICKERPARTS = 2
+	DP_SHOWCALENDARBUTTONRIGHT DATEPICKERPARTS = 3
+)
+
+// enum
+type DATETEXTSTATES int32
+
+const (
+	DPDT_NORMAL   DATETEXTSTATES = 1
+	DPDT_DISABLED DATETEXTSTATES = 2
+	DPDT_SELECTED DATETEXTSTATES = 3
+)
+
+// enum
+type DATEBORDERSTATES int32
+
+const (
+	DPDB_NORMAL   DATEBORDERSTATES = 1
+	DPDB_HOT      DATEBORDERSTATES = 2
+	DPDB_FOCUSED  DATEBORDERSTATES = 3
+	DPDB_DISABLED DATEBORDERSTATES = 4
+)
+
+// enum
+type SHOWCALENDARBUTTONRIGHTSTATES int32
+
+const (
+	DPSCBR_NORMAL   SHOWCALENDARBUTTONRIGHTSTATES = 1
+	DPSCBR_HOT      SHOWCALENDARBUTTONRIGHTSTATES = 2
+	DPSCBR_PRESSED  SHOWCALENDARBUTTONRIGHTSTATES = 3
+	DPSCBR_DISABLED SHOWCALENDARBUTTONRIGHTSTATES = 4
+)
+
+// enum
+type DRAGDROPPARTS int32
+
+const (
+	DD_COPY           DRAGDROPPARTS = 1
+	DD_MOVE           DRAGDROPPARTS = 2
+	DD_UPDATEMETADATA DRAGDROPPARTS = 3
+	DD_CREATELINK     DRAGDROPPARTS = 4
+	DD_WARNING        DRAGDROPPARTS = 5
+	DD_NONE           DRAGDROPPARTS = 6
+	DD_IMAGEBG        DRAGDROPPARTS = 7
+	DD_TEXTBG         DRAGDROPPARTS = 8
+)
+
+// enum
+type COPYSTATES int32
+
+const (
+	DDCOPY_HIGHLIGHT   COPYSTATES = 1
+	DDCOPY_NOHIGHLIGHT COPYSTATES = 2
+)
+
+// enum
+type MOVESTATES int32
+
+const (
+	DDMOVE_HIGHLIGHT   MOVESTATES = 1
+	DDMOVE_NOHIGHLIGHT MOVESTATES = 2
+)
+
+// enum
+type UPDATEMETADATASTATES int32
+
+const (
+	DDUPDATEMETADATA_HIGHLIGHT   UPDATEMETADATASTATES = 1
+	DDUPDATEMETADATA_NOHIGHLIGHT UPDATEMETADATASTATES = 2
+)
+
+// enum
+type CREATELINKSTATES int32
+
+const (
+	DDCREATELINK_HIGHLIGHT   CREATELINKSTATES = 1
+	DDCREATELINK_NOHIGHLIGHT CREATELINKSTATES = 2
+)
+
+// enum
+type WARNINGSTATES int32
+
+const (
+	DDWARNING_HIGHLIGHT   WARNINGSTATES = 1
+	DDWARNING_NOHIGHLIGHT WARNINGSTATES = 2
+)
+
+// enum
+type NONESTATES int32
+
+const (
+	DDNONE_HIGHLIGHT   NONESTATES = 1
+	DDNONE_NOHIGHLIGHT NONESTATES = 2
+)
+
+// enum
+type EDITPARTS int32
+
+const (
+	EP_EDITTEXT             EDITPARTS = 1
+	EP_CARET                EDITPARTS = 2
+	EP_BACKGROUND           EDITPARTS = 3
+	EP_PASSWORD             EDITPARTS = 4
+	EP_BACKGROUNDWITHBORDER EDITPARTS = 5
+	EP_EDITBORDER_NOSCROLL  EDITPARTS = 6
+	EP_EDITBORDER_HSCROLL   EDITPARTS = 7
+	EP_EDITBORDER_VSCROLL   EDITPARTS = 8
+	EP_EDITBORDER_HVSCROLL  EDITPARTS = 9
+)
+
+// enum
+type EDITTEXTSTATES int32
+
+const (
+	ETS_NORMAL    EDITTEXTSTATES = 1
+	ETS_HOT       EDITTEXTSTATES = 2
+	ETS_SELECTED  EDITTEXTSTATES = 3
+	ETS_DISABLED  EDITTEXTSTATES = 4
+	ETS_FOCUSED   EDITTEXTSTATES = 5
+	ETS_READONLY  EDITTEXTSTATES = 6
+	ETS_ASSIST    EDITTEXTSTATES = 7
+	ETS_CUEBANNER EDITTEXTSTATES = 8
+)
+
+// enum
+type BACKGROUNDSTATES int32
+
+const (
+	EBS_NORMAL   BACKGROUNDSTATES = 1
+	EBS_HOT      BACKGROUNDSTATES = 2
+	EBS_DISABLED BACKGROUNDSTATES = 3
+	EBS_FOCUSED  BACKGROUNDSTATES = 4
+	EBS_READONLY BACKGROUNDSTATES = 5
+	EBS_ASSIST   BACKGROUNDSTATES = 6
+)
+
+// enum
+type BACKGROUNDWITHBORDERSTATES int32
+
+const (
+	EBWBS_NORMAL   BACKGROUNDWITHBORDERSTATES = 1
+	EBWBS_HOT      BACKGROUNDWITHBORDERSTATES = 2
+	EBWBS_DISABLED BACKGROUNDWITHBORDERSTATES = 3
+	EBWBS_FOCUSED  BACKGROUNDWITHBORDERSTATES = 4
+)
+
+// enum
+type EDITBORDER_NOSCROLLSTATES int32
+
+const (
+	EPSN_NORMAL   EDITBORDER_NOSCROLLSTATES = 1
+	EPSN_HOT      EDITBORDER_NOSCROLLSTATES = 2
+	EPSN_FOCUSED  EDITBORDER_NOSCROLLSTATES = 3
+	EPSN_DISABLED EDITBORDER_NOSCROLLSTATES = 4
+)
+
+// enum
+type EDITBORDER_HSCROLLSTATES int32
+
+const (
+	EPSH_NORMAL   EDITBORDER_HSCROLLSTATES = 1
+	EPSH_HOT      EDITBORDER_HSCROLLSTATES = 2
+	EPSH_FOCUSED  EDITBORDER_HSCROLLSTATES = 3
+	EPSH_DISABLED EDITBORDER_HSCROLLSTATES = 4
+)
+
+// enum
+type EDITBORDER_VSCROLLSTATES int32
+
+const (
+	EPSV_NORMAL   EDITBORDER_VSCROLLSTATES = 1
+	EPSV_HOT      EDITBORDER_VSCROLLSTATES = 2
+	EPSV_FOCUSED  EDITBORDER_VSCROLLSTATES = 3
+	EPSV_DISABLED EDITBORDER_VSCROLLSTATES = 4
+)
+
+// enum
+type EDITBORDER_HVSCROLLSTATES int32
+
+const (
+	EPSHV_NORMAL   EDITBORDER_HVSCROLLSTATES = 1
+	EPSHV_HOT      EDITBORDER_HVSCROLLSTATES = 2
+	EPSHV_FOCUSED  EDITBORDER_HVSCROLLSTATES = 3
+	EPSHV_DISABLED EDITBORDER_HVSCROLLSTATES = 4
+)
+
+// enum
+type EXPLORERBARPARTS int32
+
+const (
+	EBP_HEADERBACKGROUND       EXPLORERBARPARTS = 1
+	EBP_HEADERCLOSE            EXPLORERBARPARTS = 2
+	EBP_HEADERPIN              EXPLORERBARPARTS = 3
+	EBP_IEBARMENU              EXPLORERBARPARTS = 4
+	EBP_NORMALGROUPBACKGROUND  EXPLORERBARPARTS = 5
+	EBP_NORMALGROUPCOLLAPSE    EXPLORERBARPARTS = 6
+	EBP_NORMALGROUPEXPAND      EXPLORERBARPARTS = 7
+	EBP_NORMALGROUPHEAD        EXPLORERBARPARTS = 8
+	EBP_SPECIALGROUPBACKGROUND EXPLORERBARPARTS = 9
+	EBP_SPECIALGROUPCOLLAPSE   EXPLORERBARPARTS = 10
+	EBP_SPECIALGROUPEXPAND     EXPLORERBARPARTS = 11
+	EBP_SPECIALGROUPHEAD       EXPLORERBARPARTS = 12
+)
+
+// enum
+type HEADERCLOSESTATES int32
+
+const (
+	EBHC_NORMAL  HEADERCLOSESTATES = 1
+	EBHC_HOT     HEADERCLOSESTATES = 2
+	EBHC_PRESSED HEADERCLOSESTATES = 3
+)
+
+// enum
+type HEADERPINSTATES int32
+
+const (
+	EBHP_NORMAL          HEADERPINSTATES = 1
+	EBHP_HOT             HEADERPINSTATES = 2
+	EBHP_PRESSED         HEADERPINSTATES = 3
+	EBHP_SELECTEDNORMAL  HEADERPINSTATES = 4
+	EBHP_SELECTEDHOT     HEADERPINSTATES = 5
+	EBHP_SELECTEDPRESSED HEADERPINSTATES = 6
+)
+
+// enum
+type IEBARMENUSTATES int32
+
+const (
+	EBM_NORMAL  IEBARMENUSTATES = 1
+	EBM_HOT     IEBARMENUSTATES = 2
+	EBM_PRESSED IEBARMENUSTATES = 3
+)
+
+// enum
+type NORMALGROUPCOLLAPSESTATES int32
+
+const (
+	EBNGC_NORMAL  NORMALGROUPCOLLAPSESTATES = 1
+	EBNGC_HOT     NORMALGROUPCOLLAPSESTATES = 2
+	EBNGC_PRESSED NORMALGROUPCOLLAPSESTATES = 3
+)
+
+// enum
+type NORMALGROUPEXPANDSTATES int32
+
+const (
+	EBNGE_NORMAL  NORMALGROUPEXPANDSTATES = 1
+	EBNGE_HOT     NORMALGROUPEXPANDSTATES = 2
+	EBNGE_PRESSED NORMALGROUPEXPANDSTATES = 3
+)
+
+// enum
+type SPECIALGROUPCOLLAPSESTATES int32
+
+const (
+	EBSGC_NORMAL  SPECIALGROUPCOLLAPSESTATES = 1
+	EBSGC_HOT     SPECIALGROUPCOLLAPSESTATES = 2
+	EBSGC_PRESSED SPECIALGROUPCOLLAPSESTATES = 3
+)
+
+// enum
+type SPECIALGROUPEXPANDSTATES int32
+
+const (
+	EBSGE_NORMAL  SPECIALGROUPEXPANDSTATES = 1
+	EBSGE_HOT     SPECIALGROUPEXPANDSTATES = 2
+	EBSGE_PRESSED SPECIALGROUPEXPANDSTATES = 3
+)
+
+// enum
+type FLYOUTPARTS int32
+
+const (
+	FLYOUT_HEADER     FLYOUTPARTS = 1
+	FLYOUT_BODY       FLYOUTPARTS = 2
+	FLYOUT_LABEL      FLYOUTPARTS = 3
+	FLYOUT_LINK       FLYOUTPARTS = 4
+	FLYOUT_DIVIDER    FLYOUTPARTS = 5
+	FLYOUT_WINDOW     FLYOUTPARTS = 6
+	FLYOUT_LINKAREA   FLYOUTPARTS = 7
+	FLYOUT_LINKHEADER FLYOUTPARTS = 8
+)
+
+// enum
+type LABELSTATES int32
+
+const (
+	FLS_NORMAL     LABELSTATES = 1
+	FLS_SELECTED   LABELSTATES = 2
+	FLS_EMPHASIZED LABELSTATES = 3
+	FLS_DISABLED   LABELSTATES = 4
+)
+
+// enum
+type LINKSTATES int32
+
+const (
+	FLYOUTLINK_NORMAL LINKSTATES = 1
+	FLYOUTLINK_HOVER  LINKSTATES = 2
+)
+
+// enum
+type BODYSTATES int32
+
+const (
+	FBS_NORMAL     BODYSTATES = 1
+	FBS_EMPHASIZED BODYSTATES = 2
+)
+
+// enum
+type LINKHEADERSTATES int32
+
+const (
+	FLH_NORMAL LINKHEADERSTATES = 1
+	FLH_HOVER  LINKHEADERSTATES = 2
+)
+
+// enum
+type HEADERPARTS int32
+
+const (
+	HP_HEADERITEM           HEADERPARTS = 1
+	HP_HEADERITEMLEFT       HEADERPARTS = 2
+	HP_HEADERITEMRIGHT      HEADERPARTS = 3
+	HP_HEADERSORTARROW      HEADERPARTS = 4
+	HP_HEADERDROPDOWN       HEADERPARTS = 5
+	HP_HEADERDROPDOWNFILTER HEADERPARTS = 6
+	HP_HEADEROVERFLOW       HEADERPARTS = 7
+)
+
+// enum
+type HEADERSTYLESTATES int32
+
+const (
+	HBG_DETAILS HEADERSTYLESTATES = 1
+	HBG_ICON    HEADERSTYLESTATES = 2
+)
+
+// enum
+type HEADERITEMSTATES int32
+
+const (
+	HIS_NORMAL            HEADERITEMSTATES = 1
+	HIS_HOT               HEADERITEMSTATES = 2
+	HIS_PRESSED           HEADERITEMSTATES = 3
+	HIS_SORTEDNORMAL      HEADERITEMSTATES = 4
+	HIS_SORTEDHOT         HEADERITEMSTATES = 5
+	HIS_SORTEDPRESSED     HEADERITEMSTATES = 6
+	HIS_ICONNORMAL        HEADERITEMSTATES = 7
+	HIS_ICONHOT           HEADERITEMSTATES = 8
+	HIS_ICONPRESSED       HEADERITEMSTATES = 9
+	HIS_ICONSORTEDNORMAL  HEADERITEMSTATES = 10
+	HIS_ICONSORTEDHOT     HEADERITEMSTATES = 11
+	HIS_ICONSORTEDPRESSED HEADERITEMSTATES = 12
+)
+
+// enum
+type HEADERITEMLEFTSTATES int32
+
+const (
+	HILS_NORMAL  HEADERITEMLEFTSTATES = 1
+	HILS_HOT     HEADERITEMLEFTSTATES = 2
+	HILS_PRESSED HEADERITEMLEFTSTATES = 3
+)
+
+// enum
+type HEADERITEMRIGHTSTATES int32
+
+const (
+	HIRS_NORMAL  HEADERITEMRIGHTSTATES = 1
+	HIRS_HOT     HEADERITEMRIGHTSTATES = 2
+	HIRS_PRESSED HEADERITEMRIGHTSTATES = 3
+)
+
+// enum
+type HEADERSORTARROWSTATES int32
+
+const (
+	HSAS_SORTEDUP   HEADERSORTARROWSTATES = 1
+	HSAS_SORTEDDOWN HEADERSORTARROWSTATES = 2
+)
+
+// enum
+type HEADERDROPDOWNSTATES int32
+
+const (
+	HDDS_NORMAL  HEADERDROPDOWNSTATES = 1
+	HDDS_SOFTHOT HEADERDROPDOWNSTATES = 2
+	HDDS_HOT     HEADERDROPDOWNSTATES = 3
+)
+
+// enum
+type HEADERDROPDOWNFILTERSTATES int32
+
+const (
+	HDDFS_NORMAL  HEADERDROPDOWNFILTERSTATES = 1
+	HDDFS_SOFTHOT HEADERDROPDOWNFILTERSTATES = 2
+	HDDFS_HOT     HEADERDROPDOWNFILTERSTATES = 3
+)
+
+// enum
+type HEADEROVERFLOWSTATES int32
+
+const (
+	HOFS_NORMAL HEADEROVERFLOWSTATES = 1
+	HOFS_HOT    HEADEROVERFLOWSTATES = 2
+)
+
+// enum
+type LISTBOXPARTS int32
+
+const (
+	LBCP_BORDER_HSCROLL  LISTBOXPARTS = 1
+	LBCP_BORDER_HVSCROLL LISTBOXPARTS = 2
+	LBCP_BORDER_NOSCROLL LISTBOXPARTS = 3
+	LBCP_BORDER_VSCROLL  LISTBOXPARTS = 4
+	LBCP_ITEM            LISTBOXPARTS = 5
+)
+
+// enum
+type BORDER_HSCROLLSTATES int32
+
+const (
+	LBPSH_NORMAL   BORDER_HSCROLLSTATES = 1
+	LBPSH_FOCUSED  BORDER_HSCROLLSTATES = 2
+	LBPSH_HOT      BORDER_HSCROLLSTATES = 3
+	LBPSH_DISABLED BORDER_HSCROLLSTATES = 4
+)
+
+// enum
+type BORDER_HVSCROLLSTATES int32
+
+const (
+	LBPSHV_NORMAL   BORDER_HVSCROLLSTATES = 1
+	LBPSHV_FOCUSED  BORDER_HVSCROLLSTATES = 2
+	LBPSHV_HOT      BORDER_HVSCROLLSTATES = 3
+	LBPSHV_DISABLED BORDER_HVSCROLLSTATES = 4
+)
+
+// enum
+type BORDER_NOSCROLLSTATES int32
+
+const (
+	LBPSN_NORMAL   BORDER_NOSCROLLSTATES = 1
+	LBPSN_FOCUSED  BORDER_NOSCROLLSTATES = 2
+	LBPSN_HOT      BORDER_NOSCROLLSTATES = 3
+	LBPSN_DISABLED BORDER_NOSCROLLSTATES = 4
+)
+
+// enum
+type BORDER_VSCROLLSTATES int32
+
+const (
+	LBPSV_NORMAL   BORDER_VSCROLLSTATES = 1
+	LBPSV_FOCUSED  BORDER_VSCROLLSTATES = 2
+	LBPSV_HOT      BORDER_VSCROLLSTATES = 3
+	LBPSV_DISABLED BORDER_VSCROLLSTATES = 4
+)
+
+// enum
+type ITEMSTATES int32
+
+const (
+	LBPSI_HOT              ITEMSTATES = 1
+	LBPSI_HOTSELECTED      ITEMSTATES = 2
+	LBPSI_SELECTED         ITEMSTATES = 3
+	LBPSI_SELECTEDNOTFOCUS ITEMSTATES = 4
+)
+
+// enum
+type LISTVIEWPARTS int32
+
+const (
+	LVP_LISTITEM         LISTVIEWPARTS = 1
+	LVP_LISTGROUP        LISTVIEWPARTS = 2
+	LVP_LISTDETAIL       LISTVIEWPARTS = 3
+	LVP_LISTSORTEDDETAIL LISTVIEWPARTS = 4
+	LVP_EMPTYTEXT        LISTVIEWPARTS = 5
+	LVP_GROUPHEADER      LISTVIEWPARTS = 6
+	LVP_GROUPHEADERLINE  LISTVIEWPARTS = 7
+	LVP_EXPANDBUTTON     LISTVIEWPARTS = 8
+	LVP_COLLAPSEBUTTON   LISTVIEWPARTS = 9
+	LVP_COLUMNDETAIL     LISTVIEWPARTS = 10
+)
+
+// enum
+type LISTITEMSTATES int32
+
+const (
+	LISS_NORMAL           LISTITEMSTATES = 1
+	LISS_HOT              LISTITEMSTATES = 2
+	LISS_SELECTED         LISTITEMSTATES = 3
+	LISS_DISABLED         LISTITEMSTATES = 4
+	LISS_SELECTEDNOTFOCUS LISTITEMSTATES = 5
+	LISS_HOTSELECTED      LISTITEMSTATES = 6
+)
+
+// enum
+type GROUPHEADERSTATES int32
+
+const (
+	LVGH_OPEN                       GROUPHEADERSTATES = 1
+	LVGH_OPENHOT                    GROUPHEADERSTATES = 2
+	LVGH_OPENSELECTED               GROUPHEADERSTATES = 3
+	LVGH_OPENSELECTEDHOT            GROUPHEADERSTATES = 4
+	LVGH_OPENSELECTEDNOTFOCUSED     GROUPHEADERSTATES = 5
+	LVGH_OPENSELECTEDNOTFOCUSEDHOT  GROUPHEADERSTATES = 6
+	LVGH_OPENMIXEDSELECTION         GROUPHEADERSTATES = 7
+	LVGH_OPENMIXEDSELECTIONHOT      GROUPHEADERSTATES = 8
+	LVGH_CLOSE                      GROUPHEADERSTATES = 9
+	LVGH_CLOSEHOT                   GROUPHEADERSTATES = 10
+	LVGH_CLOSESELECTED              GROUPHEADERSTATES = 11
+	LVGH_CLOSESELECTEDHOT           GROUPHEADERSTATES = 12
+	LVGH_CLOSESELECTEDNOTFOCUSED    GROUPHEADERSTATES = 13
+	LVGH_CLOSESELECTEDNOTFOCUSEDHOT GROUPHEADERSTATES = 14
+	LVGH_CLOSEMIXEDSELECTION        GROUPHEADERSTATES = 15
+	LVGH_CLOSEMIXEDSELECTIONHOT     GROUPHEADERSTATES = 16
+)
+
+// enum
+type GROUPHEADERLINESTATES int32
+
+const (
+	LVGHL_OPEN                       GROUPHEADERLINESTATES = 1
+	LVGHL_OPENHOT                    GROUPHEADERLINESTATES = 2
+	LVGHL_OPENSELECTED               GROUPHEADERLINESTATES = 3
+	LVGHL_OPENSELECTEDHOT            GROUPHEADERLINESTATES = 4
+	LVGHL_OPENSELECTEDNOTFOCUSED     GROUPHEADERLINESTATES = 5
+	LVGHL_OPENSELECTEDNOTFOCUSEDHOT  GROUPHEADERLINESTATES = 6
+	LVGHL_OPENMIXEDSELECTION         GROUPHEADERLINESTATES = 7
+	LVGHL_OPENMIXEDSELECTIONHOT      GROUPHEADERLINESTATES = 8
+	LVGHL_CLOSE                      GROUPHEADERLINESTATES = 9
+	LVGHL_CLOSEHOT                   GROUPHEADERLINESTATES = 10
+	LVGHL_CLOSESELECTED              GROUPHEADERLINESTATES = 11
+	LVGHL_CLOSESELECTEDHOT           GROUPHEADERLINESTATES = 12
+	LVGHL_CLOSESELECTEDNOTFOCUSED    GROUPHEADERLINESTATES = 13
+	LVGHL_CLOSESELECTEDNOTFOCUSEDHOT GROUPHEADERLINESTATES = 14
+	LVGHL_CLOSEMIXEDSELECTION        GROUPHEADERLINESTATES = 15
+	LVGHL_CLOSEMIXEDSELECTIONHOT     GROUPHEADERLINESTATES = 16
+)
+
+// enum
+type EXPANDBUTTONSTATES int32
+
+const (
+	LVEB_NORMAL EXPANDBUTTONSTATES = 1
+	LVEB_HOVER  EXPANDBUTTONSTATES = 2
+	LVEB_PUSHED EXPANDBUTTONSTATES = 3
+)
+
+// enum
+type COLLAPSEBUTTONSTATES int32
+
+const (
+	LVCB_NORMAL COLLAPSEBUTTONSTATES = 1
+	LVCB_HOVER  COLLAPSEBUTTONSTATES = 2
+	LVCB_PUSHED COLLAPSEBUTTONSTATES = 3
+)
+
+// enum
+type MENUPARTS int32
+
+const (
+	MENU_MENUITEM_TMSCHEMA        MENUPARTS = 1
+	MENU_MENUDROPDOWN_TMSCHEMA    MENUPARTS = 2
+	MENU_MENUBARITEM_TMSCHEMA     MENUPARTS = 3
+	MENU_MENUBARDROPDOWN_TMSCHEMA MENUPARTS = 4
+	MENU_CHEVRON_TMSCHEMA         MENUPARTS = 5
+	MENU_SEPARATOR_TMSCHEMA       MENUPARTS = 6
+	MENU_BARBACKGROUND            MENUPARTS = 7
+	MENU_BARITEM                  MENUPARTS = 8
+	MENU_POPUPBACKGROUND          MENUPARTS = 9
+	MENU_POPUPBORDERS             MENUPARTS = 10
+	MENU_POPUPCHECK               MENUPARTS = 11
+	MENU_POPUPCHECKBACKGROUND     MENUPARTS = 12
+	MENU_POPUPGUTTER              MENUPARTS = 13
+	MENU_POPUPITEM                MENUPARTS = 14
+	MENU_POPUPSEPARATOR           MENUPARTS = 15
+	MENU_POPUPSUBMENU             MENUPARTS = 16
+	MENU_SYSTEMCLOSE              MENUPARTS = 17
+	MENU_SYSTEMMAXIMIZE           MENUPARTS = 18
+	MENU_SYSTEMMINIMIZE           MENUPARTS = 19
+	MENU_SYSTEMRESTORE            MENUPARTS = 20
+)
+
+// enum
+type BARBACKGROUNDSTATES int32
+
+const (
+	MB_ACTIVE   BARBACKGROUNDSTATES = 1
+	MB_INACTIVE BARBACKGROUNDSTATES = 2
+)
+
+// enum
+type BARITEMSTATES int32
+
+const (
+	MBI_NORMAL         BARITEMSTATES = 1
+	MBI_HOT            BARITEMSTATES = 2
+	MBI_PUSHED         BARITEMSTATES = 3
+	MBI_DISABLED       BARITEMSTATES = 4
+	MBI_DISABLEDHOT    BARITEMSTATES = 5
+	MBI_DISABLEDPUSHED BARITEMSTATES = 6
+)
+
+// enum
+type POPUPCHECKSTATES int32
+
+const (
+	MC_CHECKMARKNORMAL   POPUPCHECKSTATES = 1
+	MC_CHECKMARKDISABLED POPUPCHECKSTATES = 2
+	MC_BULLETNORMAL      POPUPCHECKSTATES = 3
+	MC_BULLETDISABLED    POPUPCHECKSTATES = 4
+)
+
+// enum
+type POPUPCHECKBACKGROUNDSTATES int32
+
+const (
+	MCB_DISABLED POPUPCHECKBACKGROUNDSTATES = 1
+	MCB_NORMAL   POPUPCHECKBACKGROUNDSTATES = 2
+	MCB_BITMAP   POPUPCHECKBACKGROUNDSTATES = 3
+)
+
+// enum
+type POPUPITEMSTATES int32
+
+const (
+	MPI_NORMAL      POPUPITEMSTATES = 1
+	MPI_HOT         POPUPITEMSTATES = 2
+	MPI_DISABLED    POPUPITEMSTATES = 3
+	MPI_DISABLEDHOT POPUPITEMSTATES = 4
+)
+
+// enum
+type POPUPSUBMENUSTATES int32
+
+const (
+	MSM_NORMAL   POPUPSUBMENUSTATES = 1
+	MSM_DISABLED POPUPSUBMENUSTATES = 2
+)
+
+// enum
+type SYSTEMCLOSESTATES int32
+
+const (
+	MSYSC_NORMAL   SYSTEMCLOSESTATES = 1
+	MSYSC_DISABLED SYSTEMCLOSESTATES = 2
+)
+
+// enum
+type SYSTEMMAXIMIZESTATES int32
+
+const (
+	MSYSMX_NORMAL   SYSTEMMAXIMIZESTATES = 1
+	MSYSMX_DISABLED SYSTEMMAXIMIZESTATES = 2
+)
+
+// enum
+type SYSTEMMINIMIZESTATES int32
+
+const (
+	MSYSMN_NORMAL   SYSTEMMINIMIZESTATES = 1
+	MSYSMN_DISABLED SYSTEMMINIMIZESTATES = 2
+)
+
+// enum
+type SYSTEMRESTORESTATES int32
+
+const (
+	MSYSR_NORMAL   SYSTEMRESTORESTATES = 1
+	MSYSR_DISABLED SYSTEMRESTORESTATES = 2
+)
+
+// enum
+type NAVIGATIONPARTS int32
+
+const (
+	NAV_BACKBUTTON    NAVIGATIONPARTS = 1
+	NAV_FORWARDBUTTON NAVIGATIONPARTS = 2
+	NAV_MENUBUTTON    NAVIGATIONPARTS = 3
+)
+
+// enum
+type NAV_BACKBUTTONSTATES int32
+
+const (
+	NAV_BB_NORMAL   NAV_BACKBUTTONSTATES = 1
+	NAV_BB_HOT      NAV_BACKBUTTONSTATES = 2
+	NAV_BB_PRESSED  NAV_BACKBUTTONSTATES = 3
+	NAV_BB_DISABLED NAV_BACKBUTTONSTATES = 4
+)
+
+// enum
+type NAV_FORWARDBUTTONSTATES int32
+
+const (
+	NAV_FB_NORMAL   NAV_FORWARDBUTTONSTATES = 1
+	NAV_FB_HOT      NAV_FORWARDBUTTONSTATES = 2
+	NAV_FB_PRESSED  NAV_FORWARDBUTTONSTATES = 3
+	NAV_FB_DISABLED NAV_FORWARDBUTTONSTATES = 4
+)
+
+// enum
+type NAV_MENUBUTTONSTATES int32
+
+const (
+	NAV_MB_NORMAL   NAV_MENUBUTTONSTATES = 1
+	NAV_MB_HOT      NAV_MENUBUTTONSTATES = 2
+	NAV_MB_PRESSED  NAV_MENUBUTTONSTATES = 3
+	NAV_MB_DISABLED NAV_MENUBUTTONSTATES = 4
+)
+
+// enum
+type PROGRESSPARTS int32
+
+const (
+	PP_BAR                PROGRESSPARTS = 1
+	PP_BARVERT            PROGRESSPARTS = 2
+	PP_CHUNK              PROGRESSPARTS = 3
+	PP_CHUNKVERT          PROGRESSPARTS = 4
+	PP_FILL               PROGRESSPARTS = 5
+	PP_FILLVERT           PROGRESSPARTS = 6
+	PP_PULSEOVERLAY       PROGRESSPARTS = 7
+	PP_MOVEOVERLAY        PROGRESSPARTS = 8
+	PP_PULSEOVERLAYVERT   PROGRESSPARTS = 9
+	PP_MOVEOVERLAYVERT    PROGRESSPARTS = 10
+	PP_TRANSPARENTBAR     PROGRESSPARTS = 11
+	PP_TRANSPARENTBARVERT PROGRESSPARTS = 12
+)
+
+// enum
+type TRANSPARENTBARSTATES int32
+
+const (
+	PBBS_NORMAL  TRANSPARENTBARSTATES = 1
+	PBBS_PARTIAL TRANSPARENTBARSTATES = 2
+)
+
+// enum
+type TRANSPARENTBARVERTSTATES int32
+
+const (
+	PBBVS_NORMAL  TRANSPARENTBARVERTSTATES = 1
+	PBBVS_PARTIAL TRANSPARENTBARVERTSTATES = 2
+)
+
+// enum
+type FILLSTATES int32
+
+const (
+	PBFS_NORMAL  FILLSTATES = 1
+	PBFS_ERROR   FILLSTATES = 2
+	PBFS_PAUSED  FILLSTATES = 3
+	PBFS_PARTIAL FILLSTATES = 4
+)
+
+// enum
+type FILLVERTSTATES int32
+
+const (
+	PBFVS_NORMAL  FILLVERTSTATES = 1
+	PBFVS_ERROR   FILLVERTSTATES = 2
+	PBFVS_PAUSED  FILLVERTSTATES = 3
+	PBFVS_PARTIAL FILLVERTSTATES = 4
+)
+
+// enum
+type REBARPARTS int32
+
+const (
+	RP_GRIPPER      REBARPARTS = 1
+	RP_GRIPPERVERT  REBARPARTS = 2
+	RP_BAND         REBARPARTS = 3
+	RP_CHEVRON      REBARPARTS = 4
+	RP_CHEVRONVERT  REBARPARTS = 5
+	RP_BACKGROUND   REBARPARTS = 6
+	RP_SPLITTER     REBARPARTS = 7
+	RP_SPLITTERVERT REBARPARTS = 8
+)
+
+// enum
+type CHEVRONSTATES int32
+
+const (
+	CHEVS_NORMAL  CHEVRONSTATES = 1
+	CHEVS_HOT     CHEVRONSTATES = 2
+	CHEVS_PRESSED CHEVRONSTATES = 3
+)
+
+// enum
+type CHEVRONVERTSTATES int32
+
+const (
+	CHEVSV_NORMAL  CHEVRONVERTSTATES = 1
+	CHEVSV_HOT     CHEVRONVERTSTATES = 2
+	CHEVSV_PRESSED CHEVRONVERTSTATES = 3
+)
+
+// enum
+type SPLITTERSTATES int32
+
+const (
+	SPLITS_NORMAL  SPLITTERSTATES = 1
+	SPLITS_HOT     SPLITTERSTATES = 2
+	SPLITS_PRESSED SPLITTERSTATES = 3
+)
+
+// enum
+type SPLITTERVERTSTATES int32
+
+const (
+	SPLITSV_NORMAL  SPLITTERVERTSTATES = 1
+	SPLITSV_HOT     SPLITTERVERTSTATES = 2
+	SPLITSV_PRESSED SPLITTERVERTSTATES = 3
+)
+
+// enum
+type SCROLLBARPARTS int32
+
+const (
+	SBP_ARROWBTN       SCROLLBARPARTS = 1
+	SBP_THUMBBTNHORZ   SCROLLBARPARTS = 2
+	SBP_THUMBBTNVERT   SCROLLBARPARTS = 3
+	SBP_LOWERTRACKHORZ SCROLLBARPARTS = 4
+	SBP_UPPERTRACKHORZ SCROLLBARPARTS = 5
+	SBP_LOWERTRACKVERT SCROLLBARPARTS = 6
+	SBP_UPPERTRACKVERT SCROLLBARPARTS = 7
+	SBP_GRIPPERHORZ    SCROLLBARPARTS = 8
+	SBP_GRIPPERVERT    SCROLLBARPARTS = 9
+	SBP_SIZEBOX        SCROLLBARPARTS = 10
+	SBP_SIZEBOXBKGND   SCROLLBARPARTS = 11
+)
+
+// enum
+type ARROWBTNSTATES int32
+
+const (
+	ABS_UPNORMAL      ARROWBTNSTATES = 1
+	ABS_UPHOT         ARROWBTNSTATES = 2
+	ABS_UPPRESSED     ARROWBTNSTATES = 3
+	ABS_UPDISABLED    ARROWBTNSTATES = 4
+	ABS_DOWNNORMAL    ARROWBTNSTATES = 5
+	ABS_DOWNHOT       ARROWBTNSTATES = 6
+	ABS_DOWNPRESSED   ARROWBTNSTATES = 7
+	ABS_DOWNDISABLED  ARROWBTNSTATES = 8
+	ABS_LEFTNORMAL    ARROWBTNSTATES = 9
+	ABS_LEFTHOT       ARROWBTNSTATES = 10
+	ABS_LEFTPRESSED   ARROWBTNSTATES = 11
+	ABS_LEFTDISABLED  ARROWBTNSTATES = 12
+	ABS_RIGHTNORMAL   ARROWBTNSTATES = 13
+	ABS_RIGHTHOT      ARROWBTNSTATES = 14
+	ABS_RIGHTPRESSED  ARROWBTNSTATES = 15
+	ABS_RIGHTDISABLED ARROWBTNSTATES = 16
+	ABS_UPHOVER       ARROWBTNSTATES = 17
+	ABS_DOWNHOVER     ARROWBTNSTATES = 18
+	ABS_LEFTHOVER     ARROWBTNSTATES = 19
+	ABS_RIGHTHOVER    ARROWBTNSTATES = 20
+)
+
+// enum
+type SCROLLBARSTYLESTATES int32
+
+const (
+	SCRBS_NORMAL   SCROLLBARSTYLESTATES = 1
+	SCRBS_HOT      SCROLLBARSTYLESTATES = 2
+	SCRBS_PRESSED  SCROLLBARSTYLESTATES = 3
+	SCRBS_DISABLED SCROLLBARSTYLESTATES = 4
+	SCRBS_HOVER    SCROLLBARSTYLESTATES = 5
+)
+
+// enum
+type SIZEBOXSTATES int32
+
+const (
+	SZB_RIGHTALIGN           SIZEBOXSTATES = 1
+	SZB_LEFTALIGN            SIZEBOXSTATES = 2
+	SZB_TOPRIGHTALIGN        SIZEBOXSTATES = 3
+	SZB_TOPLEFTALIGN         SIZEBOXSTATES = 4
+	SZB_HALFBOTTOMRIGHTALIGN SIZEBOXSTATES = 5
+	SZB_HALFBOTTOMLEFTALIGN  SIZEBOXSTATES = 6
+	SZB_HALFTOPRIGHTALIGN    SIZEBOXSTATES = 7
+	SZB_HALFTOPLEFTALIGN     SIZEBOXSTATES = 8
+)
+
+// enum
+type SPINPARTS int32
+
+const (
+	SPNP_UP       SPINPARTS = 1
+	SPNP_DOWN     SPINPARTS = 2
+	SPNP_UPHORZ   SPINPARTS = 3
+	SPNP_DOWNHORZ SPINPARTS = 4
+)
+
+// enum
+type UPSTATES int32
+
+const (
+	UPS_NORMAL   UPSTATES = 1
+	UPS_HOT      UPSTATES = 2
+	UPS_PRESSED  UPSTATES = 3
+	UPS_DISABLED UPSTATES = 4
+)
+
+// enum
+type DOWNSTATES int32
+
+const (
+	DNS_NORMAL   DOWNSTATES = 1
+	DNS_HOT      DOWNSTATES = 2
+	DNS_PRESSED  DOWNSTATES = 3
+	DNS_DISABLED DOWNSTATES = 4
+)
+
+// enum
+type UPHORZSTATES int32
+
+const (
+	UPHZS_NORMAL   UPHORZSTATES = 1
+	UPHZS_HOT      UPHORZSTATES = 2
+	UPHZS_PRESSED  UPHORZSTATES = 3
+	UPHZS_DISABLED UPHORZSTATES = 4
+)
+
+// enum
+type DOWNHORZSTATES int32
+
+const (
+	DNHZS_NORMAL   DOWNHORZSTATES = 1
+	DNHZS_HOT      DOWNHORZSTATES = 2
+	DNHZS_PRESSED  DOWNHORZSTATES = 3
+	DNHZS_DISABLED DOWNHORZSTATES = 4
+)
+
+// enum
+type STATUSPARTS int32
+
+const (
+	SP_PANE        STATUSPARTS = 1
+	SP_GRIPPERPANE STATUSPARTS = 2
+	SP_GRIPPER     STATUSPARTS = 3
+)
+
+// enum
+type TABPARTS int32
+
+const (
+	TABP_TABITEM             TABPARTS = 1
+	TABP_TABITEMLEFTEDGE     TABPARTS = 2
+	TABP_TABITEMRIGHTEDGE    TABPARTS = 3
+	TABP_TABITEMBOTHEDGE     TABPARTS = 4
+	TABP_TOPTABITEM          TABPARTS = 5
+	TABP_TOPTABITEMLEFTEDGE  TABPARTS = 6
+	TABP_TOPTABITEMRIGHTEDGE TABPARTS = 7
+	TABP_TOPTABITEMBOTHEDGE  TABPARTS = 8
+	TABP_PANE                TABPARTS = 9
+	TABP_BODY                TABPARTS = 10
+	TABP_AEROWIZARDBODY      TABPARTS = 11
+)
+
+// enum
+type TABITEMSTATES int32
+
+const (
+	TIS_NORMAL   TABITEMSTATES = 1
+	TIS_HOT      TABITEMSTATES = 2
+	TIS_SELECTED TABITEMSTATES = 3
+	TIS_DISABLED TABITEMSTATES = 4
+	TIS_FOCUSED  TABITEMSTATES = 5
+)
+
+// enum
+type TABITEMLEFTEDGESTATES int32
+
+const (
+	TILES_NORMAL   TABITEMLEFTEDGESTATES = 1
+	TILES_HOT      TABITEMLEFTEDGESTATES = 2
+	TILES_SELECTED TABITEMLEFTEDGESTATES = 3
+	TILES_DISABLED TABITEMLEFTEDGESTATES = 4
+	TILES_FOCUSED  TABITEMLEFTEDGESTATES = 5
+)
+
+// enum
+type TABITEMRIGHTEDGESTATES int32
+
+const (
+	TIRES_NORMAL   TABITEMRIGHTEDGESTATES = 1
+	TIRES_HOT      TABITEMRIGHTEDGESTATES = 2
+	TIRES_SELECTED TABITEMRIGHTEDGESTATES = 3
+	TIRES_DISABLED TABITEMRIGHTEDGESTATES = 4
+	TIRES_FOCUSED  TABITEMRIGHTEDGESTATES = 5
+)
+
+// enum
+type TABITEMBOTHEDGESTATES int32
+
+const (
+	TIBES_NORMAL   TABITEMBOTHEDGESTATES = 1
+	TIBES_HOT      TABITEMBOTHEDGESTATES = 2
+	TIBES_SELECTED TABITEMBOTHEDGESTATES = 3
+	TIBES_DISABLED TABITEMBOTHEDGESTATES = 4
+	TIBES_FOCUSED  TABITEMBOTHEDGESTATES = 5
+)
+
+// enum
+type TOPTABITEMSTATES int32
+
+const (
+	TTIS_NORMAL   TOPTABITEMSTATES = 1
+	TTIS_HOT      TOPTABITEMSTATES = 2
+	TTIS_SELECTED TOPTABITEMSTATES = 3
+	TTIS_DISABLED TOPTABITEMSTATES = 4
+	TTIS_FOCUSED  TOPTABITEMSTATES = 5
+)
+
+// enum
+type TOPTABITEMLEFTEDGESTATES int32
+
+const (
+	TTILES_NORMAL   TOPTABITEMLEFTEDGESTATES = 1
+	TTILES_HOT      TOPTABITEMLEFTEDGESTATES = 2
+	TTILES_SELECTED TOPTABITEMLEFTEDGESTATES = 3
+	TTILES_DISABLED TOPTABITEMLEFTEDGESTATES = 4
+	TTILES_FOCUSED  TOPTABITEMLEFTEDGESTATES = 5
+)
+
+// enum
+type TOPTABITEMRIGHTEDGESTATES int32
+
+const (
+	TTIRES_NORMAL   TOPTABITEMRIGHTEDGESTATES = 1
+	TTIRES_HOT      TOPTABITEMRIGHTEDGESTATES = 2
+	TTIRES_SELECTED TOPTABITEMRIGHTEDGESTATES = 3
+	TTIRES_DISABLED TOPTABITEMRIGHTEDGESTATES = 4
+	TTIRES_FOCUSED  TOPTABITEMRIGHTEDGESTATES = 5
+)
+
+// enum
+type TOPTABITEMBOTHEDGESTATES int32
+
+const (
+	TTIBES_NORMAL   TOPTABITEMBOTHEDGESTATES = 1
+	TTIBES_HOT      TOPTABITEMBOTHEDGESTATES = 2
+	TTIBES_SELECTED TOPTABITEMBOTHEDGESTATES = 3
+	TTIBES_DISABLED TOPTABITEMBOTHEDGESTATES = 4
+	TTIBES_FOCUSED  TOPTABITEMBOTHEDGESTATES = 5
+)
+
+// enum
+type TASKDIALOGPARTS int32
+
+const (
+	TDLG_PRIMARYPANEL        TASKDIALOGPARTS = 1
+	TDLG_MAININSTRUCTIONPANE TASKDIALOGPARTS = 2
+	TDLG_MAINICON            TASKDIALOGPARTS = 3
+	TDLG_CONTENTPANE         TASKDIALOGPARTS = 4
+	TDLG_CONTENTICON         TASKDIALOGPARTS = 5
+	TDLG_EXPANDEDCONTENT     TASKDIALOGPARTS = 6
+	TDLG_COMMANDLINKPANE     TASKDIALOGPARTS = 7
+	TDLG_SECONDARYPANEL      TASKDIALOGPARTS = 8
+	TDLG_CONTROLPANE         TASKDIALOGPARTS = 9
+	TDLG_BUTTONSECTION       TASKDIALOGPARTS = 10
+	TDLG_BUTTONWRAPPER       TASKDIALOGPARTS = 11
+	TDLG_EXPANDOTEXT         TASKDIALOGPARTS = 12
+	TDLG_EXPANDOBUTTON       TASKDIALOGPARTS = 13
+	TDLG_VERIFICATIONTEXT    TASKDIALOGPARTS = 14
+	TDLG_FOOTNOTEPANE        TASKDIALOGPARTS = 15
+	TDLG_FOOTNOTEAREA        TASKDIALOGPARTS = 16
+	TDLG_FOOTNOTESEPARATOR   TASKDIALOGPARTS = 17
+	TDLG_EXPANDEDFOOTERAREA  TASKDIALOGPARTS = 18
+	TDLG_PROGRESSBAR         TASKDIALOGPARTS = 19
+	TDLG_IMAGEALIGNMENT      TASKDIALOGPARTS = 20
+	TDLG_RADIOBUTTONPANE     TASKDIALOGPARTS = 21
+)
+
+// enum
+type CONTENTPANESTATES int32
+
+const (
+	TDLGCPS_STANDALONE CONTENTPANESTATES = 1
+)
+
+// enum
+type EXPANDOBUTTONSTATES int32
+
+const (
+	TDLGEBS_NORMAL           EXPANDOBUTTONSTATES = 1
+	TDLGEBS_HOVER            EXPANDOBUTTONSTATES = 2
+	TDLGEBS_PRESSED          EXPANDOBUTTONSTATES = 3
+	TDLGEBS_EXPANDEDNORMAL   EXPANDOBUTTONSTATES = 4
+	TDLGEBS_EXPANDEDHOVER    EXPANDOBUTTONSTATES = 5
+	TDLGEBS_EXPANDEDPRESSED  EXPANDOBUTTONSTATES = 6
+	TDLGEBS_NORMALDISABLED   EXPANDOBUTTONSTATES = 7
+	TDLGEBS_EXPANDEDDISABLED EXPANDOBUTTONSTATES = 8
+)
+
+// enum
+type TEXTSTYLEPARTS int32
+
+const (
+	TEXT_MAININSTRUCTION TEXTSTYLEPARTS = 1
+	TEXT_INSTRUCTION     TEXTSTYLEPARTS = 2
+	TEXT_BODYTITLE       TEXTSTYLEPARTS = 3
+	TEXT_BODYTEXT        TEXTSTYLEPARTS = 4
+	TEXT_SECONDARYTEXT   TEXTSTYLEPARTS = 5
+	TEXT_HYPERLINKTEXT   TEXTSTYLEPARTS = 6
+	TEXT_EXPANDED        TEXTSTYLEPARTS = 7
+	TEXT_LABEL           TEXTSTYLEPARTS = 8
+	TEXT_CONTROLLABEL    TEXTSTYLEPARTS = 9
+)
+
+// enum
+type HYPERLINKTEXTSTATES int32
+
+const (
+	TS_HYPERLINK_NORMAL   HYPERLINKTEXTSTATES = 1
+	TS_HYPERLINK_HOT      HYPERLINKTEXTSTATES = 2
+	TS_HYPERLINK_PRESSED  HYPERLINKTEXTSTATES = 3
+	TS_HYPERLINK_DISABLED HYPERLINKTEXTSTATES = 4
+)
+
+// enum
+type CONTROLLABELSTATES int32
+
+const (
+	TS_CONTROLLABEL_NORMAL   CONTROLLABELSTATES = 1
+	TS_CONTROLLABEL_DISABLED CONTROLLABELSTATES = 2
+)
+
+// enum
+type TOOLBARPARTS int32
+
+const (
+	TP_BUTTON              TOOLBARPARTS = 1
+	TP_DROPDOWNBUTTON      TOOLBARPARTS = 2
+	TP_SPLITBUTTON         TOOLBARPARTS = 3
+	TP_SPLITBUTTONDROPDOWN TOOLBARPARTS = 4
+	TP_SEPARATOR           TOOLBARPARTS = 5
+	TP_SEPARATORVERT       TOOLBARPARTS = 6
+	TP_DROPDOWNBUTTONGLYPH TOOLBARPARTS = 7
+)
+
+// enum
+type TOOLBARSTYLESTATES int32
+
+const (
+	TS_NORMAL       TOOLBARSTYLESTATES = 1
+	TS_HOT          TOOLBARSTYLESTATES = 2
+	TS_PRESSED      TOOLBARSTYLESTATES = 3
+	TS_DISABLED     TOOLBARSTYLESTATES = 4
+	TS_CHECKED      TOOLBARSTYLESTATES = 5
+	TS_HOTCHECKED   TOOLBARSTYLESTATES = 6
+	TS_NEARHOT      TOOLBARSTYLESTATES = 7
+	TS_OTHERSIDEHOT TOOLBARSTYLESTATES = 8
+)
+
+// enum
+type TOOLTIPPARTS int32
+
+const (
+	TTP_STANDARD      TOOLTIPPARTS = 1
+	TTP_STANDARDTITLE TOOLTIPPARTS = 2
+	TTP_BALLOON       TOOLTIPPARTS = 3
+	TTP_BALLOONTITLE  TOOLTIPPARTS = 4
+	TTP_CLOSE         TOOLTIPPARTS = 5
+	TTP_BALLOONSTEM   TOOLTIPPARTS = 6
+	TTP_WRENCH        TOOLTIPPARTS = 7
+)
+
+// enum
+type CLOSESTATES int32
+
+const (
+	TTCS_NORMAL  CLOSESTATES = 1
+	TTCS_HOT     CLOSESTATES = 2
+	TTCS_PRESSED CLOSESTATES = 3
+)
+
+// enum
+type STANDARDSTATES int32
+
+const (
+	TTSS_NORMAL STANDARDSTATES = 1
+	TTSS_LINK   STANDARDSTATES = 2
+)
+
+// enum
+type BALLOONSTATES int32
+
+const (
+	TTBS_NORMAL BALLOONSTATES = 1
+	TTBS_LINK   BALLOONSTATES = 2
+)
+
+// enum
+type BALLOONSTEMSTATES int32
+
+const (
+	TTBSS_POINTINGUPLEFTWALL    BALLOONSTEMSTATES = 1
+	TTBSS_POINTINGUPCENTERED    BALLOONSTEMSTATES = 2
+	TTBSS_POINTINGUPRIGHTWALL   BALLOONSTEMSTATES = 3
+	TTBSS_POINTINGDOWNRIGHTWALL BALLOONSTEMSTATES = 4
+	TTBSS_POINTINGDOWNCENTERED  BALLOONSTEMSTATES = 5
+	TTBSS_POINTINGDOWNLEFTWALL  BALLOONSTEMSTATES = 6
+)
+
+// enum
+type WRENCHSTATES int32
+
+const (
+	TTWS_NORMAL  WRENCHSTATES = 1
+	TTWS_HOT     WRENCHSTATES = 2
+	TTWS_PRESSED WRENCHSTATES = 3
+)
+
+// enum
+type TRACKBARPARTS int32
+
+const (
+	TKP_TRACK       TRACKBARPARTS = 1
+	TKP_TRACKVERT   TRACKBARPARTS = 2
+	TKP_THUMB       TRACKBARPARTS = 3
+	TKP_THUMBBOTTOM TRACKBARPARTS = 4
+	TKP_THUMBTOP    TRACKBARPARTS = 5
+	TKP_THUMBVERT   TRACKBARPARTS = 6
+	TKP_THUMBLEFT   TRACKBARPARTS = 7
+	TKP_THUMBRIGHT  TRACKBARPARTS = 8
+	TKP_TICS        TRACKBARPARTS = 9
+	TKP_TICSVERT    TRACKBARPARTS = 10
+)
+
+// enum
+type TRACKBARSTYLESTATES int32
+
+const (
+	TKS_NORMAL TRACKBARSTYLESTATES = 1
+)
+
+// enum
+type TRACKSTATES int32
+
+const (
+	TRS_NORMAL TRACKSTATES = 1
+)
+
+// enum
+type TRACKVERTSTATES int32
+
+const (
+	TRVS_NORMAL TRACKVERTSTATES = 1
+)
+
+// enum
+type THUMBSTATES int32
+
+const (
+	TUS_NORMAL   THUMBSTATES = 1
+	TUS_HOT      THUMBSTATES = 2
+	TUS_PRESSED  THUMBSTATES = 3
+	TUS_FOCUSED  THUMBSTATES = 4
+	TUS_DISABLED THUMBSTATES = 5
+)
+
+// enum
+type THUMBBOTTOMSTATES int32
+
+const (
+	TUBS_NORMAL   THUMBBOTTOMSTATES = 1
+	TUBS_HOT      THUMBBOTTOMSTATES = 2
+	TUBS_PRESSED  THUMBBOTTOMSTATES = 3
+	TUBS_FOCUSED  THUMBBOTTOMSTATES = 4
+	TUBS_DISABLED THUMBBOTTOMSTATES = 5
+)
+
+// enum
+type THUMBTOPSTATES int32
+
+const (
+	TUTS_NORMAL   THUMBTOPSTATES = 1
+	TUTS_HOT      THUMBTOPSTATES = 2
+	TUTS_PRESSED  THUMBTOPSTATES = 3
+	TUTS_FOCUSED  THUMBTOPSTATES = 4
+	TUTS_DISABLED THUMBTOPSTATES = 5
+)
+
+// enum
+type THUMBVERTSTATES int32
+
+const (
+	TUVS_NORMAL   THUMBVERTSTATES = 1
+	TUVS_HOT      THUMBVERTSTATES = 2
+	TUVS_PRESSED  THUMBVERTSTATES = 3
+	TUVS_FOCUSED  THUMBVERTSTATES = 4
+	TUVS_DISABLED THUMBVERTSTATES = 5
+)
+
+// enum
+type THUMBLEFTSTATES int32
+
+const (
+	TUVLS_NORMAL   THUMBLEFTSTATES = 1
+	TUVLS_HOT      THUMBLEFTSTATES = 2
+	TUVLS_PRESSED  THUMBLEFTSTATES = 3
+	TUVLS_FOCUSED  THUMBLEFTSTATES = 4
+	TUVLS_DISABLED THUMBLEFTSTATES = 5
+)
+
+// enum
+type THUMBRIGHTSTATES int32
+
+const (
+	TUVRS_NORMAL   THUMBRIGHTSTATES = 1
+	TUVRS_HOT      THUMBRIGHTSTATES = 2
+	TUVRS_PRESSED  THUMBRIGHTSTATES = 3
+	TUVRS_FOCUSED  THUMBRIGHTSTATES = 4
+	TUVRS_DISABLED THUMBRIGHTSTATES = 5
+)
+
+// enum
+type TICSSTATES int32
+
+const (
+	TSS_NORMAL TICSSTATES = 1
+)
+
+// enum
+type TICSVERTSTATES int32
+
+const (
+	TSVS_NORMAL TICSVERTSTATES = 1
+)
+
+// enum
+type TREEVIEWPARTS int32
+
+const (
+	TVP_TREEITEM TREEVIEWPARTS = 1
+	TVP_GLYPH    TREEVIEWPARTS = 2
+	TVP_BRANCH   TREEVIEWPARTS = 3
+	TVP_HOTGLYPH TREEVIEWPARTS = 4
+)
+
+// enum
+type TREEITEMSTATES int32
+
+const (
+	TREIS_NORMAL           TREEITEMSTATES = 1
+	TREIS_HOT              TREEITEMSTATES = 2
+	TREIS_SELECTED         TREEITEMSTATES = 3
+	TREIS_DISABLED         TREEITEMSTATES = 4
+	TREIS_SELECTEDNOTFOCUS TREEITEMSTATES = 5
+	TREIS_HOTSELECTED      TREEITEMSTATES = 6
+)
+
+// enum
+type GLYPHSTATES int32
+
+const (
+	GLPS_CLOSED GLYPHSTATES = 1
+	GLPS_OPENED GLYPHSTATES = 2
+)
+
+// enum
+type HOTGLYPHSTATES int32
+
+const (
+	HGLPS_CLOSED HOTGLYPHSTATES = 1
+	HGLPS_OPENED HOTGLYPHSTATES = 2
+)
+
+// enum
+type USERTILEPARTS int32
+
+const (
+	UTP_STROKEBACKGROUND USERTILEPARTS = 1
+	UTP_HOVERBACKGROUND  USERTILEPARTS = 2
+)
+
+// enum
+type HOVERBACKGROUNDSTATES int32
+
+const (
+	UTS_NORMAL  HOVERBACKGROUNDSTATES = 1
+	UTS_HOT     HOVERBACKGROUNDSTATES = 2
+	UTS_PRESSED HOVERBACKGROUNDSTATES = 3
+)
+
+// enum
+type TEXTSELECTIONGRIPPERPARTS int32
+
+const (
+	TSGP_GRIPPER TEXTSELECTIONGRIPPERPARTS = 1
+)
+
+// enum
+type GRIPPERSTATES int32
+
+const (
+	TSGS_NORMAL   GRIPPERSTATES = 1
+	TSGS_CENTERED GRIPPERSTATES = 2
+)
+
+// enum
+type WINDOWPARTS int32
+
+const (
+	WP_CAPTION                        WINDOWPARTS = 1
+	WP_SMALLCAPTION                   WINDOWPARTS = 2
+	WP_MINCAPTION                     WINDOWPARTS = 3
+	WP_SMALLMINCAPTION                WINDOWPARTS = 4
+	WP_MAXCAPTION                     WINDOWPARTS = 5
+	WP_SMALLMAXCAPTION                WINDOWPARTS = 6
+	WP_FRAMELEFT                      WINDOWPARTS = 7
+	WP_FRAMERIGHT                     WINDOWPARTS = 8
+	WP_FRAMEBOTTOM                    WINDOWPARTS = 9
+	WP_SMALLFRAMELEFT                 WINDOWPARTS = 10
+	WP_SMALLFRAMERIGHT                WINDOWPARTS = 11
+	WP_SMALLFRAMEBOTTOM               WINDOWPARTS = 12
+	WP_SYSBUTTON                      WINDOWPARTS = 13
+	WP_MDISYSBUTTON                   WINDOWPARTS = 14
+	WP_MINBUTTON                      WINDOWPARTS = 15
+	WP_MDIMINBUTTON                   WINDOWPARTS = 16
+	WP_MAXBUTTON                      WINDOWPARTS = 17
+	WP_CLOSEBUTTON                    WINDOWPARTS = 18
+	WP_SMALLCLOSEBUTTON               WINDOWPARTS = 19
+	WP_MDICLOSEBUTTON                 WINDOWPARTS = 20
+	WP_RESTOREBUTTON                  WINDOWPARTS = 21
+	WP_MDIRESTOREBUTTON               WINDOWPARTS = 22
+	WP_HELPBUTTON                     WINDOWPARTS = 23
+	WP_MDIHELPBUTTON                  WINDOWPARTS = 24
+	WP_HORZSCROLL                     WINDOWPARTS = 25
+	WP_HORZTHUMB                      WINDOWPARTS = 26
+	WP_VERTSCROLL                     WINDOWPARTS = 27
+	WP_VERTTHUMB                      WINDOWPARTS = 28
+	WP_DIALOG                         WINDOWPARTS = 29
+	WP_CAPTIONSIZINGTEMPLATE          WINDOWPARTS = 30
+	WP_SMALLCAPTIONSIZINGTEMPLATE     WINDOWPARTS = 31
+	WP_FRAMELEFTSIZINGTEMPLATE        WINDOWPARTS = 32
+	WP_SMALLFRAMELEFTSIZINGTEMPLATE   WINDOWPARTS = 33
+	WP_FRAMERIGHTSIZINGTEMPLATE       WINDOWPARTS = 34
+	WP_SMALLFRAMERIGHTSIZINGTEMPLATE  WINDOWPARTS = 35
+	WP_FRAMEBOTTOMSIZINGTEMPLATE      WINDOWPARTS = 36
+	WP_SMALLFRAMEBOTTOMSIZINGTEMPLATE WINDOWPARTS = 37
+	WP_FRAME                          WINDOWPARTS = 38
+	WP_BORDER                         WINDOWPARTS = 39
+)
+
+// enum
+type FRAMESTATES int32
+
+const (
+	FS_ACTIVE   FRAMESTATES = 1
+	FS_INACTIVE FRAMESTATES = 2
+)
+
+// enum
+type CAPTIONSTATES int32
+
+const (
+	CS_ACTIVE   CAPTIONSTATES = 1
+	CS_INACTIVE CAPTIONSTATES = 2
+	CS_DISABLED CAPTIONSTATES = 3
+)
+
+// enum
+type MAXCAPTIONSTATES int32
+
+const (
+	MXCS_ACTIVE   MAXCAPTIONSTATES = 1
+	MXCS_INACTIVE MAXCAPTIONSTATES = 2
+	MXCS_DISABLED MAXCAPTIONSTATES = 3
+)
+
+// enum
+type MINCAPTIONSTATES int32
+
+const (
+	MNCS_ACTIVE   MINCAPTIONSTATES = 1
+	MNCS_INACTIVE MINCAPTIONSTATES = 2
+	MNCS_DISABLED MINCAPTIONSTATES = 3
+)
+
+// enum
+type HORZSCROLLSTATES int32
+
+const (
+	HSS_NORMAL   HORZSCROLLSTATES = 1
+	HSS_HOT      HORZSCROLLSTATES = 2
+	HSS_PUSHED   HORZSCROLLSTATES = 3
+	HSS_DISABLED HORZSCROLLSTATES = 4
+)
+
+// enum
+type HORZTHUMBSTATES int32
+
+const (
+	HTS_NORMAL   HORZTHUMBSTATES = 1
+	HTS_HOT      HORZTHUMBSTATES = 2
+	HTS_PUSHED   HORZTHUMBSTATES = 3
+	HTS_DISABLED HORZTHUMBSTATES = 4
+)
+
+// enum
+type VERTSCROLLSTATES int32
+
+const (
+	VSS_NORMAL   VERTSCROLLSTATES = 1
+	VSS_HOT      VERTSCROLLSTATES = 2
+	VSS_PUSHED   VERTSCROLLSTATES = 3
+	VSS_DISABLED VERTSCROLLSTATES = 4
+)
+
+// enum
+type VERTTHUMBSTATES int32
+
+const (
+	VTS_NORMAL   VERTTHUMBSTATES = 1
+	VTS_HOT      VERTTHUMBSTATES = 2
+	VTS_PUSHED   VERTTHUMBSTATES = 3
+	VTS_DISABLED VERTTHUMBSTATES = 4
+)
+
+// enum
+type SYSBUTTONSTATES int32
+
+const (
+	SBS_NORMAL   SYSBUTTONSTATES = 1
+	SBS_HOT      SYSBUTTONSTATES = 2
+	SBS_PUSHED   SYSBUTTONSTATES = 3
+	SBS_DISABLED SYSBUTTONSTATES = 4
+)
+
+// enum
+type MINBUTTONSTATES int32
+
+const (
+	MINBS_NORMAL   MINBUTTONSTATES = 1
+	MINBS_HOT      MINBUTTONSTATES = 2
+	MINBS_PUSHED   MINBUTTONSTATES = 3
+	MINBS_DISABLED MINBUTTONSTATES = 4
+)
+
+// enum
+type MAXBUTTONSTATES int32
+
+const (
+	MAXBS_NORMAL   MAXBUTTONSTATES = 1
+	MAXBS_HOT      MAXBUTTONSTATES = 2
+	MAXBS_PUSHED   MAXBUTTONSTATES = 3
+	MAXBS_DISABLED MAXBUTTONSTATES = 4
+)
+
+// enum
+type RESTOREBUTTONSTATES int32
+
+const (
+	RBS_NORMAL   RESTOREBUTTONSTATES = 1
+	RBS_HOT      RESTOREBUTTONSTATES = 2
+	RBS_PUSHED   RESTOREBUTTONSTATES = 3
+	RBS_DISABLED RESTOREBUTTONSTATES = 4
+)
+
+// enum
+type HELPBUTTONSTATES int32
+
+const (
+	HBS_NORMAL   HELPBUTTONSTATES = 1
+	HBS_HOT      HELPBUTTONSTATES = 2
+	HBS_PUSHED   HELPBUTTONSTATES = 3
+	HBS_DISABLED HELPBUTTONSTATES = 4
+)
+
+// enum
+type CLOSEBUTTONSTATES int32
+
+const (
+	CBS_NORMAL   CLOSEBUTTONSTATES = 1
+	CBS_HOT      CLOSEBUTTONSTATES = 2
+	CBS_PUSHED   CLOSEBUTTONSTATES = 3
+	CBS_DISABLED CLOSEBUTTONSTATES = 4
+)
+
+// enum
+type SMALLCLOSEBUTTONSTATES int32
+
+const (
+	SCBS_NORMAL   SMALLCLOSEBUTTONSTATES = 1
+	SCBS_HOT      SMALLCLOSEBUTTONSTATES = 2
+	SCBS_PUSHED   SMALLCLOSEBUTTONSTATES = 3
+	SCBS_DISABLED SMALLCLOSEBUTTONSTATES = 4
+)
+
+// enum
+type FRAMEBOTTOMSTATES int32
+
+const (
+	FRB_ACTIVE   FRAMEBOTTOMSTATES = 1
+	FRB_INACTIVE FRAMEBOTTOMSTATES = 2
+)
+
+// enum
+type FRAMELEFTSTATES int32
+
+const (
+	FRL_ACTIVE   FRAMELEFTSTATES = 1
+	FRL_INACTIVE FRAMELEFTSTATES = 2
+)
+
+// enum
+type FRAMERIGHTSTATES int32
+
+const (
+	FRR_ACTIVE   FRAMERIGHTSTATES = 1
+	FRR_INACTIVE FRAMERIGHTSTATES = 2
+)
+
+// enum
+type SMALLCAPTIONSTATES int32
+
+const (
+	SCS_ACTIVE   SMALLCAPTIONSTATES = 1
+	SCS_INACTIVE SMALLCAPTIONSTATES = 2
+	SCS_DISABLED SMALLCAPTIONSTATES = 3
+)
+
+// enum
+type SMALLFRAMEBOTTOMSTATES int32
+
+const (
+	SFRB_ACTIVE   SMALLFRAMEBOTTOMSTATES = 1
+	SFRB_INACTIVE SMALLFRAMEBOTTOMSTATES = 2
+)
+
+// enum
+type SMALLFRAMELEFTSTATES int32
+
+const (
+	SFRL_ACTIVE   SMALLFRAMELEFTSTATES = 1
+	SFRL_INACTIVE SMALLFRAMELEFTSTATES = 2
+)
+
+// enum
+type SMALLFRAMERIGHTSTATES int32
+
+const (
+	SFRR_ACTIVE   SMALLFRAMERIGHTSTATES = 1
+	SFRR_INACTIVE SMALLFRAMERIGHTSTATES = 2
+)
+
+// enum
+type MDICLOSEBUTTONSTATES int32
+
+const (
+	MDCL_NORMAL   MDICLOSEBUTTONSTATES = 1
+	MDCL_HOT      MDICLOSEBUTTONSTATES = 2
+	MDCL_PUSHED   MDICLOSEBUTTONSTATES = 3
+	MDCL_DISABLED MDICLOSEBUTTONSTATES = 4
+)
+
+// enum
+type MDIMINBUTTONSTATES int32
+
+const (
+	MDMI_NORMAL   MDIMINBUTTONSTATES = 1
+	MDMI_HOT      MDIMINBUTTONSTATES = 2
+	MDMI_PUSHED   MDIMINBUTTONSTATES = 3
+	MDMI_DISABLED MDIMINBUTTONSTATES = 4
+)
+
+// enum
+type MDIRESTOREBUTTONSTATES int32
+
+const (
+	MDRE_NORMAL   MDIRESTOREBUTTONSTATES = 1
+	MDRE_HOT      MDIRESTOREBUTTONSTATES = 2
+	MDRE_PUSHED   MDIRESTOREBUTTONSTATES = 3
+	MDRE_DISABLED MDIRESTOREBUTTONSTATES = 4
 )
 
 // enum
@@ -3621,6 +5917,16 @@ const (
 )
 
 // structs
+
+type TBBUTTON struct {
+	IBitmap   int32
+	IdCommand int32
+	FsState   byte
+	FsStyle   byte
+	BReserved [6]byte
+	DwData    uintptr
+	IString   uintptr
+}
 
 type PROPSHEETPAGEA_V1_Anonymous1 struct {
 	Data [1]uint64
@@ -4495,8 +6801,8 @@ type INITCOMMONCONTROLSEX struct {
 
 type COLORSCHEME struct {
 	DwSize          uint32
-	ClrBtnHighlight uint32
-	ClrBtnShadow    uint32
+	ClrBtnHighlight COLORREF
+	ClrBtnShadow    COLORREF
 }
 
 type NMTOOLTIPSCREATED struct {
@@ -4550,7 +6856,7 @@ type NMCUSTOMDRAW struct {
 	Hdc         HDC
 	Rc          RECT
 	DwItemSpec  uintptr
-	UItemState  uint32
+	UItemState  NMCUSTOMDRAW_DRAW_STATE_FLAGS
 	LItemlParam LPARAM
 }
 
@@ -4577,13 +6883,13 @@ type IMAGELISTDRAWPARAMS struct {
 	Cy       int32
 	XBitmap  int32
 	YBitmap  int32
-	RgbBk    uint32
-	RgbFg    uint32
+	RgbBk    COLORREF
+	RgbFg    COLORREF
 	FStyle   uint32
 	DwRop    uint32
 	FState   uint32
 	Frame    uint32
-	CrEffect uint32
+	CrEffect COLORREF
 }
 
 type IMAGEINFO struct {
@@ -4611,13 +6917,13 @@ type HDITEMA struct {
 	PszText    PSTR
 	Hbm        HBITMAP
 	CchTextMax int32
-	Fmt        int32
+	Fmt        HEADER_CONTROL_FORMAT_FLAGS
 	LParam     LPARAM
 	IImage     int32
 	IOrder     int32
-	Type_      uint32
+	Type_      HEADER_CONTROL_FORMAT_TYPE
 	PvFilter   unsafe.Pointer
-	State      uint32
+	State      HEADER_CONTROL_FORMAT_STATE
 }
 
 type HDITEM = HDITEMW
@@ -4627,13 +6933,13 @@ type HDITEMW struct {
 	PszText    PWSTR
 	Hbm        HBITMAP
 	CchTextMax int32
-	Fmt        int32
+	Fmt        HEADER_CONTROL_FORMAT_FLAGS
 	LParam     LPARAM
 	IImage     int32
 	IOrder     int32
-	Type_      uint32
+	Type_      HEADER_CONTROL_FORMAT_TYPE
 	PvFilter   unsafe.Pointer
-	State      uint32
+	State      HEADER_CONTROL_FORMAT_STATE
 }
 
 type HDLAYOUT struct {
@@ -4643,7 +6949,7 @@ type HDLAYOUT struct {
 
 type HDHITTESTINFO struct {
 	Pt    POINT
-	Flags uint32
+	Flags HEADER_HITTEST_INFO_FLAGS
 	IItem int32
 }
 
@@ -4689,19 +6995,9 @@ type NMHDFILTERBTNCLICK struct {
 	Rc    RECT
 }
 
-type TBBUTTON struct {
-	IBitmap   int32
-	IdCommand int32
-	FsState   byte
-	FsStyle   byte
-	BReserved [6]byte
-	DwData    uintptr
-	IString   uintptr
-}
-
 type COLORMAP struct {
-	From uint32
-	To   uint32
+	From COLORREF
+	To   COLORREF
 }
 
 type NMTBCUSTOMDRAW struct {
@@ -4709,12 +7005,12 @@ type NMTBCUSTOMDRAW struct {
 	HbrMonoDither        HBRUSH
 	HbrLines             HBRUSH
 	HpenLines            HPEN
-	ClrText              uint32
-	ClrMark              uint32
-	ClrTextHighlight     uint32
-	ClrBtnFace           uint32
-	ClrBtnHighlight      uint32
-	ClrHighlightHotTrack uint32
+	ClrText              COLORREF
+	ClrMark              COLORREF
+	ClrTextHighlight     COLORREF
+	ClrBtnFace           COLORREF
+	ClrBtnHighlight      COLORREF
+	ClrHighlightHotTrack COLORREF
 	RcText               RECT
 	NStringBkMode        int32
 	NHLStringBkMode      int32
@@ -4885,8 +7181,8 @@ type REBARBANDINFOA struct {
 	CbSize            uint32
 	FMask             uint32
 	FStyle            uint32
-	ClrFore           uint32
-	ClrBack           uint32
+	ClrFore           COLORREF
+	ClrBack           COLORREF
 	LpText            PSTR
 	Cch               uint32
 	IImage            int32
@@ -4911,8 +7207,8 @@ type REBARBANDINFOW struct {
 	CbSize            uint32
 	FMask             uint32
 	FStyle            uint32
-	ClrFore           uint32
-	ClrBack           uint32
+	ClrFore           COLORREF
+	ClrBack           COLORREF
 	LpText            PWSTR
 	Cch               uint32
 	IImage            int32
@@ -4988,7 +7284,7 @@ type RBHITTESTINFO struct {
 
 type TTTOOLINFOA struct {
 	CbSize     uint32
-	UFlags     TTTOOLINFO_FLAGS
+	UFlags     TOOLTIP_FLAGS
 	Hwnd       HWND
 	UId        uintptr
 	Rect       RECT
@@ -5001,7 +7297,7 @@ type TTTOOLINFOA struct {
 type TTTOOLINFO = TTTOOLINFOW
 type TTTOOLINFOW struct {
 	CbSize     uint32
-	UFlags     TTTOOLINFO_FLAGS
+	UFlags     TOOLTIP_FLAGS
 	Hwnd       HWND
 	UId        uintptr
 	Rect       RECT
@@ -5036,7 +7332,7 @@ type NMTTDISPINFOA struct {
 	LpszText PSTR
 	SzText   [80]CHAR
 	Hinst    HINSTANCE
-	UFlags   uint32
+	UFlags   TOOLTIP_FLAGS
 	LParam   LPARAM
 }
 
@@ -5046,7 +7342,7 @@ type NMTTDISPINFOW struct {
 	LpszText PWSTR
 	SzText   [80]uint16
 	Hinst    HINSTANCE
-	UFlags   uint32
+	UFlags   TOOLTIP_FLAGS
 	LParam   LPARAM
 }
 
@@ -5079,10 +7375,10 @@ type PBRANGE struct {
 }
 
 type LITEM struct {
-	Mask      uint32
+	Mask      LIST_ITEM_FLAGS
 	ILink     int32
-	State     uint32
-	StateMask uint32
+	State     LIST_ITEM_STATE_FLAGS
+	StateMask LIST_ITEM_STATE_FLAGS
 	SzID      [48]uint16
 	SzUrl     [2084]uint16
 }
@@ -5098,11 +7394,11 @@ type NMLINK struct {
 }
 
 type LVITEMA struct {
-	Mask       uint32
+	Mask       LIST_VIEW_ITEM_FLAGS
 	IItem      int32
 	ISubItem   int32
-	State      uint32
-	StateMask  uint32
+	State      LIST_VIEW_ITEM_STATE_FLAGS
+	StateMask  LIST_VIEW_ITEM_STATE_FLAGS
 	PszText    PSTR
 	CchTextMax int32
 	IImage     int32
@@ -5111,17 +7407,17 @@ type LVITEMA struct {
 	IGroupId   LVITEMA_GROUP_ID
 	CColumns   uint32
 	PuColumns  *uint32
-	PiColFmt   *int32
+	PiColFmt   *LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS
 	IGroup     int32
 }
 
 type LVITEM = LVITEMW
 type LVITEMW struct {
-	Mask       uint32
+	Mask       LIST_VIEW_ITEM_FLAGS
 	IItem      int32
 	ISubItem   int32
-	State      uint32
-	StateMask  uint32
+	State      LIST_VIEW_ITEM_STATE_FLAGS
+	StateMask  LIST_VIEW_ITEM_STATE_FLAGS
 	PszText    PWSTR
 	CchTextMax int32
 	IImage     int32
@@ -5130,7 +7426,7 @@ type LVITEMW struct {
 	IGroupId   LVITEMA_GROUP_ID
 	CColumns   uint32
 	PuColumns  *uint32
-	PiColFmt   *int32
+	PiColFmt   *LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS
 	IGroup     int32
 }
 
@@ -5189,7 +7485,7 @@ type LVCOLUMNW struct {
 }
 
 type LVBKIMAGEA struct {
-	UlFlags        uint32
+	UlFlags        LIST_VIEW_BACKGROUND_IMAGE_FLAGS
 	Hbm            HBITMAP
 	PszImage       PSTR
 	CchImageMax    uint32
@@ -5199,7 +7495,7 @@ type LVBKIMAGEA struct {
 
 type LVBKIMAGE = LVBKIMAGEW
 type LVBKIMAGEW struct {
-	UlFlags        uint32
+	UlFlags        LIST_VIEW_BACKGROUND_IMAGE_FLAGS
 	Hbm            HBITMAP
 	PszImage       PWSTR
 	CchImageMax    uint32
@@ -5215,9 +7511,9 @@ type LVGROUP struct {
 	PszFooter            PWSTR
 	CchFooter            int32
 	IGroupId             int32
-	StateMask            uint32
-	State                uint32
-	UAlign               uint32
+	StateMask            LIST_VIEW_GROUP_STATE_FLAGS
+	State                LIST_VIEW_GROUP_STATE_FLAGS
+	UAlign               LIST_VIEW_GROUP_ALIGN_FLAGS
 	PszSubtitle          PWSTR
 	CchSubtitle          uint32
 	PszTask              PWSTR
@@ -5241,12 +7537,12 @@ type LVGROUPMETRICS struct {
 	Top      uint32
 	Right    uint32
 	Bottom   uint32
-	CrLeft   uint32
-	CrTop    uint32
-	CrRight  uint32
-	CrBottom uint32
-	CrHeader uint32
-	CrFooter uint32
+	CrLeft   COLORREF
+	CrTop    COLORREF
+	CrRight  COLORREF
+	CrBottom COLORREF
+	CrHeader COLORREF
+	CrFooter COLORREF
 }
 
 type LVINSERTGROUPSORTED struct {
@@ -5257,7 +7553,7 @@ type LVINSERTGROUPSORTED struct {
 
 type LVTILEVIEWINFO struct {
 	CbSize        uint32
-	DwMask        uint32
+	DwMask        LVTILEVIEWINFO_MASK
 	DwFlags       LVTILEVIEWINFO_FLAGS
 	SizeTile      SIZE
 	CLines        int32
@@ -5274,7 +7570,7 @@ type LVTILEINFO struct {
 
 type LVINSERTMARK struct {
 	CbSize     uint32
-	DwFlags    uint32
+	DwFlags    LIST_VIEW_INSERT_MARK_FLAGS
 	IItem      int32
 	DwReserved uint32
 }
@@ -5314,7 +7610,7 @@ type NMLISTVIEW struct {
 	ISubItem  int32
 	UNewState uint32
 	UOldState uint32
-	UChanged  uint32
+	UChanged  LIST_VIEW_ITEM_FLAGS
 	PtAction  POINT
 	LParam    LPARAM
 }
@@ -5333,17 +7629,17 @@ type NMITEMACTIVATE struct {
 
 type NMLVCUSTOMDRAW struct {
 	Nmcd        NMCUSTOMDRAW
-	ClrText     uint32
-	ClrTextBk   uint32
+	ClrText     COLORREF
+	ClrTextBk   COLORREF
 	ISubItem    int32
 	DwItemType  NMLVCUSTOMDRAW_ITEM_TYPE
-	ClrFace     uint32
+	ClrFace     COLORREF
 	IIconEffect int32
 	IIconPhase  int32
 	IPartId     int32
 	IStateId    int32
 	RcText      RECT
-	UAlign      NMLVCUSTOMDRAW_ALIGN
+	UAlign      LIST_VIEW_GROUP_ALIGN_FLAGS
 }
 
 type NMLVCACHEHINT struct {
@@ -5369,8 +7665,8 @@ type NMLVODSTATECHANGE struct {
 	Hdr       NMHDR
 	IFrom     int32
 	ITo       int32
-	UNewState uint32
-	UOldState uint32
+	UNewState LIST_VIEW_ITEM_STATE_FLAGS
+	UOldState LIST_VIEW_ITEM_STATE_FLAGS
 }
 
 type NMLVDISPINFOA struct {
@@ -5399,7 +7695,7 @@ type NMLVLINK struct {
 
 type NMLVGETINFOTIPA struct {
 	Hdr        NMHDR
-	DwFlags    uint32
+	DwFlags    NMLVGETINFOTIP_FLAGS
 	PszText    PSTR
 	CchTextMax int32
 	IItem      int32
@@ -5410,7 +7706,7 @@ type NMLVGETINFOTIPA struct {
 type NMLVGETINFOTIP = NMLVGETINFOTIPW
 type NMLVGETINFOTIPW struct {
 	Hdr        NMHDR
-	DwFlags    uint32
+	DwFlags    NMLVGETINFOTIP_FLAGS
 	PszText    PWSTR
 	CchTextMax int32
 	IItem      int32
@@ -5440,8 +7736,8 @@ type NMTVSTATEIMAGECHANGING struct {
 type TVITEMA struct {
 	Mask           TVITEM_MASK
 	HItem          HTREEITEM
-	State          uint32
-	StateMask      uint32
+	State          TREE_VIEW_ITEM_STATE_FLAGS
+	StateMask      TREE_VIEW_ITEM_STATE_FLAGS
 	PszText        PSTR
 	CchTextMax     int32
 	IImage         int32
@@ -5454,8 +7750,8 @@ type TVITEM = TVITEMW
 type TVITEMW struct {
 	Mask           TVITEM_MASK
 	HItem          HTREEITEM
-	State          uint32
-	StateMask      uint32
+	State          TREE_VIEW_ITEM_STATE_FLAGS
+	StateMask      TREE_VIEW_ITEM_STATE_FLAGS
 	PszText        PWSTR
 	CchTextMax     int32
 	IImage         int32
@@ -5574,7 +7870,7 @@ type TVSORTCB struct {
 
 type NMTREEVIEWA struct {
 	Hdr     NMHDR
-	Action  uint32
+	Action  NM_TREEVIEW_ACTION
 	ItemOld TVITEMA
 	ItemNew TVITEMA
 	PtDrag  POINT
@@ -5583,7 +7879,7 @@ type NMTREEVIEWA struct {
 type NMTREEVIEW = NMTREEVIEWW
 type NMTREEVIEWW struct {
 	Hdr     NMHDR
-	Action  uint32
+	Action  NM_TREEVIEW_ACTION
 	ItemOld TVITEMW
 	ItemNew TVITEMW
 	PtDrag  POINT
@@ -5619,8 +7915,8 @@ type NMTVKEYDOWN struct {
 
 type NMTVCUSTOMDRAW struct {
 	Nmcd      NMCUSTOMDRAW
-	ClrText   uint32
-	ClrTextBk uint32
+	ClrText   COLORREF
+	ClrTextBk COLORREF
 	ILevel    int32
 }
 
@@ -5747,8 +8043,8 @@ type TCITEMHEADERW struct {
 
 type TCITEMA struct {
 	Mask        TCITEMHEADERA_MASK
-	DwState     uint32
-	DwStateMask uint32
+	DwState     TAB_CONTROL_ITEM_STATE
+	DwStateMask TAB_CONTROL_ITEM_STATE
 	PszText     PSTR
 	CchTextMax  int32
 	IImage      int32
@@ -5758,8 +8054,8 @@ type TCITEMA struct {
 type TCITEM = TCITEMW
 type TCITEMW struct {
 	Mask        TCITEMHEADERA_MASK
-	DwState     uint32
-	DwStateMask uint32
+	DwState     TAB_CONTROL_ITEM_STATE
+	DwStateMask TAB_CONTROL_ITEM_STATE
 	PszText     PWSTR
 	CchTextMax  int32
 	IImage      int32
@@ -5780,7 +8076,7 @@ type NMTCKEYDOWN struct {
 type MCHITTESTINFO struct {
 	CbSize  uint32
 	Pt      POINT
-	UHit    uint32
+	UHit    MCHITTESTINFO_HIT_FLAGS
 	St      SYSTEMTIME
 	Rc      RECT
 	IOffset int32
@@ -5818,8 +8114,8 @@ type NMDAYSTATE struct {
 
 type NMVIEWCHANGE struct {
 	Nmhdr     NMHDR
-	DwOldView uint32
-	DwNewView uint32
+	DwOldView MONTH_CALDENDAR_MESSAGES_VIEW
+	DwNewView MONTH_CALDENDAR_MESSAGES_VIEW
 }
 
 type DATETIMEPICKERINFO struct {
@@ -5835,7 +8131,7 @@ type DATETIMEPICKERINFO struct {
 
 type NMDATETIMECHANGE struct {
 	Nmhdr   NMHDR
-	DwFlags uint32
+	DwFlags NMDATETIMECHANGE_FLAGS
 	St      SYSTEMTIME
 }
 
@@ -6126,10 +8422,10 @@ type WTA_OPTIONS struct {
 
 type DTTOPTS struct {
 	DwSize              uint32
-	DwFlags             uint32
-	CrText              uint32
-	CrBorder            uint32
-	CrShadow            uint32
+	DwFlags             DTTOPTS_FLAGS
+	CrText              COLORREF
+	CrBorder            COLORREF
+	CrShadow            COLORREF
 	ITextShadowType     int32
 	PtShadowOffset      POINT
 	IBorderSize         int32
@@ -6230,7 +8526,7 @@ type NMHDR struct {
 }
 
 type MEASUREITEMSTRUCT struct {
-	CtlType    uint32
+	CtlType    DRAWITEMSTRUCT_CTL_TYPE
 	CtlID      uint32
 	ItemID     uint32
 	ItemWidth  uint32
@@ -6242,8 +8538,8 @@ type DRAWITEMSTRUCT struct {
 	CtlType    DRAWITEMSTRUCT_CTL_TYPE
 	CtlID      uint32
 	ItemID     uint32
-	ItemAction uint32
-	ItemState  uint32
+	ItemAction ODA_FLAGS
+	ItemState  ODS_FLAGS
 	HwndItem   HWND
 	HDC        HDC
 	RcItem     RECT
@@ -6259,7 +8555,7 @@ type DELETEITEMSTRUCT struct {
 }
 
 type COMPAREITEMSTRUCT struct {
-	CtlType    uint32
+	CtlType    DRAWITEMSTRUCT_CTL_TYPE
 	CtlID      uint32
 	HwndItem   HWND
 	ItemID1    uint32
@@ -6445,7 +8741,7 @@ type IImageListInterface interface {
 	ReplaceIcon(i int32, hicon HICON, pi *int32) HRESULT
 	SetOverlayImage(iImage int32, iOverlay int32) HRESULT
 	Replace(i int32, hbmImage HBITMAP, hbmMask HBITMAP) HRESULT
-	AddMasked(hbmImage HBITMAP, crMask uint32, pi *int32) HRESULT
+	AddMasked(hbmImage HBITMAP, crMask COLORREF, pi *int32) HRESULT
 	Draw(pimldp *IMAGELISTDRAWPARAMS) HRESULT
 	Remove(i int32) HRESULT
 	GetIcon(i int32, flags uint32, picon *HICON) HRESULT
@@ -6458,8 +8754,8 @@ type IImageListInterface interface {
 	SetIconSize(cx int32, cy int32) HRESULT
 	GetImageCount(pi *int32) HRESULT
 	SetImageCount(uNewCount uint32) HRESULT
-	SetBkColor(clrBk uint32, pclr *uint32) HRESULT
-	GetBkColor(pclr *uint32) HRESULT
+	SetBkColor(clrBk COLORREF, pclr *COLORREF) HRESULT
+	GetBkColor(pclr *COLORREF) HRESULT
 	BeginDrag(iTrack int32, dxHotspot int32, dyHotspot int32) HRESULT
 	EndDrag() HRESULT
 	DragEnter(hwndLock HWND, x int32, y int32) HRESULT
@@ -6533,7 +8829,7 @@ func (this *IImageList) Replace(i int32, hbmImage HBITMAP, hbmMask HBITMAP) HRES
 	return HRESULT(ret)
 }
 
-func (this *IImageList) AddMasked(hbmImage HBITMAP, crMask uint32, pi *int32) HRESULT {
+func (this *IImageList) AddMasked(hbmImage HBITMAP, crMask COLORREF, pi *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().AddMasked, uintptr(unsafe.Pointer(this)), hbmImage, uintptr(crMask), uintptr(unsafe.Pointer(pi)))
 	return HRESULT(ret)
 }
@@ -6598,12 +8894,12 @@ func (this *IImageList) SetImageCount(uNewCount uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IImageList) SetBkColor(clrBk uint32, pclr *uint32) HRESULT {
+func (this *IImageList) SetBkColor(clrBk COLORREF, pclr *COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetBkColor, uintptr(unsafe.Pointer(this)), uintptr(clrBk), uintptr(unsafe.Pointer(pclr)))
 	return HRESULT(ret)
 }
 
-func (this *IImageList) GetBkColor(pclr *uint32) HRESULT {
+func (this *IImageList) GetBkColor(pclr *COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetBkColor, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pclr)))
 	return HRESULT(ret)
 }
@@ -7060,16 +9356,16 @@ func ImageList_ReplaceIcon(himl HIMAGELIST, i int32, hicon HICON) int32 {
 	return int32(ret)
 }
 
-func ImageList_SetBkColor(himl HIMAGELIST, clrBk uint32) uint32 {
+func ImageList_SetBkColor(himl HIMAGELIST, clrBk COLORREF) COLORREF {
 	addr := lazyAddr(&pImageList_SetBkColor, libComctl32, "ImageList_SetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(clrBk))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func ImageList_GetBkColor(himl HIMAGELIST) uint32 {
+func ImageList_GetBkColor(himl HIMAGELIST) COLORREF {
 	addr := lazyAddr(&pImageList_GetBkColor, libComctl32, "ImageList_GetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, himl)
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
 func ImageList_SetOverlayImage(himl HIMAGELIST, iImage int32, iOverlay int32) BOOL {
@@ -7090,13 +9386,13 @@ func ImageList_Replace(himl HIMAGELIST, i int32, hbmImage HBITMAP, hbmMask HBITM
 	return BOOL(ret)
 }
 
-func ImageList_AddMasked(himl HIMAGELIST, hbmImage HBITMAP, crMask uint32) int32 {
+func ImageList_AddMasked(himl HIMAGELIST, hbmImage HBITMAP, crMask COLORREF) int32 {
 	addr := lazyAddr(&pImageList_AddMasked, libComctl32, "ImageList_AddMasked")
 	ret, _, _ := syscall.SyscallN(addr, himl, hbmImage, uintptr(crMask))
 	return int32(ret)
 }
 
-func ImageList_DrawEx(himl HIMAGELIST, i int32, hdcDst HDC, x int32, y int32, dx int32, dy int32, rgbBk uint32, rgbFg uint32, fStyle IMAGE_LIST_DRAW_STYLE) BOOL {
+func ImageList_DrawEx(himl HIMAGELIST, i int32, hdcDst HDC, x int32, y int32, dx int32, dy int32, rgbBk COLORREF, rgbFg COLORREF, fStyle IMAGE_LIST_DRAW_STYLE) BOOL {
 	addr := lazyAddr(&pImageList_DrawEx, libComctl32, "ImageList_DrawEx")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), hdcDst, uintptr(x), uintptr(y), uintptr(dx), uintptr(dy), uintptr(rgbBk), uintptr(rgbFg), uintptr(fStyle))
 	return BOOL(ret)
@@ -7120,7 +9416,7 @@ func ImageList_GetIcon(himl HIMAGELIST, i int32, flags uint32) HICON {
 	return ret
 }
 
-func ImageList_LoadImageA(hi HINSTANCE, lpbmp PSTR, cx int32, cGrow int32, crMask uint32, uType uint32, uFlags IMAGE_FLAGS) HIMAGELIST {
+func ImageList_LoadImageA(hi HINSTANCE, lpbmp PSTR, cx int32, cGrow int32, crMask COLORREF, uType uint32, uFlags IMAGE_FLAGS) HIMAGELIST {
 	addr := lazyAddr(&pImageList_LoadImageA, libComctl32, "ImageList_LoadImageA")
 	ret, _, _ := syscall.SyscallN(addr, hi, uintptr(unsafe.Pointer(lpbmp)), uintptr(cx), uintptr(cGrow), uintptr(crMask), uintptr(uType), uintptr(uFlags))
 	return ret
@@ -7128,7 +9424,7 @@ func ImageList_LoadImageA(hi HINSTANCE, lpbmp PSTR, cx int32, cGrow int32, crMas
 
 var ImageList_LoadImage = ImageList_LoadImageW
 
-func ImageList_LoadImageW(hi HINSTANCE, lpbmp PWSTR, cx int32, cGrow int32, crMask uint32, uType uint32, uFlags IMAGE_FLAGS) HIMAGELIST {
+func ImageList_LoadImageW(hi HINSTANCE, lpbmp PWSTR, cx int32, cGrow int32, crMask COLORREF, uType uint32, uFlags IMAGE_FLAGS) HIMAGELIST {
 	addr := lazyAddr(&pImageList_LoadImageW, libComctl32, "ImageList_LoadImageW")
 	ret, _, _ := syscall.SyscallN(addr, hi, uintptr(unsafe.Pointer(lpbmp)), uintptr(cx), uintptr(cGrow), uintptr(crMask), uintptr(uType), uintptr(uFlags))
 	return ret
@@ -7205,7 +9501,7 @@ func ImageList_ReadEx(dwFlags uint32, pstm *IStream, riid *syscall.GUID, ppv uns
 	return HRESULT(ret)
 }
 
-func ImageList_WriteEx(himl HIMAGELIST, dwFlags uint32, pstm *IStream) HRESULT {
+func ImageList_WriteEx(himl HIMAGELIST, dwFlags IMAGE_LIST_WRITE_STREAM_FLAGS, pstm *IStream) HRESULT {
 	addr := lazyAddr(&pImageList_WriteEx, libComctl32, "ImageList_WriteEx")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(dwFlags), uintptr(unsafe.Pointer(pstm)))
 	return HRESULT(ret)
@@ -7625,7 +9921,7 @@ func LoadIconWithScaleDown(hinst HINSTANCE, pszName PWSTR, cx int32, cy int32, p
 	return HRESULT(ret)
 }
 
-func DrawShadowText(hdc HDC, pszText PWSTR, cch uint32, prc *RECT, dwFlags uint32, crText uint32, crShadow uint32, ixOffset int32, iyOffset int32) int32 {
+func DrawShadowText(hdc HDC, pszText PWSTR, cch uint32, prc *RECT, dwFlags uint32, crText COLORREF, crShadow COLORREF, ixOffset int32, iyOffset int32) int32 {
 	addr := lazyAddr(&pDrawShadowText, libComctl32, "DrawShadowText")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pszText)), uintptr(cch), uintptr(unsafe.Pointer(prc)), uintptr(dwFlags), uintptr(crText), uintptr(crShadow), uintptr(ixOffset), uintptr(iyOffset))
 	return int32(ret)
@@ -7655,193 +9951,193 @@ func EndPanningFeedback(hwnd HWND, fAnimateBack BOOL) BOOL {
 	return BOOL(ret)
 }
 
-func GetThemeAnimationProperty(hTheme uintptr, iStoryboardId int32, iTargetId int32, eProperty TA_PROPERTY, pvProperty unsafe.Pointer, cbSize uint32, pcbSizeOut *uint32) HRESULT {
+func GetThemeAnimationProperty(hTheme HTHEME, iStoryboardId int32, iTargetId int32, eProperty TA_PROPERTY, pvProperty unsafe.Pointer, cbSize uint32, pcbSizeOut *uint32) HRESULT {
 	addr := lazyAddr(&pGetThemeAnimationProperty, libUxtheme, "GetThemeAnimationProperty")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStoryboardId), uintptr(iTargetId), uintptr(eProperty), uintptr(pvProperty), uintptr(cbSize), uintptr(unsafe.Pointer(pcbSizeOut)))
 	return HRESULT(ret)
 }
 
-func GetThemeAnimationTransform(hTheme uintptr, iStoryboardId int32, iTargetId int32, dwTransformIndex uint32, pTransform *TA_TRANSFORM, cbSize uint32, pcbSizeOut *uint32) HRESULT {
+func GetThemeAnimationTransform(hTheme HTHEME, iStoryboardId int32, iTargetId int32, dwTransformIndex uint32, pTransform *TA_TRANSFORM, cbSize uint32, pcbSizeOut *uint32) HRESULT {
 	addr := lazyAddr(&pGetThemeAnimationTransform, libUxtheme, "GetThemeAnimationTransform")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStoryboardId), uintptr(iTargetId), uintptr(dwTransformIndex), uintptr(unsafe.Pointer(pTransform)), uintptr(cbSize), uintptr(unsafe.Pointer(pcbSizeOut)))
 	return HRESULT(ret)
 }
 
-func GetThemeTimingFunction(hTheme uintptr, iTimingFunctionId int32, pTimingFunction *TA_TIMINGFUNCTION, cbSize uint32, pcbSizeOut *uint32) HRESULT {
+func GetThemeTimingFunction(hTheme HTHEME, iTimingFunctionId int32, pTimingFunction *TA_TIMINGFUNCTION, cbSize uint32, pcbSizeOut *uint32) HRESULT {
 	addr := lazyAddr(&pGetThemeTimingFunction, libUxtheme, "GetThemeTimingFunction")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iTimingFunctionId), uintptr(unsafe.Pointer(pTimingFunction)), uintptr(cbSize), uintptr(unsafe.Pointer(pcbSizeOut)))
 	return HRESULT(ret)
 }
 
-func OpenThemeData(hwnd HWND, pszClassList PWSTR) uintptr {
+func OpenThemeData(hwnd HWND, pszClassList PWSTR) HTHEME {
 	addr := lazyAddr(&pOpenThemeData, libUxtheme, "OpenThemeData")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszClassList)))
 	return ret
 }
 
-func OpenThemeDataEx(hwnd HWND, pszClassList PWSTR, dwFlags OPEN_THEME_DATA_FLAGS) uintptr {
+func OpenThemeDataEx(hwnd HWND, pszClassList PWSTR, dwFlags OPEN_THEME_DATA_FLAGS) HTHEME {
 	addr := lazyAddr(&pOpenThemeDataEx, libUxtheme, "OpenThemeDataEx")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszClassList)), uintptr(dwFlags))
 	return ret
 }
 
-func CloseThemeData(hTheme uintptr) HRESULT {
+func CloseThemeData(hTheme HTHEME) HRESULT {
 	addr := lazyAddr(&pCloseThemeData, libUxtheme, "CloseThemeData")
 	ret, _, _ := syscall.SyscallN(addr, hTheme)
 	return HRESULT(ret)
 }
 
-func DrawThemeBackground(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pClipRect *RECT) HRESULT {
+func DrawThemeBackground(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pClipRect *RECT) HRESULT {
 	addr := lazyAddr(&pDrawThemeBackground, libUxtheme, "DrawThemeBackground")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pClipRect)))
 	return HRESULT(ret)
 }
 
-func DrawThemeBackgroundEx(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pOptions *DTBGOPTS) HRESULT {
+func DrawThemeBackgroundEx(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pOptions *DTBGOPTS) HRESULT {
 	addr := lazyAddr(&pDrawThemeBackgroundEx, libUxtheme, "DrawThemeBackgroundEx")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pOptions)))
 	return HRESULT(ret)
 }
 
-func DrawThemeText(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchText int32, dwTextFlags uint32, dwTextFlags2 uint32, pRect *RECT) HRESULT {
+func DrawThemeText(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchText int32, dwTextFlags DRAW_TEXT_FORMAT, dwTextFlags2 uint32, pRect *RECT) HRESULT {
 	addr := lazyAddr(&pDrawThemeText, libUxtheme, "DrawThemeText")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pszText)), uintptr(cchText), uintptr(dwTextFlags), uintptr(dwTextFlags2), uintptr(unsafe.Pointer(pRect)))
 	return HRESULT(ret)
 }
 
-func GetThemeBackgroundContentRect(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pBoundingRect *RECT, pContentRect *RECT) HRESULT {
+func GetThemeBackgroundContentRect(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pBoundingRect *RECT, pContentRect *RECT) HRESULT {
 	addr := lazyAddr(&pGetThemeBackgroundContentRect, libUxtheme, "GetThemeBackgroundContentRect")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pBoundingRect)), uintptr(unsafe.Pointer(pContentRect)))
 	return HRESULT(ret)
 }
 
-func GetThemeBackgroundExtent(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pContentRect *RECT, pExtentRect *RECT) HRESULT {
+func GetThemeBackgroundExtent(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pContentRect *RECT, pExtentRect *RECT) HRESULT {
 	addr := lazyAddr(&pGetThemeBackgroundExtent, libUxtheme, "GetThemeBackgroundExtent")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pContentRect)), uintptr(unsafe.Pointer(pExtentRect)))
 	return HRESULT(ret)
 }
 
-func GetThemeBackgroundRegion(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pRegion *HRGN) HRESULT {
+func GetThemeBackgroundRegion(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pRegion *HRGN) HRESULT {
 	addr := lazyAddr(&pGetThemeBackgroundRegion, libUxtheme, "GetThemeBackgroundRegion")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pRegion)))
 	return HRESULT(ret)
 }
 
-func GetThemePartSize(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, prc *RECT, eSize THEMESIZE, psz *SIZE) HRESULT {
+func GetThemePartSize(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, prc *RECT, eSize THEMESIZE, psz *SIZE) HRESULT {
 	addr := lazyAddr(&pGetThemePartSize, libUxtheme, "GetThemePartSize")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(prc)), uintptr(eSize), uintptr(unsafe.Pointer(psz)))
 	return HRESULT(ret)
 }
 
-func GetThemeTextExtent(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchCharCount int32, dwTextFlags uint32, pBoundingRect *RECT, pExtentRect *RECT) HRESULT {
+func GetThemeTextExtent(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchCharCount int32, dwTextFlags DRAW_TEXT_FORMAT, pBoundingRect *RECT, pExtentRect *RECT) HRESULT {
 	addr := lazyAddr(&pGetThemeTextExtent, libUxtheme, "GetThemeTextExtent")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pszText)), uintptr(cchCharCount), uintptr(dwTextFlags), uintptr(unsafe.Pointer(pBoundingRect)), uintptr(unsafe.Pointer(pExtentRect)))
 	return HRESULT(ret)
 }
 
-func GetThemeTextMetrics(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, ptm *TEXTMETRICW) HRESULT {
+func GetThemeTextMetrics(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, ptm *TEXTMETRICW) HRESULT {
 	addr := lazyAddr(&pGetThemeTextMetrics, libUxtheme, "GetThemeTextMetrics")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(ptm)))
 	return HRESULT(ret)
 }
 
-func HitTestThemeBackground(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, dwOptions uint32, pRect *RECT, hrgn HRGN, ptTest POINT, pwHitTestCode *uint16) HRESULT {
+func HitTestThemeBackground(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, dwOptions HIT_TEST_BACKGROUND_OPTIONS, pRect *RECT, hrgn HRGN, ptTest POINT, pwHitTestCode *uint16) HRESULT {
 	addr := lazyAddr(&pHitTestThemeBackground, libUxtheme, "HitTestThemeBackground")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(dwOptions), uintptr(unsafe.Pointer(pRect)), hrgn, *(*uintptr)(unsafe.Pointer(&ptTest)), uintptr(unsafe.Pointer(pwHitTestCode)))
 	return HRESULT(ret)
 }
 
-func DrawThemeEdge(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pDestRect *RECT, uEdge uint32, uFlags uint32, pContentRect *RECT) HRESULT {
+func DrawThemeEdge(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pDestRect *RECT, uEdge DRAWEDGE_FLAGS, uFlags DRAW_EDGE_FLAGS, pContentRect *RECT) HRESULT {
 	addr := lazyAddr(&pDrawThemeEdge, libUxtheme, "DrawThemeEdge")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pDestRect)), uintptr(uEdge), uintptr(uFlags), uintptr(unsafe.Pointer(pContentRect)))
 	return HRESULT(ret)
 }
 
-func DrawThemeIcon(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, himl HIMAGELIST, iImageIndex int32) HRESULT {
+func DrawThemeIcon(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, himl HIMAGELIST, iImageIndex int32) HRESULT {
 	addr := lazyAddr(&pDrawThemeIcon, libUxtheme, "DrawThemeIcon")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), himl, uintptr(iImageIndex))
 	return HRESULT(ret)
 }
 
-func IsThemePartDefined(hTheme uintptr, iPartId int32, iStateId int32) BOOL {
+func IsThemePartDefined(hTheme HTHEME, iPartId int32, iStateId int32) BOOL {
 	addr := lazyAddr(&pIsThemePartDefined, libUxtheme, "IsThemePartDefined")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId))
 	return BOOL(ret)
 }
 
-func IsThemeBackgroundPartiallyTransparent(hTheme uintptr, iPartId int32, iStateId int32) BOOL {
+func IsThemeBackgroundPartiallyTransparent(hTheme HTHEME, iPartId int32, iStateId int32) BOOL {
 	addr := lazyAddr(&pIsThemeBackgroundPartiallyTransparent, libUxtheme, "IsThemeBackgroundPartiallyTransparent")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId))
 	return BOOL(ret)
 }
 
-func GetThemeColor(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, pColor *uint32) HRESULT {
+func GetThemeColor(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pColor *COLORREF) HRESULT {
 	addr := lazyAddr(&pGetThemeColor, libUxtheme, "GetThemeColor")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pColor)))
 	return HRESULT(ret)
 }
 
-func GetThemeMetric(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
+func GetThemeMetric(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
 	addr := lazyAddr(&pGetThemeMetric, libUxtheme, "GetThemeMetric")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
-func GetThemeString(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, pszBuff PWSTR, cchMaxBuffChars int32) HRESULT {
+func GetThemeString(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pszBuff PWSTR, cchMaxBuffChars int32) HRESULT {
 	addr := lazyAddr(&pGetThemeString, libUxtheme, "GetThemeString")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pszBuff)), uintptr(cchMaxBuffChars))
 	return HRESULT(ret)
 }
 
-func GetThemeBool(hTheme uintptr, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pfVal *BOOL) HRESULT {
+func GetThemeBool(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pfVal *BOOL) HRESULT {
 	addr := lazyAddr(&pGetThemeBool, libUxtheme, "GetThemeBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pfVal)))
 	return HRESULT(ret)
 }
 
-func GetThemeInt(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
+func GetThemeInt(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
 	addr := lazyAddr(&pGetThemeInt, libUxtheme, "GetThemeInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
-func GetThemeEnumValue(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
+func GetThemeEnumValue(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
 	addr := lazyAddr(&pGetThemeEnumValue, libUxtheme, "GetThemeEnumValue")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
-func GetThemePosition(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, pPoint *POINT) HRESULT {
+func GetThemePosition(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pPoint *POINT) HRESULT {
 	addr := lazyAddr(&pGetThemePosition, libUxtheme, "GetThemePosition")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pPoint)))
 	return HRESULT(ret)
 }
 
-func GetThemeFont(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, iPropId int32, pFont *LOGFONTW) HRESULT {
+func GetThemeFont(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId int32, pFont *LOGFONTW) HRESULT {
 	addr := lazyAddr(&pGetThemeFont, libUxtheme, "GetThemeFont")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pFont)))
 	return HRESULT(ret)
 }
 
-func GetThemeRect(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, pRect *RECT) HRESULT {
+func GetThemeRect(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pRect *RECT) HRESULT {
 	addr := lazyAddr(&pGetThemeRect, libUxtheme, "GetThemeRect")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pRect)))
 	return HRESULT(ret)
 }
 
-func GetThemeMargins(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, iPropId int32, prc *RECT, pMargins *MARGINS) HRESULT {
+func GetThemeMargins(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, prc *RECT, pMargins *MARGINS) HRESULT {
 	addr := lazyAddr(&pGetThemeMargins, libUxtheme, "GetThemeMargins")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(prc)), uintptr(unsafe.Pointer(pMargins)))
 	return HRESULT(ret)
 }
 
-func GetThemeIntList(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, pIntList *INTLIST) HRESULT {
+func GetThemeIntList(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pIntList *INTLIST) HRESULT {
 	addr := lazyAddr(&pGetThemeIntList, libUxtheme, "GetThemeIntList")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pIntList)))
 	return HRESULT(ret)
 }
 
-func GetThemePropertyOrigin(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, pOrigin *PROPERTYORIGIN) HRESULT {
+func GetThemePropertyOrigin(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pOrigin *PROPERTYORIGIN) HRESULT {
 	addr := lazyAddr(&pGetThemePropertyOrigin, libUxtheme, "GetThemePropertyOrigin")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pOrigin)))
 	return HRESULT(ret)
@@ -7853,49 +10149,49 @@ func SetWindowTheme(hwnd HWND, pszSubAppName PWSTR, pszSubIdList PWSTR) HRESULT 
 	return HRESULT(ret)
 }
 
-func GetThemeFilename(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, pszThemeFileName PWSTR, cchMaxBuffChars int32) HRESULT {
+func GetThemeFilename(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pszThemeFileName PWSTR, cchMaxBuffChars int32) HRESULT {
 	addr := lazyAddr(&pGetThemeFilename, libUxtheme, "GetThemeFilename")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pszThemeFileName)), uintptr(cchMaxBuffChars))
 	return HRESULT(ret)
 }
 
-func GetThemeSysColor(hTheme uintptr, iColorId int32) uint32 {
+func GetThemeSysColor(hTheme HTHEME, iColorId int32) COLORREF {
 	addr := lazyAddr(&pGetThemeSysColor, libUxtheme, "GetThemeSysColor")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iColorId))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
-func GetThemeSysColorBrush(hTheme uintptr, iColorId THEME_PROPERTY_SYMBOL_ID) HBRUSH {
+func GetThemeSysColorBrush(hTheme HTHEME, iColorId THEME_PROPERTY_SYMBOL_ID) HBRUSH {
 	addr := lazyAddr(&pGetThemeSysColorBrush, libUxtheme, "GetThemeSysColorBrush")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iColorId))
 	return ret
 }
 
-func GetThemeSysBool(hTheme uintptr, iBoolId int32) BOOL {
+func GetThemeSysBool(hTheme HTHEME, iBoolId THEME_PROPERTY_SYMBOL_ID) BOOL {
 	addr := lazyAddr(&pGetThemeSysBool, libUxtheme, "GetThemeSysBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iBoolId))
 	return BOOL(ret)
 }
 
-func GetThemeSysSize(hTheme uintptr, iSizeId int32) int32 {
+func GetThemeSysSize(hTheme HTHEME, iSizeId int32) int32 {
 	addr := lazyAddr(&pGetThemeSysSize, libUxtheme, "GetThemeSysSize")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iSizeId))
 	return int32(ret)
 }
 
-func GetThemeSysFont(hTheme uintptr, iFontId THEME_PROPERTY_SYMBOL_ID, plf *LOGFONTW) HRESULT {
+func GetThemeSysFont(hTheme HTHEME, iFontId THEME_PROPERTY_SYMBOL_ID, plf *LOGFONTW) HRESULT {
 	addr := lazyAddr(&pGetThemeSysFont, libUxtheme, "GetThemeSysFont")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iFontId), uintptr(unsafe.Pointer(plf)))
 	return HRESULT(ret)
 }
 
-func GetThemeSysString(hTheme uintptr, iStringId THEME_PROPERTY_SYMBOL_ID, pszStringBuff PWSTR, cchMaxStringChars int32) HRESULT {
+func GetThemeSysString(hTheme HTHEME, iStringId THEME_PROPERTY_SYMBOL_ID, pszStringBuff PWSTR, cchMaxStringChars int32) HRESULT {
 	addr := lazyAddr(&pGetThemeSysString, libUxtheme, "GetThemeSysString")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStringId), uintptr(unsafe.Pointer(pszStringBuff)), uintptr(cchMaxStringChars))
 	return HRESULT(ret)
 }
 
-func GetThemeSysInt(hTheme uintptr, iIntId int32, piValue *int32) HRESULT {
+func GetThemeSysInt(hTheme HTHEME, iIntId THEME_PROPERTY_SYMBOL_ID, piValue *int32) HRESULT {
 	addr := lazyAddr(&pGetThemeSysInt, libUxtheme, "GetThemeSysInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iIntId), uintptr(unsafe.Pointer(piValue)))
 	return HRESULT(ret)
@@ -7913,7 +10209,7 @@ func IsAppThemed() BOOL {
 	return BOOL(ret)
 }
 
-func GetWindowTheme(hwnd HWND) uintptr {
+func GetWindowTheme(hwnd HWND) HTHEME {
 	addr := lazyAddr(&pGetWindowTheme, libUxtheme, "GetWindowTheme")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return ret
@@ -7931,13 +10227,13 @@ func IsThemeDialogTextureEnabled(hwnd HWND) BOOL {
 	return BOOL(ret)
 }
 
-func GetThemeAppProperties() uint32 {
+func GetThemeAppProperties() SET_THEME_APP_PROPERTIES_FLAGS {
 	addr := lazyAddr(&pGetThemeAppProperties, libUxtheme, "GetThemeAppProperties")
 	ret, _, _ := syscall.SyscallN(addr)
-	return uint32(ret)
+	return SET_THEME_APP_PROPERTIES_FLAGS(ret)
 }
 
-func SetThemeAppProperties(dwFlags uint32) {
+func SetThemeAppProperties(dwFlags SET_THEME_APP_PROPERTIES_FLAGS) {
 	addr := lazyAddr(&pSetThemeAppProperties, libUxtheme, "SetThemeAppProperties")
 	syscall.SyscallN(addr, uintptr(dwFlags))
 }
@@ -7978,19 +10274,19 @@ func SetWindowThemeAttribute(hwnd HWND, eAttribute WINDOWTHEMEATTRIBUTETYPE, pvA
 	return HRESULT(ret)
 }
 
-func DrawThemeTextEx(hTheme uintptr, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchText int32, dwTextFlags uint32, pRect *RECT, pOptions *DTTOPTS) HRESULT {
+func DrawThemeTextEx(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchText int32, dwTextFlags DRAW_TEXT_FORMAT, pRect *RECT, pOptions *DTTOPTS) HRESULT {
 	addr := lazyAddr(&pDrawThemeTextEx, libUxtheme, "DrawThemeTextEx")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pszText)), uintptr(cchText), uintptr(dwTextFlags), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pOptions)))
 	return HRESULT(ret)
 }
 
-func GetThemeBitmap(hTheme uintptr, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, dwFlags GET_THEME_BITMAP_FLAGS, phBitmap *HBITMAP) HRESULT {
+func GetThemeBitmap(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, dwFlags GET_THEME_BITMAP_FLAGS, phBitmap *HBITMAP) HRESULT {
 	addr := lazyAddr(&pGetThemeBitmap, libUxtheme, "GetThemeBitmap")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(dwFlags), uintptr(unsafe.Pointer(phBitmap)))
 	return HRESULT(ret)
 }
 
-func GetThemeStream(hTheme uintptr, iPartId int32, iStateId int32, iPropId int32, ppvStream unsafe.Pointer, pcbStream *uint32, hInst HINSTANCE) HRESULT {
+func GetThemeStream(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, ppvStream unsafe.Pointer, pcbStream *uint32, hInst HINSTANCE) HRESULT {
 	addr := lazyAddr(&pGetThemeStream, libUxtheme, "GetThemeStream")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(ppvStream), uintptr(unsafe.Pointer(pcbStream)), hInst)
 	return HRESULT(ret)
@@ -8086,7 +10382,7 @@ func IsCompositionActive() BOOL {
 	return BOOL(ret)
 }
 
-func GetThemeTransitionDuration(hTheme uintptr, iPartId int32, iStateIdFrom int32, iStateIdTo int32, iPropId int32, pdwDuration *uint32) HRESULT {
+func GetThemeTransitionDuration(hTheme HTHEME, iPartId int32, iStateIdFrom int32, iStateIdTo int32, iPropId int32, pdwDuration *uint32) HRESULT {
 	addr := lazyAddr(&pGetThemeTransitionDuration, libUxtheme, "GetThemeTransitionDuration")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateIdFrom), uintptr(iStateIdTo), uintptr(iPropId), uintptr(unsafe.Pointer(pdwDuration)))
 	return HRESULT(ret)

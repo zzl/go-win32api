@@ -382,12 +382,6 @@ const (
 	PFM_TABLEROWDELIMITER             uint32  = 0x10000000
 	PFM_TEXTWRAPPINGBREAK             uint32  = 0x20000000
 	PFM_TABLE                         uint32  = 0x40000000
-	PFN_BULLET                        uint32  = 0x1
-	PFN_ARABIC                        uint32  = 0x2
-	PFN_LCLETTER                      uint32  = 0x3
-	PFN_UCLETTER                      uint32  = 0x4
-	PFN_LCROMAN                       uint32  = 0x5
-	PFN_UCROMAN                       uint32  = 0x6
 	PFA_JUSTIFY                       uint32  = 0x4
 	PFA_FULL_INTERWORD                uint32  = 0x4
 	GCMF_GRIPPER                      uint32  = 0x1
@@ -463,11 +457,6 @@ const (
 	TXES_ISDIALOG                     uint32  = 0x1
 	REO_NULL                          int32   = 0
 	REO_READWRITEMASK                 int32   = 2047
-	RECO_PASTE                        int32   = 0
-	RECO_DROP                         int32   = 1
-	RECO_COPY                         int32   = 2
-	RECO_CUT                          int32   = 3
-	RECO_DRAG                         int32   = 4
 )
 
 // enums
@@ -711,6 +700,19 @@ const (
 	PFA_CENTER PARAFORMAT_ALIGNMENT = 3
 	PFA_LEFT   PARAFORMAT_ALIGNMENT = 1
 	PFA_RIGHT  PARAFORMAT_ALIGNMENT = 2
+)
+
+// enum
+// flags
+type PARAFORMAT_NUMBERING uint16
+
+const (
+	PFN_BULLET   PARAFORMAT_NUMBERING = 1
+	PFN_ARABIC   PARAFORMAT_NUMBERING = 2
+	PFN_LCLETTER PARAFORMAT_NUMBERING = 3
+	PFN_UCLETTER PARAFORMAT_NUMBERING = 4
+	PFN_LCROMAN  PARAFORMAT_NUMBERING = 5
+	PFN_UCROMAN  PARAFORMAT_NUMBERING = 6
 )
 
 // enum
@@ -1490,12 +1492,12 @@ type TABLECELLPARMS struct {
 	DyBrdrTop    int16
 	DxBrdrRight  int16
 	DyBrdrBottom int16
-	CrBrdrLeft   uint32
-	CrBrdrTop    uint32
-	CrBrdrRight  uint32
-	CrBrdrBottom uint32
-	CrBackPat    uint32
-	CrForePat    uint32
+	CrBrdrLeft   COLORREF
+	CrBrdrTop    COLORREF
+	CrBrdrRight  COLORREF
+	CrBrdrBottom COLORREF
+	CrBackPat    COLORREF
+	CrForePat    COLORREF
 }
 
 type RICHEDIT_IMAGE_PARAMETERS struct {
@@ -1518,8 +1520,8 @@ type CHARFORMATA struct {
 	DwEffects       CFE_EFFECTS
 	YHeight         int32
 	YOffset         int32
-	CrTextColor     uint32
-	BCharSet        byte
+	CrTextColor     COLORREF
+	BCharSet        EMBED_FONT_CHARSET
 	BPitchAndFamily byte
 	SzFaceName      [32]CHAR
 }
@@ -1531,8 +1533,8 @@ type CHARFORMATW struct {
 	DwEffects       CFE_EFFECTS
 	YHeight         int32
 	YOffset         int32
-	CrTextColor     uint32
-	BCharSet        byte
+	CrTextColor     COLORREF
+	BCharSet        EMBED_FONT_CHARSET
 	BPitchAndFamily byte
 	SzFaceName      [32]uint16
 }
@@ -1559,10 +1561,10 @@ func (this *CHARFORMAT2W_Anonymous) DwCookieVal() uint32 {
 
 type CHARFORMAT2 = CHARFORMAT2W
 type CHARFORMAT2W struct {
-	CHARFORMATW
+	Base        CHARFORMATW
 	WWeight     uint16
 	SSpacing    int16
-	CrBackColor uint32
+	CrBackColor COLORREF
 	Lcid        uint32
 	CHARFORMAT2W_Anonymous
 	SStyle          int16
@@ -1594,10 +1596,10 @@ func (this *CHARFORMAT2A_Anonymous) DwCookieVal() uint32 {
 }
 
 type CHARFORMAT2A struct {
-	CHARFORMATA
+	Base        CHARFORMATA
 	WWeight     uint16
 	SSpacing    int16
-	CrBackColor uint32
+	CrBackColor COLORREF
 	Lcid        uint32
 	CHARFORMAT2A_Anonymous
 	SStyle          int16
@@ -1685,7 +1687,7 @@ func (this *PARAFORMAT_Anonymous) WEffectsVal() uint16 {
 type PARAFORMAT struct {
 	CbSize     uint32
 	DwMask     PARAFORMAT_MASK
-	WNumbering uint16
+	WNumbering PARAFORMAT_NUMBERING
 	PARAFORMAT_Anonymous
 	DxStartIndent int32
 	DxRightIndent int32
@@ -1696,7 +1698,7 @@ type PARAFORMAT struct {
 }
 
 type PARAFORMAT2 struct {
-	PARAFORMAT
+	Base             PARAFORMAT
 	DySpaceBefore    int32
 	DySpaceAfter     int32
 	DyLineSpacing    int32
@@ -1731,7 +1733,7 @@ type SELCHANGE struct {
 	Seltyp RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
 }
 
-type Grouptypingchange_ struct {
+type GROUPTYPINGCHANGE struct {
 	Nmhdr        NMHDR
 	FGroupTyping BOOL
 }
@@ -1807,8 +1809,8 @@ type PUNCTUATION struct {
 }
 
 type COMPCOLOR struct {
-	CrText       uint32
-	CrBackground uint32
+	CrText       COLORREF
+	CrBackground COLORREF
 	DwEffects    uint32
 }
 
@@ -1841,7 +1843,7 @@ type BIDIOPTIONS struct {
 	WEffects uint16
 }
 
-type Hyphresult struct {
+type HYPHRESULT struct {
 	Khyph   KHYPH
 	IchHyph int32
 	ChHyph  uint16
@@ -2087,7 +2089,7 @@ type ITextHostInterface interface {
 	TxGetViewInset(prc *RECT) HRESULT
 	TxGetCharFormat(ppCF **CHARFORMATW) HRESULT
 	TxGetParaFormat(ppPF **PARAFORMAT) HRESULT
-	TxGetSysColor(nIndex int32) uint32
+	TxGetSysColor(nIndex SYS_COLOR_INDEX) COLORREF
 	TxGetBackStyle(pstyle *TXTBACKSTYLE) HRESULT
 	TxGetMaxLength(plength *uint32) HRESULT
 	TxGetScrollBars(pdwScrollBar *uint32) HRESULT
@@ -2272,9 +2274,9 @@ func (this *ITextHost) TxGetParaFormat(ppPF **PARAFORMAT) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxGetSysColor(nIndex int32) uint32 {
+func (this *ITextHost) TxGetSysColor(nIndex SYS_COLOR_INDEX) COLORREF {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxGetSysColor, uintptr(unsafe.Pointer(this)), uintptr(nIndex))
-	return uint32(ret)
+	return COLORREF(ret)
 }
 
 func (this *ITextHost) TxGetBackStyle(pstyle *TXTBACKSTYLE) HRESULT {
@@ -2644,14 +2646,14 @@ var IID_IRichEditOleCallback = syscall.GUID{0x00020D03, 0x0000, 0x0000,
 type IRichEditOleCallbackInterface interface {
 	IUnknownInterface
 	GetNewStorage(lplpstg **IStorage) HRESULT
-	GetInPlaceContext(lplpFrame **IOleInPlaceFrame, lplpDoc **IOleInPlaceUIWindow, lpFrameInfo *OIFI) HRESULT
+	GetInPlaceContext(lplpFrame **IOleInPlaceFrame, lplpDoc **IOleInPlaceUIWindow, lpFrameInfo *OLEINPLACEFRAMEINFO) HRESULT
 	ShowContainerUI(fShow BOOL) HRESULT
 	QueryInsertObject(lpclsid *syscall.GUID, lpstg *IStorage, cp int32) HRESULT
 	DeleteObject(lpoleobj *IOleObject) HRESULT
-	QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco uint32, fReally BOOL, hMetaPict uintptr) HRESULT
+	QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco RECO_FLAGS, fReally BOOL, hMetaPict uintptr) HRESULT
 	ContextSensitiveHelp(fEnterMode BOOL) HRESULT
 	GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpdataobj **IDataObject) HRESULT
-	GetDragDropEffect(fDrag BOOL, grfKeyState uint32, pdwEffect *uint32) HRESULT
+	GetDragDropEffect(fDrag BOOL, grfKeyState MODIFIERKEYS_FLAGS, pdwEffect *DROPEFFECT) HRESULT
 	GetContextMenu(seltype RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, lpoleobj *IOleObject, lpchrg *CHARRANGE, lphmenu *HMENU) HRESULT
 }
 
@@ -2682,7 +2684,7 @@ func (this *IRichEditOleCallback) GetNewStorage(lplpstg **IStorage) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) GetInPlaceContext(lplpFrame **IOleInPlaceFrame, lplpDoc **IOleInPlaceUIWindow, lpFrameInfo *OIFI) HRESULT {
+func (this *IRichEditOleCallback) GetInPlaceContext(lplpFrame **IOleInPlaceFrame, lplpDoc **IOleInPlaceUIWindow, lpFrameInfo *OLEINPLACEFRAMEINFO) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetInPlaceContext, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lplpFrame)), uintptr(unsafe.Pointer(lplpDoc)), uintptr(unsafe.Pointer(lpFrameInfo)))
 	return HRESULT(ret)
 }
@@ -2702,7 +2704,7 @@ func (this *IRichEditOleCallback) DeleteObject(lpoleobj *IOleObject) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco uint32, fReally BOOL, hMetaPict uintptr) HRESULT {
+func (this *IRichEditOleCallback) QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco RECO_FLAGS, fReally BOOL, hMetaPict uintptr) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryAcceptData, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpdataobj)), uintptr(unsafe.Pointer(lpcfFormat)), uintptr(reco), uintptr(fReally), hMetaPict)
 	return HRESULT(ret)
 }
@@ -2717,7 +2719,7 @@ func (this *IRichEditOleCallback) GetClipboardData(lpchrg *CHARRANGE, reco uint3
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) GetDragDropEffect(fDrag BOOL, grfKeyState uint32, pdwEffect *uint32) HRESULT {
+func (this *IRichEditOleCallback) GetDragDropEffect(fDrag BOOL, grfKeyState MODIFIERKEYS_FLAGS, pdwEffect *DROPEFFECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDragDropEffect, uintptr(unsafe.Pointer(this)), uintptr(fDrag), uintptr(grfKeyState), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
 }
@@ -2742,8 +2744,8 @@ type ITextDocumentInterface interface {
 	GetDefaultTabStop(pValue *float32) HRESULT
 	SetDefaultTabStop(Value float32) HRESULT
 	New() HRESULT
-	Open(pVar *VARIANT, Flags int32, CodePage int32) HRESULT
-	Save(pVar *VARIANT, Flags int32, CodePage int32) HRESULT
+	Open(pVar *VARIANT, Flags TomConstants, CodePage int32) HRESULT
+	Save(pVar *VARIANT, Flags TomConstants, CodePage int32) HRESULT
 	Freeze(pCount *int32) HRESULT
 	Unfreeze(pCount *int32) HRESULT
 	BeginEditCollection() HRESULT
@@ -2830,12 +2832,12 @@ func (this *ITextDocument) New() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Open(pVar *VARIANT, Flags int32, CodePage int32) HRESULT {
+func (this *ITextDocument) Open(pVar *VARIANT, Flags TomConstants, CodePage int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Open, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)), uintptr(Flags), uintptr(CodePage))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument) Save(pVar *VARIANT, Flags int32, CodePage int32) HRESULT {
+func (this *ITextDocument) Save(pVar *VARIANT, Flags TomConstants, CodePage int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Save, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pVar)), uintptr(Flags), uintptr(CodePage))
 	return HRESULT(ret)
 }
@@ -2923,18 +2925,18 @@ type ITextRangeInterface interface {
 	MoveUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT
 	MoveStartUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT
 	MoveEndUntil(Cset *VARIANT, Count int32, pDelta *int32) HRESULT
-	FindText(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT
-	FindTextStart(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT
-	FindTextEnd(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT
+	FindText(bstr BSTR, Count int32, Flags TomConstants, pLength *int32) HRESULT
+	FindTextStart(bstr BSTR, Count int32, Flags TomConstants, pLength *int32) HRESULT
+	FindTextEnd(bstr BSTR, Count int32, Flags TomConstants, pLength *int32) HRESULT
 	Delete(Unit int32, Count int32, pDelta *int32) HRESULT
 	Cut(pVar *VARIANT) HRESULT
 	Copy(pVar *VARIANT) HRESULT
 	Paste(pVar *VARIANT, Format int32) HRESULT
 	CanPaste(pVar *VARIANT, Format int32, pValue *int32) HRESULT
 	CanEdit(pValue *int32) HRESULT
-	ChangeCase(Type int32) HRESULT
-	GetPoint(Type int32, px *int32, py *int32) HRESULT
-	SetPoint(x int32, y int32, Type int32, Extend int32) HRESULT
+	ChangeCase(Type TomConstants) HRESULT
+	GetPoint(Type TomConstants, px *int32, py *int32) HRESULT
+	SetPoint(x int32, y int32, Type TomConstants, Extend int32) HRESULT
 	ScrollIntoView(Value int32) HRESULT
 	GetEmbeddedObject(ppObject **IUnknown) HRESULT
 }
@@ -3187,17 +3189,17 @@ func (this *ITextRange) MoveEndUntil(Cset *VARIANT, Count int32, pDelta *int32) 
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) FindText(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT {
+func (this *ITextRange) FindText(bstr BSTR, Count int32, Flags TomConstants, pLength *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindText, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(Count), uintptr(Flags), uintptr(unsafe.Pointer(pLength)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) FindTextStart(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT {
+func (this *ITextRange) FindTextStart(bstr BSTR, Count int32, Flags TomConstants, pLength *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindTextStart, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(Count), uintptr(Flags), uintptr(unsafe.Pointer(pLength)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) FindTextEnd(bstr BSTR, Count int32, Flags int32, pLength *int32) HRESULT {
+func (this *ITextRange) FindTextEnd(bstr BSTR, Count int32, Flags TomConstants, pLength *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindTextEnd, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(bstr)), uintptr(Count), uintptr(Flags), uintptr(unsafe.Pointer(pLength)))
 	return HRESULT(ret)
 }
@@ -3232,17 +3234,17 @@ func (this *ITextRange) CanEdit(pValue *int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) ChangeCase(Type int32) HRESULT {
+func (this *ITextRange) ChangeCase(Type TomConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ChangeCase, uintptr(unsafe.Pointer(this)), uintptr(Type))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) GetPoint(Type int32, px *int32, py *int32) HRESULT {
+func (this *ITextRange) GetPoint(Type TomConstants, px *int32, py *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetPoint, uintptr(unsafe.Pointer(this)), uintptr(Type), uintptr(unsafe.Pointer(px)), uintptr(unsafe.Pointer(py)))
 	return HRESULT(ret)
 }
 
-func (this *ITextRange) SetPoint(x int32, y int32, Type int32, Extend int32) HRESULT {
+func (this *ITextRange) SetPoint(x int32, y int32, Type TomConstants, Extend int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPoint, uintptr(unsafe.Pointer(this)), uintptr(x), uintptr(y), uintptr(Type), uintptr(Extend))
 	return HRESULT(ret)
 }
@@ -5910,8 +5912,8 @@ var IID_ITextDocument2Old = syscall.GUID{0x01C25500, 0x4268, 0x11D1,
 type ITextDocument2OldInterface interface {
 	ITextDocumentInterface
 	AttachMsgFilter(pFilter *IUnknown) HRESULT
-	SetEffectColor(Index int32, cr uint32) HRESULT
-	GetEffectColor(Index int32, pcr *uint32) HRESULT
+	SetEffectColor(Index int32, cr COLORREF) HRESULT
+	GetEffectColor(Index int32, pcr *COLORREF) HRESULT
 	GetCaretType(pCaretType *int32) HRESULT
 	SetCaretType(CaretType int32) HRESULT
 	GetImmContext(pContext *int64) HRESULT
@@ -5976,12 +5978,12 @@ func (this *ITextDocument2Old) AttachMsgFilter(pFilter *IUnknown) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) SetEffectColor(Index int32, cr uint32) HRESULT {
+func (this *ITextDocument2Old) SetEffectColor(Index int32, cr COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEffectColor, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(cr))
 	return HRESULT(ret)
 }
 
-func (this *ITextDocument2Old) GetEffectColor(Index int32, pcr *uint32) HRESULT {
+func (this *ITextDocument2Old) GetEffectColor(Index int32, pcr *COLORREF) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetEffectColor, uintptr(unsafe.Pointer(this)), uintptr(Index), uintptr(unsafe.Pointer(pcr)))
 	return HRESULT(ret)
 }

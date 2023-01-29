@@ -20,11 +20,6 @@ const (
 	HKEY_CURRENT_CONFIG                             HKEY   = ^HKEY(0x7ffffffa)
 	HKEY_DYN_DATA                                   HKEY   = ^HKEY(0x7ffffff9)
 	HKEY_CURRENT_USER_LOCAL_SETTINGS                HKEY   = ^HKEY(0x7ffffff8)
-	RRF_SUBKEY_WOW6464KEY                           uint32 = 0x10000
-	RRF_SUBKEY_WOW6432KEY                           uint32 = 0x20000
-	RRF_WOW64_MASK                                  uint32 = 0x30000
-	RRF_NOEXPAND                                    uint32 = 0x10000000
-	RRF_ZEROONFAILURE                               uint32 = 0x20000000
 	REG_PROCESS_APPKEY                              uint32 = 0x1
 	REG_USE_CURRENT_SECURITY_CONTEXT                uint32 = 0x2
 	PROVIDER_KEEPS_VALUE_LENGTH                     uint32 = 0x1
@@ -1020,19 +1015,24 @@ const (
 
 // enum
 // flags
-type RRF_RT uint32
+type REG_ROUTINE_FLAGS uint32
 
 const (
-	RRF_RT_ANY           RRF_RT = 65535
-	RRF_RT_DWORD         RRF_RT = 24
-	RRF_RT_QWORD         RRF_RT = 72
-	RRF_RT_REG_BINARY    RRF_RT = 8
-	RRF_RT_REG_DWORD     RRF_RT = 16
-	RRF_RT_REG_EXPAND_SZ RRF_RT = 4
-	RRF_RT_REG_MULTI_SZ  RRF_RT = 32
-	RRF_RT_REG_NONE      RRF_RT = 1
-	RRF_RT_REG_QWORD     RRF_RT = 64
-	RRF_RT_REG_SZ        RRF_RT = 2
+	RRF_RT_DWORD          REG_ROUTINE_FLAGS = 24
+	RRF_RT_QWORD          REG_ROUTINE_FLAGS = 72
+	RRF_RT_REG_NONE       REG_ROUTINE_FLAGS = 1
+	RRF_RT_REG_SZ         REG_ROUTINE_FLAGS = 2
+	RRF_RT_REG_EXPAND_SZ  REG_ROUTINE_FLAGS = 4
+	RRF_RT_REG_BINARY     REG_ROUTINE_FLAGS = 8
+	RRF_RT_REG_DWORD      REG_ROUTINE_FLAGS = 16
+	RRF_RT_REG_MULTI_SZ   REG_ROUTINE_FLAGS = 32
+	RRF_RT_REG_QWORD      REG_ROUTINE_FLAGS = 64
+	RRF_RT_ANY            REG_ROUTINE_FLAGS = 65535
+	RRF_SUBKEY_WOW6464KEY REG_ROUTINE_FLAGS = 65536
+	RRF_SUBKEY_WOW6432KEY REG_ROUTINE_FLAGS = 131072
+	RRF_WOW64_MASK        REG_ROUTINE_FLAGS = 196608
+	RRF_NOEXPAND          REG_ROUTINE_FLAGS = 268435456
+	RRF_ZEROONFAILURE     REG_ROUTINE_FLAGS = 536870912
 )
 
 // structs
@@ -1043,22 +1043,22 @@ type Val_context struct {
 	Val_buff_ptr  unsafe.Pointer
 }
 
-type PvalueA struct {
+type PVALUEA struct {
 	Pv_valuename     PSTR
 	Pv_valuelen      int32
 	Pv_value_context unsafe.Pointer
 	Pv_type          uint32
 }
 
-type Pvalue = PvalueW
-type PvalueW struct {
+type PVALUE = PVALUEW
+type PVALUEW struct {
 	Pv_valuename     PWSTR
 	Pv_valuelen      int32
 	Pv_value_context unsafe.Pointer
 	Pv_type          uint32
 }
 
-type Provider_info struct {
+type REG_PROVIDER struct {
 	Pi_R0_1val     PQUERYHANDLER
 	Pi_R0_allvals  PQUERYHANDLER
 	Pi_R3_1val     PQUERYHANDLER
@@ -1680,7 +1680,7 @@ func RegCopyTreeA(hKeySrc HKEY, lpSubKey PSTR, hKeyDest HKEY) WIN32_ERROR {
 	return WIN32_ERROR(ret)
 }
 
-func RegGetValueA(hkey HKEY, lpSubKey PSTR, lpValue PSTR, dwFlags RRF_RT, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+func RegGetValueA(hkey HKEY, lpSubKey PSTR, lpValue PSTR, dwFlags REG_ROUTINE_FLAGS, pdwType *REG_VALUE_TYPE, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
 	addr := lazyAddr(&pRegGetValueA, libAdvapi32, "RegGetValueA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValue)), uintptr(dwFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
@@ -1688,7 +1688,7 @@ func RegGetValueA(hkey HKEY, lpSubKey PSTR, lpValue PSTR, dwFlags RRF_RT, pdwTyp
 
 var RegGetValue = RegGetValueW
 
-func RegGetValueW(hkey HKEY, lpSubKey PWSTR, lpValue PWSTR, dwFlags RRF_RT, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
+func RegGetValueW(hkey HKEY, lpSubKey PWSTR, lpValue PWSTR, dwFlags REG_ROUTINE_FLAGS, pdwType *REG_VALUE_TYPE, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
 	addr := lazyAddr(&pRegGetValueW, libAdvapi32, "RegGetValueW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValue)), uintptr(dwFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)

@@ -151,6 +151,22 @@ const (
 
 // enum
 // flags
+type CHOOSECOLOR_FLAGS uint32
+
+const (
+	CC_RGBINIT              CHOOSECOLOR_FLAGS = 1
+	CC_FULLOPEN             CHOOSECOLOR_FLAGS = 2
+	CC_PREVENTFULLOPEN      CHOOSECOLOR_FLAGS = 4
+	CC_SHOWHELP             CHOOSECOLOR_FLAGS = 8
+	CC_ENABLEHOOK           CHOOSECOLOR_FLAGS = 16
+	CC_ENABLETEMPLATE       CHOOSECOLOR_FLAGS = 32
+	CC_ENABLETEMPLATEHANDLE CHOOSECOLOR_FLAGS = 64
+	CC_SOLIDCOLOR           CHOOSECOLOR_FLAGS = 128
+	CC_ANYCOLOR             CHOOSECOLOR_FLAGS = 256
+)
+
+// enum
+// flags
 type OPEN_FILENAME_FLAGS uint32
 
 const (
@@ -325,6 +341,22 @@ const (
 	SIMULATED_FONTTYPE CHOOSEFONT_FONT_TYPE = 32768
 )
 
+// enum
+type COMMON_DIALOG_NOTIFICATION int32
+
+const (
+	CDN_FIRST          COMMON_DIALOG_NOTIFICATION = -601
+	CDN_LAST           COMMON_DIALOG_NOTIFICATION = -699
+	CDN_INITDONE       COMMON_DIALOG_NOTIFICATION = -601
+	CDN_SELCHANGE      COMMON_DIALOG_NOTIFICATION = -602
+	CDN_FOLDERCHANGE   COMMON_DIALOG_NOTIFICATION = -603
+	CDN_SHAREVIOLATION COMMON_DIALOG_NOTIFICATION = -604
+	CDN_HELP           COMMON_DIALOG_NOTIFICATION = -605
+	CDN_FILEOK         COMMON_DIALOG_NOTIFICATION = -606
+	CDN_TYPECHANGE     COMMON_DIALOG_NOTIFICATION = -607
+	CDN_INCLUDEITEM    COMMON_DIALOG_NOTIFICATION = -608
+)
+
 // structs
 
 type OPENFILENAME_NT4A struct {
@@ -459,9 +491,9 @@ type CHOOSECOLORA struct {
 	LStructSize    uint32
 	HwndOwner      HWND
 	HInstance      HWND
-	RgbResult      uint32
-	LpCustColors   *uint32
-	Flags          uint32
+	RgbResult      COLORREF
+	LpCustColors   *COLORREF
+	Flags          CHOOSECOLOR_FLAGS
 	LCustData      LPARAM
 	LpfnHook       LPCCHOOKPROC
 	LpTemplateName PSTR
@@ -472,9 +504,9 @@ type CHOOSECOLORW struct {
 	LStructSize    uint32
 	HwndOwner      HWND
 	HInstance      HWND
-	RgbResult      uint32
-	LpCustColors   *uint32
-	Flags          uint32
+	RgbResult      COLORREF
+	LpCustColors   *COLORREF
+	Flags          CHOOSECOLOR_FLAGS
 	LCustData      LPARAM
 	LpfnHook       LPCCHOOKPROC
 	LpTemplateName PWSTR
@@ -516,7 +548,7 @@ type CHOOSEFONTA struct {
 	LpLogFont              *LOGFONTA
 	IPointSize             int32
 	Flags                  CHOOSEFONT_FLAGS
-	RgbColors              uint32
+	RgbColors              COLORREF
 	LCustData              LPARAM
 	LpfnHook               LPCFHOOKPROC
 	LpTemplateName         PSTR
@@ -536,7 +568,7 @@ type CHOOSEFONTW struct {
 	LpLogFont              *LOGFONTW
 	IPointSize             int32
 	Flags                  CHOOSEFONT_FLAGS
-	RgbColors              uint32
+	RgbColors              COLORREF
 	LCustData              LPARAM
 	LpfnHook               LPCFHOOKPROC
 	LpTemplateName         PWSTR

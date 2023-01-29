@@ -52,6 +52,33 @@ const (
 	UOI_USER_SID USER_OBJECT_INFORMATION_INDEX = 4
 )
 
+// enum
+type DESKTOP_CONTROL_FLAGS uint32
+
+const (
+	DF_ALLOWOTHERACCOUNTHOOK DESKTOP_CONTROL_FLAGS = 1
+)
+
+// enum
+type DESKTOP_ACCESS_FLAGS uint32
+
+const (
+	DESKTOP_DELETE          DESKTOP_ACCESS_FLAGS = 65536
+	DESKTOP_READ_CONTROL    DESKTOP_ACCESS_FLAGS = 131072
+	DESKTOP_WRITE_DAC       DESKTOP_ACCESS_FLAGS = 262144
+	DESKTOP_WRITE_OWNER     DESKTOP_ACCESS_FLAGS = 524288
+	DESKTOP_SYNCHRONIZE     DESKTOP_ACCESS_FLAGS = 1048576
+	DESKTOP_READOBJECTS     DESKTOP_ACCESS_FLAGS = 1
+	DESKTOP_CREATEWINDOW    DESKTOP_ACCESS_FLAGS = 2
+	DESKTOP_CREATEMENU      DESKTOP_ACCESS_FLAGS = 4
+	DESKTOP_HOOKCONTROL     DESKTOP_ACCESS_FLAGS = 8
+	DESKTOP_JOURNALRECORD   DESKTOP_ACCESS_FLAGS = 16
+	DESKTOP_JOURNALPLAYBACK DESKTOP_ACCESS_FLAGS = 32
+	DESKTOP_ENUMERATE       DESKTOP_ACCESS_FLAGS = 64
+	DESKTOP_WRITEOBJECTS    DESKTOP_ACCESS_FLAGS = 128
+	DESKTOP_SWITCHDESKTOP   DESKTOP_ACCESS_FLAGS = 256
+)
+
 // structs
 
 type USEROBJECTFLAGS struct {
@@ -115,7 +142,7 @@ var (
 	pBroadcastSystemMessageW   uintptr
 )
 
-func CreateDesktopA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFlags uint32, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HDESK, WIN32_ERROR) {
+func CreateDesktopA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HDESK, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateDesktopA, libUser32, "CreateDesktopA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)))
 	return ret, WIN32_ERROR(err)
@@ -123,13 +150,13 @@ func CreateDesktopA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFla
 
 var CreateDesktop = CreateDesktopW
 
-func CreateDesktopW(lpszDesktop PWSTR, lpszDevice PWSTR, pDevmode *DEVMODEW, dwFlags uint32, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HDESK, WIN32_ERROR) {
+func CreateDesktopW(lpszDesktop PWSTR, lpszDevice PWSTR, pDevmode *DEVMODEW, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HDESK, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateDesktopW, libUser32, "CreateDesktopW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)))
 	return ret, WIN32_ERROR(err)
 }
 
-func CreateDesktopExA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFlags uint32, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES, ulHeapSize uint32, pvoid unsafe.Pointer) (HDESK, WIN32_ERROR) {
+func CreateDesktopExA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES, ulHeapSize uint32, pvoid unsafe.Pointer) (HDESK, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateDesktopExA, libUser32, "CreateDesktopExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)), uintptr(ulHeapSize), uintptr(pvoid))
 	return ret, WIN32_ERROR(err)
@@ -137,13 +164,13 @@ func CreateDesktopExA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwF
 
 var CreateDesktopEx = CreateDesktopExW
 
-func CreateDesktopExW(lpszDesktop PWSTR, lpszDevice PWSTR, pDevmode *DEVMODEW, dwFlags uint32, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES, ulHeapSize uint32, pvoid unsafe.Pointer) (HDESK, WIN32_ERROR) {
+func CreateDesktopExW(lpszDesktop PWSTR, lpszDevice PWSTR, pDevmode *DEVMODEW, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES, ulHeapSize uint32, pvoid unsafe.Pointer) (HDESK, WIN32_ERROR) {
 	addr := lazyAddr(&pCreateDesktopExW, libUser32, "CreateDesktopExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)), uintptr(ulHeapSize), uintptr(pvoid))
 	return ret, WIN32_ERROR(err)
 }
 
-func OpenDesktopA(lpszDesktop PSTR, dwFlags uint32, fInherit BOOL, dwDesiredAccess uint32) (HDESK, WIN32_ERROR) {
+func OpenDesktopA(lpszDesktop PSTR, dwFlags DESKTOP_CONTROL_FLAGS, fInherit BOOL, dwDesiredAccess uint32) (HDESK, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenDesktopA, libUser32, "OpenDesktopA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(dwFlags), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
@@ -151,13 +178,13 @@ func OpenDesktopA(lpszDesktop PSTR, dwFlags uint32, fInherit BOOL, dwDesiredAcce
 
 var OpenDesktop = OpenDesktopW
 
-func OpenDesktopW(lpszDesktop PWSTR, dwFlags uint32, fInherit BOOL, dwDesiredAccess uint32) (HDESK, WIN32_ERROR) {
+func OpenDesktopW(lpszDesktop PWSTR, dwFlags DESKTOP_CONTROL_FLAGS, fInherit BOOL, dwDesiredAccess uint32) (HDESK, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenDesktopW, libUser32, "OpenDesktopW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(dwFlags), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
-func OpenInputDesktop(dwFlags uint32, fInherit BOOL, dwDesiredAccess uint32) (HDESK, WIN32_ERROR) {
+func OpenInputDesktop(dwFlags DESKTOP_CONTROL_FLAGS, fInherit BOOL, dwDesiredAccess DESKTOP_ACCESS_FLAGS) (HDESK, WIN32_ERROR) {
 	addr := lazyAddr(&pOpenInputDesktop, libUser32, "OpenInputDesktop")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)

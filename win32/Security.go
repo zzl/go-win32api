@@ -20,32 +20,70 @@ type (
 )
 
 const (
-	WszCERTENROLLSHAREPATH               string = "CertSrv\\CertEnroll"
-	CwcHRESULTSTRING                     uint32 = 0x28
-	SzLBRACE                             string = "{"
-	SzRBRACE                             string = "}"
-	WszLBRACE                            string = "{"
-	WszRBRACE                            string = "}"
-	SzLPAREN                             string = "("
-	SzRPAREN                             string = ")"
-	WszLPAREN                            string = "("
-	WszRPAREN                            string = ")"
-	CVT_SECONDS                          uint32 = 0x1
-	CwcFILENAMESUFFIXMAX                 uint32 = 0x14
-	WszFCSAPARM_SERVERDNSNAME            string = "%1"
-	WszFCSAPARM_SERVERSHORTNAME          string = "%2"
-	WszFCSAPARM_SANITIZEDCANAME          string = "%3"
-	WszFCSAPARM_CERTFILENAMESUFFIX       string = "%4"
-	WszFCSAPARM_DOMAINDN                 string = "%5"
-	WszFCSAPARM_CONFIGDN                 string = "%6"
-	WszFCSAPARM_SANITIZEDCANAMEHASH      string = "%7"
-	WszFCSAPARM_CRLFILENAMESUFFIX        string = "%8"
-	WszFCSAPARM_CRLDELTAFILENAMESUFFIX   string = "%9"
-	WszFCSAPARM_DSCRLATTRIBUTE           string = "%10"
-	WszFCSAPARM_DSCACERTATTRIBUTE        string = "%11"
-	WszFCSAPARM_DSUSERCERTATTRIBUTE      string = "%12"
-	WszFCSAPARM_DSKRACERTATTRIBUTE       string = "%13"
-	WszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE string = "%14"
+	SECURITY_DYNAMIC_TRACKING                 BOOLEAN = 0x1
+	SECURITY_STATIC_TRACKING                  BOOLEAN = 0x0
+	SE_CREATE_TOKEN_NAME                      string  = "SeCreateTokenPrivilege"
+	SE_ASSIGNPRIMARYTOKEN_NAME                string  = "SeAssignPrimaryTokenPrivilege"
+	SE_LOCK_MEMORY_NAME                       string  = "SeLockMemoryPrivilege"
+	SE_INCREASE_QUOTA_NAME                    string  = "SeIncreaseQuotaPrivilege"
+	SE_UNSOLICITED_INPUT_NAME                 string  = "SeUnsolicitedInputPrivilege"
+	SE_MACHINE_ACCOUNT_NAME                   string  = "SeMachineAccountPrivilege"
+	SE_TCB_NAME                               string  = "SeTcbPrivilege"
+	SE_SECURITY_NAME                          string  = "SeSecurityPrivilege"
+	SE_TAKE_OWNERSHIP_NAME                    string  = "SeTakeOwnershipPrivilege"
+	SE_LOAD_DRIVER_NAME                       string  = "SeLoadDriverPrivilege"
+	SE_SYSTEM_PROFILE_NAME                    string  = "SeSystemProfilePrivilege"
+	SE_SYSTEMTIME_NAME                        string  = "SeSystemtimePrivilege"
+	SE_PROF_SINGLE_PROCESS_NAME               string  = "SeProfileSingleProcessPrivilege"
+	SE_INC_BASE_PRIORITY_NAME                 string  = "SeIncreaseBasePriorityPrivilege"
+	SE_CREATE_PAGEFILE_NAME                   string  = "SeCreatePagefilePrivilege"
+	SE_CREATE_PERMANENT_NAME                  string  = "SeCreatePermanentPrivilege"
+	SE_BACKUP_NAME                            string  = "SeBackupPrivilege"
+	SE_RESTORE_NAME                           string  = "SeRestorePrivilege"
+	SE_SHUTDOWN_NAME                          string  = "SeShutdownPrivilege"
+	SE_DEBUG_NAME                             string  = "SeDebugPrivilege"
+	SE_AUDIT_NAME                             string  = "SeAuditPrivilege"
+	SE_SYSTEM_ENVIRONMENT_NAME                string  = "SeSystemEnvironmentPrivilege"
+	SE_CHANGE_NOTIFY_NAME                     string  = "SeChangeNotifyPrivilege"
+	SE_REMOTE_SHUTDOWN_NAME                   string  = "SeRemoteShutdownPrivilege"
+	SE_UNDOCK_NAME                            string  = "SeUndockPrivilege"
+	SE_SYNC_AGENT_NAME                        string  = "SeSyncAgentPrivilege"
+	SE_ENABLE_DELEGATION_NAME                 string  = "SeEnableDelegationPrivilege"
+	SE_MANAGE_VOLUME_NAME                     string  = "SeManageVolumePrivilege"
+	SE_IMPERSONATE_NAME                       string  = "SeImpersonatePrivilege"
+	SE_CREATE_GLOBAL_NAME                     string  = "SeCreateGlobalPrivilege"
+	SE_TRUSTED_CREDMAN_ACCESS_NAME            string  = "SeTrustedCredManAccessPrivilege"
+	SE_RELABEL_NAME                           string  = "SeRelabelPrivilege"
+	SE_INC_WORKING_SET_NAME                   string  = "SeIncreaseWorkingSetPrivilege"
+	SE_TIME_ZONE_NAME                         string  = "SeTimeZonePrivilege"
+	SE_CREATE_SYMBOLIC_LINK_NAME              string  = "SeCreateSymbolicLinkPrivilege"
+	SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME string  = "SeDelegateSessionUserImpersonatePrivilege"
+	WszCERTENROLLSHAREPATH                    string  = "CertSrv\\CertEnroll"
+	CwcHRESULTSTRING                          uint32  = 0x28
+	SzLBRACE                                  string  = "{"
+	SzRBRACE                                  string  = "}"
+	WszLBRACE                                 string  = "{"
+	WszRBRACE                                 string  = "}"
+	SzLPAREN                                  string  = "("
+	SzRPAREN                                  string  = ")"
+	WszLPAREN                                 string  = "("
+	WszRPAREN                                 string  = ")"
+	CVT_SECONDS                               uint32  = 0x1
+	CwcFILENAMESUFFIXMAX                      uint32  = 0x14
+	WszFCSAPARM_SERVERDNSNAME                 string  = "%1"
+	WszFCSAPARM_SERVERSHORTNAME               string  = "%2"
+	WszFCSAPARM_SANITIZEDCANAME               string  = "%3"
+	WszFCSAPARM_CERTFILENAMESUFFIX            string  = "%4"
+	WszFCSAPARM_DOMAINDN                      string  = "%5"
+	WszFCSAPARM_CONFIGDN                      string  = "%6"
+	WszFCSAPARM_SANITIZEDCANAMEHASH           string  = "%7"
+	WszFCSAPARM_CRLFILENAMESUFFIX             string  = "%8"
+	WszFCSAPARM_CRLDELTAFILENAMESUFFIX        string  = "%9"
+	WszFCSAPARM_DSCRLATTRIBUTE                string  = "%10"
+	WszFCSAPARM_DSCACERTATTRIBUTE             string  = "%11"
+	WszFCSAPARM_DSUSERCERTATTRIBUTE           string  = "%12"
+	WszFCSAPARM_DSKRACERTATTRIBUTE            string  = "%13"
+	WszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE      string  = "%14"
 )
 
 // enums
@@ -206,24 +244,51 @@ const (
 
 // enum
 // flags
+type SECURITY_DESCRIPTOR_CONTROL uint16
+
+const (
+	SE_OWNER_DEFAULTED       SECURITY_DESCRIPTOR_CONTROL = 1
+	SE_GROUP_DEFAULTED       SECURITY_DESCRIPTOR_CONTROL = 2
+	SE_DACL_PRESENT          SECURITY_DESCRIPTOR_CONTROL = 4
+	SE_DACL_DEFAULTED        SECURITY_DESCRIPTOR_CONTROL = 8
+	SE_SACL_PRESENT          SECURITY_DESCRIPTOR_CONTROL = 16
+	SE_SACL_DEFAULTED        SECURITY_DESCRIPTOR_CONTROL = 32
+	SE_DACL_AUTO_INHERIT_REQ SECURITY_DESCRIPTOR_CONTROL = 256
+	SE_SACL_AUTO_INHERIT_REQ SECURITY_DESCRIPTOR_CONTROL = 512
+	SE_DACL_AUTO_INHERITED   SECURITY_DESCRIPTOR_CONTROL = 1024
+	SE_SACL_AUTO_INHERITED   SECURITY_DESCRIPTOR_CONTROL = 2048
+	SE_DACL_PROTECTED        SECURITY_DESCRIPTOR_CONTROL = 4096
+	SE_SACL_PROTECTED        SECURITY_DESCRIPTOR_CONTROL = 8192
+	SE_RM_CONTROL_VALID      SECURITY_DESCRIPTOR_CONTROL = 16384
+	SE_SELF_RELATIVE         SECURITY_DESCRIPTOR_CONTROL = 32768
+)
+
+// enum
+// flags
 type TOKEN_ACCESS_MASK uint32
 
 const (
-	TOKEN_DELETE                 TOKEN_ACCESS_MASK = 65536
-	TOKEN_READ_CONTROL           TOKEN_ACCESS_MASK = 131072
-	TOKEN_WRITE_DAC              TOKEN_ACCESS_MASK = 262144
-	TOKEN_WRITE_OWNER            TOKEN_ACCESS_MASK = 524288
-	TOKEN_ACCESS_SYSTEM_SECURITY TOKEN_ACCESS_MASK = 16777216
-	TOKEN_ASSIGN_PRIMARY         TOKEN_ACCESS_MASK = 1
-	TOKEN_DUPLICATE              TOKEN_ACCESS_MASK = 2
-	TOKEN_IMPERSONATE            TOKEN_ACCESS_MASK = 4
-	TOKEN_QUERY                  TOKEN_ACCESS_MASK = 8
-	TOKEN_QUERY_SOURCE           TOKEN_ACCESS_MASK = 16
-	TOKEN_ADJUST_PRIVILEGES      TOKEN_ACCESS_MASK = 32
-	TOKEN_ADJUST_GROUPS          TOKEN_ACCESS_MASK = 64
-	TOKEN_ADJUST_DEFAULT         TOKEN_ACCESS_MASK = 128
-	TOKEN_ADJUST_SESSIONID       TOKEN_ACCESS_MASK = 256
-	TOKEN_ALL_ACCESS             TOKEN_ACCESS_MASK = 983295
+	TOKEN_DELETE                    TOKEN_ACCESS_MASK = 65536
+	TOKEN_READ_CONTROL              TOKEN_ACCESS_MASK = 131072
+	TOKEN_WRITE_DAC                 TOKEN_ACCESS_MASK = 262144
+	TOKEN_WRITE_OWNER               TOKEN_ACCESS_MASK = 524288
+	TOKEN_ACCESS_SYSTEM_SECURITY    TOKEN_ACCESS_MASK = 16777216
+	TOKEN_ASSIGN_PRIMARY            TOKEN_ACCESS_MASK = 1
+	TOKEN_DUPLICATE                 TOKEN_ACCESS_MASK = 2
+	TOKEN_IMPERSONATE               TOKEN_ACCESS_MASK = 4
+	TOKEN_QUERY                     TOKEN_ACCESS_MASK = 8
+	TOKEN_QUERY_SOURCE              TOKEN_ACCESS_MASK = 16
+	TOKEN_ADJUST_PRIVILEGES         TOKEN_ACCESS_MASK = 32
+	TOKEN_ADJUST_GROUPS             TOKEN_ACCESS_MASK = 64
+	TOKEN_ADJUST_DEFAULT            TOKEN_ACCESS_MASK = 128
+	TOKEN_ADJUST_SESSIONID          TOKEN_ACCESS_MASK = 256
+	TOKEN_READ                      TOKEN_ACCESS_MASK = 131080
+	TOKEN_WRITE                     TOKEN_ACCESS_MASK = 131296
+	TOKEN_EXECUTE                   TOKEN_ACCESS_MASK = 131072
+	TOKEN_TRUST_CONSTRAINT_MASK     TOKEN_ACCESS_MASK = 131096
+	TOKEN_ACCESS_PSEUDO_HANDLE_WIN8 TOKEN_ACCESS_MASK = 24
+	TOKEN_ACCESS_PSEUDO_HANDLE      TOKEN_ACCESS_MASK = 24
+	TOKEN_ALL_ACCESS                TOKEN_ACCESS_MASK = 983551
 )
 
 // enum
@@ -753,10 +818,20 @@ type ACL_SIZE_INFORMATION struct {
 	AclBytesFree  uint32
 }
 
+type SECURITY_DESCRIPTOR_RELATIVE struct {
+	Revision byte
+	Sbz1     byte
+	Control  SECURITY_DESCRIPTOR_CONTROL
+	Owner    uint32
+	Group    uint32
+	Sacl     uint32
+	Dacl     uint32
+}
+
 type SECURITY_DESCRIPTOR struct {
 	Revision byte
 	Sbz1     byte
-	Control  uint16
+	Control  SECURITY_DESCRIPTOR_CONTROL
 	Owner    PSID
 	Group    PSID
 	Sacl     *ACL
@@ -1277,61 +1352,61 @@ func AccessCheckByTypeResultListAndAuditAlarmByHandleW(SubsystemName PWSTR, Hand
 	return BOOL(ret)
 }
 
-func AddAccessAllowedAce(pAcl *ACL, dwAceRevision uint32, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
+func AddAccessAllowedAce(pAcl *ACL, dwAceRevision ACE_REVISION, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessAllowedAce, libAdvapi32, "AddAccessAllowedAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAccessAllowedAceEx(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
+func AddAccessAllowedAceEx(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessAllowedAceEx, libAdvapi32, "AddAccessAllowedAceEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAccessAllowedObjectAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID) (BOOL, WIN32_ERROR) {
+func AddAccessAllowedObjectAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessAllowedObjectAce, libAdvapi32, "AddAccessAllowedObjectAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAccessDeniedAce(pAcl *ACL, dwAceRevision uint32, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
+func AddAccessDeniedAce(pAcl *ACL, dwAceRevision ACE_REVISION, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessDeniedAce, libAdvapi32, "AddAccessDeniedAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAccessDeniedAceEx(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
+func AddAccessDeniedAceEx(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessDeniedAceEx, libAdvapi32, "AddAccessDeniedAceEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAccessDeniedObjectAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID) (BOOL, WIN32_ERROR) {
+func AddAccessDeniedObjectAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAccessDeniedObjectAce, libAdvapi32, "AddAccessDeniedObjectAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAce(pAcl *ACL, dwAceRevision uint32, dwStartingAceIndex uint32, pAceList unsafe.Pointer, nAceListLength uint32) (BOOL, WIN32_ERROR) {
+func AddAce(pAcl *ACL, dwAceRevision ACE_REVISION, dwStartingAceIndex uint32, pAceList unsafe.Pointer, nAceListLength uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAce, libAdvapi32, "AddAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(dwStartingAceIndex), uintptr(pAceList), uintptr(nAceListLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAuditAccessAce(pAcl *ACL, dwAceRevision uint32, dwAccessMask uint32, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
+func AddAuditAccessAce(pAcl *ACL, dwAceRevision ACE_REVISION, dwAccessMask uint32, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAuditAccessAce, libAdvapi32, "AddAuditAccessAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(dwAccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(bAuditSuccess), uintptr(bAuditFailure))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAuditAccessAceEx(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, dwAccessMask uint32, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
+func AddAuditAccessAceEx(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, dwAccessMask uint32, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAuditAccessAceEx, libAdvapi32, "AddAuditAccessAceEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(dwAccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(bAuditSuccess), uintptr(bAuditFailure))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddAuditAccessObjectAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
+func AddAuditAccessObjectAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AccessMask uint32, ObjectTypeGuid *syscall.GUID, InheritedObjectTypeGuid *syscall.GUID, pSid PSID, bAuditSuccess BOOL, bAuditFailure BOOL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddAuditAccessObjectAce, libAdvapi32, "AddAuditAccessObjectAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(ObjectTypeGuid)), uintptr(unsafe.Pointer(InheritedObjectTypeGuid)), uintptr(unsafe.Pointer(pSid)), uintptr(bAuditSuccess), uintptr(bAuditFailure))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1343,13 +1418,13 @@ func AddMandatoryAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, 
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddResourceAttributeAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID, pAttributeInfo *CLAIM_SECURITY_ATTRIBUTES_INFORMATION, pReturnLength *uint32) (BOOL, WIN32_ERROR) {
+func AddResourceAttributeAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID, pAttributeInfo *CLAIM_SECURITY_ATTRIBUTES_INFORMATION, pReturnLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddResourceAttributeAce, libKernel32, "AddResourceAttributeAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(unsafe.Pointer(pAttributeInfo)), uintptr(unsafe.Pointer(pReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddScopedPolicyIDAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
+func AddScopedPolicyIDAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AccessMask uint32, pSid PSID) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddScopedPolicyIDAce, libKernel32, "AddScopedPolicyIDAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1645,7 +1720,7 @@ func ImpersonateSelf(ImpersonationLevel SECURITY_IMPERSONATION_LEVEL) (BOOL, WIN
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func InitializeAcl(pAcl *ACL, nAclLength uint32, dwAclRevision uint32) (BOOL, WIN32_ERROR) {
+func InitializeAcl(pAcl *ACL, nAclLength uint32, dwAclRevision ACE_REVISION) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pInitializeAcl, libAdvapi32, "InitializeAcl")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(nAclLength), uintptr(dwAclRevision))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1804,7 +1879,7 @@ func SetSecurityAccessMask(SecurityInformation uint32, DesiredAccess *uint32) {
 	syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(DesiredAccess)))
 }
 
-func SetSecurityDescriptorControl(pSecurityDescriptor PSECURITY_DESCRIPTOR, ControlBitsOfInterest uint16, ControlBitsToSet uint16) (BOOL, WIN32_ERROR) {
+func SetSecurityDescriptorControl(pSecurityDescriptor PSECURITY_DESCRIPTOR, ControlBitsOfInterest SECURITY_DESCRIPTOR_CONTROL, ControlBitsToSet SECURITY_DESCRIPTOR_CONTROL) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pSetSecurityDescriptorControl, libAdvapi32, "SetSecurityDescriptorControl")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(ControlBitsOfInterest), uintptr(ControlBitsToSet))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1924,7 +1999,7 @@ func PrivilegedServiceAuditAlarmA(SubsystemName PSTR, ServiceName PSTR, ClientTo
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AddConditionalAce(pAcl *ACL, dwAceRevision uint32, AceFlags ACE_FLAGS, AceType byte, AccessMask uint32, pSid PSID, ConditionStr PWSTR, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
+func AddConditionalAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS, AceType byte, AccessMask uint32, pSid PSID, ConditionStr PWSTR, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := lazyAddr(&pAddConditionalAce, libAdvapi32, "AddConditionalAce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAcl)), uintptr(dwAceRevision), uintptr(AceFlags), uintptr(AceType), uintptr(AccessMask), uintptr(unsafe.Pointer(pSid)), uintptr(unsafe.Pointer(ConditionStr)), uintptr(unsafe.Pointer(ReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)

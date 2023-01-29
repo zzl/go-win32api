@@ -16,6 +16,7 @@ const (
 	TSF_Authenticated                   uint32 = 0x2
 	TSF_IPv6                            uint32 = 0x4
 	TSF_SignatureAuthenticated          uint32 = 0x8
+	TIME_ZONE_ID_INVALID                uint32 = 0xffffffff
 )
 
 // structs

@@ -25,18 +25,22 @@ type POINTER_PEN_INFO struct {
 type NETRESOURCEA struct {
 }
 
-//
 type BYTE = byte
+type SHORT = int16
+type INT = int32
+type UINT = uint32
 type CLSID = syscall.GUID
 type LANGID = uint16
 type UINT16 = uint16
 type ULONG_PTR = uintptr
-type COLORREF = uint32
+
+//type COLORREF = uint32
 
 type ATOM = uint16
 
 type HGLOBAL = uintptr
 
+type WORD = uint16
 type DWORD = uint32
 
 type HREFTYPE = DWORD
@@ -44,7 +48,7 @@ type HREFTYPE = DWORD
 type DISPID = int32
 type MEMBERID = DISPID
 
-type VARIANT_BOOL = int16
+//type VARIANT_BOOL = int16
 
 type TOOLINFO struct {
 	CbSize     uint32
@@ -58,12 +62,12 @@ type TOOLINFO struct {
 	LpReserved unsafe.Pointer
 }
 
-//
+const NULL = 0
+
 const (
 	DATA_E_FORMATETC = DV_E_FORMATETC
 )
 
-//
 const DTN_FIRST = ^uint32(739)  // -740
 const DTN_FIRST2 = ^uint32(752) // -753
 
@@ -152,26 +156,26 @@ const (
 )
 
 const (
-	EP_EDITTEXT             = 1
-	EP_CARET                = 2
-	EP_BACKGROUND           = 3
-	EP_PASSWORD             = 4
-	EP_BACKGROUNDWITHBORDER = 5
-	EP_EDITBORDER_NOSCROLL  = 6
-	EP_EDITBORDER_HSCROLL   = 7
-	EP_EDITBORDER_VSCROLL   = 8
-	EP_EDITBORDER_HVSCROLL  = 9
+// EP_EDITTEXT             = 1
+// EP_CARET                = 2
+// EP_BACKGROUND           = 3
+// EP_PASSWORD             = 4
+// EP_BACKGROUNDWITHBORDER = 5
+// EP_EDITBORDER_NOSCROLL  = 6
+// EP_EDITBORDER_HSCROLL   = 7
+// EP_EDITBORDER_VSCROLL   = 8
+// EP_EDITBORDER_HVSCROLL  = 9
 )
 
 const (
-	ETS_NORMAL    = 1
-	ETS_HOT       = 2
-	ETS_SELECTED  = 3
-	ETS_DISABLED  = 4
-	ETS_FOCUSED   = 5
-	ETS_READONLY  = 6
-	ETS_ASSIST    = 7
-	ETS_CUEBANNER = 8
+// ETS_NORMAL    = 1
+// ETS_HOT       = 2
+// ETS_SELECTED  = 3
+// ETS_DISABLED  = 4
+// ETS_FOCUSED   = 5
+// ETS_READONLY  = 6
+// ETS_ASSIST    = 7
+// ETS_CUEBANNER = 8
 )
 
 // TrackBar (Slider) messages
@@ -189,13 +193,13 @@ const (
 	TCN_FOCUSCHANGE = TCN_FIRST - 4
 )
 
-const MENU_BARITEM = 8
-const MBI_NORMAL = 1
-const MBI_HOT = 2
-const MBI_PUSHED = 3
+//const MENU_BARITEM = 8
+//const MBI_NORMAL = 1
+//const MBI_HOT = 2
+//const MBI_PUSHED = 3
 
-const TRUE BOOL = 1
-const FALSE BOOL = 0
+//const TRUE BOOL = 1
+//const FALSE BOOL = 0
 
 const (
 	CLR_NONE_U    = ^uint32(-CLR_NONE - 1)
@@ -245,75 +249,78 @@ const (
 
 // SHGetStockIconInfo flags
 const (
-	//SHGSI_ICONLOCATION  = 0
-	SHGSI_ICON          = 0x000000100
-	SHGSI_SYSICONINDEX  = 0x000004000
-	SHGSI_LINKOVERLAY   = 0x000008000
-	SHGSI_SELECTED      = 0x000010000
-	SHGSI_LARGEICON     = 0x000000000
-	SHGSI_SMALLICON     = 0x000000001
-	SHGSI_SHELLICONSIZE = 0x000000004
+// SHGSI_ICONLOCATION  = 0
+// SHGSI_ICON          = 0x000000100
+// SHGSI_SYSICONINDEX  = 0x000004000
+// SHGSI_LINKOVERLAY   = 0x000008000
+// SHGSI_SELECTED      = 0x000010000
+// SHGSI_LARGEICON     = 0x000000000
+// SHGSI_SMALLICON     = 0x000000001
+// SHGSI_SHELLICONSIZE = 0x000000004
 )
 
 // Button parts
 const (
-	BP_PUSHBUTTON       = 1
-	BP_RADIOBUTTON      = 2
-	BP_CHECKBOX         = 3
-	BP_GROUPBOX         = 4
-	BP_USERBUTTON       = 5
-	BP_COMMANDLINK      = 6
-	BP_COMMANDLINKGLYPH = 7
+// BP_PUSHBUTTON       = 1
+// BP_RADIOBUTTON      = 2
+// BP_CHECKBOX         = 3
+// BP_GROUPBOX         = 4
+// BP_USERBUTTON       = 5
+// BP_COMMANDLINK      = 6
+// BP_COMMANDLINKGLYPH = 7
 )
 
 // CheckBox states
 const (
-	CBS_UNCHECKEDNORMAL   = 1
-	CBS_UNCHECKEDHOT      = 2
-	CBS_UNCHECKEDPRESSED  = 3
-	CBS_UNCHECKEDDISABLED = 4
-	CBS_CHECKEDNORMAL     = 5
-	CBS_CHECKEDHOT        = 6
-	CBS_CHECKEDPRESSED    = 7
-	CBS_CHECKEDDISABLED   = 8
-	CBS_MIXEDNORMAL       = 9
-	CBS_MIXEDHOT          = 10
-	CBS_MIXEDPRESSED      = 11
-	CBS_MIXEDDISABLED     = 12
-	CBS_IMPLICITNORMAL    = 13
-	CBS_IMPLICITHOT       = 14
-	CBS_IMPLICITPRESSED   = 15
-	CBS_IMPLICITDISABLED  = 16
-	CBS_EXCLUDEDNORMAL    = 17
-	CBS_EXCLUDEDHOT       = 18
-	CBS_EXCLUDEDPRESSED   = 19
-	CBS_EXCLUDEDDISABLED  = 20
+// CBS_UNCHECKEDNORMAL   = 1
+// CBS_UNCHECKEDHOT      = 2
+// CBS_UNCHECKEDPRESSED  = 3
+// CBS_UNCHECKEDDISABLED = 4
+// CBS_CHECKEDNORMAL     = 5
+// CBS_CHECKEDHOT        = 6
+// CBS_CHECKEDPRESSED    = 7
+// CBS_CHECKEDDISABLED   = 8
+// CBS_MIXEDNORMAL       = 9
+// CBS_MIXEDHOT          = 10
+// CBS_MIXEDPRESSED      = 11
+// CBS_MIXEDDISABLED     = 12
+// CBS_IMPLICITNORMAL    = 13
+// CBS_IMPLICITHOT       = 14
+// CBS_IMPLICITPRESSED   = 15
+// CBS_IMPLICITDISABLED  = 16
+// CBS_EXCLUDEDNORMAL    = 17
+// CBS_EXCLUDEDHOT       = 18
+// CBS_EXCLUDEDPRESSED   = 19
+// CBS_EXCLUDEDDISABLED  = 20
+)
+
+// Month Calendar consts
+const (
+	MCN_FIRST  = ^uint32(745) // -746
+	MCN_SELECT = MCN_FIRST
 )
 
 const (
-	SP_GRIPPER            = 3
+	//SP_GRIPPER            = 3
 	LOCALE_INVARIANT      = 127
 	LOCALE_USER_DEFAULT   = 1024
 	LOCALE_SYSTEM_DEFAULT = 2048
 )
 
 const (
-	VARIANT_TRUE  VARIANT_BOOL = -1
-	VARIANT_FALSE VARIANT_BOOL = 0
+// VARIANT_TRUE  VARIANT_BOOL = -1
+// VARIANT_FALSE VARIANT_BOOL = 0
 )
 
-//
 const VK_WHEEL_DOWN VIRTUAL_KEY = 0x9E
 const VK_WHEEL_UP VIRTUAL_KEY = 0x9F
 const VK_WHEEL_LEFT VIRTUAL_KEY = 0x9C
 const VK_WHEEL_RIGHT VIRTUAL_KEY = 0x9D
 
-//
 var (
 	IID_NULL syscall.GUID
 )
 
-//
 func RGB(r, g, b byte) COLORREF {
 	return COLORREF(r) | (COLORREF(g) << 8) | (COLORREF(b) << 16)
 }
@@ -362,13 +369,11 @@ func FAILED(hr HRESULT) bool {
 	return hr < 0
 }
 
-//
 var (
 	copyMemory        *windows.LazyProc
 	imageList_AddIcon *windows.LazyProc
 )
 
-//
 func init() {
 	copyMemory = libKernel32.NewProc("RtlMoveMemory")
 	imageList_AddIcon = libComctl32.NewProc("ImageList_AddIcon")
@@ -390,7 +395,6 @@ func ImageList_AddIcon(himl HIMAGELIST, hicon HICON) (int32, WIN32_ERROR) {
 	return int32(ret), WIN32_ERROR(err)
 }
 
-//
 type IUnknownObject interface {
 	GetIUnknown() *IUnknown
 }
@@ -407,7 +411,6 @@ func (this *IDispatch) GetIDispatch_() *IDispatch {
 	return this
 }
 
-//
 func TlsGetValueAlt(dwTlsIndex uint32) uintptr {
 	ret, _, _ := syscall.SyscallN(pTlsGetValue, uintptr(dwTlsIndex))
 	return ret
