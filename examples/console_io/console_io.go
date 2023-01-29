@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/zzl/go-win32api/win32"
+	"github.com/zzl/go-win32api/v2/win32"
 	"os"
 	"unsafe"
 )
@@ -203,5 +203,5 @@ func ScrollScreenBuffer(h win32.HANDLE, x win32.INT) {
 		&srctScrollRect, // scrolling rectangle
 		&srctClipRect,   // clipping rectangle
 		coordDest,       // top left destination cell
-		&chiFill) // fill character and color
+		&chiFill)        // fill character and color
 }

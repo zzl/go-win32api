@@ -1,4 +1,4 @@
-module github.com/zzl/go-win32api
+module github.com/zzl/go-win32api/v2
 
 go 1.19
 
