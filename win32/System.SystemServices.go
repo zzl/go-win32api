@@ -5642,7 +5642,7 @@ type JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V1 struct {
 	ReservationIops  int64
 	VolumeName       PWSTR
 	BaseIoSize       uint32
-	ControlFlags     int32//?JOB_OBJECT_IO_RATE_CONTROL_FLAGS
+	ControlFlags     int32 //?JOB_OBJECT_IO_RATE_CONTROL_FLAGS
 	VolumeNameLength uint16
 }
 
@@ -7337,7 +7337,7 @@ var (
 )
 
 func UnregisterDeviceNotification(Handle unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterDeviceNotification, libUser32, "UnregisterDeviceNotification")
+	addr := LazyAddr(&pUnregisterDeviceNotification, libUser32, "UnregisterDeviceNotification")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Handle))
 	return BOOL(ret), WIN32_ERROR(err)
 }

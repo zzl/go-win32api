@@ -135,7 +135,7 @@ var (
 )
 
 func InitiateSystemShutdownA(lpMachineName PSTR, lpMessage PSTR, dwTimeout uint32, bForceAppsClosed BOOL, bRebootAfterShutdown BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitiateSystemShutdownA, libAdvapi32, "InitiateSystemShutdownA")
+	addr := LazyAddr(&pInitiateSystemShutdownA, libAdvapi32, "InitiateSystemShutdownA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpMessage)), uintptr(dwTimeout), uintptr(bForceAppsClosed), uintptr(bRebootAfterShutdown))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -143,13 +143,13 @@ func InitiateSystemShutdownA(lpMachineName PSTR, lpMessage PSTR, dwTimeout uint3
 var InitiateSystemShutdown = InitiateSystemShutdownW
 
 func InitiateSystemShutdownW(lpMachineName PWSTR, lpMessage PWSTR, dwTimeout uint32, bForceAppsClosed BOOL, bRebootAfterShutdown BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitiateSystemShutdownW, libAdvapi32, "InitiateSystemShutdownW")
+	addr := LazyAddr(&pInitiateSystemShutdownW, libAdvapi32, "InitiateSystemShutdownW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpMessage)), uintptr(dwTimeout), uintptr(bForceAppsClosed), uintptr(bRebootAfterShutdown))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AbortSystemShutdownA(lpMachineName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAbortSystemShutdownA, libAdvapi32, "AbortSystemShutdownA")
+	addr := LazyAddr(&pAbortSystemShutdownA, libAdvapi32, "AbortSystemShutdownA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -157,13 +157,13 @@ func AbortSystemShutdownA(lpMachineName PSTR) (BOOL, WIN32_ERROR) {
 var AbortSystemShutdown = AbortSystemShutdownW
 
 func AbortSystemShutdownW(lpMachineName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAbortSystemShutdownW, libAdvapi32, "AbortSystemShutdownW")
+	addr := LazyAddr(&pAbortSystemShutdownW, libAdvapi32, "AbortSystemShutdownW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InitiateSystemShutdownExA(lpMachineName PSTR, lpMessage PSTR, dwTimeout uint32, bForceAppsClosed BOOL, bRebootAfterShutdown BOOL, dwReason SHUTDOWN_REASON) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitiateSystemShutdownExA, libAdvapi32, "InitiateSystemShutdownExA")
+	addr := LazyAddr(&pInitiateSystemShutdownExA, libAdvapi32, "InitiateSystemShutdownExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpMessage)), uintptr(dwTimeout), uintptr(bForceAppsClosed), uintptr(bRebootAfterShutdown), uintptr(dwReason))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -171,13 +171,13 @@ func InitiateSystemShutdownExA(lpMachineName PSTR, lpMessage PSTR, dwTimeout uin
 var InitiateSystemShutdownEx = InitiateSystemShutdownExW
 
 func InitiateSystemShutdownExW(lpMachineName PWSTR, lpMessage PWSTR, dwTimeout uint32, bForceAppsClosed BOOL, bRebootAfterShutdown BOOL, dwReason SHUTDOWN_REASON) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitiateSystemShutdownExW, libAdvapi32, "InitiateSystemShutdownExW")
+	addr := LazyAddr(&pInitiateSystemShutdownExW, libAdvapi32, "InitiateSystemShutdownExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpMessage)), uintptr(dwTimeout), uintptr(bForceAppsClosed), uintptr(bRebootAfterShutdown), uintptr(dwReason))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InitiateShutdownA(lpMachineName PSTR, lpMessage PSTR, dwGracePeriod uint32, dwShutdownFlags SHUTDOWN_FLAGS, dwReason SHUTDOWN_REASON) uint32 {
-	addr := lazyAddr(&pInitiateShutdownA, libAdvapi32, "InitiateShutdownA")
+	addr := LazyAddr(&pInitiateShutdownA, libAdvapi32, "InitiateShutdownA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpMessage)), uintptr(dwGracePeriod), uintptr(dwShutdownFlags), uintptr(dwReason))
 	return uint32(ret)
 }
@@ -185,43 +185,43 @@ func InitiateShutdownA(lpMachineName PSTR, lpMessage PSTR, dwGracePeriod uint32,
 var InitiateShutdown = InitiateShutdownW
 
 func InitiateShutdownW(lpMachineName PWSTR, lpMessage PWSTR, dwGracePeriod uint32, dwShutdownFlags SHUTDOWN_FLAGS, dwReason SHUTDOWN_REASON) uint32 {
-	addr := lazyAddr(&pInitiateShutdownW, libAdvapi32, "InitiateShutdownW")
+	addr := LazyAddr(&pInitiateShutdownW, libAdvapi32, "InitiateShutdownW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpMessage)), uintptr(dwGracePeriod), uintptr(dwShutdownFlags), uintptr(dwReason))
 	return uint32(ret)
 }
 
 func CheckForHiberboot(pHiberboot *BOOLEAN, bClearFlag BOOLEAN) uint32 {
-	addr := lazyAddr(&pCheckForHiberboot, libAdvapi32, "CheckForHiberboot")
+	addr := LazyAddr(&pCheckForHiberboot, libAdvapi32, "CheckForHiberboot")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pHiberboot)), uintptr(bClearFlag))
 	return uint32(ret)
 }
 
 func ExitWindowsEx(uFlags EXIT_WINDOWS_FLAGS, dwReason SHUTDOWN_REASON) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pExitWindowsEx, libUser32, "ExitWindowsEx")
+	addr := LazyAddr(&pExitWindowsEx, libUser32, "ExitWindowsEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(uFlags), uintptr(dwReason))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LockWorkStation() (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLockWorkStation, libUser32, "LockWorkStation")
+	addr := LazyAddr(&pLockWorkStation, libUser32, "LockWorkStation")
 	ret, _, err := syscall.SyscallN(addr)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ShutdownBlockReasonCreate(hWnd HWND, pwszReason PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShutdownBlockReasonCreate, libUser32, "ShutdownBlockReasonCreate")
+	addr := LazyAddr(&pShutdownBlockReasonCreate, libUser32, "ShutdownBlockReasonCreate")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(pwszReason)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ShutdownBlockReasonQuery(hWnd HWND, pwszBuff PWSTR, pcchBuff *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShutdownBlockReasonQuery, libUser32, "ShutdownBlockReasonQuery")
+	addr := LazyAddr(&pShutdownBlockReasonQuery, libUser32, "ShutdownBlockReasonQuery")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(pwszBuff)), uintptr(unsafe.Pointer(pcchBuff)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ShutdownBlockReasonDestroy(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShutdownBlockReasonDestroy, libUser32, "ShutdownBlockReasonDestroy")
+	addr := LazyAddr(&pShutdownBlockReasonDestroy, libUser32, "ShutdownBlockReasonDestroy")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }

@@ -920,75 +920,75 @@ var (
 )
 
 func GlobalMemoryStatusEx(lpBuffer *MEMORYSTATUSEX) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGlobalMemoryStatusEx, libKernel32, "GlobalMemoryStatusEx")
+	addr := LazyAddr(&pGlobalMemoryStatusEx, libKernel32, "GlobalMemoryStatusEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetSystemInfo(lpSystemInfo *SYSTEM_INFO) {
-	addr := lazyAddr(&pGetSystemInfo, libKernel32, "GetSystemInfo")
+	addr := LazyAddr(&pGetSystemInfo, libKernel32, "GetSystemInfo")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemInfo)))
 }
 
 func GetSystemTime(lpSystemTime *SYSTEMTIME) {
-	addr := lazyAddr(&pGetSystemTime, libKernel32, "GetSystemTime")
+	addr := LazyAddr(&pGetSystemTime, libKernel32, "GetSystemTime")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTime)))
 }
 
 func GetSystemTimeAsFileTime(lpSystemTimeAsFileTime *FILETIME) {
-	addr := lazyAddr(&pGetSystemTimeAsFileTime, libKernel32, "GetSystemTimeAsFileTime")
+	addr := LazyAddr(&pGetSystemTimeAsFileTime, libKernel32, "GetSystemTimeAsFileTime")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTimeAsFileTime)))
 }
 
 func GetLocalTime(lpSystemTime *SYSTEMTIME) {
-	addr := lazyAddr(&pGetLocalTime, libKernel32, "GetLocalTime")
+	addr := LazyAddr(&pGetLocalTime, libKernel32, "GetLocalTime")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTime)))
 }
 
 func IsUserCetAvailableInEnvironment(UserCetEnvironment USER_CET_ENVIRONMENT) BOOL {
-	addr := lazyAddr(&pIsUserCetAvailableInEnvironment, libKernel32, "IsUserCetAvailableInEnvironment")
+	addr := LazyAddr(&pIsUserCetAvailableInEnvironment, libKernel32, "IsUserCetAvailableInEnvironment")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(UserCetEnvironment))
 	return BOOL(ret)
 }
 
 func GetSystemLeapSecondInformation(Enabled *BOOL, Flags *uint32) BOOL {
-	addr := lazyAddr(&pGetSystemLeapSecondInformation, libKernel32, "GetSystemLeapSecondInformation")
+	addr := LazyAddr(&pGetSystemLeapSecondInformation, libKernel32, "GetSystemLeapSecondInformation")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Enabled)), uintptr(unsafe.Pointer(Flags)))
 	return BOOL(ret)
 }
 
 func GetVersion() uint32 {
-	addr := lazyAddr(&pGetVersion, libKernel32, "GetVersion")
+	addr := LazyAddr(&pGetVersion, libKernel32, "GetVersion")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func SetLocalTime(lpSystemTime *SYSTEMTIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetLocalTime, libKernel32, "SetLocalTime")
+	addr := LazyAddr(&pSetLocalTime, libKernel32, "SetLocalTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetTickCount() uint32 {
-	addr := lazyAddr(&pGetTickCount, libKernel32, "GetTickCount")
+	addr := LazyAddr(&pGetTickCount, libKernel32, "GetTickCount")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func GetTickCount64() uint64 {
-	addr := lazyAddr(&pGetTickCount64, libKernel32, "GetTickCount64")
+	addr := LazyAddr(&pGetTickCount64, libKernel32, "GetTickCount64")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint64(ret)
 }
 
 func GetSystemTimeAdjustment(lpTimeAdjustment *uint32, lpTimeIncrement *uint32, lpTimeAdjustmentDisabled *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemTimeAdjustment, libKernel32, "GetSystemTimeAdjustment")
+	addr := LazyAddr(&pGetSystemTimeAdjustment, libKernel32, "GetSystemTimeAdjustment")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeAdjustment)), uintptr(unsafe.Pointer(lpTimeIncrement)), uintptr(unsafe.Pointer(lpTimeAdjustmentDisabled)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetSystemDirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemDirectoryA, libKernel32, "GetSystemDirectoryA")
+	addr := LazyAddr(&pGetSystemDirectoryA, libKernel32, "GetSystemDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -996,13 +996,13 @@ func GetSystemDirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERROR) {
 var GetSystemDirectory = GetSystemDirectoryW
 
 func GetSystemDirectoryW(lpBuffer PWSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemDirectoryW, libKernel32, "GetSystemDirectoryW")
+	addr := LazyAddr(&pGetSystemDirectoryW, libKernel32, "GetSystemDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetWindowsDirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowsDirectoryA, libKernel32, "GetWindowsDirectoryA")
+	addr := LazyAddr(&pGetWindowsDirectoryA, libKernel32, "GetWindowsDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -1010,13 +1010,13 @@ func GetWindowsDirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERROR) {
 var GetWindowsDirectory = GetWindowsDirectoryW
 
 func GetWindowsDirectoryW(lpBuffer PWSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowsDirectoryW, libKernel32, "GetWindowsDirectoryW")
+	addr := LazyAddr(&pGetWindowsDirectoryW, libKernel32, "GetWindowsDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetSystemWindowsDirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemWindowsDirectoryA, libKernel32, "GetSystemWindowsDirectoryA")
+	addr := LazyAddr(&pGetSystemWindowsDirectoryA, libKernel32, "GetSystemWindowsDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -1024,13 +1024,13 @@ func GetSystemWindowsDirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERRO
 var GetSystemWindowsDirectory = GetSystemWindowsDirectoryW
 
 func GetSystemWindowsDirectoryW(lpBuffer PWSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemWindowsDirectoryW, libKernel32, "GetSystemWindowsDirectoryW")
+	addr := LazyAddr(&pGetSystemWindowsDirectoryW, libKernel32, "GetSystemWindowsDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetComputerNameExA(NameType COMPUTER_NAME_FORMAT, lpBuffer PSTR, nSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetComputerNameExA, libKernel32, "GetComputerNameExA")
+	addr := LazyAddr(&pGetComputerNameExA, libKernel32, "GetComputerNameExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(NameType), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(nSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1038,7 +1038,7 @@ func GetComputerNameExA(NameType COMPUTER_NAME_FORMAT, lpBuffer PSTR, nSize *uin
 var GetComputerNameEx = GetComputerNameExW
 
 func GetComputerNameExW(NameType COMPUTER_NAME_FORMAT, lpBuffer PWSTR, nSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetComputerNameExW, libKernel32, "GetComputerNameExW")
+	addr := LazyAddr(&pGetComputerNameExW, libKernel32, "GetComputerNameExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(NameType), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(nSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1046,19 +1046,19 @@ func GetComputerNameExW(NameType COMPUTER_NAME_FORMAT, lpBuffer PWSTR, nSize *ui
 var SetComputerNameEx = SetComputerNameExW
 
 func SetComputerNameExW(NameType COMPUTER_NAME_FORMAT, lpBuffer PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetComputerNameExW, libKernel32, "SetComputerNameExW")
+	addr := LazyAddr(&pSetComputerNameExW, libKernel32, "SetComputerNameExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(NameType), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetSystemTime(lpSystemTime *SYSTEMTIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetSystemTime, libKernel32, "SetSystemTime")
+	addr := LazyAddr(&pSetSystemTime, libKernel32, "SetSystemTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetVersionExA(lpVersionInformation *OSVERSIONINFOA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVersionExA, libKernel32, "GetVersionExA")
+	addr := LazyAddr(&pGetVersionExA, libKernel32, "GetVersionExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpVersionInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1066,89 +1066,89 @@ func GetVersionExA(lpVersionInformation *OSVERSIONINFOA) (BOOL, WIN32_ERROR) {
 var GetVersionEx = GetVersionExW
 
 func GetVersionExW(lpVersionInformation *OSVERSIONINFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVersionExW, libKernel32, "GetVersionExW")
+	addr := LazyAddr(&pGetVersionExW, libKernel32, "GetVersionExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpVersionInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetLogicalProcessorInformation(Buffer *SYSTEM_LOGICAL_PROCESSOR_INFORMATION, ReturnedLength *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLogicalProcessorInformation, libKernel32, "GetLogicalProcessorInformation")
+	addr := LazyAddr(&pGetLogicalProcessorInformation, libKernel32, "GetLogicalProcessorInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Buffer)), uintptr(unsafe.Pointer(ReturnedLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetLogicalProcessorInformationEx(RelationshipType LOGICAL_PROCESSOR_RELATIONSHIP, Buffer *SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, ReturnedLength *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLogicalProcessorInformationEx, libKernel32, "GetLogicalProcessorInformationEx")
+	addr := LazyAddr(&pGetLogicalProcessorInformationEx, libKernel32, "GetLogicalProcessorInformationEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(RelationshipType), uintptr(unsafe.Pointer(Buffer)), uintptr(unsafe.Pointer(ReturnedLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNativeSystemInfo(lpSystemInfo *SYSTEM_INFO) {
-	addr := lazyAddr(&pGetNativeSystemInfo, libKernel32, "GetNativeSystemInfo")
+	addr := LazyAddr(&pGetNativeSystemInfo, libKernel32, "GetNativeSystemInfo")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemInfo)))
 }
 
 func GetSystemTimePreciseAsFileTime(lpSystemTimeAsFileTime *FILETIME) {
-	addr := lazyAddr(&pGetSystemTimePreciseAsFileTime, libKernel32, "GetSystemTimePreciseAsFileTime")
+	addr := LazyAddr(&pGetSystemTimePreciseAsFileTime, libKernel32, "GetSystemTimePreciseAsFileTime")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTimeAsFileTime)))
 }
 
 func GetProductInfo(dwOSMajorVersion uint32, dwOSMinorVersion uint32, dwSpMajorVersion uint32, dwSpMinorVersion uint32, pdwReturnedProductType *OS_PRODUCT_TYPE) BOOL {
-	addr := lazyAddr(&pGetProductInfo, libKernel32, "GetProductInfo")
+	addr := LazyAddr(&pGetProductInfo, libKernel32, "GetProductInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwOSMajorVersion), uintptr(dwOSMinorVersion), uintptr(dwSpMajorVersion), uintptr(dwSpMinorVersion), uintptr(unsafe.Pointer(pdwReturnedProductType)))
 	return BOOL(ret)
 }
 
 func VerSetConditionMask(ConditionMask uint64, TypeMask VER_FLAGS, Condition byte) uint64 {
-	addr := lazyAddr(&pVerSetConditionMask, libKernel32, "VerSetConditionMask")
+	addr := LazyAddr(&pVerSetConditionMask, libKernel32, "VerSetConditionMask")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ConditionMask), uintptr(TypeMask), uintptr(Condition))
 	return uint64(ret)
 }
 
 func EnumSystemFirmwareTables(FirmwareTableProviderSignature FIRMWARE_TABLE_PROVIDER, pFirmwareTableEnumBuffer *FIRMWARE_TABLE_ID, BufferSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemFirmwareTables, libKernel32, "EnumSystemFirmwareTables")
+	addr := LazyAddr(&pEnumSystemFirmwareTables, libKernel32, "EnumSystemFirmwareTables")
 	ret, _, err := syscall.SyscallN(addr, uintptr(FirmwareTableProviderSignature), uintptr(unsafe.Pointer(pFirmwareTableEnumBuffer)), uintptr(BufferSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetSystemFirmwareTable(FirmwareTableProviderSignature FIRMWARE_TABLE_PROVIDER, FirmwareTableID FIRMWARE_TABLE_ID, pFirmwareTableBuffer unsafe.Pointer, BufferSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemFirmwareTable, libKernel32, "GetSystemFirmwareTable")
+	addr := LazyAddr(&pGetSystemFirmwareTable, libKernel32, "GetSystemFirmwareTable")
 	ret, _, err := syscall.SyscallN(addr, uintptr(FirmwareTableProviderSignature), uintptr(FirmwareTableID), uintptr(pFirmwareTableBuffer), uintptr(BufferSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func DnsHostnameToComputerNameExW(Hostname PWSTR, ComputerName PWSTR, nSize *uint32) BOOL {
-	addr := lazyAddr(&pDnsHostnameToComputerNameExW, libKernel32, "DnsHostnameToComputerNameExW")
+	addr := LazyAddr(&pDnsHostnameToComputerNameExW, libKernel32, "DnsHostnameToComputerNameExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Hostname)), uintptr(unsafe.Pointer(ComputerName)), uintptr(unsafe.Pointer(nSize)))
 	return BOOL(ret)
 }
 
 func GetPhysicallyInstalledSystemMemory(TotalMemoryInKilobytes *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetPhysicallyInstalledSystemMemory, libKernel32, "GetPhysicallyInstalledSystemMemory")
+	addr := LazyAddr(&pGetPhysicallyInstalledSystemMemory, libKernel32, "GetPhysicallyInstalledSystemMemory")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(TotalMemoryInKilobytes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetComputerNameEx2W(NameType COMPUTER_NAME_FORMAT, Flags uint32, lpBuffer PWSTR) BOOL {
-	addr := lazyAddr(&pSetComputerNameEx2W, libKernel32, "SetComputerNameEx2W")
+	addr := LazyAddr(&pSetComputerNameEx2W, libKernel32, "SetComputerNameEx2W")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(NameType), uintptr(Flags), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret)
 }
 
 func SetSystemTimeAdjustment(dwTimeAdjustment uint32, bTimeAdjustmentDisabled BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetSystemTimeAdjustment, libKernel32, "SetSystemTimeAdjustment")
+	addr := LazyAddr(&pSetSystemTimeAdjustment, libKernel32, "SetSystemTimeAdjustment")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwTimeAdjustment), uintptr(bTimeAdjustmentDisabled))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessorSystemCycleTime(Group uint16, Buffer *SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION, ReturnedLength *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessorSystemCycleTime, libKernel32, "GetProcessorSystemCycleTime")
+	addr := LazyAddr(&pGetProcessorSystemCycleTime, libKernel32, "GetProcessorSystemCycleTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Group), uintptr(unsafe.Pointer(Buffer)), uintptr(unsafe.Pointer(ReturnedLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetComputerNameA(lpComputerName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetComputerNameA, libKernel32, "SetComputerNameA")
+	addr := LazyAddr(&pSetComputerNameA, libKernel32, "SetComputerNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpComputerName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1156,25 +1156,25 @@ func SetComputerNameA(lpComputerName PSTR) (BOOL, WIN32_ERROR) {
 var SetComputerName = SetComputerNameW
 
 func SetComputerNameW(lpComputerName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetComputerNameW, libKernel32, "SetComputerNameW")
+	addr := LazyAddr(&pSetComputerNameW, libKernel32, "SetComputerNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpComputerName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetComputerNameExA(NameType COMPUTER_NAME_FORMAT, lpBuffer PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetComputerNameExA, libKernel32, "SetComputerNameExA")
+	addr := LazyAddr(&pSetComputerNameExA, libKernel32, "SetComputerNameExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(NameType), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetSystemCpuSetInformation(Information *SYSTEM_CPU_SET_INFORMATION, BufferLength uint32, ReturnedLength *uint32, Process HANDLE, Flags uint32) BOOL {
-	addr := lazyAddr(&pGetSystemCpuSetInformation, libKernel32, "GetSystemCpuSetInformation")
+	addr := LazyAddr(&pGetSystemCpuSetInformation, libKernel32, "GetSystemCpuSetInformation")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Information)), uintptr(BufferLength), uintptr(unsafe.Pointer(ReturnedLength)), Process, uintptr(Flags))
 	return BOOL(ret)
 }
 
 func GetSystemWow64DirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemWow64DirectoryA, libKernel32, "GetSystemWow64DirectoryA")
+	addr := LazyAddr(&pGetSystemWow64DirectoryA, libKernel32, "GetSystemWow64DirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -1182,36 +1182,36 @@ func GetSystemWow64DirectoryA(lpBuffer PSTR, uSize uint32) (uint32, WIN32_ERROR)
 var GetSystemWow64Directory = GetSystemWow64DirectoryW
 
 func GetSystemWow64DirectoryW(lpBuffer PWSTR, uSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemWow64DirectoryW, libKernel32, "GetSystemWow64DirectoryW")
+	addr := LazyAddr(&pGetSystemWow64DirectoryW, libKernel32, "GetSystemWow64DirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(uSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func IsWow64GuestMachineSupported(WowGuestMachine IMAGE_FILE_MACHINE, MachineIsSupported *BOOL) (HRESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pIsWow64GuestMachineSupported, libKernel32, "IsWow64GuestMachineSupported")
+	addr := LazyAddr(&pIsWow64GuestMachineSupported, libKernel32, "IsWow64GuestMachineSupported")
 	ret, _, err := syscall.SyscallN(addr, uintptr(WowGuestMachine), uintptr(unsafe.Pointer(MachineIsSupported)))
 	return HRESULT(ret), WIN32_ERROR(err)
 }
 
 func GlobalMemoryStatus(lpBuffer *MEMORYSTATUS) {
-	addr := lazyAddr(&pGlobalMemoryStatus, libKernel32, "GlobalMemoryStatus")
+	addr := LazyAddr(&pGlobalMemoryStatus, libKernel32, "GlobalMemoryStatus")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)))
 }
 
 func GetSystemDEPPolicy() DEP_SYSTEM_POLICY_TYPE {
-	addr := lazyAddr(&pGetSystemDEPPolicy, libKernel32, "GetSystemDEPPolicy")
+	addr := LazyAddr(&pGetSystemDEPPolicy, libKernel32, "GetSystemDEPPolicy")
 	ret, _, _ := syscall.SyscallN(addr)
 	return DEP_SYSTEM_POLICY_TYPE(ret)
 }
 
 func GetFirmwareType(FirmwareType *FIRMWARE_TYPE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFirmwareType, libKernel32, "GetFirmwareType")
+	addr := LazyAddr(&pGetFirmwareType, libKernel32, "GetFirmwareType")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(FirmwareType)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func VerifyVersionInfoA(lpVersionInformation *OSVERSIONINFOEXA, dwTypeMask VER_FLAGS, dwlConditionMask uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pVerifyVersionInfoA, libKernel32, "VerifyVersionInfoA")
+	addr := LazyAddr(&pVerifyVersionInfoA, libKernel32, "VerifyVersionInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpVersionInformation)), uintptr(dwTypeMask), uintptr(dwlConditionMask))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1219,7 +1219,7 @@ func VerifyVersionInfoA(lpVersionInformation *OSVERSIONINFOEXA, dwTypeMask VER_F
 var VerifyVersionInfo = VerifyVersionInfoW
 
 func VerifyVersionInfoW(lpVersionInformation *OSVERSIONINFOEXW, dwTypeMask VER_FLAGS, dwlConditionMask uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pVerifyVersionInfoW, libKernel32, "VerifyVersionInfoW")
+	addr := LazyAddr(&pVerifyVersionInfoW, libKernel32, "VerifyVersionInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpVersionInformation)), uintptr(dwTypeMask), uintptr(dwlConditionMask))
 	return BOOL(ret), WIN32_ERROR(err)
 }

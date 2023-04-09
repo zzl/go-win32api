@@ -30105,7 +30105,7 @@ var (
 )
 
 func LoadUserProfileA(hToken HANDLE, lpProfileInfo *PROFILEINFOA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadUserProfileA, libUserenv, "LoadUserProfileA")
+	addr := LazyAddr(&pLoadUserProfileA, libUserenv, "LoadUserProfileA")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpProfileInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -30113,19 +30113,19 @@ func LoadUserProfileA(hToken HANDLE, lpProfileInfo *PROFILEINFOA) (BOOL, WIN32_E
 var LoadUserProfile = LoadUserProfileW
 
 func LoadUserProfileW(hToken HANDLE, lpProfileInfo *PROFILEINFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadUserProfileW, libUserenv, "LoadUserProfileW")
+	addr := LazyAddr(&pLoadUserProfileW, libUserenv, "LoadUserProfileW")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpProfileInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnloadUserProfile(hToken HANDLE, hProfile HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnloadUserProfile, libUserenv, "UnloadUserProfile")
+	addr := LazyAddr(&pUnloadUserProfile, libUserenv, "UnloadUserProfile")
 	ret, _, err := syscall.SyscallN(addr, hToken, hProfile)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProfilesDirectoryA(lpProfileDir PSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProfilesDirectoryA, libUserenv, "GetProfilesDirectoryA")
+	addr := LazyAddr(&pGetProfilesDirectoryA, libUserenv, "GetProfilesDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -30133,19 +30133,19 @@ func GetProfilesDirectoryA(lpProfileDir PSTR, lpcchSize *uint32) (BOOL, WIN32_ER
 var GetProfilesDirectory = GetProfilesDirectoryW
 
 func GetProfilesDirectoryW(lpProfileDir PWSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProfilesDirectoryW, libUserenv, "GetProfilesDirectoryW")
+	addr := LazyAddr(&pGetProfilesDirectoryW, libUserenv, "GetProfilesDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProfileType(dwFlags *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProfileType, libUserenv, "GetProfileType")
+	addr := LazyAddr(&pGetProfileType, libUserenv, "GetProfileType")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(dwFlags)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteProfileA(lpSidString PSTR, lpProfilePath PSTR, lpComputerName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteProfileA, libUserenv, "DeleteProfileA")
+	addr := LazyAddr(&pDeleteProfileA, libUserenv, "DeleteProfileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSidString)), uintptr(unsafe.Pointer(lpProfilePath)), uintptr(unsafe.Pointer(lpComputerName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -30153,19 +30153,19 @@ func DeleteProfileA(lpSidString PSTR, lpProfilePath PSTR, lpComputerName PSTR) (
 var DeleteProfile = DeleteProfileW
 
 func DeleteProfileW(lpSidString PWSTR, lpProfilePath PWSTR, lpComputerName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteProfileW, libUserenv, "DeleteProfileW")
+	addr := LazyAddr(&pDeleteProfileW, libUserenv, "DeleteProfileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSidString)), uintptr(unsafe.Pointer(lpProfilePath)), uintptr(unsafe.Pointer(lpComputerName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateProfile(pszUserSid PWSTR, pszUserName PWSTR, pszProfilePath PWSTR, cchProfilePath uint32) HRESULT {
-	addr := lazyAddr(&pCreateProfile, libUserenv, "CreateProfile")
+	addr := LazyAddr(&pCreateProfile, libUserenv, "CreateProfile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUserSid)), uintptr(unsafe.Pointer(pszUserName)), uintptr(unsafe.Pointer(pszProfilePath)), uintptr(cchProfilePath))
 	return HRESULT(ret)
 }
 
 func GetDefaultUserProfileDirectoryA(lpProfileDir PSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDefaultUserProfileDirectoryA, libUserenv, "GetDefaultUserProfileDirectoryA")
+	addr := LazyAddr(&pGetDefaultUserProfileDirectoryA, libUserenv, "GetDefaultUserProfileDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -30173,13 +30173,13 @@ func GetDefaultUserProfileDirectoryA(lpProfileDir PSTR, lpcchSize *uint32) (BOOL
 var GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW
 
 func GetDefaultUserProfileDirectoryW(lpProfileDir PWSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDefaultUserProfileDirectoryW, libUserenv, "GetDefaultUserProfileDirectoryW")
+	addr := LazyAddr(&pGetDefaultUserProfileDirectoryW, libUserenv, "GetDefaultUserProfileDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetAllUsersProfileDirectoryA(lpProfileDir PSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetAllUsersProfileDirectoryA, libUserenv, "GetAllUsersProfileDirectoryA")
+	addr := LazyAddr(&pGetAllUsersProfileDirectoryA, libUserenv, "GetAllUsersProfileDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -30187,13 +30187,13 @@ func GetAllUsersProfileDirectoryA(lpProfileDir PSTR, lpcchSize *uint32) (BOOL, W
 var GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW
 
 func GetAllUsersProfileDirectoryW(lpProfileDir PWSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetAllUsersProfileDirectoryW, libUserenv, "GetAllUsersProfileDirectoryW")
+	addr := LazyAddr(&pGetAllUsersProfileDirectoryW, libUserenv, "GetAllUsersProfileDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetUserProfileDirectoryA(hToken HANDLE, lpProfileDir PSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserProfileDirectoryA, libUserenv, "GetUserProfileDirectoryA")
+	addr := LazyAddr(&pGetUserProfileDirectoryA, libUserenv, "GetUserProfileDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -30201,61 +30201,61 @@ func GetUserProfileDirectoryA(hToken HANDLE, lpProfileDir PSTR, lpcchSize *uint3
 var GetUserProfileDirectory = GetUserProfileDirectoryW
 
 func GetUserProfileDirectoryW(hToken HANDLE, lpProfileDir PWSTR, lpcchSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserProfileDirectoryW, libUserenv, "GetUserProfileDirectoryW")
+	addr := LazyAddr(&pGetUserProfileDirectoryW, libUserenv, "GetUserProfileDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpProfileDir)), uintptr(unsafe.Pointer(lpcchSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetWindowSubclass(hWnd HWND, pfnSubclass SUBCLASSPROC, uIdSubclass uintptr, dwRefData uintptr) BOOL {
-	addr := lazyAddr(&pSetWindowSubclass, libComctl32, "SetWindowSubclass")
+	addr := LazyAddr(&pSetWindowSubclass, libComctl32, "SetWindowSubclass")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, pfnSubclass, uIdSubclass, dwRefData)
 	return BOOL(ret)
 }
 
 func GetWindowSubclass(hWnd HWND, pfnSubclass SUBCLASSPROC, uIdSubclass uintptr, pdwRefData *uintptr) BOOL {
-	addr := lazyAddr(&pGetWindowSubclass, libComctl32, "GetWindowSubclass")
+	addr := LazyAddr(&pGetWindowSubclass, libComctl32, "GetWindowSubclass")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, pfnSubclass, uIdSubclass, uintptr(unsafe.Pointer(pdwRefData)))
 	return BOOL(ret)
 }
 
 func RemoveWindowSubclass(hWnd HWND, pfnSubclass SUBCLASSPROC, uIdSubclass uintptr) BOOL {
-	addr := lazyAddr(&pRemoveWindowSubclass, libComctl32, "RemoveWindowSubclass")
+	addr := LazyAddr(&pRemoveWindowSubclass, libComctl32, "RemoveWindowSubclass")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, pfnSubclass, uIdSubclass)
 	return BOOL(ret)
 }
 
 func DefSubclassProc(hWnd HWND, uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefSubclassProc, libComctl32, "DefSubclassProc")
+	addr := LazyAddr(&pDefSubclassProc, libComctl32, "DefSubclassProc")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(uMsg), wParam, lParam)
 	return ret
 }
 
 func SetWindowContextHelpId(param0 HWND, param1 uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowContextHelpId, libUser32, "SetWindowContextHelpId")
+	addr := LazyAddr(&pSetWindowContextHelpId, libUser32, "SetWindowContextHelpId")
 	ret, _, err := syscall.SyscallN(addr, param0, uintptr(param1))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetWindowContextHelpId(param0 HWND) uint32 {
-	addr := lazyAddr(&pGetWindowContextHelpId, libUser32, "GetWindowContextHelpId")
+	addr := LazyAddr(&pGetWindowContextHelpId, libUser32, "GetWindowContextHelpId")
 	ret, _, _ := syscall.SyscallN(addr, param0)
 	return uint32(ret)
 }
 
 func SetMenuContextHelpId(param0 HMENU, param1 uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetMenuContextHelpId, libUser32, "SetMenuContextHelpId")
+	addr := LazyAddr(&pSetMenuContextHelpId, libUser32, "SetMenuContextHelpId")
 	ret, _, err := syscall.SyscallN(addr, param0, uintptr(param1))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetMenuContextHelpId(param0 HMENU) uint32 {
-	addr := lazyAddr(&pGetMenuContextHelpId, libUser32, "GetMenuContextHelpId")
+	addr := LazyAddr(&pGetMenuContextHelpId, libUser32, "GetMenuContextHelpId")
 	ret, _, _ := syscall.SyscallN(addr, param0)
 	return uint32(ret)
 }
 
 func WinHelpA(hWndMain HWND, lpszHelp PSTR, uCommand uint32, dwData uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWinHelpA, libUser32, "WinHelpA")
+	addr := LazyAddr(&pWinHelpA, libUser32, "WinHelpA")
 	ret, _, err := syscall.SyscallN(addr, hWndMain, uintptr(unsafe.Pointer(lpszHelp)), uintptr(uCommand), dwData)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -30263,232 +30263,232 @@ func WinHelpA(hWndMain HWND, lpszHelp PSTR, uCommand uint32, dwData uintptr) (BO
 var WinHelp = WinHelpW
 
 func WinHelpW(hWndMain HWND, lpszHelp PWSTR, uCommand uint32, dwData uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWinHelpW, libUser32, "WinHelpW")
+	addr := LazyAddr(&pWinHelpW, libUser32, "WinHelpW")
 	ret, _, err := syscall.SyscallN(addr, hWndMain, uintptr(unsafe.Pointer(lpszHelp)), uintptr(uCommand), dwData)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SHSimpleIDListFromPath(pszPath PWSTR) *ITEMIDLIST {
-	addr := lazyAddr(&pSHSimpleIDListFromPath, libShell32, "SHSimpleIDListFromPath")
+	addr := LazyAddr(&pSHSimpleIDListFromPath, libShell32, "SHSimpleIDListFromPath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func SHCreateItemFromIDList(pidl *ITEMIDLIST, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateItemFromIDList, libShell32, "SHCreateItemFromIDList")
+	addr := LazyAddr(&pSHCreateItemFromIDList, libShell32, "SHCreateItemFromIDList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateItemFromParsingName(pszPath PWSTR, pbc *IBindCtx, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateItemFromParsingName, libShell32, "SHCreateItemFromParsingName")
+	addr := LazyAddr(&pSHCreateItemFromParsingName, libShell32, "SHCreateItemFromParsingName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pbc)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateItemWithParent(pidlParent *ITEMIDLIST, psfParent *IShellFolder, pidl *ITEMIDLIST, riid *syscall.GUID, ppvItem unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateItemWithParent, libShell32, "SHCreateItemWithParent")
+	addr := LazyAddr(&pSHCreateItemWithParent, libShell32, "SHCreateItemWithParent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlParent)), uintptr(unsafe.Pointer(psfParent)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(riid)), uintptr(ppvItem))
 	return HRESULT(ret)
 }
 
 func SHCreateItemFromRelativeName(psiParent *IShellItem, pszName PWSTR, pbc *IBindCtx, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateItemFromRelativeName, libShell32, "SHCreateItemFromRelativeName")
+	addr := LazyAddr(&pSHCreateItemFromRelativeName, libShell32, "SHCreateItemFromRelativeName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psiParent)), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pbc)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateItemInKnownFolder(kfid *syscall.GUID, dwKFFlags uint32, pszItem PWSTR, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateItemInKnownFolder, libShell32, "SHCreateItemInKnownFolder")
+	addr := LazyAddr(&pSHCreateItemInKnownFolder, libShell32, "SHCreateItemInKnownFolder")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(kfid)), uintptr(dwKFFlags), uintptr(unsafe.Pointer(pszItem)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHGetIDListFromObject(punk *IUnknown, ppidl **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHGetIDListFromObject, libShell32, "SHGetIDListFromObject")
+	addr := LazyAddr(&pSHGetIDListFromObject, libShell32, "SHGetIDListFromObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(ppidl)))
 	return HRESULT(ret)
 }
 
 func SHGetItemFromObject(punk *IUnknown, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetItemFromObject, libShell32, "SHGetItemFromObject")
+	addr := LazyAddr(&pSHGetItemFromObject, libShell32, "SHGetItemFromObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHGetNameFromIDList(pidl *ITEMIDLIST, sigdnName SIGDN, ppszName *PWSTR) HRESULT {
-	addr := lazyAddr(&pSHGetNameFromIDList, libShell32, "SHGetNameFromIDList")
+	addr := LazyAddr(&pSHGetNameFromIDList, libShell32, "SHGetNameFromIDList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(sigdnName), uintptr(unsafe.Pointer(ppszName)))
 	return HRESULT(ret)
 }
 
 func SHGetItemFromDataObject(pdtobj *IDataObject, dwFlags DATAOBJ_GET_ITEM_FLAGS, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetItemFromDataObject, libShell32, "SHGetItemFromDataObject")
+	addr := LazyAddr(&pSHGetItemFromDataObject, libShell32, "SHGetItemFromDataObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdtobj)), uintptr(dwFlags), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateShellItemArray(pidlParent *ITEMIDLIST, psf *IShellFolder, cidl uint32, ppidl **ITEMIDLIST, ppsiItemArray **IShellItemArray) HRESULT {
-	addr := lazyAddr(&pSHCreateShellItemArray, libShell32, "SHCreateShellItemArray")
+	addr := LazyAddr(&pSHCreateShellItemArray, libShell32, "SHCreateShellItemArray")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlParent)), uintptr(unsafe.Pointer(psf)), uintptr(cidl), uintptr(unsafe.Pointer(ppidl)), uintptr(unsafe.Pointer(ppsiItemArray)))
 	return HRESULT(ret)
 }
 
 func SHCreateShellItemArrayFromDataObject(pdo *IDataObject, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateShellItemArrayFromDataObject, libShell32, "SHCreateShellItemArrayFromDataObject")
+	addr := LazyAddr(&pSHCreateShellItemArrayFromDataObject, libShell32, "SHCreateShellItemArrayFromDataObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdo)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateShellItemArrayFromIDLists(cidl uint32, rgpidl **ITEMIDLIST, ppsiItemArray **IShellItemArray) HRESULT {
-	addr := lazyAddr(&pSHCreateShellItemArrayFromIDLists, libShell32, "SHCreateShellItemArrayFromIDLists")
+	addr := LazyAddr(&pSHCreateShellItemArrayFromIDLists, libShell32, "SHCreateShellItemArrayFromIDLists")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cidl), uintptr(unsafe.Pointer(rgpidl)), uintptr(unsafe.Pointer(ppsiItemArray)))
 	return HRESULT(ret)
 }
 
 func SHCreateShellItemArrayFromShellItem(psi *IShellItem, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateShellItemArrayFromShellItem, libShell32, "SHCreateShellItemArrayFromShellItem")
+	addr := LazyAddr(&pSHCreateShellItemArrayFromShellItem, libShell32, "SHCreateShellItemArrayFromShellItem")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psi)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateAssociationRegistration(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateAssociationRegistration, libShell32, "SHCreateAssociationRegistration")
+	addr := LazyAddr(&pSHCreateAssociationRegistration, libShell32, "SHCreateAssociationRegistration")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateDefaultExtractIcon(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateDefaultExtractIcon, libShell32, "SHCreateDefaultExtractIcon")
+	addr := LazyAddr(&pSHCreateDefaultExtractIcon, libShell32, "SHCreateDefaultExtractIcon")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SetCurrentProcessExplicitAppUserModelID(AppID PWSTR) HRESULT {
-	addr := lazyAddr(&pSetCurrentProcessExplicitAppUserModelID, libShell32, "SetCurrentProcessExplicitAppUserModelID")
+	addr := LazyAddr(&pSetCurrentProcessExplicitAppUserModelID, libShell32, "SetCurrentProcessExplicitAppUserModelID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(AppID)))
 	return HRESULT(ret)
 }
 
 func GetCurrentProcessExplicitAppUserModelID(AppID *PWSTR) HRESULT {
-	addr := lazyAddr(&pGetCurrentProcessExplicitAppUserModelID, libShell32, "GetCurrentProcessExplicitAppUserModelID")
+	addr := LazyAddr(&pGetCurrentProcessExplicitAppUserModelID, libShell32, "GetCurrentProcessExplicitAppUserModelID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(AppID)))
 	return HRESULT(ret)
 }
 
 func SHGetTemporaryPropertyForItem(psi *IShellItem, propkey *PROPERTYKEY, ppropvar *PROPVARIANT) HRESULT {
-	addr := lazyAddr(&pSHGetTemporaryPropertyForItem, libShell32, "SHGetTemporaryPropertyForItem")
+	addr := LazyAddr(&pSHGetTemporaryPropertyForItem, libShell32, "SHGetTemporaryPropertyForItem")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psi)), uintptr(unsafe.Pointer(propkey)), uintptr(unsafe.Pointer(ppropvar)))
 	return HRESULT(ret)
 }
 
 func SHSetTemporaryPropertyForItem(psi *IShellItem, propkey *PROPERTYKEY, propvar *PROPVARIANT) HRESULT {
-	addr := lazyAddr(&pSHSetTemporaryPropertyForItem, libShell32, "SHSetTemporaryPropertyForItem")
+	addr := LazyAddr(&pSHSetTemporaryPropertyForItem, libShell32, "SHSetTemporaryPropertyForItem")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psi)), uintptr(unsafe.Pointer(propkey)), uintptr(unsafe.Pointer(propvar)))
 	return HRESULT(ret)
 }
 
 func SHShowManageLibraryUI(psiLibrary *IShellItem, hwndOwner HWND, pszTitle PWSTR, pszInstruction PWSTR, lmdOptions LIBRARYMANAGEDIALOGOPTIONS) HRESULT {
-	addr := lazyAddr(&pSHShowManageLibraryUI, libShell32, "SHShowManageLibraryUI")
+	addr := LazyAddr(&pSHShowManageLibraryUI, libShell32, "SHShowManageLibraryUI")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psiLibrary)), hwndOwner, uintptr(unsafe.Pointer(pszTitle)), uintptr(unsafe.Pointer(pszInstruction)), uintptr(lmdOptions))
 	return HRESULT(ret)
 }
 
 func SHResolveLibrary(psiLibrary *IShellItem) HRESULT {
-	addr := lazyAddr(&pSHResolveLibrary, libShell32, "SHResolveLibrary")
+	addr := LazyAddr(&pSHResolveLibrary, libShell32, "SHResolveLibrary")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psiLibrary)))
 	return HRESULT(ret)
 }
 
 func SHAssocEnumHandlers(pszExtra PWSTR, afFilter ASSOC_FILTER, ppEnumHandler **IEnumAssocHandlers) HRESULT {
-	addr := lazyAddr(&pSHAssocEnumHandlers, libShell32, "SHAssocEnumHandlers")
+	addr := LazyAddr(&pSHAssocEnumHandlers, libShell32, "SHAssocEnumHandlers")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszExtra)), uintptr(afFilter), uintptr(unsafe.Pointer(ppEnumHandler)))
 	return HRESULT(ret)
 }
 
 func SHAssocEnumHandlersForProtocolByApplication(protocol PWSTR, riid *syscall.GUID, enumHandlers unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHAssocEnumHandlersForProtocolByApplication, libShell32, "SHAssocEnumHandlersForProtocolByApplication")
+	addr := LazyAddr(&pSHAssocEnumHandlersForProtocolByApplication, libShell32, "SHAssocEnumHandlersForProtocolByApplication")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(protocol)), uintptr(unsafe.Pointer(riid)), uintptr(enumHandlers))
 	return HRESULT(ret)
 }
 
 func HMONITOR_UserSize(param0 *uint32, param1 uint32, param2 *HMONITOR) uint32 {
-	addr := lazyAddr(&pHMONITOR_UserSize, libOle32, "HMONITOR_UserSize")
+	addr := LazyAddr(&pHMONITOR_UserSize, libOle32, "HMONITOR_UserSize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(param1), uintptr(unsafe.Pointer(param2)))
 	return uint32(ret)
 }
 
 func HMONITOR_UserMarshal(param0 *uint32, param1 *byte, param2 *HMONITOR) *byte {
-	addr := lazyAddr(&pHMONITOR_UserMarshal, libOle32, "HMONITOR_UserMarshal")
+	addr := LazyAddr(&pHMONITOR_UserMarshal, libOle32, "HMONITOR_UserMarshal")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HMONITOR_UserUnmarshal(param0 *uint32, param1 *byte, param2 *HMONITOR) *byte {
-	addr := lazyAddr(&pHMONITOR_UserUnmarshal, libOle32, "HMONITOR_UserUnmarshal")
+	addr := LazyAddr(&pHMONITOR_UserUnmarshal, libOle32, "HMONITOR_UserUnmarshal")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HMONITOR_UserFree(param0 *uint32, param1 *HMONITOR) {
-	addr := lazyAddr(&pHMONITOR_UserFree, libOle32, "HMONITOR_UserFree")
+	addr := LazyAddr(&pHMONITOR_UserFree, libOle32, "HMONITOR_UserFree")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)))
 }
 
 func HMONITOR_UserSize64(param0 *uint32, param1 uint32, param2 *HMONITOR) uint32 {
-	addr := lazyAddr(&pHMONITOR_UserSize64, libOle32, "HMONITOR_UserSize64")
+	addr := LazyAddr(&pHMONITOR_UserSize64, libOle32, "HMONITOR_UserSize64")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(param1), uintptr(unsafe.Pointer(param2)))
 	return uint32(ret)
 }
 
 func HMONITOR_UserMarshal64(param0 *uint32, param1 *byte, param2 *HMONITOR) *byte {
-	addr := lazyAddr(&pHMONITOR_UserMarshal64, libOle32, "HMONITOR_UserMarshal64")
+	addr := LazyAddr(&pHMONITOR_UserMarshal64, libOle32, "HMONITOR_UserMarshal64")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HMONITOR_UserUnmarshal64(param0 *uint32, param1 *byte, param2 *HMONITOR) *byte {
-	addr := lazyAddr(&pHMONITOR_UserUnmarshal64, libOle32, "HMONITOR_UserUnmarshal64")
+	addr := LazyAddr(&pHMONITOR_UserUnmarshal64, libOle32, "HMONITOR_UserUnmarshal64")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HMONITOR_UserFree64(param0 *uint32, param1 *HMONITOR) {
-	addr := lazyAddr(&pHMONITOR_UserFree64, libOle32, "HMONITOR_UserFree64")
+	addr := LazyAddr(&pHMONITOR_UserFree64, libOle32, "HMONITOR_UserFree64")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)))
 }
 
 func SHCreateDefaultPropertiesOp(psi *IShellItem, ppFileOp **IFileOperation) HRESULT {
-	addr := lazyAddr(&pSHCreateDefaultPropertiesOp, libShell32, "SHCreateDefaultPropertiesOp")
+	addr := LazyAddr(&pSHCreateDefaultPropertiesOp, libShell32, "SHCreateDefaultPropertiesOp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psi)), uintptr(unsafe.Pointer(ppFileOp)))
 	return HRESULT(ret)
 }
 
 func SHSetDefaultProperties(hwnd HWND, psi *IShellItem, dwFileOpFlags uint32, pfops *IFileOperationProgressSink) HRESULT {
-	addr := lazyAddr(&pSHSetDefaultProperties, libShell32, "SHSetDefaultProperties")
+	addr := LazyAddr(&pSHSetDefaultProperties, libShell32, "SHSetDefaultProperties")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(psi)), uintptr(dwFileOpFlags), uintptr(unsafe.Pointer(pfops)))
 	return HRESULT(ret)
 }
 
 func SHGetMalloc(ppMalloc **IMalloc) HRESULT {
-	addr := lazyAddr(&pSHGetMalloc, libShell32, "SHGetMalloc")
+	addr := LazyAddr(&pSHGetMalloc, libShell32, "SHGetMalloc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppMalloc)))
 	return HRESULT(ret)
 }
 
 func SHAlloc(cb uintptr) unsafe.Pointer {
-	addr := lazyAddr(&pSHAlloc, libShell32, "SHAlloc")
+	addr := LazyAddr(&pSHAlloc, libShell32, "SHAlloc")
 	ret, _, _ := syscall.SyscallN(addr, cb)
 	return (unsafe.Pointer)(ret)
 }
 
 func SHFree(pv unsafe.Pointer) {
-	addr := lazyAddr(&pSHFree, libShell32, "SHFree")
+	addr := LazyAddr(&pSHFree, libShell32, "SHFree")
 	syscall.SyscallN(addr, uintptr(pv))
 }
 
 func SHGetIconOverlayIndexA(pszIconPath PSTR, iIconIndex int32) int32 {
-	addr := lazyAddr(&pSHGetIconOverlayIndexA, libShell32, "SHGetIconOverlayIndexA")
+	addr := LazyAddr(&pSHGetIconOverlayIndexA, libShell32, "SHGetIconOverlayIndexA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconPath)), uintptr(iIconIndex))
 	return int32(ret)
 }
@@ -30496,90 +30496,90 @@ func SHGetIconOverlayIndexA(pszIconPath PSTR, iIconIndex int32) int32 {
 var SHGetIconOverlayIndex = SHGetIconOverlayIndexW
 
 func SHGetIconOverlayIndexW(pszIconPath PWSTR, iIconIndex int32) int32 {
-	addr := lazyAddr(&pSHGetIconOverlayIndexW, libShell32, "SHGetIconOverlayIndexW")
+	addr := LazyAddr(&pSHGetIconOverlayIndexW, libShell32, "SHGetIconOverlayIndexW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconPath)), uintptr(iIconIndex))
 	return int32(ret)
 }
 
 func ILClone(pidl *ITEMIDLIST) *ITEMIDLIST {
-	addr := lazyAddr(&pILClone, libShell32, "ILClone")
+	addr := LazyAddr(&pILClone, libShell32, "ILClone")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func ILCloneFirst(pidl *ITEMIDLIST) *ITEMIDLIST {
-	addr := lazyAddr(&pILCloneFirst, libShell32, "ILCloneFirst")
+	addr := LazyAddr(&pILCloneFirst, libShell32, "ILCloneFirst")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func ILCombine(pidl1 *ITEMIDLIST, pidl2 *ITEMIDLIST) *ITEMIDLIST {
-	addr := lazyAddr(&pILCombine, libShell32, "ILCombine")
+	addr := LazyAddr(&pILCombine, libShell32, "ILCombine")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl1)), uintptr(unsafe.Pointer(pidl2)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func ILFree(pidl *ITEMIDLIST) {
-	addr := lazyAddr(&pILFree, libShell32, "ILFree")
+	addr := LazyAddr(&pILFree, libShell32, "ILFree")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 }
 
 func ILGetNext(pidl *ITEMIDLIST) *ITEMIDLIST {
-	addr := lazyAddr(&pILGetNext, libShell32, "ILGetNext")
+	addr := LazyAddr(&pILGetNext, libShell32, "ILGetNext")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func ILGetSize(pidl *ITEMIDLIST) uint32 {
-	addr := lazyAddr(&pILGetSize, libShell32, "ILGetSize")
+	addr := LazyAddr(&pILGetSize, libShell32, "ILGetSize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 	return uint32(ret)
 }
 
 func ILFindChild(pidlParent *ITEMIDLIST, pidlChild *ITEMIDLIST) *ITEMIDLIST {
-	addr := lazyAddr(&pILFindChild, libShell32, "ILFindChild")
+	addr := LazyAddr(&pILFindChild, libShell32, "ILFindChild")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlParent)), uintptr(unsafe.Pointer(pidlChild)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func ILFindLastID(pidl *ITEMIDLIST) *ITEMIDLIST {
-	addr := lazyAddr(&pILFindLastID, libShell32, "ILFindLastID")
+	addr := LazyAddr(&pILFindLastID, libShell32, "ILFindLastID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func ILRemoveLastID(pidl *ITEMIDLIST) BOOL {
-	addr := lazyAddr(&pILRemoveLastID, libShell32, "ILRemoveLastID")
+	addr := LazyAddr(&pILRemoveLastID, libShell32, "ILRemoveLastID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 	return BOOL(ret)
 }
 
 func ILIsEqual(pidl1 *ITEMIDLIST, pidl2 *ITEMIDLIST) BOOL {
-	addr := lazyAddr(&pILIsEqual, libShell32, "ILIsEqual")
+	addr := LazyAddr(&pILIsEqual, libShell32, "ILIsEqual")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl1)), uintptr(unsafe.Pointer(pidl2)))
 	return BOOL(ret)
 }
 
 func ILIsParent(pidl1 *ITEMIDLIST, pidl2 *ITEMIDLIST, fImmediate BOOL) BOOL {
-	addr := lazyAddr(&pILIsParent, libShell32, "ILIsParent")
+	addr := LazyAddr(&pILIsParent, libShell32, "ILIsParent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl1)), uintptr(unsafe.Pointer(pidl2)), uintptr(fImmediate))
 	return BOOL(ret)
 }
 
 func ILSaveToStream(pstm *IStream, pidl *ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pILSaveToStream, libShell32, "ILSaveToStream")
+	addr := LazyAddr(&pILSaveToStream, libShell32, "ILSaveToStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(pidl)))
 	return HRESULT(ret)
 }
 
 func ILLoadFromStreamEx(pstm *IStream, pidl **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pILLoadFromStreamEx, libShell32, "ILLoadFromStreamEx")
+	addr := LazyAddr(&pILLoadFromStreamEx, libShell32, "ILLoadFromStreamEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(pidl)))
 	return HRESULT(ret)
 }
 
 func ILCreateFromPathA(pszPath PSTR) *ITEMIDLIST {
-	addr := lazyAddr(&pILCreateFromPathA, libShell32, "ILCreateFromPathA")
+	addr := LazyAddr(&pILCreateFromPathA, libShell32, "ILCreateFromPathA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
@@ -30587,31 +30587,31 @@ func ILCreateFromPathA(pszPath PSTR) *ITEMIDLIST {
 var ILCreateFromPath = ILCreateFromPathW
 
 func ILCreateFromPathW(pszPath PWSTR) *ITEMIDLIST {
-	addr := lazyAddr(&pILCreateFromPathW, libShell32, "ILCreateFromPathW")
+	addr := LazyAddr(&pILCreateFromPathW, libShell32, "ILCreateFromPathW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func SHILCreateFromPath(pszPath PWSTR, ppidl **ITEMIDLIST, rgfInOut *uint32) HRESULT {
-	addr := lazyAddr(&pSHILCreateFromPath, libShell32, "SHILCreateFromPath")
+	addr := LazyAddr(&pSHILCreateFromPath, libShell32, "SHILCreateFromPath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(ppidl)), uintptr(unsafe.Pointer(rgfInOut)))
 	return HRESULT(ret)
 }
 
 func ILAppendID(pidl *ITEMIDLIST, pmkid *SHITEMID, fAppend BOOL) *ITEMIDLIST {
-	addr := lazyAddr(&pILAppendID, libShell32, "ILAppendID")
+	addr := LazyAddr(&pILAppendID, libShell32, "ILAppendID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pmkid)), uintptr(fAppend))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func SHGetPathFromIDListEx(pidl *ITEMIDLIST, pszPath PWSTR, cchPath uint32, uOpts GPFIDL_FLAGS) BOOL {
-	addr := lazyAddr(&pSHGetPathFromIDListEx, libShell32, "SHGetPathFromIDListEx")
+	addr := LazyAddr(&pSHGetPathFromIDListEx, libShell32, "SHGetPathFromIDListEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszPath)), uintptr(cchPath), uintptr(uOpts))
 	return BOOL(ret)
 }
 
 func SHGetPathFromIDListA(pidl *ITEMIDLIST, pszPath PSTR) BOOL {
-	addr := lazyAddr(&pSHGetPathFromIDListA, libShell32, "SHGetPathFromIDListA")
+	addr := LazyAddr(&pSHGetPathFromIDListA, libShell32, "SHGetPathFromIDListA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -30619,19 +30619,19 @@ func SHGetPathFromIDListA(pidl *ITEMIDLIST, pszPath PSTR) BOOL {
 var SHGetPathFromIDList = SHGetPathFromIDListW
 
 func SHGetPathFromIDListW(pidl *ITEMIDLIST, pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pSHGetPathFromIDListW, libShell32, "SHGetPathFromIDListW")
+	addr := LazyAddr(&pSHGetPathFromIDListW, libShell32, "SHGetPathFromIDListW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func SHCreateDirectory(hwnd HWND, pszPath PWSTR) int32 {
-	addr := lazyAddr(&pSHCreateDirectory, libShell32, "SHCreateDirectory")
+	addr := LazyAddr(&pSHCreateDirectory, libShell32, "SHCreateDirectory")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszPath)))
 	return int32(ret)
 }
 
 func SHCreateDirectoryExA(hwnd HWND, pszPath PSTR, psa *SECURITY_ATTRIBUTES) int32 {
-	addr := lazyAddr(&pSHCreateDirectoryExA, libShell32, "SHCreateDirectoryExA")
+	addr := LazyAddr(&pSHCreateDirectoryExA, libShell32, "SHCreateDirectoryExA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(psa)))
 	return int32(ret)
 }
@@ -30639,37 +30639,37 @@ func SHCreateDirectoryExA(hwnd HWND, pszPath PSTR, psa *SECURITY_ATTRIBUTES) int
 var SHCreateDirectoryEx = SHCreateDirectoryExW
 
 func SHCreateDirectoryExW(hwnd HWND, pszPath PWSTR, psa *SECURITY_ATTRIBUTES) int32 {
-	addr := lazyAddr(&pSHCreateDirectoryExW, libShell32, "SHCreateDirectoryExW")
+	addr := LazyAddr(&pSHCreateDirectoryExW, libShell32, "SHCreateDirectoryExW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(psa)))
 	return int32(ret)
 }
 
 func SHOpenFolderAndSelectItems(pidlFolder *ITEMIDLIST, cidl uint32, apidl **ITEMIDLIST, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pSHOpenFolderAndSelectItems, libShell32, "SHOpenFolderAndSelectItems")
+	addr := LazyAddr(&pSHOpenFolderAndSelectItems, libShell32, "SHOpenFolderAndSelectItems")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlFolder)), uintptr(cidl), uintptr(unsafe.Pointer(apidl)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func SHCreateShellItem(pidlParent *ITEMIDLIST, psfParent *IShellFolder, pidl *ITEMIDLIST, ppsi **IShellItem) HRESULT {
-	addr := lazyAddr(&pSHCreateShellItem, libShell32, "SHCreateShellItem")
+	addr := LazyAddr(&pSHCreateShellItem, libShell32, "SHCreateShellItem")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlParent)), uintptr(unsafe.Pointer(psfParent)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(ppsi)))
 	return HRESULT(ret)
 }
 
 func SHGetSpecialFolderLocation(hwnd HWND, csidl int32, ppidl **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHGetSpecialFolderLocation, libShell32, "SHGetSpecialFolderLocation")
+	addr := LazyAddr(&pSHGetSpecialFolderLocation, libShell32, "SHGetSpecialFolderLocation")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(csidl), uintptr(unsafe.Pointer(ppidl)))
 	return HRESULT(ret)
 }
 
 func SHCloneSpecialIDList(hwnd HWND, csidl int32, fCreate BOOL) *ITEMIDLIST {
-	addr := lazyAddr(&pSHCloneSpecialIDList, libShell32, "SHCloneSpecialIDList")
+	addr := LazyAddr(&pSHCloneSpecialIDList, libShell32, "SHCloneSpecialIDList")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(csidl), uintptr(fCreate))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func SHGetSpecialFolderPathA(hwnd HWND, pszPath PSTR, csidl int32, fCreate BOOL) BOOL {
-	addr := lazyAddr(&pSHGetSpecialFolderPathA, libShell32, "SHGetSpecialFolderPathA")
+	addr := LazyAddr(&pSHGetSpecialFolderPathA, libShell32, "SHGetSpecialFolderPathA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszPath)), uintptr(csidl), uintptr(fCreate))
 	return BOOL(ret)
 }
@@ -30677,18 +30677,18 @@ func SHGetSpecialFolderPathA(hwnd HWND, pszPath PSTR, csidl int32, fCreate BOOL)
 var SHGetSpecialFolderPath = SHGetSpecialFolderPathW
 
 func SHGetSpecialFolderPathW(hwnd HWND, pszPath PWSTR, csidl int32, fCreate BOOL) BOOL {
-	addr := lazyAddr(&pSHGetSpecialFolderPathW, libShell32, "SHGetSpecialFolderPathW")
+	addr := LazyAddr(&pSHGetSpecialFolderPathW, libShell32, "SHGetSpecialFolderPathW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszPath)), uintptr(csidl), uintptr(fCreate))
 	return BOOL(ret)
 }
 
 func SHFlushSFCache() {
-	addr := lazyAddr(&pSHFlushSFCache, libShell32, "SHFlushSFCache")
+	addr := LazyAddr(&pSHFlushSFCache, libShell32, "SHFlushSFCache")
 	syscall.SyscallN(addr)
 }
 
 func SHGetFolderPathA(hwnd HWND, csidl int32, hToken HANDLE, dwFlags uint32, pszPath PSTR) HRESULT {
-	addr := lazyAddr(&pSHGetFolderPathA, libShell32, "SHGetFolderPathA")
+	addr := LazyAddr(&pSHGetFolderPathA, libShell32, "SHGetFolderPathA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(csidl), hToken, uintptr(dwFlags), uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
@@ -30696,19 +30696,19 @@ func SHGetFolderPathA(hwnd HWND, csidl int32, hToken HANDLE, dwFlags uint32, psz
 var SHGetFolderPath = SHGetFolderPathW
 
 func SHGetFolderPathW(hwnd HWND, csidl int32, hToken HANDLE, dwFlags uint32, pszPath PWSTR) HRESULT {
-	addr := lazyAddr(&pSHGetFolderPathW, libShell32, "SHGetFolderPathW")
+	addr := LazyAddr(&pSHGetFolderPathW, libShell32, "SHGetFolderPathW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(csidl), hToken, uintptr(dwFlags), uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
 
 func SHGetFolderLocation(hwnd HWND, csidl int32, hToken HANDLE, dwFlags uint32, ppidl **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHGetFolderLocation, libShell32, "SHGetFolderLocation")
+	addr := LazyAddr(&pSHGetFolderLocation, libShell32, "SHGetFolderLocation")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(csidl), hToken, uintptr(dwFlags), uintptr(unsafe.Pointer(ppidl)))
 	return HRESULT(ret)
 }
 
 func SHSetFolderPathA(csidl int32, hToken HANDLE, dwFlags uint32, pszPath PSTR) HRESULT {
-	addr := lazyAddr(&pSHSetFolderPathA, libShell32, "SHSetFolderPathA")
+	addr := LazyAddr(&pSHSetFolderPathA, libShell32, "SHSetFolderPathA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(csidl), hToken, uintptr(dwFlags), uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
@@ -30716,13 +30716,13 @@ func SHSetFolderPathA(csidl int32, hToken HANDLE, dwFlags uint32, pszPath PSTR) 
 var SHSetFolderPath = SHSetFolderPathW
 
 func SHSetFolderPathW(csidl int32, hToken HANDLE, dwFlags uint32, pszPath PWSTR) HRESULT {
-	addr := lazyAddr(&pSHSetFolderPathW, libShell32, "SHSetFolderPathW")
+	addr := LazyAddr(&pSHSetFolderPathW, libShell32, "SHSetFolderPathW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(csidl), hToken, uintptr(dwFlags), uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
 
 func SHGetFolderPathAndSubDirA(hwnd HWND, csidl int32, hToken HANDLE, dwFlags uint32, pszSubDir PSTR, pszPath PSTR) HRESULT {
-	addr := lazyAddr(&pSHGetFolderPathAndSubDirA, libShell32, "SHGetFolderPathAndSubDirA")
+	addr := LazyAddr(&pSHGetFolderPathAndSubDirA, libShell32, "SHGetFolderPathAndSubDirA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(csidl), hToken, uintptr(dwFlags), uintptr(unsafe.Pointer(pszSubDir)), uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
@@ -30730,43 +30730,43 @@ func SHGetFolderPathAndSubDirA(hwnd HWND, csidl int32, hToken HANDLE, dwFlags ui
 var SHGetFolderPathAndSubDir = SHGetFolderPathAndSubDirW
 
 func SHGetFolderPathAndSubDirW(hwnd HWND, csidl int32, hToken HANDLE, dwFlags uint32, pszSubDir PWSTR, pszPath PWSTR) HRESULT {
-	addr := lazyAddr(&pSHGetFolderPathAndSubDirW, libShell32, "SHGetFolderPathAndSubDirW")
+	addr := LazyAddr(&pSHGetFolderPathAndSubDirW, libShell32, "SHGetFolderPathAndSubDirW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(csidl), hToken, uintptr(dwFlags), uintptr(unsafe.Pointer(pszSubDir)), uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
 
 func SHGetKnownFolderIDList(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, ppidl **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHGetKnownFolderIDList, libShell32, "SHGetKnownFolderIDList")
+	addr := LazyAddr(&pSHGetKnownFolderIDList, libShell32, "SHGetKnownFolderIDList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rfid)), uintptr(dwFlags), hToken, uintptr(unsafe.Pointer(ppidl)))
 	return HRESULT(ret)
 }
 
 func SHSetKnownFolderPath(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, pszPath PWSTR) HRESULT {
-	addr := lazyAddr(&pSHSetKnownFolderPath, libShell32, "SHSetKnownFolderPath")
+	addr := LazyAddr(&pSHSetKnownFolderPath, libShell32, "SHSetKnownFolderPath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rfid)), uintptr(dwFlags), hToken, uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
 
 func SHGetKnownFolderPath(rfid *syscall.GUID, dwFlags KNOWN_FOLDER_FLAG, hToken HANDLE, ppszPath *PWSTR) HRESULT {
-	addr := lazyAddr(&pSHGetKnownFolderPath, libShell32, "SHGetKnownFolderPath")
+	addr := LazyAddr(&pSHGetKnownFolderPath, libShell32, "SHGetKnownFolderPath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rfid)), uintptr(dwFlags), hToken, uintptr(unsafe.Pointer(ppszPath)))
 	return HRESULT(ret)
 }
 
 func SHGetKnownFolderItem(rfid *syscall.GUID, flags KNOWN_FOLDER_FLAG, hToken HANDLE, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetKnownFolderItem, libShell32, "SHGetKnownFolderItem")
+	addr := LazyAddr(&pSHGetKnownFolderItem, libShell32, "SHGetKnownFolderItem")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rfid)), uintptr(flags), hToken, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHGetSetFolderCustomSettings(pfcs *SHFOLDERCUSTOMSETTINGS, pszPath PWSTR, dwReadWrite uint32) HRESULT {
-	addr := lazyAddr(&pSHGetSetFolderCustomSettings, libShell32, "SHGetSetFolderCustomSettings")
+	addr := LazyAddr(&pSHGetSetFolderCustomSettings, libShell32, "SHGetSetFolderCustomSettings")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pfcs)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwReadWrite))
 	return HRESULT(ret)
 }
 
 func SHBrowseForFolderA(lpbi *BROWSEINFOA) *ITEMIDLIST {
-	addr := lazyAddr(&pSHBrowseForFolderA, libShell32, "SHBrowseForFolderA")
+	addr := LazyAddr(&pSHBrowseForFolderA, libShell32, "SHBrowseForFolderA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpbi)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
@@ -30774,89 +30774,89 @@ func SHBrowseForFolderA(lpbi *BROWSEINFOA) *ITEMIDLIST {
 var SHBrowseForFolder = SHBrowseForFolderW
 
 func SHBrowseForFolderW(lpbi *BROWSEINFOW) *ITEMIDLIST {
-	addr := lazyAddr(&pSHBrowseForFolderW, libShell32, "SHBrowseForFolderW")
+	addr := LazyAddr(&pSHBrowseForFolderW, libShell32, "SHBrowseForFolderW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpbi)))
 	return (*ITEMIDLIST)(unsafe.Pointer(ret))
 }
 
 func SHLoadInProc(rclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pSHLoadInProc, libShell32, "SHLoadInProc")
+	addr := LazyAddr(&pSHLoadInProc, libShell32, "SHLoadInProc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)))
 	return HRESULT(ret)
 }
 
 func SHGetDesktopFolder(ppshf **IShellFolder) HRESULT {
-	addr := lazyAddr(&pSHGetDesktopFolder, libShell32, "SHGetDesktopFolder")
+	addr := LazyAddr(&pSHGetDesktopFolder, libShell32, "SHGetDesktopFolder")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppshf)))
 	return HRESULT(ret)
 }
 
 func SHChangeNotify(wEventId SHCNE_ID, uFlags SHCNF_FLAGS, dwItem1 unsafe.Pointer, dwItem2 unsafe.Pointer) {
-	addr := lazyAddr(&pSHChangeNotify, libShell32, "SHChangeNotify")
+	addr := LazyAddr(&pSHChangeNotify, libShell32, "SHChangeNotify")
 	syscall.SyscallN(addr, uintptr(wEventId), uintptr(uFlags), uintptr(dwItem1), uintptr(dwItem2))
 }
 
 func SHAddToRecentDocs(uFlags uint32, pv unsafe.Pointer) {
-	addr := lazyAddr(&pSHAddToRecentDocs, libShell32, "SHAddToRecentDocs")
+	addr := LazyAddr(&pSHAddToRecentDocs, libShell32, "SHAddToRecentDocs")
 	syscall.SyscallN(addr, uintptr(uFlags), uintptr(pv))
 }
 
 func SHHandleUpdateImage(pidlExtra *ITEMIDLIST) int32 {
-	addr := lazyAddr(&pSHHandleUpdateImage, libShell32, "SHHandleUpdateImage")
+	addr := LazyAddr(&pSHHandleUpdateImage, libShell32, "SHHandleUpdateImage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlExtra)))
 	return int32(ret)
 }
 
 func SHUpdateImageA(pszHashItem PSTR, iIndex int32, uFlags uint32, iImageIndex int32) {
-	addr := lazyAddr(&pSHUpdateImageA, libShell32, "SHUpdateImageA")
+	addr := LazyAddr(&pSHUpdateImageA, libShell32, "SHUpdateImageA")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszHashItem)), uintptr(iIndex), uintptr(uFlags), uintptr(iImageIndex))
 }
 
 var SHUpdateImage = SHUpdateImageW
 
 func SHUpdateImageW(pszHashItem PWSTR, iIndex int32, uFlags uint32, iImageIndex int32) {
-	addr := lazyAddr(&pSHUpdateImageW, libShell32, "SHUpdateImageW")
+	addr := LazyAddr(&pSHUpdateImageW, libShell32, "SHUpdateImageW")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszHashItem)), uintptr(iIndex), uintptr(uFlags), uintptr(iImageIndex))
 }
 
 func SHChangeNotifyRegister(hwnd HWND, fSources SHCNRF_SOURCE, fEvents int32, wMsg uint32, cEntries int32, pshcne *SHChangeNotifyEntry) uint32 {
-	addr := lazyAddr(&pSHChangeNotifyRegister, libShell32, "SHChangeNotifyRegister")
+	addr := LazyAddr(&pSHChangeNotifyRegister, libShell32, "SHChangeNotifyRegister")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(fSources), uintptr(fEvents), uintptr(wMsg), uintptr(cEntries), uintptr(unsafe.Pointer(pshcne)))
 	return uint32(ret)
 }
 
 func SHChangeNotifyDeregister(ulID uint32) BOOL {
-	addr := lazyAddr(&pSHChangeNotifyDeregister, libShell32, "SHChangeNotifyDeregister")
+	addr := LazyAddr(&pSHChangeNotifyDeregister, libShell32, "SHChangeNotifyDeregister")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulID))
 	return BOOL(ret)
 }
 
 func SHChangeNotification_Lock(hChange HANDLE, dwProcId uint32, pppidl ***ITEMIDLIST, plEvent *int32) ShFindChangeNotificationHandle {
-	addr := lazyAddr(&pSHChangeNotification_Lock, libShell32, "SHChangeNotification_Lock")
+	addr := LazyAddr(&pSHChangeNotification_Lock, libShell32, "SHChangeNotification_Lock")
 	ret, _, _ := syscall.SyscallN(addr, hChange, uintptr(dwProcId), uintptr(unsafe.Pointer(pppidl)), uintptr(unsafe.Pointer(plEvent)))
 	return ret
 }
 
 func SHChangeNotification_Unlock(hLock HANDLE) BOOL {
-	addr := lazyAddr(&pSHChangeNotification_Unlock, libShell32, "SHChangeNotification_Unlock")
+	addr := LazyAddr(&pSHChangeNotification_Unlock, libShell32, "SHChangeNotification_Unlock")
 	ret, _, _ := syscall.SyscallN(addr, hLock)
 	return BOOL(ret)
 }
 
 func SHGetRealIDL(psf *IShellFolder, pidlSimple *ITEMIDLIST, ppidlReal **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHGetRealIDL, libShell32, "SHGetRealIDL")
+	addr := LazyAddr(&pSHGetRealIDL, libShell32, "SHGetRealIDL")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psf)), uintptr(unsafe.Pointer(pidlSimple)), uintptr(unsafe.Pointer(ppidlReal)))
 	return HRESULT(ret)
 }
 
 func SHGetInstanceExplorer(ppunk **IUnknown) HRESULT {
-	addr := lazyAddr(&pSHGetInstanceExplorer, libShell32, "SHGetInstanceExplorer")
+	addr := LazyAddr(&pSHGetInstanceExplorer, libShell32, "SHGetInstanceExplorer")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppunk)))
 	return HRESULT(ret)
 }
 
 func SHGetDataFromIDListA(psf *IShellFolder, pidl *ITEMIDLIST, nFormat SHGDFIL_FORMAT, pv unsafe.Pointer, cb int32) HRESULT {
-	addr := lazyAddr(&pSHGetDataFromIDListA, libShell32, "SHGetDataFromIDListA")
+	addr := LazyAddr(&pSHGetDataFromIDListA, libShell32, "SHGetDataFromIDListA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psf)), uintptr(unsafe.Pointer(pidl)), uintptr(nFormat), uintptr(pv), uintptr(cb))
 	return HRESULT(ret)
 }
@@ -30864,245 +30864,245 @@ func SHGetDataFromIDListA(psf *IShellFolder, pidl *ITEMIDLIST, nFormat SHGDFIL_F
 var SHGetDataFromIDList = SHGetDataFromIDListW
 
 func SHGetDataFromIDListW(psf *IShellFolder, pidl *ITEMIDLIST, nFormat SHGDFIL_FORMAT, pv unsafe.Pointer, cb int32) HRESULT {
-	addr := lazyAddr(&pSHGetDataFromIDListW, libShell32, "SHGetDataFromIDListW")
+	addr := LazyAddr(&pSHGetDataFromIDListW, libShell32, "SHGetDataFromIDListW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psf)), uintptr(unsafe.Pointer(pidl)), uintptr(nFormat), uintptr(pv), uintptr(cb))
 	return HRESULT(ret)
 }
 
 func RestartDialog(hwnd HWND, pszPrompt PWSTR, dwReturn uint32) int32 {
-	addr := lazyAddr(&pRestartDialog, libShell32, "RestartDialog")
+	addr := LazyAddr(&pRestartDialog, libShell32, "RestartDialog")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszPrompt)), uintptr(dwReturn))
 	return int32(ret)
 }
 
 func RestartDialogEx(hwnd HWND, pszPrompt PWSTR, dwReturn uint32, dwReasonCode uint32) int32 {
-	addr := lazyAddr(&pRestartDialogEx, libShell32, "RestartDialogEx")
+	addr := LazyAddr(&pRestartDialogEx, libShell32, "RestartDialogEx")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszPrompt)), uintptr(dwReturn), uintptr(dwReasonCode))
 	return int32(ret)
 }
 
 func SHCoCreateInstance(pszCLSID PWSTR, pclsid *syscall.GUID, pUnkOuter *IUnknown, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCoCreateInstance, libShell32, "SHCoCreateInstance")
+	addr := LazyAddr(&pSHCoCreateInstance, libShell32, "SHCoCreateInstance")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszCLSID)), uintptr(unsafe.Pointer(pclsid)), uintptr(unsafe.Pointer(pUnkOuter)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHCreateDataObject(pidlFolder *ITEMIDLIST, cidl uint32, apidl **ITEMIDLIST, pdtInner *IDataObject, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateDataObject, libShell32, "SHCreateDataObject")
+	addr := LazyAddr(&pSHCreateDataObject, libShell32, "SHCreateDataObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlFolder)), uintptr(cidl), uintptr(unsafe.Pointer(apidl)), uintptr(unsafe.Pointer(pdtInner)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func CIDLData_CreateFromIDArray(pidlFolder *ITEMIDLIST, cidl uint32, apidl **ITEMIDLIST, ppdtobj **IDataObject) HRESULT {
-	addr := lazyAddr(&pCIDLData_CreateFromIDArray, libShell32, "CIDLData_CreateFromIDArray")
+	addr := LazyAddr(&pCIDLData_CreateFromIDArray, libShell32, "CIDLData_CreateFromIDArray")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlFolder)), uintptr(cidl), uintptr(unsafe.Pointer(apidl)), uintptr(unsafe.Pointer(ppdtobj)))
 	return HRESULT(ret)
 }
 
 func SHCreateStdEnumFmtEtc(cfmt uint32, afmt *FORMATETC, ppenumFormatEtc **IEnumFORMATETC) HRESULT {
-	addr := lazyAddr(&pSHCreateStdEnumFmtEtc, libShell32, "SHCreateStdEnumFmtEtc")
+	addr := LazyAddr(&pSHCreateStdEnumFmtEtc, libShell32, "SHCreateStdEnumFmtEtc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cfmt), uintptr(unsafe.Pointer(afmt)), uintptr(unsafe.Pointer(ppenumFormatEtc)))
 	return HRESULT(ret)
 }
 
 func SHDoDragDrop(hwnd HWND, pdata *IDataObject, pdsrc *IDropSource, dwEffect DROPEFFECT, pdwEffect *DROPEFFECT) HRESULT {
-	addr := lazyAddr(&pSHDoDragDrop, libShell32, "SHDoDragDrop")
+	addr := LazyAddr(&pSHDoDragDrop, libShell32, "SHDoDragDrop")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pdata)), uintptr(unsafe.Pointer(pdsrc)), uintptr(dwEffect), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
 }
 
 func DAD_SetDragImage(him HIMAGELIST, pptOffset *POINT) BOOL {
-	addr := lazyAddr(&pDAD_SetDragImage, libShell32, "DAD_SetDragImage")
+	addr := LazyAddr(&pDAD_SetDragImage, libShell32, "DAD_SetDragImage")
 	ret, _, _ := syscall.SyscallN(addr, him, uintptr(unsafe.Pointer(pptOffset)))
 	return BOOL(ret)
 }
 
 func DAD_DragEnterEx(hwndTarget HWND, ptStart POINT) BOOL {
-	addr := lazyAddr(&pDAD_DragEnterEx, libShell32, "DAD_DragEnterEx")
+	addr := LazyAddr(&pDAD_DragEnterEx, libShell32, "DAD_DragEnterEx")
 	ret, _, _ := syscall.SyscallN(addr, hwndTarget, *(*uintptr)(unsafe.Pointer(&ptStart)))
 	return BOOL(ret)
 }
 
 func DAD_DragEnterEx2(hwndTarget HWND, ptStart POINT, pdtObject *IDataObject) BOOL {
-	addr := lazyAddr(&pDAD_DragEnterEx2, libShell32, "DAD_DragEnterEx2")
+	addr := LazyAddr(&pDAD_DragEnterEx2, libShell32, "DAD_DragEnterEx2")
 	ret, _, _ := syscall.SyscallN(addr, hwndTarget, *(*uintptr)(unsafe.Pointer(&ptStart)), uintptr(unsafe.Pointer(pdtObject)))
 	return BOOL(ret)
 }
 
 func DAD_ShowDragImage(fShow BOOL) BOOL {
-	addr := lazyAddr(&pDAD_ShowDragImage, libShell32, "DAD_ShowDragImage")
+	addr := LazyAddr(&pDAD_ShowDragImage, libShell32, "DAD_ShowDragImage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fShow))
 	return BOOL(ret)
 }
 
 func DAD_DragMove(pt POINT) BOOL {
-	addr := lazyAddr(&pDAD_DragMove, libShell32, "DAD_DragMove")
+	addr := LazyAddr(&pDAD_DragMove, libShell32, "DAD_DragMove")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&pt)))
 	return BOOL(ret)
 }
 
 func DAD_DragLeave() BOOL {
-	addr := lazyAddr(&pDAD_DragLeave, libShell32, "DAD_DragLeave")
+	addr := LazyAddr(&pDAD_DragLeave, libShell32, "DAD_DragLeave")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func DAD_AutoScroll(hwnd HWND, pad *AUTO_SCROLL_DATA, pptNow *POINT) BOOL {
-	addr := lazyAddr(&pDAD_AutoScroll, libShell32, "DAD_AutoScroll")
+	addr := LazyAddr(&pDAD_AutoScroll, libShell32, "DAD_AutoScroll")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pad)), uintptr(unsafe.Pointer(pptNow)))
 	return BOOL(ret)
 }
 
 func ReadCabinetState(pcs *CABINETSTATE, cLength int32) BOOL {
-	addr := lazyAddr(&pReadCabinetState, libShell32, "ReadCabinetState")
+	addr := LazyAddr(&pReadCabinetState, libShell32, "ReadCabinetState")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcs)), uintptr(cLength))
 	return BOOL(ret)
 }
 
 func WriteCabinetState(pcs *CABINETSTATE) BOOL {
-	addr := lazyAddr(&pWriteCabinetState, libShell32, "WriteCabinetState")
+	addr := LazyAddr(&pWriteCabinetState, libShell32, "WriteCabinetState")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcs)))
 	return BOOL(ret)
 }
 
 func PathMakeUniqueName(pszUniqueName PWSTR, cchMax uint32, pszTemplate PWSTR, pszLongPlate PWSTR, pszDir PWSTR) BOOL {
-	addr := lazyAddr(&pPathMakeUniqueName, libShell32, "PathMakeUniqueName")
+	addr := LazyAddr(&pPathMakeUniqueName, libShell32, "PathMakeUniqueName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUniqueName)), uintptr(cchMax), uintptr(unsafe.Pointer(pszTemplate)), uintptr(unsafe.Pointer(pszLongPlate)), uintptr(unsafe.Pointer(pszDir)))
 	return BOOL(ret)
 }
 
 func PathIsExe(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsExe, libShell32, "PathIsExe")
+	addr := LazyAddr(&pPathIsExe, libShell32, "PathIsExe")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathCleanupSpec(pszDir PWSTR, pszSpec PWSTR) PCS_RET {
-	addr := lazyAddr(&pPathCleanupSpec, libShell32, "PathCleanupSpec")
+	addr := LazyAddr(&pPathCleanupSpec, libShell32, "PathCleanupSpec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDir)), uintptr(unsafe.Pointer(pszSpec)))
 	return PCS_RET(ret)
 }
 
 func PathResolve(pszPath PWSTR, dirs **uint16, fFlags PRF_FLAGS) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pPathResolve, libShell32, "PathResolve")
+	addr := LazyAddr(&pPathResolve, libShell32, "PathResolve")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(dirs)), uintptr(fFlags))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetFileNameFromBrowse(hwnd HWND, pszFilePath PWSTR, cchFilePath uint32, pszWorkingDir PWSTR, pszDefExt PWSTR, pszFilters PWSTR, pszTitle PWSTR) BOOL {
-	addr := lazyAddr(&pGetFileNameFromBrowse, libShell32, "GetFileNameFromBrowse")
+	addr := LazyAddr(&pGetFileNameFromBrowse, libShell32, "GetFileNameFromBrowse")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszFilePath)), uintptr(cchFilePath), uintptr(unsafe.Pointer(pszWorkingDir)), uintptr(unsafe.Pointer(pszDefExt)), uintptr(unsafe.Pointer(pszFilters)), uintptr(unsafe.Pointer(pszTitle)))
 	return BOOL(ret)
 }
 
 func DriveType(iDrive int32) int32 {
-	addr := lazyAddr(&pDriveType, libShell32, "DriveType")
+	addr := LazyAddr(&pDriveType, libShell32, "DriveType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iDrive))
 	return int32(ret)
 }
 
 func RealDriveType(iDrive int32, fOKToHitNet BOOL) int32 {
-	addr := lazyAddr(&pRealDriveType, libShell32, "RealDriveType")
+	addr := LazyAddr(&pRealDriveType, libShell32, "RealDriveType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iDrive), uintptr(fOKToHitNet))
 	return int32(ret)
 }
 
 func IsNetDrive(iDrive int32) int32 {
-	addr := lazyAddr(&pIsNetDrive, libShell32, "IsNetDrive")
+	addr := LazyAddr(&pIsNetDrive, libShell32, "IsNetDrive")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iDrive))
 	return int32(ret)
 }
 
 func Shell_MergeMenus(hmDst HMENU, hmSrc HMENU, uInsert uint32, uIDAdjust uint32, uIDAdjustMax uint32, uFlags MM_FLAGS) uint32 {
-	addr := lazyAddr(&pShell_MergeMenus, libShell32, "Shell_MergeMenus")
+	addr := LazyAddr(&pShell_MergeMenus, libShell32, "Shell_MergeMenus")
 	ret, _, _ := syscall.SyscallN(addr, hmDst, hmSrc, uintptr(uInsert), uintptr(uIDAdjust), uintptr(uIDAdjustMax), uintptr(uFlags))
 	return uint32(ret)
 }
 
 func SHObjectProperties(hwnd HWND, shopObjectType SHOP_TYPE, pszObjectName PWSTR, pszPropertyPage PWSTR) BOOL {
-	addr := lazyAddr(&pSHObjectProperties, libShell32, "SHObjectProperties")
+	addr := LazyAddr(&pSHObjectProperties, libShell32, "SHObjectProperties")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(shopObjectType), uintptr(unsafe.Pointer(pszObjectName)), uintptr(unsafe.Pointer(pszPropertyPage)))
 	return BOOL(ret)
 }
 
 func SHFormatDrive(hwnd HWND, drive uint32, fmtID SHFMT_ID, options SHFMT_OPT) uint32 {
-	addr := lazyAddr(&pSHFormatDrive, libShell32, "SHFormatDrive")
+	addr := LazyAddr(&pSHFormatDrive, libShell32, "SHFormatDrive")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(drive), uintptr(fmtID), uintptr(options))
 	return uint32(ret)
 }
 
 func SHDestroyPropSheetExtArray(hpsxa HPSXA) {
-	addr := lazyAddr(&pSHDestroyPropSheetExtArray, libShell32, "SHDestroyPropSheetExtArray")
+	addr := LazyAddr(&pSHDestroyPropSheetExtArray, libShell32, "SHDestroyPropSheetExtArray")
 	syscall.SyscallN(addr, hpsxa)
 }
 
 func SHAddFromPropSheetExtArray(hpsxa HPSXA, lpfnAddPage LPFNSVADDPROPSHEETPAGE, lParam LPARAM) uint32 {
-	addr := lazyAddr(&pSHAddFromPropSheetExtArray, libShell32, "SHAddFromPropSheetExtArray")
+	addr := LazyAddr(&pSHAddFromPropSheetExtArray, libShell32, "SHAddFromPropSheetExtArray")
 	ret, _, _ := syscall.SyscallN(addr, hpsxa, lpfnAddPage, lParam)
 	return uint32(ret)
 }
 
 func SHReplaceFromPropSheetExtArray(hpsxa HPSXA, uPageID uint32, lpfnReplaceWith LPFNSVADDPROPSHEETPAGE, lParam LPARAM) uint32 {
-	addr := lazyAddr(&pSHReplaceFromPropSheetExtArray, libShell32, "SHReplaceFromPropSheetExtArray")
+	addr := LazyAddr(&pSHReplaceFromPropSheetExtArray, libShell32, "SHReplaceFromPropSheetExtArray")
 	ret, _, _ := syscall.SyscallN(addr, hpsxa, uintptr(uPageID), lpfnReplaceWith, lParam)
 	return uint32(ret)
 }
 
 func OpenRegStream(hkey HKEY, pszSubkey PWSTR, pszValue PWSTR, grfMode uint32) *IStream {
-	addr := lazyAddr(&pOpenRegStream, libShell32, "OpenRegStream")
+	addr := LazyAddr(&pOpenRegStream, libShell32, "OpenRegStream")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubkey)), uintptr(unsafe.Pointer(pszValue)), uintptr(grfMode))
 	return (*IStream)(unsafe.Pointer(ret))
 }
 
 func SHFindFiles(pidlFolder *ITEMIDLIST, pidlSaveFile *ITEMIDLIST) BOOL {
-	addr := lazyAddr(&pSHFindFiles, libShell32, "SHFindFiles")
+	addr := LazyAddr(&pSHFindFiles, libShell32, "SHFindFiles")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlFolder)), uintptr(unsafe.Pointer(pidlSaveFile)))
 	return BOOL(ret)
 }
 
 func PathGetShortPath(pszLongPath PWSTR) {
-	addr := lazyAddr(&pPathGetShortPath, libShell32, "PathGetShortPath")
+	addr := LazyAddr(&pPathGetShortPath, libShell32, "PathGetShortPath")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszLongPath)))
 }
 
 func PathYetAnotherMakeUniqueName(pszUniqueName PWSTR, pszPath PWSTR, pszShort PWSTR, pszFileSpec PWSTR) BOOL {
-	addr := lazyAddr(&pPathYetAnotherMakeUniqueName, libShell32, "PathYetAnotherMakeUniqueName")
+	addr := LazyAddr(&pPathYetAnotherMakeUniqueName, libShell32, "PathYetAnotherMakeUniqueName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUniqueName)), uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszShort)), uintptr(unsafe.Pointer(pszFileSpec)))
 	return BOOL(ret)
 }
 
 func Win32DeleteFile(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pWin32DeleteFile, libShell32, "Win32DeleteFile")
+	addr := LazyAddr(&pWin32DeleteFile, libShell32, "Win32DeleteFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func SHRestricted(rest RESTRICTIONS) uint32 {
-	addr := lazyAddr(&pSHRestricted, libShell32, "SHRestricted")
+	addr := LazyAddr(&pSHRestricted, libShell32, "SHRestricted")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(rest))
 	return uint32(ret)
 }
 
 func SignalFileOpen(pidl *ITEMIDLIST) BOOL {
-	addr := lazyAddr(&pSignalFileOpen, libShell32, "SignalFileOpen")
+	addr := LazyAddr(&pSignalFileOpen, libShell32, "SignalFileOpen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)))
 	return BOOL(ret)
 }
 
 func AssocGetDetailsOfPropKey(psf *IShellFolder, pidl *ITEMIDLIST, pkey *PROPERTYKEY, pv *VARIANT, pfFoundPropKey *BOOL) HRESULT {
-	addr := lazyAddr(&pAssocGetDetailsOfPropKey, libShell32, "AssocGetDetailsOfPropKey")
+	addr := LazyAddr(&pAssocGetDetailsOfPropKey, libShell32, "AssocGetDetailsOfPropKey")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psf)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pkey)), uintptr(unsafe.Pointer(pv)), uintptr(unsafe.Pointer(pfFoundPropKey)))
 	return HRESULT(ret)
 }
 
 func SHStartNetConnectionDialogW(hwnd HWND, pszRemoteName PWSTR, dwType uint32) HRESULT {
-	addr := lazyAddr(&pSHStartNetConnectionDialogW, libShell32, "SHStartNetConnectionDialogW")
+	addr := LazyAddr(&pSHStartNetConnectionDialogW, libShell32, "SHStartNetConnectionDialogW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszRemoteName)), uintptr(dwType))
 	return HRESULT(ret)
 }
 
 func SHDefExtractIconA(pszIconFile PSTR, iIndex int32, uFlags uint32, phiconLarge *HICON, phiconSmall *HICON, nIconSize uint32) HRESULT {
-	addr := lazyAddr(&pSHDefExtractIconA, libShell32, "SHDefExtractIconA")
+	addr := LazyAddr(&pSHDefExtractIconA, libShell32, "SHDefExtractIconA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconFile)), uintptr(iIndex), uintptr(uFlags), uintptr(unsafe.Pointer(phiconLarge)), uintptr(unsafe.Pointer(phiconSmall)), uintptr(nIconSize))
 	return HRESULT(ret)
 }
@@ -31110,31 +31110,31 @@ func SHDefExtractIconA(pszIconFile PSTR, iIndex int32, uFlags uint32, phiconLarg
 var SHDefExtractIcon = SHDefExtractIconW
 
 func SHDefExtractIconW(pszIconFile PWSTR, iIndex int32, uFlags uint32, phiconLarge *HICON, phiconSmall *HICON, nIconSize uint32) HRESULT {
-	addr := lazyAddr(&pSHDefExtractIconW, libShell32, "SHDefExtractIconW")
+	addr := LazyAddr(&pSHDefExtractIconW, libShell32, "SHDefExtractIconW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconFile)), uintptr(iIndex), uintptr(uFlags), uintptr(unsafe.Pointer(phiconLarge)), uintptr(unsafe.Pointer(phiconSmall)), uintptr(nIconSize))
 	return HRESULT(ret)
 }
 
 func SHOpenWithDialog(hwndParent HWND, poainfo *OPENASINFO) HRESULT {
-	addr := lazyAddr(&pSHOpenWithDialog, libShell32, "SHOpenWithDialog")
+	addr := LazyAddr(&pSHOpenWithDialog, libShell32, "SHOpenWithDialog")
 	ret, _, _ := syscall.SyscallN(addr, hwndParent, uintptr(unsafe.Pointer(poainfo)))
 	return HRESULT(ret)
 }
 
 func Shell_GetImageLists(phiml *HIMAGELIST, phimlSmall *HIMAGELIST) BOOL {
-	addr := lazyAddr(&pShell_GetImageLists, libShell32, "Shell_GetImageLists")
+	addr := LazyAddr(&pShell_GetImageLists, libShell32, "Shell_GetImageLists")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(phiml)), uintptr(unsafe.Pointer(phimlSmall)))
 	return BOOL(ret)
 }
 
 func Shell_GetCachedImageIndex(pwszIconPath PWSTR, iIconIndex int32, uIconFlags uint32) int32 {
-	addr := lazyAddr(&pShell_GetCachedImageIndex, libShell32, "Shell_GetCachedImageIndex")
+	addr := LazyAddr(&pShell_GetCachedImageIndex, libShell32, "Shell_GetCachedImageIndex")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszIconPath)), uintptr(iIconIndex), uintptr(uIconFlags))
 	return int32(ret)
 }
 
 func Shell_GetCachedImageIndexA(pszIconPath PSTR, iIconIndex int32, uIconFlags uint32) int32 {
-	addr := lazyAddr(&pShell_GetCachedImageIndexA, libShell32, "Shell_GetCachedImageIndexA")
+	addr := LazyAddr(&pShell_GetCachedImageIndexA, libShell32, "Shell_GetCachedImageIndexA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconPath)), uintptr(iIconIndex), uintptr(uIconFlags))
 	return int32(ret)
 }
@@ -31142,106 +31142,106 @@ func Shell_GetCachedImageIndexA(pszIconPath PSTR, iIconIndex int32, uIconFlags u
 var Shell_GetCachedImageIndex_ = Shell_GetCachedImageIndexW
 
 func Shell_GetCachedImageIndexW(pszIconPath PWSTR, iIconIndex int32, uIconFlags uint32) int32 {
-	addr := lazyAddr(&pShell_GetCachedImageIndexW, libShell32, "Shell_GetCachedImageIndexW")
+	addr := LazyAddr(&pShell_GetCachedImageIndexW, libShell32, "Shell_GetCachedImageIndexW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconPath)), uintptr(iIconIndex), uintptr(uIconFlags))
 	return int32(ret)
 }
 
 func SHValidateUNC(hwndOwner HWND, pszFile PWSTR, fConnect VALIDATEUNC_OPTION) BOOL {
-	addr := lazyAddr(&pSHValidateUNC, libShell32, "SHValidateUNC")
+	addr := LazyAddr(&pSHValidateUNC, libShell32, "SHValidateUNC")
 	ret, _, _ := syscall.SyscallN(addr, hwndOwner, uintptr(unsafe.Pointer(pszFile)), uintptr(fConnect))
 	return BOOL(ret)
 }
 
 func SHSetInstanceExplorer(punk *IUnknown) {
-	addr := lazyAddr(&pSHSetInstanceExplorer, libShell32, "SHSetInstanceExplorer")
+	addr := LazyAddr(&pSHSetInstanceExplorer, libShell32, "SHSetInstanceExplorer")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)))
 }
 
 func IsUserAnAdmin() BOOL {
-	addr := lazyAddr(&pIsUserAnAdmin, libShell32, "IsUserAnAdmin")
+	addr := LazyAddr(&pIsUserAnAdmin, libShell32, "IsUserAnAdmin")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func SHShellFolderView_Message(hwndMain HWND, uMsg uint32, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pSHShellFolderView_Message, libShell32, "SHShellFolderView_Message")
+	addr := LazyAddr(&pSHShellFolderView_Message, libShell32, "SHShellFolderView_Message")
 	ret, _, _ := syscall.SyscallN(addr, hwndMain, uintptr(uMsg), lParam)
 	return ret
 }
 
 func SHCreateShellFolderView(pcsfv *SFV_CREATE, ppsv **IShellView) HRESULT {
-	addr := lazyAddr(&pSHCreateShellFolderView, libShell32, "SHCreateShellFolderView")
+	addr := LazyAddr(&pSHCreateShellFolderView, libShell32, "SHCreateShellFolderView")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcsfv)), uintptr(unsafe.Pointer(ppsv)))
 	return HRESULT(ret)
 }
 
 func CDefFolderMenu_Create2(pidlFolder *ITEMIDLIST, hwnd HWND, cidl uint32, apidl **ITEMIDLIST, psf *IShellFolder, pfn LPFNDFMCALLBACK, nKeys uint32, ahkeys *HKEY, ppcm **IContextMenu) HRESULT {
-	addr := lazyAddr(&pCDefFolderMenu_Create2, libShell32, "CDefFolderMenu_Create2")
+	addr := LazyAddr(&pCDefFolderMenu_Create2, libShell32, "CDefFolderMenu_Create2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidlFolder)), hwnd, uintptr(cidl), uintptr(unsafe.Pointer(apidl)), uintptr(unsafe.Pointer(psf)), pfn, uintptr(nKeys), uintptr(unsafe.Pointer(ahkeys)), uintptr(unsafe.Pointer(ppcm)))
 	return HRESULT(ret)
 }
 
 func SHCreateDefaultContextMenu(pdcm *DEFCONTEXTMENU, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateDefaultContextMenu, libShell32, "SHCreateDefaultContextMenu")
+	addr := LazyAddr(&pSHCreateDefaultContextMenu, libShell32, "SHCreateDefaultContextMenu")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdcm)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHFind_InitMenuPopup(hmenu HMENU, hwndOwner HWND, idCmdFirst uint32, idCmdLast uint32) *IContextMenu {
-	addr := lazyAddr(&pSHFind_InitMenuPopup, libShell32, "SHFind_InitMenuPopup")
+	addr := LazyAddr(&pSHFind_InitMenuPopup, libShell32, "SHFind_InitMenuPopup")
 	ret, _, _ := syscall.SyscallN(addr, hmenu, hwndOwner, uintptr(idCmdFirst), uintptr(idCmdLast))
 	return (*IContextMenu)(unsafe.Pointer(ret))
 }
 
 func SHCreateShellFolderViewEx(pcsfv *CSFV, ppsv **IShellView) HRESULT {
-	addr := lazyAddr(&pSHCreateShellFolderViewEx, libShell32, "SHCreateShellFolderViewEx")
+	addr := LazyAddr(&pSHCreateShellFolderViewEx, libShell32, "SHCreateShellFolderViewEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcsfv)), uintptr(unsafe.Pointer(ppsv)))
 	return HRESULT(ret)
 }
 
 func SHGetSetSettings(lpss *SHELLSTATEA, dwMask SSF_MASK, bSet BOOL) {
-	addr := lazyAddr(&pSHGetSetSettings, libShell32, "SHGetSetSettings")
+	addr := LazyAddr(&pSHGetSetSettings, libShell32, "SHGetSetSettings")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpss)), uintptr(dwMask), uintptr(bSet))
 }
 
 func SHGetSettings(psfs *SHELLFLAGSTATE, dwMask uint32) {
-	addr := lazyAddr(&pSHGetSettings, libShell32, "SHGetSettings")
+	addr := LazyAddr(&pSHGetSettings, libShell32, "SHGetSettings")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(psfs)), uintptr(dwMask))
 }
 
 func SHBindToParent(pidl *ITEMIDLIST, riid *syscall.GUID, ppv unsafe.Pointer, ppidlLast **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHBindToParent, libShell32, "SHBindToParent")
+	addr := LazyAddr(&pSHBindToParent, libShell32, "SHBindToParent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(riid)), uintptr(ppv), uintptr(unsafe.Pointer(ppidlLast)))
 	return HRESULT(ret)
 }
 
 func SHBindToFolderIDListParent(psfRoot *IShellFolder, pidl *ITEMIDLIST, riid *syscall.GUID, ppv unsafe.Pointer, ppidlLast **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHBindToFolderIDListParent, libShell32, "SHBindToFolderIDListParent")
+	addr := LazyAddr(&pSHBindToFolderIDListParent, libShell32, "SHBindToFolderIDListParent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psfRoot)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(riid)), uintptr(ppv), uintptr(unsafe.Pointer(ppidlLast)))
 	return HRESULT(ret)
 }
 
 func SHBindToFolderIDListParentEx(psfRoot *IShellFolder, pidl *ITEMIDLIST, ppbc *IBindCtx, riid *syscall.GUID, ppv unsafe.Pointer, ppidlLast **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pSHBindToFolderIDListParentEx, libShell32, "SHBindToFolderIDListParentEx")
+	addr := LazyAddr(&pSHBindToFolderIDListParentEx, libShell32, "SHBindToFolderIDListParentEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psfRoot)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(ppbc)), uintptr(unsafe.Pointer(riid)), uintptr(ppv), uintptr(unsafe.Pointer(ppidlLast)))
 	return HRESULT(ret)
 }
 
 func SHBindToObject(psf *IShellFolder, pidl *ITEMIDLIST, pbc *IBindCtx, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHBindToObject, libShell32, "SHBindToObject")
+	addr := LazyAddr(&pSHBindToObject, libShell32, "SHBindToObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psf)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pbc)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHParseDisplayName(pszName PWSTR, pbc *IBindCtx, ppidl **ITEMIDLIST, sfgaoIn uint32, psfgaoOut *uint32) HRESULT {
-	addr := lazyAddr(&pSHParseDisplayName, libShell32, "SHParseDisplayName")
+	addr := LazyAddr(&pSHParseDisplayName, libShell32, "SHParseDisplayName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pbc)), uintptr(unsafe.Pointer(ppidl)), uintptr(sfgaoIn), uintptr(unsafe.Pointer(psfgaoOut)))
 	return HRESULT(ret)
 }
 
 func SHPathPrepareForWriteA(hwnd HWND, punkEnableModless *IUnknown, pszPath PSTR, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pSHPathPrepareForWriteA, libShell32, "SHPathPrepareForWriteA")
+	addr := LazyAddr(&pSHPathPrepareForWriteA, libShell32, "SHPathPrepareForWriteA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(punkEnableModless)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -31249,65 +31249,65 @@ func SHPathPrepareForWriteA(hwnd HWND, punkEnableModless *IUnknown, pszPath PSTR
 var SHPathPrepareForWrite = SHPathPrepareForWriteW
 
 func SHPathPrepareForWriteW(hwnd HWND, punkEnableModless *IUnknown, pszPath PWSTR, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pSHPathPrepareForWriteW, libShell32, "SHPathPrepareForWriteW")
+	addr := LazyAddr(&pSHPathPrepareForWriteW, libShell32, "SHPathPrepareForWriteW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(punkEnableModless)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func SHCreateFileExtractIconW(pszFile PWSTR, dwFileAttributes uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHCreateFileExtractIconW, libShell32, "SHCreateFileExtractIconW")
+	addr := LazyAddr(&pSHCreateFileExtractIconW, libShell32, "SHCreateFileExtractIconW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(dwFileAttributes), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHLimitInputEdit(hwndEdit HWND, psf *IShellFolder) HRESULT {
-	addr := lazyAddr(&pSHLimitInputEdit, libShell32, "SHLimitInputEdit")
+	addr := LazyAddr(&pSHLimitInputEdit, libShell32, "SHLimitInputEdit")
 	ret, _, _ := syscall.SyscallN(addr, hwndEdit, uintptr(unsafe.Pointer(psf)))
 	return HRESULT(ret)
 }
 
 func SHGetAttributesFromDataObject(pdo *IDataObject, dwAttributeMask uint32, pdwAttributes *uint32, pcItems *uint32) HRESULT {
-	addr := lazyAddr(&pSHGetAttributesFromDataObject, libShell32, "SHGetAttributesFromDataObject")
+	addr := LazyAddr(&pSHGetAttributesFromDataObject, libShell32, "SHGetAttributesFromDataObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdo)), uintptr(dwAttributeMask), uintptr(unsafe.Pointer(pdwAttributes)), uintptr(unsafe.Pointer(pcItems)))
 	return HRESULT(ret)
 }
 
 func SHMapPIDLToSystemImageListIndex(pshf *IShellFolder, pidl *ITEMIDLIST, piIndexSel *int32) int32 {
-	addr := lazyAddr(&pSHMapPIDLToSystemImageListIndex, libShell32, "SHMapPIDLToSystemImageListIndex")
+	addr := LazyAddr(&pSHMapPIDLToSystemImageListIndex, libShell32, "SHMapPIDLToSystemImageListIndex")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pshf)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(piIndexSel)))
 	return int32(ret)
 }
 
 func SHCLSIDFromString(psz PWSTR, pclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pSHCLSIDFromString, libShell32, "SHCLSIDFromString")
+	addr := LazyAddr(&pSHCLSIDFromString, libShell32, "SHCLSIDFromString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(pclsid)))
 	return HRESULT(ret)
 }
 
 func PickIconDlg(hwnd HWND, pszIconPath PWSTR, cchIconPath uint32, piIconIndex *int32) int32 {
-	addr := lazyAddr(&pPickIconDlg, libShell32, "PickIconDlg")
+	addr := LazyAddr(&pPickIconDlg, libShell32, "PickIconDlg")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszIconPath)), uintptr(cchIconPath), uintptr(unsafe.Pointer(piIconIndex)))
 	return int32(ret)
 }
 
 func StgMakeUniqueName(pstgParent *IStorage, pszFileSpec PWSTR, grfMode uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pStgMakeUniqueName, libShell32, "StgMakeUniqueName")
+	addr := LazyAddr(&pStgMakeUniqueName, libShell32, "StgMakeUniqueName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstgParent)), uintptr(unsafe.Pointer(pszFileSpec)), uintptr(grfMode), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHChangeNotifyRegisterThread(status SCNRT_STATUS) {
-	addr := lazyAddr(&pSHChangeNotifyRegisterThread, libShell32, "SHChangeNotifyRegisterThread")
+	addr := LazyAddr(&pSHChangeNotifyRegisterThread, libShell32, "SHChangeNotifyRegisterThread")
 	syscall.SyscallN(addr, uintptr(status))
 }
 
 func PathQualify(psz PWSTR) {
-	addr := lazyAddr(&pPathQualify, libShell32, "PathQualify")
+	addr := LazyAddr(&pPathQualify, libShell32, "PathQualify")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)))
 }
 
 func PathIsSlowA(pszFile PSTR, dwAttr uint32) BOOL {
-	addr := lazyAddr(&pPathIsSlowA, libShell32, "PathIsSlowA")
+	addr := LazyAddr(&pPathIsSlowA, libShell32, "PathIsSlowA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(dwAttr))
 	return BOOL(ret)
 }
@@ -31315,43 +31315,43 @@ func PathIsSlowA(pszFile PSTR, dwAttr uint32) BOOL {
 var PathIsSlow = PathIsSlowW
 
 func PathIsSlowW(pszFile PWSTR, dwAttr uint32) BOOL {
-	addr := lazyAddr(&pPathIsSlowW, libShell32, "PathIsSlowW")
+	addr := LazyAddr(&pPathIsSlowW, libShell32, "PathIsSlowW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(dwAttr))
 	return BOOL(ret)
 }
 
 func SHCreatePropSheetExtArray(hKey HKEY, pszSubKey PWSTR, max_iface uint32) HPSXA {
-	addr := lazyAddr(&pSHCreatePropSheetExtArray, libShell32, "SHCreatePropSheetExtArray")
+	addr := LazyAddr(&pSHCreatePropSheetExtArray, libShell32, "SHCreatePropSheetExtArray")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(max_iface))
 	return ret
 }
 
 func SHOpenPropSheetW(pszCaption PWSTR, ahkeys *HKEY, ckeys uint32, pclsidDefault *syscall.GUID, pdtobj *IDataObject, psb *IShellBrowser, pStartPage PWSTR) BOOL {
-	addr := lazyAddr(&pSHOpenPropSheetW, libShell32, "SHOpenPropSheetW")
+	addr := LazyAddr(&pSHOpenPropSheetW, libShell32, "SHOpenPropSheetW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszCaption)), uintptr(unsafe.Pointer(ahkeys)), uintptr(ckeys), uintptr(unsafe.Pointer(pclsidDefault)), uintptr(unsafe.Pointer(pdtobj)), uintptr(unsafe.Pointer(psb)), uintptr(unsafe.Pointer(pStartPage)))
 	return BOOL(ret)
 }
 
 func SHMultiFileProperties(pdtobj *IDataObject, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pSHMultiFileProperties, libShell32, "SHMultiFileProperties")
+	addr := LazyAddr(&pSHMultiFileProperties, libShell32, "SHMultiFileProperties")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdtobj)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func SHCreateQueryCancelAutoPlayMoniker(ppmoniker **IMoniker) HRESULT {
-	addr := lazyAddr(&pSHCreateQueryCancelAutoPlayMoniker, libShell32, "SHCreateQueryCancelAutoPlayMoniker")
+	addr := LazyAddr(&pSHCreateQueryCancelAutoPlayMoniker, libShell32, "SHCreateQueryCancelAutoPlayMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppmoniker)))
 	return HRESULT(ret)
 }
 
 func CommandLineToArgvW(lpCmdLine PWSTR, pNumArgs *int32) (*PWSTR, WIN32_ERROR) {
-	addr := lazyAddr(&pCommandLineToArgvW, libShell32, "CommandLineToArgvW")
+	addr := LazyAddr(&pCommandLineToArgvW, libShell32, "CommandLineToArgvW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCmdLine)), uintptr(unsafe.Pointer(pNumArgs)))
 	return (*PWSTR)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func DragQueryFileA(hDrop HDROP, iFile uint32, lpszFile PSTR, cch uint32) uint32 {
-	addr := lazyAddr(&pDragQueryFileA, libShell32, "DragQueryFileA")
+	addr := LazyAddr(&pDragQueryFileA, libShell32, "DragQueryFileA")
 	ret, _, _ := syscall.SyscallN(addr, hDrop, uintptr(iFile), uintptr(unsafe.Pointer(lpszFile)), uintptr(cch))
 	return uint32(ret)
 }
@@ -31359,29 +31359,29 @@ func DragQueryFileA(hDrop HDROP, iFile uint32, lpszFile PSTR, cch uint32) uint32
 var DragQueryFile = DragQueryFileW
 
 func DragQueryFileW(hDrop HDROP, iFile uint32, lpszFile PWSTR, cch uint32) uint32 {
-	addr := lazyAddr(&pDragQueryFileW, libShell32, "DragQueryFileW")
+	addr := LazyAddr(&pDragQueryFileW, libShell32, "DragQueryFileW")
 	ret, _, _ := syscall.SyscallN(addr, hDrop, uintptr(iFile), uintptr(unsafe.Pointer(lpszFile)), uintptr(cch))
 	return uint32(ret)
 }
 
 func DragQueryPoint(hDrop HDROP, ppt *POINT) BOOL {
-	addr := lazyAddr(&pDragQueryPoint, libShell32, "DragQueryPoint")
+	addr := LazyAddr(&pDragQueryPoint, libShell32, "DragQueryPoint")
 	ret, _, _ := syscall.SyscallN(addr, hDrop, uintptr(unsafe.Pointer(ppt)))
 	return BOOL(ret)
 }
 
 func DragFinish(hDrop HDROP) {
-	addr := lazyAddr(&pDragFinish, libShell32, "DragFinish")
+	addr := LazyAddr(&pDragFinish, libShell32, "DragFinish")
 	syscall.SyscallN(addr, hDrop)
 }
 
 func DragAcceptFiles(hWnd HWND, fAccept BOOL) {
-	addr := lazyAddr(&pDragAcceptFiles, libShell32, "DragAcceptFiles")
+	addr := LazyAddr(&pDragAcceptFiles, libShell32, "DragAcceptFiles")
 	syscall.SyscallN(addr, hWnd, uintptr(fAccept))
 }
 
 func ShellExecuteA(hwnd HWND, lpOperation PSTR, lpFile PSTR, lpParameters PSTR, lpDirectory PSTR, nShowCmd SHOW_WINDOW_CMD) HINSTANCE {
-	addr := lazyAddr(&pShellExecuteA, libShell32, "ShellExecuteA")
+	addr := LazyAddr(&pShellExecuteA, libShell32, "ShellExecuteA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(lpOperation)), uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpParameters)), uintptr(unsafe.Pointer(lpDirectory)), uintptr(nShowCmd))
 	return ret
 }
@@ -31389,13 +31389,13 @@ func ShellExecuteA(hwnd HWND, lpOperation PSTR, lpFile PSTR, lpParameters PSTR, 
 var ShellExecute = ShellExecuteW
 
 func ShellExecuteW(hwnd HWND, lpOperation PWSTR, lpFile PWSTR, lpParameters PWSTR, lpDirectory PWSTR, nShowCmd SHOW_WINDOW_CMD) HINSTANCE {
-	addr := lazyAddr(&pShellExecuteW, libShell32, "ShellExecuteW")
+	addr := LazyAddr(&pShellExecuteW, libShell32, "ShellExecuteW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(lpOperation)), uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpParameters)), uintptr(unsafe.Pointer(lpDirectory)), uintptr(nShowCmd))
 	return ret
 }
 
 func FindExecutableA(lpFile PSTR, lpDirectory PSTR, lpResult PSTR) HINSTANCE {
-	addr := lazyAddr(&pFindExecutableA, libShell32, "FindExecutableA")
+	addr := LazyAddr(&pFindExecutableA, libShell32, "FindExecutableA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpDirectory)), uintptr(unsafe.Pointer(lpResult)))
 	return ret
 }
@@ -31403,13 +31403,13 @@ func FindExecutableA(lpFile PSTR, lpDirectory PSTR, lpResult PSTR) HINSTANCE {
 var FindExecutable = FindExecutableW
 
 func FindExecutableW(lpFile PWSTR, lpDirectory PWSTR, lpResult PWSTR) HINSTANCE {
-	addr := lazyAddr(&pFindExecutableW, libShell32, "FindExecutableW")
+	addr := LazyAddr(&pFindExecutableW, libShell32, "FindExecutableW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpDirectory)), uintptr(unsafe.Pointer(lpResult)))
 	return ret
 }
 
 func ShellAboutA(hWnd HWND, szApp PSTR, szOtherStuff PSTR, hIcon HICON) int32 {
-	addr := lazyAddr(&pShellAboutA, libShell32, "ShellAboutA")
+	addr := LazyAddr(&pShellAboutA, libShell32, "ShellAboutA")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(szApp)), uintptr(unsafe.Pointer(szOtherStuff)), hIcon)
 	return int32(ret)
 }
@@ -31417,19 +31417,19 @@ func ShellAboutA(hWnd HWND, szApp PSTR, szOtherStuff PSTR, hIcon HICON) int32 {
 var ShellAbout = ShellAboutW
 
 func ShellAboutW(hWnd HWND, szApp PWSTR, szOtherStuff PWSTR, hIcon HICON) int32 {
-	addr := lazyAddr(&pShellAboutW, libShell32, "ShellAboutW")
+	addr := LazyAddr(&pShellAboutW, libShell32, "ShellAboutW")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(szApp)), uintptr(unsafe.Pointer(szOtherStuff)), hIcon)
 	return int32(ret)
 }
 
 func DuplicateIcon(hInst HINSTANCE, hIcon HICON) HICON {
-	addr := lazyAddr(&pDuplicateIcon, libShell32, "DuplicateIcon")
+	addr := LazyAddr(&pDuplicateIcon, libShell32, "DuplicateIcon")
 	ret, _, _ := syscall.SyscallN(addr, hInst, hIcon)
 	return ret
 }
 
 func ExtractAssociatedIconA(hInst HINSTANCE, pszIconPath PSTR, piIcon *uint16) HICON {
-	addr := lazyAddr(&pExtractAssociatedIconA, libShell32, "ExtractAssociatedIconA")
+	addr := LazyAddr(&pExtractAssociatedIconA, libShell32, "ExtractAssociatedIconA")
 	ret, _, _ := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(pszIconPath)), uintptr(unsafe.Pointer(piIcon)))
 	return ret
 }
@@ -31437,13 +31437,13 @@ func ExtractAssociatedIconA(hInst HINSTANCE, pszIconPath PSTR, piIcon *uint16) H
 var ExtractAssociatedIcon = ExtractAssociatedIconW
 
 func ExtractAssociatedIconW(hInst HINSTANCE, pszIconPath PWSTR, piIcon *uint16) HICON {
-	addr := lazyAddr(&pExtractAssociatedIconW, libShell32, "ExtractAssociatedIconW")
+	addr := LazyAddr(&pExtractAssociatedIconW, libShell32, "ExtractAssociatedIconW")
 	ret, _, _ := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(pszIconPath)), uintptr(unsafe.Pointer(piIcon)))
 	return ret
 }
 
 func ExtractAssociatedIconExA(hInst HINSTANCE, pszIconPath PSTR, piIconIndex *uint16, piIconId *uint16) HICON {
-	addr := lazyAddr(&pExtractAssociatedIconExA, libShell32, "ExtractAssociatedIconExA")
+	addr := LazyAddr(&pExtractAssociatedIconExA, libShell32, "ExtractAssociatedIconExA")
 	ret, _, _ := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(pszIconPath)), uintptr(unsafe.Pointer(piIconIndex)), uintptr(unsafe.Pointer(piIconId)))
 	return ret
 }
@@ -31451,13 +31451,13 @@ func ExtractAssociatedIconExA(hInst HINSTANCE, pszIconPath PSTR, piIconIndex *ui
 var ExtractAssociatedIconEx = ExtractAssociatedIconExW
 
 func ExtractAssociatedIconExW(hInst HINSTANCE, pszIconPath PWSTR, piIconIndex *uint16, piIconId *uint16) HICON {
-	addr := lazyAddr(&pExtractAssociatedIconExW, libShell32, "ExtractAssociatedIconExW")
+	addr := LazyAddr(&pExtractAssociatedIconExW, libShell32, "ExtractAssociatedIconExW")
 	ret, _, _ := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(pszIconPath)), uintptr(unsafe.Pointer(piIconIndex)), uintptr(unsafe.Pointer(piIconId)))
 	return ret
 }
 
 func ExtractIconA(hInst HINSTANCE, pszExeFileName PSTR, nIconIndex uint32) HICON {
-	addr := lazyAddr(&pExtractIconA, libShell32, "ExtractIconA")
+	addr := LazyAddr(&pExtractIconA, libShell32, "ExtractIconA")
 	ret, _, _ := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(pszExeFileName)), uintptr(nIconIndex))
 	return ret
 }
@@ -31465,19 +31465,19 @@ func ExtractIconA(hInst HINSTANCE, pszExeFileName PSTR, nIconIndex uint32) HICON
 var ExtractIcon = ExtractIconW
 
 func ExtractIconW(hInst HINSTANCE, pszExeFileName PWSTR, nIconIndex uint32) HICON {
-	addr := lazyAddr(&pExtractIconW, libShell32, "ExtractIconW")
+	addr := LazyAddr(&pExtractIconW, libShell32, "ExtractIconW")
 	ret, _, _ := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(pszExeFileName)), uintptr(nIconIndex))
 	return ret
 }
 
 func SHAppBarMessage(dwMessage uint32, pData *APPBARDATA) uintptr {
-	addr := lazyAddr(&pSHAppBarMessage, libShell32, "SHAppBarMessage")
+	addr := LazyAddr(&pSHAppBarMessage, libShell32, "SHAppBarMessage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwMessage), uintptr(unsafe.Pointer(pData)))
 	return ret
 }
 
 func DoEnvironmentSubstA(pszSrc PSTR, cchSrc uint32) uint32 {
-	addr := lazyAddr(&pDoEnvironmentSubstA, libShell32, "DoEnvironmentSubstA")
+	addr := LazyAddr(&pDoEnvironmentSubstA, libShell32, "DoEnvironmentSubstA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrc)), uintptr(cchSrc))
 	return uint32(ret)
 }
@@ -31485,13 +31485,13 @@ func DoEnvironmentSubstA(pszSrc PSTR, cchSrc uint32) uint32 {
 var DoEnvironmentSubst = DoEnvironmentSubstW
 
 func DoEnvironmentSubstW(pszSrc PWSTR, cchSrc uint32) uint32 {
-	addr := lazyAddr(&pDoEnvironmentSubstW, libShell32, "DoEnvironmentSubstW")
+	addr := LazyAddr(&pDoEnvironmentSubstW, libShell32, "DoEnvironmentSubstW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrc)), uintptr(cchSrc))
 	return uint32(ret)
 }
 
 func ExtractIconExA(lpszFile PSTR, nIconIndex int32, phiconLarge *HICON, phiconSmall *HICON, nIcons uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pExtractIconExA, libShell32, "ExtractIconExA")
+	addr := LazyAddr(&pExtractIconExA, libShell32, "ExtractIconExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFile)), uintptr(nIconIndex), uintptr(unsafe.Pointer(phiconLarge)), uintptr(unsafe.Pointer(phiconSmall)), uintptr(nIcons))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -31499,13 +31499,13 @@ func ExtractIconExA(lpszFile PSTR, nIconIndex int32, phiconLarge *HICON, phiconS
 var ExtractIconEx = ExtractIconExW
 
 func ExtractIconExW(lpszFile PWSTR, nIconIndex int32, phiconLarge *HICON, phiconSmall *HICON, nIcons uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pExtractIconExW, libShell32, "ExtractIconExW")
+	addr := LazyAddr(&pExtractIconExW, libShell32, "ExtractIconExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFile)), uintptr(nIconIndex), uintptr(unsafe.Pointer(phiconLarge)), uintptr(unsafe.Pointer(phiconSmall)), uintptr(nIcons))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SHFileOperationA(lpFileOp *SHFILEOPSTRUCTA) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pSHFileOperationA, libShell32, "SHFileOperationA")
+	addr := LazyAddr(&pSHFileOperationA, libShell32, "SHFileOperationA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileOp)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -31513,18 +31513,18 @@ func SHFileOperationA(lpFileOp *SHFILEOPSTRUCTA) (int32, WIN32_ERROR) {
 var SHFileOperation = SHFileOperationW
 
 func SHFileOperationW(lpFileOp *SHFILEOPSTRUCTW) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pSHFileOperationW, libShell32, "SHFileOperationW")
+	addr := LazyAddr(&pSHFileOperationW, libShell32, "SHFileOperationW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileOp)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func SHFreeNameMappings(hNameMappings HANDLE) {
-	addr := lazyAddr(&pSHFreeNameMappings, libShell32, "SHFreeNameMappings")
+	addr := LazyAddr(&pSHFreeNameMappings, libShell32, "SHFreeNameMappings")
 	syscall.SyscallN(addr, hNameMappings)
 }
 
 func ShellExecuteExA(pExecInfo *SHELLEXECUTEINFOA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShellExecuteExA, libShell32, "ShellExecuteExA")
+	addr := LazyAddr(&pShellExecuteExA, libShell32, "ShellExecuteExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pExecInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -31532,31 +31532,31 @@ func ShellExecuteExA(pExecInfo *SHELLEXECUTEINFOA) (BOOL, WIN32_ERROR) {
 var ShellExecuteEx = ShellExecuteExW
 
 func ShellExecuteExW(pExecInfo *SHELLEXECUTEINFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShellExecuteExW, libShell32, "ShellExecuteExW")
+	addr := LazyAddr(&pShellExecuteExW, libShell32, "ShellExecuteExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pExecInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SHCreateProcessAsUserW(pscpi *SHCREATEPROCESSINFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSHCreateProcessAsUserW, libShell32, "SHCreateProcessAsUserW")
+	addr := LazyAddr(&pSHCreateProcessAsUserW, libShell32, "SHCreateProcessAsUserW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pscpi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SHEvaluateSystemCommandTemplate(pszCmdTemplate PWSTR, ppszApplication *PWSTR, ppszCommandLine *PWSTR, ppszParameters *PWSTR) HRESULT {
-	addr := lazyAddr(&pSHEvaluateSystemCommandTemplate, libShell32, "SHEvaluateSystemCommandTemplate")
+	addr := LazyAddr(&pSHEvaluateSystemCommandTemplate, libShell32, "SHEvaluateSystemCommandTemplate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszCmdTemplate)), uintptr(unsafe.Pointer(ppszApplication)), uintptr(unsafe.Pointer(ppszCommandLine)), uintptr(unsafe.Pointer(ppszParameters)))
 	return HRESULT(ret)
 }
 
 func AssocCreateForClasses(rgClasses *ASSOCIATIONELEMENT, cClasses uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pAssocCreateForClasses, libShell32, "AssocCreateForClasses")
+	addr := LazyAddr(&pAssocCreateForClasses, libShell32, "AssocCreateForClasses")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rgClasses)), uintptr(cClasses), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHQueryRecycleBinA(pszRootPath PSTR, pSHQueryRBInfo *SHQUERYRBINFO) HRESULT {
-	addr := lazyAddr(&pSHQueryRecycleBinA, libShell32, "SHQueryRecycleBinA")
+	addr := LazyAddr(&pSHQueryRecycleBinA, libShell32, "SHQueryRecycleBinA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszRootPath)), uintptr(unsafe.Pointer(pSHQueryRBInfo)))
 	return HRESULT(ret)
 }
@@ -31564,13 +31564,13 @@ func SHQueryRecycleBinA(pszRootPath PSTR, pSHQueryRBInfo *SHQUERYRBINFO) HRESULT
 var SHQueryRecycleBin = SHQueryRecycleBinW
 
 func SHQueryRecycleBinW(pszRootPath PWSTR, pSHQueryRBInfo *SHQUERYRBINFO) HRESULT {
-	addr := lazyAddr(&pSHQueryRecycleBinW, libShell32, "SHQueryRecycleBinW")
+	addr := LazyAddr(&pSHQueryRecycleBinW, libShell32, "SHQueryRecycleBinW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszRootPath)), uintptr(unsafe.Pointer(pSHQueryRBInfo)))
 	return HRESULT(ret)
 }
 
 func SHEmptyRecycleBinA(hwnd HWND, pszRootPath PSTR, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pSHEmptyRecycleBinA, libShell32, "SHEmptyRecycleBinA")
+	addr := LazyAddr(&pSHEmptyRecycleBinA, libShell32, "SHEmptyRecycleBinA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszRootPath)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -31578,19 +31578,19 @@ func SHEmptyRecycleBinA(hwnd HWND, pszRootPath PSTR, dwFlags uint32) HRESULT {
 var SHEmptyRecycleBin = SHEmptyRecycleBinW
 
 func SHEmptyRecycleBinW(hwnd HWND, pszRootPath PWSTR, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pSHEmptyRecycleBinW, libShell32, "SHEmptyRecycleBinW")
+	addr := LazyAddr(&pSHEmptyRecycleBinW, libShell32, "SHEmptyRecycleBinW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszRootPath)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func SHQueryUserNotificationState(pquns *QUERY_USER_NOTIFICATION_STATE) HRESULT {
-	addr := lazyAddr(&pSHQueryUserNotificationState, libShell32, "SHQueryUserNotificationState")
+	addr := LazyAddr(&pSHQueryUserNotificationState, libShell32, "SHQueryUserNotificationState")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pquns)))
 	return HRESULT(ret)
 }
 
 func Shell_NotifyIconA(dwMessage NOTIFY_ICON_MESSAGE, lpData *NOTIFYICONDATAA) BOOL {
-	addr := lazyAddr(&pShell_NotifyIconA, libShell32, "Shell_NotifyIconA")
+	addr := LazyAddr(&pShell_NotifyIconA, libShell32, "Shell_NotifyIconA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwMessage), uintptr(unsafe.Pointer(lpData)))
 	return BOOL(ret)
 }
@@ -31598,19 +31598,19 @@ func Shell_NotifyIconA(dwMessage NOTIFY_ICON_MESSAGE, lpData *NOTIFYICONDATAA) B
 var Shell_NotifyIcon = Shell_NotifyIconW
 
 func Shell_NotifyIconW(dwMessage NOTIFY_ICON_MESSAGE, lpData *NOTIFYICONDATAW) BOOL {
-	addr := lazyAddr(&pShell_NotifyIconW, libShell32, "Shell_NotifyIconW")
+	addr := LazyAddr(&pShell_NotifyIconW, libShell32, "Shell_NotifyIconW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwMessage), uintptr(unsafe.Pointer(lpData)))
 	return BOOL(ret)
 }
 
 func Shell_NotifyIconGetRect(identifier *NOTIFYICONIDENTIFIER, iconLocation *RECT) HRESULT {
-	addr := lazyAddr(&pShell_NotifyIconGetRect, libShell32, "Shell_NotifyIconGetRect")
+	addr := LazyAddr(&pShell_NotifyIconGetRect, libShell32, "Shell_NotifyIconGetRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(identifier)), uintptr(unsafe.Pointer(iconLocation)))
 	return HRESULT(ret)
 }
 
 func SHGetFileInfoA(pszPath PSTR, dwFileAttributes FILE_FLAGS_AND_ATTRIBUTES, psfi *SHFILEINFOA, cbFileInfo uint32, uFlags SHGFI_FLAGS) uintptr {
-	addr := lazyAddr(&pSHGetFileInfoA, libShell32, "SHGetFileInfoA")
+	addr := LazyAddr(&pSHGetFileInfoA, libShell32, "SHGetFileInfoA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(dwFileAttributes), uintptr(unsafe.Pointer(psfi)), uintptr(cbFileInfo), uintptr(uFlags))
 	return ret
 }
@@ -31618,19 +31618,19 @@ func SHGetFileInfoA(pszPath PSTR, dwFileAttributes FILE_FLAGS_AND_ATTRIBUTES, ps
 var SHGetFileInfo = SHGetFileInfoW
 
 func SHGetFileInfoW(pszPath PWSTR, dwFileAttributes FILE_FLAGS_AND_ATTRIBUTES, psfi *SHFILEINFOW, cbFileInfo uint32, uFlags SHGFI_FLAGS) uintptr {
-	addr := lazyAddr(&pSHGetFileInfoW, libShell32, "SHGetFileInfoW")
+	addr := LazyAddr(&pSHGetFileInfoW, libShell32, "SHGetFileInfoW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(dwFileAttributes), uintptr(unsafe.Pointer(psfi)), uintptr(cbFileInfo), uintptr(uFlags))
 	return ret
 }
 
 func SHGetStockIconInfo(siid SHSTOCKICONID, uFlags SHGSI_FLAGS, psii *SHSTOCKICONINFO) HRESULT {
-	addr := lazyAddr(&pSHGetStockIconInfo, libShell32, "SHGetStockIconInfo")
+	addr := LazyAddr(&pSHGetStockIconInfo, libShell32, "SHGetStockIconInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(siid), uintptr(uFlags), uintptr(unsafe.Pointer(psii)))
 	return HRESULT(ret)
 }
 
 func SHGetDiskFreeSpaceExA(pszDirectoryName PSTR, pulFreeBytesAvailableToCaller *uint64, pulTotalNumberOfBytes *uint64, pulTotalNumberOfFreeBytes *uint64) BOOL {
-	addr := lazyAddr(&pSHGetDiskFreeSpaceExA, libShell32, "SHGetDiskFreeSpaceExA")
+	addr := LazyAddr(&pSHGetDiskFreeSpaceExA, libShell32, "SHGetDiskFreeSpaceExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDirectoryName)), uintptr(unsafe.Pointer(pulFreeBytesAvailableToCaller)), uintptr(unsafe.Pointer(pulTotalNumberOfBytes)), uintptr(unsafe.Pointer(pulTotalNumberOfFreeBytes)))
 	return BOOL(ret)
 }
@@ -31638,13 +31638,13 @@ func SHGetDiskFreeSpaceExA(pszDirectoryName PSTR, pulFreeBytesAvailableToCaller 
 var SHGetDiskFreeSpaceEx = SHGetDiskFreeSpaceExW
 
 func SHGetDiskFreeSpaceExW(pszDirectoryName PWSTR, pulFreeBytesAvailableToCaller *uint64, pulTotalNumberOfBytes *uint64, pulTotalNumberOfFreeBytes *uint64) BOOL {
-	addr := lazyAddr(&pSHGetDiskFreeSpaceExW, libShell32, "SHGetDiskFreeSpaceExW")
+	addr := LazyAddr(&pSHGetDiskFreeSpaceExW, libShell32, "SHGetDiskFreeSpaceExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDirectoryName)), uintptr(unsafe.Pointer(pulFreeBytesAvailableToCaller)), uintptr(unsafe.Pointer(pulTotalNumberOfBytes)), uintptr(unsafe.Pointer(pulTotalNumberOfFreeBytes)))
 	return BOOL(ret)
 }
 
 func SHGetNewLinkInfoA(pszLinkTo PSTR, pszDir PSTR, pszName PSTR, pfMustCopy *BOOL, uFlags uint32) BOOL {
-	addr := lazyAddr(&pSHGetNewLinkInfoA, libShell32, "SHGetNewLinkInfoA")
+	addr := LazyAddr(&pSHGetNewLinkInfoA, libShell32, "SHGetNewLinkInfoA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszLinkTo)), uintptr(unsafe.Pointer(pszDir)), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pfMustCopy)), uintptr(uFlags))
 	return BOOL(ret)
 }
@@ -31652,13 +31652,13 @@ func SHGetNewLinkInfoA(pszLinkTo PSTR, pszDir PSTR, pszName PSTR, pfMustCopy *BO
 var SHGetNewLinkInfo = SHGetNewLinkInfoW
 
 func SHGetNewLinkInfoW(pszLinkTo PWSTR, pszDir PWSTR, pszName PWSTR, pfMustCopy *BOOL, uFlags uint32) BOOL {
-	addr := lazyAddr(&pSHGetNewLinkInfoW, libShell32, "SHGetNewLinkInfoW")
+	addr := LazyAddr(&pSHGetNewLinkInfoW, libShell32, "SHGetNewLinkInfoW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszLinkTo)), uintptr(unsafe.Pointer(pszDir)), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pfMustCopy)), uintptr(uFlags))
 	return BOOL(ret)
 }
 
 func SHInvokePrinterCommandA(hwnd HWND, uAction uint32, lpBuf1 PSTR, lpBuf2 PSTR, fModal BOOL) BOOL {
-	addr := lazyAddr(&pSHInvokePrinterCommandA, libShell32, "SHInvokePrinterCommandA")
+	addr := LazyAddr(&pSHInvokePrinterCommandA, libShell32, "SHInvokePrinterCommandA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(uAction), uintptr(unsafe.Pointer(lpBuf1)), uintptr(unsafe.Pointer(lpBuf2)), uintptr(fModal))
 	return BOOL(ret)
 }
@@ -31666,43 +31666,43 @@ func SHInvokePrinterCommandA(hwnd HWND, uAction uint32, lpBuf1 PSTR, lpBuf2 PSTR
 var SHInvokePrinterCommand = SHInvokePrinterCommandW
 
 func SHInvokePrinterCommandW(hwnd HWND, uAction uint32, lpBuf1 PWSTR, lpBuf2 PWSTR, fModal BOOL) BOOL {
-	addr := lazyAddr(&pSHInvokePrinterCommandW, libShell32, "SHInvokePrinterCommandW")
+	addr := LazyAddr(&pSHInvokePrinterCommandW, libShell32, "SHInvokePrinterCommandW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(uAction), uintptr(unsafe.Pointer(lpBuf1)), uintptr(unsafe.Pointer(lpBuf2)), uintptr(fModal))
 	return BOOL(ret)
 }
 
 func SHLoadNonloadedIconOverlayIdentifiers() HRESULT {
-	addr := lazyAddr(&pSHLoadNonloadedIconOverlayIdentifiers, libShell32, "SHLoadNonloadedIconOverlayIdentifiers")
+	addr := LazyAddr(&pSHLoadNonloadedIconOverlayIdentifiers, libShell32, "SHLoadNonloadedIconOverlayIdentifiers")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func SHIsFileAvailableOffline(pwszPath PWSTR, pdwStatus *uint32) HRESULT {
-	addr := lazyAddr(&pSHIsFileAvailableOffline, libShell32, "SHIsFileAvailableOffline")
+	addr := LazyAddr(&pSHIsFileAvailableOffline, libShell32, "SHIsFileAvailableOffline")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszPath)), uintptr(unsafe.Pointer(pdwStatus)))
 	return HRESULT(ret)
 }
 
 func SHSetLocalizedName(pszPath PWSTR, pszResModule PWSTR, idsRes int32) HRESULT {
-	addr := lazyAddr(&pSHSetLocalizedName, libShell32, "SHSetLocalizedName")
+	addr := LazyAddr(&pSHSetLocalizedName, libShell32, "SHSetLocalizedName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszResModule)), uintptr(idsRes))
 	return HRESULT(ret)
 }
 
 func SHRemoveLocalizedName(pszPath PWSTR) HRESULT {
-	addr := lazyAddr(&pSHRemoveLocalizedName, libShell32, "SHRemoveLocalizedName")
+	addr := LazyAddr(&pSHRemoveLocalizedName, libShell32, "SHRemoveLocalizedName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return HRESULT(ret)
 }
 
 func SHGetLocalizedName(pszPath PWSTR, pszResModule PWSTR, cch uint32, pidsRes *int32) HRESULT {
-	addr := lazyAddr(&pSHGetLocalizedName, libShell32, "SHGetLocalizedName")
+	addr := LazyAddr(&pSHGetLocalizedName, libShell32, "SHGetLocalizedName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszResModule)), uintptr(cch), uintptr(unsafe.Pointer(pidsRes)))
 	return HRESULT(ret)
 }
 
 func ShellMessageBoxA(hAppInst HINSTANCE, hWnd HWND, lpcText PSTR, lpcTitle PSTR, fuStyle MESSAGEBOX_STYLE) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pShellMessageBoxA, libShlwapi, "ShellMessageBoxA")
+	addr := LazyAddr(&pShellMessageBoxA, libShlwapi, "ShellMessageBoxA")
 	ret, _, err := syscall.SyscallN(addr, hAppInst, hWnd, uintptr(unsafe.Pointer(lpcText)), uintptr(unsafe.Pointer(lpcTitle)), uintptr(fuStyle))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -31710,13 +31710,13 @@ func ShellMessageBoxA(hAppInst HINSTANCE, hWnd HWND, lpcText PSTR, lpcTitle PSTR
 var ShellMessageBox = ShellMessageBoxW
 
 func ShellMessageBoxW(hAppInst HINSTANCE, hWnd HWND, lpcText PWSTR, lpcTitle PWSTR, fuStyle MESSAGEBOX_STYLE) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pShellMessageBoxW, libShlwapi, "ShellMessageBoxW")
+	addr := LazyAddr(&pShellMessageBoxW, libShlwapi, "ShellMessageBoxW")
 	ret, _, err := syscall.SyscallN(addr, hAppInst, hWnd, uintptr(unsafe.Pointer(lpcText)), uintptr(unsafe.Pointer(lpcTitle)), uintptr(fuStyle))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func IsLFNDriveA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pIsLFNDriveA, libShell32, "IsLFNDriveA")
+	addr := LazyAddr(&pIsLFNDriveA, libShell32, "IsLFNDriveA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -31724,55 +31724,55 @@ func IsLFNDriveA(pszPath PSTR) BOOL {
 var IsLFNDrive = IsLFNDriveW
 
 func IsLFNDriveW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pIsLFNDriveW, libShell32, "IsLFNDriveW")
+	addr := LazyAddr(&pIsLFNDriveW, libShell32, "IsLFNDriveW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func SHEnumerateUnreadMailAccountsW(hKeyUser HKEY, dwIndex uint32, pszMailAddress PWSTR, cchMailAddress int32) HRESULT {
-	addr := lazyAddr(&pSHEnumerateUnreadMailAccountsW, libShell32, "SHEnumerateUnreadMailAccountsW")
+	addr := LazyAddr(&pSHEnumerateUnreadMailAccountsW, libShell32, "SHEnumerateUnreadMailAccountsW")
 	ret, _, _ := syscall.SyscallN(addr, hKeyUser, uintptr(dwIndex), uintptr(unsafe.Pointer(pszMailAddress)), uintptr(cchMailAddress))
 	return HRESULT(ret)
 }
 
 func SHGetUnreadMailCountW(hKeyUser HKEY, pszMailAddress PWSTR, pdwCount *uint32, pFileTime *FILETIME, pszShellExecuteCommand PWSTR, cchShellExecuteCommand int32) HRESULT {
-	addr := lazyAddr(&pSHGetUnreadMailCountW, libShell32, "SHGetUnreadMailCountW")
+	addr := LazyAddr(&pSHGetUnreadMailCountW, libShell32, "SHGetUnreadMailCountW")
 	ret, _, _ := syscall.SyscallN(addr, hKeyUser, uintptr(unsafe.Pointer(pszMailAddress)), uintptr(unsafe.Pointer(pdwCount)), uintptr(unsafe.Pointer(pFileTime)), uintptr(unsafe.Pointer(pszShellExecuteCommand)), uintptr(cchShellExecuteCommand))
 	return HRESULT(ret)
 }
 
 func SHSetUnreadMailCountW(pszMailAddress PWSTR, dwCount uint32, pszShellExecuteCommand PWSTR) HRESULT {
-	addr := lazyAddr(&pSHSetUnreadMailCountW, libShell32, "SHSetUnreadMailCountW")
+	addr := LazyAddr(&pSHSetUnreadMailCountW, libShell32, "SHSetUnreadMailCountW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszMailAddress)), uintptr(dwCount), uintptr(unsafe.Pointer(pszShellExecuteCommand)))
 	return HRESULT(ret)
 }
 
 func SHTestTokenMembership(hToken HANDLE, ulRID uint32) BOOL {
-	addr := lazyAddr(&pSHTestTokenMembership, libShell32, "SHTestTokenMembership")
+	addr := LazyAddr(&pSHTestTokenMembership, libShell32, "SHTestTokenMembership")
 	ret, _, _ := syscall.SyscallN(addr, hToken, uintptr(ulRID))
 	return BOOL(ret)
 }
 
 func SHGetImageList(iImageList int32, riid *syscall.GUID, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetImageList, libShell32, "SHGetImageList")
+	addr := LazyAddr(&pSHGetImageList, libShell32, "SHGetImageList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iImageList), uintptr(unsafe.Pointer(riid)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func InitNetworkAddressControl() BOOL {
-	addr := lazyAddr(&pInitNetworkAddressControl, libShell32, "InitNetworkAddressControl")
+	addr := LazyAddr(&pInitNetworkAddressControl, libShell32, "InitNetworkAddressControl")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func SHGetDriveMedia(pszDrive PWSTR, pdwMediaContent *uint32) HRESULT {
-	addr := lazyAddr(&pSHGetDriveMedia, libShell32, "SHGetDriveMedia")
+	addr := LazyAddr(&pSHGetDriveMedia, libShell32, "SHGetDriveMedia")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDrive)), uintptr(unsafe.Pointer(pdwMediaContent)))
 	return HRESULT(ret)
 }
 
 func StrChrA(pszStart PSTR, wMatch uint16) PSTR {
-	addr := lazyAddr(&pStrChrA, libShlwapi, "StrChrA")
+	addr := LazyAddr(&pStrChrA, libShlwapi, "StrChrA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(wMatch))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -31780,13 +31780,13 @@ func StrChrA(pszStart PSTR, wMatch uint16) PSTR {
 var StrChr = StrChrW
 
 func StrChrW(pszStart PWSTR, wMatch uint16) PWSTR {
-	addr := lazyAddr(&pStrChrW, libShlwapi, "StrChrW")
+	addr := LazyAddr(&pStrChrW, libShlwapi, "StrChrW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(wMatch))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrChrIA(pszStart PSTR, wMatch uint16) PSTR {
-	addr := lazyAddr(&pStrChrIA, libShlwapi, "StrChrIA")
+	addr := LazyAddr(&pStrChrIA, libShlwapi, "StrChrIA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(wMatch))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -31794,25 +31794,25 @@ func StrChrIA(pszStart PSTR, wMatch uint16) PSTR {
 var StrChrI = StrChrIW
 
 func StrChrIW(pszStart PWSTR, wMatch uint16) PWSTR {
-	addr := lazyAddr(&pStrChrIW, libShlwapi, "StrChrIW")
+	addr := LazyAddr(&pStrChrIW, libShlwapi, "StrChrIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(wMatch))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrChrNW(pszStart PWSTR, wMatch uint16, cchMax uint32) PWSTR {
-	addr := lazyAddr(&pStrChrNW, libShlwapi, "StrChrNW")
+	addr := LazyAddr(&pStrChrNW, libShlwapi, "StrChrNW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(wMatch), uintptr(cchMax))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrChrNIW(pszStart PWSTR, wMatch uint16, cchMax uint32) PWSTR {
-	addr := lazyAddr(&pStrChrNIW, libShlwapi, "StrChrNIW")
+	addr := LazyAddr(&pStrChrNIW, libShlwapi, "StrChrNIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(wMatch), uintptr(cchMax))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrCmpNA(psz1 PSTR, psz2 PSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNA, libShlwapi, "StrCmpNA")
+	addr := LazyAddr(&pStrCmpNA, libShlwapi, "StrCmpNA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(nChar))
 	return int32(ret)
 }
@@ -31820,13 +31820,13 @@ func StrCmpNA(psz1 PSTR, psz2 PSTR, nChar int32) int32 {
 var StrCmpN = StrCmpNW
 
 func StrCmpNW(psz1 PWSTR, psz2 PWSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNW, libShlwapi, "StrCmpNW")
+	addr := LazyAddr(&pStrCmpNW, libShlwapi, "StrCmpNW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(nChar))
 	return int32(ret)
 }
 
 func StrCmpNIA(psz1 PSTR, psz2 PSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNIA, libShlwapi, "StrCmpNIA")
+	addr := LazyAddr(&pStrCmpNIA, libShlwapi, "StrCmpNIA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(nChar))
 	return int32(ret)
 }
@@ -31834,13 +31834,13 @@ func StrCmpNIA(psz1 PSTR, psz2 PSTR, nChar int32) int32 {
 var StrCmpNI = StrCmpNIW
 
 func StrCmpNIW(psz1 PWSTR, psz2 PWSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNIW, libShlwapi, "StrCmpNIW")
+	addr := LazyAddr(&pStrCmpNIW, libShlwapi, "StrCmpNIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(nChar))
 	return int32(ret)
 }
 
 func StrCSpnA(pszStr PSTR, pszSet PSTR) int32 {
-	addr := lazyAddr(&pStrCSpnA, libShlwapi, "StrCSpnA")
+	addr := LazyAddr(&pStrCSpnA, libShlwapi, "StrCSpnA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr)), uintptr(unsafe.Pointer(pszSet)))
 	return int32(ret)
 }
@@ -31848,13 +31848,13 @@ func StrCSpnA(pszStr PSTR, pszSet PSTR) int32 {
 var StrCSpn = StrCSpnW
 
 func StrCSpnW(pszStr PWSTR, pszSet PWSTR) int32 {
-	addr := lazyAddr(&pStrCSpnW, libShlwapi, "StrCSpnW")
+	addr := LazyAddr(&pStrCSpnW, libShlwapi, "StrCSpnW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr)), uintptr(unsafe.Pointer(pszSet)))
 	return int32(ret)
 }
 
 func StrCSpnIA(pszStr PSTR, pszSet PSTR) int32 {
-	addr := lazyAddr(&pStrCSpnIA, libShlwapi, "StrCSpnIA")
+	addr := LazyAddr(&pStrCSpnIA, libShlwapi, "StrCSpnIA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr)), uintptr(unsafe.Pointer(pszSet)))
 	return int32(ret)
 }
@@ -31862,13 +31862,13 @@ func StrCSpnIA(pszStr PSTR, pszSet PSTR) int32 {
 var StrCSpnI = StrCSpnIW
 
 func StrCSpnIW(pszStr PWSTR, pszSet PWSTR) int32 {
-	addr := lazyAddr(&pStrCSpnIW, libShlwapi, "StrCSpnIW")
+	addr := LazyAddr(&pStrCSpnIW, libShlwapi, "StrCSpnIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr)), uintptr(unsafe.Pointer(pszSet)))
 	return int32(ret)
 }
 
 func StrDupA(pszSrch PSTR) PSTR {
-	addr := lazyAddr(&pStrDupA, libShlwapi, "StrDupA")
+	addr := LazyAddr(&pStrDupA, libShlwapi, "StrDupA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrch)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -31876,25 +31876,25 @@ func StrDupA(pszSrch PSTR) PSTR {
 var StrDup = StrDupW
 
 func StrDupW(pszSrch PWSTR) PWSTR {
-	addr := lazyAddr(&pStrDupW, libShlwapi, "StrDupW")
+	addr := LazyAddr(&pStrDupW, libShlwapi, "StrDupW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrch)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrFormatByteSizeEx(ull uint64, flags SFBS_FLAGS, pszBuf PWSTR, cchBuf uint32) HRESULT {
-	addr := lazyAddr(&pStrFormatByteSizeEx, libShlwapi, "StrFormatByteSizeEx")
+	addr := LazyAddr(&pStrFormatByteSizeEx, libShlwapi, "StrFormatByteSizeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ull), uintptr(flags), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return HRESULT(ret)
 }
 
 func StrFormatByteSizeA(dw uint32, pszBuf PSTR, cchBuf uint32) PSTR {
-	addr := lazyAddr(&pStrFormatByteSizeA, libShlwapi, "StrFormatByteSizeA")
+	addr := LazyAddr(&pStrFormatByteSizeA, libShlwapi, "StrFormatByteSizeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dw), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return (PSTR)(unsafe.Pointer(ret))
 }
 
 func StrFormatByteSize64A(qdw int64, pszBuf PSTR, cchBuf uint32) PSTR {
-	addr := lazyAddr(&pStrFormatByteSize64A, libShlwapi, "StrFormatByteSize64A")
+	addr := LazyAddr(&pStrFormatByteSize64A, libShlwapi, "StrFormatByteSize64A")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(qdw), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -31902,7 +31902,7 @@ func StrFormatByteSize64A(qdw int64, pszBuf PSTR, cchBuf uint32) PSTR {
 var StrFormatByteSize = StrFormatByteSizeW
 
 func StrFormatByteSizeW(qdw int64, pszBuf PWSTR, cchBuf uint32) PWSTR {
-	addr := lazyAddr(&pStrFormatByteSizeW, libShlwapi, "StrFormatByteSizeW")
+	addr := LazyAddr(&pStrFormatByteSizeW, libShlwapi, "StrFormatByteSizeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(qdw), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
@@ -31910,19 +31910,19 @@ func StrFormatByteSizeW(qdw int64, pszBuf PWSTR, cchBuf uint32) PWSTR {
 var StrFormatKBSize = StrFormatKBSizeW
 
 func StrFormatKBSizeW(qdw int64, pszBuf PWSTR, cchBuf uint32) PWSTR {
-	addr := lazyAddr(&pStrFormatKBSizeW, libShlwapi, "StrFormatKBSizeW")
+	addr := LazyAddr(&pStrFormatKBSizeW, libShlwapi, "StrFormatKBSizeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(qdw), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrFormatKBSizeA(qdw int64, pszBuf PSTR, cchBuf uint32) PSTR {
-	addr := lazyAddr(&pStrFormatKBSizeA, libShlwapi, "StrFormatKBSizeA")
+	addr := LazyAddr(&pStrFormatKBSizeA, libShlwapi, "StrFormatKBSizeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(qdw), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return (PSTR)(unsafe.Pointer(ret))
 }
 
 func StrFromTimeIntervalA(pszOut PSTR, cchMax uint32, dwTimeMS uint32, digits int32) int32 {
-	addr := lazyAddr(&pStrFromTimeIntervalA, libShlwapi, "StrFromTimeIntervalA")
+	addr := LazyAddr(&pStrFromTimeIntervalA, libShlwapi, "StrFromTimeIntervalA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszOut)), uintptr(cchMax), uintptr(dwTimeMS), uintptr(digits))
 	return int32(ret)
 }
@@ -31930,13 +31930,13 @@ func StrFromTimeIntervalA(pszOut PSTR, cchMax uint32, dwTimeMS uint32, digits in
 var StrFromTimeInterval = StrFromTimeIntervalW
 
 func StrFromTimeIntervalW(pszOut PWSTR, cchMax uint32, dwTimeMS uint32, digits int32) int32 {
-	addr := lazyAddr(&pStrFromTimeIntervalW, libShlwapi, "StrFromTimeIntervalW")
+	addr := LazyAddr(&pStrFromTimeIntervalW, libShlwapi, "StrFromTimeIntervalW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszOut)), uintptr(cchMax), uintptr(dwTimeMS), uintptr(digits))
 	return int32(ret)
 }
 
 func StrIsIntlEqualA(fCaseSens BOOL, pszString1 PSTR, pszString2 PSTR, nChar int32) BOOL {
-	addr := lazyAddr(&pStrIsIntlEqualA, libShlwapi, "StrIsIntlEqualA")
+	addr := LazyAddr(&pStrIsIntlEqualA, libShlwapi, "StrIsIntlEqualA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fCaseSens), uintptr(unsafe.Pointer(pszString1)), uintptr(unsafe.Pointer(pszString2)), uintptr(nChar))
 	return BOOL(ret)
 }
@@ -31944,13 +31944,13 @@ func StrIsIntlEqualA(fCaseSens BOOL, pszString1 PSTR, pszString2 PSTR, nChar int
 var StrIsIntlEqual = StrIsIntlEqualW
 
 func StrIsIntlEqualW(fCaseSens BOOL, pszString1 PWSTR, pszString2 PWSTR, nChar int32) BOOL {
-	addr := lazyAddr(&pStrIsIntlEqualW, libShlwapi, "StrIsIntlEqualW")
+	addr := LazyAddr(&pStrIsIntlEqualW, libShlwapi, "StrIsIntlEqualW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fCaseSens), uintptr(unsafe.Pointer(pszString1)), uintptr(unsafe.Pointer(pszString2)), uintptr(nChar))
 	return BOOL(ret)
 }
 
 func StrNCatA(psz1 PSTR, psz2 PSTR, cchMax int32) PSTR {
-	addr := lazyAddr(&pStrNCatA, libShlwapi, "StrNCatA")
+	addr := LazyAddr(&pStrNCatA, libShlwapi, "StrNCatA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(cchMax))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -31958,13 +31958,13 @@ func StrNCatA(psz1 PSTR, psz2 PSTR, cchMax int32) PSTR {
 var StrNCat = StrNCatW
 
 func StrNCatW(psz1 PWSTR, psz2 PWSTR, cchMax int32) PWSTR {
-	addr := lazyAddr(&pStrNCatW, libShlwapi, "StrNCatW")
+	addr := LazyAddr(&pStrNCatW, libShlwapi, "StrNCatW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(cchMax))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrPBrkA(psz PSTR, pszSet PSTR) PSTR {
-	addr := lazyAddr(&pStrPBrkA, libShlwapi, "StrPBrkA")
+	addr := LazyAddr(&pStrPBrkA, libShlwapi, "StrPBrkA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(pszSet)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -31972,13 +31972,13 @@ func StrPBrkA(psz PSTR, pszSet PSTR) PSTR {
 var StrPBrk = StrPBrkW
 
 func StrPBrkW(psz PWSTR, pszSet PWSTR) PWSTR {
-	addr := lazyAddr(&pStrPBrkW, libShlwapi, "StrPBrkW")
+	addr := LazyAddr(&pStrPBrkW, libShlwapi, "StrPBrkW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(pszSet)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrRChrA(pszStart PSTR, pszEnd PSTR, wMatch uint16) PSTR {
-	addr := lazyAddr(&pStrRChrA, libShlwapi, "StrRChrA")
+	addr := LazyAddr(&pStrRChrA, libShlwapi, "StrRChrA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(unsafe.Pointer(pszEnd)), uintptr(wMatch))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -31986,13 +31986,13 @@ func StrRChrA(pszStart PSTR, pszEnd PSTR, wMatch uint16) PSTR {
 var StrRChr = StrRChrW
 
 func StrRChrW(pszStart PWSTR, pszEnd PWSTR, wMatch uint16) PWSTR {
-	addr := lazyAddr(&pStrRChrW, libShlwapi, "StrRChrW")
+	addr := LazyAddr(&pStrRChrW, libShlwapi, "StrRChrW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(unsafe.Pointer(pszEnd)), uintptr(wMatch))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrRChrIA(pszStart PSTR, pszEnd PSTR, wMatch uint16) PSTR {
-	addr := lazyAddr(&pStrRChrIA, libShlwapi, "StrRChrIA")
+	addr := LazyAddr(&pStrRChrIA, libShlwapi, "StrRChrIA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(unsafe.Pointer(pszEnd)), uintptr(wMatch))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32000,13 +32000,13 @@ func StrRChrIA(pszStart PSTR, pszEnd PSTR, wMatch uint16) PSTR {
 var StrRChrI = StrRChrIW
 
 func StrRChrIW(pszStart PWSTR, pszEnd PWSTR, wMatch uint16) PWSTR {
-	addr := lazyAddr(&pStrRChrIW, libShlwapi, "StrRChrIW")
+	addr := LazyAddr(&pStrRChrIW, libShlwapi, "StrRChrIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStart)), uintptr(unsafe.Pointer(pszEnd)), uintptr(wMatch))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrRStrIA(pszSource PSTR, pszLast PSTR, pszSrch PSTR) PSTR {
-	addr := lazyAddr(&pStrRStrIA, libShlwapi, "StrRStrIA")
+	addr := LazyAddr(&pStrRStrIA, libShlwapi, "StrRStrIA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSource)), uintptr(unsafe.Pointer(pszLast)), uintptr(unsafe.Pointer(pszSrch)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32014,13 +32014,13 @@ func StrRStrIA(pszSource PSTR, pszLast PSTR, pszSrch PSTR) PSTR {
 var StrRStrI = StrRStrIW
 
 func StrRStrIW(pszSource PWSTR, pszLast PWSTR, pszSrch PWSTR) PWSTR {
-	addr := lazyAddr(&pStrRStrIW, libShlwapi, "StrRStrIW")
+	addr := LazyAddr(&pStrRStrIW, libShlwapi, "StrRStrIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSource)), uintptr(unsafe.Pointer(pszLast)), uintptr(unsafe.Pointer(pszSrch)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrSpnA(psz PSTR, pszSet PSTR) int32 {
-	addr := lazyAddr(&pStrSpnA, libShlwapi, "StrSpnA")
+	addr := LazyAddr(&pStrSpnA, libShlwapi, "StrSpnA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(pszSet)))
 	return int32(ret)
 }
@@ -32028,13 +32028,13 @@ func StrSpnA(psz PSTR, pszSet PSTR) int32 {
 var StrSpn = StrSpnW
 
 func StrSpnW(psz PWSTR, pszSet PWSTR) int32 {
-	addr := lazyAddr(&pStrSpnW, libShlwapi, "StrSpnW")
+	addr := LazyAddr(&pStrSpnW, libShlwapi, "StrSpnW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(pszSet)))
 	return int32(ret)
 }
 
 func StrStrA(pszFirst PSTR, pszSrch PSTR) PSTR {
-	addr := lazyAddr(&pStrStrA, libShlwapi, "StrStrA")
+	addr := LazyAddr(&pStrStrA, libShlwapi, "StrStrA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFirst)), uintptr(unsafe.Pointer(pszSrch)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32042,13 +32042,13 @@ func StrStrA(pszFirst PSTR, pszSrch PSTR) PSTR {
 var StrStr = StrStrW
 
 func StrStrW(pszFirst PWSTR, pszSrch PWSTR) PWSTR {
-	addr := lazyAddr(&pStrStrW, libShlwapi, "StrStrW")
+	addr := LazyAddr(&pStrStrW, libShlwapi, "StrStrW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFirst)), uintptr(unsafe.Pointer(pszSrch)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrStrIA(pszFirst PSTR, pszSrch PSTR) PSTR {
-	addr := lazyAddr(&pStrStrIA, libShlwapi, "StrStrIA")
+	addr := LazyAddr(&pStrStrIA, libShlwapi, "StrStrIA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFirst)), uintptr(unsafe.Pointer(pszSrch)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32056,25 +32056,25 @@ func StrStrIA(pszFirst PSTR, pszSrch PSTR) PSTR {
 var StrStrI = StrStrIW
 
 func StrStrIW(pszFirst PWSTR, pszSrch PWSTR) PWSTR {
-	addr := lazyAddr(&pStrStrIW, libShlwapi, "StrStrIW")
+	addr := LazyAddr(&pStrStrIW, libShlwapi, "StrStrIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFirst)), uintptr(unsafe.Pointer(pszSrch)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrStrNW(pszFirst PWSTR, pszSrch PWSTR, cchMax uint32) PWSTR {
-	addr := lazyAddr(&pStrStrNW, libShlwapi, "StrStrNW")
+	addr := LazyAddr(&pStrStrNW, libShlwapi, "StrStrNW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFirst)), uintptr(unsafe.Pointer(pszSrch)), uintptr(cchMax))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrStrNIW(pszFirst PWSTR, pszSrch PWSTR, cchMax uint32) PWSTR {
-	addr := lazyAddr(&pStrStrNIW, libShlwapi, "StrStrNIW")
+	addr := LazyAddr(&pStrStrNIW, libShlwapi, "StrStrNIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFirst)), uintptr(unsafe.Pointer(pszSrch)), uintptr(cchMax))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrToIntA(pszSrc PSTR) int32 {
-	addr := lazyAddr(&pStrToIntA, libShlwapi, "StrToIntA")
+	addr := LazyAddr(&pStrToIntA, libShlwapi, "StrToIntA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrc)))
 	return int32(ret)
 }
@@ -32082,13 +32082,13 @@ func StrToIntA(pszSrc PSTR) int32 {
 var StrToInt = StrToIntW
 
 func StrToIntW(pszSrc PWSTR) int32 {
-	addr := lazyAddr(&pStrToIntW, libShlwapi, "StrToIntW")
+	addr := LazyAddr(&pStrToIntW, libShlwapi, "StrToIntW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrc)))
 	return int32(ret)
 }
 
 func StrToIntExA(pszString PSTR, dwFlags int32, piRet *int32) BOOL {
-	addr := lazyAddr(&pStrToIntExA, libShlwapi, "StrToIntExA")
+	addr := LazyAddr(&pStrToIntExA, libShlwapi, "StrToIntExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszString)), uintptr(dwFlags), uintptr(unsafe.Pointer(piRet)))
 	return BOOL(ret)
 }
@@ -32096,13 +32096,13 @@ func StrToIntExA(pszString PSTR, dwFlags int32, piRet *int32) BOOL {
 var StrToIntEx = StrToIntExW
 
 func StrToIntExW(pszString PWSTR, dwFlags int32, piRet *int32) BOOL {
-	addr := lazyAddr(&pStrToIntExW, libShlwapi, "StrToIntExW")
+	addr := LazyAddr(&pStrToIntExW, libShlwapi, "StrToIntExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszString)), uintptr(dwFlags), uintptr(unsafe.Pointer(piRet)))
 	return BOOL(ret)
 }
 
 func StrToInt64ExA(pszString PSTR, dwFlags int32, pllRet *int64) BOOL {
-	addr := lazyAddr(&pStrToInt64ExA, libShlwapi, "StrToInt64ExA")
+	addr := LazyAddr(&pStrToInt64ExA, libShlwapi, "StrToInt64ExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszString)), uintptr(dwFlags), uintptr(unsafe.Pointer(pllRet)))
 	return BOOL(ret)
 }
@@ -32110,13 +32110,13 @@ func StrToInt64ExA(pszString PSTR, dwFlags int32, pllRet *int64) BOOL {
 var StrToInt64Ex = StrToInt64ExW
 
 func StrToInt64ExW(pszString PWSTR, dwFlags int32, pllRet *int64) BOOL {
-	addr := lazyAddr(&pStrToInt64ExW, libShlwapi, "StrToInt64ExW")
+	addr := LazyAddr(&pStrToInt64ExW, libShlwapi, "StrToInt64ExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszString)), uintptr(dwFlags), uintptr(unsafe.Pointer(pllRet)))
 	return BOOL(ret)
 }
 
 func StrTrimA(psz PSTR, pszTrimChars PSTR) BOOL {
-	addr := lazyAddr(&pStrTrimA, libShlwapi, "StrTrimA")
+	addr := LazyAddr(&pStrTrimA, libShlwapi, "StrTrimA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(pszTrimChars)))
 	return BOOL(ret)
 }
@@ -32124,37 +32124,37 @@ func StrTrimA(psz PSTR, pszTrimChars PSTR) BOOL {
 var StrTrim = StrTrimW
 
 func StrTrimW(psz PWSTR, pszTrimChars PWSTR) BOOL {
-	addr := lazyAddr(&pStrTrimW, libShlwapi, "StrTrimW")
+	addr := LazyAddr(&pStrTrimW, libShlwapi, "StrTrimW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(pszTrimChars)))
 	return BOOL(ret)
 }
 
 func StrCatW(psz1 PWSTR, psz2 PWSTR) PWSTR {
-	addr := lazyAddr(&pStrCatW, libShlwapi, "StrCatW")
+	addr := LazyAddr(&pStrCatW, libShlwapi, "StrCatW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrCmpW(psz1 PWSTR, psz2 PWSTR) int32 {
-	addr := lazyAddr(&pStrCmpW, libShlwapi, "StrCmpW")
+	addr := LazyAddr(&pStrCmpW, libShlwapi, "StrCmpW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)))
 	return int32(ret)
 }
 
 func StrCmpIW(psz1 PWSTR, psz2 PWSTR) int32 {
-	addr := lazyAddr(&pStrCmpIW, libShlwapi, "StrCmpIW")
+	addr := LazyAddr(&pStrCmpIW, libShlwapi, "StrCmpIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)))
 	return int32(ret)
 }
 
 func StrCpyW(psz1 PWSTR, psz2 PWSTR) PWSTR {
-	addr := lazyAddr(&pStrCpyW, libShlwapi, "StrCpyW")
+	addr := LazyAddr(&pStrCpyW, libShlwapi, "StrCpyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrCpyNW(pszDst PWSTR, pszSrc PWSTR, cchMax int32) PWSTR {
-	addr := lazyAddr(&pStrCpyNW, libShlwapi, "StrCpyNW")
+	addr := LazyAddr(&pStrCpyNW, libShlwapi, "StrCpyNW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDst)), uintptr(unsafe.Pointer(pszSrc)), uintptr(cchMax))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
@@ -32162,19 +32162,19 @@ func StrCpyNW(pszDst PWSTR, pszSrc PWSTR, cchMax int32) PWSTR {
 var StrCatBuff = StrCatBuffW
 
 func StrCatBuffW(pszDest PWSTR, pszSrc PWSTR, cchDestBuffSize int32) PWSTR {
-	addr := lazyAddr(&pStrCatBuffW, libShlwapi, "StrCatBuffW")
+	addr := LazyAddr(&pStrCatBuffW, libShlwapi, "StrCatBuffW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(unsafe.Pointer(pszSrc)), uintptr(cchDestBuffSize))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func StrCatBuffA(pszDest PSTR, pszSrc PSTR, cchDestBuffSize int32) PSTR {
-	addr := lazyAddr(&pStrCatBuffA, libShlwapi, "StrCatBuffA")
+	addr := LazyAddr(&pStrCatBuffA, libShlwapi, "StrCatBuffA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(unsafe.Pointer(pszSrc)), uintptr(cchDestBuffSize))
 	return (PSTR)(unsafe.Pointer(ret))
 }
 
 func ChrCmpIA(w1 uint16, w2 uint16) BOOL {
-	addr := lazyAddr(&pChrCmpIA, libShlwapi, "ChrCmpIA")
+	addr := LazyAddr(&pChrCmpIA, libShlwapi, "ChrCmpIA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(w1), uintptr(w2))
 	return BOOL(ret)
 }
@@ -32182,13 +32182,13 @@ func ChrCmpIA(w1 uint16, w2 uint16) BOOL {
 var ChrCmpI = ChrCmpIW
 
 func ChrCmpIW(w1 uint16, w2 uint16) BOOL {
-	addr := lazyAddr(&pChrCmpIW, libShlwapi, "ChrCmpIW")
+	addr := LazyAddr(&pChrCmpIW, libShlwapi, "ChrCmpIW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(w1), uintptr(w2))
 	return BOOL(ret)
 }
 
 func WvnsprintfA(pszDest PSTR, cchDest int32, pszFmt PSTR, arglist *int8) int32 {
-	addr := lazyAddr(&pWvnsprintfA, libShlwapi, "wvnsprintfA")
+	addr := LazyAddr(&pWvnsprintfA, libShlwapi, "wvnsprintfA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(cchDest), uintptr(unsafe.Pointer(pszFmt)), uintptr(unsafe.Pointer(arglist)))
 	return int32(ret)
 }
@@ -32196,13 +32196,13 @@ func WvnsprintfA(pszDest PSTR, cchDest int32, pszFmt PSTR, arglist *int8) int32 
 var Wvnsprintf = WvnsprintfW
 
 func WvnsprintfW(pszDest PWSTR, cchDest int32, pszFmt PWSTR, arglist *int8) int32 {
-	addr := lazyAddr(&pWvnsprintfW, libShlwapi, "wvnsprintfW")
+	addr := LazyAddr(&pWvnsprintfW, libShlwapi, "wvnsprintfW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(cchDest), uintptr(unsafe.Pointer(pszFmt)), uintptr(unsafe.Pointer(arglist)))
 	return int32(ret)
 }
 
 func WnsprintfA(pszDest PSTR, cchDest int32, pszFmt PSTR) int32 {
-	addr := lazyAddr(&pWnsprintfA, libShlwapi, "wnsprintfA")
+	addr := LazyAddr(&pWnsprintfA, libShlwapi, "wnsprintfA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(cchDest), uintptr(unsafe.Pointer(pszFmt)))
 	return int32(ret)
 }
@@ -32210,13 +32210,13 @@ func WnsprintfA(pszDest PSTR, cchDest int32, pszFmt PSTR) int32 {
 var Wnsprintf = WnsprintfW
 
 func WnsprintfW(pszDest PWSTR, cchDest int32, pszFmt PWSTR) int32 {
-	addr := lazyAddr(&pWnsprintfW, libShlwapi, "wnsprintfW")
+	addr := LazyAddr(&pWnsprintfW, libShlwapi, "wnsprintfW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(cchDest), uintptr(unsafe.Pointer(pszFmt)))
 	return int32(ret)
 }
 
 func StrRetToStrA(pstr *STRRET, pidl *ITEMIDLIST, ppsz *PSTR) HRESULT {
-	addr := lazyAddr(&pStrRetToStrA, libShlwapi, "StrRetToStrA")
+	addr := LazyAddr(&pStrRetToStrA, libShlwapi, "StrRetToStrA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstr)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(ppsz)))
 	return HRESULT(ret)
 }
@@ -32224,13 +32224,13 @@ func StrRetToStrA(pstr *STRRET, pidl *ITEMIDLIST, ppsz *PSTR) HRESULT {
 var StrRetToStr = StrRetToStrW
 
 func StrRetToStrW(pstr *STRRET, pidl *ITEMIDLIST, ppsz *PWSTR) HRESULT {
-	addr := lazyAddr(&pStrRetToStrW, libShlwapi, "StrRetToStrW")
+	addr := LazyAddr(&pStrRetToStrW, libShlwapi, "StrRetToStrW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstr)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(ppsz)))
 	return HRESULT(ret)
 }
 
 func StrRetToBufA(pstr *STRRET, pidl *ITEMIDLIST, pszBuf PSTR, cchBuf uint32) HRESULT {
-	addr := lazyAddr(&pStrRetToBufA, libShlwapi, "StrRetToBufA")
+	addr := LazyAddr(&pStrRetToBufA, libShlwapi, "StrRetToBufA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstr)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return HRESULT(ret)
 }
@@ -32238,13 +32238,13 @@ func StrRetToBufA(pstr *STRRET, pidl *ITEMIDLIST, pszBuf PSTR, cchBuf uint32) HR
 var StrRetToBuf = StrRetToBufW
 
 func StrRetToBufW(pstr *STRRET, pidl *ITEMIDLIST, pszBuf PWSTR, cchBuf uint32) HRESULT {
-	addr := lazyAddr(&pStrRetToBufW, libShlwapi, "StrRetToBufW")
+	addr := LazyAddr(&pStrRetToBufW, libShlwapi, "StrRetToBufW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstr)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return HRESULT(ret)
 }
 
 func SHStrDupA(psz PSTR, ppwsz *PWSTR) HRESULT {
-	addr := lazyAddr(&pSHStrDupA, libShlwapi, "SHStrDupA")
+	addr := LazyAddr(&pSHStrDupA, libShlwapi, "SHStrDupA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(ppwsz)))
 	return HRESULT(ret)
 }
@@ -32252,37 +32252,37 @@ func SHStrDupA(psz PSTR, ppwsz *PWSTR) HRESULT {
 var SHStrDup = SHStrDupW
 
 func SHStrDupW(psz PWSTR, ppwsz *PWSTR) HRESULT {
-	addr := lazyAddr(&pSHStrDupW, libShlwapi, "SHStrDupW")
+	addr := LazyAddr(&pSHStrDupW, libShlwapi, "SHStrDupW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(unsafe.Pointer(ppwsz)))
 	return HRESULT(ret)
 }
 
 func StrCmpLogicalW(psz1 PWSTR, psz2 PWSTR) int32 {
-	addr := lazyAddr(&pStrCmpLogicalW, libShlwapi, "StrCmpLogicalW")
+	addr := LazyAddr(&pStrCmpLogicalW, libShlwapi, "StrCmpLogicalW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)))
 	return int32(ret)
 }
 
 func StrCatChainW(pszDst PWSTR, cchDst uint32, ichAt uint32, pszSrc PWSTR) uint32 {
-	addr := lazyAddr(&pStrCatChainW, libShlwapi, "StrCatChainW")
+	addr := LazyAddr(&pStrCatChainW, libShlwapi, "StrCatChainW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDst)), uintptr(cchDst), uintptr(ichAt), uintptr(unsafe.Pointer(pszSrc)))
 	return uint32(ret)
 }
 
 func StrRetToBSTR(pstr *STRRET, pidl *ITEMIDLIST, pbstr *BSTR) HRESULT {
-	addr := lazyAddr(&pStrRetToBSTR, libShlwapi, "StrRetToBSTR")
+	addr := LazyAddr(&pStrRetToBSTR, libShlwapi, "StrRetToBSTR")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstr)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
 func SHLoadIndirectString(pszSource PWSTR, pszOutBuf PWSTR, cchOutBuf uint32, ppvReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHLoadIndirectString, libShlwapi, "SHLoadIndirectString")
+	addr := LazyAddr(&pSHLoadIndirectString, libShlwapi, "SHLoadIndirectString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSource)), uintptr(unsafe.Pointer(pszOutBuf)), uintptr(cchOutBuf), uintptr(ppvReserved))
 	return HRESULT(ret)
 }
 
 func IsCharSpaceA(wch CHAR) BOOL {
-	addr := lazyAddr(&pIsCharSpaceA, libShlwapi, "IsCharSpaceA")
+	addr := LazyAddr(&pIsCharSpaceA, libShlwapi, "IsCharSpaceA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wch))
 	return BOOL(ret)
 }
@@ -32290,13 +32290,13 @@ func IsCharSpaceA(wch CHAR) BOOL {
 var IsCharSpace = IsCharSpaceW
 
 func IsCharSpaceW(wch uint16) BOOL {
-	addr := lazyAddr(&pIsCharSpaceW, libShlwapi, "IsCharSpaceW")
+	addr := LazyAddr(&pIsCharSpaceW, libShlwapi, "IsCharSpaceW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wch))
 	return BOOL(ret)
 }
 
 func StrCmpCA(pszStr1 PSTR, pszStr2 PSTR) int32 {
-	addr := lazyAddr(&pStrCmpCA, libShlwapi, "StrCmpCA")
+	addr := LazyAddr(&pStrCmpCA, libShlwapi, "StrCmpCA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)))
 	return int32(ret)
 }
@@ -32304,13 +32304,13 @@ func StrCmpCA(pszStr1 PSTR, pszStr2 PSTR) int32 {
 var StrCmpC = StrCmpCW
 
 func StrCmpCW(pszStr1 PWSTR, pszStr2 PWSTR) int32 {
-	addr := lazyAddr(&pStrCmpCW, libShlwapi, "StrCmpCW")
+	addr := LazyAddr(&pStrCmpCW, libShlwapi, "StrCmpCW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)))
 	return int32(ret)
 }
 
 func StrCmpICA(pszStr1 PSTR, pszStr2 PSTR) int32 {
-	addr := lazyAddr(&pStrCmpICA, libShlwapi, "StrCmpICA")
+	addr := LazyAddr(&pStrCmpICA, libShlwapi, "StrCmpICA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)))
 	return int32(ret)
 }
@@ -32318,13 +32318,13 @@ func StrCmpICA(pszStr1 PSTR, pszStr2 PSTR) int32 {
 var StrCmpIC = StrCmpICW
 
 func StrCmpICW(pszStr1 PWSTR, pszStr2 PWSTR) int32 {
-	addr := lazyAddr(&pStrCmpICW, libShlwapi, "StrCmpICW")
+	addr := LazyAddr(&pStrCmpICW, libShlwapi, "StrCmpICW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)))
 	return int32(ret)
 }
 
 func StrCmpNCA(pszStr1 PSTR, pszStr2 PSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNCA, libShlwapi, "StrCmpNCA")
+	addr := LazyAddr(&pStrCmpNCA, libShlwapi, "StrCmpNCA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)), uintptr(nChar))
 	return int32(ret)
 }
@@ -32332,13 +32332,13 @@ func StrCmpNCA(pszStr1 PSTR, pszStr2 PSTR, nChar int32) int32 {
 var StrCmpNC = StrCmpNCW
 
 func StrCmpNCW(pszStr1 PWSTR, pszStr2 PWSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNCW, libShlwapi, "StrCmpNCW")
+	addr := LazyAddr(&pStrCmpNCW, libShlwapi, "StrCmpNCW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)), uintptr(nChar))
 	return int32(ret)
 }
 
 func StrCmpNICA(pszStr1 PSTR, pszStr2 PSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNICA, libShlwapi, "StrCmpNICA")
+	addr := LazyAddr(&pStrCmpNICA, libShlwapi, "StrCmpNICA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)), uintptr(nChar))
 	return int32(ret)
 }
@@ -32346,13 +32346,13 @@ func StrCmpNICA(pszStr1 PSTR, pszStr2 PSTR, nChar int32) int32 {
 var StrCmpNIC = StrCmpNICW
 
 func StrCmpNICW(pszStr1 PWSTR, pszStr2 PWSTR, nChar int32) int32 {
-	addr := lazyAddr(&pStrCmpNICW, libShlwapi, "StrCmpNICW")
+	addr := LazyAddr(&pStrCmpNICW, libShlwapi, "StrCmpNICW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszStr1)), uintptr(unsafe.Pointer(pszStr2)), uintptr(nChar))
 	return int32(ret)
 }
 
 func IntlStrEqWorkerA(fCaseSens BOOL, lpString1 PSTR, lpString2 PSTR, nChar int32) BOOL {
-	addr := lazyAddr(&pIntlStrEqWorkerA, libShlwapi, "IntlStrEqWorkerA")
+	addr := LazyAddr(&pIntlStrEqWorkerA, libShlwapi, "IntlStrEqWorkerA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fCaseSens), uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)), uintptr(nChar))
 	return BOOL(ret)
 }
@@ -32360,13 +32360,13 @@ func IntlStrEqWorkerA(fCaseSens BOOL, lpString1 PSTR, lpString2 PSTR, nChar int3
 var IntlStrEqWorker = IntlStrEqWorkerW
 
 func IntlStrEqWorkerW(fCaseSens BOOL, lpString1 PWSTR, lpString2 PWSTR, nChar int32) BOOL {
-	addr := lazyAddr(&pIntlStrEqWorkerW, libShlwapi, "IntlStrEqWorkerW")
+	addr := LazyAddr(&pIntlStrEqWorkerW, libShlwapi, "IntlStrEqWorkerW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fCaseSens), uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)), uintptr(nChar))
 	return BOOL(ret)
 }
 
 func PathAddBackslashA(pszPath PSTR) PSTR {
-	addr := lazyAddr(&pPathAddBackslashA, libShlwapi, "PathAddBackslashA")
+	addr := LazyAddr(&pPathAddBackslashA, libShlwapi, "PathAddBackslashA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32374,13 +32374,13 @@ func PathAddBackslashA(pszPath PSTR) PSTR {
 var PathAddBackslash = PathAddBackslashW
 
 func PathAddBackslashW(pszPath PWSTR) PWSTR {
-	addr := lazyAddr(&pPathAddBackslashW, libShlwapi, "PathAddBackslashW")
+	addr := LazyAddr(&pPathAddBackslashW, libShlwapi, "PathAddBackslashW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathAddExtensionA(pszPath PSTR, pszExt PSTR) BOOL {
-	addr := lazyAddr(&pPathAddExtensionA, libShlwapi, "PathAddExtensionA")
+	addr := LazyAddr(&pPathAddExtensionA, libShlwapi, "PathAddExtensionA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszExt)))
 	return BOOL(ret)
 }
@@ -32388,13 +32388,13 @@ func PathAddExtensionA(pszPath PSTR, pszExt PSTR) BOOL {
 var PathAddExtension = PathAddExtensionW
 
 func PathAddExtensionW(pszPath PWSTR, pszExt PWSTR) BOOL {
-	addr := lazyAddr(&pPathAddExtensionW, libShlwapi, "PathAddExtensionW")
+	addr := LazyAddr(&pPathAddExtensionW, libShlwapi, "PathAddExtensionW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszExt)))
 	return BOOL(ret)
 }
 
 func PathAppendA(pszPath PSTR, pszMore PSTR) BOOL {
-	addr := lazyAddr(&pPathAppendA, libShlwapi, "PathAppendA")
+	addr := LazyAddr(&pPathAppendA, libShlwapi, "PathAppendA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszMore)))
 	return BOOL(ret)
 }
@@ -32402,13 +32402,13 @@ func PathAppendA(pszPath PSTR, pszMore PSTR) BOOL {
 var PathAppend = PathAppendW
 
 func PathAppendW(pszPath PWSTR, pszMore PWSTR) BOOL {
-	addr := lazyAddr(&pPathAppendW, libShlwapi, "PathAppendW")
+	addr := LazyAddr(&pPathAppendW, libShlwapi, "PathAppendW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszMore)))
 	return BOOL(ret)
 }
 
 func PathBuildRootA(pszRoot PSTR, iDrive int32) PSTR {
-	addr := lazyAddr(&pPathBuildRootA, libShlwapi, "PathBuildRootA")
+	addr := LazyAddr(&pPathBuildRootA, libShlwapi, "PathBuildRootA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszRoot)), uintptr(iDrive))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32416,13 +32416,13 @@ func PathBuildRootA(pszRoot PSTR, iDrive int32) PSTR {
 var PathBuildRoot = PathBuildRootW
 
 func PathBuildRootW(pszRoot PWSTR, iDrive int32) PWSTR {
-	addr := lazyAddr(&pPathBuildRootW, libShlwapi, "PathBuildRootW")
+	addr := LazyAddr(&pPathBuildRootW, libShlwapi, "PathBuildRootW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszRoot)), uintptr(iDrive))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathCanonicalizeA(pszBuf PSTR, pszPath PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPathCanonicalizeA, libShlwapi, "PathCanonicalizeA")
+	addr := LazyAddr(&pPathCanonicalizeA, libShlwapi, "PathCanonicalizeA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszBuf)), uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -32430,13 +32430,13 @@ func PathCanonicalizeA(pszBuf PSTR, pszPath PSTR) (BOOL, WIN32_ERROR) {
 var PathCanonicalize = PathCanonicalizeW
 
 func PathCanonicalizeW(pszBuf PWSTR, pszPath PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPathCanonicalizeW, libShlwapi, "PathCanonicalizeW")
+	addr := LazyAddr(&pPathCanonicalizeW, libShlwapi, "PathCanonicalizeW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszBuf)), uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func PathCombineA(pszDest PSTR, pszDir PSTR, pszFile PSTR) PSTR {
-	addr := lazyAddr(&pPathCombineA, libShlwapi, "PathCombineA")
+	addr := LazyAddr(&pPathCombineA, libShlwapi, "PathCombineA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(unsafe.Pointer(pszDir)), uintptr(unsafe.Pointer(pszFile)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32444,13 +32444,13 @@ func PathCombineA(pszDest PSTR, pszDir PSTR, pszFile PSTR) PSTR {
 var PathCombine = PathCombineW
 
 func PathCombineW(pszDest PWSTR, pszDir PWSTR, pszFile PWSTR) PWSTR {
-	addr := lazyAddr(&pPathCombineW, libShlwapi, "PathCombineW")
+	addr := LazyAddr(&pPathCombineW, libShlwapi, "PathCombineW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDest)), uintptr(unsafe.Pointer(pszDir)), uintptr(unsafe.Pointer(pszFile)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathCompactPathA(hDC HDC, pszPath PSTR, dx uint32) BOOL {
-	addr := lazyAddr(&pPathCompactPathA, libShlwapi, "PathCompactPathA")
+	addr := LazyAddr(&pPathCompactPathA, libShlwapi, "PathCompactPathA")
 	ret, _, _ := syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(pszPath)), uintptr(dx))
 	return BOOL(ret)
 }
@@ -32458,13 +32458,13 @@ func PathCompactPathA(hDC HDC, pszPath PSTR, dx uint32) BOOL {
 var PathCompactPath = PathCompactPathW
 
 func PathCompactPathW(hDC HDC, pszPath PWSTR, dx uint32) BOOL {
-	addr := lazyAddr(&pPathCompactPathW, libShlwapi, "PathCompactPathW")
+	addr := LazyAddr(&pPathCompactPathW, libShlwapi, "PathCompactPathW")
 	ret, _, _ := syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(pszPath)), uintptr(dx))
 	return BOOL(ret)
 }
 
 func PathCompactPathExA(pszOut PSTR, pszSrc PSTR, cchMax uint32, dwFlags uint32) BOOL {
-	addr := lazyAddr(&pPathCompactPathExA, libShlwapi, "PathCompactPathExA")
+	addr := LazyAddr(&pPathCompactPathExA, libShlwapi, "PathCompactPathExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pszSrc)), uintptr(cchMax), uintptr(dwFlags))
 	return BOOL(ret)
 }
@@ -32472,13 +32472,13 @@ func PathCompactPathExA(pszOut PSTR, pszSrc PSTR, cchMax uint32, dwFlags uint32)
 var PathCompactPathEx = PathCompactPathExW
 
 func PathCompactPathExW(pszOut PWSTR, pszSrc PWSTR, cchMax uint32, dwFlags uint32) BOOL {
-	addr := lazyAddr(&pPathCompactPathExW, libShlwapi, "PathCompactPathExW")
+	addr := LazyAddr(&pPathCompactPathExW, libShlwapi, "PathCompactPathExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pszSrc)), uintptr(cchMax), uintptr(dwFlags))
 	return BOOL(ret)
 }
 
 func PathCommonPrefixA(pszFile1 PSTR, pszFile2 PSTR, achPath PSTR) int32 {
-	addr := lazyAddr(&pPathCommonPrefixA, libShlwapi, "PathCommonPrefixA")
+	addr := LazyAddr(&pPathCommonPrefixA, libShlwapi, "PathCommonPrefixA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile1)), uintptr(unsafe.Pointer(pszFile2)), uintptr(unsafe.Pointer(achPath)))
 	return int32(ret)
 }
@@ -32486,13 +32486,13 @@ func PathCommonPrefixA(pszFile1 PSTR, pszFile2 PSTR, achPath PSTR) int32 {
 var PathCommonPrefix = PathCommonPrefixW
 
 func PathCommonPrefixW(pszFile1 PWSTR, pszFile2 PWSTR, achPath PWSTR) int32 {
-	addr := lazyAddr(&pPathCommonPrefixW, libShlwapi, "PathCommonPrefixW")
+	addr := LazyAddr(&pPathCommonPrefixW, libShlwapi, "PathCommonPrefixW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile1)), uintptr(unsafe.Pointer(pszFile2)), uintptr(unsafe.Pointer(achPath)))
 	return int32(ret)
 }
 
 func PathFileExistsA(pszPath PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPathFileExistsA, libShlwapi, "PathFileExistsA")
+	addr := LazyAddr(&pPathFileExistsA, libShlwapi, "PathFileExistsA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -32500,13 +32500,13 @@ func PathFileExistsA(pszPath PSTR) (BOOL, WIN32_ERROR) {
 var PathFileExists = PathFileExistsW
 
 func PathFileExistsW(pszPath PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPathFileExistsW, libShlwapi, "PathFileExistsW")
+	addr := LazyAddr(&pPathFileExistsW, libShlwapi, "PathFileExistsW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func PathFindExtensionA(pszPath PSTR) PSTR {
-	addr := lazyAddr(&pPathFindExtensionA, libShlwapi, "PathFindExtensionA")
+	addr := LazyAddr(&pPathFindExtensionA, libShlwapi, "PathFindExtensionA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32514,13 +32514,13 @@ func PathFindExtensionA(pszPath PSTR) PSTR {
 var PathFindExtension = PathFindExtensionW
 
 func PathFindExtensionW(pszPath PWSTR) PWSTR {
-	addr := lazyAddr(&pPathFindExtensionW, libShlwapi, "PathFindExtensionW")
+	addr := LazyAddr(&pPathFindExtensionW, libShlwapi, "PathFindExtensionW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathFindFileNameA(pszPath PSTR) PSTR {
-	addr := lazyAddr(&pPathFindFileNameA, libShlwapi, "PathFindFileNameA")
+	addr := LazyAddr(&pPathFindFileNameA, libShlwapi, "PathFindFileNameA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32528,13 +32528,13 @@ func PathFindFileNameA(pszPath PSTR) PSTR {
 var PathFindFileName = PathFindFileNameW
 
 func PathFindFileNameW(pszPath PWSTR) PWSTR {
-	addr := lazyAddr(&pPathFindFileNameW, libShlwapi, "PathFindFileNameW")
+	addr := LazyAddr(&pPathFindFileNameW, libShlwapi, "PathFindFileNameW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathFindNextComponentA(pszPath PSTR) PSTR {
-	addr := lazyAddr(&pPathFindNextComponentA, libShlwapi, "PathFindNextComponentA")
+	addr := LazyAddr(&pPathFindNextComponentA, libShlwapi, "PathFindNextComponentA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32542,13 +32542,13 @@ func PathFindNextComponentA(pszPath PSTR) PSTR {
 var PathFindNextComponent = PathFindNextComponentW
 
 func PathFindNextComponentW(pszPath PWSTR) PWSTR {
-	addr := lazyAddr(&pPathFindNextComponentW, libShlwapi, "PathFindNextComponentW")
+	addr := LazyAddr(&pPathFindNextComponentW, libShlwapi, "PathFindNextComponentW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathFindOnPathA(pszPath PSTR, ppszOtherDirs **int8) BOOL {
-	addr := lazyAddr(&pPathFindOnPathA, libShlwapi, "PathFindOnPathA")
+	addr := LazyAddr(&pPathFindOnPathA, libShlwapi, "PathFindOnPathA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(ppszOtherDirs)))
 	return BOOL(ret)
 }
@@ -32556,13 +32556,13 @@ func PathFindOnPathA(pszPath PSTR, ppszOtherDirs **int8) BOOL {
 var PathFindOnPath = PathFindOnPathW
 
 func PathFindOnPathW(pszPath PWSTR, ppszOtherDirs **uint16) BOOL {
-	addr := lazyAddr(&pPathFindOnPathW, libShlwapi, "PathFindOnPathW")
+	addr := LazyAddr(&pPathFindOnPathW, libShlwapi, "PathFindOnPathW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(ppszOtherDirs)))
 	return BOOL(ret)
 }
 
 func PathFindSuffixArrayA(pszPath PSTR, apszSuffix *PSTR, iArraySize int32) PSTR {
-	addr := lazyAddr(&pPathFindSuffixArrayA, libShlwapi, "PathFindSuffixArrayA")
+	addr := LazyAddr(&pPathFindSuffixArrayA, libShlwapi, "PathFindSuffixArrayA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(apszSuffix)), uintptr(iArraySize))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32570,13 +32570,13 @@ func PathFindSuffixArrayA(pszPath PSTR, apszSuffix *PSTR, iArraySize int32) PSTR
 var PathFindSuffixArray = PathFindSuffixArrayW
 
 func PathFindSuffixArrayW(pszPath PWSTR, apszSuffix *PWSTR, iArraySize int32) PWSTR {
-	addr := lazyAddr(&pPathFindSuffixArrayW, libShlwapi, "PathFindSuffixArrayW")
+	addr := LazyAddr(&pPathFindSuffixArrayW, libShlwapi, "PathFindSuffixArrayW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(apszSuffix)), uintptr(iArraySize))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathGetArgsA(pszPath PSTR) PSTR {
-	addr := lazyAddr(&pPathGetArgsA, libShlwapi, "PathGetArgsA")
+	addr := LazyAddr(&pPathGetArgsA, libShlwapi, "PathGetArgsA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32584,13 +32584,13 @@ func PathGetArgsA(pszPath PSTR) PSTR {
 var PathGetArgs = PathGetArgsW
 
 func PathGetArgsW(pszPath PWSTR) PWSTR {
-	addr := lazyAddr(&pPathGetArgsW, libShlwapi, "PathGetArgsW")
+	addr := LazyAddr(&pPathGetArgsW, libShlwapi, "PathGetArgsW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathIsLFNFileSpecA(pszName PSTR) BOOL {
-	addr := lazyAddr(&pPathIsLFNFileSpecA, libShlwapi, "PathIsLFNFileSpecA")
+	addr := LazyAddr(&pPathIsLFNFileSpecA, libShlwapi, "PathIsLFNFileSpecA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszName)))
 	return BOOL(ret)
 }
@@ -32598,13 +32598,13 @@ func PathIsLFNFileSpecA(pszName PSTR) BOOL {
 var PathIsLFNFileSpec = PathIsLFNFileSpecW
 
 func PathIsLFNFileSpecW(pszName PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsLFNFileSpecW, libShlwapi, "PathIsLFNFileSpecW")
+	addr := LazyAddr(&pPathIsLFNFileSpecW, libShlwapi, "PathIsLFNFileSpecW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszName)))
 	return BOOL(ret)
 }
 
 func PathGetCharTypeA(ch byte) uint32 {
-	addr := lazyAddr(&pPathGetCharTypeA, libShlwapi, "PathGetCharTypeA")
+	addr := LazyAddr(&pPathGetCharTypeA, libShlwapi, "PathGetCharTypeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ch))
 	return uint32(ret)
 }
@@ -32612,13 +32612,13 @@ func PathGetCharTypeA(ch byte) uint32 {
 var PathGetCharType = PathGetCharTypeW
 
 func PathGetCharTypeW(ch uint16) uint32 {
-	addr := lazyAddr(&pPathGetCharTypeW, libShlwapi, "PathGetCharTypeW")
+	addr := LazyAddr(&pPathGetCharTypeW, libShlwapi, "PathGetCharTypeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ch))
 	return uint32(ret)
 }
 
 func PathGetDriveNumberA(pszPath PSTR) int32 {
-	addr := lazyAddr(&pPathGetDriveNumberA, libShlwapi, "PathGetDriveNumberA")
+	addr := LazyAddr(&pPathGetDriveNumberA, libShlwapi, "PathGetDriveNumberA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return int32(ret)
 }
@@ -32626,13 +32626,13 @@ func PathGetDriveNumberA(pszPath PSTR) int32 {
 var PathGetDriveNumber = PathGetDriveNumberW
 
 func PathGetDriveNumberW(pszPath PWSTR) int32 {
-	addr := lazyAddr(&pPathGetDriveNumberW, libShlwapi, "PathGetDriveNumberW")
+	addr := LazyAddr(&pPathGetDriveNumberW, libShlwapi, "PathGetDriveNumberW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return int32(ret)
 }
 
 func PathIsDirectoryA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsDirectoryA, libShlwapi, "PathIsDirectoryA")
+	addr := LazyAddr(&pPathIsDirectoryA, libShlwapi, "PathIsDirectoryA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32640,13 +32640,13 @@ func PathIsDirectoryA(pszPath PSTR) BOOL {
 var PathIsDirectory = PathIsDirectoryW
 
 func PathIsDirectoryW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsDirectoryW, libShlwapi, "PathIsDirectoryW")
+	addr := LazyAddr(&pPathIsDirectoryW, libShlwapi, "PathIsDirectoryW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsDirectoryEmptyA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsDirectoryEmptyA, libShlwapi, "PathIsDirectoryEmptyA")
+	addr := LazyAddr(&pPathIsDirectoryEmptyA, libShlwapi, "PathIsDirectoryEmptyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32654,13 +32654,13 @@ func PathIsDirectoryEmptyA(pszPath PSTR) BOOL {
 var PathIsDirectoryEmpty = PathIsDirectoryEmptyW
 
 func PathIsDirectoryEmptyW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsDirectoryEmptyW, libShlwapi, "PathIsDirectoryEmptyW")
+	addr := LazyAddr(&pPathIsDirectoryEmptyW, libShlwapi, "PathIsDirectoryEmptyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsFileSpecA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsFileSpecA, libShlwapi, "PathIsFileSpecA")
+	addr := LazyAddr(&pPathIsFileSpecA, libShlwapi, "PathIsFileSpecA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32668,13 +32668,13 @@ func PathIsFileSpecA(pszPath PSTR) BOOL {
 var PathIsFileSpec = PathIsFileSpecW
 
 func PathIsFileSpecW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsFileSpecW, libShlwapi, "PathIsFileSpecW")
+	addr := LazyAddr(&pPathIsFileSpecW, libShlwapi, "PathIsFileSpecW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsPrefixA(pszPrefix PSTR, pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsPrefixA, libShlwapi, "PathIsPrefixA")
+	addr := LazyAddr(&pPathIsPrefixA, libShlwapi, "PathIsPrefixA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPrefix)), uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32682,13 +32682,13 @@ func PathIsPrefixA(pszPrefix PSTR, pszPath PSTR) BOOL {
 var PathIsPrefix = PathIsPrefixW
 
 func PathIsPrefixW(pszPrefix PWSTR, pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsPrefixW, libShlwapi, "PathIsPrefixW")
+	addr := LazyAddr(&pPathIsPrefixW, libShlwapi, "PathIsPrefixW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPrefix)), uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsRelativeA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsRelativeA, libShlwapi, "PathIsRelativeA")
+	addr := LazyAddr(&pPathIsRelativeA, libShlwapi, "PathIsRelativeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32696,13 +32696,13 @@ func PathIsRelativeA(pszPath PSTR) BOOL {
 var PathIsRelative = PathIsRelativeW
 
 func PathIsRelativeW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsRelativeW, libShlwapi, "PathIsRelativeW")
+	addr := LazyAddr(&pPathIsRelativeW, libShlwapi, "PathIsRelativeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsRootA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsRootA, libShlwapi, "PathIsRootA")
+	addr := LazyAddr(&pPathIsRootA, libShlwapi, "PathIsRootA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32710,13 +32710,13 @@ func PathIsRootA(pszPath PSTR) BOOL {
 var PathIsRoot = PathIsRootW
 
 func PathIsRootW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsRootW, libShlwapi, "PathIsRootW")
+	addr := LazyAddr(&pPathIsRootW, libShlwapi, "PathIsRootW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsSameRootA(pszPath1 PSTR, pszPath2 PSTR) BOOL {
-	addr := lazyAddr(&pPathIsSameRootA, libShlwapi, "PathIsSameRootA")
+	addr := LazyAddr(&pPathIsSameRootA, libShlwapi, "PathIsSameRootA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath1)), uintptr(unsafe.Pointer(pszPath2)))
 	return BOOL(ret)
 }
@@ -32724,13 +32724,13 @@ func PathIsSameRootA(pszPath1 PSTR, pszPath2 PSTR) BOOL {
 var PathIsSameRoot = PathIsSameRootW
 
 func PathIsSameRootW(pszPath1 PWSTR, pszPath2 PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsSameRootW, libShlwapi, "PathIsSameRootW")
+	addr := LazyAddr(&pPathIsSameRootW, libShlwapi, "PathIsSameRootW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath1)), uintptr(unsafe.Pointer(pszPath2)))
 	return BOOL(ret)
 }
 
 func PathIsUNCA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsUNCA, libShlwapi, "PathIsUNCA")
+	addr := LazyAddr(&pPathIsUNCA, libShlwapi, "PathIsUNCA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32738,13 +32738,13 @@ func PathIsUNCA(pszPath PSTR) BOOL {
 var PathIsUNC = PathIsUNCW
 
 func PathIsUNCW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsUNCW, libShlwapi, "PathIsUNCW")
+	addr := LazyAddr(&pPathIsUNCW, libShlwapi, "PathIsUNCW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsNetworkPathA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsNetworkPathA, libShlwapi, "PathIsNetworkPathA")
+	addr := LazyAddr(&pPathIsNetworkPathA, libShlwapi, "PathIsNetworkPathA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32752,13 +32752,13 @@ func PathIsNetworkPathA(pszPath PSTR) BOOL {
 var PathIsNetworkPath = PathIsNetworkPathW
 
 func PathIsNetworkPathW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsNetworkPathW, libShlwapi, "PathIsNetworkPathW")
+	addr := LazyAddr(&pPathIsNetworkPathW, libShlwapi, "PathIsNetworkPathW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsUNCServerA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsUNCServerA, libShlwapi, "PathIsUNCServerA")
+	addr := LazyAddr(&pPathIsUNCServerA, libShlwapi, "PathIsUNCServerA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32766,13 +32766,13 @@ func PathIsUNCServerA(pszPath PSTR) BOOL {
 var PathIsUNCServer = PathIsUNCServerW
 
 func PathIsUNCServerW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsUNCServerW, libShlwapi, "PathIsUNCServerW")
+	addr := LazyAddr(&pPathIsUNCServerW, libShlwapi, "PathIsUNCServerW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsUNCServerShareA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsUNCServerShareA, libShlwapi, "PathIsUNCServerShareA")
+	addr := LazyAddr(&pPathIsUNCServerShareA, libShlwapi, "PathIsUNCServerShareA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32780,13 +32780,13 @@ func PathIsUNCServerShareA(pszPath PSTR) BOOL {
 var PathIsUNCServerShare = PathIsUNCServerShareW
 
 func PathIsUNCServerShareW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsUNCServerShareW, libShlwapi, "PathIsUNCServerShareW")
+	addr := LazyAddr(&pPathIsUNCServerShareW, libShlwapi, "PathIsUNCServerShareW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsContentTypeA(pszPath PSTR, pszContentType PSTR) BOOL {
-	addr := lazyAddr(&pPathIsContentTypeA, libShlwapi, "PathIsContentTypeA")
+	addr := LazyAddr(&pPathIsContentTypeA, libShlwapi, "PathIsContentTypeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszContentType)))
 	return BOOL(ret)
 }
@@ -32794,13 +32794,13 @@ func PathIsContentTypeA(pszPath PSTR, pszContentType PSTR) BOOL {
 var PathIsContentType = PathIsContentTypeW
 
 func PathIsContentTypeW(pszPath PWSTR, pszContentType PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsContentTypeW, libShlwapi, "PathIsContentTypeW")
+	addr := LazyAddr(&pPathIsContentTypeW, libShlwapi, "PathIsContentTypeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszContentType)))
 	return BOOL(ret)
 }
 
 func PathIsURLA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathIsURLA, libShlwapi, "PathIsURLA")
+	addr := LazyAddr(&pPathIsURLA, libShlwapi, "PathIsURLA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32808,13 +32808,13 @@ func PathIsURLA(pszPath PSTR) BOOL {
 var PathIsURL = PathIsURLW
 
 func PathIsURLW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathIsURLW, libShlwapi, "PathIsURLW")
+	addr := LazyAddr(&pPathIsURLW, libShlwapi, "PathIsURLW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathMakePrettyA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathMakePrettyA, libShlwapi, "PathMakePrettyA")
+	addr := LazyAddr(&pPathMakePrettyA, libShlwapi, "PathMakePrettyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32822,13 +32822,13 @@ func PathMakePrettyA(pszPath PSTR) BOOL {
 var PathMakePretty = PathMakePrettyW
 
 func PathMakePrettyW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathMakePrettyW, libShlwapi, "PathMakePrettyW")
+	addr := LazyAddr(&pPathMakePrettyW, libShlwapi, "PathMakePrettyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathMatchSpecA(pszFile PSTR, pszSpec PSTR) BOOL {
-	addr := lazyAddr(&pPathMatchSpecA, libShlwapi, "PathMatchSpecA")
+	addr := LazyAddr(&pPathMatchSpecA, libShlwapi, "PathMatchSpecA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(unsafe.Pointer(pszSpec)))
 	return BOOL(ret)
 }
@@ -32836,13 +32836,13 @@ func PathMatchSpecA(pszFile PSTR, pszSpec PSTR) BOOL {
 var PathMatchSpec = PathMatchSpecW
 
 func PathMatchSpecW(pszFile PWSTR, pszSpec PWSTR) BOOL {
-	addr := lazyAddr(&pPathMatchSpecW, libShlwapi, "PathMatchSpecW")
+	addr := LazyAddr(&pPathMatchSpecW, libShlwapi, "PathMatchSpecW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(unsafe.Pointer(pszSpec)))
 	return BOOL(ret)
 }
 
 func PathMatchSpecExA(pszFile PSTR, pszSpec PSTR, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pPathMatchSpecExA, libShlwapi, "PathMatchSpecExA")
+	addr := LazyAddr(&pPathMatchSpecExA, libShlwapi, "PathMatchSpecExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(unsafe.Pointer(pszSpec)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -32850,13 +32850,13 @@ func PathMatchSpecExA(pszFile PSTR, pszSpec PSTR, dwFlags uint32) HRESULT {
 var PathMatchSpecEx = PathMatchSpecExW
 
 func PathMatchSpecExW(pszFile PWSTR, pszSpec PWSTR, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pPathMatchSpecExW, libShlwapi, "PathMatchSpecExW")
+	addr := LazyAddr(&pPathMatchSpecExW, libShlwapi, "PathMatchSpecExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(unsafe.Pointer(pszSpec)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func PathParseIconLocationA(pszIconFile PSTR) int32 {
-	addr := lazyAddr(&pPathParseIconLocationA, libShlwapi, "PathParseIconLocationA")
+	addr := LazyAddr(&pPathParseIconLocationA, libShlwapi, "PathParseIconLocationA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconFile)))
 	return int32(ret)
 }
@@ -32864,13 +32864,13 @@ func PathParseIconLocationA(pszIconFile PSTR) int32 {
 var PathParseIconLocation = PathParseIconLocationW
 
 func PathParseIconLocationW(pszIconFile PWSTR) int32 {
-	addr := lazyAddr(&pPathParseIconLocationW, libShlwapi, "PathParseIconLocationW")
+	addr := LazyAddr(&pPathParseIconLocationW, libShlwapi, "PathParseIconLocationW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIconFile)))
 	return int32(ret)
 }
 
 func PathQuoteSpacesA(lpsz PSTR) BOOL {
-	addr := lazyAddr(&pPathQuoteSpacesA, libShlwapi, "PathQuoteSpacesA")
+	addr := LazyAddr(&pPathQuoteSpacesA, libShlwapi, "PathQuoteSpacesA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
@@ -32878,13 +32878,13 @@ func PathQuoteSpacesA(lpsz PSTR) BOOL {
 var PathQuoteSpaces = PathQuoteSpacesW
 
 func PathQuoteSpacesW(lpsz PWSTR) BOOL {
-	addr := lazyAddr(&pPathQuoteSpacesW, libShlwapi, "PathQuoteSpacesW")
+	addr := LazyAddr(&pPathQuoteSpacesW, libShlwapi, "PathQuoteSpacesW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func PathRelativePathToA(pszPath PSTR, pszFrom PSTR, dwAttrFrom uint32, pszTo PSTR, dwAttrTo uint32) BOOL {
-	addr := lazyAddr(&pPathRelativePathToA, libShlwapi, "PathRelativePathToA")
+	addr := LazyAddr(&pPathRelativePathToA, libShlwapi, "PathRelativePathToA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszFrom)), uintptr(dwAttrFrom), uintptr(unsafe.Pointer(pszTo)), uintptr(dwAttrTo))
 	return BOOL(ret)
 }
@@ -32892,25 +32892,25 @@ func PathRelativePathToA(pszPath PSTR, pszFrom PSTR, dwAttrFrom uint32, pszTo PS
 var PathRelativePathTo = PathRelativePathToW
 
 func PathRelativePathToW(pszPath PWSTR, pszFrom PWSTR, dwAttrFrom uint32, pszTo PWSTR, dwAttrTo uint32) BOOL {
-	addr := lazyAddr(&pPathRelativePathToW, libShlwapi, "PathRelativePathToW")
+	addr := LazyAddr(&pPathRelativePathToW, libShlwapi, "PathRelativePathToW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszFrom)), uintptr(dwAttrFrom), uintptr(unsafe.Pointer(pszTo)), uintptr(dwAttrTo))
 	return BOOL(ret)
 }
 
 func PathRemoveArgsA(pszPath PSTR) {
-	addr := lazyAddr(&pPathRemoveArgsA, libShlwapi, "PathRemoveArgsA")
+	addr := LazyAddr(&pPathRemoveArgsA, libShlwapi, "PathRemoveArgsA")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 var PathRemoveArgs = PathRemoveArgsW
 
 func PathRemoveArgsW(pszPath PWSTR) {
-	addr := lazyAddr(&pPathRemoveArgsW, libShlwapi, "PathRemoveArgsW")
+	addr := LazyAddr(&pPathRemoveArgsW, libShlwapi, "PathRemoveArgsW")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 func PathRemoveBackslashA(pszPath PSTR) PSTR {
-	addr := lazyAddr(&pPathRemoveBackslashA, libShlwapi, "PathRemoveBackslashA")
+	addr := LazyAddr(&pPathRemoveBackslashA, libShlwapi, "PathRemoveBackslashA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -32918,37 +32918,37 @@ func PathRemoveBackslashA(pszPath PSTR) PSTR {
 var PathRemoveBackslash = PathRemoveBackslashW
 
 func PathRemoveBackslashW(pszPath PWSTR) PWSTR {
-	addr := lazyAddr(&pPathRemoveBackslashW, libShlwapi, "PathRemoveBackslashW")
+	addr := LazyAddr(&pPathRemoveBackslashW, libShlwapi, "PathRemoveBackslashW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathRemoveBlanksA(pszPath PSTR) {
-	addr := lazyAddr(&pPathRemoveBlanksA, libShlwapi, "PathRemoveBlanksA")
+	addr := LazyAddr(&pPathRemoveBlanksA, libShlwapi, "PathRemoveBlanksA")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 var PathRemoveBlanks = PathRemoveBlanksW
 
 func PathRemoveBlanksW(pszPath PWSTR) {
-	addr := lazyAddr(&pPathRemoveBlanksW, libShlwapi, "PathRemoveBlanksW")
+	addr := LazyAddr(&pPathRemoveBlanksW, libShlwapi, "PathRemoveBlanksW")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 func PathRemoveExtensionA(pszPath PSTR) {
-	addr := lazyAddr(&pPathRemoveExtensionA, libShlwapi, "PathRemoveExtensionA")
+	addr := LazyAddr(&pPathRemoveExtensionA, libShlwapi, "PathRemoveExtensionA")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 var PathRemoveExtension = PathRemoveExtensionW
 
 func PathRemoveExtensionW(pszPath PWSTR) {
-	addr := lazyAddr(&pPathRemoveExtensionW, libShlwapi, "PathRemoveExtensionW")
+	addr := LazyAddr(&pPathRemoveExtensionW, libShlwapi, "PathRemoveExtensionW")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 func PathRemoveFileSpecA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathRemoveFileSpecA, libShlwapi, "PathRemoveFileSpecA")
+	addr := LazyAddr(&pPathRemoveFileSpecA, libShlwapi, "PathRemoveFileSpecA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -32956,13 +32956,13 @@ func PathRemoveFileSpecA(pszPath PSTR) BOOL {
 var PathRemoveFileSpec = PathRemoveFileSpecW
 
 func PathRemoveFileSpecW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathRemoveFileSpecW, libShlwapi, "PathRemoveFileSpecW")
+	addr := LazyAddr(&pPathRemoveFileSpecW, libShlwapi, "PathRemoveFileSpecW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathRenameExtensionA(pszPath PSTR, pszExt PSTR) BOOL {
-	addr := lazyAddr(&pPathRenameExtensionA, libShlwapi, "PathRenameExtensionA")
+	addr := LazyAddr(&pPathRenameExtensionA, libShlwapi, "PathRenameExtensionA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszExt)))
 	return BOOL(ret)
 }
@@ -32970,13 +32970,13 @@ func PathRenameExtensionA(pszPath PSTR, pszExt PSTR) BOOL {
 var PathRenameExtension = PathRenameExtensionW
 
 func PathRenameExtensionW(pszPath PWSTR, pszExt PWSTR) BOOL {
-	addr := lazyAddr(&pPathRenameExtensionW, libShlwapi, "PathRenameExtensionW")
+	addr := LazyAddr(&pPathRenameExtensionW, libShlwapi, "PathRenameExtensionW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszExt)))
 	return BOOL(ret)
 }
 
 func PathSearchAndQualifyA(pszPath PSTR, pszBuf PSTR, cchBuf uint32) BOOL {
-	addr := lazyAddr(&pPathSearchAndQualifyA, libShlwapi, "PathSearchAndQualifyA")
+	addr := LazyAddr(&pPathSearchAndQualifyA, libShlwapi, "PathSearchAndQualifyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return BOOL(ret)
 }
@@ -32984,25 +32984,25 @@ func PathSearchAndQualifyA(pszPath PSTR, pszBuf PSTR, cchBuf uint32) BOOL {
 var PathSearchAndQualify = PathSearchAndQualifyW
 
 func PathSearchAndQualifyW(pszPath PWSTR, pszBuf PWSTR, cchBuf uint32) BOOL {
-	addr := lazyAddr(&pPathSearchAndQualifyW, libShlwapi, "PathSearchAndQualifyW")
+	addr := LazyAddr(&pPathSearchAndQualifyW, libShlwapi, "PathSearchAndQualifyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return BOOL(ret)
 }
 
 func PathSetDlgItemPathA(hDlg HWND, id int32, pszPath PSTR) {
-	addr := lazyAddr(&pPathSetDlgItemPathA, libShlwapi, "PathSetDlgItemPathA")
+	addr := LazyAddr(&pPathSetDlgItemPathA, libShlwapi, "PathSetDlgItemPathA")
 	syscall.SyscallN(addr, hDlg, uintptr(id), uintptr(unsafe.Pointer(pszPath)))
 }
 
 var PathSetDlgItemPath = PathSetDlgItemPathW
 
 func PathSetDlgItemPathW(hDlg HWND, id int32, pszPath PWSTR) {
-	addr := lazyAddr(&pPathSetDlgItemPathW, libShlwapi, "PathSetDlgItemPathW")
+	addr := LazyAddr(&pPathSetDlgItemPathW, libShlwapi, "PathSetDlgItemPathW")
 	syscall.SyscallN(addr, hDlg, uintptr(id), uintptr(unsafe.Pointer(pszPath)))
 }
 
 func PathSkipRootA(pszPath PSTR) PSTR {
-	addr := lazyAddr(&pPathSkipRootA, libShlwapi, "PathSkipRootA")
+	addr := LazyAddr(&pPathSkipRootA, libShlwapi, "PathSkipRootA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -33010,25 +33010,25 @@ func PathSkipRootA(pszPath PSTR) PSTR {
 var PathSkipRoot = PathSkipRootW
 
 func PathSkipRootW(pszPath PWSTR) PWSTR {
-	addr := lazyAddr(&pPathSkipRootW, libShlwapi, "PathSkipRootW")
+	addr := LazyAddr(&pPathSkipRootW, libShlwapi, "PathSkipRootW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func PathStripPathA(pszPath PSTR) {
-	addr := lazyAddr(&pPathStripPathA, libShlwapi, "PathStripPathA")
+	addr := LazyAddr(&pPathStripPathA, libShlwapi, "PathStripPathA")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 var PathStripPath = PathStripPathW
 
 func PathStripPathW(pszPath PWSTR) {
-	addr := lazyAddr(&pPathStripPathW, libShlwapi, "PathStripPathW")
+	addr := LazyAddr(&pPathStripPathW, libShlwapi, "PathStripPathW")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 func PathStripToRootA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathStripToRootA, libShlwapi, "PathStripToRootA")
+	addr := LazyAddr(&pPathStripToRootA, libShlwapi, "PathStripToRootA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -33036,13 +33036,13 @@ func PathStripToRootA(pszPath PSTR) BOOL {
 var PathStripToRoot = PathStripToRootW
 
 func PathStripToRootW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathStripToRootW, libShlwapi, "PathStripToRootW")
+	addr := LazyAddr(&pPathStripToRootW, libShlwapi, "PathStripToRootW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathUnquoteSpacesA(lpsz PSTR) BOOL {
-	addr := lazyAddr(&pPathUnquoteSpacesA, libShlwapi, "PathUnquoteSpacesA")
+	addr := LazyAddr(&pPathUnquoteSpacesA, libShlwapi, "PathUnquoteSpacesA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
@@ -33050,13 +33050,13 @@ func PathUnquoteSpacesA(lpsz PSTR) BOOL {
 var PathUnquoteSpaces = PathUnquoteSpacesW
 
 func PathUnquoteSpacesW(lpsz PWSTR) BOOL {
-	addr := lazyAddr(&pPathUnquoteSpacesW, libShlwapi, "PathUnquoteSpacesW")
+	addr := LazyAddr(&pPathUnquoteSpacesW, libShlwapi, "PathUnquoteSpacesW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func PathMakeSystemFolderA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathMakeSystemFolderA, libShlwapi, "PathMakeSystemFolderA")
+	addr := LazyAddr(&pPathMakeSystemFolderA, libShlwapi, "PathMakeSystemFolderA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -33064,13 +33064,13 @@ func PathMakeSystemFolderA(pszPath PSTR) BOOL {
 var PathMakeSystemFolder = PathMakeSystemFolderW
 
 func PathMakeSystemFolderW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathMakeSystemFolderW, libShlwapi, "PathMakeSystemFolderW")
+	addr := LazyAddr(&pPathMakeSystemFolderW, libShlwapi, "PathMakeSystemFolderW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathUnmakeSystemFolderA(pszPath PSTR) BOOL {
-	addr := lazyAddr(&pPathUnmakeSystemFolderA, libShlwapi, "PathUnmakeSystemFolderA")
+	addr := LazyAddr(&pPathUnmakeSystemFolderA, libShlwapi, "PathUnmakeSystemFolderA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
@@ -33078,13 +33078,13 @@ func PathUnmakeSystemFolderA(pszPath PSTR) BOOL {
 var PathUnmakeSystemFolder = PathUnmakeSystemFolderW
 
 func PathUnmakeSystemFolderW(pszPath PWSTR) BOOL {
-	addr := lazyAddr(&pPathUnmakeSystemFolderW, libShlwapi, "PathUnmakeSystemFolderW")
+	addr := LazyAddr(&pPathUnmakeSystemFolderW, libShlwapi, "PathUnmakeSystemFolderW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 	return BOOL(ret)
 }
 
 func PathIsSystemFolderA(pszPath PSTR, dwAttrb uint32) BOOL {
-	addr := lazyAddr(&pPathIsSystemFolderA, libShlwapi, "PathIsSystemFolderA")
+	addr := LazyAddr(&pPathIsSystemFolderA, libShlwapi, "PathIsSystemFolderA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(dwAttrb))
 	return BOOL(ret)
 }
@@ -33092,25 +33092,25 @@ func PathIsSystemFolderA(pszPath PSTR, dwAttrb uint32) BOOL {
 var PathIsSystemFolder = PathIsSystemFolderW
 
 func PathIsSystemFolderW(pszPath PWSTR, dwAttrb uint32) BOOL {
-	addr := lazyAddr(&pPathIsSystemFolderW, libShlwapi, "PathIsSystemFolderW")
+	addr := LazyAddr(&pPathIsSystemFolderW, libShlwapi, "PathIsSystemFolderW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(dwAttrb))
 	return BOOL(ret)
 }
 
 func PathUndecorateA(pszPath PSTR) {
-	addr := lazyAddr(&pPathUndecorateA, libShlwapi, "PathUndecorateA")
+	addr := LazyAddr(&pPathUndecorateA, libShlwapi, "PathUndecorateA")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 var PathUndecorate = PathUndecorateW
 
 func PathUndecorateW(pszPath PWSTR) {
-	addr := lazyAddr(&pPathUndecorateW, libShlwapi, "PathUndecorateW")
+	addr := LazyAddr(&pPathUndecorateW, libShlwapi, "PathUndecorateW")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
 }
 
 func PathUnExpandEnvStringsA(pszPath PSTR, pszBuf PSTR, cchBuf uint32) BOOL {
-	addr := lazyAddr(&pPathUnExpandEnvStringsA, libShlwapi, "PathUnExpandEnvStringsA")
+	addr := LazyAddr(&pPathUnExpandEnvStringsA, libShlwapi, "PathUnExpandEnvStringsA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return BOOL(ret)
 }
@@ -33118,13 +33118,13 @@ func PathUnExpandEnvStringsA(pszPath PSTR, pszBuf PSTR, cchBuf uint32) BOOL {
 var PathUnExpandEnvStrings = PathUnExpandEnvStringsW
 
 func PathUnExpandEnvStringsW(pszPath PWSTR, pszBuf PWSTR, cchBuf uint32) BOOL {
-	addr := lazyAddr(&pPathUnExpandEnvStringsW, libShlwapi, "PathUnExpandEnvStringsW")
+	addr := LazyAddr(&pPathUnExpandEnvStringsW, libShlwapi, "PathUnExpandEnvStringsW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return BOOL(ret)
 }
 
 func UrlCompareA(psz1 PSTR, psz2 PSTR, fIgnoreSlash BOOL) int32 {
-	addr := lazyAddr(&pUrlCompareA, libShlwapi, "UrlCompareA")
+	addr := LazyAddr(&pUrlCompareA, libShlwapi, "UrlCompareA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(fIgnoreSlash))
 	return int32(ret)
 }
@@ -33132,13 +33132,13 @@ func UrlCompareA(psz1 PSTR, psz2 PSTR, fIgnoreSlash BOOL) int32 {
 var UrlCompare = UrlCompareW
 
 func UrlCompareW(psz1 PWSTR, psz2 PWSTR, fIgnoreSlash BOOL) int32 {
-	addr := lazyAddr(&pUrlCompareW, libShlwapi, "UrlCompareW")
+	addr := LazyAddr(&pUrlCompareW, libShlwapi, "UrlCompareW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz1)), uintptr(unsafe.Pointer(psz2)), uintptr(fIgnoreSlash))
 	return int32(ret)
 }
 
 func UrlCombineA(pszBase PSTR, pszRelative PSTR, pszCombined PSTR, pcchCombined *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlCombineA, libShlwapi, "UrlCombineA")
+	addr := LazyAddr(&pUrlCombineA, libShlwapi, "UrlCombineA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszBase)), uintptr(unsafe.Pointer(pszRelative)), uintptr(unsafe.Pointer(pszCombined)), uintptr(unsafe.Pointer(pcchCombined)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -33146,13 +33146,13 @@ func UrlCombineA(pszBase PSTR, pszRelative PSTR, pszCombined PSTR, pcchCombined 
 var UrlCombine = UrlCombineW
 
 func UrlCombineW(pszBase PWSTR, pszRelative PWSTR, pszCombined PWSTR, pcchCombined *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlCombineW, libShlwapi, "UrlCombineW")
+	addr := LazyAddr(&pUrlCombineW, libShlwapi, "UrlCombineW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszBase)), uintptr(unsafe.Pointer(pszRelative)), uintptr(unsafe.Pointer(pszCombined)), uintptr(unsafe.Pointer(pcchCombined)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func UrlCanonicalizeA(pszUrl PSTR, pszCanonicalized PSTR, pcchCanonicalized *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlCanonicalizeA, libShlwapi, "UrlCanonicalizeA")
+	addr := LazyAddr(&pUrlCanonicalizeA, libShlwapi, "UrlCanonicalizeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszCanonicalized)), uintptr(unsafe.Pointer(pcchCanonicalized)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -33160,13 +33160,13 @@ func UrlCanonicalizeA(pszUrl PSTR, pszCanonicalized PSTR, pcchCanonicalized *uin
 var UrlCanonicalize = UrlCanonicalizeW
 
 func UrlCanonicalizeW(pszUrl PWSTR, pszCanonicalized PWSTR, pcchCanonicalized *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlCanonicalizeW, libShlwapi, "UrlCanonicalizeW")
+	addr := LazyAddr(&pUrlCanonicalizeW, libShlwapi, "UrlCanonicalizeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszCanonicalized)), uintptr(unsafe.Pointer(pcchCanonicalized)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func UrlIsOpaqueA(pszURL PSTR) BOOL {
-	addr := lazyAddr(&pUrlIsOpaqueA, libShlwapi, "UrlIsOpaqueA")
+	addr := LazyAddr(&pUrlIsOpaqueA, libShlwapi, "UrlIsOpaqueA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszURL)))
 	return BOOL(ret)
 }
@@ -33174,13 +33174,13 @@ func UrlIsOpaqueA(pszURL PSTR) BOOL {
 var UrlIsOpaque = UrlIsOpaqueW
 
 func UrlIsOpaqueW(pszURL PWSTR) BOOL {
-	addr := lazyAddr(&pUrlIsOpaqueW, libShlwapi, "UrlIsOpaqueW")
+	addr := LazyAddr(&pUrlIsOpaqueW, libShlwapi, "UrlIsOpaqueW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszURL)))
 	return BOOL(ret)
 }
 
 func UrlIsNoHistoryA(pszURL PSTR) BOOL {
-	addr := lazyAddr(&pUrlIsNoHistoryA, libShlwapi, "UrlIsNoHistoryA")
+	addr := LazyAddr(&pUrlIsNoHistoryA, libShlwapi, "UrlIsNoHistoryA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszURL)))
 	return BOOL(ret)
 }
@@ -33188,13 +33188,13 @@ func UrlIsNoHistoryA(pszURL PSTR) BOOL {
 var UrlIsNoHistory = UrlIsNoHistoryW
 
 func UrlIsNoHistoryW(pszURL PWSTR) BOOL {
-	addr := lazyAddr(&pUrlIsNoHistoryW, libShlwapi, "UrlIsNoHistoryW")
+	addr := LazyAddr(&pUrlIsNoHistoryW, libShlwapi, "UrlIsNoHistoryW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszURL)))
 	return BOOL(ret)
 }
 
 func UrlIsA(pszUrl PSTR, UrlIs URLIS) BOOL {
-	addr := lazyAddr(&pUrlIsA, libShlwapi, "UrlIsA")
+	addr := LazyAddr(&pUrlIsA, libShlwapi, "UrlIsA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(UrlIs))
 	return BOOL(ret)
 }
@@ -33202,13 +33202,13 @@ func UrlIsA(pszUrl PSTR, UrlIs URLIS) BOOL {
 var UrlIs = UrlIsW
 
 func UrlIsW(pszUrl PWSTR, UrlIs URLIS) BOOL {
-	addr := lazyAddr(&pUrlIsW, libShlwapi, "UrlIsW")
+	addr := LazyAddr(&pUrlIsW, libShlwapi, "UrlIsW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(UrlIs))
 	return BOOL(ret)
 }
 
 func UrlGetLocationA(pszURL PSTR) PSTR {
-	addr := lazyAddr(&pUrlGetLocationA, libShlwapi, "UrlGetLocationA")
+	addr := LazyAddr(&pUrlGetLocationA, libShlwapi, "UrlGetLocationA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszURL)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -33216,13 +33216,13 @@ func UrlGetLocationA(pszURL PSTR) PSTR {
 var UrlGetLocation = UrlGetLocationW
 
 func UrlGetLocationW(pszURL PWSTR) PWSTR {
-	addr := lazyAddr(&pUrlGetLocationW, libShlwapi, "UrlGetLocationW")
+	addr := LazyAddr(&pUrlGetLocationW, libShlwapi, "UrlGetLocationW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszURL)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func UrlUnescapeA(pszUrl PSTR, pszUnescaped PSTR, pcchUnescaped *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlUnescapeA, libShlwapi, "UrlUnescapeA")
+	addr := LazyAddr(&pUrlUnescapeA, libShlwapi, "UrlUnescapeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszUnescaped)), uintptr(unsafe.Pointer(pcchUnescaped)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -33230,13 +33230,13 @@ func UrlUnescapeA(pszUrl PSTR, pszUnescaped PSTR, pcchUnescaped *uint32, dwFlags
 var UrlUnescape = UrlUnescapeW
 
 func UrlUnescapeW(pszUrl PWSTR, pszUnescaped PWSTR, pcchUnescaped *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlUnescapeW, libShlwapi, "UrlUnescapeW")
+	addr := LazyAddr(&pUrlUnescapeW, libShlwapi, "UrlUnescapeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszUnescaped)), uintptr(unsafe.Pointer(pcchUnescaped)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func UrlEscapeA(pszUrl PSTR, pszEscaped PSTR, pcchEscaped *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlEscapeA, libShlwapi, "UrlEscapeA")
+	addr := LazyAddr(&pUrlEscapeA, libShlwapi, "UrlEscapeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszEscaped)), uintptr(unsafe.Pointer(pcchEscaped)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -33244,13 +33244,13 @@ func UrlEscapeA(pszUrl PSTR, pszEscaped PSTR, pcchEscaped *uint32, dwFlags uint3
 var UrlEscape = UrlEscapeW
 
 func UrlEscapeW(pszUrl PWSTR, pszEscaped PWSTR, pcchEscaped *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlEscapeW, libShlwapi, "UrlEscapeW")
+	addr := LazyAddr(&pUrlEscapeW, libShlwapi, "UrlEscapeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszEscaped)), uintptr(unsafe.Pointer(pcchEscaped)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func UrlCreateFromPathA(pszPath PSTR, pszUrl PSTR, pcchUrl *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlCreateFromPathA, libShlwapi, "UrlCreateFromPathA")
+	addr := LazyAddr(&pUrlCreateFromPathA, libShlwapi, "UrlCreateFromPathA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pcchUrl)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -33258,13 +33258,13 @@ func UrlCreateFromPathA(pszPath PSTR, pszUrl PSTR, pcchUrl *uint32, dwFlags uint
 var UrlCreateFromPath = UrlCreateFromPathW
 
 func UrlCreateFromPathW(pszPath PWSTR, pszUrl PWSTR, pcchUrl *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlCreateFromPathW, libShlwapi, "UrlCreateFromPathW")
+	addr := LazyAddr(&pUrlCreateFromPathW, libShlwapi, "UrlCreateFromPathW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pcchUrl)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func PathCreateFromUrlA(pszUrl PSTR, pszPath PSTR, pcchPath *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pPathCreateFromUrlA, libShlwapi, "PathCreateFromUrlA")
+	addr := LazyAddr(&pPathCreateFromUrlA, libShlwapi, "PathCreateFromUrlA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pcchPath)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -33272,19 +33272,19 @@ func PathCreateFromUrlA(pszUrl PSTR, pszPath PSTR, pcchPath *uint32, dwFlags uin
 var PathCreateFromUrl = PathCreateFromUrlW
 
 func PathCreateFromUrlW(pszUrl PWSTR, pszPath PWSTR, pcchPath *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pPathCreateFromUrlW, libShlwapi, "PathCreateFromUrlW")
+	addr := LazyAddr(&pPathCreateFromUrlW, libShlwapi, "PathCreateFromUrlW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pcchPath)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func PathCreateFromUrlAlloc(pszIn PWSTR, ppszOut *PWSTR, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pPathCreateFromUrlAlloc, libShlwapi, "PathCreateFromUrlAlloc")
+	addr := LazyAddr(&pPathCreateFromUrlAlloc, libShlwapi, "PathCreateFromUrlAlloc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIn)), uintptr(unsafe.Pointer(ppszOut)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func UrlHashA(pszUrl PSTR, pbHash *byte, cbHash uint32) HRESULT {
-	addr := lazyAddr(&pUrlHashA, libShlwapi, "UrlHashA")
+	addr := LazyAddr(&pUrlHashA, libShlwapi, "UrlHashA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pbHash)), uintptr(cbHash))
 	return HRESULT(ret)
 }
@@ -33292,7 +33292,7 @@ func UrlHashA(pszUrl PSTR, pbHash *byte, cbHash uint32) HRESULT {
 var UrlHash = UrlHashW
 
 func UrlHashW(pszUrl PWSTR, pbHash *byte, cbHash uint32) HRESULT {
-	addr := lazyAddr(&pUrlHashW, libShlwapi, "UrlHashW")
+	addr := LazyAddr(&pUrlHashW, libShlwapi, "UrlHashW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszUrl)), uintptr(unsafe.Pointer(pbHash)), uintptr(cbHash))
 	return HRESULT(ret)
 }
@@ -33300,19 +33300,19 @@ func UrlHashW(pszUrl PWSTR, pbHash *byte, cbHash uint32) HRESULT {
 var UrlGetPart = UrlGetPartW
 
 func UrlGetPartW(pszIn PWSTR, pszOut PWSTR, pcchOut *uint32, dwPart uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlGetPartW, libShlwapi, "UrlGetPartW")
+	addr := LazyAddr(&pUrlGetPartW, libShlwapi, "UrlGetPartW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIn)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)), uintptr(dwPart), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func UrlGetPartA(pszIn PSTR, pszOut PSTR, pcchOut *uint32, dwPart uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlGetPartA, libShlwapi, "UrlGetPartA")
+	addr := LazyAddr(&pUrlGetPartA, libShlwapi, "UrlGetPartA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIn)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)), uintptr(dwPart), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func UrlApplySchemeA(pszIn PSTR, pszOut PSTR, pcchOut *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlApplySchemeA, libShlwapi, "UrlApplySchemeA")
+	addr := LazyAddr(&pUrlApplySchemeA, libShlwapi, "UrlApplySchemeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIn)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -33320,25 +33320,25 @@ func UrlApplySchemeA(pszIn PSTR, pszOut PSTR, pcchOut *uint32, dwFlags uint32) H
 var UrlApplyScheme = UrlApplySchemeW
 
 func UrlApplySchemeW(pszIn PWSTR, pszOut PWSTR, pcchOut *uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pUrlApplySchemeW, libShlwapi, "UrlApplySchemeW")
+	addr := LazyAddr(&pUrlApplySchemeW, libShlwapi, "UrlApplySchemeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszIn)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func HashData(pbData *byte, cbData uint32, pbHash *byte, cbHash uint32) HRESULT {
-	addr := lazyAddr(&pHashData, libShlwapi, "HashData")
+	addr := LazyAddr(&pHashData, libShlwapi, "HashData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbData)), uintptr(cbData), uintptr(unsafe.Pointer(pbHash)), uintptr(cbHash))
 	return HRESULT(ret)
 }
 
 func UrlFixupW(pcszUrl PWSTR, pszTranslatedUrl PWSTR, cchMax uint32) HRESULT {
-	addr := lazyAddr(&pUrlFixupW, libShlwapi, "UrlFixupW")
+	addr := LazyAddr(&pUrlFixupW, libShlwapi, "UrlFixupW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcszUrl)), uintptr(unsafe.Pointer(pszTranslatedUrl)), uintptr(cchMax))
 	return HRESULT(ret)
 }
 
 func ParseURLA(pcszURL PSTR, ppu *PARSEDURLA) HRESULT {
-	addr := lazyAddr(&pParseURLA, libShlwapi, "ParseURLA")
+	addr := LazyAddr(&pParseURLA, libShlwapi, "ParseURLA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcszURL)), uintptr(unsafe.Pointer(ppu)))
 	return HRESULT(ret)
 }
@@ -33346,13 +33346,13 @@ func ParseURLA(pcszURL PSTR, ppu *PARSEDURLA) HRESULT {
 var ParseURL = ParseURLW
 
 func ParseURLW(pcszURL PWSTR, ppu *PARSEDURLW) HRESULT {
-	addr := lazyAddr(&pParseURLW, libShlwapi, "ParseURLW")
+	addr := LazyAddr(&pParseURLW, libShlwapi, "ParseURLW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcszURL)), uintptr(unsafe.Pointer(ppu)))
 	return HRESULT(ret)
 }
 
 func SHDeleteEmptyKeyA(hkey HKEY, pszSubKey PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pSHDeleteEmptyKeyA, libShlwapi, "SHDeleteEmptyKeyA")
+	addr := LazyAddr(&pSHDeleteEmptyKeyA, libShlwapi, "SHDeleteEmptyKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
 	return WIN32_ERROR(ret)
 }
@@ -33360,13 +33360,13 @@ func SHDeleteEmptyKeyA(hkey HKEY, pszSubKey PSTR) WIN32_ERROR {
 var SHDeleteEmptyKey = SHDeleteEmptyKeyW
 
 func SHDeleteEmptyKeyW(hkey HKEY, pszSubKey PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pSHDeleteEmptyKeyW, libShlwapi, "SHDeleteEmptyKeyW")
+	addr := LazyAddr(&pSHDeleteEmptyKeyW, libShlwapi, "SHDeleteEmptyKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
 	return WIN32_ERROR(ret)
 }
 
 func SHDeleteKeyA(hkey HKEY, pszSubKey PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pSHDeleteKeyA, libShlwapi, "SHDeleteKeyA")
+	addr := LazyAddr(&pSHDeleteKeyA, libShlwapi, "SHDeleteKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
 	return WIN32_ERROR(ret)
 }
@@ -33374,19 +33374,19 @@ func SHDeleteKeyA(hkey HKEY, pszSubKey PSTR) WIN32_ERROR {
 var SHDeleteKey = SHDeleteKeyW
 
 func SHDeleteKeyW(hkey HKEY, pszSubKey PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pSHDeleteKeyW, libShlwapi, "SHDeleteKeyW")
+	addr := LazyAddr(&pSHDeleteKeyW, libShlwapi, "SHDeleteKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegDuplicateHKey(hkey HKEY) HKEY {
-	addr := lazyAddr(&pSHRegDuplicateHKey, libShlwapi, "SHRegDuplicateHKey")
+	addr := LazyAddr(&pSHRegDuplicateHKey, libShlwapi, "SHRegDuplicateHKey")
 	ret, _, _ := syscall.SyscallN(addr, hkey)
 	return ret
 }
 
 func SHDeleteValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pSHDeleteValueA, libShlwapi, "SHDeleteValueA")
+	addr := LazyAddr(&pSHDeleteValueA, libShlwapi, "SHDeleteValueA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)))
 	return WIN32_ERROR(ret)
 }
@@ -33394,13 +33394,13 @@ func SHDeleteValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR) WIN32_ERROR {
 var SHDeleteValue = SHDeleteValueW
 
 func SHDeleteValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pSHDeleteValueW, libShlwapi, "SHDeleteValueW")
+	addr := LazyAddr(&pSHDeleteValueW, libShlwapi, "SHDeleteValueW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)))
 	return WIN32_ERROR(ret)
 }
 
 func SHGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHGetValueA, libShlwapi, "SHGetValueA")
+	addr := LazyAddr(&pSHGetValueA, libShlwapi, "SHGetValueA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -33408,13 +33408,13 @@ func SHGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvDa
 var SHGetValue = SHGetValueW
 
 func SHGetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHGetValueW, libShlwapi, "SHGetValueW")
+	addr := LazyAddr(&pSHGetValueW, libShlwapi, "SHGetValueW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func SHSetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32) int32 {
-	addr := lazyAddr(&pSHSetValueA, libShlwapi, "SHSetValueA")
+	addr := LazyAddr(&pSHSetValueA, libShlwapi, "SHSetValueA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData))
 	return int32(ret)
 }
@@ -33422,13 +33422,13 @@ func SHSetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData
 var SHSetValue = SHSetValueW
 
 func SHSetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32) int32 {
-	addr := lazyAddr(&pSHSetValueW, libShlwapi, "SHSetValueW")
+	addr := LazyAddr(&pSHSetValueW, libShlwapi, "SHSetValueW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData))
 	return int32(ret)
 }
 
 func SHRegGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetValueA, libShlwapi, "SHRegGetValueA")
+	addr := LazyAddr(&pSHRegGetValueA, libShlwapi, "SHRegGetValueA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -33436,19 +33436,19 @@ func SHRegGetValueA(hkey HKEY, pszSubKey PSTR, pszValue PSTR, srrfFlags int32, p
 var SHRegGetValue = SHRegGetValueW
 
 func SHRegGetValueW(hkey HKEY, pszSubKey PWSTR, pszValue PWSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetValueW, libShlwapi, "SHRegGetValueW")
+	addr := LazyAddr(&pSHRegGetValueW, libShlwapi, "SHRegGetValueW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegGetValueFromHKCUHKLM(pwszKey PWSTR, pwszValue PWSTR, srrfFlags int32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetValueFromHKCUHKLM, libShlwapi, "SHRegGetValueFromHKCUHKLM")
+	addr := LazyAddr(&pSHRegGetValueFromHKCUHKLM, libShlwapi, "SHRegGetValueFromHKCUHKLM")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszKey)), uintptr(unsafe.Pointer(pwszValue)), uintptr(srrfFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func SHQueryValueExA(hkey HKEY, pszValue PSTR, pdwReserved *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHQueryValueExA, libShlwapi, "SHQueryValueExA")
+	addr := LazyAddr(&pSHQueryValueExA, libShlwapi, "SHQueryValueExA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwReserved)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -33456,13 +33456,13 @@ func SHQueryValueExA(hkey HKEY, pszValue PSTR, pdwReserved *uint32, pdwType *uin
 var SHQueryValueEx = SHQueryValueExW
 
 func SHQueryValueExW(hkey HKEY, pszValue PWSTR, pdwReserved *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHQueryValueExW, libShlwapi, "SHQueryValueExW")
+	addr := LazyAddr(&pSHQueryValueExW, libShlwapi, "SHQueryValueExW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwReserved)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func SHEnumKeyExA(hkey HKEY, dwIndex uint32, pszName PSTR, pcchName *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHEnumKeyExA, libShlwapi, "SHEnumKeyExA")
+	addr := LazyAddr(&pSHEnumKeyExA, libShlwapi, "SHEnumKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)))
 	return WIN32_ERROR(ret)
 }
@@ -33470,13 +33470,13 @@ func SHEnumKeyExA(hkey HKEY, dwIndex uint32, pszName PSTR, pcchName *uint32) WIN
 var SHEnumKeyEx = SHEnumKeyExW
 
 func SHEnumKeyExW(hkey HKEY, dwIndex uint32, pszName PWSTR, pcchName *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHEnumKeyExW, libShlwapi, "SHEnumKeyExW")
+	addr := LazyAddr(&pSHEnumKeyExW, libShlwapi, "SHEnumKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)))
 	return WIN32_ERROR(ret)
 }
 
 func SHEnumValueA(hkey HKEY, dwIndex uint32, pszValueName PSTR, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHEnumValueA, libShlwapi, "SHEnumValueA")
+	addr := LazyAddr(&pSHEnumValueA, libShlwapi, "SHEnumValueA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -33484,13 +33484,13 @@ func SHEnumValueA(hkey HKEY, dwIndex uint32, pszValueName PSTR, pcchValueName *u
 var SHEnumValue = SHEnumValueW
 
 func SHEnumValueW(hkey HKEY, dwIndex uint32, pszValueName PWSTR, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHEnumValueW, libShlwapi, "SHEnumValueW")
+	addr := LazyAddr(&pSHEnumValueW, libShlwapi, "SHEnumValueW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func SHQueryInfoKeyA(hkey HKEY, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHQueryInfoKeyA, libShlwapi, "SHQueryInfoKeyA")
+	addr := LazyAddr(&pSHQueryInfoKeyA, libShlwapi, "SHQueryInfoKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)))
 	return WIN32_ERROR(ret)
 }
@@ -33498,13 +33498,13 @@ func SHQueryInfoKeyA(hkey HKEY, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcV
 var SHQueryInfoKey = SHQueryInfoKeyW
 
 func SHQueryInfoKeyW(hkey HKEY, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHQueryInfoKeyW, libShlwapi, "SHQueryInfoKeyW")
+	addr := LazyAddr(&pSHQueryInfoKeyW, libShlwapi, "SHQueryInfoKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)))
 	return WIN32_ERROR(ret)
 }
 
 func SHCopyKeyA(hkeySrc HKEY, pszSrcSubKey PSTR, hkeyDest HKEY, fReserved uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHCopyKeyA, libShlwapi, "SHCopyKeyA")
+	addr := LazyAddr(&pSHCopyKeyA, libShlwapi, "SHCopyKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hkeySrc, uintptr(unsafe.Pointer(pszSrcSubKey)), hkeyDest, uintptr(fReserved))
 	return WIN32_ERROR(ret)
 }
@@ -33512,13 +33512,13 @@ func SHCopyKeyA(hkeySrc HKEY, pszSrcSubKey PSTR, hkeyDest HKEY, fReserved uint32
 var SHCopyKey = SHCopyKeyW
 
 func SHCopyKeyW(hkeySrc HKEY, pszSrcSubKey PWSTR, hkeyDest HKEY, fReserved uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHCopyKeyW, libShlwapi, "SHCopyKeyW")
+	addr := LazyAddr(&pSHCopyKeyW, libShlwapi, "SHCopyKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hkeySrc, uintptr(unsafe.Pointer(pszSrcSubKey)), hkeyDest, uintptr(fReserved))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegGetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pszPath PSTR, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetPathA, libShlwapi, "SHRegGetPathA")
+	addr := LazyAddr(&pSHRegGetPathA, libShlwapi, "SHRegGetPathA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33526,13 +33526,13 @@ func SHRegGetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pszPath PSTR, dwF
 var SHRegGetPath = SHRegGetPathW
 
 func SHRegGetPathW(hKey HKEY, pcszSubKey PWSTR, pcszValue PWSTR, pszPath PWSTR, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetPathW, libShlwapi, "SHRegGetPathW")
+	addr := LazyAddr(&pSHRegGetPathW, libShlwapi, "SHRegGetPathW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pszPath)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegSetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pcszPath PSTR, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegSetPathA, libShlwapi, "SHRegSetPathA")
+	addr := LazyAddr(&pSHRegSetPathA, libShlwapi, "SHRegSetPathA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pcszPath)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33540,13 +33540,13 @@ func SHRegSetPathA(hKey HKEY, pcszSubKey PSTR, pcszValue PSTR, pcszPath PSTR, dw
 var SHRegSetPath = SHRegSetPathW
 
 func SHRegSetPathW(hKey HKEY, pcszSubKey PWSTR, pcszValue PWSTR, pcszPath PWSTR, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegSetPathW, libShlwapi, "SHRegSetPathW")
+	addr := LazyAddr(&pSHRegSetPathW, libShlwapi, "SHRegSetPathW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pcszSubKey)), uintptr(unsafe.Pointer(pcszValue)), uintptr(unsafe.Pointer(pcszPath)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegCreateUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegCreateUSKeyA, libShlwapi, "SHRegCreateUSKeyA")
+	addr := LazyAddr(&pSHRegCreateUSKeyA, libShlwapi, "SHRegCreateUSKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(samDesired), hRelativeUSKey, uintptr(unsafe.Pointer(phNewUSKey)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33554,13 +33554,13 @@ func SHRegCreateUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, 
 var SHRegCreateUSKey = SHRegCreateUSKeyW
 
 func SHRegCreateUSKeyW(pwzPath PWSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegCreateUSKeyW, libShlwapi, "SHRegCreateUSKeyW")
+	addr := LazyAddr(&pSHRegCreateUSKeyW, libShlwapi, "SHRegCreateUSKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzPath)), uintptr(samDesired), hRelativeUSKey, uintptr(unsafe.Pointer(phNewUSKey)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegOpenUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, fIgnoreHKCU BOOL) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegOpenUSKeyA, libShlwapi, "SHRegOpenUSKeyA")
+	addr := LazyAddr(&pSHRegOpenUSKeyA, libShlwapi, "SHRegOpenUSKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(samDesired), hRelativeUSKey, uintptr(unsafe.Pointer(phNewUSKey)), uintptr(fIgnoreHKCU))
 	return WIN32_ERROR(ret)
 }
@@ -33568,13 +33568,13 @@ func SHRegOpenUSKeyA(pszPath PSTR, samDesired uint32, hRelativeUSKey uintptr, ph
 var SHRegOpenUSKey = SHRegOpenUSKeyW
 
 func SHRegOpenUSKeyW(pwzPath PWSTR, samDesired uint32, hRelativeUSKey uintptr, phNewUSKey *uintptr, fIgnoreHKCU BOOL) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegOpenUSKeyW, libShlwapi, "SHRegOpenUSKeyW")
+	addr := LazyAddr(&pSHRegOpenUSKeyW, libShlwapi, "SHRegOpenUSKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzPath)), uintptr(samDesired), hRelativeUSKey, uintptr(unsafe.Pointer(phNewUSKey)), uintptr(fIgnoreHKCU))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegQueryUSValueA(hUSKey uintptr, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegQueryUSValueA, libShlwapi, "SHRegQueryUSValueA")
+	addr := LazyAddr(&pSHRegQueryUSValueA, libShlwapi, "SHRegQueryUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
 	return WIN32_ERROR(ret)
 }
@@ -33582,13 +33582,13 @@ func SHRegQueryUSValueA(hUSKey uintptr, pszValue PSTR, pdwType *uint32, pvData u
 var SHRegQueryUSValue = SHRegQueryUSValueW
 
 func SHRegQueryUSValueW(hUSKey uintptr, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegQueryUSValueW, libShlwapi, "SHRegQueryUSValueW")
+	addr := LazyAddr(&pSHRegQueryUSValueW, libShlwapi, "SHRegQueryUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegWriteUSValueA(hUSKey uintptr, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegWriteUSValueA, libShlwapi, "SHRegWriteUSValueA")
+	addr := LazyAddr(&pSHRegWriteUSValueA, libShlwapi, "SHRegWriteUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33596,13 +33596,13 @@ func SHRegWriteUSValueA(hUSKey uintptr, pszValue PSTR, dwType uint32, pvData uns
 var SHRegWriteUSValue = SHRegWriteUSValueW
 
 func SHRegWriteUSValueW(hUSKey uintptr, pwzValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegWriteUSValueW, libShlwapi, "SHRegWriteUSValueW")
+	addr := LazyAddr(&pSHRegWriteUSValueW, libShlwapi, "SHRegWriteUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pwzValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegDeleteUSValueA(hUSKey uintptr, pszValue PSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegDeleteUSValueA, libShlwapi, "SHRegDeleteUSValueA")
+	addr := LazyAddr(&pSHRegDeleteUSValueA, libShlwapi, "SHRegDeleteUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pszValue)), uintptr(delRegFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33610,7 +33610,7 @@ func SHRegDeleteUSValueA(hUSKey uintptr, pszValue PSTR, delRegFlags SHREGDEL_FLA
 var SHRegDeleteUSValue = SHRegDeleteUSValueW
 
 func SHRegDeleteUSValueW(hUSKey uintptr, pwzValue PWSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegDeleteUSValueW, libShlwapi, "SHRegDeleteUSValueW")
+	addr := LazyAddr(&pSHRegDeleteUSValueW, libShlwapi, "SHRegDeleteUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pwzValue)), uintptr(delRegFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33618,19 +33618,19 @@ func SHRegDeleteUSValueW(hUSKey uintptr, pwzValue PWSTR, delRegFlags SHREGDEL_FL
 var SHRegDeleteEmptyUSKey = SHRegDeleteEmptyUSKeyW
 
 func SHRegDeleteEmptyUSKeyW(hUSKey uintptr, pwzSubKey PWSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegDeleteEmptyUSKeyW, libShlwapi, "SHRegDeleteEmptyUSKeyW")
+	addr := LazyAddr(&pSHRegDeleteEmptyUSKeyW, libShlwapi, "SHRegDeleteEmptyUSKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pwzSubKey)), uintptr(delRegFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegDeleteEmptyUSKeyA(hUSKey uintptr, pszSubKey PSTR, delRegFlags SHREGDEL_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegDeleteEmptyUSKeyA, libShlwapi, "SHRegDeleteEmptyUSKeyA")
+	addr := LazyAddr(&pSHRegDeleteEmptyUSKeyA, libShlwapi, "SHRegDeleteEmptyUSKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pszSubKey)), uintptr(delRegFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegEnumUSKeyA(hUSKey uintptr, dwIndex uint32, pszName PSTR, pcchName *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegEnumUSKeyA, libShlwapi, "SHRegEnumUSKeyA")
+	addr := LazyAddr(&pSHRegEnumUSKeyA, libShlwapi, "SHRegEnumUSKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pcchName)), uintptr(enumRegFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33638,13 +33638,13 @@ func SHRegEnumUSKeyA(hUSKey uintptr, dwIndex uint32, pszName PSTR, pcchName *uin
 var SHRegEnumUSKey = SHRegEnumUSKeyW
 
 func SHRegEnumUSKeyW(hUSKey uintptr, dwIndex uint32, pwzName PWSTR, pcchName *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegEnumUSKeyW, libShlwapi, "SHRegEnumUSKeyW")
+	addr := LazyAddr(&pSHRegEnumUSKeyW, libShlwapi, "SHRegEnumUSKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(dwIndex), uintptr(unsafe.Pointer(pwzName)), uintptr(unsafe.Pointer(pcchName)), uintptr(enumRegFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegEnumUSValueA(hUSkey uintptr, dwIndex uint32, pszValueName PSTR, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegEnumUSValueA, libShlwapi, "SHRegEnumUSValueA")
+	addr := LazyAddr(&pSHRegEnumUSValueA, libShlwapi, "SHRegEnumUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, hUSkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(enumRegFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33652,13 +33652,13 @@ func SHRegEnumUSValueA(hUSkey uintptr, dwIndex uint32, pszValueName PSTR, pcchVa
 var SHRegEnumUSValue = SHRegEnumUSValueW
 
 func SHRegEnumUSValueW(hUSkey uintptr, dwIndex uint32, pszValueName PWSTR, pcchValueName *uint32, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegEnumUSValueW, libShlwapi, "SHRegEnumUSValueW")
+	addr := LazyAddr(&pSHRegEnumUSValueW, libShlwapi, "SHRegEnumUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, hUSkey, uintptr(dwIndex), uintptr(unsafe.Pointer(pszValueName)), uintptr(unsafe.Pointer(pcchValueName)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(enumRegFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegQueryInfoUSKeyA(hUSKey uintptr, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegQueryInfoUSKeyA, libShlwapi, "SHRegQueryInfoUSKeyA")
+	addr := LazyAddr(&pSHRegQueryInfoUSKeyA, libShlwapi, "SHRegQueryInfoUSKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)), uintptr(enumRegFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33666,19 +33666,19 @@ func SHRegQueryInfoUSKeyA(hUSKey uintptr, pcSubKeys *uint32, pcchMaxSubKeyLen *u
 var SHRegQueryInfoUSKey = SHRegQueryInfoUSKeyW
 
 func SHRegQueryInfoUSKeyW(hUSKey uintptr, pcSubKeys *uint32, pcchMaxSubKeyLen *uint32, pcValues *uint32, pcchMaxValueNameLen *uint32, enumRegFlags SHREGENUM_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegQueryInfoUSKeyW, libShlwapi, "SHRegQueryInfoUSKeyW")
+	addr := LazyAddr(&pSHRegQueryInfoUSKeyW, libShlwapi, "SHRegQueryInfoUSKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey, uintptr(unsafe.Pointer(pcSubKeys)), uintptr(unsafe.Pointer(pcchMaxSubKeyLen)), uintptr(unsafe.Pointer(pcValues)), uintptr(unsafe.Pointer(pcchMaxValueNameLen)), uintptr(enumRegFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegCloseUSKey(hUSKey uintptr) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegCloseUSKey, libShlwapi, "SHRegCloseUSKey")
+	addr := LazyAddr(&pSHRegCloseUSKey, libShlwapi, "SHRegCloseUSKey")
 	ret, _, _ := syscall.SyscallN(addr, hUSKey)
 	return WIN32_ERROR(ret)
 }
 
 func SHRegGetUSValueA(pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetUSValueA, libShlwapi, "SHRegGetUSValueA")
+	addr := LazyAddr(&pSHRegGetUSValueA, libShlwapi, "SHRegGetUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
 	return WIN32_ERROR(ret)
 }
@@ -33686,13 +33686,13 @@ func SHRegGetUSValueA(pszSubKey PSTR, pszValue PSTR, pdwType *uint32, pvData uns
 var SHRegGetUSValue = SHRegGetUSValueW
 
 func SHRegGetUSValueW(pszSubKey PWSTR, pszValue PWSTR, pdwType *uint32, pvData unsafe.Pointer, pcbData *uint32, fIgnoreHKCU BOOL, pvDefaultData unsafe.Pointer, dwDefaultDataSize uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetUSValueW, libShlwapi, "SHRegGetUSValueW")
+	addr := LazyAddr(&pSHRegGetUSValueW, libShlwapi, "SHRegGetUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)), uintptr(fIgnoreHKCU), uintptr(pvDefaultData), uintptr(dwDefaultDataSize))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegSetUSValueA(pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegSetUSValueA, libShlwapi, "SHRegSetUSValueA")
+	addr := LazyAddr(&pSHRegSetUSValueA, libShlwapi, "SHRegSetUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
@@ -33700,19 +33700,19 @@ func SHRegSetUSValueA(pszSubKey PSTR, pszValue PSTR, dwType uint32, pvData unsaf
 var SHRegSetUSValue = SHRegSetUSValueW
 
 func SHRegSetUSValueW(pwzSubKey PWSTR, pwzValue PWSTR, dwType uint32, pvData unsafe.Pointer, cbData uint32, dwFlags uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegSetUSValueW, libShlwapi, "SHRegSetUSValueW")
+	addr := LazyAddr(&pSHRegSetUSValueW, libShlwapi, "SHRegSetUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzSubKey)), uintptr(unsafe.Pointer(pwzValue)), uintptr(dwType), uintptr(pvData), uintptr(cbData), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegGetIntW(hk HKEY, pwzKey PWSTR, iDefault int32) WIN32_ERROR {
-	addr := lazyAddr(&pSHRegGetIntW, libShlwapi, "SHRegGetIntW")
+	addr := LazyAddr(&pSHRegGetIntW, libShlwapi, "SHRegGetIntW")
 	ret, _, _ := syscall.SyscallN(addr, hk, uintptr(unsafe.Pointer(pwzKey)), uintptr(iDefault))
 	return WIN32_ERROR(ret)
 }
 
 func SHRegGetBoolUSValueA(pszSubKey PSTR, pszValue PSTR, fIgnoreHKCU BOOL, fDefault BOOL) BOOL {
-	addr := lazyAddr(&pSHRegGetBoolUSValueA, libShlwapi, "SHRegGetBoolUSValueA")
+	addr := LazyAddr(&pSHRegGetBoolUSValueA, libShlwapi, "SHRegGetBoolUSValueA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(fIgnoreHKCU), uintptr(fDefault))
 	return BOOL(ret)
 }
@@ -33720,19 +33720,19 @@ func SHRegGetBoolUSValueA(pszSubKey PSTR, pszValue PSTR, fIgnoreHKCU BOOL, fDefa
 var SHRegGetBoolUSValue = SHRegGetBoolUSValueW
 
 func SHRegGetBoolUSValueW(pszSubKey PWSTR, pszValue PWSTR, fIgnoreHKCU BOOL, fDefault BOOL) BOOL {
-	addr := lazyAddr(&pSHRegGetBoolUSValueW, libShlwapi, "SHRegGetBoolUSValueW")
+	addr := LazyAddr(&pSHRegGetBoolUSValueW, libShlwapi, "SHRegGetBoolUSValueW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSubKey)), uintptr(unsafe.Pointer(pszValue)), uintptr(fIgnoreHKCU), uintptr(fDefault))
 	return BOOL(ret)
 }
 
 func AssocCreate(clsid syscall.GUID, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pAssocCreate, libShlwapi, "AssocCreate")
+	addr := LazyAddr(&pAssocCreate, libShlwapi, "AssocCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(&clsid)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func AssocQueryStringA(flags ASSOCF, str ASSOCSTR, pszAssoc PSTR, pszExtra PSTR, pszOut PSTR, pcchOut *uint32) HRESULT {
-	addr := lazyAddr(&pAssocQueryStringA, libShlwapi, "AssocQueryStringA")
+	addr := LazyAddr(&pAssocQueryStringA, libShlwapi, "AssocQueryStringA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
 }
@@ -33740,13 +33740,13 @@ func AssocQueryStringA(flags ASSOCF, str ASSOCSTR, pszAssoc PSTR, pszExtra PSTR,
 var AssocQueryString = AssocQueryStringW
 
 func AssocQueryStringW(flags ASSOCF, str ASSOCSTR, pszAssoc PWSTR, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
-	addr := lazyAddr(&pAssocQueryStringW, libShlwapi, "AssocQueryStringW")
+	addr := LazyAddr(&pAssocQueryStringW, libShlwapi, "AssocQueryStringW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
 }
 
 func AssocQueryStringByKeyA(flags ASSOCF, str ASSOCSTR, hkAssoc HKEY, pszExtra PSTR, pszOut PSTR, pcchOut *uint32) HRESULT {
-	addr := lazyAddr(&pAssocQueryStringByKeyA, libShlwapi, "AssocQueryStringByKeyA")
+	addr := LazyAddr(&pAssocQueryStringByKeyA, libShlwapi, "AssocQueryStringByKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), hkAssoc, uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
 }
@@ -33754,13 +33754,13 @@ func AssocQueryStringByKeyA(flags ASSOCF, str ASSOCSTR, hkAssoc HKEY, pszExtra P
 var AssocQueryStringByKey = AssocQueryStringByKeyW
 
 func AssocQueryStringByKeyW(flags ASSOCF, str ASSOCSTR, hkAssoc HKEY, pszExtra PWSTR, pszOut PWSTR, pcchOut *uint32) HRESULT {
-	addr := lazyAddr(&pAssocQueryStringByKeyW, libShlwapi, "AssocQueryStringByKeyW")
+	addr := LazyAddr(&pAssocQueryStringByKeyW, libShlwapi, "AssocQueryStringByKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(str), hkAssoc, uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(pszOut)), uintptr(unsafe.Pointer(pcchOut)))
 	return HRESULT(ret)
 }
 
 func AssocQueryKeyA(flags ASSOCF, key ASSOCKEY, pszAssoc PSTR, pszExtra PSTR, phkeyOut *HKEY) HRESULT {
-	addr := lazyAddr(&pAssocQueryKeyA, libShlwapi, "AssocQueryKeyA")
+	addr := LazyAddr(&pAssocQueryKeyA, libShlwapi, "AssocQueryKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(key), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(phkeyOut)))
 	return HRESULT(ret)
 }
@@ -33768,25 +33768,25 @@ func AssocQueryKeyA(flags ASSOCF, key ASSOCKEY, pszAssoc PSTR, pszExtra PSTR, ph
 var AssocQueryKey = AssocQueryKeyW
 
 func AssocQueryKeyW(flags ASSOCF, key ASSOCKEY, pszAssoc PWSTR, pszExtra PWSTR, phkeyOut *HKEY) HRESULT {
-	addr := lazyAddr(&pAssocQueryKeyW, libShlwapi, "AssocQueryKeyW")
+	addr := LazyAddr(&pAssocQueryKeyW, libShlwapi, "AssocQueryKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(key), uintptr(unsafe.Pointer(pszAssoc)), uintptr(unsafe.Pointer(pszExtra)), uintptr(unsafe.Pointer(phkeyOut)))
 	return HRESULT(ret)
 }
 
 func AssocIsDangerous(pszAssoc PWSTR) BOOL {
-	addr := lazyAddr(&pAssocIsDangerous, libShlwapi, "AssocIsDangerous")
+	addr := LazyAddr(&pAssocIsDangerous, libShlwapi, "AssocIsDangerous")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszAssoc)))
 	return BOOL(ret)
 }
 
 func AssocGetPerceivedType(pszExt PWSTR, ptype *PERCEIVED, pflag *uint32, ppszType *PWSTR) HRESULT {
-	addr := lazyAddr(&pAssocGetPerceivedType, libShlwapi, "AssocGetPerceivedType")
+	addr := LazyAddr(&pAssocGetPerceivedType, libShlwapi, "AssocGetPerceivedType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszExt)), uintptr(unsafe.Pointer(ptype)), uintptr(unsafe.Pointer(pflag)), uintptr(unsafe.Pointer(ppszType)))
 	return HRESULT(ret)
 }
 
 func SHOpenRegStreamA(hkey HKEY, pszSubkey PSTR, pszValue PSTR, grfMode uint32) *IStream {
-	addr := lazyAddr(&pSHOpenRegStreamA, libShlwapi, "SHOpenRegStreamA")
+	addr := LazyAddr(&pSHOpenRegStreamA, libShlwapi, "SHOpenRegStreamA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubkey)), uintptr(unsafe.Pointer(pszValue)), uintptr(grfMode))
 	return (*IStream)(unsafe.Pointer(ret))
 }
@@ -33794,13 +33794,13 @@ func SHOpenRegStreamA(hkey HKEY, pszSubkey PSTR, pszValue PSTR, grfMode uint32) 
 var SHOpenRegStream = SHOpenRegStreamW
 
 func SHOpenRegStreamW(hkey HKEY, pszSubkey PWSTR, pszValue PWSTR, grfMode uint32) *IStream {
-	addr := lazyAddr(&pSHOpenRegStreamW, libShlwapi, "SHOpenRegStreamW")
+	addr := LazyAddr(&pSHOpenRegStreamW, libShlwapi, "SHOpenRegStreamW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubkey)), uintptr(unsafe.Pointer(pszValue)), uintptr(grfMode))
 	return (*IStream)(unsafe.Pointer(ret))
 }
 
 func SHOpenRegStream2A(hkey HKEY, pszSubkey PSTR, pszValue PSTR, grfMode uint32) *IStream {
-	addr := lazyAddr(&pSHOpenRegStream2A, libShlwapi, "SHOpenRegStream2A")
+	addr := LazyAddr(&pSHOpenRegStream2A, libShlwapi, "SHOpenRegStream2A")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubkey)), uintptr(unsafe.Pointer(pszValue)), uintptr(grfMode))
 	return (*IStream)(unsafe.Pointer(ret))
 }
@@ -33808,13 +33808,13 @@ func SHOpenRegStream2A(hkey HKEY, pszSubkey PSTR, pszValue PSTR, grfMode uint32)
 var SHOpenRegStream2 = SHOpenRegStream2W
 
 func SHOpenRegStream2W(hkey HKEY, pszSubkey PWSTR, pszValue PWSTR, grfMode uint32) *IStream {
-	addr := lazyAddr(&pSHOpenRegStream2W, libShlwapi, "SHOpenRegStream2W")
+	addr := LazyAddr(&pSHOpenRegStream2W, libShlwapi, "SHOpenRegStream2W")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(pszSubkey)), uintptr(unsafe.Pointer(pszValue)), uintptr(grfMode))
 	return (*IStream)(unsafe.Pointer(ret))
 }
 
 func SHCreateStreamOnFileA(pszFile PSTR, grfMode uint32, ppstm **IStream) HRESULT {
-	addr := lazyAddr(&pSHCreateStreamOnFileA, libShlwapi, "SHCreateStreamOnFileA")
+	addr := LazyAddr(&pSHCreateStreamOnFileA, libShlwapi, "SHCreateStreamOnFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(grfMode), uintptr(unsafe.Pointer(ppstm)))
 	return HRESULT(ret)
 }
@@ -33822,25 +33822,25 @@ func SHCreateStreamOnFileA(pszFile PSTR, grfMode uint32, ppstm **IStream) HRESUL
 var SHCreateStreamOnFile = SHCreateStreamOnFileW
 
 func SHCreateStreamOnFileW(pszFile PWSTR, grfMode uint32, ppstm **IStream) HRESULT {
-	addr := lazyAddr(&pSHCreateStreamOnFileW, libShlwapi, "SHCreateStreamOnFileW")
+	addr := LazyAddr(&pSHCreateStreamOnFileW, libShlwapi, "SHCreateStreamOnFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(grfMode), uintptr(unsafe.Pointer(ppstm)))
 	return HRESULT(ret)
 }
 
 func SHCreateStreamOnFileEx(pszFile PWSTR, grfMode uint32, dwAttributes uint32, fCreate BOOL, pstmTemplate *IStream, ppstm **IStream) HRESULT {
-	addr := lazyAddr(&pSHCreateStreamOnFileEx, libShlwapi, "SHCreateStreamOnFileEx")
+	addr := LazyAddr(&pSHCreateStreamOnFileEx, libShlwapi, "SHCreateStreamOnFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)), uintptr(grfMode), uintptr(dwAttributes), uintptr(fCreate), uintptr(unsafe.Pointer(pstmTemplate)), uintptr(unsafe.Pointer(ppstm)))
 	return HRESULT(ret)
 }
 
 func SHCreateMemStream(pInit *byte, cbInit uint32) *IStream {
-	addr := lazyAddr(&pSHCreateMemStream, libShlwapi, "SHCreateMemStream")
+	addr := LazyAddr(&pSHCreateMemStream, libShlwapi, "SHCreateMemStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pInit)), uintptr(cbInit))
 	return (*IStream)(unsafe.Pointer(ret))
 }
 
 func GetAcceptLanguagesA(pszLanguages PSTR, pcchLanguages *uint32) HRESULT {
-	addr := lazyAddr(&pGetAcceptLanguagesA, libShlwapi, "GetAcceptLanguagesA")
+	addr := LazyAddr(&pGetAcceptLanguagesA, libShlwapi, "GetAcceptLanguagesA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszLanguages)), uintptr(unsafe.Pointer(pcchLanguages)))
 	return HRESULT(ret)
 }
@@ -33848,113 +33848,113 @@ func GetAcceptLanguagesA(pszLanguages PSTR, pcchLanguages *uint32) HRESULT {
 var GetAcceptLanguages = GetAcceptLanguagesW
 
 func GetAcceptLanguagesW(pszLanguages PWSTR, pcchLanguages *uint32) HRESULT {
-	addr := lazyAddr(&pGetAcceptLanguagesW, libShlwapi, "GetAcceptLanguagesW")
+	addr := LazyAddr(&pGetAcceptLanguagesW, libShlwapi, "GetAcceptLanguagesW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszLanguages)), uintptr(unsafe.Pointer(pcchLanguages)))
 	return HRESULT(ret)
 }
 
 func IUnknown_Set(ppunk **IUnknown, punk *IUnknown) {
-	addr := lazyAddr(&pIUnknown_Set, libShlwapi, "IUnknown_Set")
+	addr := LazyAddr(&pIUnknown_Set, libShlwapi, "IUnknown_Set")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppunk)), uintptr(unsafe.Pointer(punk)))
 }
 
 func IUnknown_AtomicRelease(ppunk unsafe.Pointer) {
-	addr := lazyAddr(&pIUnknown_AtomicRelease, libShlwapi, "IUnknown_AtomicRelease")
+	addr := LazyAddr(&pIUnknown_AtomicRelease, libShlwapi, "IUnknown_AtomicRelease")
 	syscall.SyscallN(addr, uintptr(ppunk))
 }
 
 func IUnknown_GetWindow(punk *IUnknown, phwnd *HWND) HRESULT {
-	addr := lazyAddr(&pIUnknown_GetWindow, libShlwapi, "IUnknown_GetWindow")
+	addr := LazyAddr(&pIUnknown_GetWindow, libShlwapi, "IUnknown_GetWindow")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(phwnd)))
 	return HRESULT(ret)
 }
 
 func IUnknown_SetSite(punk *IUnknown, punkSite *IUnknown) HRESULT {
-	addr := lazyAddr(&pIUnknown_SetSite, libShlwapi, "IUnknown_SetSite")
+	addr := LazyAddr(&pIUnknown_SetSite, libShlwapi, "IUnknown_SetSite")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(punkSite)))
 	return HRESULT(ret)
 }
 
 func IUnknown_GetSite(punk *IUnknown, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pIUnknown_GetSite, libShlwapi, "IUnknown_GetSite")
+	addr := LazyAddr(&pIUnknown_GetSite, libShlwapi, "IUnknown_GetSite")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func IUnknown_QueryService(punk *IUnknown, guidService *syscall.GUID, riid *syscall.GUID, ppvOut unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pIUnknown_QueryService, libShlwapi, "IUnknown_QueryService")
+	addr := LazyAddr(&pIUnknown_QueryService, libShlwapi, "IUnknown_QueryService")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(guidService)), uintptr(unsafe.Pointer(riid)), uintptr(ppvOut))
 	return HRESULT(ret)
 }
 
 func IStream_Read(pstm *IStream, pv unsafe.Pointer, cb uint32) HRESULT {
-	addr := lazyAddr(&pIStream_Read, libShlwapi, "IStream_Read")
+	addr := LazyAddr(&pIStream_Read, libShlwapi, "IStream_Read")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(pv), uintptr(cb))
 	return HRESULT(ret)
 }
 
 func IStream_Write(pstm *IStream, pv unsafe.Pointer, cb uint32) HRESULT {
-	addr := lazyAddr(&pIStream_Write, libShlwapi, "IStream_Write")
+	addr := LazyAddr(&pIStream_Write, libShlwapi, "IStream_Write")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(pv), uintptr(cb))
 	return HRESULT(ret)
 }
 
 func IStream_Reset(pstm *IStream) HRESULT {
-	addr := lazyAddr(&pIStream_Reset, libShlwapi, "IStream_Reset")
+	addr := LazyAddr(&pIStream_Reset, libShlwapi, "IStream_Reset")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)))
 	return HRESULT(ret)
 }
 
 func IStream_Size(pstm *IStream, pui *uint64) HRESULT {
-	addr := lazyAddr(&pIStream_Size, libShlwapi, "IStream_Size")
+	addr := LazyAddr(&pIStream_Size, libShlwapi, "IStream_Size")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(pui)))
 	return HRESULT(ret)
 }
 
 func ConnectToConnectionPoint(punk *IUnknown, riidEvent *syscall.GUID, fConnect BOOL, punkTarget *IUnknown, pdwCookie *uint32, ppcpOut **IConnectionPoint) HRESULT {
-	addr := lazyAddr(&pConnectToConnectionPoint, libShlwapi, "ConnectToConnectionPoint")
+	addr := LazyAddr(&pConnectToConnectionPoint, libShlwapi, "ConnectToConnectionPoint")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(riidEvent)), uintptr(fConnect), uintptr(unsafe.Pointer(punkTarget)), uintptr(unsafe.Pointer(pdwCookie)), uintptr(unsafe.Pointer(ppcpOut)))
 	return HRESULT(ret)
 }
 
 func IStream_ReadPidl(pstm *IStream, ppidlOut **ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pIStream_ReadPidl, libShlwapi, "IStream_ReadPidl")
+	addr := LazyAddr(&pIStream_ReadPidl, libShlwapi, "IStream_ReadPidl")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(ppidlOut)))
 	return HRESULT(ret)
 }
 
 func IStream_WritePidl(pstm *IStream, pidlWrite *ITEMIDLIST) HRESULT {
-	addr := lazyAddr(&pIStream_WritePidl, libShlwapi, "IStream_WritePidl")
+	addr := LazyAddr(&pIStream_WritePidl, libShlwapi, "IStream_WritePidl")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(pidlWrite)))
 	return HRESULT(ret)
 }
 
 func IStream_ReadStr(pstm *IStream, ppsz *PWSTR) HRESULT {
-	addr := lazyAddr(&pIStream_ReadStr, libShlwapi, "IStream_ReadStr")
+	addr := LazyAddr(&pIStream_ReadStr, libShlwapi, "IStream_ReadStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(ppsz)))
 	return HRESULT(ret)
 }
 
 func IStream_WriteStr(pstm *IStream, psz PWSTR) HRESULT {
-	addr := lazyAddr(&pIStream_WriteStr, libShlwapi, "IStream_WriteStr")
+	addr := LazyAddr(&pIStream_WriteStr, libShlwapi, "IStream_WriteStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(psz)))
 	return HRESULT(ret)
 }
 
 func IStream_Copy(pstmFrom *IStream, pstmTo *IStream, cb uint32) HRESULT {
-	addr := lazyAddr(&pIStream_Copy, libShlwapi, "IStream_Copy")
+	addr := LazyAddr(&pIStream_Copy, libShlwapi, "IStream_Copy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstmFrom)), uintptr(unsafe.Pointer(pstmTo)), uintptr(cb))
 	return HRESULT(ret)
 }
 
 func SHGetViewStatePropertyBag(pidl *ITEMIDLIST, pszBagName PWSTR, dwFlags uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetViewStatePropertyBag, libShlwapi, "SHGetViewStatePropertyBag")
+	addr := LazyAddr(&pSHGetViewStatePropertyBag, libShlwapi, "SHGetViewStatePropertyBag")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pszBagName)), uintptr(dwFlags), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHFormatDateTimeA(pft *FILETIME, pdwFlags *uint32, pszBuf PSTR, cchBuf uint32) int32 {
-	addr := lazyAddr(&pSHFormatDateTimeA, libShlwapi, "SHFormatDateTimeA")
+	addr := LazyAddr(&pSHFormatDateTimeA, libShlwapi, "SHFormatDateTimeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pft)), uintptr(unsafe.Pointer(pdwFlags)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return int32(ret)
 }
@@ -33962,37 +33962,37 @@ func SHFormatDateTimeA(pft *FILETIME, pdwFlags *uint32, pszBuf PSTR, cchBuf uint
 var SHFormatDateTime = SHFormatDateTimeW
 
 func SHFormatDateTimeW(pft *FILETIME, pdwFlags *uint32, pszBuf PWSTR, cchBuf uint32) int32 {
-	addr := lazyAddr(&pSHFormatDateTimeW, libShlwapi, "SHFormatDateTimeW")
+	addr := LazyAddr(&pSHFormatDateTimeW, libShlwapi, "SHFormatDateTimeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pft)), uintptr(unsafe.Pointer(pdwFlags)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
 	return int32(ret)
 }
 
 func SHAnsiToUnicode(pszSrc PSTR, pwszDst PWSTR, cwchBuf int32) int32 {
-	addr := lazyAddr(&pSHAnsiToUnicode, libShlwapi, "SHAnsiToUnicode")
+	addr := LazyAddr(&pSHAnsiToUnicode, libShlwapi, "SHAnsiToUnicode")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrc)), uintptr(unsafe.Pointer(pwszDst)), uintptr(cwchBuf))
 	return int32(ret)
 }
 
 func SHAnsiToAnsi(pszSrc PSTR, pszDst PSTR, cchBuf int32) int32 {
-	addr := lazyAddr(&pSHAnsiToAnsi, libShlwapi, "SHAnsiToAnsi")
+	addr := LazyAddr(&pSHAnsiToAnsi, libShlwapi, "SHAnsiToAnsi")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszSrc)), uintptr(unsafe.Pointer(pszDst)), uintptr(cchBuf))
 	return int32(ret)
 }
 
 func SHUnicodeToAnsi(pwszSrc PWSTR, pszDst PSTR, cchBuf int32) int32 {
-	addr := lazyAddr(&pSHUnicodeToAnsi, libShlwapi, "SHUnicodeToAnsi")
+	addr := LazyAddr(&pSHUnicodeToAnsi, libShlwapi, "SHUnicodeToAnsi")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszSrc)), uintptr(unsafe.Pointer(pszDst)), uintptr(cchBuf))
 	return int32(ret)
 }
 
 func SHUnicodeToUnicode(pwzSrc PWSTR, pwzDst PWSTR, cwchBuf int32) int32 {
-	addr := lazyAddr(&pSHUnicodeToUnicode, libShlwapi, "SHUnicodeToUnicode")
+	addr := LazyAddr(&pSHUnicodeToUnicode, libShlwapi, "SHUnicodeToUnicode")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwzSrc)), uintptr(unsafe.Pointer(pwzDst)), uintptr(cwchBuf))
 	return int32(ret)
 }
 
 func SHMessageBoxCheckA(hwnd HWND, pszText PSTR, pszCaption PSTR, uType uint32, iDefault int32, pszRegVal PSTR) int32 {
-	addr := lazyAddr(&pSHMessageBoxCheckA, libShlwapi, "SHMessageBoxCheckA")
+	addr := LazyAddr(&pSHMessageBoxCheckA, libShlwapi, "SHMessageBoxCheckA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszText)), uintptr(unsafe.Pointer(pszCaption)), uintptr(uType), uintptr(iDefault), uintptr(unsafe.Pointer(pszRegVal)))
 	return int32(ret)
 }
@@ -34000,13 +34000,13 @@ func SHMessageBoxCheckA(hwnd HWND, pszText PSTR, pszCaption PSTR, uType uint32, 
 var SHMessageBoxCheck = SHMessageBoxCheckW
 
 func SHMessageBoxCheckW(hwnd HWND, pszText PWSTR, pszCaption PWSTR, uType uint32, iDefault int32, pszRegVal PWSTR) int32 {
-	addr := lazyAddr(&pSHMessageBoxCheckW, libShlwapi, "SHMessageBoxCheckW")
+	addr := LazyAddr(&pSHMessageBoxCheckW, libShlwapi, "SHMessageBoxCheckW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszText)), uintptr(unsafe.Pointer(pszCaption)), uintptr(uType), uintptr(iDefault), uintptr(unsafe.Pointer(pszRegVal)))
 	return int32(ret)
 }
 
 func SHSendMessageBroadcastA(uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pSHSendMessageBroadcastA, libShlwapi, "SHSendMessageBroadcastA")
+	addr := LazyAddr(&pSHSendMessageBroadcastA, libShlwapi, "SHSendMessageBroadcastA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uMsg), wParam, lParam)
 	return ret
 }
@@ -34014,13 +34014,13 @@ func SHSendMessageBroadcastA(uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT 
 var SHSendMessageBroadcast = SHSendMessageBroadcastW
 
 func SHSendMessageBroadcastW(uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pSHSendMessageBroadcastW, libShlwapi, "SHSendMessageBroadcastW")
+	addr := LazyAddr(&pSHSendMessageBroadcastW, libShlwapi, "SHSendMessageBroadcastW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uMsg), wParam, lParam)
 	return ret
 }
 
 func SHStripMneumonicA(pszMenu PSTR) CHAR {
-	addr := lazyAddr(&pSHStripMneumonicA, libShlwapi, "SHStripMneumonicA")
+	addr := LazyAddr(&pSHStripMneumonicA, libShlwapi, "SHStripMneumonicA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszMenu)))
 	return CHAR(ret)
 }
@@ -34028,162 +34028,162 @@ func SHStripMneumonicA(pszMenu PSTR) CHAR {
 var SHStripMneumonic = SHStripMneumonicW
 
 func SHStripMneumonicW(pszMenu PWSTR) uint16 {
-	addr := lazyAddr(&pSHStripMneumonicW, libShlwapi, "SHStripMneumonicW")
+	addr := LazyAddr(&pSHStripMneumonicW, libShlwapi, "SHStripMneumonicW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszMenu)))
 	return uint16(ret)
 }
 
 func IsOS(dwOS OS) BOOL {
-	addr := lazyAddr(&pIsOS, libShlwapi, "IsOS")
+	addr := LazyAddr(&pIsOS, libShlwapi, "IsOS")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwOS))
 	return BOOL(ret)
 }
 
 func SHGlobalCounterGetValue(id SHGLOBALCOUNTER) int32 {
-	addr := lazyAddr(&pSHGlobalCounterGetValue, libShlwapi, "SHGlobalCounterGetValue")
+	addr := LazyAddr(&pSHGlobalCounterGetValue, libShlwapi, "SHGlobalCounterGetValue")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(id))
 	return int32(ret)
 }
 
 func SHGlobalCounterIncrement(id SHGLOBALCOUNTER) int32 {
-	addr := lazyAddr(&pSHGlobalCounterIncrement, libShlwapi, "SHGlobalCounterIncrement")
+	addr := LazyAddr(&pSHGlobalCounterIncrement, libShlwapi, "SHGlobalCounterIncrement")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(id))
 	return int32(ret)
 }
 
 func SHGlobalCounterDecrement(id SHGLOBALCOUNTER) int32 {
-	addr := lazyAddr(&pSHGlobalCounterDecrement, libShlwapi, "SHGlobalCounterDecrement")
+	addr := LazyAddr(&pSHGlobalCounterDecrement, libShlwapi, "SHGlobalCounterDecrement")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(id))
 	return int32(ret)
 }
 
 func SHAllocShared(pvData unsafe.Pointer, dwSize uint32, dwProcessId uint32) HANDLE {
-	addr := lazyAddr(&pSHAllocShared, libShlwapi, "SHAllocShared")
+	addr := LazyAddr(&pSHAllocShared, libShlwapi, "SHAllocShared")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pvData), uintptr(dwSize), uintptr(dwProcessId))
 	return ret
 }
 
 func SHFreeShared(hData HANDLE, dwProcessId uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSHFreeShared, libShlwapi, "SHFreeShared")
+	addr := LazyAddr(&pSHFreeShared, libShlwapi, "SHFreeShared")
 	ret, _, err := syscall.SyscallN(addr, hData, uintptr(dwProcessId))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SHLockShared(hData HANDLE, dwProcessId uint32) unsafe.Pointer {
-	addr := lazyAddr(&pSHLockShared, libShlwapi, "SHLockShared")
+	addr := LazyAddr(&pSHLockShared, libShlwapi, "SHLockShared")
 	ret, _, _ := syscall.SyscallN(addr, hData, uintptr(dwProcessId))
 	return (unsafe.Pointer)(ret)
 }
 
 func SHUnlockShared(pvData unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSHUnlockShared, libShlwapi, "SHUnlockShared")
+	addr := LazyAddr(&pSHUnlockShared, libShlwapi, "SHUnlockShared")
 	ret, _, err := syscall.SyscallN(addr, uintptr(pvData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func WhichPlatform() uint32 {
-	addr := lazyAddr(&pWhichPlatform, libShlwapi, "WhichPlatform")
+	addr := LazyAddr(&pWhichPlatform, libShlwapi, "WhichPlatform")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func QISearch(that unsafe.Pointer, pqit *QITAB, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pQISearch, libShlwapi, "QISearch")
+	addr := LazyAddr(&pQISearch, libShlwapi, "QISearch")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(that), uintptr(unsafe.Pointer(pqit)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHIsLowMemoryMachine(dwType uint32) BOOL {
-	addr := lazyAddr(&pSHIsLowMemoryMachine, libShlwapi, "SHIsLowMemoryMachine")
+	addr := LazyAddr(&pSHIsLowMemoryMachine, libShlwapi, "SHIsLowMemoryMachine")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwType))
 	return BOOL(ret)
 }
 
 func GetMenuPosFromID(hmenu HMENU, id uint32) int32 {
-	addr := lazyAddr(&pGetMenuPosFromID, libShlwapi, "GetMenuPosFromID")
+	addr := LazyAddr(&pGetMenuPosFromID, libShlwapi, "GetMenuPosFromID")
 	ret, _, _ := syscall.SyscallN(addr, hmenu, uintptr(id))
 	return int32(ret)
 }
 
 func SHGetInverseCMAP(pbMap *byte, cbMap uint32) HRESULT {
-	addr := lazyAddr(&pSHGetInverseCMAP, libShlwapi, "SHGetInverseCMAP")
+	addr := LazyAddr(&pSHGetInverseCMAP, libShlwapi, "SHGetInverseCMAP")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbMap)), uintptr(cbMap))
 	return HRESULT(ret)
 }
 
 func SHAutoComplete(hwndEdit HWND, dwFlags SHELL_AUTOCOMPLETE_FLAGS) HRESULT {
-	addr := lazyAddr(&pSHAutoComplete, libShlwapi, "SHAutoComplete")
+	addr := LazyAddr(&pSHAutoComplete, libShlwapi, "SHAutoComplete")
 	ret, _, _ := syscall.SyscallN(addr, hwndEdit, uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func SHCreateThreadRef(pcRef *int32, ppunk **IUnknown) HRESULT {
-	addr := lazyAddr(&pSHCreateThreadRef, libShlwapi, "SHCreateThreadRef")
+	addr := LazyAddr(&pSHCreateThreadRef, libShlwapi, "SHCreateThreadRef")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcRef)), uintptr(unsafe.Pointer(ppunk)))
 	return HRESULT(ret)
 }
 
 func SHSetThreadRef(punk *IUnknown) HRESULT {
-	addr := lazyAddr(&pSHSetThreadRef, libShlwapi, "SHSetThreadRef")
+	addr := LazyAddr(&pSHSetThreadRef, libShlwapi, "SHSetThreadRef")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)))
 	return HRESULT(ret)
 }
 
 func SHGetThreadRef(ppunk **IUnknown) HRESULT {
-	addr := lazyAddr(&pSHGetThreadRef, libShlwapi, "SHGetThreadRef")
+	addr := LazyAddr(&pSHGetThreadRef, libShlwapi, "SHGetThreadRef")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppunk)))
 	return HRESULT(ret)
 }
 
 func SHSkipJunction(pbc *IBindCtx, pclsid *syscall.GUID) BOOL {
-	addr := lazyAddr(&pSHSkipJunction, libShlwapi, "SHSkipJunction")
+	addr := LazyAddr(&pSHSkipJunction, libShlwapi, "SHSkipJunction")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbc)), uintptr(unsafe.Pointer(pclsid)))
 	return BOOL(ret)
 }
 
 func SHCreateThread(pfnThreadProc LPTHREAD_START_ROUTINE, pData unsafe.Pointer, flags uint32, pfnCallback LPTHREAD_START_ROUTINE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSHCreateThread, libShlwapi, "SHCreateThread")
+	addr := LazyAddr(&pSHCreateThread, libShlwapi, "SHCreateThread")
 	ret, _, err := syscall.SyscallN(addr, pfnThreadProc, uintptr(pData), uintptr(flags), pfnCallback)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SHCreateThreadWithHandle(pfnThreadProc LPTHREAD_START_ROUTINE, pData unsafe.Pointer, flags uint32, pfnCallback LPTHREAD_START_ROUTINE, pHandle *HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSHCreateThreadWithHandle, libShlwapi, "SHCreateThreadWithHandle")
+	addr := LazyAddr(&pSHCreateThreadWithHandle, libShlwapi, "SHCreateThreadWithHandle")
 	ret, _, err := syscall.SyscallN(addr, pfnThreadProc, uintptr(pData), uintptr(flags), pfnCallback, uintptr(unsafe.Pointer(pHandle)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SHReleaseThreadRef() HRESULT {
-	addr := lazyAddr(&pSHReleaseThreadRef, libShlwapi, "SHReleaseThreadRef")
+	addr := LazyAddr(&pSHReleaseThreadRef, libShlwapi, "SHReleaseThreadRef")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func SHCreateShellPalette(hdc HDC) HPALETTE {
-	addr := lazyAddr(&pSHCreateShellPalette, libShlwapi, "SHCreateShellPalette")
+	addr := LazyAddr(&pSHCreateShellPalette, libShlwapi, "SHCreateShellPalette")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return ret
 }
 
 func ColorRGBToHLS(clrRGB COLORREF, pwHue *uint16, pwLuminance *uint16, pwSaturation *uint16) {
-	addr := lazyAddr(&pColorRGBToHLS, libShlwapi, "ColorRGBToHLS")
+	addr := LazyAddr(&pColorRGBToHLS, libShlwapi, "ColorRGBToHLS")
 	syscall.SyscallN(addr, uintptr(clrRGB), uintptr(unsafe.Pointer(pwHue)), uintptr(unsafe.Pointer(pwLuminance)), uintptr(unsafe.Pointer(pwSaturation)))
 }
 
 func ColorHLSToRGB(wHue uint16, wLuminance uint16, wSaturation uint16) COLORREF {
-	addr := lazyAddr(&pColorHLSToRGB, libShlwapi, "ColorHLSToRGB")
+	addr := LazyAddr(&pColorHLSToRGB, libShlwapi, "ColorHLSToRGB")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wHue), uintptr(wLuminance), uintptr(wSaturation))
 	return COLORREF(ret)
 }
 
 func ColorAdjustLuma(clrRGB COLORREF, n int32, fScale BOOL) COLORREF {
-	addr := lazyAddr(&pColorAdjustLuma, libShlwapi, "ColorAdjustLuma")
+	addr := LazyAddr(&pColorAdjustLuma, libShlwapi, "ColorAdjustLuma")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(clrRGB), uintptr(n), uintptr(fScale))
 	return COLORREF(ret)
 }
 
 func IsInternetESCEnabled() BOOL {
-	addr := lazyAddr(&pIsInternetESCEnabled, libShlwapi, "IsInternetESCEnabled")
+	addr := LazyAddr(&pIsInternetESCEnabled, libShlwapi, "IsInternetESCEnabled")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }

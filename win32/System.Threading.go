@@ -1207,228 +1207,228 @@ var (
 )
 
 func GetProcessWorkingSetSize(hProcess HANDLE, lpMinimumWorkingSetSize *uintptr, lpMaximumWorkingSetSize *uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessWorkingSetSize, libKernel32, "GetProcessWorkingSetSize")
+	addr := LazyAddr(&pGetProcessWorkingSetSize, libKernel32, "GetProcessWorkingSetSize")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpMinimumWorkingSetSize)), uintptr(unsafe.Pointer(lpMaximumWorkingSetSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessWorkingSetSize(hProcess HANDLE, dwMinimumWorkingSetSize uintptr, dwMaximumWorkingSetSize uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessWorkingSetSize, libKernel32, "SetProcessWorkingSetSize")
+	addr := LazyAddr(&pSetProcessWorkingSetSize, libKernel32, "SetProcessWorkingSetSize")
 	ret, _, err := syscall.SyscallN(addr, hProcess, dwMinimumWorkingSetSize, dwMaximumWorkingSetSize)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FlsAlloc(lpCallback PFLS_CALLBACK_FUNCTION) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pFlsAlloc, libKernel32, "FlsAlloc")
+	addr := LazyAddr(&pFlsAlloc, libKernel32, "FlsAlloc")
 	ret, _, err := syscall.SyscallN(addr, lpCallback)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func FlsGetValue(dwFlsIndex uint32) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pFlsGetValue, libKernel32, "FlsGetValue")
+	addr := LazyAddr(&pFlsGetValue, libKernel32, "FlsGetValue")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlsIndex))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func FlsSetValue(dwFlsIndex uint32, lpFlsData unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFlsSetValue, libKernel32, "FlsSetValue")
+	addr := LazyAddr(&pFlsSetValue, libKernel32, "FlsSetValue")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlsIndex), uintptr(lpFlsData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FlsFree(dwFlsIndex uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFlsFree, libKernel32, "FlsFree")
+	addr := LazyAddr(&pFlsFree, libKernel32, "FlsFree")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlsIndex))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsThreadAFiber() BOOL {
-	addr := lazyAddr(&pIsThreadAFiber, libKernel32, "IsThreadAFiber")
+	addr := LazyAddr(&pIsThreadAFiber, libKernel32, "IsThreadAFiber")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func InitializeSRWLock(SRWLock *RTL_SRWLOCK) {
-	addr := lazyAddr(&pInitializeSRWLock, libKernel32, "InitializeSRWLock")
+	addr := LazyAddr(&pInitializeSRWLock, libKernel32, "InitializeSRWLock")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
 func ReleaseSRWLockExclusive(SRWLock *RTL_SRWLOCK) {
-	addr := lazyAddr(&pReleaseSRWLockExclusive, libKernel32, "ReleaseSRWLockExclusive")
+	addr := LazyAddr(&pReleaseSRWLockExclusive, libKernel32, "ReleaseSRWLockExclusive")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
 func ReleaseSRWLockShared(SRWLock *RTL_SRWLOCK) {
-	addr := lazyAddr(&pReleaseSRWLockShared, libKernel32, "ReleaseSRWLockShared")
+	addr := LazyAddr(&pReleaseSRWLockShared, libKernel32, "ReleaseSRWLockShared")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
 func AcquireSRWLockExclusive(SRWLock *RTL_SRWLOCK) {
-	addr := lazyAddr(&pAcquireSRWLockExclusive, libKernel32, "AcquireSRWLockExclusive")
+	addr := LazyAddr(&pAcquireSRWLockExclusive, libKernel32, "AcquireSRWLockExclusive")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
 func AcquireSRWLockShared(SRWLock *RTL_SRWLOCK) {
-	addr := lazyAddr(&pAcquireSRWLockShared, libKernel32, "AcquireSRWLockShared")
+	addr := LazyAddr(&pAcquireSRWLockShared, libKernel32, "AcquireSRWLockShared")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
 func TryAcquireSRWLockExclusive(SRWLock *RTL_SRWLOCK) BOOLEAN {
-	addr := lazyAddr(&pTryAcquireSRWLockExclusive, libKernel32, "TryAcquireSRWLockExclusive")
+	addr := LazyAddr(&pTryAcquireSRWLockExclusive, libKernel32, "TryAcquireSRWLockExclusive")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 	return BOOLEAN(ret)
 }
 
 func TryAcquireSRWLockShared(SRWLock *RTL_SRWLOCK) BOOLEAN {
-	addr := lazyAddr(&pTryAcquireSRWLockShared, libKernel32, "TryAcquireSRWLockShared")
+	addr := LazyAddr(&pTryAcquireSRWLockShared, libKernel32, "TryAcquireSRWLockShared")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 	return BOOLEAN(ret)
 }
 
 func InitializeCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
-	addr := lazyAddr(&pInitializeCriticalSection, libKernel32, "InitializeCriticalSection")
+	addr := LazyAddr(&pInitializeCriticalSection, libKernel32, "InitializeCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
 func EnterCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
-	addr := lazyAddr(&pEnterCriticalSection, libKernel32, "EnterCriticalSection")
+	addr := LazyAddr(&pEnterCriticalSection, libKernel32, "EnterCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
 func LeaveCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
-	addr := lazyAddr(&pLeaveCriticalSection, libKernel32, "LeaveCriticalSection")
+	addr := LazyAddr(&pLeaveCriticalSection, libKernel32, "LeaveCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
 func InitializeCriticalSectionAndSpinCount(lpCriticalSection *RTL_CRITICAL_SECTION, dwSpinCount uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitializeCriticalSectionAndSpinCount, libKernel32, "InitializeCriticalSectionAndSpinCount")
+	addr := LazyAddr(&pInitializeCriticalSectionAndSpinCount, libKernel32, "InitializeCriticalSectionAndSpinCount")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)), uintptr(dwSpinCount))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InitializeCriticalSectionEx(lpCriticalSection *RTL_CRITICAL_SECTION, dwSpinCount uint32, Flags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitializeCriticalSectionEx, libKernel32, "InitializeCriticalSectionEx")
+	addr := LazyAddr(&pInitializeCriticalSectionEx, libKernel32, "InitializeCriticalSectionEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)), uintptr(dwSpinCount), uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetCriticalSectionSpinCount(lpCriticalSection *RTL_CRITICAL_SECTION, dwSpinCount uint32) uint32 {
-	addr := lazyAddr(&pSetCriticalSectionSpinCount, libKernel32, "SetCriticalSectionSpinCount")
+	addr := LazyAddr(&pSetCriticalSectionSpinCount, libKernel32, "SetCriticalSectionSpinCount")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)), uintptr(dwSpinCount))
 	return uint32(ret)
 }
 
 func TryEnterCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) BOOL {
-	addr := lazyAddr(&pTryEnterCriticalSection, libKernel32, "TryEnterCriticalSection")
+	addr := LazyAddr(&pTryEnterCriticalSection, libKernel32, "TryEnterCriticalSection")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 	return BOOL(ret)
 }
 
 func DeleteCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
-	addr := lazyAddr(&pDeleteCriticalSection, libKernel32, "DeleteCriticalSection")
+	addr := LazyAddr(&pDeleteCriticalSection, libKernel32, "DeleteCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
 func InitOnceInitialize(InitOnce *RTL_RUN_ONCE) {
-	addr := lazyAddr(&pInitOnceInitialize, libKernel32, "InitOnceInitialize")
+	addr := LazyAddr(&pInitOnceInitialize, libKernel32, "InitOnceInitialize")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(InitOnce)))
 }
 
 func InitOnceExecuteOnce(InitOnce *RTL_RUN_ONCE, InitFn PINIT_ONCE_FN, Parameter unsafe.Pointer, Context unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitOnceExecuteOnce, libKernel32, "InitOnceExecuteOnce")
+	addr := LazyAddr(&pInitOnceExecuteOnce, libKernel32, "InitOnceExecuteOnce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(InitOnce)), InitFn, uintptr(Parameter), uintptr(Context))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InitOnceBeginInitialize(lpInitOnce *RTL_RUN_ONCE, dwFlags uint32, fPending *BOOL, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitOnceBeginInitialize, libKernel32, "InitOnceBeginInitialize")
+	addr := LazyAddr(&pInitOnceBeginInitialize, libKernel32, "InitOnceBeginInitialize")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpInitOnce)), uintptr(dwFlags), uintptr(unsafe.Pointer(fPending)), uintptr(lpContext))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InitOnceComplete(lpInitOnce *RTL_RUN_ONCE, dwFlags uint32, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitOnceComplete, libKernel32, "InitOnceComplete")
+	addr := LazyAddr(&pInitOnceComplete, libKernel32, "InitOnceComplete")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpInitOnce)), uintptr(dwFlags), uintptr(lpContext))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InitializeConditionVariable(ConditionVariable *RTL_CONDITION_VARIABLE) {
-	addr := lazyAddr(&pInitializeConditionVariable, libKernel32, "InitializeConditionVariable")
+	addr := LazyAddr(&pInitializeConditionVariable, libKernel32, "InitializeConditionVariable")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)))
 }
 
 func WakeConditionVariable(ConditionVariable *RTL_CONDITION_VARIABLE) {
-	addr := lazyAddr(&pWakeConditionVariable, libKernel32, "WakeConditionVariable")
+	addr := LazyAddr(&pWakeConditionVariable, libKernel32, "WakeConditionVariable")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)))
 }
 
 func WakeAllConditionVariable(ConditionVariable *RTL_CONDITION_VARIABLE) {
-	addr := lazyAddr(&pWakeAllConditionVariable, libKernel32, "WakeAllConditionVariable")
+	addr := LazyAddr(&pWakeAllConditionVariable, libKernel32, "WakeAllConditionVariable")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)))
 }
 
 func SleepConditionVariableCS(ConditionVariable *RTL_CONDITION_VARIABLE, CriticalSection *RTL_CRITICAL_SECTION, dwMilliseconds uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSleepConditionVariableCS, libKernel32, "SleepConditionVariableCS")
+	addr := LazyAddr(&pSleepConditionVariableCS, libKernel32, "SleepConditionVariableCS")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)), uintptr(unsafe.Pointer(CriticalSection)), uintptr(dwMilliseconds))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SleepConditionVariableSRW(ConditionVariable *RTL_CONDITION_VARIABLE, SRWLock *RTL_SRWLOCK, dwMilliseconds uint32, Flags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSleepConditionVariableSRW, libKernel32, "SleepConditionVariableSRW")
+	addr := LazyAddr(&pSleepConditionVariableSRW, libKernel32, "SleepConditionVariableSRW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)), uintptr(unsafe.Pointer(SRWLock)), uintptr(dwMilliseconds), uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetEvent(hEvent HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetEvent, libKernel32, "SetEvent")
+	addr := LazyAddr(&pSetEvent, libKernel32, "SetEvent")
 	ret, _, err := syscall.SyscallN(addr, hEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ResetEvent(hEvent HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pResetEvent, libKernel32, "ResetEvent")
+	addr := LazyAddr(&pResetEvent, libKernel32, "ResetEvent")
 	ret, _, err := syscall.SyscallN(addr, hEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReleaseSemaphore(hSemaphore HANDLE, lReleaseCount int32, lpPreviousCount *int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReleaseSemaphore, libKernel32, "ReleaseSemaphore")
+	addr := LazyAddr(&pReleaseSemaphore, libKernel32, "ReleaseSemaphore")
 	ret, _, err := syscall.SyscallN(addr, hSemaphore, uintptr(lReleaseCount), uintptr(unsafe.Pointer(lpPreviousCount)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReleaseMutex(hMutex HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReleaseMutex, libKernel32, "ReleaseMutex")
+	addr := LazyAddr(&pReleaseMutex, libKernel32, "ReleaseMutex")
 	ret, _, err := syscall.SyscallN(addr, hMutex)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func WaitForSingleObject(hHandle HANDLE, dwMilliseconds uint32) (WIN32_ERROR, WIN32_ERROR) {
-	addr := lazyAddr(&pWaitForSingleObject, libKernel32, "WaitForSingleObject")
+	addr := LazyAddr(&pWaitForSingleObject, libKernel32, "WaitForSingleObject")
 	ret, _, err := syscall.SyscallN(addr, hHandle, uintptr(dwMilliseconds))
 	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func SleepEx(dwMilliseconds uint32, bAlertable BOOL) uint32 {
-	addr := lazyAddr(&pSleepEx, libKernel32, "SleepEx")
+	addr := LazyAddr(&pSleepEx, libKernel32, "SleepEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwMilliseconds), uintptr(bAlertable))
 	return uint32(ret)
 }
 
 func WaitForSingleObjectEx(hHandle HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
-	addr := lazyAddr(&pWaitForSingleObjectEx, libKernel32, "WaitForSingleObjectEx")
+	addr := LazyAddr(&pWaitForSingleObjectEx, libKernel32, "WaitForSingleObjectEx")
 	ret, _, err := syscall.SyscallN(addr, hHandle, uintptr(dwMilliseconds), uintptr(bAlertable))
 	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func WaitForMultipleObjectsEx(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
-	addr := lazyAddr(&pWaitForMultipleObjectsEx, libKernel32, "WaitForMultipleObjectsEx")
+	addr := LazyAddr(&pWaitForMultipleObjectsEx, libKernel32, "WaitForMultipleObjectsEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(lpHandles)), uintptr(bWaitAll), uintptr(dwMilliseconds), uintptr(bAlertable))
 	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func CreateMutexA(lpMutexAttributes *SECURITY_ATTRIBUTES, bInitialOwner BOOL, lpName PSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMutexA, libKernel32, "CreateMutexA")
+	addr := LazyAddr(&pCreateMutexA, libKernel32, "CreateMutexA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMutexAttributes)), uintptr(bInitialOwner), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -1436,19 +1436,19 @@ func CreateMutexA(lpMutexAttributes *SECURITY_ATTRIBUTES, bInitialOwner BOOL, lp
 var CreateMutex = CreateMutexW
 
 func CreateMutexW(lpMutexAttributes *SECURITY_ATTRIBUTES, bInitialOwner BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMutexW, libKernel32, "CreateMutexW")
+	addr := LazyAddr(&pCreateMutexW, libKernel32, "CreateMutexW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMutexAttributes)), uintptr(bInitialOwner), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenMutexW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenMutexW, libKernel32, "OpenMutexW")
+	addr := LazyAddr(&pOpenMutexW, libKernel32, "OpenMutexW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateEventA(lpEventAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, bInitialState BOOL, lpName PSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateEventA, libKernel32, "CreateEventA")
+	addr := LazyAddr(&pCreateEventA, libKernel32, "CreateEventA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpEventAttributes)), uintptr(bManualReset), uintptr(bInitialState), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -1456,13 +1456,13 @@ func CreateEventA(lpEventAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, bIn
 var CreateEvent = CreateEventW
 
 func CreateEventW(lpEventAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, bInitialState BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateEventW, libKernel32, "CreateEventW")
+	addr := LazyAddr(&pCreateEventW, libKernel32, "CreateEventW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpEventAttributes)), uintptr(bManualReset), uintptr(bInitialState), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenEventA(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenEventA, libKernel32, "OpenEventA")
+	addr := LazyAddr(&pOpenEventA, libKernel32, "OpenEventA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -1470,43 +1470,43 @@ func OpenEventA(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BO
 var OpenEvent = OpenEventW
 
 func OpenEventW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenEventW, libKernel32, "OpenEventW")
+	addr := LazyAddr(&pOpenEventW, libKernel32, "OpenEventW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenSemaphoreW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenSemaphoreW, libKernel32, "OpenSemaphoreW")
+	addr := LazyAddr(&pOpenSemaphoreW, libKernel32, "OpenSemaphoreW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenWaitableTimerW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpTimerName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenWaitableTimerW, libKernel32, "OpenWaitableTimerW")
+	addr := LazyAddr(&pOpenWaitableTimerW, libKernel32, "OpenWaitableTimerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpTimerName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetWaitableTimerEx(hTimer HANDLE, lpDueTime *int64, lPeriod int32, pfnCompletionRoutine PTIMERAPCROUTINE, lpArgToCompletionRoutine unsafe.Pointer, WakeContext *REASON_CONTEXT, TolerableDelay uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWaitableTimerEx, libKernel32, "SetWaitableTimerEx")
+	addr := LazyAddr(&pSetWaitableTimerEx, libKernel32, "SetWaitableTimerEx")
 	ret, _, err := syscall.SyscallN(addr, hTimer, uintptr(unsafe.Pointer(lpDueTime)), uintptr(lPeriod), pfnCompletionRoutine, uintptr(lpArgToCompletionRoutine), uintptr(unsafe.Pointer(WakeContext)), uintptr(TolerableDelay))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetWaitableTimer(hTimer HANDLE, lpDueTime *int64, lPeriod int32, pfnCompletionRoutine PTIMERAPCROUTINE, lpArgToCompletionRoutine unsafe.Pointer, fResume BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWaitableTimer, libKernel32, "SetWaitableTimer")
+	addr := LazyAddr(&pSetWaitableTimer, libKernel32, "SetWaitableTimer")
 	ret, _, err := syscall.SyscallN(addr, hTimer, uintptr(unsafe.Pointer(lpDueTime)), uintptr(lPeriod), pfnCompletionRoutine, uintptr(lpArgToCompletionRoutine), uintptr(fResume))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CancelWaitableTimer(hTimer HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCancelWaitableTimer, libKernel32, "CancelWaitableTimer")
+	addr := LazyAddr(&pCancelWaitableTimer, libKernel32, "CancelWaitableTimer")
 	ret, _, err := syscall.SyscallN(addr, hTimer)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateMutexExA(lpMutexAttributes *SECURITY_ATTRIBUTES, lpName PSTR, dwFlags uint32, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMutexExA, libKernel32, "CreateMutexExA")
+	addr := LazyAddr(&pCreateMutexExA, libKernel32, "CreateMutexExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMutexAttributes)), uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
@@ -1514,13 +1514,13 @@ func CreateMutexExA(lpMutexAttributes *SECURITY_ATTRIBUTES, lpName PSTR, dwFlags
 var CreateMutexEx = CreateMutexExW
 
 func CreateMutexExW(lpMutexAttributes *SECURITY_ATTRIBUTES, lpName PWSTR, dwFlags uint32, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMutexExW, libKernel32, "CreateMutexExW")
+	addr := LazyAddr(&pCreateMutexExW, libKernel32, "CreateMutexExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMutexAttributes)), uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateEventExA(lpEventAttributes *SECURITY_ATTRIBUTES, lpName PSTR, dwFlags CREATE_EVENT, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateEventExA, libKernel32, "CreateEventExA")
+	addr := LazyAddr(&pCreateEventExA, libKernel32, "CreateEventExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpEventAttributes)), uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
@@ -1528,7 +1528,7 @@ func CreateEventExA(lpEventAttributes *SECURITY_ATTRIBUTES, lpName PSTR, dwFlags
 var CreateEventEx = CreateEventExW
 
 func CreateEventExW(lpEventAttributes *SECURITY_ATTRIBUTES, lpName PWSTR, dwFlags CREATE_EVENT, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateEventExW, libKernel32, "CreateEventExW")
+	addr := LazyAddr(&pCreateEventExW, libKernel32, "CreateEventExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpEventAttributes)), uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
@@ -1536,42 +1536,42 @@ func CreateEventExW(lpEventAttributes *SECURITY_ATTRIBUTES, lpName PWSTR, dwFlag
 var CreateSemaphoreEx = CreateSemaphoreExW
 
 func CreateSemaphoreExW(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount int32, lMaximumCount int32, lpName PWSTR, dwFlags uint32, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSemaphoreExW, libKernel32, "CreateSemaphoreExW")
+	addr := LazyAddr(&pCreateSemaphoreExW, libKernel32, "CreateSemaphoreExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSemaphoreAttributes)), uintptr(lInitialCount), uintptr(lMaximumCount), uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateWaitableTimerExW(lpTimerAttributes *SECURITY_ATTRIBUTES, lpTimerName PWSTR, dwFlags uint32, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateWaitableTimerExW, libKernel32, "CreateWaitableTimerExW")
+	addr := LazyAddr(&pCreateWaitableTimerExW, libKernel32, "CreateWaitableTimerExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(unsafe.Pointer(lpTimerName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func EnterSynchronizationBarrier(lpBarrier *RTL_BARRIER, dwFlags uint32) BOOL {
-	addr := lazyAddr(&pEnterSynchronizationBarrier, libKernel32, "EnterSynchronizationBarrier")
+	addr := LazyAddr(&pEnterSynchronizationBarrier, libKernel32, "EnterSynchronizationBarrier")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBarrier)), uintptr(dwFlags))
 	return BOOL(ret)
 }
 
 func InitializeSynchronizationBarrier(lpBarrier *RTL_BARRIER, lTotalThreads int32, lSpinCount int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitializeSynchronizationBarrier, libKernel32, "InitializeSynchronizationBarrier")
+	addr := LazyAddr(&pInitializeSynchronizationBarrier, libKernel32, "InitializeSynchronizationBarrier")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBarrier)), uintptr(lTotalThreads), uintptr(lSpinCount))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteSynchronizationBarrier(lpBarrier *RTL_BARRIER) BOOL {
-	addr := lazyAddr(&pDeleteSynchronizationBarrier, libKernel32, "DeleteSynchronizationBarrier")
+	addr := LazyAddr(&pDeleteSynchronizationBarrier, libKernel32, "DeleteSynchronizationBarrier")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBarrier)))
 	return BOOL(ret)
 }
 
 func Sleep(dwMilliseconds uint32) {
-	addr := lazyAddr(&pSleep, libKernel32, "Sleep")
+	addr := LazyAddr(&pSleep, libKernel32, "Sleep")
 	syscall.SyscallN(addr, uintptr(dwMilliseconds))
 }
 
 func WaitForMultipleObjects(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32) (WIN32_ERROR, WIN32_ERROR) {
-	addr := lazyAddr(&pWaitForMultipleObjects, libKernel32, "WaitForMultipleObjects")
+	addr := LazyAddr(&pWaitForMultipleObjects, libKernel32, "WaitForMultipleObjects")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(lpHandles)), uintptr(bWaitAll), uintptr(dwMilliseconds))
 	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
@@ -1579,214 +1579,214 @@ func WaitForMultipleObjects(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwM
 var CreateSemaphore = CreateSemaphoreW
 
 func CreateSemaphoreW(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount int32, lMaximumCount int32, lpName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSemaphoreW, libKernel32, "CreateSemaphoreW")
+	addr := LazyAddr(&pCreateSemaphoreW, libKernel32, "CreateSemaphoreW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSemaphoreAttributes)), uintptr(lInitialCount), uintptr(lMaximumCount), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateWaitableTimerW(lpTimerAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, lpTimerName PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateWaitableTimerW, libKernel32, "CreateWaitableTimerW")
+	addr := LazyAddr(&pCreateWaitableTimerW, libKernel32, "CreateWaitableTimerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(bManualReset), uintptr(unsafe.Pointer(lpTimerName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func InitializeSListHead(ListHead *SLIST_HEADER) {
-	addr := lazyAddr(&pInitializeSListHead, libKernel32, "InitializeSListHead")
+	addr := LazyAddr(&pInitializeSListHead, libKernel32, "InitializeSListHead")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ListHead)))
 }
 
 func InterlockedPopEntrySList(ListHead *SLIST_HEADER) *SLIST_ENTRY {
-	addr := lazyAddr(&pInterlockedPopEntrySList, libKernel32, "InterlockedPopEntrySList")
+	addr := LazyAddr(&pInterlockedPopEntrySList, libKernel32, "InterlockedPopEntrySList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ListHead)))
 	return (*SLIST_ENTRY)(unsafe.Pointer(ret))
 }
 
 func InterlockedPushEntrySList(ListHead *SLIST_HEADER, ListEntry *SLIST_ENTRY) *SLIST_ENTRY {
-	addr := lazyAddr(&pInterlockedPushEntrySList, libKernel32, "InterlockedPushEntrySList")
+	addr := LazyAddr(&pInterlockedPushEntrySList, libKernel32, "InterlockedPushEntrySList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ListHead)), uintptr(unsafe.Pointer(ListEntry)))
 	return (*SLIST_ENTRY)(unsafe.Pointer(ret))
 }
 
 func InterlockedPushListSListEx(ListHead *SLIST_HEADER, List *SLIST_ENTRY, ListEnd *SLIST_ENTRY, Count uint32) *SLIST_ENTRY {
-	addr := lazyAddr(&pInterlockedPushListSListEx, libKernel32, "InterlockedPushListSListEx")
+	addr := LazyAddr(&pInterlockedPushListSListEx, libKernel32, "InterlockedPushListSListEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ListHead)), uintptr(unsafe.Pointer(List)), uintptr(unsafe.Pointer(ListEnd)), uintptr(Count))
 	return (*SLIST_ENTRY)(unsafe.Pointer(ret))
 }
 
 func InterlockedFlushSList(ListHead *SLIST_HEADER) *SLIST_ENTRY {
-	addr := lazyAddr(&pInterlockedFlushSList, libKernel32, "InterlockedFlushSList")
+	addr := LazyAddr(&pInterlockedFlushSList, libKernel32, "InterlockedFlushSList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ListHead)))
 	return (*SLIST_ENTRY)(unsafe.Pointer(ret))
 }
 
 func QueryDepthSList(ListHead *SLIST_HEADER) uint16 {
-	addr := lazyAddr(&pQueryDepthSList, libKernel32, "QueryDepthSList")
+	addr := LazyAddr(&pQueryDepthSList, libKernel32, "QueryDepthSList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ListHead)))
 	return uint16(ret)
 }
 
 func QueueUserAPC(pfnAPC PAPCFUNC, hThread HANDLE, dwData uintptr) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pQueueUserAPC, libKernel32, "QueueUserAPC")
+	addr := LazyAddr(&pQueueUserAPC, libKernel32, "QueueUserAPC")
 	ret, _, err := syscall.SyscallN(addr, pfnAPC, hThread, dwData)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func QueueUserAPC2(ApcRoutine PAPCFUNC, Thread HANDLE, Data uintptr, Flags QUEUE_USER_APC_FLAGS) BOOL {
-	addr := lazyAddr(&pQueueUserAPC2, libKernel32, "QueueUserAPC2")
+	addr := LazyAddr(&pQueueUserAPC2, libKernel32, "QueueUserAPC2")
 	ret, _, _ := syscall.SyscallN(addr, ApcRoutine, Thread, Data, uintptr(Flags))
 	return BOOL(ret)
 }
 
 func GetProcessTimes(hProcess HANDLE, lpCreationTime *FILETIME, lpExitTime *FILETIME, lpKernelTime *FILETIME, lpUserTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessTimes, libKernel32, "GetProcessTimes")
+	addr := LazyAddr(&pGetProcessTimes, libKernel32, "GetProcessTimes")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpCreationTime)), uintptr(unsafe.Pointer(lpExitTime)), uintptr(unsafe.Pointer(lpKernelTime)), uintptr(unsafe.Pointer(lpUserTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCurrentProcess() HANDLE {
-	addr := lazyAddr(&pGetCurrentProcess, libKernel32, "GetCurrentProcess")
+	addr := LazyAddr(&pGetCurrentProcess, libKernel32, "GetCurrentProcess")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func GetCurrentProcessId() uint32 {
-	addr := lazyAddr(&pGetCurrentProcessId, libKernel32, "GetCurrentProcessId")
+	addr := LazyAddr(&pGetCurrentProcessId, libKernel32, "GetCurrentProcessId")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func ExitProcess(uExitCode uint32) {
-	addr := lazyAddr(&pExitProcess, libKernel32, "ExitProcess")
+	addr := LazyAddr(&pExitProcess, libKernel32, "ExitProcess")
 	syscall.SyscallN(addr, uintptr(uExitCode))
 }
 
 func TerminateProcess(hProcess HANDLE, uExitCode uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTerminateProcess, libKernel32, "TerminateProcess")
+	addr := LazyAddr(&pTerminateProcess, libKernel32, "TerminateProcess")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(uExitCode))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetExitCodeProcess(hProcess HANDLE, lpExitCode *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetExitCodeProcess, libKernel32, "GetExitCodeProcess")
+	addr := LazyAddr(&pGetExitCodeProcess, libKernel32, "GetExitCodeProcess")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpExitCode)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SwitchToThread() BOOL {
-	addr := lazyAddr(&pSwitchToThread, libKernel32, "SwitchToThread")
+	addr := LazyAddr(&pSwitchToThread, libKernel32, "SwitchToThread")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func CreateThread(lpThreadAttributes *SECURITY_ATTRIBUTES, dwStackSize uintptr, lpStartAddress LPTHREAD_START_ROUTINE, lpParameter unsafe.Pointer, dwCreationFlags THREAD_CREATION_FLAGS, lpThreadId *uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateThread, libKernel32, "CreateThread")
+	addr := LazyAddr(&pCreateThread, libKernel32, "CreateThread")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpThreadAttributes)), dwStackSize, lpStartAddress, uintptr(lpParameter), uintptr(dwCreationFlags), uintptr(unsafe.Pointer(lpThreadId)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateRemoteThread(hProcess HANDLE, lpThreadAttributes *SECURITY_ATTRIBUTES, dwStackSize uintptr, lpStartAddress LPTHREAD_START_ROUTINE, lpParameter unsafe.Pointer, dwCreationFlags uint32, lpThreadId *uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateRemoteThread, libKernel32, "CreateRemoteThread")
+	addr := LazyAddr(&pCreateRemoteThread, libKernel32, "CreateRemoteThread")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpThreadAttributes)), dwStackSize, lpStartAddress, uintptr(lpParameter), uintptr(dwCreationFlags), uintptr(unsafe.Pointer(lpThreadId)))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetCurrentThread() HANDLE {
-	addr := lazyAddr(&pGetCurrentThread, libKernel32, "GetCurrentThread")
+	addr := LazyAddr(&pGetCurrentThread, libKernel32, "GetCurrentThread")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func GetCurrentThreadId() uint32 {
-	addr := lazyAddr(&pGetCurrentThreadId, libKernel32, "GetCurrentThreadId")
+	addr := LazyAddr(&pGetCurrentThreadId, libKernel32, "GetCurrentThreadId")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func OpenThread(dwDesiredAccess THREAD_ACCESS_RIGHTS, bInheritHandle BOOL, dwThreadId uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenThread, libKernel32, "OpenThread")
+	addr := LazyAddr(&pOpenThread, libKernel32, "OpenThread")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(dwThreadId))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetThreadPriority(hThread HANDLE, nPriority THREAD_PRIORITY) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadPriority, libKernel32, "SetThreadPriority")
+	addr := LazyAddr(&pSetThreadPriority, libKernel32, "SetThreadPriority")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(nPriority))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetThreadPriorityBoost(hThread HANDLE, bDisablePriorityBoost BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadPriorityBoost, libKernel32, "SetThreadPriorityBoost")
+	addr := LazyAddr(&pSetThreadPriorityBoost, libKernel32, "SetThreadPriorityBoost")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(bDisablePriorityBoost))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadPriorityBoost(hThread HANDLE, pDisablePriorityBoost *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadPriorityBoost, libKernel32, "GetThreadPriorityBoost")
+	addr := LazyAddr(&pGetThreadPriorityBoost, libKernel32, "GetThreadPriorityBoost")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(pDisablePriorityBoost)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadPriority(hThread HANDLE) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadPriority, libKernel32, "GetThreadPriority")
+	addr := LazyAddr(&pGetThreadPriority, libKernel32, "GetThreadPriority")
 	ret, _, err := syscall.SyscallN(addr, hThread)
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func ExitThread(dwExitCode uint32) {
-	addr := lazyAddr(&pExitThread, libKernel32, "ExitThread")
+	addr := LazyAddr(&pExitThread, libKernel32, "ExitThread")
 	syscall.SyscallN(addr, uintptr(dwExitCode))
 }
 
 func TerminateThread(hThread HANDLE, dwExitCode uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTerminateThread, libKernel32, "TerminateThread")
+	addr := LazyAddr(&pTerminateThread, libKernel32, "TerminateThread")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(dwExitCode))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetExitCodeThread(hThread HANDLE, lpExitCode *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetExitCodeThread, libKernel32, "GetExitCodeThread")
+	addr := LazyAddr(&pGetExitCodeThread, libKernel32, "GetExitCodeThread")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(lpExitCode)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SuspendThread(hThread HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSuspendThread, libKernel32, "SuspendThread")
+	addr := LazyAddr(&pSuspendThread, libKernel32, "SuspendThread")
 	ret, _, err := syscall.SyscallN(addr, hThread)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func ResumeThread(hThread HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pResumeThread, libKernel32, "ResumeThread")
+	addr := LazyAddr(&pResumeThread, libKernel32, "ResumeThread")
 	ret, _, err := syscall.SyscallN(addr, hThread)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func TlsAlloc() (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pTlsAlloc, libKernel32, "TlsAlloc")
+	addr := LazyAddr(&pTlsAlloc, libKernel32, "TlsAlloc")
 	ret, _, err := syscall.SyscallN(addr)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func TlsGetValue(dwTlsIndex uint32) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pTlsGetValue, libKernel32, "TlsGetValue")
+	addr := LazyAddr(&pTlsGetValue, libKernel32, "TlsGetValue")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwTlsIndex))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func TlsSetValue(dwTlsIndex uint32, lpTlsValue unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTlsSetValue, libKernel32, "TlsSetValue")
+	addr := LazyAddr(&pTlsSetValue, libKernel32, "TlsSetValue")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwTlsIndex), uintptr(lpTlsValue))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func TlsFree(dwTlsIndex uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTlsFree, libKernel32, "TlsFree")
+	addr := LazyAddr(&pTlsFree, libKernel32, "TlsFree")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwTlsIndex))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateProcessA(lpApplicationName PSTR, lpCommandLine PSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PSTR, lpStartupInfo *STARTUPINFOA, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateProcessA, libKernel32, "CreateProcessA")
+	addr := LazyAddr(&pCreateProcessA, libKernel32, "CreateProcessA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(unsafe.Pointer(lpProcessAttributes)), uintptr(unsafe.Pointer(lpThreadAttributes)), uintptr(bInheritHandles), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1794,19 +1794,19 @@ func CreateProcessA(lpApplicationName PSTR, lpCommandLine PSTR, lpProcessAttribu
 var CreateProcess = CreateProcessW
 
 func CreateProcessW(lpApplicationName PWSTR, lpCommandLine PWSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateProcessW, libKernel32, "CreateProcessW")
+	addr := LazyAddr(&pCreateProcessW, libKernel32, "CreateProcessW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(unsafe.Pointer(lpProcessAttributes)), uintptr(unsafe.Pointer(lpThreadAttributes)), uintptr(bInheritHandles), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessShutdownParameters(dwLevel uint32, dwFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessShutdownParameters, libKernel32, "SetProcessShutdownParameters")
+	addr := LazyAddr(&pSetProcessShutdownParameters, libKernel32, "SetProcessShutdownParameters")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwLevel), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessVersion(ProcessId uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessVersion, libKernel32, "GetProcessVersion")
+	addr := LazyAddr(&pGetProcessVersion, libKernel32, "GetProcessVersion")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ProcessId))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -1814,599 +1814,599 @@ func GetProcessVersion(ProcessId uint32) (uint32, WIN32_ERROR) {
 var GetStartupInfo = GetStartupInfoW
 
 func GetStartupInfoW(lpStartupInfo *STARTUPINFOW) {
-	addr := lazyAddr(&pGetStartupInfoW, libKernel32, "GetStartupInfoW")
+	addr := LazyAddr(&pGetStartupInfoW, libKernel32, "GetStartupInfoW")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpStartupInfo)))
 }
 
 var CreateProcessAsUser = CreateProcessAsUserW
 
 func CreateProcessAsUserW(hToken HANDLE, lpApplicationName PWSTR, lpCommandLine PWSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateProcessAsUserW, libAdvapi32, "CreateProcessAsUserW")
+	addr := LazyAddr(&pCreateProcessAsUserW, libAdvapi32, "CreateProcessAsUserW")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(unsafe.Pointer(lpProcessAttributes)), uintptr(unsafe.Pointer(lpThreadAttributes)), uintptr(bInheritHandles), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetThreadToken(Thread *HANDLE, Token HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadToken, libAdvapi32, "SetThreadToken")
+	addr := LazyAddr(&pSetThreadToken, libAdvapi32, "SetThreadToken")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Thread)), Token)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OpenProcessToken(ProcessHandle HANDLE, DesiredAccess TOKEN_ACCESS_MASK, TokenHandle *HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenProcessToken, libAdvapi32, "OpenProcessToken")
+	addr := LazyAddr(&pOpenProcessToken, libAdvapi32, "OpenProcessToken")
 	ret, _, err := syscall.SyscallN(addr, ProcessHandle, uintptr(DesiredAccess), uintptr(unsafe.Pointer(TokenHandle)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OpenThreadToken(ThreadHandle HANDLE, DesiredAccess TOKEN_ACCESS_MASK, OpenAsSelf BOOL, TokenHandle *HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenThreadToken, libAdvapi32, "OpenThreadToken")
+	addr := LazyAddr(&pOpenThreadToken, libAdvapi32, "OpenThreadToken")
 	ret, _, err := syscall.SyscallN(addr, ThreadHandle, uintptr(DesiredAccess), uintptr(OpenAsSelf), uintptr(unsafe.Pointer(TokenHandle)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetPriorityClass(hProcess HANDLE, dwPriorityClass PROCESS_CREATION_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetPriorityClass, libKernel32, "SetPriorityClass")
+	addr := LazyAddr(&pSetPriorityClass, libKernel32, "SetPriorityClass")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(dwPriorityClass))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetPriorityClass(hProcess HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetPriorityClass, libKernel32, "GetPriorityClass")
+	addr := LazyAddr(&pGetPriorityClass, libKernel32, "GetPriorityClass")
 	ret, _, err := syscall.SyscallN(addr, hProcess)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetThreadStackGuarantee(StackSizeInBytes *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadStackGuarantee, libKernel32, "SetThreadStackGuarantee")
+	addr := LazyAddr(&pSetThreadStackGuarantee, libKernel32, "SetThreadStackGuarantee")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(StackSizeInBytes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessId(Process HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessId, libKernel32, "GetProcessId")
+	addr := LazyAddr(&pGetProcessId, libKernel32, "GetProcessId")
 	ret, _, err := syscall.SyscallN(addr, Process)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetThreadId(Thread HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadId, libKernel32, "GetThreadId")
+	addr := LazyAddr(&pGetThreadId, libKernel32, "GetThreadId")
 	ret, _, err := syscall.SyscallN(addr, Thread)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func FlushProcessWriteBuffers() {
-	addr := lazyAddr(&pFlushProcessWriteBuffers, libKernel32, "FlushProcessWriteBuffers")
+	addr := LazyAddr(&pFlushProcessWriteBuffers, libKernel32, "FlushProcessWriteBuffers")
 	syscall.SyscallN(addr)
 }
 
 func GetProcessIdOfThread(Thread HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessIdOfThread, libKernel32, "GetProcessIdOfThread")
+	addr := LazyAddr(&pGetProcessIdOfThread, libKernel32, "GetProcessIdOfThread")
 	ret, _, err := syscall.SyscallN(addr, Thread)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func InitializeProcThreadAttributeList(lpAttributeList LPPROC_THREAD_ATTRIBUTE_LIST, dwAttributeCount uint32, dwFlags uint32, lpSize *uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitializeProcThreadAttributeList, libKernel32, "InitializeProcThreadAttributeList")
+	addr := LazyAddr(&pInitializeProcThreadAttributeList, libKernel32, "InitializeProcThreadAttributeList")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAttributeList)), uintptr(dwAttributeCount), uintptr(dwFlags), uintptr(unsafe.Pointer(lpSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteProcThreadAttributeList(lpAttributeList LPPROC_THREAD_ATTRIBUTE_LIST) {
-	addr := lazyAddr(&pDeleteProcThreadAttributeList, libKernel32, "DeleteProcThreadAttributeList")
+	addr := LazyAddr(&pDeleteProcThreadAttributeList, libKernel32, "DeleteProcThreadAttributeList")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAttributeList)))
 }
 
 func UpdateProcThreadAttribute(lpAttributeList LPPROC_THREAD_ATTRIBUTE_LIST, dwFlags uint32, Attribute uintptr, lpValue unsafe.Pointer, cbSize uintptr, lpPreviousValue unsafe.Pointer, lpReturnSize *uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUpdateProcThreadAttribute, libKernel32, "UpdateProcThreadAttribute")
+	addr := LazyAddr(&pUpdateProcThreadAttribute, libKernel32, "UpdateProcThreadAttribute")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAttributeList)), uintptr(dwFlags), Attribute, uintptr(lpValue), cbSize, uintptr(lpPreviousValue), uintptr(unsafe.Pointer(lpReturnSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessDynamicEHContinuationTargets(Process HANDLE, NumberOfTargets uint16, Targets *PROCESS_DYNAMIC_EH_CONTINUATION_TARGET) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessDynamicEHContinuationTargets, libKernel32, "SetProcessDynamicEHContinuationTargets")
+	addr := LazyAddr(&pSetProcessDynamicEHContinuationTargets, libKernel32, "SetProcessDynamicEHContinuationTargets")
 	ret, _, err := syscall.SyscallN(addr, Process, uintptr(NumberOfTargets), uintptr(unsafe.Pointer(Targets)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessDynamicEnforcedCetCompatibleRanges(Process HANDLE, NumberOfRanges uint16, Ranges *PROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE) BOOL {
-	addr := lazyAddr(&pSetProcessDynamicEnforcedCetCompatibleRanges, libKernel32, "SetProcessDynamicEnforcedCetCompatibleRanges")
+	addr := LazyAddr(&pSetProcessDynamicEnforcedCetCompatibleRanges, libKernel32, "SetProcessDynamicEnforcedCetCompatibleRanges")
 	ret, _, _ := syscall.SyscallN(addr, Process, uintptr(NumberOfRanges), uintptr(unsafe.Pointer(Ranges)))
 	return BOOL(ret)
 }
 
 func SetProcessAffinityUpdateMode(hProcess HANDLE, dwFlags PROCESS_AFFINITY_AUTO_UPDATE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessAffinityUpdateMode, libKernel32, "SetProcessAffinityUpdateMode")
+	addr := LazyAddr(&pSetProcessAffinityUpdateMode, libKernel32, "SetProcessAffinityUpdateMode")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryProcessAffinityUpdateMode(hProcess HANDLE, lpdwFlags *PROCESS_AFFINITY_AUTO_UPDATE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryProcessAffinityUpdateMode, libKernel32, "QueryProcessAffinityUpdateMode")
+	addr := LazyAddr(&pQueryProcessAffinityUpdateMode, libKernel32, "QueryProcessAffinityUpdateMode")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpdwFlags)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateRemoteThreadEx(hProcess HANDLE, lpThreadAttributes *SECURITY_ATTRIBUTES, dwStackSize uintptr, lpStartAddress LPTHREAD_START_ROUTINE, lpParameter unsafe.Pointer, dwCreationFlags uint32, lpAttributeList LPPROC_THREAD_ATTRIBUTE_LIST, lpThreadId *uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateRemoteThreadEx, libKernel32, "CreateRemoteThreadEx")
+	addr := LazyAddr(&pCreateRemoteThreadEx, libKernel32, "CreateRemoteThreadEx")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpThreadAttributes)), dwStackSize, lpStartAddress, uintptr(lpParameter), uintptr(dwCreationFlags), uintptr(unsafe.Pointer(lpAttributeList)), uintptr(unsafe.Pointer(lpThreadId)))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetCurrentThreadStackLimits(LowLimit *uintptr, HighLimit *uintptr) {
-	addr := lazyAddr(&pGetCurrentThreadStackLimits, libKernel32, "GetCurrentThreadStackLimits")
+	addr := LazyAddr(&pGetCurrentThreadStackLimits, libKernel32, "GetCurrentThreadStackLimits")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(LowLimit)), uintptr(unsafe.Pointer(HighLimit)))
 }
 
 func GetProcessMitigationPolicy(hProcess HANDLE, MitigationPolicy PROCESS_MITIGATION_POLICY, lpBuffer unsafe.Pointer, dwLength uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessMitigationPolicy, libKernel32, "GetProcessMitigationPolicy")
+	addr := LazyAddr(&pGetProcessMitigationPolicy, libKernel32, "GetProcessMitigationPolicy")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(MitigationPolicy), uintptr(lpBuffer), dwLength)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessMitigationPolicy(MitigationPolicy PROCESS_MITIGATION_POLICY, lpBuffer unsafe.Pointer, dwLength uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessMitigationPolicy, libKernel32, "SetProcessMitigationPolicy")
+	addr := LazyAddr(&pSetProcessMitigationPolicy, libKernel32, "SetProcessMitigationPolicy")
 	ret, _, err := syscall.SyscallN(addr, uintptr(MitigationPolicy), uintptr(lpBuffer), dwLength)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadTimes(hThread HANDLE, lpCreationTime *FILETIME, lpExitTime *FILETIME, lpKernelTime *FILETIME, lpUserTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadTimes, libKernel32, "GetThreadTimes")
+	addr := LazyAddr(&pGetThreadTimes, libKernel32, "GetThreadTimes")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(lpCreationTime)), uintptr(unsafe.Pointer(lpExitTime)), uintptr(unsafe.Pointer(lpKernelTime)), uintptr(unsafe.Pointer(lpUserTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OpenProcess(dwDesiredAccess PROCESS_ACCESS_RIGHTS, bInheritHandle BOOL, dwProcessId uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenProcess, libKernel32, "OpenProcess")
+	addr := LazyAddr(&pOpenProcess, libKernel32, "OpenProcess")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(dwProcessId))
 	return ret, WIN32_ERROR(err)
 }
 
 func IsProcessorFeaturePresent(ProcessorFeature PROCESSOR_FEATURE_ID) BOOL {
-	addr := lazyAddr(&pIsProcessorFeaturePresent, libKernel32, "IsProcessorFeaturePresent")
+	addr := LazyAddr(&pIsProcessorFeaturePresent, libKernel32, "IsProcessorFeaturePresent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ProcessorFeature))
 	return BOOL(ret)
 }
 
 func GetProcessHandleCount(hProcess HANDLE, pdwHandleCount *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessHandleCount, libKernel32, "GetProcessHandleCount")
+	addr := LazyAddr(&pGetProcessHandleCount, libKernel32, "GetProcessHandleCount")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(pdwHandleCount)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCurrentProcessorNumber() uint32 {
-	addr := lazyAddr(&pGetCurrentProcessorNumber, libKernel32, "GetCurrentProcessorNumber")
+	addr := LazyAddr(&pGetCurrentProcessorNumber, libKernel32, "GetCurrentProcessorNumber")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func SetThreadIdealProcessorEx(hThread HANDLE, lpIdealProcessor *PROCESSOR_NUMBER, lpPreviousIdealProcessor *PROCESSOR_NUMBER) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadIdealProcessorEx, libKernel32, "SetThreadIdealProcessorEx")
+	addr := LazyAddr(&pSetThreadIdealProcessorEx, libKernel32, "SetThreadIdealProcessorEx")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(lpIdealProcessor)), uintptr(unsafe.Pointer(lpPreviousIdealProcessor)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadIdealProcessorEx(hThread HANDLE, lpIdealProcessor *PROCESSOR_NUMBER) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadIdealProcessorEx, libKernel32, "GetThreadIdealProcessorEx")
+	addr := LazyAddr(&pGetThreadIdealProcessorEx, libKernel32, "GetThreadIdealProcessorEx")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(lpIdealProcessor)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCurrentProcessorNumberEx(ProcNumber *PROCESSOR_NUMBER) {
-	addr := lazyAddr(&pGetCurrentProcessorNumberEx, libKernel32, "GetCurrentProcessorNumberEx")
+	addr := LazyAddr(&pGetCurrentProcessorNumberEx, libKernel32, "GetCurrentProcessorNumberEx")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ProcNumber)))
 }
 
 func GetProcessPriorityBoost(hProcess HANDLE, pDisablePriorityBoost *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessPriorityBoost, libKernel32, "GetProcessPriorityBoost")
+	addr := LazyAddr(&pGetProcessPriorityBoost, libKernel32, "GetProcessPriorityBoost")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(pDisablePriorityBoost)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessPriorityBoost(hProcess HANDLE, bDisablePriorityBoost BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessPriorityBoost, libKernel32, "SetProcessPriorityBoost")
+	addr := LazyAddr(&pSetProcessPriorityBoost, libKernel32, "SetProcessPriorityBoost")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(bDisablePriorityBoost))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadIOPendingFlag(hThread HANDLE, lpIOIsPending *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadIOPendingFlag, libKernel32, "GetThreadIOPendingFlag")
+	addr := LazyAddr(&pGetThreadIOPendingFlag, libKernel32, "GetThreadIOPendingFlag")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(lpIOIsPending)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetSystemTimes(lpIdleTime *FILETIME, lpKernelTime *FILETIME, lpUserTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemTimes, libKernel32, "GetSystemTimes")
+	addr := LazyAddr(&pGetSystemTimes, libKernel32, "GetSystemTimes")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpIdleTime)), uintptr(unsafe.Pointer(lpKernelTime)), uintptr(unsafe.Pointer(lpUserTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadInformation(hThread HANDLE, ThreadInformationClass THREAD_INFORMATION_CLASS, ThreadInformation unsafe.Pointer, ThreadInformationSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadInformation, libKernel32, "GetThreadInformation")
+	addr := LazyAddr(&pGetThreadInformation, libKernel32, "GetThreadInformation")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(ThreadInformationClass), uintptr(ThreadInformation), uintptr(ThreadInformationSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetThreadInformation(hThread HANDLE, ThreadInformationClass THREAD_INFORMATION_CLASS, ThreadInformation unsafe.Pointer, ThreadInformationSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadInformation, libKernel32, "SetThreadInformation")
+	addr := LazyAddr(&pSetThreadInformation, libKernel32, "SetThreadInformation")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(ThreadInformationClass), uintptr(ThreadInformation), uintptr(ThreadInformationSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsProcessCritical(hProcess HANDLE, Critical *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsProcessCritical, libKernel32, "IsProcessCritical")
+	addr := LazyAddr(&pIsProcessCritical, libKernel32, "IsProcessCritical")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(Critical)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProtectedPolicy(PolicyGuid *syscall.GUID, PolicyValue uintptr, OldPolicyValue *uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProtectedPolicy, libKernel32, "SetProtectedPolicy")
+	addr := LazyAddr(&pSetProtectedPolicy, libKernel32, "SetProtectedPolicy")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(PolicyGuid)), PolicyValue, uintptr(unsafe.Pointer(OldPolicyValue)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryProtectedPolicy(PolicyGuid *syscall.GUID, PolicyValue *uintptr) BOOL {
-	addr := lazyAddr(&pQueryProtectedPolicy, libKernel32, "QueryProtectedPolicy")
+	addr := LazyAddr(&pQueryProtectedPolicy, libKernel32, "QueryProtectedPolicy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(PolicyGuid)), uintptr(unsafe.Pointer(PolicyValue)))
 	return BOOL(ret)
 }
 
 func SetThreadIdealProcessor(hThread HANDLE, dwIdealProcessor uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadIdealProcessor, libKernel32, "SetThreadIdealProcessor")
+	addr := LazyAddr(&pSetThreadIdealProcessor, libKernel32, "SetThreadIdealProcessor")
 	ret, _, err := syscall.SyscallN(addr, hThread, uintptr(dwIdealProcessor))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetProcessInformation(hProcess HANDLE, ProcessInformationClass PROCESS_INFORMATION_CLASS, ProcessInformation unsafe.Pointer, ProcessInformationSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessInformation, libKernel32, "SetProcessInformation")
+	addr := LazyAddr(&pSetProcessInformation, libKernel32, "SetProcessInformation")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(ProcessInformationClass), uintptr(ProcessInformation), uintptr(ProcessInformationSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessInformation(hProcess HANDLE, ProcessInformationClass PROCESS_INFORMATION_CLASS, ProcessInformation unsafe.Pointer, ProcessInformationSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessInformation, libKernel32, "GetProcessInformation")
+	addr := LazyAddr(&pGetProcessInformation, libKernel32, "GetProcessInformation")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(ProcessInformationClass), uintptr(ProcessInformation), uintptr(ProcessInformationSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessDefaultCpuSets(Process HANDLE, CpuSetIds *uint32, CpuSetIdCount uint32, RequiredIdCount *uint32) BOOL {
-	addr := lazyAddr(&pGetProcessDefaultCpuSets, libKernel32, "GetProcessDefaultCpuSets")
+	addr := LazyAddr(&pGetProcessDefaultCpuSets, libKernel32, "GetProcessDefaultCpuSets")
 	ret, _, _ := syscall.SyscallN(addr, Process, uintptr(unsafe.Pointer(CpuSetIds)), uintptr(CpuSetIdCount), uintptr(unsafe.Pointer(RequiredIdCount)))
 	return BOOL(ret)
 }
 
 func SetProcessDefaultCpuSets(Process HANDLE, CpuSetIds *uint32, CpuSetIdCount uint32) BOOL {
-	addr := lazyAddr(&pSetProcessDefaultCpuSets, libKernel32, "SetProcessDefaultCpuSets")
+	addr := LazyAddr(&pSetProcessDefaultCpuSets, libKernel32, "SetProcessDefaultCpuSets")
 	ret, _, _ := syscall.SyscallN(addr, Process, uintptr(unsafe.Pointer(CpuSetIds)), uintptr(CpuSetIdCount))
 	return BOOL(ret)
 }
 
 func GetThreadSelectedCpuSets(Thread HANDLE, CpuSetIds *uint32, CpuSetIdCount uint32, RequiredIdCount *uint32) BOOL {
-	addr := lazyAddr(&pGetThreadSelectedCpuSets, libKernel32, "GetThreadSelectedCpuSets")
+	addr := LazyAddr(&pGetThreadSelectedCpuSets, libKernel32, "GetThreadSelectedCpuSets")
 	ret, _, _ := syscall.SyscallN(addr, Thread, uintptr(unsafe.Pointer(CpuSetIds)), uintptr(CpuSetIdCount), uintptr(unsafe.Pointer(RequiredIdCount)))
 	return BOOL(ret)
 }
 
 func SetThreadSelectedCpuSets(Thread HANDLE, CpuSetIds *uint32, CpuSetIdCount uint32) BOOL {
-	addr := lazyAddr(&pSetThreadSelectedCpuSets, libKernel32, "SetThreadSelectedCpuSets")
+	addr := LazyAddr(&pSetThreadSelectedCpuSets, libKernel32, "SetThreadSelectedCpuSets")
 	ret, _, _ := syscall.SyscallN(addr, Thread, uintptr(unsafe.Pointer(CpuSetIds)), uintptr(CpuSetIdCount))
 	return BOOL(ret)
 }
 
 func CreateProcessAsUserA(hToken HANDLE, lpApplicationName PSTR, lpCommandLine PSTR, lpProcessAttributes *SECURITY_ATTRIBUTES, lpThreadAttributes *SECURITY_ATTRIBUTES, bInheritHandles BOOL, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PSTR, lpStartupInfo *STARTUPINFOA, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateProcessAsUserA, libAdvapi32, "CreateProcessAsUserA")
+	addr := LazyAddr(&pCreateProcessAsUserA, libAdvapi32, "CreateProcessAsUserA")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(unsafe.Pointer(lpProcessAttributes)), uintptr(unsafe.Pointer(lpThreadAttributes)), uintptr(bInheritHandles), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessShutdownParameters(lpdwLevel *uint32, lpdwFlags *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessShutdownParameters, libKernel32, "GetProcessShutdownParameters")
+	addr := LazyAddr(&pGetProcessShutdownParameters, libKernel32, "GetProcessShutdownParameters")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpdwLevel)), uintptr(unsafe.Pointer(lpdwFlags)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessDefaultCpuSetMasks(Process HANDLE, CpuSetMasks *GROUP_AFFINITY, CpuSetMaskCount uint16, RequiredMaskCount *uint16) BOOL {
-	addr := lazyAddr(&pGetProcessDefaultCpuSetMasks, libKernel32, "GetProcessDefaultCpuSetMasks")
+	addr := LazyAddr(&pGetProcessDefaultCpuSetMasks, libKernel32, "GetProcessDefaultCpuSetMasks")
 	ret, _, _ := syscall.SyscallN(addr, Process, uintptr(unsafe.Pointer(CpuSetMasks)), uintptr(CpuSetMaskCount), uintptr(unsafe.Pointer(RequiredMaskCount)))
 	return BOOL(ret)
 }
 
 func SetProcessDefaultCpuSetMasks(Process HANDLE, CpuSetMasks *GROUP_AFFINITY, CpuSetMaskCount uint16) BOOL {
-	addr := lazyAddr(&pSetProcessDefaultCpuSetMasks, libKernel32, "SetProcessDefaultCpuSetMasks")
+	addr := LazyAddr(&pSetProcessDefaultCpuSetMasks, libKernel32, "SetProcessDefaultCpuSetMasks")
 	ret, _, _ := syscall.SyscallN(addr, Process, uintptr(unsafe.Pointer(CpuSetMasks)), uintptr(CpuSetMaskCount))
 	return BOOL(ret)
 }
 
 func GetThreadSelectedCpuSetMasks(Thread HANDLE, CpuSetMasks *GROUP_AFFINITY, CpuSetMaskCount uint16, RequiredMaskCount *uint16) BOOL {
-	addr := lazyAddr(&pGetThreadSelectedCpuSetMasks, libKernel32, "GetThreadSelectedCpuSetMasks")
+	addr := LazyAddr(&pGetThreadSelectedCpuSetMasks, libKernel32, "GetThreadSelectedCpuSetMasks")
 	ret, _, _ := syscall.SyscallN(addr, Thread, uintptr(unsafe.Pointer(CpuSetMasks)), uintptr(CpuSetMaskCount), uintptr(unsafe.Pointer(RequiredMaskCount)))
 	return BOOL(ret)
 }
 
 func SetThreadSelectedCpuSetMasks(Thread HANDLE, CpuSetMasks *GROUP_AFFINITY, CpuSetMaskCount uint16) BOOL {
-	addr := lazyAddr(&pSetThreadSelectedCpuSetMasks, libKernel32, "SetThreadSelectedCpuSetMasks")
+	addr := LazyAddr(&pSetThreadSelectedCpuSetMasks, libKernel32, "SetThreadSelectedCpuSetMasks")
 	ret, _, _ := syscall.SyscallN(addr, Thread, uintptr(unsafe.Pointer(CpuSetMasks)), uintptr(CpuSetMaskCount))
 	return BOOL(ret)
 }
 
 func GetMachineTypeAttributes(Machine uint16, MachineTypeAttributes *MACHINE_ATTRIBUTES) HRESULT {
-	addr := lazyAddr(&pGetMachineTypeAttributes, libKernel32, "GetMachineTypeAttributes")
+	addr := LazyAddr(&pGetMachineTypeAttributes, libKernel32, "GetMachineTypeAttributes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Machine), uintptr(unsafe.Pointer(MachineTypeAttributes)))
 	return HRESULT(ret)
 }
 
 func SetThreadDescription(hThread HANDLE, lpThreadDescription PWSTR) HRESULT {
-	addr := lazyAddr(&pSetThreadDescription, libKernel32, "SetThreadDescription")
+	addr := LazyAddr(&pSetThreadDescription, libKernel32, "SetThreadDescription")
 	ret, _, _ := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(lpThreadDescription)))
 	return HRESULT(ret)
 }
 
 func GetThreadDescription(hThread HANDLE, ppszThreadDescription *PWSTR) HRESULT {
-	addr := lazyAddr(&pGetThreadDescription, libKernel32, "GetThreadDescription")
+	addr := LazyAddr(&pGetThreadDescription, libKernel32, "GetThreadDescription")
 	ret, _, _ := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(ppszThreadDescription)))
 	return HRESULT(ret)
 }
 
 func QueueUserWorkItem(Function LPTHREAD_START_ROUTINE, Context unsafe.Pointer, Flags WORKER_THREAD_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueueUserWorkItem, libKernel32, "QueueUserWorkItem")
+	addr := LazyAddr(&pQueueUserWorkItem, libKernel32, "QueueUserWorkItem")
 	ret, _, err := syscall.SyscallN(addr, Function, uintptr(Context), uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnregisterWaitEx(WaitHandle HANDLE, CompletionEvent HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterWaitEx, libKernel32, "UnregisterWaitEx")
+	addr := LazyAddr(&pUnregisterWaitEx, libKernel32, "UnregisterWaitEx")
 	ret, _, err := syscall.SyscallN(addr, WaitHandle, CompletionEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateTimerQueue() (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateTimerQueue, libKernel32, "CreateTimerQueue")
+	addr := LazyAddr(&pCreateTimerQueue, libKernel32, "CreateTimerQueue")
 	ret, _, err := syscall.SyscallN(addr)
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateTimerQueueTimer(phNewTimer *HANDLE, TimerQueue HANDLE, Callback WAITORTIMERCALLBACK, Parameter unsafe.Pointer, DueTime uint32, Period uint32, Flags WORKER_THREAD_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateTimerQueueTimer, libKernel32, "CreateTimerQueueTimer")
+	addr := LazyAddr(&pCreateTimerQueueTimer, libKernel32, "CreateTimerQueueTimer")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(phNewTimer)), TimerQueue, Callback, uintptr(Parameter), uintptr(DueTime), uintptr(Period), uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ChangeTimerQueueTimer(TimerQueue HANDLE, Timer HANDLE, DueTime uint32, Period uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pChangeTimerQueueTimer, libKernel32, "ChangeTimerQueueTimer")
+	addr := LazyAddr(&pChangeTimerQueueTimer, libKernel32, "ChangeTimerQueueTimer")
 	ret, _, err := syscall.SyscallN(addr, TimerQueue, Timer, uintptr(DueTime), uintptr(Period))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteTimerQueueTimer(TimerQueue HANDLE, Timer HANDLE, CompletionEvent HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteTimerQueueTimer, libKernel32, "DeleteTimerQueueTimer")
+	addr := LazyAddr(&pDeleteTimerQueueTimer, libKernel32, "DeleteTimerQueueTimer")
 	ret, _, err := syscall.SyscallN(addr, TimerQueue, Timer, CompletionEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteTimerQueue(TimerQueue HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteTimerQueue, libKernel32, "DeleteTimerQueue")
+	addr := LazyAddr(&pDeleteTimerQueue, libKernel32, "DeleteTimerQueue")
 	ret, _, err := syscall.SyscallN(addr, TimerQueue)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteTimerQueueEx(TimerQueue HANDLE, CompletionEvent HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteTimerQueueEx, libKernel32, "DeleteTimerQueueEx")
+	addr := LazyAddr(&pDeleteTimerQueueEx, libKernel32, "DeleteTimerQueueEx")
 	ret, _, err := syscall.SyscallN(addr, TimerQueue, CompletionEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateThreadpool(reserved unsafe.Pointer) (PTP_POOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateThreadpool, libKernel32, "CreateThreadpool")
+	addr := LazyAddr(&pCreateThreadpool, libKernel32, "CreateThreadpool")
 	ret, _, err := syscall.SyscallN(addr, uintptr(reserved))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetThreadpoolThreadMaximum(ptpp PTP_POOL, cthrdMost uint32) {
-	addr := lazyAddr(&pSetThreadpoolThreadMaximum, libKernel32, "SetThreadpoolThreadMaximum")
+	addr := LazyAddr(&pSetThreadpoolThreadMaximum, libKernel32, "SetThreadpoolThreadMaximum")
 	syscall.SyscallN(addr, ptpp, uintptr(cthrdMost))
 }
 
 func SetThreadpoolThreadMinimum(ptpp PTP_POOL, cthrdMic uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadpoolThreadMinimum, libKernel32, "SetThreadpoolThreadMinimum")
+	addr := LazyAddr(&pSetThreadpoolThreadMinimum, libKernel32, "SetThreadpoolThreadMinimum")
 	ret, _, err := syscall.SyscallN(addr, ptpp, uintptr(cthrdMic))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetThreadpoolStackInformation(ptpp PTP_POOL, ptpsi *TP_POOL_STACK_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadpoolStackInformation, libKernel32, "SetThreadpoolStackInformation")
+	addr := LazyAddr(&pSetThreadpoolStackInformation, libKernel32, "SetThreadpoolStackInformation")
 	ret, _, err := syscall.SyscallN(addr, ptpp, uintptr(unsafe.Pointer(ptpsi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryThreadpoolStackInformation(ptpp PTP_POOL, ptpsi *TP_POOL_STACK_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryThreadpoolStackInformation, libKernel32, "QueryThreadpoolStackInformation")
+	addr := LazyAddr(&pQueryThreadpoolStackInformation, libKernel32, "QueryThreadpoolStackInformation")
 	ret, _, err := syscall.SyscallN(addr, ptpp, uintptr(unsafe.Pointer(ptpsi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CloseThreadpool(ptpp PTP_POOL) {
-	addr := lazyAddr(&pCloseThreadpool, libKernel32, "CloseThreadpool")
+	addr := LazyAddr(&pCloseThreadpool, libKernel32, "CloseThreadpool")
 	syscall.SyscallN(addr, ptpp)
 }
 
 func CreateThreadpoolCleanupGroup() (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateThreadpoolCleanupGroup, libKernel32, "CreateThreadpoolCleanupGroup")
+	addr := LazyAddr(&pCreateThreadpoolCleanupGroup, libKernel32, "CreateThreadpoolCleanupGroup")
 	ret, _, err := syscall.SyscallN(addr)
 	return ret, WIN32_ERROR(err)
 }
 
 func CloseThreadpoolCleanupGroupMembers(ptpcg uintptr, fCancelPendingCallbacks BOOL, pvCleanupContext unsafe.Pointer) {
-	addr := lazyAddr(&pCloseThreadpoolCleanupGroupMembers, libKernel32, "CloseThreadpoolCleanupGroupMembers")
+	addr := LazyAddr(&pCloseThreadpoolCleanupGroupMembers, libKernel32, "CloseThreadpoolCleanupGroupMembers")
 	syscall.SyscallN(addr, ptpcg, uintptr(fCancelPendingCallbacks), uintptr(pvCleanupContext))
 }
 
 func CloseThreadpoolCleanupGroup(ptpcg uintptr) {
-	addr := lazyAddr(&pCloseThreadpoolCleanupGroup, libKernel32, "CloseThreadpoolCleanupGroup")
+	addr := LazyAddr(&pCloseThreadpoolCleanupGroup, libKernel32, "CloseThreadpoolCleanupGroup")
 	syscall.SyscallN(addr, ptpcg)
 }
 
 func SetEventWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, evt HANDLE) {
-	addr := lazyAddr(&pSetEventWhenCallbackReturns, libKernel32, "SetEventWhenCallbackReturns")
+	addr := LazyAddr(&pSetEventWhenCallbackReturns, libKernel32, "SetEventWhenCallbackReturns")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), evt)
 }
 
 func ReleaseSemaphoreWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, sem HANDLE, crel uint32) {
-	addr := lazyAddr(&pReleaseSemaphoreWhenCallbackReturns, libKernel32, "ReleaseSemaphoreWhenCallbackReturns")
+	addr := LazyAddr(&pReleaseSemaphoreWhenCallbackReturns, libKernel32, "ReleaseSemaphoreWhenCallbackReturns")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), sem, uintptr(crel))
 }
 
 func ReleaseMutexWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, mut HANDLE) {
-	addr := lazyAddr(&pReleaseMutexWhenCallbackReturns, libKernel32, "ReleaseMutexWhenCallbackReturns")
+	addr := LazyAddr(&pReleaseMutexWhenCallbackReturns, libKernel32, "ReleaseMutexWhenCallbackReturns")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), mut)
 }
 
 func LeaveCriticalSectionWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, pcs *RTL_CRITICAL_SECTION) {
-	addr := lazyAddr(&pLeaveCriticalSectionWhenCallbackReturns, libKernel32, "LeaveCriticalSectionWhenCallbackReturns")
+	addr := LazyAddr(&pLeaveCriticalSectionWhenCallbackReturns, libKernel32, "LeaveCriticalSectionWhenCallbackReturns")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), uintptr(unsafe.Pointer(pcs)))
 }
 
 func FreeLibraryWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, mod HINSTANCE) {
-	addr := lazyAddr(&pFreeLibraryWhenCallbackReturns, libKernel32, "FreeLibraryWhenCallbackReturns")
+	addr := LazyAddr(&pFreeLibraryWhenCallbackReturns, libKernel32, "FreeLibraryWhenCallbackReturns")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), mod)
 }
 
 func CallbackMayRunLong(pci *TP_CALLBACK_INSTANCE) BOOL {
-	addr := lazyAddr(&pCallbackMayRunLong, libKernel32, "CallbackMayRunLong")
+	addr := LazyAddr(&pCallbackMayRunLong, libKernel32, "CallbackMayRunLong")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)))
 	return BOOL(ret)
 }
 
 func DisassociateCurrentThreadFromCallback(pci *TP_CALLBACK_INSTANCE) {
-	addr := lazyAddr(&pDisassociateCurrentThreadFromCallback, libKernel32, "DisassociateCurrentThreadFromCallback")
+	addr := LazyAddr(&pDisassociateCurrentThreadFromCallback, libKernel32, "DisassociateCurrentThreadFromCallback")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)))
 }
 
 func TrySubmitThreadpoolCallback(pfns PTP_SIMPLE_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTrySubmitThreadpoolCallback, libKernel32, "TrySubmitThreadpoolCallback")
+	addr := LazyAddr(&pTrySubmitThreadpoolCallback, libKernel32, "TrySubmitThreadpoolCallback")
 	ret, _, err := syscall.SyscallN(addr, pfns, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateThreadpoolWork(pfnwk PTP_WORK_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_WORK, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateThreadpoolWork, libKernel32, "CreateThreadpoolWork")
+	addr := LazyAddr(&pCreateThreadpoolWork, libKernel32, "CreateThreadpoolWork")
 	ret, _, err := syscall.SyscallN(addr, pfnwk, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
 	return (*TP_WORK)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func SubmitThreadpoolWork(pwk *TP_WORK) {
-	addr := lazyAddr(&pSubmitThreadpoolWork, libKernel32, "SubmitThreadpoolWork")
+	addr := LazyAddr(&pSubmitThreadpoolWork, libKernel32, "SubmitThreadpoolWork")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwk)))
 }
 
 func WaitForThreadpoolWorkCallbacks(pwk *TP_WORK, fCancelPendingCallbacks BOOL) {
-	addr := lazyAddr(&pWaitForThreadpoolWorkCallbacks, libKernel32, "WaitForThreadpoolWorkCallbacks")
+	addr := LazyAddr(&pWaitForThreadpoolWorkCallbacks, libKernel32, "WaitForThreadpoolWorkCallbacks")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwk)), uintptr(fCancelPendingCallbacks))
 }
 
 func CloseThreadpoolWork(pwk *TP_WORK) {
-	addr := lazyAddr(&pCloseThreadpoolWork, libKernel32, "CloseThreadpoolWork")
+	addr := LazyAddr(&pCloseThreadpoolWork, libKernel32, "CloseThreadpoolWork")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwk)))
 }
 
 func CreateThreadpoolTimer(pfnti PTP_TIMER_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_TIMER, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateThreadpoolTimer, libKernel32, "CreateThreadpoolTimer")
+	addr := LazyAddr(&pCreateThreadpoolTimer, libKernel32, "CreateThreadpoolTimer")
 	ret, _, err := syscall.SyscallN(addr, pfnti, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
 	return (*TP_TIMER)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func SetThreadpoolTimer(pti *TP_TIMER, pftDueTime *FILETIME, msPeriod uint32, msWindowLength uint32) {
-	addr := lazyAddr(&pSetThreadpoolTimer, libKernel32, "SetThreadpoolTimer")
+	addr := LazyAddr(&pSetThreadpoolTimer, libKernel32, "SetThreadpoolTimer")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)), uintptr(unsafe.Pointer(pftDueTime)), uintptr(msPeriod), uintptr(msWindowLength))
 }
 
 func IsThreadpoolTimerSet(pti *TP_TIMER) BOOL {
-	addr := lazyAddr(&pIsThreadpoolTimerSet, libKernel32, "IsThreadpoolTimerSet")
+	addr := LazyAddr(&pIsThreadpoolTimerSet, libKernel32, "IsThreadpoolTimerSet")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)))
 	return BOOL(ret)
 }
 
 func WaitForThreadpoolTimerCallbacks(pti *TP_TIMER, fCancelPendingCallbacks BOOL) {
-	addr := lazyAddr(&pWaitForThreadpoolTimerCallbacks, libKernel32, "WaitForThreadpoolTimerCallbacks")
+	addr := LazyAddr(&pWaitForThreadpoolTimerCallbacks, libKernel32, "WaitForThreadpoolTimerCallbacks")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)), uintptr(fCancelPendingCallbacks))
 }
 
 func CloseThreadpoolTimer(pti *TP_TIMER) {
-	addr := lazyAddr(&pCloseThreadpoolTimer, libKernel32, "CloseThreadpoolTimer")
+	addr := LazyAddr(&pCloseThreadpoolTimer, libKernel32, "CloseThreadpoolTimer")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)))
 }
 
 func CreateThreadpoolWait(pfnwa PTP_WAIT_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_WAIT, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateThreadpoolWait, libKernel32, "CreateThreadpoolWait")
+	addr := LazyAddr(&pCreateThreadpoolWait, libKernel32, "CreateThreadpoolWait")
 	ret, _, err := syscall.SyscallN(addr, pfnwa, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
 	return (*TP_WAIT)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func SetThreadpoolWait(pwa *TP_WAIT, h HANDLE, pftTimeout *FILETIME) {
-	addr := lazyAddr(&pSetThreadpoolWait, libKernel32, "SetThreadpoolWait")
+	addr := LazyAddr(&pSetThreadpoolWait, libKernel32, "SetThreadpoolWait")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)), h, uintptr(unsafe.Pointer(pftTimeout)))
 }
 
 func WaitForThreadpoolWaitCallbacks(pwa *TP_WAIT, fCancelPendingCallbacks BOOL) {
-	addr := lazyAddr(&pWaitForThreadpoolWaitCallbacks, libKernel32, "WaitForThreadpoolWaitCallbacks")
+	addr := LazyAddr(&pWaitForThreadpoolWaitCallbacks, libKernel32, "WaitForThreadpoolWaitCallbacks")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)), uintptr(fCancelPendingCallbacks))
 }
 
 func CloseThreadpoolWait(pwa *TP_WAIT) {
-	addr := lazyAddr(&pCloseThreadpoolWait, libKernel32, "CloseThreadpoolWait")
+	addr := LazyAddr(&pCloseThreadpoolWait, libKernel32, "CloseThreadpoolWait")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)))
 }
 
 func CreateThreadpoolIo(fl HANDLE, pfnio PTP_WIN32_IO_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_IO, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateThreadpoolIo, libKernel32, "CreateThreadpoolIo")
+	addr := LazyAddr(&pCreateThreadpoolIo, libKernel32, "CreateThreadpoolIo")
 	ret, _, err := syscall.SyscallN(addr, fl, pfnio, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
 	return (*TP_IO)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func StartThreadpoolIo(pio *TP_IO) {
-	addr := lazyAddr(&pStartThreadpoolIo, libKernel32, "StartThreadpoolIo")
+	addr := LazyAddr(&pStartThreadpoolIo, libKernel32, "StartThreadpoolIo")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)))
 }
 
 func CancelThreadpoolIo(pio *TP_IO) {
-	addr := lazyAddr(&pCancelThreadpoolIo, libKernel32, "CancelThreadpoolIo")
+	addr := LazyAddr(&pCancelThreadpoolIo, libKernel32, "CancelThreadpoolIo")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)))
 }
 
 func WaitForThreadpoolIoCallbacks(pio *TP_IO, fCancelPendingCallbacks BOOL) {
-	addr := lazyAddr(&pWaitForThreadpoolIoCallbacks, libKernel32, "WaitForThreadpoolIoCallbacks")
+	addr := LazyAddr(&pWaitForThreadpoolIoCallbacks, libKernel32, "WaitForThreadpoolIoCallbacks")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)), uintptr(fCancelPendingCallbacks))
 }
 
 func CloseThreadpoolIo(pio *TP_IO) {
-	addr := lazyAddr(&pCloseThreadpoolIo, libKernel32, "CloseThreadpoolIo")
+	addr := LazyAddr(&pCloseThreadpoolIo, libKernel32, "CloseThreadpoolIo")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)))
 }
 
 func SetThreadpoolTimerEx(pti *TP_TIMER, pftDueTime *FILETIME, msPeriod uint32, msWindowLength uint32) BOOL {
-	addr := lazyAddr(&pSetThreadpoolTimerEx, libKernel32, "SetThreadpoolTimerEx")
+	addr := LazyAddr(&pSetThreadpoolTimerEx, libKernel32, "SetThreadpoolTimerEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)), uintptr(unsafe.Pointer(pftDueTime)), uintptr(msPeriod), uintptr(msWindowLength))
 	return BOOL(ret)
 }
 
 func SetThreadpoolWaitEx(pwa *TP_WAIT, h HANDLE, pftTimeout *FILETIME, Reserved unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pSetThreadpoolWaitEx, libKernel32, "SetThreadpoolWaitEx")
+	addr := LazyAddr(&pSetThreadpoolWaitEx, libKernel32, "SetThreadpoolWaitEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)), h, uintptr(unsafe.Pointer(pftTimeout)), uintptr(Reserved))
 	return BOOL(ret)
 }
 
 func IsWow64Process(hProcess HANDLE, Wow64Process *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsWow64Process, libKernel32, "IsWow64Process")
+	addr := LazyAddr(&pIsWow64Process, libKernel32, "IsWow64Process")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(Wow64Process)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsWow64Process2(hProcess HANDLE, pProcessMachine *IMAGE_FILE_MACHINE, pNativeMachine *IMAGE_FILE_MACHINE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsWow64Process2, libKernel32, "IsWow64Process2")
+	addr := LazyAddr(&pIsWow64Process2, libKernel32, "IsWow64Process2")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(pProcessMachine)), uintptr(unsafe.Pointer(pNativeMachine)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func Wow64SuspendThread(hThread HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pWow64SuspendThread, libKernel32, "Wow64SuspendThread")
+	addr := LazyAddr(&pWow64SuspendThread, libKernel32, "Wow64SuspendThread")
 	ret, _, err := syscall.SyscallN(addr, hThread)
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -2414,7 +2414,7 @@ func Wow64SuspendThread(hThread HANDLE) (uint32, WIN32_ERROR) {
 var CreatePrivateNamespace = CreatePrivateNamespaceW
 
 func CreatePrivateNamespaceW(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PWSTR) NamespaceHandle {
-	addr := lazyAddr(&pCreatePrivateNamespaceW, libKernel32, "CreatePrivateNamespaceW")
+	addr := LazyAddr(&pCreatePrivateNamespaceW, libKernel32, "CreatePrivateNamespaceW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPrivateNamespaceAttributes)), uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret
 }
@@ -2422,13 +2422,13 @@ func CreatePrivateNamespaceW(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, 
 var OpenPrivateNamespace = OpenPrivateNamespaceW
 
 func OpenPrivateNamespaceW(lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PWSTR) NamespaceHandle {
-	addr := lazyAddr(&pOpenPrivateNamespaceW, libKernel32, "OpenPrivateNamespaceW")
+	addr := LazyAddr(&pOpenPrivateNamespaceW, libKernel32, "OpenPrivateNamespaceW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret
 }
 
 func ClosePrivateNamespace(Handle NamespaceHandle, Flags uint32) (BOOLEAN, WIN32_ERROR) {
-	addr := lazyAddr(&pClosePrivateNamespace, libKernel32, "ClosePrivateNamespace")
+	addr := LazyAddr(&pClosePrivateNamespace, libKernel32, "ClosePrivateNamespace")
 	ret, _, err := syscall.SyscallN(addr, Handle, uintptr(Flags))
 	return BOOLEAN(ret), WIN32_ERROR(err)
 }
@@ -2436,280 +2436,280 @@ func ClosePrivateNamespace(Handle NamespaceHandle, Flags uint32) (BOOLEAN, WIN32
 var CreateBoundaryDescriptor = CreateBoundaryDescriptorW
 
 func CreateBoundaryDescriptorW(Name PWSTR, Flags uint32) BoundaryDescriptorHandle {
-	addr := lazyAddr(&pCreateBoundaryDescriptorW, libKernel32, "CreateBoundaryDescriptorW")
+	addr := LazyAddr(&pCreateBoundaryDescriptorW, libKernel32, "CreateBoundaryDescriptorW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Name)), uintptr(Flags))
 	return ret
 }
 
 func AddSIDToBoundaryDescriptor(BoundaryDescriptor *HANDLE, RequiredSid PSID) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAddSIDToBoundaryDescriptor, libKernel32, "AddSIDToBoundaryDescriptor")
+	addr := LazyAddr(&pAddSIDToBoundaryDescriptor, libKernel32, "AddSIDToBoundaryDescriptor")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(BoundaryDescriptor)), uintptr(unsafe.Pointer(RequiredSid)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteBoundaryDescriptor(BoundaryDescriptor BoundaryDescriptorHandle) {
-	addr := lazyAddr(&pDeleteBoundaryDescriptor, libKernel32, "DeleteBoundaryDescriptor")
+	addr := LazyAddr(&pDeleteBoundaryDescriptor, libKernel32, "DeleteBoundaryDescriptor")
 	syscall.SyscallN(addr, BoundaryDescriptor)
 }
 
 func GetNumaHighestNodeNumber(HighestNodeNumber *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaHighestNodeNumber, libKernel32, "GetNumaHighestNodeNumber")
+	addr := LazyAddr(&pGetNumaHighestNodeNumber, libKernel32, "GetNumaHighestNodeNumber")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(HighestNodeNumber)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNumaNodeProcessorMaskEx(Node uint16, ProcessorMask *GROUP_AFFINITY) BOOL {
-	addr := lazyAddr(&pGetNumaNodeProcessorMaskEx, libKernel32, "GetNumaNodeProcessorMaskEx")
+	addr := LazyAddr(&pGetNumaNodeProcessorMaskEx, libKernel32, "GetNumaNodeProcessorMaskEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Node), uintptr(unsafe.Pointer(ProcessorMask)))
 	return BOOL(ret)
 }
 
 func GetNumaNodeProcessorMask2(NodeNumber uint16, ProcessorMasks *GROUP_AFFINITY, ProcessorMaskCount uint16, RequiredMaskCount *uint16) BOOL {
-	addr := lazyAddr(&pGetNumaNodeProcessorMask2, libKernel32, "GetNumaNodeProcessorMask2")
+	addr := LazyAddr(&pGetNumaNodeProcessorMask2, libKernel32, "GetNumaNodeProcessorMask2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(NodeNumber), uintptr(unsafe.Pointer(ProcessorMasks)), uintptr(ProcessorMaskCount), uintptr(unsafe.Pointer(RequiredMaskCount)))
 	return BOOL(ret)
 }
 
 func GetNumaProximityNodeEx(ProximityId uint32, NodeNumber *uint16) BOOL {
-	addr := lazyAddr(&pGetNumaProximityNodeEx, libKernel32, "GetNumaProximityNodeEx")
+	addr := LazyAddr(&pGetNumaProximityNodeEx, libKernel32, "GetNumaProximityNodeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ProximityId), uintptr(unsafe.Pointer(NodeNumber)))
 	return BOOL(ret)
 }
 
 func GetProcessGroupAffinity(hProcess HANDLE, GroupCount *uint16, GroupArray *uint16) BOOL {
-	addr := lazyAddr(&pGetProcessGroupAffinity, libKernel32, "GetProcessGroupAffinity")
+	addr := LazyAddr(&pGetProcessGroupAffinity, libKernel32, "GetProcessGroupAffinity")
 	ret, _, _ := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(GroupCount)), uintptr(unsafe.Pointer(GroupArray)))
 	return BOOL(ret)
 }
 
 func GetThreadGroupAffinity(hThread HANDLE, GroupAffinity *GROUP_AFFINITY) BOOL {
-	addr := lazyAddr(&pGetThreadGroupAffinity, libKernel32, "GetThreadGroupAffinity")
+	addr := LazyAddr(&pGetThreadGroupAffinity, libKernel32, "GetThreadGroupAffinity")
 	ret, _, _ := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(GroupAffinity)))
 	return BOOL(ret)
 }
 
 func SetThreadGroupAffinity(hThread HANDLE, GroupAffinity *GROUP_AFFINITY, PreviousGroupAffinity *GROUP_AFFINITY) BOOL {
-	addr := lazyAddr(&pSetThreadGroupAffinity, libKernel32, "SetThreadGroupAffinity")
+	addr := LazyAddr(&pSetThreadGroupAffinity, libKernel32, "SetThreadGroupAffinity")
 	ret, _, _ := syscall.SyscallN(addr, hThread, uintptr(unsafe.Pointer(GroupAffinity)), uintptr(unsafe.Pointer(PreviousGroupAffinity)))
 	return BOOL(ret)
 }
 
 func AttachThreadInput(idAttach uint32, idAttachTo uint32, fAttach BOOL) BOOL {
-	addr := lazyAddr(&pAttachThreadInput, libUser32, "AttachThreadInput")
+	addr := LazyAddr(&pAttachThreadInput, libUser32, "AttachThreadInput")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(idAttach), uintptr(idAttachTo), uintptr(fAttach))
 	return BOOL(ret)
 }
 
 func WaitForInputIdle(hProcess HANDLE, dwMilliseconds uint32) uint32 {
-	addr := lazyAddr(&pWaitForInputIdle, libUser32, "WaitForInputIdle")
+	addr := LazyAddr(&pWaitForInputIdle, libUser32, "WaitForInputIdle")
 	ret, _, _ := syscall.SyscallN(addr, hProcess, uintptr(dwMilliseconds))
 	return uint32(ret)
 }
 
 func GetGuiResources(hProcess HANDLE, uiFlags GET_GUI_RESOURCES_FLAGS) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetGuiResources, libUser32, "GetGuiResources")
+	addr := LazyAddr(&pGetGuiResources, libUser32, "GetGuiResources")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(uiFlags))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func IsImmersiveProcess(hProcess HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsImmersiveProcess, libUser32, "IsImmersiveProcess")
+	addr := LazyAddr(&pIsImmersiveProcess, libUser32, "IsImmersiveProcess")
 	ret, _, err := syscall.SyscallN(addr, hProcess)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessRestrictionExemption(fEnableExemption BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessRestrictionExemption, libUser32, "SetProcessRestrictionExemption")
+	addr := LazyAddr(&pSetProcessRestrictionExemption, libUser32, "SetProcessRestrictionExemption")
 	ret, _, err := syscall.SyscallN(addr, uintptr(fEnableExemption))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessAffinityMask(hProcess HANDLE, lpProcessAffinityMask *uintptr, lpSystemAffinityMask *uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessAffinityMask, libKernel32, "GetProcessAffinityMask")
+	addr := LazyAddr(&pGetProcessAffinityMask, libKernel32, "GetProcessAffinityMask")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpProcessAffinityMask)), uintptr(unsafe.Pointer(lpSystemAffinityMask)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessAffinityMask(hProcess HANDLE, dwProcessAffinityMask uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessAffinityMask, libKernel32, "SetProcessAffinityMask")
+	addr := LazyAddr(&pSetProcessAffinityMask, libKernel32, "SetProcessAffinityMask")
 	ret, _, err := syscall.SyscallN(addr, hProcess, dwProcessAffinityMask)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessIoCounters(hProcess HANDLE, lpIoCounters *IO_COUNTERS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessIoCounters, libKernel32, "GetProcessIoCounters")
+	addr := LazyAddr(&pGetProcessIoCounters, libKernel32, "GetProcessIoCounters")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpIoCounters)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SwitchToFiber(lpFiber unsafe.Pointer) {
-	addr := lazyAddr(&pSwitchToFiber, libKernel32, "SwitchToFiber")
+	addr := LazyAddr(&pSwitchToFiber, libKernel32, "SwitchToFiber")
 	syscall.SyscallN(addr, uintptr(lpFiber))
 }
 
 func DeleteFiber(lpFiber unsafe.Pointer) {
-	addr := lazyAddr(&pDeleteFiber, libKernel32, "DeleteFiber")
+	addr := LazyAddr(&pDeleteFiber, libKernel32, "DeleteFiber")
 	syscall.SyscallN(addr, uintptr(lpFiber))
 }
 
 func ConvertFiberToThread() (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pConvertFiberToThread, libKernel32, "ConvertFiberToThread")
+	addr := LazyAddr(&pConvertFiberToThread, libKernel32, "ConvertFiberToThread")
 	ret, _, err := syscall.SyscallN(addr)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateFiberEx(dwStackCommitSize uintptr, dwStackReserveSize uintptr, dwFlags uint32, lpStartAddress LPFIBER_START_ROUTINE, lpParameter unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateFiberEx, libKernel32, "CreateFiberEx")
+	addr := LazyAddr(&pCreateFiberEx, libKernel32, "CreateFiberEx")
 	ret, _, err := syscall.SyscallN(addr, dwStackCommitSize, dwStackReserveSize, uintptr(dwFlags), lpStartAddress, uintptr(lpParameter))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func ConvertThreadToFiberEx(lpParameter unsafe.Pointer, dwFlags uint32) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pConvertThreadToFiberEx, libKernel32, "ConvertThreadToFiberEx")
+	addr := LazyAddr(&pConvertThreadToFiberEx, libKernel32, "ConvertThreadToFiberEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lpParameter), uintptr(dwFlags))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func CreateFiber(dwStackSize uintptr, lpStartAddress LPFIBER_START_ROUTINE, lpParameter unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateFiber, libKernel32, "CreateFiber")
+	addr := LazyAddr(&pCreateFiber, libKernel32, "CreateFiber")
 	ret, _, err := syscall.SyscallN(addr, dwStackSize, lpStartAddress, uintptr(lpParameter))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func ConvertThreadToFiber(lpParameter unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pConvertThreadToFiber, libKernel32, "ConvertThreadToFiber")
+	addr := LazyAddr(&pConvertThreadToFiber, libKernel32, "ConvertThreadToFiber")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lpParameter))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func CreateUmsCompletionList(UmsCompletionList unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateUmsCompletionList, libKernel32, "CreateUmsCompletionList")
+	addr := LazyAddr(&pCreateUmsCompletionList, libKernel32, "CreateUmsCompletionList")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsCompletionList))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DequeueUmsCompletionListItems(UmsCompletionList unsafe.Pointer, WaitTimeOut uint32, UmsThreadList unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDequeueUmsCompletionListItems, libKernel32, "DequeueUmsCompletionListItems")
+	addr := LazyAddr(&pDequeueUmsCompletionListItems, libKernel32, "DequeueUmsCompletionListItems")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsCompletionList), uintptr(WaitTimeOut), uintptr(UmsThreadList))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetUmsCompletionListEvent(UmsCompletionList unsafe.Pointer, UmsCompletionEvent *HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUmsCompletionListEvent, libKernel32, "GetUmsCompletionListEvent")
+	addr := LazyAddr(&pGetUmsCompletionListEvent, libKernel32, "GetUmsCompletionListEvent")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsCompletionList), uintptr(unsafe.Pointer(UmsCompletionEvent)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ExecuteUmsThread(UmsThread unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pExecuteUmsThread, libKernel32, "ExecuteUmsThread")
+	addr := LazyAddr(&pExecuteUmsThread, libKernel32, "ExecuteUmsThread")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsThread))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UmsThreadYield(SchedulerParam unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUmsThreadYield, libKernel32, "UmsThreadYield")
+	addr := LazyAddr(&pUmsThreadYield, libKernel32, "UmsThreadYield")
 	ret, _, err := syscall.SyscallN(addr, uintptr(SchedulerParam))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteUmsCompletionList(UmsCompletionList unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteUmsCompletionList, libKernel32, "DeleteUmsCompletionList")
+	addr := LazyAddr(&pDeleteUmsCompletionList, libKernel32, "DeleteUmsCompletionList")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsCompletionList))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCurrentUmsThread() (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCurrentUmsThread, libKernel32, "GetCurrentUmsThread")
+	addr := LazyAddr(&pGetCurrentUmsThread, libKernel32, "GetCurrentUmsThread")
 	ret, _, err := syscall.SyscallN(addr)
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func GetNextUmsListItem(UmsContext unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNextUmsListItem, libKernel32, "GetNextUmsListItem")
+	addr := LazyAddr(&pGetNextUmsListItem, libKernel32, "GetNextUmsListItem")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsContext))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func QueryUmsThreadInformation(UmsThread unsafe.Pointer, UmsThreadInfoClass RTL_UMS_THREAD_INFO_CLASS, UmsThreadInformation unsafe.Pointer, UmsThreadInformationLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryUmsThreadInformation, libKernel32, "QueryUmsThreadInformation")
+	addr := LazyAddr(&pQueryUmsThreadInformation, libKernel32, "QueryUmsThreadInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsThread), uintptr(UmsThreadInfoClass), uintptr(UmsThreadInformation), uintptr(UmsThreadInformationLength), uintptr(unsafe.Pointer(ReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetUmsThreadInformation(UmsThread unsafe.Pointer, UmsThreadInfoClass RTL_UMS_THREAD_INFO_CLASS, UmsThreadInformation unsafe.Pointer, UmsThreadInformationLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetUmsThreadInformation, libKernel32, "SetUmsThreadInformation")
+	addr := LazyAddr(&pSetUmsThreadInformation, libKernel32, "SetUmsThreadInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsThread), uintptr(UmsThreadInfoClass), uintptr(UmsThreadInformation), uintptr(UmsThreadInformationLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteUmsThreadContext(UmsThread unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteUmsThreadContext, libKernel32, "DeleteUmsThreadContext")
+	addr := LazyAddr(&pDeleteUmsThreadContext, libKernel32, "DeleteUmsThreadContext")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsThread))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateUmsThreadContext(lpUmsThread unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateUmsThreadContext, libKernel32, "CreateUmsThreadContext")
+	addr := LazyAddr(&pCreateUmsThreadContext, libKernel32, "CreateUmsThreadContext")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lpUmsThread))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnterUmsSchedulingMode(SchedulerStartupInfo *UMS_SCHEDULER_STARTUP_INFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnterUmsSchedulingMode, libKernel32, "EnterUmsSchedulingMode")
+	addr := LazyAddr(&pEnterUmsSchedulingMode, libKernel32, "EnterUmsSchedulingMode")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SchedulerStartupInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetUmsSystemThreadInformation(ThreadHandle HANDLE, SystemThreadInfo *UMS_SYSTEM_THREAD_INFORMATION) BOOL {
-	addr := lazyAddr(&pGetUmsSystemThreadInformation, libKernel32, "GetUmsSystemThreadInformation")
+	addr := LazyAddr(&pGetUmsSystemThreadInformation, libKernel32, "GetUmsSystemThreadInformation")
 	ret, _, _ := syscall.SyscallN(addr, ThreadHandle, uintptr(unsafe.Pointer(SystemThreadInfo)))
 	return BOOL(ret)
 }
 
 func SetThreadAffinityMask(hThread HANDLE, dwThreadAffinityMask uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadAffinityMask, libKernel32, "SetThreadAffinityMask")
+	addr := LazyAddr(&pSetThreadAffinityMask, libKernel32, "SetThreadAffinityMask")
 	ret, _, err := syscall.SyscallN(addr, hThread, dwThreadAffinityMask)
 	return ret, WIN32_ERROR(err)
 }
 
 func SetProcessDEPPolicy(dwFlags PROCESS_DEP_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessDEPPolicy, libKernel32, "SetProcessDEPPolicy")
+	addr := LazyAddr(&pSetProcessDEPPolicy, libKernel32, "SetProcessDEPPolicy")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessDEPPolicy(hProcess HANDLE, lpFlags *uint32, lpPermanent *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessDEPPolicy, libKernel32, "GetProcessDEPPolicy")
+	addr := LazyAddr(&pGetProcessDEPPolicy, libKernel32, "GetProcessDEPPolicy")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(unsafe.Pointer(lpFlags)), uintptr(unsafe.Pointer(lpPermanent)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func PulseEvent(hEvent HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPulseEvent, libKernel32, "PulseEvent")
+	addr := LazyAddr(&pPulseEvent, libKernel32, "PulseEvent")
 	ret, _, err := syscall.SyscallN(addr, hEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func WinExec(lpCmdLine PSTR, uCmdShow uint32) uint32 {
-	addr := lazyAddr(&pWinExec, libKernel32, "WinExec")
+	addr := LazyAddr(&pWinExec, libKernel32, "WinExec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCmdLine)), uintptr(uCmdShow))
 	return uint32(ret)
 }
 
 func CreateSemaphoreA(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount int32, lMaximumCount int32, lpName PSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSemaphoreA, libKernel32, "CreateSemaphoreA")
+	addr := LazyAddr(&pCreateSemaphoreA, libKernel32, "CreateSemaphoreA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSemaphoreAttributes)), uintptr(lInitialCount), uintptr(lMaximumCount), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateSemaphoreExA(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount int32, lMaximumCount int32, lpName PSTR, dwFlags uint32, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSemaphoreExA, libKernel32, "CreateSemaphoreExA")
+	addr := LazyAddr(&pCreateSemaphoreExA, libKernel32, "CreateSemaphoreExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSemaphoreAttributes)), uintptr(lInitialCount), uintptr(lMaximumCount), uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func QueryFullProcessImageNameA(hProcess HANDLE, dwFlags PROCESS_NAME_FORMAT, lpExeName PSTR, lpdwSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryFullProcessImageNameA, libKernel32, "QueryFullProcessImageNameA")
+	addr := LazyAddr(&pQueryFullProcessImageNameA, libKernel32, "QueryFullProcessImageNameA")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(dwFlags), uintptr(unsafe.Pointer(lpExeName)), uintptr(unsafe.Pointer(lpdwSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2717,132 +2717,132 @@ func QueryFullProcessImageNameA(hProcess HANDLE, dwFlags PROCESS_NAME_FORMAT, lp
 var QueryFullProcessImageName = QueryFullProcessImageNameW
 
 func QueryFullProcessImageNameW(hProcess HANDLE, dwFlags PROCESS_NAME_FORMAT, lpExeName PWSTR, lpdwSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryFullProcessImageNameW, libKernel32, "QueryFullProcessImageNameW")
+	addr := LazyAddr(&pQueryFullProcessImageNameW, libKernel32, "QueryFullProcessImageNameW")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(dwFlags), uintptr(unsafe.Pointer(lpExeName)), uintptr(unsafe.Pointer(lpdwSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetStartupInfoA(lpStartupInfo *STARTUPINFOA) {
-	addr := lazyAddr(&pGetStartupInfoA, libKernel32, "GetStartupInfoA")
+	addr := LazyAddr(&pGetStartupInfoA, libKernel32, "GetStartupInfoA")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpStartupInfo)))
 }
 
 func CreateProcessWithLogonW(lpUsername PWSTR, lpDomain PWSTR, lpPassword PWSTR, dwLogonFlags CREATE_PROCESS_LOGON_FLAGS, lpApplicationName PWSTR, lpCommandLine PWSTR, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateProcessWithLogonW, libAdvapi32, "CreateProcessWithLogonW")
+	addr := LazyAddr(&pCreateProcessWithLogonW, libAdvapi32, "CreateProcessWithLogonW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpUsername)), uintptr(unsafe.Pointer(lpDomain)), uintptr(unsafe.Pointer(lpPassword)), uintptr(dwLogonFlags), uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateProcessWithTokenW(hToken HANDLE, dwLogonFlags CREATE_PROCESS_LOGON_FLAGS, lpApplicationName PWSTR, lpCommandLine PWSTR, dwCreationFlags PROCESS_CREATION_FLAGS, lpEnvironment unsafe.Pointer, lpCurrentDirectory PWSTR, lpStartupInfo *STARTUPINFOW, lpProcessInformation *PROCESS_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateProcessWithTokenW, libAdvapi32, "CreateProcessWithTokenW")
+	addr := LazyAddr(&pCreateProcessWithTokenW, libAdvapi32, "CreateProcessWithTokenW")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(dwLogonFlags), uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpCommandLine)), uintptr(dwCreationFlags), uintptr(lpEnvironment), uintptr(unsafe.Pointer(lpCurrentDirectory)), uintptr(unsafe.Pointer(lpStartupInfo)), uintptr(unsafe.Pointer(lpProcessInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RegisterWaitForSingleObject(phNewWaitObject *HANDLE, hObject HANDLE, Callback WAITORTIMERCALLBACK, Context unsafe.Pointer, dwMilliseconds uint32, dwFlags WORKER_THREAD_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterWaitForSingleObject, libKernel32, "RegisterWaitForSingleObject")
+	addr := LazyAddr(&pRegisterWaitForSingleObject, libKernel32, "RegisterWaitForSingleObject")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(phNewWaitObject)), hObject, Callback, uintptr(Context), uintptr(dwMilliseconds), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnregisterWait(WaitHandle HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterWait, libKernel32, "UnregisterWait")
+	addr := LazyAddr(&pUnregisterWait, libKernel32, "UnregisterWait")
 	ret, _, err := syscall.SyscallN(addr, WaitHandle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetTimerQueueTimer(TimerQueue HANDLE, Callback WAITORTIMERCALLBACK, Parameter unsafe.Pointer, DueTime uint32, Period uint32, PreferIo BOOL) HANDLE {
-	addr := lazyAddr(&pSetTimerQueueTimer, libKernel32, "SetTimerQueueTimer")
+	addr := LazyAddr(&pSetTimerQueueTimer, libKernel32, "SetTimerQueueTimer")
 	ret, _, _ := syscall.SyscallN(addr, TimerQueue, Callback, uintptr(Parameter), uintptr(DueTime), uintptr(Period), uintptr(PreferIo))
 	return ret
 }
 
 func CreatePrivateNamespaceA(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PSTR) (NamespaceHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pCreatePrivateNamespaceA, libKernel32, "CreatePrivateNamespaceA")
+	addr := LazyAddr(&pCreatePrivateNamespaceA, libKernel32, "CreatePrivateNamespaceA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPrivateNamespaceAttributes)), uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenPrivateNamespaceA(lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PSTR) NamespaceHandle {
-	addr := lazyAddr(&pOpenPrivateNamespaceA, libKernel32, "OpenPrivateNamespaceA")
+	addr := LazyAddr(&pOpenPrivateNamespaceA, libKernel32, "OpenPrivateNamespaceA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret
 }
 
 func CreateBoundaryDescriptorA(Name PSTR, Flags uint32) (BoundaryDescriptorHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateBoundaryDescriptorA, libKernel32, "CreateBoundaryDescriptorA")
+	addr := LazyAddr(&pCreateBoundaryDescriptorA, libKernel32, "CreateBoundaryDescriptorA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Name)), uintptr(Flags))
 	return ret, WIN32_ERROR(err)
 }
 
 func AddIntegrityLabelToBoundaryDescriptor(BoundaryDescriptor *HANDLE, IntegrityLabel PSID) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAddIntegrityLabelToBoundaryDescriptor, libKernel32, "AddIntegrityLabelToBoundaryDescriptor")
+	addr := LazyAddr(&pAddIntegrityLabelToBoundaryDescriptor, libKernel32, "AddIntegrityLabelToBoundaryDescriptor")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(BoundaryDescriptor)), uintptr(unsafe.Pointer(IntegrityLabel)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetActiveProcessorGroupCount() uint16 {
-	addr := lazyAddr(&pGetActiveProcessorGroupCount, libKernel32, "GetActiveProcessorGroupCount")
+	addr := LazyAddr(&pGetActiveProcessorGroupCount, libKernel32, "GetActiveProcessorGroupCount")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func GetMaximumProcessorGroupCount() uint16 {
-	addr := lazyAddr(&pGetMaximumProcessorGroupCount, libKernel32, "GetMaximumProcessorGroupCount")
+	addr := LazyAddr(&pGetMaximumProcessorGroupCount, libKernel32, "GetMaximumProcessorGroupCount")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func GetActiveProcessorCount(GroupNumber uint16) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetActiveProcessorCount, libKernel32, "GetActiveProcessorCount")
+	addr := LazyAddr(&pGetActiveProcessorCount, libKernel32, "GetActiveProcessorCount")
 	ret, _, err := syscall.SyscallN(addr, uintptr(GroupNumber))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetMaximumProcessorCount(GroupNumber uint16) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMaximumProcessorCount, libKernel32, "GetMaximumProcessorCount")
+	addr := LazyAddr(&pGetMaximumProcessorCount, libKernel32, "GetMaximumProcessorCount")
 	ret, _, err := syscall.SyscallN(addr, uintptr(GroupNumber))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetNumaProcessorNode(Processor byte, NodeNumber *byte) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaProcessorNode, libKernel32, "GetNumaProcessorNode")
+	addr := LazyAddr(&pGetNumaProcessorNode, libKernel32, "GetNumaProcessorNode")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Processor), uintptr(unsafe.Pointer(NodeNumber)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNumaNodeNumberFromHandle(hFile HANDLE, NodeNumber *uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaNodeNumberFromHandle, libKernel32, "GetNumaNodeNumberFromHandle")
+	addr := LazyAddr(&pGetNumaNodeNumberFromHandle, libKernel32, "GetNumaNodeNumberFromHandle")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(NodeNumber)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNumaProcessorNodeEx(Processor *PROCESSOR_NUMBER, NodeNumber *uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaProcessorNodeEx, libKernel32, "GetNumaProcessorNodeEx")
+	addr := LazyAddr(&pGetNumaProcessorNodeEx, libKernel32, "GetNumaProcessorNodeEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Processor)), uintptr(unsafe.Pointer(NodeNumber)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNumaNodeProcessorMask(Node byte, ProcessorMask *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaNodeProcessorMask, libKernel32, "GetNumaNodeProcessorMask")
+	addr := LazyAddr(&pGetNumaNodeProcessorMask, libKernel32, "GetNumaNodeProcessorMask")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Node), uintptr(unsafe.Pointer(ProcessorMask)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNumaAvailableMemoryNode(Node byte, AvailableBytes *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaAvailableMemoryNode, libKernel32, "GetNumaAvailableMemoryNode")
+	addr := LazyAddr(&pGetNumaAvailableMemoryNode, libKernel32, "GetNumaAvailableMemoryNode")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Node), uintptr(unsafe.Pointer(AvailableBytes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNumaAvailableMemoryNodeEx(Node uint16, AvailableBytes *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaAvailableMemoryNodeEx, libKernel32, "GetNumaAvailableMemoryNodeEx")
+	addr := LazyAddr(&pGetNumaAvailableMemoryNodeEx, libKernel32, "GetNumaAvailableMemoryNodeEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Node), uintptr(unsafe.Pointer(AvailableBytes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNumaProximityNode(ProximityId uint32, NodeNumber *byte) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumaProximityNode, libKernel32, "GetNumaProximityNode")
+	addr := LazyAddr(&pGetNumaProximityNode, libKernel32, "GetNumaProximityNode")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ProximityId), uintptr(unsafe.Pointer(NodeNumber)))
 	return BOOL(ret), WIN32_ERROR(err)
 }

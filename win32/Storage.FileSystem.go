@@ -5022,25 +5022,25 @@ var (
 var SearchPath = SearchPathW
 
 func SearchPathW(lpPath PWSTR, lpFileName PWSTR, lpExtension PWSTR, nBufferLength uint32, lpBuffer PWSTR, lpFilePart *PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSearchPathW, libKernel32, "SearchPathW")
+	addr := LazyAddr(&pSearchPathW, libKernel32, "SearchPathW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPath)), uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpExtension)), uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(lpFilePart)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SearchPathA(lpPath PSTR, lpFileName PSTR, lpExtension PSTR, nBufferLength uint32, lpBuffer PSTR, lpFilePart *PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSearchPathA, libKernel32, "SearchPathA")
+	addr := LazyAddr(&pSearchPathA, libKernel32, "SearchPathA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPath)), uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpExtension)), uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(lpFilePart)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func CompareFileTime(lpFileTime1 *FILETIME, lpFileTime2 *FILETIME) int32 {
-	addr := lazyAddr(&pCompareFileTime, libKernel32, "CompareFileTime")
+	addr := LazyAddr(&pCompareFileTime, libKernel32, "CompareFileTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileTime1)), uintptr(unsafe.Pointer(lpFileTime2)))
 	return int32(ret)
 }
 
 func CreateDirectoryA(lpPathName PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDirectoryA, libKernel32, "CreateDirectoryA")
+	addr := LazyAddr(&pCreateDirectoryA, libKernel32, "CreateDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5048,13 +5048,13 @@ func CreateDirectoryA(lpPathName PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES
 var CreateDirectory = CreateDirectoryW
 
 func CreateDirectoryW(lpPathName PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDirectoryW, libKernel32, "CreateDirectoryW")
+	addr := LazyAddr(&pCreateDirectoryW, libKernel32, "CreateDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateFileA(lpFileName PSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateFileA, libKernel32, "CreateFileA")
+	addr := LazyAddr(&pCreateFileA, libKernel32, "CreateFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwCreationDisposition), uintptr(dwFlagsAndAttributes), hTemplateFile)
 	return ret, WIN32_ERROR(err)
 }
@@ -5062,7 +5062,7 @@ func CreateFileA(lpFileName PSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode
 var CreateFile = CreateFileW
 
 func CreateFileW(lpFileName PWSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateFileW, libKernel32, "CreateFileW")
+	addr := LazyAddr(&pCreateFileW, libKernel32, "CreateFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwCreationDisposition), uintptr(dwFlagsAndAttributes), hTemplateFile)
 	return ret, WIN32_ERROR(err)
 }
@@ -5070,13 +5070,13 @@ func CreateFileW(lpFileName PWSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMod
 var DefineDosDevice = DefineDosDeviceW
 
 func DefineDosDeviceW(dwFlags DEFINE_DOS_DEVICE_FLAGS, lpDeviceName PWSTR, lpTargetPath PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDefineDosDeviceW, libKernel32, "DefineDosDeviceW")
+	addr := LazyAddr(&pDefineDosDeviceW, libKernel32, "DefineDosDeviceW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpDeviceName)), uintptr(unsafe.Pointer(lpTargetPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteFileA(lpFileName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteFileA, libKernel32, "DeleteFileA")
+	addr := LazyAddr(&pDeleteFileA, libKernel32, "DeleteFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5084,7 +5084,7 @@ func DeleteFileA(lpFileName PSTR) (BOOL, WIN32_ERROR) {
 var DeleteFile = DeleteFileW
 
 func DeleteFileW(lpFileName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteFileW, libKernel32, "DeleteFileW")
+	addr := LazyAddr(&pDeleteFileW, libKernel32, "DeleteFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5092,31 +5092,31 @@ func DeleteFileW(lpFileName PWSTR) (BOOL, WIN32_ERROR) {
 var DeleteVolumeMountPoint = DeleteVolumeMountPointW
 
 func DeleteVolumeMountPointW(lpszVolumeMountPoint PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteVolumeMountPointW, libKernel32, "DeleteVolumeMountPointW")
+	addr := LazyAddr(&pDeleteVolumeMountPointW, libKernel32, "DeleteVolumeMountPointW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeMountPoint)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FileTimeToLocalFileTime(lpFileTime *FILETIME, lpLocalFileTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFileTimeToLocalFileTime, libKernel32, "FileTimeToLocalFileTime")
+	addr := LazyAddr(&pFileTimeToLocalFileTime, libKernel32, "FileTimeToLocalFileTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileTime)), uintptr(unsafe.Pointer(lpLocalFileTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindClose(hFindFile FindFileHandle) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindClose, libKernel32, "FindClose")
+	addr := LazyAddr(&pFindClose, libKernel32, "FindClose")
 	ret, _, err := syscall.SyscallN(addr, hFindFile)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindCloseChangeNotification(hChangeHandle FindChangeNotificationHandle) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindCloseChangeNotification, libKernel32, "FindCloseChangeNotification")
+	addr := LazyAddr(&pFindCloseChangeNotification, libKernel32, "FindCloseChangeNotification")
 	ret, _, err := syscall.SyscallN(addr, hChangeHandle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindFirstChangeNotificationA(lpPathName PSTR, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE) (FindChangeNotificationHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstChangeNotificationA, libKernel32, "FindFirstChangeNotificationA")
+	addr := LazyAddr(&pFindFirstChangeNotificationA, libKernel32, "FindFirstChangeNotificationA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(bWatchSubtree), uintptr(dwNotifyFilter))
 	return ret, WIN32_ERROR(err)
 }
@@ -5124,13 +5124,13 @@ func FindFirstChangeNotificationA(lpPathName PSTR, bWatchSubtree BOOL, dwNotifyF
 var FindFirstChangeNotification = FindFirstChangeNotificationW
 
 func FindFirstChangeNotificationW(lpPathName PWSTR, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE) (FindChangeNotificationHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstChangeNotificationW, libKernel32, "FindFirstChangeNotificationW")
+	addr := LazyAddr(&pFindFirstChangeNotificationW, libKernel32, "FindFirstChangeNotificationW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(bWatchSubtree), uintptr(dwNotifyFilter))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindFirstFileA(lpFileName PSTR, lpFindFileData *WIN32_FIND_DATAA) (FindFileHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileA, libKernel32, "FindFirstFileA")
+	addr := LazyAddr(&pFindFirstFileA, libKernel32, "FindFirstFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFindFileData)))
 	return ret, WIN32_ERROR(err)
 }
@@ -5138,13 +5138,13 @@ func FindFirstFileA(lpFileName PSTR, lpFindFileData *WIN32_FIND_DATAA) (FindFile
 var FindFirstFile = FindFirstFileW
 
 func FindFirstFileW(lpFileName PWSTR, lpFindFileData *WIN32_FIND_DATAW) (FindFileHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileW, libKernel32, "FindFirstFileW")
+	addr := LazyAddr(&pFindFirstFileW, libKernel32, "FindFirstFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFindFileData)))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindFirstFileExA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags FIND_FIRST_EX_FLAGS) (FindFileHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileExA, libKernel32, "FindFirstFileExA")
+	addr := LazyAddr(&pFindFirstFileExA, libKernel32, "FindFirstFileExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags))
 	return ret, WIN32_ERROR(err)
 }
@@ -5152,7 +5152,7 @@ func FindFirstFileExA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFi
 var FindFirstFileEx = FindFirstFileExW
 
 func FindFirstFileExW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags FIND_FIRST_EX_FLAGS) (FindFileHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileExW, libKernel32, "FindFirstFileExW")
+	addr := LazyAddr(&pFindFirstFileExW, libKernel32, "FindFirstFileExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags))
 	return ret, WIN32_ERROR(err)
 }
@@ -5160,19 +5160,19 @@ func FindFirstFileExW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindF
 var FindFirstVolume = FindFirstVolumeW
 
 func FindFirstVolumeW(lpszVolumeName PWSTR, cchBufferLength uint32) (FindVolumeHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstVolumeW, libKernel32, "FindFirstVolumeW")
+	addr := LazyAddr(&pFindFirstVolumeW, libKernel32, "FindFirstVolumeW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindNextChangeNotification(hChangeHandle FindChangeNotificationHandle) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextChangeNotification, libKernel32, "FindNextChangeNotification")
+	addr := LazyAddr(&pFindNextChangeNotification, libKernel32, "FindNextChangeNotification")
 	ret, _, err := syscall.SyscallN(addr, hChangeHandle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindNextFileA(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextFileA, libKernel32, "FindNextFileA")
+	addr := LazyAddr(&pFindNextFileA, libKernel32, "FindNextFileA")
 	ret, _, err := syscall.SyscallN(addr, hFindFile, uintptr(unsafe.Pointer(lpFindFileData)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5180,7 +5180,7 @@ func FindNextFileA(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAA) (
 var FindNextFile = FindNextFileW
 
 func FindNextFileW(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextFileW, libKernel32, "FindNextFileW")
+	addr := LazyAddr(&pFindNextFileW, libKernel32, "FindNextFileW")
 	ret, _, err := syscall.SyscallN(addr, hFindFile, uintptr(unsafe.Pointer(lpFindFileData)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5188,25 +5188,25 @@ func FindNextFileW(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAW) (
 var FindNextVolume = FindNextVolumeW
 
 func FindNextVolumeW(hFindVolume FindVolumeHandle, lpszVolumeName PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextVolumeW, libKernel32, "FindNextVolumeW")
+	addr := LazyAddr(&pFindNextVolumeW, libKernel32, "FindNextVolumeW")
 	ret, _, err := syscall.SyscallN(addr, hFindVolume, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindVolumeClose(hFindVolume FindVolumeHandle) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindVolumeClose, libKernel32, "FindVolumeClose")
+	addr := LazyAddr(&pFindVolumeClose, libKernel32, "FindVolumeClose")
 	ret, _, err := syscall.SyscallN(addr, hFindVolume)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FlushFileBuffers(hFile HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFlushFileBuffers, libKernel32, "FlushFileBuffers")
+	addr := LazyAddr(&pFlushFileBuffers, libKernel32, "FlushFileBuffers")
 	ret, _, err := syscall.SyscallN(addr, hFile)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDiskFreeSpaceA(lpRootPathName PSTR, lpSectorsPerCluster *uint32, lpBytesPerSector *uint32, lpNumberOfFreeClusters *uint32, lpTotalNumberOfClusters *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDiskFreeSpaceA, libKernel32, "GetDiskFreeSpaceA")
+	addr := LazyAddr(&pGetDiskFreeSpaceA, libKernel32, "GetDiskFreeSpaceA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)), uintptr(unsafe.Pointer(lpSectorsPerCluster)), uintptr(unsafe.Pointer(lpBytesPerSector)), uintptr(unsafe.Pointer(lpNumberOfFreeClusters)), uintptr(unsafe.Pointer(lpTotalNumberOfClusters)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5214,13 +5214,13 @@ func GetDiskFreeSpaceA(lpRootPathName PSTR, lpSectorsPerCluster *uint32, lpBytes
 var GetDiskFreeSpace = GetDiskFreeSpaceW
 
 func GetDiskFreeSpaceW(lpRootPathName PWSTR, lpSectorsPerCluster *uint32, lpBytesPerSector *uint32, lpNumberOfFreeClusters *uint32, lpTotalNumberOfClusters *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDiskFreeSpaceW, libKernel32, "GetDiskFreeSpaceW")
+	addr := LazyAddr(&pGetDiskFreeSpaceW, libKernel32, "GetDiskFreeSpaceW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)), uintptr(unsafe.Pointer(lpSectorsPerCluster)), uintptr(unsafe.Pointer(lpBytesPerSector)), uintptr(unsafe.Pointer(lpNumberOfFreeClusters)), uintptr(unsafe.Pointer(lpTotalNumberOfClusters)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDiskFreeSpaceExA(lpDirectoryName PSTR, lpFreeBytesAvailableToCaller *uint64, lpTotalNumberOfBytes *uint64, lpTotalNumberOfFreeBytes *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDiskFreeSpaceExA, libKernel32, "GetDiskFreeSpaceExA")
+	addr := LazyAddr(&pGetDiskFreeSpaceExA, libKernel32, "GetDiskFreeSpaceExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDirectoryName)), uintptr(unsafe.Pointer(lpFreeBytesAvailableToCaller)), uintptr(unsafe.Pointer(lpTotalNumberOfBytes)), uintptr(unsafe.Pointer(lpTotalNumberOfFreeBytes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5228,13 +5228,13 @@ func GetDiskFreeSpaceExA(lpDirectoryName PSTR, lpFreeBytesAvailableToCaller *uin
 var GetDiskFreeSpaceEx = GetDiskFreeSpaceExW
 
 func GetDiskFreeSpaceExW(lpDirectoryName PWSTR, lpFreeBytesAvailableToCaller *uint64, lpTotalNumberOfBytes *uint64, lpTotalNumberOfFreeBytes *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDiskFreeSpaceExW, libKernel32, "GetDiskFreeSpaceExW")
+	addr := LazyAddr(&pGetDiskFreeSpaceExW, libKernel32, "GetDiskFreeSpaceExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDirectoryName)), uintptr(unsafe.Pointer(lpFreeBytesAvailableToCaller)), uintptr(unsafe.Pointer(lpTotalNumberOfBytes)), uintptr(unsafe.Pointer(lpTotalNumberOfFreeBytes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDiskSpaceInformationA(rootPath PSTR, diskSpaceInfo *DISK_SPACE_INFORMATION) HRESULT {
-	addr := lazyAddr(&pGetDiskSpaceInformationA, libKernel32, "GetDiskSpaceInformationA")
+	addr := LazyAddr(&pGetDiskSpaceInformationA, libKernel32, "GetDiskSpaceInformationA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rootPath)), uintptr(unsafe.Pointer(diskSpaceInfo)))
 	return HRESULT(ret)
 }
@@ -5242,13 +5242,13 @@ func GetDiskSpaceInformationA(rootPath PSTR, diskSpaceInfo *DISK_SPACE_INFORMATI
 var GetDiskSpaceInformation = GetDiskSpaceInformationW
 
 func GetDiskSpaceInformationW(rootPath PWSTR, diskSpaceInfo *DISK_SPACE_INFORMATION) HRESULT {
-	addr := lazyAddr(&pGetDiskSpaceInformationW, libKernel32, "GetDiskSpaceInformationW")
+	addr := LazyAddr(&pGetDiskSpaceInformationW, libKernel32, "GetDiskSpaceInformationW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rootPath)), uintptr(unsafe.Pointer(diskSpaceInfo)))
 	return HRESULT(ret)
 }
 
 func GetDriveTypeA(lpRootPathName PSTR) uint32 {
-	addr := lazyAddr(&pGetDriveTypeA, libKernel32, "GetDriveTypeA")
+	addr := LazyAddr(&pGetDriveTypeA, libKernel32, "GetDriveTypeA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)))
 	return uint32(ret)
 }
@@ -5256,13 +5256,13 @@ func GetDriveTypeA(lpRootPathName PSTR) uint32 {
 var GetDriveType = GetDriveTypeW
 
 func GetDriveTypeW(lpRootPathName PWSTR) uint32 {
-	addr := lazyAddr(&pGetDriveTypeW, libKernel32, "GetDriveTypeW")
+	addr := LazyAddr(&pGetDriveTypeW, libKernel32, "GetDriveTypeW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)))
 	return uint32(ret)
 }
 
 func GetFileAttributesA(lpFileName PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileAttributesA, libKernel32, "GetFileAttributesA")
+	addr := LazyAddr(&pGetFileAttributesA, libKernel32, "GetFileAttributesA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5270,13 +5270,13 @@ func GetFileAttributesA(lpFileName PSTR) (uint32, WIN32_ERROR) {
 var GetFileAttributes = GetFileAttributesW
 
 func GetFileAttributesW(lpFileName PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileAttributesW, libKernel32, "GetFileAttributesW")
+	addr := LazyAddr(&pGetFileAttributesW, libKernel32, "GetFileAttributesW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetFileAttributesExA(lpFileName PSTR, fInfoLevelId GET_FILEEX_INFO_LEVELS, lpFileInformation unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileAttributesExA, libKernel32, "GetFileAttributesExA")
+	addr := LazyAddr(&pGetFileAttributesExA, libKernel32, "GetFileAttributesExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFileInformation))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5284,37 +5284,37 @@ func GetFileAttributesExA(lpFileName PSTR, fInfoLevelId GET_FILEEX_INFO_LEVELS, 
 var GetFileAttributesEx = GetFileAttributesExW
 
 func GetFileAttributesExW(lpFileName PWSTR, fInfoLevelId GET_FILEEX_INFO_LEVELS, lpFileInformation unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileAttributesExW, libKernel32, "GetFileAttributesExW")
+	addr := LazyAddr(&pGetFileAttributesExW, libKernel32, "GetFileAttributesExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFileInformation))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileInformationByHandle(hFile HANDLE, lpFileInformation *BY_HANDLE_FILE_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileInformationByHandle, libKernel32, "GetFileInformationByHandle")
+	addr := LazyAddr(&pGetFileInformationByHandle, libKernel32, "GetFileInformationByHandle")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpFileInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileSize(hFile HANDLE, lpFileSizeHigh *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileSize, libKernel32, "GetFileSize")
+	addr := LazyAddr(&pGetFileSize, libKernel32, "GetFileSize")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpFileSizeHigh)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetFileSizeEx(hFile HANDLE, lpFileSize *int64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileSizeEx, libKernel32, "GetFileSizeEx")
+	addr := LazyAddr(&pGetFileSizeEx, libKernel32, "GetFileSizeEx")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpFileSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileType(hFile HANDLE) (FILE_TYPE, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileType, libKernel32, "GetFileType")
+	addr := LazyAddr(&pGetFileType, libKernel32, "GetFileType")
 	ret, _, err := syscall.SyscallN(addr, hFile)
 	return FILE_TYPE(ret), WIN32_ERROR(err)
 }
 
 func GetFinalPathNameByHandleA(hFile HANDLE, lpszFilePath PSTR, cchFilePath uint32, dwFlags FILE_NAME) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFinalPathNameByHandleA, libKernel32, "GetFinalPathNameByHandleA")
+	addr := LazyAddr(&pGetFinalPathNameByHandleA, libKernel32, "GetFinalPathNameByHandleA")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpszFilePath)), uintptr(cchFilePath), uintptr(dwFlags))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5322,13 +5322,13 @@ func GetFinalPathNameByHandleA(hFile HANDLE, lpszFilePath PSTR, cchFilePath uint
 var GetFinalPathNameByHandle = GetFinalPathNameByHandleW
 
 func GetFinalPathNameByHandleW(hFile HANDLE, lpszFilePath PWSTR, cchFilePath uint32, dwFlags FILE_NAME) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFinalPathNameByHandleW, libKernel32, "GetFinalPathNameByHandleW")
+	addr := LazyAddr(&pGetFinalPathNameByHandleW, libKernel32, "GetFinalPathNameByHandleW")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpszFilePath)), uintptr(cchFilePath), uintptr(dwFlags))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetFileTime(hFile HANDLE, lpCreationTime *FILETIME, lpLastAccessTime *FILETIME, lpLastWriteTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileTime, libKernel32, "GetFileTime")
+	addr := LazyAddr(&pGetFileTime, libKernel32, "GetFileTime")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpCreationTime)), uintptr(unsafe.Pointer(lpLastAccessTime)), uintptr(unsafe.Pointer(lpLastWriteTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5336,19 +5336,19 @@ func GetFileTime(hFile HANDLE, lpCreationTime *FILETIME, lpLastAccessTime *FILET
 var GetFullPathName = GetFullPathNameW
 
 func GetFullPathNameW(lpFileName PWSTR, nBufferLength uint32, lpBuffer PWSTR, lpFilePart *PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFullPathNameW, libKernel32, "GetFullPathNameW")
+	addr := LazyAddr(&pGetFullPathNameW, libKernel32, "GetFullPathNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(lpFilePart)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetFullPathNameA(lpFileName PSTR, nBufferLength uint32, lpBuffer PSTR, lpFilePart *PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFullPathNameA, libKernel32, "GetFullPathNameA")
+	addr := LazyAddr(&pGetFullPathNameA, libKernel32, "GetFullPathNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(lpFilePart)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetLogicalDrives() (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLogicalDrives, libKernel32, "GetLogicalDrives")
+	addr := LazyAddr(&pGetLogicalDrives, libKernel32, "GetLogicalDrives")
 	ret, _, err := syscall.SyscallN(addr)
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5356,13 +5356,13 @@ func GetLogicalDrives() (uint32, WIN32_ERROR) {
 var GetLogicalDriveStrings = GetLogicalDriveStringsW
 
 func GetLogicalDriveStringsW(nBufferLength uint32, lpBuffer PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLogicalDriveStringsW, libKernel32, "GetLogicalDriveStringsW")
+	addr := LazyAddr(&pGetLogicalDriveStringsW, libKernel32, "GetLogicalDriveStringsW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetLongPathNameA(lpszShortPath PSTR, lpszLongPath PSTR, cchBuffer uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLongPathNameA, libKernel32, "GetLongPathNameA")
+	addr := LazyAddr(&pGetLongPathNameA, libKernel32, "GetLongPathNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszShortPath)), uintptr(unsafe.Pointer(lpszLongPath)), uintptr(cchBuffer))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5370,13 +5370,13 @@ func GetLongPathNameA(lpszShortPath PSTR, lpszLongPath PSTR, cchBuffer uint32) (
 var GetLongPathName = GetLongPathNameW
 
 func GetLongPathNameW(lpszShortPath PWSTR, lpszLongPath PWSTR, cchBuffer uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLongPathNameW, libKernel32, "GetLongPathNameW")
+	addr := LazyAddr(&pGetLongPathNameW, libKernel32, "GetLongPathNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszShortPath)), uintptr(unsafe.Pointer(lpszLongPath)), uintptr(cchBuffer))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func AreShortNamesEnabled(Handle HANDLE, Enabled *BOOL) BOOL {
-	addr := lazyAddr(&pAreShortNamesEnabled, libKernel32, "AreShortNamesEnabled")
+	addr := LazyAddr(&pAreShortNamesEnabled, libKernel32, "AreShortNamesEnabled")
 	ret, _, _ := syscall.SyscallN(addr, Handle, uintptr(unsafe.Pointer(Enabled)))
 	return BOOL(ret)
 }
@@ -5384,7 +5384,7 @@ func AreShortNamesEnabled(Handle HANDLE, Enabled *BOOL) BOOL {
 var GetShortPathName = GetShortPathNameW
 
 func GetShortPathNameW(lpszLongPath PWSTR, lpszShortPath PWSTR, cchBuffer uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetShortPathNameW, libKernel32, "GetShortPathNameW")
+	addr := LazyAddr(&pGetShortPathNameW, libKernel32, "GetShortPathNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszLongPath)), uintptr(unsafe.Pointer(lpszShortPath)), uintptr(cchBuffer))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5392,13 +5392,13 @@ func GetShortPathNameW(lpszLongPath PWSTR, lpszShortPath PWSTR, cchBuffer uint32
 var GetTempFileName = GetTempFileNameW
 
 func GetTempFileNameW(lpPathName PWSTR, lpPrefixString PWSTR, uUnique uint32, lpTempFileName PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTempFileNameW, libKernel32, "GetTempFileNameW")
+	addr := LazyAddr(&pGetTempFileNameW, libKernel32, "GetTempFileNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(unsafe.Pointer(lpPrefixString)), uintptr(uUnique), uintptr(unsafe.Pointer(lpTempFileName)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetVolumeInformationByHandleW(hFile HANDLE, lpVolumeNameBuffer PWSTR, nVolumeNameSize uint32, lpVolumeSerialNumber *uint32, lpMaximumComponentLength *uint32, lpFileSystemFlags *uint32, lpFileSystemNameBuffer PWSTR, nFileSystemNameSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumeInformationByHandleW, libKernel32, "GetVolumeInformationByHandleW")
+	addr := LazyAddr(&pGetVolumeInformationByHandleW, libKernel32, "GetVolumeInformationByHandleW")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpVolumeNameBuffer)), uintptr(nVolumeNameSize), uintptr(unsafe.Pointer(lpVolumeSerialNumber)), uintptr(unsafe.Pointer(lpMaximumComponentLength)), uintptr(unsafe.Pointer(lpFileSystemFlags)), uintptr(unsafe.Pointer(lpFileSystemNameBuffer)), uintptr(nFileSystemNameSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5406,7 +5406,7 @@ func GetVolumeInformationByHandleW(hFile HANDLE, lpVolumeNameBuffer PWSTR, nVolu
 var GetVolumeInformation = GetVolumeInformationW
 
 func GetVolumeInformationW(lpRootPathName PWSTR, lpVolumeNameBuffer PWSTR, nVolumeNameSize uint32, lpVolumeSerialNumber *uint32, lpMaximumComponentLength *uint32, lpFileSystemFlags *uint32, lpFileSystemNameBuffer PWSTR, nFileSystemNameSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumeInformationW, libKernel32, "GetVolumeInformationW")
+	addr := LazyAddr(&pGetVolumeInformationW, libKernel32, "GetVolumeInformationW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)), uintptr(unsafe.Pointer(lpVolumeNameBuffer)), uintptr(nVolumeNameSize), uintptr(unsafe.Pointer(lpVolumeSerialNumber)), uintptr(unsafe.Pointer(lpMaximumComponentLength)), uintptr(unsafe.Pointer(lpFileSystemFlags)), uintptr(unsafe.Pointer(lpFileSystemNameBuffer)), uintptr(nFileSystemNameSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5414,25 +5414,25 @@ func GetVolumeInformationW(lpRootPathName PWSTR, lpVolumeNameBuffer PWSTR, nVolu
 var GetVolumePathName = GetVolumePathNameW
 
 func GetVolumePathNameW(lpszFileName PWSTR, lpszVolumePathName PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumePathNameW, libKernel32, "GetVolumePathNameW")
+	addr := LazyAddr(&pGetVolumePathNameW, libKernel32, "GetVolumePathNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(lpszVolumePathName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LocalFileTimeToFileTime(lpLocalFileTime *FILETIME, lpFileTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLocalFileTimeToFileTime, libKernel32, "LocalFileTimeToFileTime")
+	addr := LazyAddr(&pLocalFileTimeToFileTime, libKernel32, "LocalFileTimeToFileTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocalFileTime)), uintptr(unsafe.Pointer(lpFileTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LockFile(hFile HANDLE, dwFileOffsetLow uint32, dwFileOffsetHigh uint32, nNumberOfBytesToLockLow uint32, nNumberOfBytesToLockHigh uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLockFile, libKernel32, "LockFile")
+	addr := LazyAddr(&pLockFile, libKernel32, "LockFile")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(dwFileOffsetLow), uintptr(dwFileOffsetHigh), uintptr(nNumberOfBytesToLockLow), uintptr(nNumberOfBytesToLockHigh))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LockFileEx(hFile HANDLE, dwFlags LOCK_FILE_FLAGS, dwReserved uint32, nNumberOfBytesToLockLow uint32, nNumberOfBytesToLockHigh uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLockFileEx, libKernel32, "LockFileEx")
+	addr := LazyAddr(&pLockFileEx, libKernel32, "LockFileEx")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(dwFlags), uintptr(dwReserved), uintptr(nNumberOfBytesToLockLow), uintptr(nNumberOfBytesToLockHigh), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5440,31 +5440,31 @@ func LockFileEx(hFile HANDLE, dwFlags LOCK_FILE_FLAGS, dwReserved uint32, nNumbe
 var QueryDosDevice = QueryDosDeviceW
 
 func QueryDosDeviceW(lpDeviceName PWSTR, lpTargetPath PWSTR, ucchMax uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryDosDeviceW, libKernel32, "QueryDosDeviceW")
+	addr := LazyAddr(&pQueryDosDeviceW, libKernel32, "QueryDosDeviceW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDeviceName)), uintptr(unsafe.Pointer(lpTargetPath)), uintptr(ucchMax))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func ReadFile(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, lpNumberOfBytesRead *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReadFile, libKernel32, "ReadFile")
+	addr := LazyAddr(&pReadFile, libKernel32, "ReadFile")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpNumberOfBytesRead)), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReadFileEx(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReadFileEx, libKernel32, "ReadFileEx")
+	addr := LazyAddr(&pReadFileEx, libKernel32, "ReadFileEx")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReadFileScatter(hFile HANDLE, aSegmentArray *FILE_SEGMENT_ELEMENT, nNumberOfBytesToRead uint32, lpReserved *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReadFileScatter, libKernel32, "ReadFileScatter")
+	addr := LazyAddr(&pReadFileScatter, libKernel32, "ReadFileScatter")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(aSegmentArray)), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RemoveDirectoryA(lpPathName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRemoveDirectoryA, libKernel32, "RemoveDirectoryA")
+	addr := LazyAddr(&pRemoveDirectoryA, libKernel32, "RemoveDirectoryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5472,19 +5472,19 @@ func RemoveDirectoryA(lpPathName PSTR) (BOOL, WIN32_ERROR) {
 var RemoveDirectory = RemoveDirectoryW
 
 func RemoveDirectoryW(lpPathName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRemoveDirectoryW, libKernel32, "RemoveDirectoryW")
+	addr := LazyAddr(&pRemoveDirectoryW, libKernel32, "RemoveDirectoryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetEndOfFile(hFile HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetEndOfFile, libKernel32, "SetEndOfFile")
+	addr := LazyAddr(&pSetEndOfFile, libKernel32, "SetEndOfFile")
 	ret, _, err := syscall.SyscallN(addr, hFile)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFileAttributesA(lpFileName PSTR, dwFileAttributes FILE_FLAGS_AND_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileAttributesA, libKernel32, "SetFileAttributesA")
+	addr := LazyAddr(&pSetFileAttributesA, libKernel32, "SetFileAttributesA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFileAttributes))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5492,67 +5492,67 @@ func SetFileAttributesA(lpFileName PSTR, dwFileAttributes FILE_FLAGS_AND_ATTRIBU
 var SetFileAttributes = SetFileAttributesW
 
 func SetFileAttributesW(lpFileName PWSTR, dwFileAttributes FILE_FLAGS_AND_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileAttributesW, libKernel32, "SetFileAttributesW")
+	addr := LazyAddr(&pSetFileAttributesW, libKernel32, "SetFileAttributesW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFileAttributes))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFileInformationByHandle(hFile HANDLE, FileInformationClass FILE_INFO_BY_HANDLE_CLASS, lpFileInformation unsafe.Pointer, dwBufferSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileInformationByHandle, libKernel32, "SetFileInformationByHandle")
+	addr := LazyAddr(&pSetFileInformationByHandle, libKernel32, "SetFileInformationByHandle")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(FileInformationClass), uintptr(lpFileInformation), uintptr(dwBufferSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFilePointer(hFile HANDLE, lDistanceToMove int32, lpDistanceToMoveHigh *int32, dwMoveMethod SET_FILE_POINTER_MOVE_METHOD) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFilePointer, libKernel32, "SetFilePointer")
+	addr := LazyAddr(&pSetFilePointer, libKernel32, "SetFilePointer")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lDistanceToMove), uintptr(unsafe.Pointer(lpDistanceToMoveHigh)), uintptr(dwMoveMethod))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetFilePointerEx(hFile HANDLE, liDistanceToMove int64, lpNewFilePointer *int64, dwMoveMethod SET_FILE_POINTER_MOVE_METHOD) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFilePointerEx, libKernel32, "SetFilePointerEx")
+	addr := LazyAddr(&pSetFilePointerEx, libKernel32, "SetFilePointerEx")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(liDistanceToMove), uintptr(unsafe.Pointer(lpNewFilePointer)), uintptr(dwMoveMethod))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFileTime(hFile HANDLE, lpCreationTime *FILETIME, lpLastAccessTime *FILETIME, lpLastWriteTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileTime, libKernel32, "SetFileTime")
+	addr := LazyAddr(&pSetFileTime, libKernel32, "SetFileTime")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpCreationTime)), uintptr(unsafe.Pointer(lpLastAccessTime)), uintptr(unsafe.Pointer(lpLastWriteTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFileValidData(hFile HANDLE, ValidDataLength int64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileValidData, libKernel32, "SetFileValidData")
+	addr := LazyAddr(&pSetFileValidData, libKernel32, "SetFileValidData")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(ValidDataLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnlockFile(hFile HANDLE, dwFileOffsetLow uint32, dwFileOffsetHigh uint32, nNumberOfBytesToUnlockLow uint32, nNumberOfBytesToUnlockHigh uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnlockFile, libKernel32, "UnlockFile")
+	addr := LazyAddr(&pUnlockFile, libKernel32, "UnlockFile")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(dwFileOffsetLow), uintptr(dwFileOffsetHigh), uintptr(nNumberOfBytesToUnlockLow), uintptr(nNumberOfBytesToUnlockHigh))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnlockFileEx(hFile HANDLE, dwReserved uint32, nNumberOfBytesToUnlockLow uint32, nNumberOfBytesToUnlockHigh uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnlockFileEx, libKernel32, "UnlockFileEx")
+	addr := LazyAddr(&pUnlockFileEx, libKernel32, "UnlockFileEx")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(dwReserved), uintptr(nNumberOfBytesToUnlockLow), uintptr(nNumberOfBytesToUnlockHigh), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func WriteFile(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToWrite uint32, lpNumberOfBytesWritten *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWriteFile, libKernel32, "WriteFile")
+	addr := LazyAddr(&pWriteFile, libKernel32, "WriteFile")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpNumberOfBytesWritten)), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func WriteFileEx(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToWrite uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWriteFileEx, libKernel32, "WriteFileEx")
+	addr := LazyAddr(&pWriteFileEx, libKernel32, "WriteFileEx")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func WriteFileGather(hFile HANDLE, aSegmentArray *FILE_SEGMENT_ELEMENT, nNumberOfBytesToWrite uint32, lpReserved *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWriteFileGather, libKernel32, "WriteFileGather")
+	addr := LazyAddr(&pWriteFileGather, libKernel32, "WriteFileGather")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(aSegmentArray)), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5560,7 +5560,7 @@ func WriteFileGather(hFile HANDLE, aSegmentArray *FILE_SEGMENT_ELEMENT, nNumberO
 var GetTempPath = GetTempPathW
 
 func GetTempPathW(nBufferLength uint32, lpBuffer PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTempPathW, libKernel32, "GetTempPathW")
+	addr := LazyAddr(&pGetTempPathW, libKernel32, "GetTempPathW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5568,7 +5568,7 @@ func GetTempPathW(nBufferLength uint32, lpBuffer PWSTR) (uint32, WIN32_ERROR) {
 var GetVolumeNameForVolumeMountPoint = GetVolumeNameForVolumeMountPointW
 
 func GetVolumeNameForVolumeMountPointW(lpszVolumeMountPoint PWSTR, lpszVolumeName PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumeNameForVolumeMountPointW, libKernel32, "GetVolumeNameForVolumeMountPointW")
+	addr := LazyAddr(&pGetVolumeNameForVolumeMountPointW, libKernel32, "GetVolumeNameForVolumeMountPointW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5576,25 +5576,25 @@ func GetVolumeNameForVolumeMountPointW(lpszVolumeMountPoint PWSTR, lpszVolumeNam
 var GetVolumePathNamesForVolumeName = GetVolumePathNamesForVolumeNameW
 
 func GetVolumePathNamesForVolumeNameW(lpszVolumeName PWSTR, lpszVolumePathNames PWSTR, cchBufferLength uint32, lpcchReturnLength *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumePathNamesForVolumeNameW, libKernel32, "GetVolumePathNamesForVolumeNameW")
+	addr := LazyAddr(&pGetVolumePathNamesForVolumeNameW, libKernel32, "GetVolumePathNamesForVolumeNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(unsafe.Pointer(lpszVolumePathNames)), uintptr(cchBufferLength), uintptr(unsafe.Pointer(lpcchReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateFile2(lpFileName PWSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, dwCreationDisposition FILE_CREATION_DISPOSITION, pCreateExParams *CREATEFILE2_EXTENDED_PARAMETERS) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateFile2, libKernel32, "CreateFile2")
+	addr := LazyAddr(&pCreateFile2, libKernel32, "CreateFile2")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(dwCreationDisposition), uintptr(unsafe.Pointer(pCreateExParams)))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetFileIoOverlappedRange(FileHandle HANDLE, OverlappedRangeStart *byte, Length uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileIoOverlappedRange, libKernel32, "SetFileIoOverlappedRange")
+	addr := LazyAddr(&pSetFileIoOverlappedRange, libKernel32, "SetFileIoOverlappedRange")
 	ret, _, err := syscall.SyscallN(addr, FileHandle, uintptr(unsafe.Pointer(OverlappedRangeStart)), uintptr(Length))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCompressedFileSizeA(lpFileName PSTR, lpFileSizeHigh *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCompressedFileSizeA, libKernel32, "GetCompressedFileSizeA")
+	addr := LazyAddr(&pGetCompressedFileSizeA, libKernel32, "GetCompressedFileSizeA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFileSizeHigh)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5602,85 +5602,85 @@ func GetCompressedFileSizeA(lpFileName PSTR, lpFileSizeHigh *uint32) (uint32, WI
 var GetCompressedFileSize = GetCompressedFileSizeW
 
 func GetCompressedFileSizeW(lpFileName PWSTR, lpFileSizeHigh *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCompressedFileSizeW, libKernel32, "GetCompressedFileSizeW")
+	addr := LazyAddr(&pGetCompressedFileSizeW, libKernel32, "GetCompressedFileSizeW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFileSizeHigh)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func FindFirstStreamW(lpFileName PWSTR, InfoLevel STREAM_INFO_LEVELS, lpFindStreamData unsafe.Pointer, dwFlags uint32) (FindStreamHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstStreamW, libKernel32, "FindFirstStreamW")
+	addr := LazyAddr(&pFindFirstStreamW, libKernel32, "FindFirstStreamW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(InfoLevel), uintptr(lpFindStreamData), uintptr(dwFlags))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindNextStreamW(hFindStream FindStreamHandle, lpFindStreamData unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextStreamW, libKernel32, "FindNextStreamW")
+	addr := LazyAddr(&pFindNextStreamW, libKernel32, "FindNextStreamW")
 	ret, _, err := syscall.SyscallN(addr, hFindStream, uintptr(lpFindStreamData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AreFileApisANSI() BOOL {
-	addr := lazyAddr(&pAreFileApisANSI, libKernel32, "AreFileApisANSI")
+	addr := LazyAddr(&pAreFileApisANSI, libKernel32, "AreFileApisANSI")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func GetTempPathA(nBufferLength uint32, lpBuffer PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTempPathA, libKernel32, "GetTempPathA")
+	addr := LazyAddr(&pGetTempPathA, libKernel32, "GetTempPathA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func FindFirstFileNameW(lpFileName PWSTR, dwFlags uint32, StringLength *uint32, LinkName PWSTR) (FindFileNameHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileNameW, libKernel32, "FindFirstFileNameW")
+	addr := LazyAddr(&pFindFirstFileNameW, libKernel32, "FindFirstFileNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFlags), uintptr(unsafe.Pointer(StringLength)), uintptr(unsafe.Pointer(LinkName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindNextFileNameW(hFindStream FindFileNameHandle, StringLength *uint32, LinkName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextFileNameW, libKernel32, "FindNextFileNameW")
+	addr := LazyAddr(&pFindNextFileNameW, libKernel32, "FindNextFileNameW")
 	ret, _, err := syscall.SyscallN(addr, hFindStream, uintptr(unsafe.Pointer(StringLength)), uintptr(unsafe.Pointer(LinkName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetVolumeInformationA(lpRootPathName PSTR, lpVolumeNameBuffer PSTR, nVolumeNameSize uint32, lpVolumeSerialNumber *uint32, lpMaximumComponentLength *uint32, lpFileSystemFlags *uint32, lpFileSystemNameBuffer PSTR, nFileSystemNameSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumeInformationA, libKernel32, "GetVolumeInformationA")
+	addr := LazyAddr(&pGetVolumeInformationA, libKernel32, "GetVolumeInformationA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)), uintptr(unsafe.Pointer(lpVolumeNameBuffer)), uintptr(nVolumeNameSize), uintptr(unsafe.Pointer(lpVolumeSerialNumber)), uintptr(unsafe.Pointer(lpMaximumComponentLength)), uintptr(unsafe.Pointer(lpFileSystemFlags)), uintptr(unsafe.Pointer(lpFileSystemNameBuffer)), uintptr(nFileSystemNameSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetTempFileNameA(lpPathName PSTR, lpPrefixString PSTR, uUnique uint32, lpTempFileName PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTempFileNameA, libKernel32, "GetTempFileNameA")
+	addr := LazyAddr(&pGetTempFileNameA, libKernel32, "GetTempFileNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(unsafe.Pointer(lpPrefixString)), uintptr(uUnique), uintptr(unsafe.Pointer(lpTempFileName)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetFileApisToOEM() {
-	addr := lazyAddr(&pSetFileApisToOEM, libKernel32, "SetFileApisToOEM")
+	addr := LazyAddr(&pSetFileApisToOEM, libKernel32, "SetFileApisToOEM")
 	syscall.SyscallN(addr)
 }
 
 func SetFileApisToANSI() {
-	addr := lazyAddr(&pSetFileApisToANSI, libKernel32, "SetFileApisToANSI")
+	addr := LazyAddr(&pSetFileApisToANSI, libKernel32, "SetFileApisToANSI")
 	syscall.SyscallN(addr)
 }
 
 var GetTempPath2 = GetTempPath2W
 
 func GetTempPath2W(BufferLength uint32, Buffer PWSTR) uint32 {
-	addr := lazyAddr(&pGetTempPath2W, libKernel32, "GetTempPath2W")
+	addr := LazyAddr(&pGetTempPath2W, libKernel32, "GetTempPath2W")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(BufferLength), uintptr(unsafe.Pointer(Buffer)))
 	return uint32(ret)
 }
 
 func GetTempPath2A(BufferLength uint32, Buffer PSTR) uint32 {
-	addr := lazyAddr(&pGetTempPath2A, libKernel32, "GetTempPath2A")
+	addr := LazyAddr(&pGetTempPath2A, libKernel32, "GetTempPath2A")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(BufferLength), uintptr(unsafe.Pointer(Buffer)))
 	return uint32(ret)
 }
 
 func VerFindFileA(uFlags VER_FIND_FILE_FLAGS, szFileName PSTR, szWinDir PSTR, szAppDir PSTR, szCurDir PSTR, puCurDirLen *uint32, szDestDir PSTR, puDestDirLen *uint32) VER_FIND_FILE_STATUS {
-	addr := lazyAddr(&pVerFindFileA, libVersion, "VerFindFileA")
+	addr := LazyAddr(&pVerFindFileA, libVersion, "VerFindFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uFlags), uintptr(unsafe.Pointer(szFileName)), uintptr(unsafe.Pointer(szWinDir)), uintptr(unsafe.Pointer(szAppDir)), uintptr(unsafe.Pointer(szCurDir)), uintptr(unsafe.Pointer(puCurDirLen)), uintptr(unsafe.Pointer(szDestDir)), uintptr(unsafe.Pointer(puDestDirLen)))
 	return VER_FIND_FILE_STATUS(ret)
 }
@@ -5688,13 +5688,13 @@ func VerFindFileA(uFlags VER_FIND_FILE_FLAGS, szFileName PSTR, szWinDir PSTR, sz
 var VerFindFile = VerFindFileW
 
 func VerFindFileW(uFlags VER_FIND_FILE_FLAGS, szFileName PWSTR, szWinDir PWSTR, szAppDir PWSTR, szCurDir PWSTR, puCurDirLen *uint32, szDestDir PWSTR, puDestDirLen *uint32) VER_FIND_FILE_STATUS {
-	addr := lazyAddr(&pVerFindFileW, libVersion, "VerFindFileW")
+	addr := LazyAddr(&pVerFindFileW, libVersion, "VerFindFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uFlags), uintptr(unsafe.Pointer(szFileName)), uintptr(unsafe.Pointer(szWinDir)), uintptr(unsafe.Pointer(szAppDir)), uintptr(unsafe.Pointer(szCurDir)), uintptr(unsafe.Pointer(puCurDirLen)), uintptr(unsafe.Pointer(szDestDir)), uintptr(unsafe.Pointer(puDestDirLen)))
 	return VER_FIND_FILE_STATUS(ret)
 }
 
 func VerInstallFileA(uFlags VER_INSTALL_FILE_FLAGS, szSrcFileName PSTR, szDestFileName PSTR, szSrcDir PSTR, szDestDir PSTR, szCurDir PSTR, szTmpFile PSTR, puTmpFileLen *uint32) VER_INSTALL_FILE_STATUS {
-	addr := lazyAddr(&pVerInstallFileA, libVersion, "VerInstallFileA")
+	addr := LazyAddr(&pVerInstallFileA, libVersion, "VerInstallFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uFlags), uintptr(unsafe.Pointer(szSrcFileName)), uintptr(unsafe.Pointer(szDestFileName)), uintptr(unsafe.Pointer(szSrcDir)), uintptr(unsafe.Pointer(szDestDir)), uintptr(unsafe.Pointer(szCurDir)), uintptr(unsafe.Pointer(szTmpFile)), uintptr(unsafe.Pointer(puTmpFileLen)))
 	return VER_INSTALL_FILE_STATUS(ret)
 }
@@ -5702,13 +5702,13 @@ func VerInstallFileA(uFlags VER_INSTALL_FILE_FLAGS, szSrcFileName PSTR, szDestFi
 var VerInstallFile = VerInstallFileW
 
 func VerInstallFileW(uFlags VER_INSTALL_FILE_FLAGS, szSrcFileName PWSTR, szDestFileName PWSTR, szSrcDir PWSTR, szDestDir PWSTR, szCurDir PWSTR, szTmpFile PWSTR, puTmpFileLen *uint32) VER_INSTALL_FILE_STATUS {
-	addr := lazyAddr(&pVerInstallFileW, libVersion, "VerInstallFileW")
+	addr := LazyAddr(&pVerInstallFileW, libVersion, "VerInstallFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uFlags), uintptr(unsafe.Pointer(szSrcFileName)), uintptr(unsafe.Pointer(szDestFileName)), uintptr(unsafe.Pointer(szSrcDir)), uintptr(unsafe.Pointer(szDestDir)), uintptr(unsafe.Pointer(szCurDir)), uintptr(unsafe.Pointer(szTmpFile)), uintptr(unsafe.Pointer(puTmpFileLen)))
 	return VER_INSTALL_FILE_STATUS(ret)
 }
 
 func GetFileVersionInfoSizeA(lptstrFilename PSTR, lpdwHandle *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoSizeA, libVersion, "GetFileVersionInfoSizeA")
+	addr := LazyAddr(&pGetFileVersionInfoSizeA, libVersion, "GetFileVersionInfoSizeA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lptstrFilename)), uintptr(unsafe.Pointer(lpdwHandle)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5716,13 +5716,13 @@ func GetFileVersionInfoSizeA(lptstrFilename PSTR, lpdwHandle *uint32) (uint32, W
 var GetFileVersionInfoSize = GetFileVersionInfoSizeW
 
 func GetFileVersionInfoSizeW(lptstrFilename PWSTR, lpdwHandle *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoSizeW, libVersion, "GetFileVersionInfoSizeW")
+	addr := LazyAddr(&pGetFileVersionInfoSizeW, libVersion, "GetFileVersionInfoSizeW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lptstrFilename)), uintptr(unsafe.Pointer(lpdwHandle)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetFileVersionInfoA(lptstrFilename PSTR, dwHandle uint32, dwLen uint32, lpData unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoA, libVersion, "GetFileVersionInfoA")
+	addr := LazyAddr(&pGetFileVersionInfoA, libVersion, "GetFileVersionInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lptstrFilename)), uintptr(dwHandle), uintptr(dwLen), uintptr(lpData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5730,13 +5730,13 @@ func GetFileVersionInfoA(lptstrFilename PSTR, dwHandle uint32, dwLen uint32, lpD
 var GetFileVersionInfo = GetFileVersionInfoW
 
 func GetFileVersionInfoW(lptstrFilename PWSTR, dwHandle uint32, dwLen uint32, lpData unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoW, libVersion, "GetFileVersionInfoW")
+	addr := LazyAddr(&pGetFileVersionInfoW, libVersion, "GetFileVersionInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lptstrFilename)), uintptr(dwHandle), uintptr(dwLen), uintptr(lpData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileVersionInfoSizeExA(dwFlags GET_FILE_VERSION_INFO_FLAGS, lpwstrFilename PSTR, lpdwHandle *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoSizeExA, libVersion, "GetFileVersionInfoSizeExA")
+	addr := LazyAddr(&pGetFileVersionInfoSizeExA, libVersion, "GetFileVersionInfoSizeExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpwstrFilename)), uintptr(unsafe.Pointer(lpdwHandle)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5744,13 +5744,13 @@ func GetFileVersionInfoSizeExA(dwFlags GET_FILE_VERSION_INFO_FLAGS, lpwstrFilena
 var GetFileVersionInfoSizeEx = GetFileVersionInfoSizeExW
 
 func GetFileVersionInfoSizeExW(dwFlags GET_FILE_VERSION_INFO_FLAGS, lpwstrFilename PWSTR, lpdwHandle *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoSizeExW, libVersion, "GetFileVersionInfoSizeExW")
+	addr := LazyAddr(&pGetFileVersionInfoSizeExW, libVersion, "GetFileVersionInfoSizeExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpwstrFilename)), uintptr(unsafe.Pointer(lpdwHandle)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetFileVersionInfoExA(dwFlags GET_FILE_VERSION_INFO_FLAGS, lpwstrFilename PSTR, dwHandle uint32, dwLen uint32, lpData unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoExA, libVersion, "GetFileVersionInfoExA")
+	addr := LazyAddr(&pGetFileVersionInfoExA, libVersion, "GetFileVersionInfoExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpwstrFilename)), uintptr(dwHandle), uintptr(dwLen), uintptr(lpData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5758,13 +5758,13 @@ func GetFileVersionInfoExA(dwFlags GET_FILE_VERSION_INFO_FLAGS, lpwstrFilename P
 var GetFileVersionInfoEx = GetFileVersionInfoExW
 
 func GetFileVersionInfoExW(dwFlags GET_FILE_VERSION_INFO_FLAGS, lpwstrFilename PWSTR, dwHandle uint32, dwLen uint32, lpData unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileVersionInfoExW, libVersion, "GetFileVersionInfoExW")
+	addr := LazyAddr(&pGetFileVersionInfoExW, libVersion, "GetFileVersionInfoExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpwstrFilename)), uintptr(dwHandle), uintptr(dwLen), uintptr(lpData))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func VerLanguageNameA(wLang uint32, szLang PSTR, cchLang uint32) uint32 {
-	addr := lazyAddr(&pVerLanguageNameA, libKernel32, "VerLanguageNameA")
+	addr := LazyAddr(&pVerLanguageNameA, libKernel32, "VerLanguageNameA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wLang), uintptr(unsafe.Pointer(szLang)), uintptr(cchLang))
 	return uint32(ret)
 }
@@ -5772,13 +5772,13 @@ func VerLanguageNameA(wLang uint32, szLang PSTR, cchLang uint32) uint32 {
 var VerLanguageName = VerLanguageNameW
 
 func VerLanguageNameW(wLang uint32, szLang PWSTR, cchLang uint32) uint32 {
-	addr := lazyAddr(&pVerLanguageNameW, libKernel32, "VerLanguageNameW")
+	addr := LazyAddr(&pVerLanguageNameW, libKernel32, "VerLanguageNameW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wLang), uintptr(unsafe.Pointer(szLang)), uintptr(cchLang))
 	return uint32(ret)
 }
 
 func VerQueryValueA(pBlock unsafe.Pointer, lpSubBlock PSTR, lplpBuffer unsafe.Pointer, puLen *uint32) BOOL {
-	addr := lazyAddr(&pVerQueryValueA, libVersion, "VerQueryValueA")
+	addr := LazyAddr(&pVerQueryValueA, libVersion, "VerQueryValueA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pBlock), uintptr(unsafe.Pointer(lpSubBlock)), uintptr(lplpBuffer), uintptr(unsafe.Pointer(puLen)))
 	return BOOL(ret)
 }
@@ -5786,112 +5786,112 @@ func VerQueryValueA(pBlock unsafe.Pointer, lpSubBlock PSTR, lplpBuffer unsafe.Po
 var VerQueryValue = VerQueryValueW
 
 func VerQueryValueW(pBlock unsafe.Pointer, lpSubBlock PWSTR, lplpBuffer unsafe.Pointer, puLen *uint32) BOOL {
-	addr := lazyAddr(&pVerQueryValueW, libVersion, "VerQueryValueW")
+	addr := LazyAddr(&pVerQueryValueW, libVersion, "VerQueryValueW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pBlock), uintptr(unsafe.Pointer(lpSubBlock)), uintptr(lplpBuffer), uintptr(unsafe.Pointer(puLen)))
 	return BOOL(ret)
 }
 
 func QueryUsersOnEncryptedFile(lpFileName PWSTR, pUsers **ENCRYPTION_CERTIFICATE_HASH_LIST) uint32 {
-	addr := lazyAddr(&pQueryUsersOnEncryptedFile, libAdvapi32, "QueryUsersOnEncryptedFile")
+	addr := LazyAddr(&pQueryUsersOnEncryptedFile, libAdvapi32, "QueryUsersOnEncryptedFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(pUsers)))
 	return uint32(ret)
 }
 
 func QueryRecoveryAgentsOnEncryptedFile(lpFileName PWSTR, pRecoveryAgents **ENCRYPTION_CERTIFICATE_HASH_LIST) uint32 {
-	addr := lazyAddr(&pQueryRecoveryAgentsOnEncryptedFile, libAdvapi32, "QueryRecoveryAgentsOnEncryptedFile")
+	addr := LazyAddr(&pQueryRecoveryAgentsOnEncryptedFile, libAdvapi32, "QueryRecoveryAgentsOnEncryptedFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(pRecoveryAgents)))
 	return uint32(ret)
 }
 
 func RemoveUsersFromEncryptedFile(lpFileName PWSTR, pHashes *ENCRYPTION_CERTIFICATE_HASH_LIST) uint32 {
-	addr := lazyAddr(&pRemoveUsersFromEncryptedFile, libAdvapi32, "RemoveUsersFromEncryptedFile")
+	addr := LazyAddr(&pRemoveUsersFromEncryptedFile, libAdvapi32, "RemoveUsersFromEncryptedFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(pHashes)))
 	return uint32(ret)
 }
 
 func AddUsersToEncryptedFile(lpFileName PWSTR, pEncryptionCertificates *ENCRYPTION_CERTIFICATE_LIST) uint32 {
-	addr := lazyAddr(&pAddUsersToEncryptedFile, libAdvapi32, "AddUsersToEncryptedFile")
+	addr := LazyAddr(&pAddUsersToEncryptedFile, libAdvapi32, "AddUsersToEncryptedFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(pEncryptionCertificates)))
 	return uint32(ret)
 }
 
 func SetUserFileEncryptionKey(pEncryptionCertificate *ENCRYPTION_CERTIFICATE) uint32 {
-	addr := lazyAddr(&pSetUserFileEncryptionKey, libAdvapi32, "SetUserFileEncryptionKey")
+	addr := LazyAddr(&pSetUserFileEncryptionKey, libAdvapi32, "SetUserFileEncryptionKey")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pEncryptionCertificate)))
 	return uint32(ret)
 }
 
 func SetUserFileEncryptionKeyEx(pEncryptionCertificate *ENCRYPTION_CERTIFICATE, dwCapabilities uint32, dwFlags uint32, pvReserved unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pSetUserFileEncryptionKeyEx, libAdvapi32, "SetUserFileEncryptionKeyEx")
+	addr := LazyAddr(&pSetUserFileEncryptionKeyEx, libAdvapi32, "SetUserFileEncryptionKeyEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pEncryptionCertificate)), uintptr(dwCapabilities), uintptr(dwFlags), uintptr(pvReserved))
 	return uint32(ret)
 }
 
 func FreeEncryptionCertificateHashList(pUsers *ENCRYPTION_CERTIFICATE_HASH_LIST) {
-	addr := lazyAddr(&pFreeEncryptionCertificateHashList, libAdvapi32, "FreeEncryptionCertificateHashList")
+	addr := LazyAddr(&pFreeEncryptionCertificateHashList, libAdvapi32, "FreeEncryptionCertificateHashList")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUsers)))
 }
 
 func EncryptionDisable(DirPath PWSTR, Disable BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEncryptionDisable, libAdvapi32, "EncryptionDisable")
+	addr := LazyAddr(&pEncryptionDisable, libAdvapi32, "EncryptionDisable")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(DirPath)), uintptr(Disable))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DuplicateEncryptionInfoFile(SrcFileName PWSTR, DstFileName PWSTR, dwCreationDistribution uint32, dwAttributes uint32, lpSecurityAttributes *SECURITY_ATTRIBUTES) uint32 {
-	addr := lazyAddr(&pDuplicateEncryptionInfoFile, libAdvapi32, "DuplicateEncryptionInfoFile")
+	addr := LazyAddr(&pDuplicateEncryptionInfoFile, libAdvapi32, "DuplicateEncryptionInfoFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SrcFileName)), uintptr(unsafe.Pointer(DstFileName)), uintptr(dwCreationDistribution), uintptr(dwAttributes), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return uint32(ret)
 }
 
 func GetEncryptedFileMetadata(lpFileName PWSTR, pcbMetadata *uint32, ppbMetadata **byte) uint32 {
-	addr := lazyAddr(&pGetEncryptedFileMetadata, libAdvapi32, "GetEncryptedFileMetadata")
+	addr := LazyAddr(&pGetEncryptedFileMetadata, libAdvapi32, "GetEncryptedFileMetadata")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(pcbMetadata)), uintptr(unsafe.Pointer(ppbMetadata)))
 	return uint32(ret)
 }
 
 func SetEncryptedFileMetadata(lpFileName PWSTR, pbOldMetadata *byte, pbNewMetadata *byte, pOwnerHash *ENCRYPTION_CERTIFICATE_HASH, dwOperation uint32, pCertificatesAdded *ENCRYPTION_CERTIFICATE_HASH_LIST) uint32 {
-	addr := lazyAddr(&pSetEncryptedFileMetadata, libAdvapi32, "SetEncryptedFileMetadata")
+	addr := LazyAddr(&pSetEncryptedFileMetadata, libAdvapi32, "SetEncryptedFileMetadata")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(pbOldMetadata)), uintptr(unsafe.Pointer(pbNewMetadata)), uintptr(unsafe.Pointer(pOwnerHash)), uintptr(dwOperation), uintptr(unsafe.Pointer(pCertificatesAdded)))
 	return uint32(ret)
 }
 
 func FreeEncryptedFileMetadata(pbMetadata *byte) {
-	addr := lazyAddr(&pFreeEncryptedFileMetadata, libAdvapi32, "FreeEncryptedFileMetadata")
+	addr := LazyAddr(&pFreeEncryptedFileMetadata, libAdvapi32, "FreeEncryptedFileMetadata")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbMetadata)))
 }
 
 func LZStart() int32 {
-	addr := lazyAddr(&pLZStart, libKernel32, "LZStart")
+	addr := LazyAddr(&pLZStart, libKernel32, "LZStart")
 	ret, _, _ := syscall.SyscallN(addr)
 	return int32(ret)
 }
 
 func LZDone() {
-	addr := lazyAddr(&pLZDone, libKernel32, "LZDone")
+	addr := LazyAddr(&pLZDone, libKernel32, "LZDone")
 	syscall.SyscallN(addr)
 }
 
 func CopyLZFile(hfSource int32, hfDest int32) int32 {
-	addr := lazyAddr(&pCopyLZFile, libKernel32, "CopyLZFile")
+	addr := LazyAddr(&pCopyLZFile, libKernel32, "CopyLZFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hfSource), uintptr(hfDest))
 	return int32(ret)
 }
 
 func LZCopy(hfSource int32, hfDest int32) int32 {
-	addr := lazyAddr(&pLZCopy, libKernel32, "LZCopy")
+	addr := LazyAddr(&pLZCopy, libKernel32, "LZCopy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hfSource), uintptr(hfDest))
 	return int32(ret)
 }
 
 func LZInit(hfSource int32) int32 {
-	addr := lazyAddr(&pLZInit, libKernel32, "LZInit")
+	addr := LazyAddr(&pLZInit, libKernel32, "LZInit")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hfSource))
 	return int32(ret)
 }
 
 func GetExpandedNameA(lpszSource PSTR, lpszBuffer PSTR) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetExpandedNameA, libKernel32, "GetExpandedNameA")
+	addr := LazyAddr(&pGetExpandedNameA, libKernel32, "GetExpandedNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSource)), uintptr(unsafe.Pointer(lpszBuffer)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -5899,13 +5899,13 @@ func GetExpandedNameA(lpszSource PSTR, lpszBuffer PSTR) (int32, WIN32_ERROR) {
 var GetExpandedName = GetExpandedNameW
 
 func GetExpandedNameW(lpszSource PWSTR, lpszBuffer PWSTR) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetExpandedNameW, libKernel32, "GetExpandedNameW")
+	addr := LazyAddr(&pGetExpandedNameW, libKernel32, "GetExpandedNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSource)), uintptr(unsafe.Pointer(lpszBuffer)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func LZOpenFileA(lpFileName PSTR, lpReOpenBuf *OFSTRUCT, wStyle LZOPENFILE_STYLE) int32 {
-	addr := lazyAddr(&pLZOpenFileA, libKernel32, "LZOpenFileA")
+	addr := LazyAddr(&pLZOpenFileA, libKernel32, "LZOpenFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpReOpenBuf)), uintptr(wStyle))
 	return int32(ret)
 }
@@ -5913,48 +5913,48 @@ func LZOpenFileA(lpFileName PSTR, lpReOpenBuf *OFSTRUCT, wStyle LZOPENFILE_STYLE
 var LZOpenFile = LZOpenFileW
 
 func LZOpenFileW(lpFileName PWSTR, lpReOpenBuf *OFSTRUCT, wStyle LZOPENFILE_STYLE) int32 {
-	addr := lazyAddr(&pLZOpenFileW, libKernel32, "LZOpenFileW")
+	addr := LazyAddr(&pLZOpenFileW, libKernel32, "LZOpenFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpReOpenBuf)), uintptr(wStyle))
 	return int32(ret)
 }
 
 func LZSeek(hFile int32, lOffset int32, iOrigin int32) int32 {
-	addr := lazyAddr(&pLZSeek, libKernel32, "LZSeek")
+	addr := LazyAddr(&pLZSeek, libKernel32, "LZSeek")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hFile), uintptr(lOffset), uintptr(iOrigin))
 	return int32(ret)
 }
 
 func LZRead(hFile int32, lpBuffer PSTR, cbRead int32) int32 {
-	addr := lazyAddr(&pLZRead, libKernel32, "LZRead")
+	addr := LazyAddr(&pLZRead, libKernel32, "LZRead")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hFile), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cbRead))
 	return int32(ret)
 }
 
 func LZClose(hFile int32) {
-	addr := lazyAddr(&pLZClose, libKernel32, "LZClose")
+	addr := LazyAddr(&pLZClose, libKernel32, "LZClose")
 	syscall.SyscallN(addr, uintptr(hFile))
 }
 
 func Wow64EnableWow64FsRedirection(Wow64FsEnableRedirection BOOLEAN) BOOLEAN {
-	addr := lazyAddr(&pWow64EnableWow64FsRedirection, libKernel32, "Wow64EnableWow64FsRedirection")
+	addr := LazyAddr(&pWow64EnableWow64FsRedirection, libKernel32, "Wow64EnableWow64FsRedirection")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Wow64FsEnableRedirection))
 	return BOOLEAN(ret)
 }
 
 func Wow64DisableWow64FsRedirection(OldValue unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWow64DisableWow64FsRedirection, libKernel32, "Wow64DisableWow64FsRedirection")
+	addr := LazyAddr(&pWow64DisableWow64FsRedirection, libKernel32, "Wow64DisableWow64FsRedirection")
 	ret, _, err := syscall.SyscallN(addr, uintptr(OldValue))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func Wow64RevertWow64FsRedirection(OlValue unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWow64RevertWow64FsRedirection, libKernel32, "Wow64RevertWow64FsRedirection")
+	addr := LazyAddr(&pWow64RevertWow64FsRedirection, libKernel32, "Wow64RevertWow64FsRedirection")
 	ret, _, err := syscall.SyscallN(addr, uintptr(OlValue))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetBinaryTypeA(lpApplicationName PSTR, lpBinaryType *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetBinaryTypeA, libKernel32, "GetBinaryTypeA")
+	addr := LazyAddr(&pGetBinaryTypeA, libKernel32, "GetBinaryTypeA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpBinaryType)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5962,19 +5962,19 @@ func GetBinaryTypeA(lpApplicationName PSTR, lpBinaryType *uint32) (BOOL, WIN32_E
 var GetBinaryType = GetBinaryTypeW
 
 func GetBinaryTypeW(lpApplicationName PWSTR, lpBinaryType *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetBinaryTypeW, libKernel32, "GetBinaryTypeW")
+	addr := LazyAddr(&pGetBinaryTypeW, libKernel32, "GetBinaryTypeW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpApplicationName)), uintptr(unsafe.Pointer(lpBinaryType)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetShortPathNameA(lpszLongPath PSTR, lpszShortPath PSTR, cchBuffer uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetShortPathNameA, libKernel32, "GetShortPathNameA")
+	addr := LazyAddr(&pGetShortPathNameA, libKernel32, "GetShortPathNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszLongPath)), uintptr(unsafe.Pointer(lpszShortPath)), uintptr(cchBuffer))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetLongPathNameTransactedA(lpszShortPath PSTR, lpszLongPath PSTR, cchBuffer uint32, hTransaction HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLongPathNameTransactedA, libKernel32, "GetLongPathNameTransactedA")
+	addr := LazyAddr(&pGetLongPathNameTransactedA, libKernel32, "GetLongPathNameTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszShortPath)), uintptr(unsafe.Pointer(lpszLongPath)), uintptr(cchBuffer), hTransaction)
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5982,19 +5982,19 @@ func GetLongPathNameTransactedA(lpszShortPath PSTR, lpszLongPath PSTR, cchBuffer
 var GetLongPathNameTransacted = GetLongPathNameTransactedW
 
 func GetLongPathNameTransactedW(lpszShortPath PWSTR, lpszLongPath PWSTR, cchBuffer uint32, hTransaction HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLongPathNameTransactedW, libKernel32, "GetLongPathNameTransactedW")
+	addr := LazyAddr(&pGetLongPathNameTransactedW, libKernel32, "GetLongPathNameTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszShortPath)), uintptr(unsafe.Pointer(lpszLongPath)), uintptr(cchBuffer), hTransaction)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetFileCompletionNotificationModes(FileHandle HANDLE, Flags byte) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileCompletionNotificationModes, libKernel32, "SetFileCompletionNotificationModes")
+	addr := LazyAddr(&pSetFileCompletionNotificationModes, libKernel32, "SetFileCompletionNotificationModes")
 	ret, _, err := syscall.SyscallN(addr, FileHandle, uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFileShortNameA(hFile HANDLE, lpShortName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileShortNameA, libKernel32, "SetFileShortNameA")
+	addr := LazyAddr(&pSetFileShortNameA, libKernel32, "SetFileShortNameA")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpShortName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6002,67 +6002,67 @@ func SetFileShortNameA(hFile HANDLE, lpShortName PSTR) (BOOL, WIN32_ERROR) {
 var SetFileShortName = SetFileShortNameW
 
 func SetFileShortNameW(hFile HANDLE, lpShortName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileShortNameW, libKernel32, "SetFileShortNameW")
+	addr := LazyAddr(&pSetFileShortNameW, libKernel32, "SetFileShortNameW")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpShortName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetTapePosition(hDevice HANDLE, dwPositionMethod TAPE_POSITION_METHOD, dwPartition uint32, dwOffsetLow uint32, dwOffsetHigh uint32, bImmediate BOOL) uint32 {
-	addr := lazyAddr(&pSetTapePosition, libKernel32, "SetTapePosition")
+	addr := LazyAddr(&pSetTapePosition, libKernel32, "SetTapePosition")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwPositionMethod), uintptr(dwPartition), uintptr(dwOffsetLow), uintptr(dwOffsetHigh), uintptr(bImmediate))
 	return uint32(ret)
 }
 
 func GetTapePosition(hDevice HANDLE, dwPositionType TAPE_POSITION_TYPE, lpdwPartition *uint32, lpdwOffsetLow *uint32, lpdwOffsetHigh *uint32) uint32 {
-	addr := lazyAddr(&pGetTapePosition, libKernel32, "GetTapePosition")
+	addr := LazyAddr(&pGetTapePosition, libKernel32, "GetTapePosition")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwPositionType), uintptr(unsafe.Pointer(lpdwPartition)), uintptr(unsafe.Pointer(lpdwOffsetLow)), uintptr(unsafe.Pointer(lpdwOffsetHigh)))
 	return uint32(ret)
 }
 
 func PrepareTape(hDevice HANDLE, dwOperation PREPARE_TAPE_OPERATION, bImmediate BOOL) uint32 {
-	addr := lazyAddr(&pPrepareTape, libKernel32, "PrepareTape")
+	addr := LazyAddr(&pPrepareTape, libKernel32, "PrepareTape")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwOperation), uintptr(bImmediate))
 	return uint32(ret)
 }
 
 func EraseTape(hDevice HANDLE, dwEraseType ERASE_TAPE_TYPE, bImmediate BOOL) uint32 {
-	addr := lazyAddr(&pEraseTape, libKernel32, "EraseTape")
+	addr := LazyAddr(&pEraseTape, libKernel32, "EraseTape")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwEraseType), uintptr(bImmediate))
 	return uint32(ret)
 }
 
 func CreateTapePartition(hDevice HANDLE, dwPartitionMethod CREATE_TAPE_PARTITION_METHOD, dwCount uint32, dwSize uint32) uint32 {
-	addr := lazyAddr(&pCreateTapePartition, libKernel32, "CreateTapePartition")
+	addr := LazyAddr(&pCreateTapePartition, libKernel32, "CreateTapePartition")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwPartitionMethod), uintptr(dwCount), uintptr(dwSize))
 	return uint32(ret)
 }
 
 func WriteTapemark(hDevice HANDLE, dwTapemarkType TAPEMARK_TYPE, dwTapemarkCount uint32, bImmediate BOOL) uint32 {
-	addr := lazyAddr(&pWriteTapemark, libKernel32, "WriteTapemark")
+	addr := LazyAddr(&pWriteTapemark, libKernel32, "WriteTapemark")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwTapemarkType), uintptr(dwTapemarkCount), uintptr(bImmediate))
 	return uint32(ret)
 }
 
 func GetTapeStatus(hDevice HANDLE) uint32 {
-	addr := lazyAddr(&pGetTapeStatus, libKernel32, "GetTapeStatus")
+	addr := LazyAddr(&pGetTapeStatus, libKernel32, "GetTapeStatus")
 	ret, _, _ := syscall.SyscallN(addr, hDevice)
 	return uint32(ret)
 }
 
 func GetTapeParameters(hDevice HANDLE, dwOperation GET_TAPE_DRIVE_PARAMETERS_OPERATION, lpdwSize *uint32, lpTapeInformation unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pGetTapeParameters, libKernel32, "GetTapeParameters")
+	addr := LazyAddr(&pGetTapeParameters, libKernel32, "GetTapeParameters")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwOperation), uintptr(unsafe.Pointer(lpdwSize)), uintptr(lpTapeInformation))
 	return uint32(ret)
 }
 
 func SetTapeParameters(hDevice HANDLE, dwOperation TAPE_INFORMATION_TYPE, lpTapeInformation unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pSetTapeParameters, libKernel32, "SetTapeParameters")
+	addr := LazyAddr(&pSetTapeParameters, libKernel32, "SetTapeParameters")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(dwOperation), uintptr(lpTapeInformation))
 	return uint32(ret)
 }
 
 func EncryptFileA(lpFileName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEncryptFileA, libAdvapi32, "EncryptFileA")
+	addr := LazyAddr(&pEncryptFileA, libAdvapi32, "EncryptFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6070,13 +6070,13 @@ func EncryptFileA(lpFileName PSTR) (BOOL, WIN32_ERROR) {
 var EncryptFile = EncryptFileW
 
 func EncryptFileW(lpFileName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEncryptFileW, libAdvapi32, "EncryptFileW")
+	addr := LazyAddr(&pEncryptFileW, libAdvapi32, "EncryptFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DecryptFileA(lpFileName PSTR, dwReserved uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDecryptFileA, libAdvapi32, "DecryptFileA")
+	addr := LazyAddr(&pDecryptFileA, libAdvapi32, "DecryptFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6084,13 +6084,13 @@ func DecryptFileA(lpFileName PSTR, dwReserved uint32) (BOOL, WIN32_ERROR) {
 var DecryptFile = DecryptFileW
 
 func DecryptFileW(lpFileName PWSTR, dwReserved uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDecryptFileW, libAdvapi32, "DecryptFileW")
+	addr := LazyAddr(&pDecryptFileW, libAdvapi32, "DecryptFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FileEncryptionStatusA(lpFileName PSTR, lpStatus *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFileEncryptionStatusA, libAdvapi32, "FileEncryptionStatusA")
+	addr := LazyAddr(&pFileEncryptionStatusA, libAdvapi32, "FileEncryptionStatusA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6098,13 +6098,13 @@ func FileEncryptionStatusA(lpFileName PSTR, lpStatus *uint32) (BOOL, WIN32_ERROR
 var FileEncryptionStatus = FileEncryptionStatusW
 
 func FileEncryptionStatusW(lpFileName PWSTR, lpStatus *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFileEncryptionStatusW, libAdvapi32, "FileEncryptionStatusW")
+	addr := LazyAddr(&pFileEncryptionStatusW, libAdvapi32, "FileEncryptionStatusW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OpenEncryptedFileRawA(lpFileName PSTR, ulFlags uint32, pvContext unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pOpenEncryptedFileRawA, libAdvapi32, "OpenEncryptedFileRawA")
+	addr := LazyAddr(&pOpenEncryptedFileRawA, libAdvapi32, "OpenEncryptedFileRawA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(ulFlags), uintptr(pvContext))
 	return uint32(ret)
 }
@@ -6112,66 +6112,66 @@ func OpenEncryptedFileRawA(lpFileName PSTR, ulFlags uint32, pvContext unsafe.Poi
 var OpenEncryptedFileRaw = OpenEncryptedFileRawW
 
 func OpenEncryptedFileRawW(lpFileName PWSTR, ulFlags uint32, pvContext unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pOpenEncryptedFileRawW, libAdvapi32, "OpenEncryptedFileRawW")
+	addr := LazyAddr(&pOpenEncryptedFileRawW, libAdvapi32, "OpenEncryptedFileRawW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(ulFlags), uintptr(pvContext))
 	return uint32(ret)
 }
 
 func ReadEncryptedFileRaw(pfExportCallback PFE_EXPORT_FUNC, pvCallbackContext unsafe.Pointer, pvContext unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pReadEncryptedFileRaw, libAdvapi32, "ReadEncryptedFileRaw")
+	addr := LazyAddr(&pReadEncryptedFileRaw, libAdvapi32, "ReadEncryptedFileRaw")
 	ret, _, _ := syscall.SyscallN(addr, pfExportCallback, uintptr(pvCallbackContext), uintptr(pvContext))
 	return uint32(ret)
 }
 
 func WriteEncryptedFileRaw(pfImportCallback PFE_IMPORT_FUNC, pvCallbackContext unsafe.Pointer, pvContext unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pWriteEncryptedFileRaw, libAdvapi32, "WriteEncryptedFileRaw")
+	addr := LazyAddr(&pWriteEncryptedFileRaw, libAdvapi32, "WriteEncryptedFileRaw")
 	ret, _, _ := syscall.SyscallN(addr, pfImportCallback, uintptr(pvCallbackContext), uintptr(pvContext))
 	return uint32(ret)
 }
 
 func CloseEncryptedFileRaw(pvContext unsafe.Pointer) {
-	addr := lazyAddr(&pCloseEncryptedFileRaw, libAdvapi32, "CloseEncryptedFileRaw")
+	addr := LazyAddr(&pCloseEncryptedFileRaw, libAdvapi32, "CloseEncryptedFileRaw")
 	syscall.SyscallN(addr, uintptr(pvContext))
 }
 
 func OpenFile(lpFileName PSTR, lpReOpenBuff *OFSTRUCT, uStyle uint32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenFile, libKernel32, "OpenFile")
+	addr := LazyAddr(&pOpenFile, libKernel32, "OpenFile")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpReOpenBuff)), uintptr(uStyle))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func BackupRead(hFile HANDLE, lpBuffer *byte, nNumberOfBytesToRead uint32, lpNumberOfBytesRead *uint32, bAbort BOOL, bProcessSecurity BOOL, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pBackupRead, libKernel32, "BackupRead")
+	addr := LazyAddr(&pBackupRead, libKernel32, "BackupRead")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpNumberOfBytesRead)), uintptr(bAbort), uintptr(bProcessSecurity), uintptr(lpContext))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func BackupSeek(hFile HANDLE, dwLowBytesToSeek uint32, dwHighBytesToSeek uint32, lpdwLowByteSeeked *uint32, lpdwHighByteSeeked *uint32, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pBackupSeek, libKernel32, "BackupSeek")
+	addr := LazyAddr(&pBackupSeek, libKernel32, "BackupSeek")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(dwLowBytesToSeek), uintptr(dwHighBytesToSeek), uintptr(unsafe.Pointer(lpdwLowByteSeeked)), uintptr(unsafe.Pointer(lpdwHighByteSeeked)), uintptr(lpContext))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func BackupWrite(hFile HANDLE, lpBuffer *byte, nNumberOfBytesToWrite uint32, lpNumberOfBytesWritten *uint32, bAbort BOOL, bProcessSecurity BOOL, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pBackupWrite, libKernel32, "BackupWrite")
+	addr := LazyAddr(&pBackupWrite, libKernel32, "BackupWrite")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpNumberOfBytesWritten)), uintptr(bAbort), uintptr(bProcessSecurity), uintptr(lpContext))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetLogicalDriveStringsA(nBufferLength uint32, lpBuffer PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLogicalDriveStringsA, libKernel32, "GetLogicalDriveStringsA")
+	addr := LazyAddr(&pGetLogicalDriveStringsA, libKernel32, "GetLogicalDriveStringsA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetSearchPathMode(Flags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetSearchPathMode, libKernel32, "SetSearchPathMode")
+	addr := LazyAddr(&pSetSearchPathMode, libKernel32, "SetSearchPathMode")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateDirectoryExA(lpTemplateDirectory PSTR, lpNewDirectory PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDirectoryExA, libKernel32, "CreateDirectoryExA")
+	addr := LazyAddr(&pCreateDirectoryExA, libKernel32, "CreateDirectoryExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTemplateDirectory)), uintptr(unsafe.Pointer(lpNewDirectory)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6179,13 +6179,13 @@ func CreateDirectoryExA(lpTemplateDirectory PSTR, lpNewDirectory PSTR, lpSecurit
 var CreateDirectoryEx = CreateDirectoryExW
 
 func CreateDirectoryExW(lpTemplateDirectory PWSTR, lpNewDirectory PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDirectoryExW, libKernel32, "CreateDirectoryExW")
+	addr := LazyAddr(&pCreateDirectoryExW, libKernel32, "CreateDirectoryExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTemplateDirectory)), uintptr(unsafe.Pointer(lpNewDirectory)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateDirectoryTransactedA(lpTemplateDirectory PSTR, lpNewDirectory PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDirectoryTransactedA, libKernel32, "CreateDirectoryTransactedA")
+	addr := LazyAddr(&pCreateDirectoryTransactedA, libKernel32, "CreateDirectoryTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTemplateDirectory)), uintptr(unsafe.Pointer(lpNewDirectory)), uintptr(unsafe.Pointer(lpSecurityAttributes)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6193,13 +6193,13 @@ func CreateDirectoryTransactedA(lpTemplateDirectory PSTR, lpNewDirectory PSTR, l
 var CreateDirectoryTransacted = CreateDirectoryTransactedW
 
 func CreateDirectoryTransactedW(lpTemplateDirectory PWSTR, lpNewDirectory PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDirectoryTransactedW, libKernel32, "CreateDirectoryTransactedW")
+	addr := LazyAddr(&pCreateDirectoryTransactedW, libKernel32, "CreateDirectoryTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTemplateDirectory)), uintptr(unsafe.Pointer(lpNewDirectory)), uintptr(unsafe.Pointer(lpSecurityAttributes)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RemoveDirectoryTransactedA(lpPathName PSTR, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRemoveDirectoryTransactedA, libKernel32, "RemoveDirectoryTransactedA")
+	addr := LazyAddr(&pRemoveDirectoryTransactedA, libKernel32, "RemoveDirectoryTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6207,13 +6207,13 @@ func RemoveDirectoryTransactedA(lpPathName PSTR, hTransaction HANDLE) (BOOL, WIN
 var RemoveDirectoryTransacted = RemoveDirectoryTransactedW
 
 func RemoveDirectoryTransactedW(lpPathName PWSTR, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRemoveDirectoryTransactedW, libKernel32, "RemoveDirectoryTransactedW")
+	addr := LazyAddr(&pRemoveDirectoryTransactedW, libKernel32, "RemoveDirectoryTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFullPathNameTransactedA(lpFileName PSTR, nBufferLength uint32, lpBuffer PSTR, lpFilePart *PSTR, hTransaction HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFullPathNameTransactedA, libKernel32, "GetFullPathNameTransactedA")
+	addr := LazyAddr(&pGetFullPathNameTransactedA, libKernel32, "GetFullPathNameTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(lpFilePart)), hTransaction)
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -6221,25 +6221,25 @@ func GetFullPathNameTransactedA(lpFileName PSTR, nBufferLength uint32, lpBuffer 
 var GetFullPathNameTransacted = GetFullPathNameTransactedW
 
 func GetFullPathNameTransactedW(lpFileName PWSTR, nBufferLength uint32, lpBuffer PWSTR, lpFilePart *PWSTR, hTransaction HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFullPathNameTransactedW, libKernel32, "GetFullPathNameTransactedW")
+	addr := LazyAddr(&pGetFullPathNameTransactedW, libKernel32, "GetFullPathNameTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(lpFilePart)), hTransaction)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func DefineDosDeviceA(dwFlags DEFINE_DOS_DEVICE_FLAGS, lpDeviceName PSTR, lpTargetPath PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDefineDosDeviceA, libKernel32, "DefineDosDeviceA")
+	addr := LazyAddr(&pDefineDosDeviceA, libKernel32, "DefineDosDeviceA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpDeviceName)), uintptr(unsafe.Pointer(lpTargetPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryDosDeviceA(lpDeviceName PSTR, lpTargetPath PSTR, ucchMax uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryDosDeviceA, libKernel32, "QueryDosDeviceA")
+	addr := LazyAddr(&pQueryDosDeviceA, libKernel32, "QueryDosDeviceA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDeviceName)), uintptr(unsafe.Pointer(lpTargetPath)), uintptr(ucchMax))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func CreateFileTransactedA(lpFileName PSTR, dwDesiredAccess uint32, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE, hTransaction HANDLE, pusMiniVersion *TXFS_MINIVERSION, lpExtendedParameter unsafe.Pointer) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateFileTransactedA, libKernel32, "CreateFileTransactedA")
+	addr := LazyAddr(&pCreateFileTransactedA, libKernel32, "CreateFileTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwCreationDisposition), uintptr(dwFlagsAndAttributes), hTemplateFile, hTransaction, uintptr(unsafe.Pointer(pusMiniVersion)), uintptr(lpExtendedParameter))
 	return ret, WIN32_ERROR(err)
 }
@@ -6247,19 +6247,19 @@ func CreateFileTransactedA(lpFileName PSTR, dwDesiredAccess uint32, dwShareMode 
 var CreateFileTransacted = CreateFileTransactedW
 
 func CreateFileTransactedW(lpFileName PWSTR, dwDesiredAccess uint32, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE, hTransaction HANDLE, pusMiniVersion *TXFS_MINIVERSION, lpExtendedParameter unsafe.Pointer) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateFileTransactedW, libKernel32, "CreateFileTransactedW")
+	addr := LazyAddr(&pCreateFileTransactedW, libKernel32, "CreateFileTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwCreationDisposition), uintptr(dwFlagsAndAttributes), hTemplateFile, hTransaction, uintptr(unsafe.Pointer(pusMiniVersion)), uintptr(lpExtendedParameter))
 	return ret, WIN32_ERROR(err)
 }
 
 func ReOpenFile(hOriginalFile HANDLE, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pReOpenFile, libKernel32, "ReOpenFile")
+	addr := LazyAddr(&pReOpenFile, libKernel32, "ReOpenFile")
 	ret, _, err := syscall.SyscallN(addr, hOriginalFile, uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(dwFlagsAndAttributes))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetFileAttributesTransactedA(lpFileName PSTR, dwFileAttributes uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileAttributesTransactedA, libKernel32, "SetFileAttributesTransactedA")
+	addr := LazyAddr(&pSetFileAttributesTransactedA, libKernel32, "SetFileAttributesTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFileAttributes), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6267,13 +6267,13 @@ func SetFileAttributesTransactedA(lpFileName PSTR, dwFileAttributes uint32, hTra
 var SetFileAttributesTransacted = SetFileAttributesTransactedW
 
 func SetFileAttributesTransactedW(lpFileName PWSTR, dwFileAttributes uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileAttributesTransactedW, libKernel32, "SetFileAttributesTransactedW")
+	addr := LazyAddr(&pSetFileAttributesTransactedW, libKernel32, "SetFileAttributesTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFileAttributes), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileAttributesTransactedA(lpFileName PSTR, fInfoLevelId GET_FILEEX_INFO_LEVELS, lpFileInformation unsafe.Pointer, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileAttributesTransactedA, libKernel32, "GetFileAttributesTransactedA")
+	addr := LazyAddr(&pGetFileAttributesTransactedA, libKernel32, "GetFileAttributesTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFileInformation), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6281,13 +6281,13 @@ func GetFileAttributesTransactedA(lpFileName PSTR, fInfoLevelId GET_FILEEX_INFO_
 var GetFileAttributesTransacted = GetFileAttributesTransactedW
 
 func GetFileAttributesTransactedW(lpFileName PWSTR, fInfoLevelId GET_FILEEX_INFO_LEVELS, lpFileInformation unsafe.Pointer, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileAttributesTransactedW, libKernel32, "GetFileAttributesTransactedW")
+	addr := LazyAddr(&pGetFileAttributesTransactedW, libKernel32, "GetFileAttributesTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFileInformation), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCompressedFileSizeTransactedA(lpFileName PSTR, lpFileSizeHigh *uint32, hTransaction HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCompressedFileSizeTransactedA, libKernel32, "GetCompressedFileSizeTransactedA")
+	addr := LazyAddr(&pGetCompressedFileSizeTransactedA, libKernel32, "GetCompressedFileSizeTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFileSizeHigh)), hTransaction)
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -6295,13 +6295,13 @@ func GetCompressedFileSizeTransactedA(lpFileName PSTR, lpFileSizeHigh *uint32, h
 var GetCompressedFileSizeTransacted = GetCompressedFileSizeTransactedW
 
 func GetCompressedFileSizeTransactedW(lpFileName PWSTR, lpFileSizeHigh *uint32, hTransaction HANDLE) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCompressedFileSizeTransactedW, libKernel32, "GetCompressedFileSizeTransactedW")
+	addr := LazyAddr(&pGetCompressedFileSizeTransactedW, libKernel32, "GetCompressedFileSizeTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFileSizeHigh)), hTransaction)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func DeleteFileTransactedA(lpFileName PSTR, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteFileTransactedA, libKernel32, "DeleteFileTransactedA")
+	addr := LazyAddr(&pDeleteFileTransactedA, libKernel32, "DeleteFileTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6309,13 +6309,13 @@ func DeleteFileTransactedA(lpFileName PSTR, hTransaction HANDLE) (BOOL, WIN32_ER
 var DeleteFileTransacted = DeleteFileTransactedW
 
 func DeleteFileTransactedW(lpFileName PWSTR, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteFileTransactedW, libKernel32, "DeleteFileTransactedW")
+	addr := LazyAddr(&pDeleteFileTransactedW, libKernel32, "DeleteFileTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CheckNameLegalDOS8Dot3A(lpName PSTR, lpOemName PSTR, OemNameSize uint32, pbNameContainsSpaces *BOOL, pbNameLegal *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCheckNameLegalDOS8Dot3A, libKernel32, "CheckNameLegalDOS8Dot3A")
+	addr := LazyAddr(&pCheckNameLegalDOS8Dot3A, libKernel32, "CheckNameLegalDOS8Dot3A")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpOemName)), uintptr(OemNameSize), uintptr(unsafe.Pointer(pbNameContainsSpaces)), uintptr(unsafe.Pointer(pbNameLegal)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6323,13 +6323,13 @@ func CheckNameLegalDOS8Dot3A(lpName PSTR, lpOemName PSTR, OemNameSize uint32, pb
 var CheckNameLegalDOS8Dot3 = CheckNameLegalDOS8Dot3W
 
 func CheckNameLegalDOS8Dot3W(lpName PWSTR, lpOemName PSTR, OemNameSize uint32, pbNameContainsSpaces *BOOL, pbNameLegal *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCheckNameLegalDOS8Dot3W, libKernel32, "CheckNameLegalDOS8Dot3W")
+	addr := LazyAddr(&pCheckNameLegalDOS8Dot3W, libKernel32, "CheckNameLegalDOS8Dot3W")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpOemName)), uintptr(OemNameSize), uintptr(unsafe.Pointer(pbNameContainsSpaces)), uintptr(unsafe.Pointer(pbNameLegal)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindFirstFileTransactedA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags uint32, hTransaction HANDLE) (FindFileHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileTransactedA, libKernel32, "FindFirstFileTransactedA")
+	addr := LazyAddr(&pFindFirstFileTransactedA, libKernel32, "FindFirstFileTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags), hTransaction)
 	return ret, WIN32_ERROR(err)
 }
@@ -6337,13 +6337,13 @@ func FindFirstFileTransactedA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, 
 var FindFirstFileTransacted = FindFirstFileTransactedW
 
 func FindFirstFileTransactedW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags uint32, hTransaction HANDLE) (FindFileHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileTransactedW, libKernel32, "FindFirstFileTransactedW")
+	addr := LazyAddr(&pFindFirstFileTransactedW, libKernel32, "FindFirstFileTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags), hTransaction)
 	return ret, WIN32_ERROR(err)
 }
 
 func CopyFileA(lpExistingFileName PSTR, lpNewFileName PSTR, bFailIfExists BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyFileA, libKernel32, "CopyFileA")
+	addr := LazyAddr(&pCopyFileA, libKernel32, "CopyFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), uintptr(bFailIfExists))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6351,13 +6351,13 @@ func CopyFileA(lpExistingFileName PSTR, lpNewFileName PSTR, bFailIfExists BOOL) 
 var CopyFile = CopyFileW
 
 func CopyFileW(lpExistingFileName PWSTR, lpNewFileName PWSTR, bFailIfExists BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyFileW, libKernel32, "CopyFileW")
+	addr := LazyAddr(&pCopyFileW, libKernel32, "CopyFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), uintptr(bFailIfExists))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CopyFileExA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyFileExA, libKernel32, "CopyFileExA")
+	addr := LazyAddr(&pCopyFileExA, libKernel32, "CopyFileExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6365,13 +6365,13 @@ func CopyFileExA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine 
 var CopyFileEx = CopyFileExW
 
 func CopyFileExW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyFileExW, libKernel32, "CopyFileExW")
+	addr := LazyAddr(&pCopyFileExW, libKernel32, "CopyFileExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CopyFileTransactedA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyFileTransactedA, libKernel32, "CopyFileTransactedA")
+	addr := LazyAddr(&pCopyFileTransactedA, libKernel32, "CopyFileTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6379,19 +6379,19 @@ func CopyFileTransactedA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgress
 var CopyFileTransacted = CopyFileTransactedW
 
 func CopyFileTransactedW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyFileTransactedW, libKernel32, "CopyFileTransactedW")
+	addr := LazyAddr(&pCopyFileTransactedW, libKernel32, "CopyFileTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CopyFile2(pwszExistingFileName PWSTR, pwszNewFileName PWSTR, pExtendedParameters *COPYFILE2_EXTENDED_PARAMETERS) HRESULT {
-	addr := lazyAddr(&pCopyFile2, libKernel32, "CopyFile2")
+	addr := LazyAddr(&pCopyFile2, libKernel32, "CopyFile2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszExistingFileName)), uintptr(unsafe.Pointer(pwszNewFileName)), uintptr(unsafe.Pointer(pExtendedParameters)))
 	return HRESULT(ret)
 }
 
 func MoveFileA(lpExistingFileName PSTR, lpNewFileName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileA, libKernel32, "MoveFileA")
+	addr := LazyAddr(&pMoveFileA, libKernel32, "MoveFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6399,13 +6399,13 @@ func MoveFileA(lpExistingFileName PSTR, lpNewFileName PSTR) (BOOL, WIN32_ERROR) 
 var MoveFile = MoveFileW
 
 func MoveFileW(lpExistingFileName PWSTR, lpNewFileName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileW, libKernel32, "MoveFileW")
+	addr := LazyAddr(&pMoveFileW, libKernel32, "MoveFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func MoveFileExA(lpExistingFileName PSTR, lpNewFileName PSTR, dwFlags MOVE_FILE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileExA, libKernel32, "MoveFileExA")
+	addr := LazyAddr(&pMoveFileExA, libKernel32, "MoveFileExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6413,13 +6413,13 @@ func MoveFileExA(lpExistingFileName PSTR, lpNewFileName PSTR, dwFlags MOVE_FILE_
 var MoveFileEx = MoveFileExW
 
 func MoveFileExW(lpExistingFileName PWSTR, lpNewFileName PWSTR, dwFlags MOVE_FILE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileExW, libKernel32, "MoveFileExW")
+	addr := LazyAddr(&pMoveFileExW, libKernel32, "MoveFileExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func MoveFileWithProgressA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, dwFlags MOVE_FILE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileWithProgressA, libKernel32, "MoveFileWithProgressA")
+	addr := LazyAddr(&pMoveFileWithProgressA, libKernel32, "MoveFileWithProgressA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6427,13 +6427,13 @@ func MoveFileWithProgressA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgre
 var MoveFileWithProgress = MoveFileWithProgressW
 
 func MoveFileWithProgressW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, dwFlags MOVE_FILE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileWithProgressW, libKernel32, "MoveFileWithProgressW")
+	addr := LazyAddr(&pMoveFileWithProgressW, libKernel32, "MoveFileWithProgressW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func MoveFileTransactedA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, dwFlags MOVE_FILE_FLAGS, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileTransactedA, libKernel32, "MoveFileTransactedA")
+	addr := LazyAddr(&pMoveFileTransactedA, libKernel32, "MoveFileTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(dwFlags), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6441,13 +6441,13 @@ func MoveFileTransactedA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgress
 var MoveFileTransacted = MoveFileTransactedW
 
 func MoveFileTransactedW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, dwFlags MOVE_FILE_FLAGS, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveFileTransactedW, libKernel32, "MoveFileTransactedW")
+	addr := LazyAddr(&pMoveFileTransactedW, libKernel32, "MoveFileTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(dwFlags), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReplaceFileA(lpReplacedFileName PSTR, lpReplacementFileName PSTR, lpBackupFileName PSTR, dwReplaceFlags REPLACE_FILE_FLAGS, lpExclude unsafe.Pointer, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReplaceFileA, libKernel32, "ReplaceFileA")
+	addr := LazyAddr(&pReplaceFileA, libKernel32, "ReplaceFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpReplacedFileName)), uintptr(unsafe.Pointer(lpReplacementFileName)), uintptr(unsafe.Pointer(lpBackupFileName)), uintptr(dwReplaceFlags), uintptr(lpExclude), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6455,13 +6455,13 @@ func ReplaceFileA(lpReplacedFileName PSTR, lpReplacementFileName PSTR, lpBackupF
 var ReplaceFile = ReplaceFileW
 
 func ReplaceFileW(lpReplacedFileName PWSTR, lpReplacementFileName PWSTR, lpBackupFileName PWSTR, dwReplaceFlags REPLACE_FILE_FLAGS, lpExclude unsafe.Pointer, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReplaceFileW, libKernel32, "ReplaceFileW")
+	addr := LazyAddr(&pReplaceFileW, libKernel32, "ReplaceFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpReplacedFileName)), uintptr(unsafe.Pointer(lpReplacementFileName)), uintptr(unsafe.Pointer(lpBackupFileName)), uintptr(dwReplaceFlags), uintptr(lpExclude), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateHardLinkA(lpFileName PSTR, lpExistingFileName PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateHardLinkA, libKernel32, "CreateHardLinkA")
+	addr := LazyAddr(&pCreateHardLinkA, libKernel32, "CreateHardLinkA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6469,13 +6469,13 @@ func CreateHardLinkA(lpFileName PSTR, lpExistingFileName PSTR, lpSecurityAttribu
 var CreateHardLink = CreateHardLinkW
 
 func CreateHardLinkW(lpFileName PWSTR, lpExistingFileName PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateHardLinkW, libKernel32, "CreateHardLinkW")
+	addr := LazyAddr(&pCreateHardLinkW, libKernel32, "CreateHardLinkW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateHardLinkTransactedA(lpFileName PSTR, lpExistingFileName PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateHardLinkTransactedA, libKernel32, "CreateHardLinkTransactedA")
+	addr := LazyAddr(&pCreateHardLinkTransactedA, libKernel32, "CreateHardLinkTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpSecurityAttributes)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6483,25 +6483,25 @@ func CreateHardLinkTransactedA(lpFileName PSTR, lpExistingFileName PSTR, lpSecur
 var CreateHardLinkTransacted = CreateHardLinkTransactedW
 
 func CreateHardLinkTransactedW(lpFileName PWSTR, lpExistingFileName PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateHardLinkTransactedW, libKernel32, "CreateHardLinkTransactedW")
+	addr := LazyAddr(&pCreateHardLinkTransactedW, libKernel32, "CreateHardLinkTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpSecurityAttributes)), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindFirstStreamTransactedW(lpFileName PWSTR, InfoLevel STREAM_INFO_LEVELS, lpFindStreamData unsafe.Pointer, dwFlags uint32, hTransaction HANDLE) (FindStreamHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstStreamTransactedW, libKernel32, "FindFirstStreamTransactedW")
+	addr := LazyAddr(&pFindFirstStreamTransactedW, libKernel32, "FindFirstStreamTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(InfoLevel), uintptr(lpFindStreamData), uintptr(dwFlags), hTransaction)
 	return ret, WIN32_ERROR(err)
 }
 
 func FindFirstFileNameTransactedW(lpFileName PWSTR, dwFlags uint32, StringLength *uint32, LinkName PWSTR, hTransaction HANDLE) (FindFileNameHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstFileNameTransactedW, libKernel32, "FindFirstFileNameTransactedW")
+	addr := LazyAddr(&pFindFirstFileNameTransactedW, libKernel32, "FindFirstFileNameTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFlags), uintptr(unsafe.Pointer(StringLength)), uintptr(unsafe.Pointer(LinkName)), hTransaction)
 	return ret, WIN32_ERROR(err)
 }
 
 func SetVolumeLabelA(lpRootPathName PSTR, lpVolumeName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetVolumeLabelA, libKernel32, "SetVolumeLabelA")
+	addr := LazyAddr(&pSetVolumeLabelA, libKernel32, "SetVolumeLabelA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)), uintptr(unsafe.Pointer(lpVolumeName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6509,49 +6509,49 @@ func SetVolumeLabelA(lpRootPathName PSTR, lpVolumeName PSTR) (BOOL, WIN32_ERROR)
 var SetVolumeLabel = SetVolumeLabelW
 
 func SetVolumeLabelW(lpRootPathName PWSTR, lpVolumeName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetVolumeLabelW, libKernel32, "SetVolumeLabelW")
+	addr := LazyAddr(&pSetVolumeLabelW, libKernel32, "SetVolumeLabelW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRootPathName)), uintptr(unsafe.Pointer(lpVolumeName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFileBandwidthReservation(hFile HANDLE, nPeriodMilliseconds uint32, nBytesPerPeriod uint32, bDiscardable BOOL, lpTransferSize *uint32, lpNumOutstandingRequests *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFileBandwidthReservation, libKernel32, "SetFileBandwidthReservation")
+	addr := LazyAddr(&pSetFileBandwidthReservation, libKernel32, "SetFileBandwidthReservation")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(nPeriodMilliseconds), uintptr(nBytesPerPeriod), uintptr(bDiscardable), uintptr(unsafe.Pointer(lpTransferSize)), uintptr(unsafe.Pointer(lpNumOutstandingRequests)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileBandwidthReservation(hFile HANDLE, lpPeriodMilliseconds *uint32, lpBytesPerPeriod *uint32, pDiscardable *int32, lpTransferSize *uint32, lpNumOutstandingRequests *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileBandwidthReservation, libKernel32, "GetFileBandwidthReservation")
+	addr := LazyAddr(&pGetFileBandwidthReservation, libKernel32, "GetFileBandwidthReservation")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpPeriodMilliseconds)), uintptr(unsafe.Pointer(lpBytesPerPeriod)), uintptr(unsafe.Pointer(pDiscardable)), uintptr(unsafe.Pointer(lpTransferSize)), uintptr(unsafe.Pointer(lpNumOutstandingRequests)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReadDirectoryChangesW(hDirectory HANDLE, lpBuffer unsafe.Pointer, nBufferLength uint32, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE, lpBytesReturned *uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReadDirectoryChangesW, libKernel32, "ReadDirectoryChangesW")
+	addr := LazyAddr(&pReadDirectoryChangesW, libKernel32, "ReadDirectoryChangesW")
 	ret, _, err := syscall.SyscallN(addr, hDirectory, uintptr(lpBuffer), uintptr(nBufferLength), uintptr(bWatchSubtree), uintptr(dwNotifyFilter), uintptr(unsafe.Pointer(lpBytesReturned)), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReadDirectoryChangesExW(hDirectory HANDLE, lpBuffer unsafe.Pointer, nBufferLength uint32, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE, lpBytesReturned *uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE, ReadDirectoryNotifyInformationClass READ_DIRECTORY_NOTIFY_INFORMATION_CLASS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReadDirectoryChangesExW, libKernel32, "ReadDirectoryChangesExW")
+	addr := LazyAddr(&pReadDirectoryChangesExW, libKernel32, "ReadDirectoryChangesExW")
 	ret, _, err := syscall.SyscallN(addr, hDirectory, uintptr(lpBuffer), uintptr(nBufferLength), uintptr(bWatchSubtree), uintptr(dwNotifyFilter), uintptr(unsafe.Pointer(lpBytesReturned)), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine, uintptr(ReadDirectoryNotifyInformationClass))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindFirstVolumeA(lpszVolumeName PSTR, cchBufferLength uint32) (FindVolumeHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstVolumeA, libKernel32, "FindFirstVolumeA")
+	addr := LazyAddr(&pFindFirstVolumeA, libKernel32, "FindFirstVolumeA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindNextVolumeA(hFindVolume FindVolumeHandle, lpszVolumeName PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextVolumeA, libKernel32, "FindNextVolumeA")
+	addr := LazyAddr(&pFindNextVolumeA, libKernel32, "FindNextVolumeA")
 	ret, _, err := syscall.SyscallN(addr, hFindVolume, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindFirstVolumeMountPointA(lpszRootPathName PSTR, lpszVolumeMountPoint PSTR, cchBufferLength uint32) (FindVolumeMointPointHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstVolumeMountPointA, libKernel32, "FindFirstVolumeMountPointA")
+	addr := LazyAddr(&pFindFirstVolumeMountPointA, libKernel32, "FindFirstVolumeMountPointA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszRootPathName)), uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
 }
@@ -6559,13 +6559,13 @@ func FindFirstVolumeMountPointA(lpszRootPathName PSTR, lpszVolumeMountPoint PSTR
 var FindFirstVolumeMountPoint = FindFirstVolumeMountPointW
 
 func FindFirstVolumeMountPointW(lpszRootPathName PWSTR, lpszVolumeMountPoint PWSTR, cchBufferLength uint32) (FindVolumeMointPointHandle, WIN32_ERROR) {
-	addr := lazyAddr(&pFindFirstVolumeMountPointW, libKernel32, "FindFirstVolumeMountPointW")
+	addr := LazyAddr(&pFindFirstVolumeMountPointW, libKernel32, "FindFirstVolumeMountPointW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszRootPathName)), uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindNextVolumeMountPointA(hFindVolumeMountPoint FindVolumeMointPointHandle, lpszVolumeMountPoint PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextVolumeMountPointA, libKernel32, "FindNextVolumeMountPointA")
+	addr := LazyAddr(&pFindNextVolumeMountPointA, libKernel32, "FindNextVolumeMountPointA")
 	ret, _, err := syscall.SyscallN(addr, hFindVolumeMountPoint, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6573,19 +6573,19 @@ func FindNextVolumeMountPointA(hFindVolumeMountPoint FindVolumeMointPointHandle,
 var FindNextVolumeMountPoint = FindNextVolumeMountPointW
 
 func FindNextVolumeMountPointW(hFindVolumeMountPoint FindVolumeMointPointHandle, lpszVolumeMountPoint PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNextVolumeMountPointW, libKernel32, "FindNextVolumeMountPointW")
+	addr := LazyAddr(&pFindNextVolumeMountPointW, libKernel32, "FindNextVolumeMountPointW")
 	ret, _, err := syscall.SyscallN(addr, hFindVolumeMountPoint, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FindVolumeMountPointClose(hFindVolumeMountPoint FindVolumeMointPointHandle) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFindVolumeMountPointClose, libKernel32, "FindVolumeMountPointClose")
+	addr := LazyAddr(&pFindVolumeMountPointClose, libKernel32, "FindVolumeMountPointClose")
 	ret, _, err := syscall.SyscallN(addr, hFindVolumeMountPoint)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetVolumeMountPointA(lpszVolumeMountPoint PSTR, lpszVolumeName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetVolumeMountPointA, libKernel32, "SetVolumeMountPointA")
+	addr := LazyAddr(&pSetVolumeMountPointA, libKernel32, "SetVolumeMountPointA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(unsafe.Pointer(lpszVolumeName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6593,49 +6593,49 @@ func SetVolumeMountPointA(lpszVolumeMountPoint PSTR, lpszVolumeName PSTR) (BOOL,
 var SetVolumeMountPoint = SetVolumeMountPointW
 
 func SetVolumeMountPointW(lpszVolumeMountPoint PWSTR, lpszVolumeName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetVolumeMountPointW, libKernel32, "SetVolumeMountPointW")
+	addr := LazyAddr(&pSetVolumeMountPointW, libKernel32, "SetVolumeMountPointW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(unsafe.Pointer(lpszVolumeName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteVolumeMountPointA(lpszVolumeMountPoint PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteVolumeMountPointA, libKernel32, "DeleteVolumeMountPointA")
+	addr := LazyAddr(&pDeleteVolumeMountPointA, libKernel32, "DeleteVolumeMountPointA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeMountPoint)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetVolumeNameForVolumeMountPointA(lpszVolumeMountPoint PSTR, lpszVolumeName PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumeNameForVolumeMountPointA, libKernel32, "GetVolumeNameForVolumeMountPointA")
+	addr := LazyAddr(&pGetVolumeNameForVolumeMountPointA, libKernel32, "GetVolumeNameForVolumeMountPointA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetVolumePathNameA(lpszFileName PSTR, lpszVolumePathName PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumePathNameA, libKernel32, "GetVolumePathNameA")
+	addr := LazyAddr(&pGetVolumePathNameA, libKernel32, "GetVolumePathNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(lpszVolumePathName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetVolumePathNamesForVolumeNameA(lpszVolumeName PSTR, lpszVolumePathNames PSTR, cchBufferLength uint32, lpcchReturnLength *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetVolumePathNamesForVolumeNameA, libKernel32, "GetVolumePathNamesForVolumeNameA")
+	addr := LazyAddr(&pGetVolumePathNamesForVolumeNameA, libKernel32, "GetVolumePathNamesForVolumeNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(unsafe.Pointer(lpszVolumePathNames)), uintptr(cchBufferLength), uintptr(unsafe.Pointer(lpcchReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileInformationByHandleEx(hFile HANDLE, FileInformationClass FILE_INFO_BY_HANDLE_CLASS, lpFileInformation unsafe.Pointer, dwBufferSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileInformationByHandleEx, libKernel32, "GetFileInformationByHandleEx")
+	addr := LazyAddr(&pGetFileInformationByHandleEx, libKernel32, "GetFileInformationByHandleEx")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(FileInformationClass), uintptr(lpFileInformation), uintptr(dwBufferSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OpenFileById(hVolumeHint HANDLE, lpFileId *FILE_ID_DESCRIPTOR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenFileById, libKernel32, "OpenFileById")
+	addr := LazyAddr(&pOpenFileById, libKernel32, "OpenFileById")
 	ret, _, err := syscall.SyscallN(addr, hVolumeHint, uintptr(unsafe.Pointer(lpFileId)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwFlagsAndAttributes))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateSymbolicLinkA(lpSymlinkFileName PSTR, lpTargetFileName PSTR, dwFlags SYMBOLIC_LINK_FLAGS) (BOOLEAN, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSymbolicLinkA, libKernel32, "CreateSymbolicLinkA")
+	addr := LazyAddr(&pCreateSymbolicLinkA, libKernel32, "CreateSymbolicLinkA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSymlinkFileName)), uintptr(unsafe.Pointer(lpTargetFileName)), uintptr(dwFlags))
 	return BOOLEAN(ret), WIN32_ERROR(err)
 }
@@ -6643,13 +6643,13 @@ func CreateSymbolicLinkA(lpSymlinkFileName PSTR, lpTargetFileName PSTR, dwFlags 
 var CreateSymbolicLink = CreateSymbolicLinkW
 
 func CreateSymbolicLinkW(lpSymlinkFileName PWSTR, lpTargetFileName PWSTR, dwFlags SYMBOLIC_LINK_FLAGS) (BOOLEAN, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSymbolicLinkW, libKernel32, "CreateSymbolicLinkW")
+	addr := LazyAddr(&pCreateSymbolicLinkW, libKernel32, "CreateSymbolicLinkW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSymlinkFileName)), uintptr(unsafe.Pointer(lpTargetFileName)), uintptr(dwFlags))
 	return BOOLEAN(ret), WIN32_ERROR(err)
 }
 
 func CreateSymbolicLinkTransactedA(lpSymlinkFileName PSTR, lpTargetFileName PSTR, dwFlags SYMBOLIC_LINK_FLAGS, hTransaction HANDLE) (BOOLEAN, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSymbolicLinkTransactedA, libKernel32, "CreateSymbolicLinkTransactedA")
+	addr := LazyAddr(&pCreateSymbolicLinkTransactedA, libKernel32, "CreateSymbolicLinkTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSymlinkFileName)), uintptr(unsafe.Pointer(lpTargetFileName)), uintptr(dwFlags), hTransaction)
 	return BOOLEAN(ret), WIN32_ERROR(err)
 }
@@ -6657,7 +6657,7 @@ func CreateSymbolicLinkTransactedA(lpSymlinkFileName PSTR, lpTargetFileName PSTR
 var CreateSymbolicLinkTransacted = CreateSymbolicLinkTransactedW
 
 func CreateSymbolicLinkTransactedW(lpSymlinkFileName PWSTR, lpTargetFileName PWSTR, dwFlags SYMBOLIC_LINK_FLAGS, hTransaction HANDLE) (BOOLEAN, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSymbolicLinkTransactedW, libKernel32, "CreateSymbolicLinkTransactedW")
+	addr := LazyAddr(&pCreateSymbolicLinkTransactedW, libKernel32, "CreateSymbolicLinkTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSymlinkFileName)), uintptr(unsafe.Pointer(lpTargetFileName)), uintptr(dwFlags), hTransaction)
 	return BOOLEAN(ret), WIN32_ERROR(err)
 }

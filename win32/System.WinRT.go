@@ -1557,225 +1557,225 @@ var (
 )
 
 func CoDecodeProxy(dwClientPid uint32, ui64ProxyAddress uint64, pServerInformation *ServerInformation) HRESULT {
-	addr := lazyAddr(&pCoDecodeProxy, libOle32, "CoDecodeProxy")
+	addr := LazyAddr(&pCoDecodeProxy, libOle32, "CoDecodeProxy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwClientPid), uintptr(ui64ProxyAddress), uintptr(unsafe.Pointer(pServerInformation)))
 	return HRESULT(ret)
 }
 
 func RoGetAgileReference(options AgileReferenceOptions, riid *syscall.GUID, pUnk *IUnknown, ppAgileReference **IAgileReference) HRESULT {
-	addr := lazyAddr(&pRoGetAgileReference, libOle32, "RoGetAgileReference")
+	addr := LazyAddr(&pRoGetAgileReference, libOle32, "RoGetAgileReference")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(options), uintptr(unsafe.Pointer(riid)), uintptr(unsafe.Pointer(pUnk)), uintptr(unsafe.Pointer(ppAgileReference)))
 	return HRESULT(ret)
 }
 
 func HSTRING_UserSize(param0 *uint32, param1 uint32, param2 *HSTRING) uint32 {
-	addr := lazyAddr(&pHSTRING_UserSize, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserSize")
+	addr := LazyAddr(&pHSTRING_UserSize, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserSize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(param1), uintptr(unsafe.Pointer(param2)))
 	return uint32(ret)
 }
 
 func HSTRING_UserMarshal(param0 *uint32, param1 *byte, param2 *HSTRING) *byte {
-	addr := lazyAddr(&pHSTRING_UserMarshal, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserMarshal")
+	addr := LazyAddr(&pHSTRING_UserMarshal, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserMarshal")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HSTRING_UserUnmarshal(param0 *uint32, param1 *byte, param2 *HSTRING) *byte {
-	addr := lazyAddr(&pHSTRING_UserUnmarshal, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserUnmarshal")
+	addr := LazyAddr(&pHSTRING_UserUnmarshal, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserUnmarshal")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HSTRING_UserFree(param0 *uint32, param1 *HSTRING) {
-	addr := lazyAddr(&pHSTRING_UserFree, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserFree")
+	addr := LazyAddr(&pHSTRING_UserFree, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserFree")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)))
 }
 
 func HSTRING_UserSize64(param0 *uint32, param1 uint32, param2 *HSTRING) uint32 {
-	addr := lazyAddr(&pHSTRING_UserSize64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserSize64")
+	addr := LazyAddr(&pHSTRING_UserSize64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserSize64")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(param1), uintptr(unsafe.Pointer(param2)))
 	return uint32(ret)
 }
 
 func HSTRING_UserMarshal64(param0 *uint32, param1 *byte, param2 *HSTRING) *byte {
-	addr := lazyAddr(&pHSTRING_UserMarshal64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserMarshal64")
+	addr := LazyAddr(&pHSTRING_UserMarshal64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserMarshal64")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HSTRING_UserUnmarshal64(param0 *uint32, param1 *byte, param2 *HSTRING) *byte {
-	addr := lazyAddr(&pHSTRING_UserUnmarshal64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserUnmarshal64")
+	addr := LazyAddr(&pHSTRING_UserUnmarshal64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserUnmarshal64")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HSTRING_UserFree64(param0 *uint32, param1 *HSTRING) {
-	addr := lazyAddr(&pHSTRING_UserFree64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserFree64")
+	addr := LazyAddr(&pHSTRING_UserFree64, libApi_ms_win_core_winrt_string_l1_1_0, "HSTRING_UserFree64")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)))
 }
 
 func WindowsCreateString(sourceString PWSTR, length uint32, string *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsCreateString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsCreateString")
+	addr := LazyAddr(&pWindowsCreateString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsCreateString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(sourceString)), uintptr(length), uintptr(unsafe.Pointer(string)))
 	return HRESULT(ret)
 }
 
 func WindowsCreateStringReference(sourceString PWSTR, length uint32, hstringHeader *HSTRING_HEADER, string *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsCreateStringReference, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsCreateStringReference")
+	addr := LazyAddr(&pWindowsCreateStringReference, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsCreateStringReference")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(sourceString)), uintptr(length), uintptr(unsafe.Pointer(hstringHeader)), uintptr(unsafe.Pointer(string)))
 	return HRESULT(ret)
 }
 
 func WindowsDeleteString(string HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsDeleteString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsDeleteString")
+	addr := LazyAddr(&pWindowsDeleteString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsDeleteString")
 	ret, _, _ := syscall.SyscallN(addr, string)
 	return HRESULT(ret)
 }
 
 func WindowsDuplicateString(string HSTRING, newString *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsDuplicateString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsDuplicateString")
+	addr := LazyAddr(&pWindowsDuplicateString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsDuplicateString")
 	ret, _, _ := syscall.SyscallN(addr, string, uintptr(unsafe.Pointer(newString)))
 	return HRESULT(ret)
 }
 
 func WindowsGetStringLen(string HSTRING) uint32 {
-	addr := lazyAddr(&pWindowsGetStringLen, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsGetStringLen")
+	addr := LazyAddr(&pWindowsGetStringLen, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsGetStringLen")
 	ret, _, _ := syscall.SyscallN(addr, string)
 	return uint32(ret)
 }
 
 func WindowsGetStringRawBuffer(string HSTRING, length *uint32) PWSTR {
-	addr := lazyAddr(&pWindowsGetStringRawBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsGetStringRawBuffer")
+	addr := LazyAddr(&pWindowsGetStringRawBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsGetStringRawBuffer")
 	ret, _, _ := syscall.SyscallN(addr, string, uintptr(unsafe.Pointer(length)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func WindowsIsStringEmpty(string HSTRING) BOOL {
-	addr := lazyAddr(&pWindowsIsStringEmpty, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsIsStringEmpty")
+	addr := LazyAddr(&pWindowsIsStringEmpty, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsIsStringEmpty")
 	ret, _, _ := syscall.SyscallN(addr, string)
 	return BOOL(ret)
 }
 
 func WindowsStringHasEmbeddedNull(string HSTRING, hasEmbedNull *BOOL) HRESULT {
-	addr := lazyAddr(&pWindowsStringHasEmbeddedNull, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsStringHasEmbeddedNull")
+	addr := LazyAddr(&pWindowsStringHasEmbeddedNull, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsStringHasEmbeddedNull")
 	ret, _, _ := syscall.SyscallN(addr, string, uintptr(unsafe.Pointer(hasEmbedNull)))
 	return HRESULT(ret)
 }
 
 func WindowsCompareStringOrdinal(string1 HSTRING, string2 HSTRING, result *int32) HRESULT {
-	addr := lazyAddr(&pWindowsCompareStringOrdinal, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsCompareStringOrdinal")
+	addr := LazyAddr(&pWindowsCompareStringOrdinal, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsCompareStringOrdinal")
 	ret, _, _ := syscall.SyscallN(addr, string1, string2, uintptr(unsafe.Pointer(result)))
 	return HRESULT(ret)
 }
 
 func WindowsSubstring(string HSTRING, startIndex uint32, newString *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsSubstring, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsSubstring")
+	addr := LazyAddr(&pWindowsSubstring, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsSubstring")
 	ret, _, _ := syscall.SyscallN(addr, string, uintptr(startIndex), uintptr(unsafe.Pointer(newString)))
 	return HRESULT(ret)
 }
 
 func WindowsSubstringWithSpecifiedLength(string HSTRING, startIndex uint32, length uint32, newString *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsSubstringWithSpecifiedLength, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsSubstringWithSpecifiedLength")
+	addr := LazyAddr(&pWindowsSubstringWithSpecifiedLength, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsSubstringWithSpecifiedLength")
 	ret, _, _ := syscall.SyscallN(addr, string, uintptr(startIndex), uintptr(length), uintptr(unsafe.Pointer(newString)))
 	return HRESULT(ret)
 }
 
 func WindowsConcatString(string1 HSTRING, string2 HSTRING, newString *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsConcatString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsConcatString")
+	addr := LazyAddr(&pWindowsConcatString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsConcatString")
 	ret, _, _ := syscall.SyscallN(addr, string1, string2, uintptr(unsafe.Pointer(newString)))
 	return HRESULT(ret)
 }
 
 func WindowsReplaceString(string HSTRING, stringReplaced HSTRING, stringReplaceWith HSTRING, newString *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsReplaceString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsReplaceString")
+	addr := LazyAddr(&pWindowsReplaceString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsReplaceString")
 	ret, _, _ := syscall.SyscallN(addr, string, stringReplaced, stringReplaceWith, uintptr(unsafe.Pointer(newString)))
 	return HRESULT(ret)
 }
 
 func WindowsTrimStringStart(string HSTRING, trimString HSTRING, newString *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsTrimStringStart, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsTrimStringStart")
+	addr := LazyAddr(&pWindowsTrimStringStart, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsTrimStringStart")
 	ret, _, _ := syscall.SyscallN(addr, string, trimString, uintptr(unsafe.Pointer(newString)))
 	return HRESULT(ret)
 }
 
 func WindowsTrimStringEnd(string HSTRING, trimString HSTRING, newString *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsTrimStringEnd, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsTrimStringEnd")
+	addr := LazyAddr(&pWindowsTrimStringEnd, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsTrimStringEnd")
 	ret, _, _ := syscall.SyscallN(addr, string, trimString, uintptr(unsafe.Pointer(newString)))
 	return HRESULT(ret)
 }
 
 func WindowsPreallocateStringBuffer(length uint32, charBuffer **uint16, bufferHandle *HSTRING_BUFFER) HRESULT {
-	addr := lazyAddr(&pWindowsPreallocateStringBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsPreallocateStringBuffer")
+	addr := LazyAddr(&pWindowsPreallocateStringBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsPreallocateStringBuffer")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(length), uintptr(unsafe.Pointer(charBuffer)), uintptr(unsafe.Pointer(bufferHandle)))
 	return HRESULT(ret)
 }
 
 func WindowsPromoteStringBuffer(bufferHandle HSTRING_BUFFER, string *HSTRING) HRESULT {
-	addr := lazyAddr(&pWindowsPromoteStringBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsPromoteStringBuffer")
+	addr := LazyAddr(&pWindowsPromoteStringBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsPromoteStringBuffer")
 	ret, _, _ := syscall.SyscallN(addr, bufferHandle, uintptr(unsafe.Pointer(string)))
 	return HRESULT(ret)
 }
 
 func WindowsDeleteStringBuffer(bufferHandle HSTRING_BUFFER) HRESULT {
-	addr := lazyAddr(&pWindowsDeleteStringBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsDeleteStringBuffer")
+	addr := LazyAddr(&pWindowsDeleteStringBuffer, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsDeleteStringBuffer")
 	ret, _, _ := syscall.SyscallN(addr, bufferHandle)
 	return HRESULT(ret)
 }
 
 func WindowsInspectString(targetHString uintptr, machine uint16, callback PINSPECT_HSTRING_CALLBACK, context unsafe.Pointer, length *uint32, targetStringAddress *uintptr) HRESULT {
-	addr := lazyAddr(&pWindowsInspectString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsInspectString")
+	addr := LazyAddr(&pWindowsInspectString, libApi_ms_win_core_winrt_string_l1_1_0, "WindowsInspectString")
 	ret, _, _ := syscall.SyscallN(addr, targetHString, uintptr(machine), callback, uintptr(context), uintptr(unsafe.Pointer(length)), uintptr(unsafe.Pointer(targetStringAddress)))
 	return HRESULT(ret)
 }
 
 func RoInitialize(initType RO_INIT_TYPE) HRESULT {
-	addr := lazyAddr(&pRoInitialize, libApi_ms_win_core_winrt_l1_1_0, "RoInitialize")
+	addr := LazyAddr(&pRoInitialize, libApi_ms_win_core_winrt_l1_1_0, "RoInitialize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(initType))
 	return HRESULT(ret)
 }
 
 func RoUninitialize() {
-	addr := lazyAddr(&pRoUninitialize, libApi_ms_win_core_winrt_l1_1_0, "RoUninitialize")
+	addr := LazyAddr(&pRoUninitialize, libApi_ms_win_core_winrt_l1_1_0, "RoUninitialize")
 	syscall.SyscallN(addr)
 }
 
 func RoActivateInstance(activatableClassId HSTRING, instance **IInspectable) HRESULT {
-	addr := lazyAddr(&pRoActivateInstance, libApi_ms_win_core_winrt_l1_1_0, "RoActivateInstance")
+	addr := LazyAddr(&pRoActivateInstance, libApi_ms_win_core_winrt_l1_1_0, "RoActivateInstance")
 	ret, _, _ := syscall.SyscallN(addr, activatableClassId, uintptr(unsafe.Pointer(instance)))
 	return HRESULT(ret)
 }
 
 func RoRegisterActivationFactories(activatableClassIds *HSTRING, activationFactoryCallbacks *uintptr, count uint32, cookie *uintptr) HRESULT {
-	addr := lazyAddr(&pRoRegisterActivationFactories, libApi_ms_win_core_winrt_l1_1_0, "RoRegisterActivationFactories")
+	addr := LazyAddr(&pRoRegisterActivationFactories, libApi_ms_win_core_winrt_l1_1_0, "RoRegisterActivationFactories")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(activatableClassIds)), uintptr(unsafe.Pointer(activationFactoryCallbacks)), uintptr(count), uintptr(unsafe.Pointer(cookie)))
 	return HRESULT(ret)
 }
 
 func RoRevokeActivationFactories(cookie uintptr) {
-	addr := lazyAddr(&pRoRevokeActivationFactories, libApi_ms_win_core_winrt_l1_1_0, "RoRevokeActivationFactories")
+	addr := LazyAddr(&pRoRevokeActivationFactories, libApi_ms_win_core_winrt_l1_1_0, "RoRevokeActivationFactories")
 	syscall.SyscallN(addr, cookie)
 }
 
 func RoGetActivationFactory(activatableClassId HSTRING, iid *syscall.GUID, factory unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pRoGetActivationFactory, libApi_ms_win_core_winrt_l1_1_0, "RoGetActivationFactory")
+	addr := LazyAddr(&pRoGetActivationFactory, libApi_ms_win_core_winrt_l1_1_0, "RoGetActivationFactory")
 	ret, _, _ := syscall.SyscallN(addr, activatableClassId, uintptr(unsafe.Pointer(iid)), uintptr(factory))
 	return HRESULT(ret)
 }
 
 func RoRegisterForApartmentShutdown(callbackObject *IApartmentShutdown, apartmentIdentifier *uint64, regCookie *APARTMENT_SHUTDOWN_REGISTRATION_COOKIE) HRESULT {
-	addr := lazyAddr(&pRoRegisterForApartmentShutdown, libApi_ms_win_core_winrt_l1_1_0, "RoRegisterForApartmentShutdown")
+	addr := LazyAddr(&pRoRegisterForApartmentShutdown, libApi_ms_win_core_winrt_l1_1_0, "RoRegisterForApartmentShutdown")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(callbackObject)), uintptr(unsafe.Pointer(apartmentIdentifier)), uintptr(unsafe.Pointer(regCookie)))
 	return HRESULT(ret)
 }
 
 func RoUnregisterForApartmentShutdown(regCookie APARTMENT_SHUTDOWN_REGISTRATION_COOKIE) HRESULT {
-	addr := lazyAddr(&pRoUnregisterForApartmentShutdown, libApi_ms_win_core_winrt_l1_1_0, "RoUnregisterForApartmentShutdown")
+	addr := LazyAddr(&pRoUnregisterForApartmentShutdown, libApi_ms_win_core_winrt_l1_1_0, "RoUnregisterForApartmentShutdown")
 	ret, _, _ := syscall.SyscallN(addr, regCookie)
 	return HRESULT(ret)
 }
 
 func RoGetApartmentIdentifier(apartmentIdentifier *uint64) HRESULT {
-	addr := lazyAddr(&pRoGetApartmentIdentifier, libApi_ms_win_core_winrt_l1_1_0, "RoGetApartmentIdentifier")
+	addr := LazyAddr(&pRoGetApartmentIdentifier, libApi_ms_win_core_winrt_l1_1_0, "RoGetApartmentIdentifier")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(apartmentIdentifier)))
 	return HRESULT(ret)
 }

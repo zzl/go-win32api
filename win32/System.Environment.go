@@ -218,13 +218,13 @@ var (
 )
 
 func SetEnvironmentStringsW(NewEnvironment PWSTR) BOOL {
-	addr := lazyAddr(&pSetEnvironmentStringsW, libKernel32, "SetEnvironmentStringsW")
+	addr := LazyAddr(&pSetEnvironmentStringsW, libKernel32, "SetEnvironmentStringsW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(NewEnvironment)))
 	return BOOL(ret)
 }
 
 func GetCommandLineA() PSTR {
-	addr := lazyAddr(&pGetCommandLineA, libKernel32, "GetCommandLineA")
+	addr := LazyAddr(&pGetCommandLineA, libKernel32, "GetCommandLineA")
 	ret, _, _ := syscall.SyscallN(addr)
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -232,25 +232,25 @@ func GetCommandLineA() PSTR {
 var GetCommandLine = GetCommandLineW
 
 func GetCommandLineW() PWSTR {
-	addr := lazyAddr(&pGetCommandLineW, libKernel32, "GetCommandLineW")
+	addr := LazyAddr(&pGetCommandLineW, libKernel32, "GetCommandLineW")
 	ret, _, _ := syscall.SyscallN(addr)
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func GetEnvironmentStrings() PSTR {
-	addr := lazyAddr(&pGetEnvironmentStrings, libKernel32, "GetEnvironmentStrings")
+	addr := LazyAddr(&pGetEnvironmentStrings, libKernel32, "GetEnvironmentStrings")
 	ret, _, _ := syscall.SyscallN(addr)
 	return (PSTR)(unsafe.Pointer(ret))
 }
 
 func GetEnvironmentStringsW() PWSTR {
-	addr := lazyAddr(&pGetEnvironmentStringsW, libKernel32, "GetEnvironmentStringsW")
+	addr := LazyAddr(&pGetEnvironmentStringsW, libKernel32, "GetEnvironmentStringsW")
 	ret, _, _ := syscall.SyscallN(addr)
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func FreeEnvironmentStringsA(penv PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFreeEnvironmentStringsA, libKernel32, "FreeEnvironmentStringsA")
+	addr := LazyAddr(&pFreeEnvironmentStringsA, libKernel32, "FreeEnvironmentStringsA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(penv)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -258,13 +258,13 @@ func FreeEnvironmentStringsA(penv PSTR) (BOOL, WIN32_ERROR) {
 var FreeEnvironmentStrings = FreeEnvironmentStringsW
 
 func FreeEnvironmentStringsW(penv PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFreeEnvironmentStringsW, libKernel32, "FreeEnvironmentStringsW")
+	addr := LazyAddr(&pFreeEnvironmentStringsW, libKernel32, "FreeEnvironmentStringsW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(penv)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetEnvironmentVariableA(lpName PSTR, lpBuffer PSTR, nSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetEnvironmentVariableA, libKernel32, "GetEnvironmentVariableA")
+	addr := LazyAddr(&pGetEnvironmentVariableA, libKernel32, "GetEnvironmentVariableA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpBuffer)), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -272,13 +272,13 @@ func GetEnvironmentVariableA(lpName PSTR, lpBuffer PSTR, nSize uint32) (uint32, 
 var GetEnvironmentVariable = GetEnvironmentVariableW
 
 func GetEnvironmentVariableW(lpName PWSTR, lpBuffer PWSTR, nSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetEnvironmentVariableW, libKernel32, "GetEnvironmentVariableW")
+	addr := LazyAddr(&pGetEnvironmentVariableW, libKernel32, "GetEnvironmentVariableW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpBuffer)), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetEnvironmentVariableA(lpName PSTR, lpValue PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetEnvironmentVariableA, libKernel32, "SetEnvironmentVariableA")
+	addr := LazyAddr(&pSetEnvironmentVariableA, libKernel32, "SetEnvironmentVariableA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpValue)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -286,13 +286,13 @@ func SetEnvironmentVariableA(lpName PSTR, lpValue PSTR) (BOOL, WIN32_ERROR) {
 var SetEnvironmentVariable = SetEnvironmentVariableW
 
 func SetEnvironmentVariableW(lpName PWSTR, lpValue PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetEnvironmentVariableW, libKernel32, "SetEnvironmentVariableW")
+	addr := LazyAddr(&pSetEnvironmentVariableW, libKernel32, "SetEnvironmentVariableW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpValue)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ExpandEnvironmentStringsA(lpSrc PSTR, lpDst PSTR, nSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pExpandEnvironmentStringsA, libKernel32, "ExpandEnvironmentStringsA")
+	addr := LazyAddr(&pExpandEnvironmentStringsA, libKernel32, "ExpandEnvironmentStringsA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSrc)), uintptr(unsafe.Pointer(lpDst)), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -300,13 +300,13 @@ func ExpandEnvironmentStringsA(lpSrc PSTR, lpDst PSTR, nSize uint32) (uint32, WI
 var ExpandEnvironmentStrings = ExpandEnvironmentStringsW
 
 func ExpandEnvironmentStringsW(lpSrc PWSTR, lpDst PWSTR, nSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pExpandEnvironmentStringsW, libKernel32, "ExpandEnvironmentStringsW")
+	addr := LazyAddr(&pExpandEnvironmentStringsW, libKernel32, "ExpandEnvironmentStringsW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSrc)), uintptr(unsafe.Pointer(lpDst)), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetCurrentDirectoryA(lpPathName PSTR) BOOL {
-	addr := lazyAddr(&pSetCurrentDirectoryA, libKernel32, "SetCurrentDirectoryA")
+	addr := LazyAddr(&pSetCurrentDirectoryA, libKernel32, "SetCurrentDirectoryA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)))
 	return BOOL(ret)
 }
@@ -314,13 +314,13 @@ func SetCurrentDirectoryA(lpPathName PSTR) BOOL {
 var SetCurrentDirectory = SetCurrentDirectoryW
 
 func SetCurrentDirectoryW(lpPathName PWSTR) BOOL {
-	addr := lazyAddr(&pSetCurrentDirectoryW, libKernel32, "SetCurrentDirectoryW")
+	addr := LazyAddr(&pSetCurrentDirectoryW, libKernel32, "SetCurrentDirectoryW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)))
 	return BOOL(ret)
 }
 
 func GetCurrentDirectoryA(nBufferLength uint32, lpBuffer PSTR) uint32 {
-	addr := lazyAddr(&pGetCurrentDirectoryA, libKernel32, "GetCurrentDirectoryA")
+	addr := LazyAddr(&pGetCurrentDirectoryA, libKernel32, "GetCurrentDirectoryA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)))
 	return uint32(ret)
 }
@@ -328,13 +328,13 @@ func GetCurrentDirectoryA(nBufferLength uint32, lpBuffer PSTR) uint32 {
 var GetCurrentDirectory = GetCurrentDirectoryW
 
 func GetCurrentDirectoryW(nBufferLength uint32, lpBuffer PWSTR) uint32 {
-	addr := lazyAddr(&pGetCurrentDirectoryW, libKernel32, "GetCurrentDirectoryW")
+	addr := LazyAddr(&pGetCurrentDirectoryW, libKernel32, "GetCurrentDirectoryW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nBufferLength), uintptr(unsafe.Pointer(lpBuffer)))
 	return uint32(ret)
 }
 
 func NeedCurrentDirectoryForExePathA(ExeName PSTR) BOOL {
-	addr := lazyAddr(&pNeedCurrentDirectoryForExePathA, libKernel32, "NeedCurrentDirectoryForExePathA")
+	addr := LazyAddr(&pNeedCurrentDirectoryForExePathA, libKernel32, "NeedCurrentDirectoryForExePathA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ExeName)))
 	return BOOL(ret)
 }
@@ -342,25 +342,25 @@ func NeedCurrentDirectoryForExePathA(ExeName PSTR) BOOL {
 var NeedCurrentDirectoryForExePath = NeedCurrentDirectoryForExePathW
 
 func NeedCurrentDirectoryForExePathW(ExeName PWSTR) BOOL {
-	addr := lazyAddr(&pNeedCurrentDirectoryForExePathW, libKernel32, "NeedCurrentDirectoryForExePathW")
+	addr := LazyAddr(&pNeedCurrentDirectoryForExePathW, libKernel32, "NeedCurrentDirectoryForExePathW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ExeName)))
 	return BOOL(ret)
 }
 
 func CreateEnvironmentBlock(lpEnvironment unsafe.Pointer, hToken HANDLE, bInherit BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateEnvironmentBlock, libUserenv, "CreateEnvironmentBlock")
+	addr := LazyAddr(&pCreateEnvironmentBlock, libUserenv, "CreateEnvironmentBlock")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lpEnvironment), hToken, uintptr(bInherit))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DestroyEnvironmentBlock(lpEnvironment unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDestroyEnvironmentBlock, libUserenv, "DestroyEnvironmentBlock")
+	addr := LazyAddr(&pDestroyEnvironmentBlock, libUserenv, "DestroyEnvironmentBlock")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lpEnvironment))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ExpandEnvironmentStringsForUserA(hToken HANDLE, lpSrc PSTR, lpDest PSTR, dwSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pExpandEnvironmentStringsForUserA, libUserenv, "ExpandEnvironmentStringsForUserA")
+	addr := LazyAddr(&pExpandEnvironmentStringsForUserA, libUserenv, "ExpandEnvironmentStringsForUserA")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpSrc)), uintptr(unsafe.Pointer(lpDest)), uintptr(dwSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -368,31 +368,31 @@ func ExpandEnvironmentStringsForUserA(hToken HANDLE, lpSrc PSTR, lpDest PSTR, dw
 var ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW
 
 func ExpandEnvironmentStringsForUserW(hToken HANDLE, lpSrc PWSTR, lpDest PWSTR, dwSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pExpandEnvironmentStringsForUserW, libUserenv, "ExpandEnvironmentStringsForUserW")
+	addr := LazyAddr(&pExpandEnvironmentStringsForUserW, libUserenv, "ExpandEnvironmentStringsForUserW")
 	ret, _, err := syscall.SyscallN(addr, hToken, uintptr(unsafe.Pointer(lpSrc)), uintptr(unsafe.Pointer(lpDest)), uintptr(dwSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsEnclaveTypeSupported(flEnclaveType uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsEnclaveTypeSupported, libKernel32, "IsEnclaveTypeSupported")
+	addr := LazyAddr(&pIsEnclaveTypeSupported, libKernel32, "IsEnclaveTypeSupported")
 	ret, _, err := syscall.SyscallN(addr, uintptr(flEnclaveType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateEnclave(hProcess HANDLE, lpAddress unsafe.Pointer, dwSize uintptr, dwInitialCommitment uintptr, flEnclaveType uint32, lpEnclaveInformation unsafe.Pointer, dwInfoLength uint32, lpEnclaveError *uint32) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateEnclave, libKernel32, "CreateEnclave")
+	addr := LazyAddr(&pCreateEnclave, libKernel32, "CreateEnclave")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(lpAddress), dwSize, dwInitialCommitment, uintptr(flEnclaveType), uintptr(lpEnclaveInformation), uintptr(dwInfoLength), uintptr(unsafe.Pointer(lpEnclaveError)))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func LoadEnclaveData(hProcess HANDLE, lpAddress unsafe.Pointer, lpBuffer unsafe.Pointer, nSize uintptr, flProtect uint32, lpPageInformation unsafe.Pointer, dwInfoLength uint32, lpNumberOfBytesWritten *uintptr, lpEnclaveError *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadEnclaveData, libKernel32, "LoadEnclaveData")
+	addr := LazyAddr(&pLoadEnclaveData, libKernel32, "LoadEnclaveData")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(lpAddress), uintptr(lpBuffer), nSize, uintptr(flProtect), uintptr(lpPageInformation), uintptr(dwInfoLength), uintptr(unsafe.Pointer(lpNumberOfBytesWritten)), uintptr(unsafe.Pointer(lpEnclaveError)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InitializeEnclave(hProcess HANDLE, lpAddress unsafe.Pointer, lpEnclaveInformation unsafe.Pointer, dwInfoLength uint32, lpEnclaveError *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInitializeEnclave, libKernel32, "InitializeEnclave")
+	addr := LazyAddr(&pInitializeEnclave, libKernel32, "InitializeEnclave")
 	ret, _, err := syscall.SyscallN(addr, hProcess, uintptr(lpAddress), uintptr(lpEnclaveInformation), uintptr(dwInfoLength), uintptr(unsafe.Pointer(lpEnclaveError)))
 	return BOOL(ret), WIN32_ERROR(err)
 }

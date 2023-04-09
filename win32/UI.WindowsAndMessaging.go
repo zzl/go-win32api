@@ -3673,7 +3673,7 @@ var (
 )
 
 func LoadStringA(hInstance HINSTANCE, uID uint32, lpBuffer PSTR, cchBufferMax int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadStringA, libUser32, "LoadStringA")
+	addr := LazyAddr(&pLoadStringA, libUser32, "LoadStringA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(uID), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cchBufferMax))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -3681,13 +3681,13 @@ func LoadStringA(hInstance HINSTANCE, uID uint32, lpBuffer PSTR, cchBufferMax in
 var LoadString = LoadStringW
 
 func LoadStringW(hInstance HINSTANCE, uID uint32, lpBuffer PWSTR, cchBufferMax int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadStringW, libUser32, "LoadStringW")
+	addr := LazyAddr(&pLoadStringW, libUser32, "LoadStringW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(uID), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cchBufferMax))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowLongPtrA, libUser32, "GetWindowLongPtrA")
+	addr := LazyAddr(&pGetWindowLongPtrA, libUser32, "GetWindowLongPtrA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return ret, WIN32_ERROR(err)
 }
@@ -3695,13 +3695,13 @@ func GetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (uintptr, WIN32_
 var GetWindowLongPtr = GetWindowLongPtrW
 
 func GetWindowLongPtrW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowLongPtrW, libUser32, "GetWindowLongPtrW")
+	addr := LazyAddr(&pGetWindowLongPtrW, libUser32, "GetWindowLongPtrW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowLongPtrA, libUser32, "SetWindowLongPtrA")
+	addr := LazyAddr(&pSetWindowLongPtrA, libUser32, "SetWindowLongPtrA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
 	return ret, WIN32_ERROR(err)
 }
@@ -3709,13 +3709,13 @@ func SetWindowLongPtrA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong uintpt
 var SetWindowLongPtr = SetWindowLongPtrW
 
 func SetWindowLongPtrW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowLongPtrW, libUser32, "SetWindowLongPtrW")
+	addr := LazyAddr(&pSetWindowLongPtrW, libUser32, "SetWindowLongPtrW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
 	return ret, WIN32_ERROR(err)
 }
 
 func GetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassLongPtrA, libUser32, "GetClassLongPtrA")
+	addr := LazyAddr(&pGetClassLongPtrA, libUser32, "GetClassLongPtrA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return ret, WIN32_ERROR(err)
 }
@@ -3723,13 +3723,13 @@ func GetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uintptr, WIN32_ER
 var GetClassLongPtr = GetClassLongPtrW
 
 func GetClassLongPtrW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassLongPtrW, libUser32, "GetClassLongPtrW")
+	addr := LazyAddr(&pGetClassLongPtrW, libUser32, "GetClassLongPtrW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetClassLongPtrA, libUser32, "SetClassLongPtrA")
+	addr := LazyAddr(&pSetClassLongPtrA, libUser32, "SetClassLongPtrA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
 	return ret, WIN32_ERROR(err)
 }
@@ -3737,13 +3737,13 @@ func SetClassLongPtrA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong uintptr)
 var SetClassLongPtr = SetClassLongPtrW
 
 func SetClassLongPtrW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong uintptr) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetClassLongPtrW, libUser32, "SetClassLongPtrW")
+	addr := LazyAddr(&pSetClassLongPtrW, libUser32, "SetClassLongPtrW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), dwNewLong)
 	return ret, WIN32_ERROR(err)
 }
 
 func WvsprintfA(param0 PSTR, param1 PSTR, arglist *int8) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pWvsprintfA, libUser32, "wvsprintfA")
+	addr := LazyAddr(&pWvsprintfA, libUser32, "wvsprintfA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(arglist)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -3751,13 +3751,13 @@ func WvsprintfA(param0 PSTR, param1 PSTR, arglist *int8) (int32, WIN32_ERROR) {
 var Wvsprintf = WvsprintfW
 
 func WvsprintfW(param0 PWSTR, param1 PWSTR, arglist *int8) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pWvsprintfW, libUser32, "wvsprintfW")
+	addr := LazyAddr(&pWvsprintfW, libUser32, "wvsprintfW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(arglist)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func WsprintfA(param0 PSTR, param1 PSTR) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pWsprintfA, libUser32, "wsprintfA")
+	addr := LazyAddr(&pWsprintfA, libUser32, "wsprintfA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -3765,24 +3765,24 @@ func WsprintfA(param0 PSTR, param1 PSTR) (int32, WIN32_ERROR) {
 var Wsprintf = WsprintfW
 
 func WsprintfW(param0 PWSTR, param1 PWSTR) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pWsprintfW, libUser32, "wsprintfW")
+	addr := LazyAddr(&pWsprintfW, libUser32, "wsprintfW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func IsHungAppWindow(hwnd HWND) BOOL {
-	addr := lazyAddr(&pIsHungAppWindow, libUser32, "IsHungAppWindow")
+	addr := LazyAddr(&pIsHungAppWindow, libUser32, "IsHungAppWindow")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return BOOL(ret)
 }
 
 func DisableProcessWindowsGhosting() {
-	addr := lazyAddr(&pDisableProcessWindowsGhosting, libUser32, "DisableProcessWindowsGhosting")
+	addr := LazyAddr(&pDisableProcessWindowsGhosting, libUser32, "DisableProcessWindowsGhosting")
 	syscall.SyscallN(addr)
 }
 
 func RegisterWindowMessageA(lpString PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterWindowMessageA, libUser32, "RegisterWindowMessageA")
+	addr := LazyAddr(&pRegisterWindowMessageA, libUser32, "RegisterWindowMessageA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -3790,13 +3790,13 @@ func RegisterWindowMessageA(lpString PSTR) (uint32, WIN32_ERROR) {
 var RegisterWindowMessage = RegisterWindowMessageW
 
 func RegisterWindowMessageW(lpString PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterWindowMessageW, libUser32, "RegisterWindowMessageW")
+	addr := LazyAddr(&pRegisterWindowMessageW, libUser32, "RegisterWindowMessageW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetMessageA(lpMsg *MSG, hWnd HWND, wMsgFilterMin uint32, wMsgFilterMax uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMessageA, libUser32, "GetMessageA")
+	addr := LazyAddr(&pGetMessageA, libUser32, "GetMessageA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)), hWnd, uintptr(wMsgFilterMin), uintptr(wMsgFilterMax))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -3804,19 +3804,19 @@ func GetMessageA(lpMsg *MSG, hWnd HWND, wMsgFilterMin uint32, wMsgFilterMax uint
 var GetMessage = GetMessageW
 
 func GetMessageW(lpMsg *MSG, hWnd HWND, wMsgFilterMin uint32, wMsgFilterMax uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMessageW, libUser32, "GetMessageW")
+	addr := LazyAddr(&pGetMessageW, libUser32, "GetMessageW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)), hWnd, uintptr(wMsgFilterMin), uintptr(wMsgFilterMax))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func TranslateMessage(lpMsg *MSG) BOOL {
-	addr := lazyAddr(&pTranslateMessage, libUser32, "TranslateMessage")
+	addr := LazyAddr(&pTranslateMessage, libUser32, "TranslateMessage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)))
 	return BOOL(ret)
 }
 
 func DispatchMessageA(lpMsg *MSG) LRESULT {
-	addr := lazyAddr(&pDispatchMessageA, libUser32, "DispatchMessageA")
+	addr := LazyAddr(&pDispatchMessageA, libUser32, "DispatchMessageA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)))
 	return ret
 }
@@ -3824,19 +3824,19 @@ func DispatchMessageA(lpMsg *MSG) LRESULT {
 var DispatchMessage = DispatchMessageW
 
 func DispatchMessageW(lpMsg *MSG) LRESULT {
-	addr := lazyAddr(&pDispatchMessageW, libUser32, "DispatchMessageW")
+	addr := LazyAddr(&pDispatchMessageW, libUser32, "DispatchMessageW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)))
 	return ret
 }
 
 func SetMessageQueue(cMessagesMax int32) BOOL {
-	addr := lazyAddr(&pSetMessageQueue, libUser32, "SetMessageQueue")
+	addr := LazyAddr(&pSetMessageQueue, libUser32, "SetMessageQueue")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cMessagesMax))
 	return BOOL(ret)
 }
 
 func PeekMessageA(lpMsg *MSG, hWnd HWND, wMsgFilterMin uint32, wMsgFilterMax uint32, wRemoveMsg PEEK_MESSAGE_REMOVE_TYPE) BOOL {
-	addr := lazyAddr(&pPeekMessageA, libUser32, "PeekMessageA")
+	addr := LazyAddr(&pPeekMessageA, libUser32, "PeekMessageA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)), hWnd, uintptr(wMsgFilterMin), uintptr(wMsgFilterMax), uintptr(wRemoveMsg))
 	return BOOL(ret)
 }
@@ -3844,43 +3844,43 @@ func PeekMessageA(lpMsg *MSG, hWnd HWND, wMsgFilterMin uint32, wMsgFilterMax uin
 var PeekMessage = PeekMessageW
 
 func PeekMessageW(lpMsg *MSG, hWnd HWND, wMsgFilterMin uint32, wMsgFilterMax uint32, wRemoveMsg PEEK_MESSAGE_REMOVE_TYPE) BOOL {
-	addr := lazyAddr(&pPeekMessageW, libUser32, "PeekMessageW")
+	addr := LazyAddr(&pPeekMessageW, libUser32, "PeekMessageW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)), hWnd, uintptr(wMsgFilterMin), uintptr(wMsgFilterMax), uintptr(wRemoveMsg))
 	return BOOL(ret)
 }
 
 func GetMessagePos() uint32 {
-	addr := lazyAddr(&pGetMessagePos, libUser32, "GetMessagePos")
+	addr := LazyAddr(&pGetMessagePos, libUser32, "GetMessagePos")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func GetMessageTime() int32 {
-	addr := lazyAddr(&pGetMessageTime, libUser32, "GetMessageTime")
+	addr := LazyAddr(&pGetMessageTime, libUser32, "GetMessageTime")
 	ret, _, _ := syscall.SyscallN(addr)
 	return int32(ret)
 }
 
 func GetMessageExtraInfo() LPARAM {
-	addr := lazyAddr(&pGetMessageExtraInfo, libUser32, "GetMessageExtraInfo")
+	addr := LazyAddr(&pGetMessageExtraInfo, libUser32, "GetMessageExtraInfo")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func IsWow64Message() BOOL {
-	addr := lazyAddr(&pIsWow64Message, libUser32, "IsWow64Message")
+	addr := LazyAddr(&pIsWow64Message, libUser32, "IsWow64Message")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func SetMessageExtraInfo(lParam LPARAM) LPARAM {
-	addr := lazyAddr(&pSetMessageExtraInfo, libUser32, "SetMessageExtraInfo")
+	addr := LazyAddr(&pSetMessageExtraInfo, libUser32, "SetMessageExtraInfo")
 	ret, _, _ := syscall.SyscallN(addr, lParam)
 	return ret
 }
 
 func SendMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (LRESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pSendMessageA, libUser32, "SendMessageA")
+	addr := LazyAddr(&pSendMessageA, libUser32, "SendMessageA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return ret, WIN32_ERROR(err)
 }
@@ -3888,13 +3888,13 @@ func SendMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (LRESULT,
 var SendMessage = SendMessageW
 
 func SendMessageW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (LRESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pSendMessageW, libUser32, "SendMessageW")
+	addr := LazyAddr(&pSendMessageW, libUser32, "SendMessageW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return ret, WIN32_ERROR(err)
 }
 
 func SendMessageTimeoutA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, fuFlags SEND_MESSAGE_TIMEOUT_FLAGS, uTimeout uint32, lpdwResult *uintptr) (LRESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pSendMessageTimeoutA, libUser32, "SendMessageTimeoutA")
+	addr := LazyAddr(&pSendMessageTimeoutA, libUser32, "SendMessageTimeoutA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam, uintptr(fuFlags), uintptr(uTimeout), uintptr(unsafe.Pointer(lpdwResult)))
 	return ret, WIN32_ERROR(err)
 }
@@ -3902,13 +3902,13 @@ func SendMessageTimeoutA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, fu
 var SendMessageTimeout = SendMessageTimeoutW
 
 func SendMessageTimeoutW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, fuFlags SEND_MESSAGE_TIMEOUT_FLAGS, uTimeout uint32, lpdwResult *uintptr) (LRESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pSendMessageTimeoutW, libUser32, "SendMessageTimeoutW")
+	addr := LazyAddr(&pSendMessageTimeoutW, libUser32, "SendMessageTimeoutW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam, uintptr(fuFlags), uintptr(uTimeout), uintptr(unsafe.Pointer(lpdwResult)))
 	return ret, WIN32_ERROR(err)
 }
 
 func SendNotifyMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSendNotifyMessageA, libUser32, "SendNotifyMessageA")
+	addr := LazyAddr(&pSendNotifyMessageA, libUser32, "SendNotifyMessageA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -3916,13 +3916,13 @@ func SendNotifyMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BO
 var SendNotifyMessage = SendNotifyMessageW
 
 func SendNotifyMessageW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSendNotifyMessageW, libUser32, "SendNotifyMessageW")
+	addr := LazyAddr(&pSendNotifyMessageW, libUser32, "SendNotifyMessageW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SendMessageCallbackA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, lpResultCallBack SENDASYNCPROC, dwData uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSendMessageCallbackA, libUser32, "SendMessageCallbackA")
+	addr := LazyAddr(&pSendMessageCallbackA, libUser32, "SendMessageCallbackA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam, lpResultCallBack, dwData)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -3930,13 +3930,13 @@ func SendMessageCallbackA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, l
 var SendMessageCallback = SendMessageCallbackW
 
 func SendMessageCallbackW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, lpResultCallBack SENDASYNCPROC, dwData uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSendMessageCallbackW, libUser32, "SendMessageCallbackW")
+	addr := LazyAddr(&pSendMessageCallbackW, libUser32, "SendMessageCallbackW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam, lpResultCallBack, dwData)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RegisterDeviceNotificationA(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags POWER_SETTING_REGISTER_NOTIFICATION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterDeviceNotificationA, libUser32, "RegisterDeviceNotificationA")
+	addr := LazyAddr(&pRegisterDeviceNotificationA, libUser32, "RegisterDeviceNotificationA")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(NotificationFilter), uintptr(Flags))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
@@ -3944,13 +3944,13 @@ func RegisterDeviceNotificationA(hRecipient HANDLE, NotificationFilter unsafe.Po
 var RegisterDeviceNotification = RegisterDeviceNotificationW
 
 func RegisterDeviceNotificationW(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags POWER_SETTING_REGISTER_NOTIFICATION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterDeviceNotificationW, libUser32, "RegisterDeviceNotificationW")
+	addr := LazyAddr(&pRegisterDeviceNotificationW, libUser32, "RegisterDeviceNotificationW")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(NotificationFilter), uintptr(Flags))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func PostMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPostMessageA, libUser32, "PostMessageA")
+	addr := LazyAddr(&pPostMessageA, libUser32, "PostMessageA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -3958,13 +3958,13 @@ func PostMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WI
 var PostMessage = PostMessageW
 
 func PostMessageW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPostMessageW, libUser32, "PostMessageW")
+	addr := LazyAddr(&pPostMessageW, libUser32, "PostMessageW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func PostThreadMessageA(idThread uint32, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPostThreadMessageA, libUser32, "PostThreadMessageA")
+	addr := LazyAddr(&pPostThreadMessageA, libUser32, "PostThreadMessageA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(idThread), uintptr(Msg), wParam, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -3972,25 +3972,25 @@ func PostThreadMessageA(idThread uint32, Msg uint32, wParam WPARAM, lParam LPARA
 var PostThreadMessage = PostThreadMessageW
 
 func PostThreadMessageW(idThread uint32, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPostThreadMessageW, libUser32, "PostThreadMessageW")
+	addr := LazyAddr(&pPostThreadMessageW, libUser32, "PostThreadMessageW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(idThread), uintptr(Msg), wParam, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReplyMessage(lResult LRESULT) BOOL {
-	addr := lazyAddr(&pReplyMessage, libUser32, "ReplyMessage")
+	addr := LazyAddr(&pReplyMessage, libUser32, "ReplyMessage")
 	ret, _, _ := syscall.SyscallN(addr, lResult)
 	return BOOL(ret)
 }
 
 func WaitMessage() (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWaitMessage, libUser32, "WaitMessage")
+	addr := LazyAddr(&pWaitMessage, libUser32, "WaitMessage")
 	ret, _, err := syscall.SyscallN(addr)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DefWindowProcA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefWindowProcA, libUser32, "DefWindowProcA")
+	addr := LazyAddr(&pDefWindowProcA, libUser32, "DefWindowProcA")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return ret
 }
@@ -3998,18 +3998,18 @@ func DefWindowProcA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT
 var DefWindowProc = DefWindowProcW
 
 func DefWindowProcW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefWindowProcW, libUser32, "DefWindowProcW")
+	addr := LazyAddr(&pDefWindowProcW, libUser32, "DefWindowProcW")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(Msg), wParam, lParam)
 	return ret
 }
 
 func PostQuitMessage(nExitCode int32) {
-	addr := lazyAddr(&pPostQuitMessage, libUser32, "PostQuitMessage")
+	addr := LazyAddr(&pPostQuitMessage, libUser32, "PostQuitMessage")
 	syscall.SyscallN(addr, uintptr(nExitCode))
 }
 
 func CallWindowProcA(lpPrevWndFunc WNDPROC, hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pCallWindowProcA, libUser32, "CallWindowProcA")
+	addr := LazyAddr(&pCallWindowProcA, libUser32, "CallWindowProcA")
 	ret, _, _ := syscall.SyscallN(addr, lpPrevWndFunc, hWnd, uintptr(Msg), wParam, lParam)
 	return ret
 }
@@ -4017,25 +4017,25 @@ func CallWindowProcA(lpPrevWndFunc WNDPROC, hWnd HWND, Msg uint32, wParam WPARAM
 var CallWindowProc = CallWindowProcW
 
 func CallWindowProcW(lpPrevWndFunc WNDPROC, hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pCallWindowProcW, libUser32, "CallWindowProcW")
+	addr := LazyAddr(&pCallWindowProcW, libUser32, "CallWindowProcW")
 	ret, _, _ := syscall.SyscallN(addr, lpPrevWndFunc, hWnd, uintptr(Msg), wParam, lParam)
 	return ret
 }
 
 func InSendMessage() BOOL {
-	addr := lazyAddr(&pInSendMessage, libUser32, "InSendMessage")
+	addr := LazyAddr(&pInSendMessage, libUser32, "InSendMessage")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func InSendMessageEx(lpReserved unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pInSendMessageEx, libUser32, "InSendMessageEx")
+	addr := LazyAddr(&pInSendMessageEx, libUser32, "InSendMessageEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lpReserved))
 	return uint32(ret)
 }
 
 func RegisterClassA(lpWndClass *WNDCLASSA) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterClassA, libUser32, "RegisterClassA")
+	addr := LazyAddr(&pRegisterClassA, libUser32, "RegisterClassA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpWndClass)))
 	return uint16(ret), WIN32_ERROR(err)
 }
@@ -4043,13 +4043,13 @@ func RegisterClassA(lpWndClass *WNDCLASSA) (uint16, WIN32_ERROR) {
 var RegisterClass = RegisterClassW
 
 func RegisterClassW(lpWndClass *WNDCLASSW) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterClassW, libUser32, "RegisterClassW")
+	addr := LazyAddr(&pRegisterClassW, libUser32, "RegisterClassW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpWndClass)))
 	return uint16(ret), WIN32_ERROR(err)
 }
 
 func UnregisterClassA(lpClassName PSTR, hInstance HINSTANCE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterClassA, libUser32, "UnregisterClassA")
+	addr := LazyAddr(&pUnregisterClassA, libUser32, "UnregisterClassA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpClassName)), hInstance)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4057,13 +4057,13 @@ func UnregisterClassA(lpClassName PSTR, hInstance HINSTANCE) (BOOL, WIN32_ERROR)
 var UnregisterClass = UnregisterClassW
 
 func UnregisterClassW(lpClassName PWSTR, hInstance HINSTANCE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterClassW, libUser32, "UnregisterClassW")
+	addr := LazyAddr(&pUnregisterClassW, libUser32, "UnregisterClassW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpClassName)), hInstance)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetClassInfoA(hInstance HINSTANCE, lpClassName PSTR, lpWndClass *WNDCLASSA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassInfoA, libUser32, "GetClassInfoA")
+	addr := LazyAddr(&pGetClassInfoA, libUser32, "GetClassInfoA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWndClass)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4071,13 +4071,13 @@ func GetClassInfoA(hInstance HINSTANCE, lpClassName PSTR, lpWndClass *WNDCLASSA)
 var GetClassInfo = GetClassInfoW
 
 func GetClassInfoW(hInstance HINSTANCE, lpClassName PWSTR, lpWndClass *WNDCLASSW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassInfoW, libUser32, "GetClassInfoW")
+	addr := LazyAddr(&pGetClassInfoW, libUser32, "GetClassInfoW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWndClass)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RegisterClassExA(param0 *WNDCLASSEXA) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterClassExA, libUser32, "RegisterClassExA")
+	addr := LazyAddr(&pRegisterClassExA, libUser32, "RegisterClassExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return uint16(ret), WIN32_ERROR(err)
 }
@@ -4085,13 +4085,13 @@ func RegisterClassExA(param0 *WNDCLASSEXA) (uint16, WIN32_ERROR) {
 var RegisterClassEx = RegisterClassExW
 
 func RegisterClassExW(param0 *WNDCLASSEXW) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterClassExW, libUser32, "RegisterClassExW")
+	addr := LazyAddr(&pRegisterClassExW, libUser32, "RegisterClassExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return uint16(ret), WIN32_ERROR(err)
 }
 
 func GetClassInfoExA(hInstance HINSTANCE, lpszClass PSTR, lpwcx *WNDCLASSEXA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassInfoExA, libUser32, "GetClassInfoExA")
+	addr := LazyAddr(&pGetClassInfoExA, libUser32, "GetClassInfoExA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpszClass)), uintptr(unsafe.Pointer(lpwcx)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4099,13 +4099,13 @@ func GetClassInfoExA(hInstance HINSTANCE, lpszClass PSTR, lpwcx *WNDCLASSEXA) (B
 var GetClassInfoEx = GetClassInfoExW
 
 func GetClassInfoExW(hInstance HINSTANCE, lpszClass PWSTR, lpwcx *WNDCLASSEXW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassInfoExW, libUser32, "GetClassInfoExW")
+	addr := LazyAddr(&pGetClassInfoExW, libUser32, "GetClassInfoExW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpszClass)), uintptr(unsafe.Pointer(lpwcx)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateWindowExA(dwExStyle WINDOW_EX_STYLE, lpClassName PSTR, lpWindowName PSTR, dwStyle WINDOW_STYLE, X int32, Y int32, nWidth int32, nHeight int32, hWndParent HWND, hMenu HMENU, hInstance HINSTANCE, lpParam unsafe.Pointer) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateWindowExA, libUser32, "CreateWindowExA")
+	addr := LazyAddr(&pCreateWindowExA, libUser32, "CreateWindowExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwExStyle), uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWindowName)), uintptr(dwStyle), uintptr(X), uintptr(Y), uintptr(nWidth), uintptr(nHeight), hWndParent, hMenu, hInstance, uintptr(lpParam))
 	return ret, WIN32_ERROR(err)
 }
@@ -4113,193 +4113,193 @@ func CreateWindowExA(dwExStyle WINDOW_EX_STYLE, lpClassName PSTR, lpWindowName P
 var CreateWindowEx = CreateWindowExW
 
 func CreateWindowExW(dwExStyle WINDOW_EX_STYLE, lpClassName PWSTR, lpWindowName PWSTR, dwStyle WINDOW_STYLE, X int32, Y int32, nWidth int32, nHeight int32, hWndParent HWND, hMenu HMENU, hInstance HINSTANCE, lpParam unsafe.Pointer) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateWindowExW, libUser32, "CreateWindowExW")
+	addr := LazyAddr(&pCreateWindowExW, libUser32, "CreateWindowExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwExStyle), uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWindowName)), uintptr(dwStyle), uintptr(X), uintptr(Y), uintptr(nWidth), uintptr(nHeight), hWndParent, hMenu, hInstance, uintptr(lpParam))
 	return ret, WIN32_ERROR(err)
 }
 
 func IsWindow(hWnd HWND) BOOL {
-	addr := lazyAddr(&pIsWindow, libUser32, "IsWindow")
+	addr := LazyAddr(&pIsWindow, libUser32, "IsWindow")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func IsMenu(hMenu HMENU) BOOL {
-	addr := lazyAddr(&pIsMenu, libUser32, "IsMenu")
+	addr := LazyAddr(&pIsMenu, libUser32, "IsMenu")
 	ret, _, _ := syscall.SyscallN(addr, hMenu)
 	return BOOL(ret)
 }
 
 func IsChild(hWndParent HWND, hWnd HWND) BOOL {
-	addr := lazyAddr(&pIsChild, libUser32, "IsChild")
+	addr := LazyAddr(&pIsChild, libUser32, "IsChild")
 	ret, _, _ := syscall.SyscallN(addr, hWndParent, hWnd)
 	return BOOL(ret)
 }
 
 func DestroyWindow(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDestroyWindow, libUser32, "DestroyWindow")
+	addr := LazyAddr(&pDestroyWindow, libUser32, "DestroyWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ShowWindow(hWnd HWND, nCmdShow SHOW_WINDOW_CMD) BOOL {
-	addr := lazyAddr(&pShowWindow, libUser32, "ShowWindow")
+	addr := LazyAddr(&pShowWindow, libUser32, "ShowWindow")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(nCmdShow))
 	return BOOL(ret)
 }
 
 func AnimateWindow(hWnd HWND, dwTime uint32, dwFlags ANIMATE_WINDOW_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAnimateWindow, libUser32, "AnimateWindow")
+	addr := LazyAddr(&pAnimateWindow, libUser32, "AnimateWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(dwTime), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UpdateLayeredWindow(hWnd HWND, hdcDst HDC, pptDst *POINT, psize *SIZE, hdcSrc HDC, pptSrc *POINT, crKey COLORREF, pblend *BLENDFUNCTION, dwFlags UPDATE_LAYERED_WINDOW_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUpdateLayeredWindow, libUser32, "UpdateLayeredWindow")
+	addr := LazyAddr(&pUpdateLayeredWindow, libUser32, "UpdateLayeredWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hdcDst, uintptr(unsafe.Pointer(pptDst)), uintptr(unsafe.Pointer(psize)), hdcSrc, uintptr(unsafe.Pointer(pptSrc)), uintptr(crKey), uintptr(unsafe.Pointer(pblend)), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UpdateLayeredWindowIndirect(hWnd HWND, pULWInfo *UPDATELAYEREDWINDOWINFO) BOOL {
-	addr := lazyAddr(&pUpdateLayeredWindowIndirect, libUser32, "UpdateLayeredWindowIndirect")
+	addr := LazyAddr(&pUpdateLayeredWindowIndirect, libUser32, "UpdateLayeredWindowIndirect")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(pULWInfo)))
 	return BOOL(ret)
 }
 
 func GetLayeredWindowAttributes(hwnd HWND, pcrKey *COLORREF, pbAlpha *byte, pdwFlags *LAYERED_WINDOW_ATTRIBUTES_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLayeredWindowAttributes, libUser32, "GetLayeredWindowAttributes")
+	addr := LazyAddr(&pGetLayeredWindowAttributes, libUser32, "GetLayeredWindowAttributes")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pcrKey)), uintptr(unsafe.Pointer(pbAlpha)), uintptr(unsafe.Pointer(pdwFlags)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetLayeredWindowAttributes(hwnd HWND, crKey COLORREF, bAlpha byte, dwFlags LAYERED_WINDOW_ATTRIBUTES_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetLayeredWindowAttributes, libUser32, "SetLayeredWindowAttributes")
+	addr := LazyAddr(&pSetLayeredWindowAttributes, libUser32, "SetLayeredWindowAttributes")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(crKey), uintptr(bAlpha), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ShowWindowAsync(hWnd HWND, nCmdShow SHOW_WINDOW_CMD) BOOL {
-	addr := lazyAddr(&pShowWindowAsync, libUser32, "ShowWindowAsync")
+	addr := LazyAddr(&pShowWindowAsync, libUser32, "ShowWindowAsync")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(nCmdShow))
 	return BOOL(ret)
 }
 
 func FlashWindow(hWnd HWND, bInvert BOOL) BOOL {
-	addr := lazyAddr(&pFlashWindow, libUser32, "FlashWindow")
+	addr := LazyAddr(&pFlashWindow, libUser32, "FlashWindow")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(bInvert))
 	return BOOL(ret)
 }
 
 func FlashWindowEx(pfwi *FLASHWINFO) BOOL {
-	addr := lazyAddr(&pFlashWindowEx, libUser32, "FlashWindowEx")
+	addr := LazyAddr(&pFlashWindowEx, libUser32, "FlashWindowEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pfwi)))
 	return BOOL(ret)
 }
 
 func ShowOwnedPopups(hWnd HWND, fShow BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShowOwnedPopups, libUser32, "ShowOwnedPopups")
+	addr := LazyAddr(&pShowOwnedPopups, libUser32, "ShowOwnedPopups")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(fShow))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OpenIcon(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenIcon, libUser32, "OpenIcon")
+	addr := LazyAddr(&pOpenIcon, libUser32, "OpenIcon")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CloseWindow(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCloseWindow, libUser32, "CloseWindow")
+	addr := LazyAddr(&pCloseWindow, libUser32, "CloseWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func MoveWindow(hWnd HWND, X int32, Y int32, nWidth int32, nHeight int32, bRepaint BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMoveWindow, libUser32, "MoveWindow")
+	addr := LazyAddr(&pMoveWindow, libUser32, "MoveWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(X), uintptr(Y), uintptr(nWidth), uintptr(nHeight), uintptr(bRepaint))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetWindowPos(hWnd HWND, hWndInsertAfter HWND, X int32, Y int32, cx int32, cy int32, uFlags SET_WINDOW_POS_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowPos, libUser32, "SetWindowPos")
+	addr := LazyAddr(&pSetWindowPos, libUser32, "SetWindowPos")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hWndInsertAfter, uintptr(X), uintptr(Y), uintptr(cx), uintptr(cy), uintptr(uFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetWindowPlacement(hWnd HWND, lpwndpl *WINDOWPLACEMENT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowPlacement, libUser32, "GetWindowPlacement")
+	addr := LazyAddr(&pGetWindowPlacement, libUser32, "GetWindowPlacement")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpwndpl)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetWindowPlacement(hWnd HWND, lpwndpl *WINDOWPLACEMENT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowPlacement, libUser32, "SetWindowPlacement")
+	addr := LazyAddr(&pSetWindowPlacement, libUser32, "SetWindowPlacement")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpwndpl)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetWindowDisplayAffinity(hWnd HWND, pdwAffinity *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowDisplayAffinity, libUser32, "GetWindowDisplayAffinity")
+	addr := LazyAddr(&pGetWindowDisplayAffinity, libUser32, "GetWindowDisplayAffinity")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(pdwAffinity)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetWindowDisplayAffinity(hWnd HWND, dwAffinity WINDOW_DISPLAY_AFFINITY) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowDisplayAffinity, libUser32, "SetWindowDisplayAffinity")
+	addr := LazyAddr(&pSetWindowDisplayAffinity, libUser32, "SetWindowDisplayAffinity")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(dwAffinity))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func BeginDeferWindowPos(nNumWindows int32) (HDWP, WIN32_ERROR) {
-	addr := lazyAddr(&pBeginDeferWindowPos, libUser32, "BeginDeferWindowPos")
+	addr := LazyAddr(&pBeginDeferWindowPos, libUser32, "BeginDeferWindowPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nNumWindows))
 	return ret, WIN32_ERROR(err)
 }
 
 func DeferWindowPos(hWinPosInfo HDWP, hWnd HWND, hWndInsertAfter HWND, x int32, y int32, cx int32, cy int32, uFlags SET_WINDOW_POS_FLAGS) (HDWP, WIN32_ERROR) {
-	addr := lazyAddr(&pDeferWindowPos, libUser32, "DeferWindowPos")
+	addr := LazyAddr(&pDeferWindowPos, libUser32, "DeferWindowPos")
 	ret, _, err := syscall.SyscallN(addr, hWinPosInfo, hWnd, hWndInsertAfter, uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), uintptr(uFlags))
 	return ret, WIN32_ERROR(err)
 }
 
 func EndDeferWindowPos(hWinPosInfo HDWP) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEndDeferWindowPos, libUser32, "EndDeferWindowPos")
+	addr := LazyAddr(&pEndDeferWindowPos, libUser32, "EndDeferWindowPos")
 	ret, _, err := syscall.SyscallN(addr, hWinPosInfo)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsWindowVisible(hWnd HWND) BOOL {
-	addr := lazyAddr(&pIsWindowVisible, libUser32, "IsWindowVisible")
+	addr := LazyAddr(&pIsWindowVisible, libUser32, "IsWindowVisible")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func IsIconic(hWnd HWND) BOOL {
-	addr := lazyAddr(&pIsIconic, libUser32, "IsIconic")
+	addr := LazyAddr(&pIsIconic, libUser32, "IsIconic")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func AnyPopup() BOOL {
-	addr := lazyAddr(&pAnyPopup, libUser32, "AnyPopup")
+	addr := LazyAddr(&pAnyPopup, libUser32, "AnyPopup")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func BringWindowToTop(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pBringWindowToTop, libUser32, "BringWindowToTop")
+	addr := LazyAddr(&pBringWindowToTop, libUser32, "BringWindowToTop")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsZoomed(hWnd HWND) BOOL {
-	addr := lazyAddr(&pIsZoomed, libUser32, "IsZoomed")
+	addr := LazyAddr(&pIsZoomed, libUser32, "IsZoomed")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func CreateDialogParamA(hInstance HINSTANCE, lpTemplateName PSTR, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDialogParamA, libUser32, "CreateDialogParamA")
+	addr := LazyAddr(&pCreateDialogParamA, libUser32, "CreateDialogParamA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTemplateName)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
@@ -4307,13 +4307,13 @@ func CreateDialogParamA(hInstance HINSTANCE, lpTemplateName PSTR, hWndParent HWN
 var CreateDialogParam = CreateDialogParamW
 
 func CreateDialogParamW(hInstance HINSTANCE, lpTemplateName PWSTR, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDialogParamW, libUser32, "CreateDialogParamW")
+	addr := LazyAddr(&pCreateDialogParamW, libUser32, "CreateDialogParamW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTemplateName)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateDialogIndirectParamA(hInstance HINSTANCE, lpTemplate *DLGTEMPLATE, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDialogIndirectParamA, libUser32, "CreateDialogIndirectParamA")
+	addr := LazyAddr(&pCreateDialogIndirectParamA, libUser32, "CreateDialogIndirectParamA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTemplate)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
@@ -4321,13 +4321,13 @@ func CreateDialogIndirectParamA(hInstance HINSTANCE, lpTemplate *DLGTEMPLATE, hW
 var CreateDialogIndirectParam = CreateDialogIndirectParamW
 
 func CreateDialogIndirectParamW(hInstance HINSTANCE, lpTemplate *DLGTEMPLATE, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDialogIndirectParamW, libUser32, "CreateDialogIndirectParamW")
+	addr := LazyAddr(&pCreateDialogIndirectParamW, libUser32, "CreateDialogIndirectParamW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTemplate)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
 
 func DialogBoxParamA(hInstance HINSTANCE, lpTemplateName PSTR, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pDialogBoxParamA, libUser32, "DialogBoxParamA")
+	addr := LazyAddr(&pDialogBoxParamA, libUser32, "DialogBoxParamA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTemplateName)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
@@ -4335,13 +4335,13 @@ func DialogBoxParamA(hInstance HINSTANCE, lpTemplateName PSTR, hWndParent HWND, 
 var DialogBoxParam = DialogBoxParamW
 
 func DialogBoxParamW(hInstance HINSTANCE, lpTemplateName PWSTR, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pDialogBoxParamW, libUser32, "DialogBoxParamW")
+	addr := LazyAddr(&pDialogBoxParamW, libUser32, "DialogBoxParamW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTemplateName)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
 
 func DialogBoxIndirectParamA(hInstance HINSTANCE, hDialogTemplate *DLGTEMPLATE, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pDialogBoxIndirectParamA, libUser32, "DialogBoxIndirectParamA")
+	addr := LazyAddr(&pDialogBoxIndirectParamA, libUser32, "DialogBoxIndirectParamA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(hDialogTemplate)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
@@ -4349,37 +4349,37 @@ func DialogBoxIndirectParamA(hInstance HINSTANCE, hDialogTemplate *DLGTEMPLATE, 
 var DialogBoxIndirectParam = DialogBoxIndirectParamW
 
 func DialogBoxIndirectParamW(hInstance HINSTANCE, hDialogTemplate *DLGTEMPLATE, hWndParent HWND, lpDialogFunc DLGPROC, dwInitParam LPARAM) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pDialogBoxIndirectParamW, libUser32, "DialogBoxIndirectParamW")
+	addr := LazyAddr(&pDialogBoxIndirectParamW, libUser32, "DialogBoxIndirectParamW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(hDialogTemplate)), hWndParent, lpDialogFunc, dwInitParam)
 	return ret, WIN32_ERROR(err)
 }
 
 func EndDialog(hDlg HWND, nResult uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEndDialog, libUser32, "EndDialog")
+	addr := LazyAddr(&pEndDialog, libUser32, "EndDialog")
 	ret, _, err := syscall.SyscallN(addr, hDlg, nResult)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDlgItem(hDlg HWND, nIDDlgItem int32) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDlgItem, libUser32, "GetDlgItem")
+	addr := LazyAddr(&pGetDlgItem, libUser32, "GetDlgItem")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetDlgItemInt(hDlg HWND, nIDDlgItem int32, uValue uint32, bSigned BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetDlgItemInt, libUser32, "SetDlgItemInt")
+	addr := LazyAddr(&pSetDlgItemInt, libUser32, "SetDlgItemInt")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(uValue), uintptr(bSigned))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDlgItemInt(hDlg HWND, nIDDlgItem int32, lpTranslated *BOOL, bSigned BOOL) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDlgItemInt, libUser32, "GetDlgItemInt")
+	addr := LazyAddr(&pGetDlgItemInt, libUser32, "GetDlgItemInt")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(unsafe.Pointer(lpTranslated)), uintptr(bSigned))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetDlgItemTextA(hDlg HWND, nIDDlgItem int32, lpString PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetDlgItemTextA, libUser32, "SetDlgItemTextA")
+	addr := LazyAddr(&pSetDlgItemTextA, libUser32, "SetDlgItemTextA")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4387,13 +4387,13 @@ func SetDlgItemTextA(hDlg HWND, nIDDlgItem int32, lpString PSTR) (BOOL, WIN32_ER
 var SetDlgItemText = SetDlgItemTextW
 
 func SetDlgItemTextW(hDlg HWND, nIDDlgItem int32, lpString PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetDlgItemTextW, libUser32, "SetDlgItemTextW")
+	addr := LazyAddr(&pSetDlgItemTextW, libUser32, "SetDlgItemTextW")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDlgItemTextA(hDlg HWND, nIDDlgItem int32, lpString PSTR, cchMax int32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDlgItemTextA, libUser32, "GetDlgItemTextA")
+	addr := LazyAddr(&pGetDlgItemTextA, libUser32, "GetDlgItemTextA")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(unsafe.Pointer(lpString)), uintptr(cchMax))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -4401,13 +4401,13 @@ func GetDlgItemTextA(hDlg HWND, nIDDlgItem int32, lpString PSTR, cchMax int32) (
 var GetDlgItemText = GetDlgItemTextW
 
 func GetDlgItemTextW(hDlg HWND, nIDDlgItem int32, lpString PWSTR, cchMax int32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDlgItemTextW, libUser32, "GetDlgItemTextW")
+	addr := LazyAddr(&pGetDlgItemTextW, libUser32, "GetDlgItemTextW")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(unsafe.Pointer(lpString)), uintptr(cchMax))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SendDlgItemMessageA(hDlg HWND, nIDDlgItem int32, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pSendDlgItemMessageA, libUser32, "SendDlgItemMessageA")
+	addr := LazyAddr(&pSendDlgItemMessageA, libUser32, "SendDlgItemMessageA")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(Msg), wParam, lParam)
 	return ret
 }
@@ -4415,37 +4415,37 @@ func SendDlgItemMessageA(hDlg HWND, nIDDlgItem int32, Msg uint32, wParam WPARAM,
 var SendDlgItemMessage = SendDlgItemMessageW
 
 func SendDlgItemMessageW(hDlg HWND, nIDDlgItem int32, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pSendDlgItemMessageW, libUser32, "SendDlgItemMessageW")
+	addr := LazyAddr(&pSendDlgItemMessageW, libUser32, "SendDlgItemMessageW")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(nIDDlgItem), uintptr(Msg), wParam, lParam)
 	return ret
 }
 
 func GetNextDlgGroupItem(hDlg HWND, hCtl HWND, bPrevious BOOL) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNextDlgGroupItem, libUser32, "GetNextDlgGroupItem")
+	addr := LazyAddr(&pGetNextDlgGroupItem, libUser32, "GetNextDlgGroupItem")
 	ret, _, err := syscall.SyscallN(addr, hDlg, hCtl, uintptr(bPrevious))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetNextDlgTabItem(hDlg HWND, hCtl HWND, bPrevious BOOL) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNextDlgTabItem, libUser32, "GetNextDlgTabItem")
+	addr := LazyAddr(&pGetNextDlgTabItem, libUser32, "GetNextDlgTabItem")
 	ret, _, err := syscall.SyscallN(addr, hDlg, hCtl, uintptr(bPrevious))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetDlgCtrlID(hWnd HWND) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDlgCtrlID, libUser32, "GetDlgCtrlID")
+	addr := LazyAddr(&pGetDlgCtrlID, libUser32, "GetDlgCtrlID")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetDialogBaseUnits() int32 {
-	addr := lazyAddr(&pGetDialogBaseUnits, libUser32, "GetDialogBaseUnits")
+	addr := LazyAddr(&pGetDialogBaseUnits, libUser32, "GetDialogBaseUnits")
 	ret, _, _ := syscall.SyscallN(addr)
 	return int32(ret)
 }
 
 func DefDlgProcA(hDlg HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefDlgProcA, libUser32, "DefDlgProcA")
+	addr := LazyAddr(&pDefDlgProcA, libUser32, "DefDlgProcA")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(Msg), wParam, lParam)
 	return ret
 }
@@ -4453,13 +4453,13 @@ func DefDlgProcA(hDlg HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
 var DefDlgProc = DefDlgProcW
 
 func DefDlgProcW(hDlg HWND, Msg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefDlgProcW, libUser32, "DefDlgProcW")
+	addr := LazyAddr(&pDefDlgProcW, libUser32, "DefDlgProcW")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(Msg), wParam, lParam)
 	return ret
 }
 
 func CallMsgFilterA(lpMsg *MSG, nCode int32) BOOL {
-	addr := lazyAddr(&pCallMsgFilterA, libUser32, "CallMsgFilterA")
+	addr := LazyAddr(&pCallMsgFilterA, libUser32, "CallMsgFilterA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)), uintptr(nCode))
 	return BOOL(ret)
 }
@@ -4467,13 +4467,13 @@ func CallMsgFilterA(lpMsg *MSG, nCode int32) BOOL {
 var CallMsgFilter = CallMsgFilterW
 
 func CallMsgFilterW(lpMsg *MSG, nCode int32) BOOL {
-	addr := lazyAddr(&pCallMsgFilterW, libUser32, "CallMsgFilterW")
+	addr := LazyAddr(&pCallMsgFilterW, libUser32, "CallMsgFilterW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMsg)), uintptr(nCode))
 	return BOOL(ret)
 }
 
 func CharToOemA(pSrc PSTR, pDst PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCharToOemA, libUser32, "CharToOemA")
+	addr := LazyAddr(&pCharToOemA, libUser32, "CharToOemA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrc)), uintptr(unsafe.Pointer(pDst)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4481,13 +4481,13 @@ func CharToOemA(pSrc PSTR, pDst PSTR) (BOOL, WIN32_ERROR) {
 var CharToOem = CharToOemW
 
 func CharToOemW(pSrc PWSTR, pDst PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCharToOemW, libUser32, "CharToOemW")
+	addr := LazyAddr(&pCharToOemW, libUser32, "CharToOemW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrc)), uintptr(unsafe.Pointer(pDst)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OemToCharA(pSrc PSTR, pDst PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pOemToCharA, libUser32, "OemToCharA")
+	addr := LazyAddr(&pOemToCharA, libUser32, "OemToCharA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrc)), uintptr(unsafe.Pointer(pDst)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4495,13 +4495,13 @@ func OemToCharA(pSrc PSTR, pDst PSTR) (BOOL, WIN32_ERROR) {
 var OemToChar = OemToCharW
 
 func OemToCharW(pSrc PSTR, pDst PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pOemToCharW, libUser32, "OemToCharW")
+	addr := LazyAddr(&pOemToCharW, libUser32, "OemToCharW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrc)), uintptr(unsafe.Pointer(pDst)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CharToOemBuffA(lpszSrc PSTR, lpszDst PSTR, cchDstLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCharToOemBuffA, libUser32, "CharToOemBuffA")
+	addr := LazyAddr(&pCharToOemBuffA, libUser32, "CharToOemBuffA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSrc)), uintptr(unsafe.Pointer(lpszDst)), uintptr(cchDstLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4509,13 +4509,13 @@ func CharToOemBuffA(lpszSrc PSTR, lpszDst PSTR, cchDstLength uint32) (BOOL, WIN3
 var CharToOemBuff = CharToOemBuffW
 
 func CharToOemBuffW(lpszSrc PWSTR, lpszDst PSTR, cchDstLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCharToOemBuffW, libUser32, "CharToOemBuffW")
+	addr := LazyAddr(&pCharToOemBuffW, libUser32, "CharToOemBuffW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSrc)), uintptr(unsafe.Pointer(lpszDst)), uintptr(cchDstLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OemToCharBuffA(lpszSrc PSTR, lpszDst PSTR, cchDstLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pOemToCharBuffA, libUser32, "OemToCharBuffA")
+	addr := LazyAddr(&pOemToCharBuffA, libUser32, "OemToCharBuffA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSrc)), uintptr(unsafe.Pointer(lpszDst)), uintptr(cchDstLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4523,13 +4523,13 @@ func OemToCharBuffA(lpszSrc PSTR, lpszDst PSTR, cchDstLength uint32) (BOOL, WIN3
 var OemToCharBuff = OemToCharBuffW
 
 func OemToCharBuffW(lpszSrc PSTR, lpszDst PWSTR, cchDstLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pOemToCharBuffW, libUser32, "OemToCharBuffW")
+	addr := LazyAddr(&pOemToCharBuffW, libUser32, "OemToCharBuffW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSrc)), uintptr(unsafe.Pointer(lpszDst)), uintptr(cchDstLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CharUpperA(lpsz PSTR) (PSTR, WIN32_ERROR) {
-	addr := lazyAddr(&pCharUpperA, libUser32, "CharUpperA")
+	addr := LazyAddr(&pCharUpperA, libUser32, "CharUpperA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return (PSTR)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
@@ -4537,13 +4537,13 @@ func CharUpperA(lpsz PSTR) (PSTR, WIN32_ERROR) {
 var CharUpper = CharUpperW
 
 func CharUpperW(lpsz PWSTR) (PWSTR, WIN32_ERROR) {
-	addr := lazyAddr(&pCharUpperW, libUser32, "CharUpperW")
+	addr := LazyAddr(&pCharUpperW, libUser32, "CharUpperW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return (PWSTR)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func CharUpperBuffA(lpsz PSTR, cchLength uint32) uint32 {
-	addr := lazyAddr(&pCharUpperBuffA, libUser32, "CharUpperBuffA")
+	addr := LazyAddr(&pCharUpperBuffA, libUser32, "CharUpperBuffA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)), uintptr(cchLength))
 	return uint32(ret)
 }
@@ -4551,13 +4551,13 @@ func CharUpperBuffA(lpsz PSTR, cchLength uint32) uint32 {
 var CharUpperBuff = CharUpperBuffW
 
 func CharUpperBuffW(lpsz PWSTR, cchLength uint32) uint32 {
-	addr := lazyAddr(&pCharUpperBuffW, libUser32, "CharUpperBuffW")
+	addr := LazyAddr(&pCharUpperBuffW, libUser32, "CharUpperBuffW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)), uintptr(cchLength))
 	return uint32(ret)
 }
 
 func CharLowerA(lpsz PSTR) (PSTR, WIN32_ERROR) {
-	addr := lazyAddr(&pCharLowerA, libUser32, "CharLowerA")
+	addr := LazyAddr(&pCharLowerA, libUser32, "CharLowerA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return (PSTR)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
@@ -4565,13 +4565,13 @@ func CharLowerA(lpsz PSTR) (PSTR, WIN32_ERROR) {
 var CharLower = CharLowerW
 
 func CharLowerW(lpsz PWSTR) (PWSTR, WIN32_ERROR) {
-	addr := lazyAddr(&pCharLowerW, libUser32, "CharLowerW")
+	addr := LazyAddr(&pCharLowerW, libUser32, "CharLowerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return (PWSTR)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 func CharLowerBuffA(lpsz PSTR, cchLength uint32) uint32 {
-	addr := lazyAddr(&pCharLowerBuffA, libUser32, "CharLowerBuffA")
+	addr := LazyAddr(&pCharLowerBuffA, libUser32, "CharLowerBuffA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)), uintptr(cchLength))
 	return uint32(ret)
 }
@@ -4579,13 +4579,13 @@ func CharLowerBuffA(lpsz PSTR, cchLength uint32) uint32 {
 var CharLowerBuff = CharLowerBuffW
 
 func CharLowerBuffW(lpsz PWSTR, cchLength uint32) uint32 {
-	addr := lazyAddr(&pCharLowerBuffW, libUser32, "CharLowerBuffW")
+	addr := LazyAddr(&pCharLowerBuffW, libUser32, "CharLowerBuffW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)), uintptr(cchLength))
 	return uint32(ret)
 }
 
 func CharNextA(lpsz PSTR) PSTR {
-	addr := lazyAddr(&pCharNextA, libUser32, "CharNextA")
+	addr := LazyAddr(&pCharNextA, libUser32, "CharNextA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -4593,13 +4593,13 @@ func CharNextA(lpsz PSTR) PSTR {
 var CharNext = CharNextW
 
 func CharNextW(lpsz PWSTR) PWSTR {
-	addr := lazyAddr(&pCharNextW, libUser32, "CharNextW")
+	addr := LazyAddr(&pCharNextW, libUser32, "CharNextW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func CharPrevA(lpszStart PSTR, lpszCurrent PSTR) PSTR {
-	addr := lazyAddr(&pCharPrevA, libUser32, "CharPrevA")
+	addr := LazyAddr(&pCharPrevA, libUser32, "CharPrevA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszStart)), uintptr(unsafe.Pointer(lpszCurrent)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -4607,25 +4607,25 @@ func CharPrevA(lpszStart PSTR, lpszCurrent PSTR) PSTR {
 var CharPrev = CharPrevW
 
 func CharPrevW(lpszStart PWSTR, lpszCurrent PWSTR) PWSTR {
-	addr := lazyAddr(&pCharPrevW, libUser32, "CharPrevW")
+	addr := LazyAddr(&pCharPrevW, libUser32, "CharPrevW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszStart)), uintptr(unsafe.Pointer(lpszCurrent)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func CharNextExA(CodePage uint16, lpCurrentChar PSTR, dwFlags uint32) PSTR {
-	addr := lazyAddr(&pCharNextExA, libUser32, "CharNextExA")
+	addr := LazyAddr(&pCharNextExA, libUser32, "CharNextExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(CodePage), uintptr(unsafe.Pointer(lpCurrentChar)), uintptr(dwFlags))
 	return (PSTR)(unsafe.Pointer(ret))
 }
 
 func CharPrevExA(CodePage uint16, lpStart PSTR, lpCurrentChar PSTR, dwFlags uint32) PSTR {
-	addr := lazyAddr(&pCharPrevExA, libUser32, "CharPrevExA")
+	addr := LazyAddr(&pCharPrevExA, libUser32, "CharPrevExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(CodePage), uintptr(unsafe.Pointer(lpStart)), uintptr(unsafe.Pointer(lpCurrentChar)), uintptr(dwFlags))
 	return (PSTR)(unsafe.Pointer(ret))
 }
 
 func IsCharAlphaA(ch CHAR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharAlphaA, libUser32, "IsCharAlphaA")
+	addr := LazyAddr(&pIsCharAlphaA, libUser32, "IsCharAlphaA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4633,13 +4633,13 @@ func IsCharAlphaA(ch CHAR) (BOOL, WIN32_ERROR) {
 var IsCharAlpha = IsCharAlphaW
 
 func IsCharAlphaW(ch uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharAlphaW, libUser32, "IsCharAlphaW")
+	addr := LazyAddr(&pIsCharAlphaW, libUser32, "IsCharAlphaW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsCharAlphaNumericA(ch CHAR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharAlphaNumericA, libUser32, "IsCharAlphaNumericA")
+	addr := LazyAddr(&pIsCharAlphaNumericA, libUser32, "IsCharAlphaNumericA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4647,13 +4647,13 @@ func IsCharAlphaNumericA(ch CHAR) (BOOL, WIN32_ERROR) {
 var IsCharAlphaNumeric = IsCharAlphaNumericW
 
 func IsCharAlphaNumericW(ch uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharAlphaNumericW, libUser32, "IsCharAlphaNumericW")
+	addr := LazyAddr(&pIsCharAlphaNumericW, libUser32, "IsCharAlphaNumericW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsCharUpperA(ch CHAR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharUpperA, libUser32, "IsCharUpperA")
+	addr := LazyAddr(&pIsCharUpperA, libUser32, "IsCharUpperA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4661,67 +4661,67 @@ func IsCharUpperA(ch CHAR) (BOOL, WIN32_ERROR) {
 var IsCharUpper = IsCharUpperW
 
 func IsCharUpperW(ch uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharUpperW, libUser32, "IsCharUpperW")
+	addr := LazyAddr(&pIsCharUpperW, libUser32, "IsCharUpperW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsCharLowerA(ch CHAR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharLowerA, libUser32, "IsCharLowerA")
+	addr := LazyAddr(&pIsCharLowerA, libUser32, "IsCharLowerA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetInputState() BOOL {
-	addr := lazyAddr(&pGetInputState, libUser32, "GetInputState")
+	addr := LazyAddr(&pGetInputState, libUser32, "GetInputState")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func GetQueueStatus(flags QUEUE_STATUS_FLAGS) uint32 {
-	addr := lazyAddr(&pGetQueueStatus, libUser32, "GetQueueStatus")
+	addr := LazyAddr(&pGetQueueStatus, libUser32, "GetQueueStatus")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags))
 	return uint32(ret)
 }
 
 func MsgWaitForMultipleObjects(nCount uint32, pHandles *HANDLE, fWaitAll BOOL, dwMilliseconds uint32, dwWakeMask QUEUE_STATUS_FLAGS) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pMsgWaitForMultipleObjects, libUser32, "MsgWaitForMultipleObjects")
+	addr := LazyAddr(&pMsgWaitForMultipleObjects, libUser32, "MsgWaitForMultipleObjects")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(pHandles)), uintptr(fWaitAll), uintptr(dwMilliseconds), uintptr(dwWakeMask))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func MsgWaitForMultipleObjectsEx(nCount uint32, pHandles *HANDLE, dwMilliseconds uint32, dwWakeMask QUEUE_STATUS_FLAGS, dwFlags MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pMsgWaitForMultipleObjectsEx, libUser32, "MsgWaitForMultipleObjectsEx")
+	addr := LazyAddr(&pMsgWaitForMultipleObjectsEx, libUser32, "MsgWaitForMultipleObjectsEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(pHandles)), uintptr(dwMilliseconds), uintptr(dwWakeMask), uintptr(dwFlags))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetTimer(hWnd HWND, nIDEvent uintptr, uElapse uint32, lpTimerFunc TIMERPROC) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetTimer, libUser32, "SetTimer")
+	addr := LazyAddr(&pSetTimer, libUser32, "SetTimer")
 	ret, _, err := syscall.SyscallN(addr, hWnd, nIDEvent, uintptr(uElapse), lpTimerFunc)
 	return ret, WIN32_ERROR(err)
 }
 
 func SetCoalescableTimer(hWnd HWND, nIDEvent uintptr, uElapse uint32, lpTimerFunc TIMERPROC, uToleranceDelay uint32) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pSetCoalescableTimer, libUser32, "SetCoalescableTimer")
+	addr := LazyAddr(&pSetCoalescableTimer, libUser32, "SetCoalescableTimer")
 	ret, _, err := syscall.SyscallN(addr, hWnd, nIDEvent, uintptr(uElapse), lpTimerFunc, uintptr(uToleranceDelay))
 	return ret, WIN32_ERROR(err)
 }
 
 func KillTimer(hWnd HWND, uIDEvent uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pKillTimer, libUser32, "KillTimer")
+	addr := LazyAddr(&pKillTimer, libUser32, "KillTimer")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uIDEvent)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsWindowUnicode(hWnd HWND) BOOL {
-	addr := lazyAddr(&pIsWindowUnicode, libUser32, "IsWindowUnicode")
+	addr := LazyAddr(&pIsWindowUnicode, libUser32, "IsWindowUnicode")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func LoadAcceleratorsA(hInstance HINSTANCE, lpTableName PSTR) (HACCEL, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadAcceleratorsA, libUser32, "LoadAcceleratorsA")
+	addr := LazyAddr(&pLoadAcceleratorsA, libUser32, "LoadAcceleratorsA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTableName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -4729,13 +4729,13 @@ func LoadAcceleratorsA(hInstance HINSTANCE, lpTableName PSTR) (HACCEL, WIN32_ERR
 var LoadAccelerators = LoadAcceleratorsW
 
 func LoadAcceleratorsW(hInstance HINSTANCE, lpTableName PWSTR) (HACCEL, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadAcceleratorsW, libUser32, "LoadAcceleratorsW")
+	addr := LazyAddr(&pLoadAcceleratorsW, libUser32, "LoadAcceleratorsW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpTableName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateAcceleratorTableA(paccel *ACCEL, cAccel int32) (HACCEL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateAcceleratorTableA, libUser32, "CreateAcceleratorTableA")
+	addr := LazyAddr(&pCreateAcceleratorTableA, libUser32, "CreateAcceleratorTableA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(paccel)), uintptr(cAccel))
 	return ret, WIN32_ERROR(err)
 }
@@ -4743,19 +4743,19 @@ func CreateAcceleratorTableA(paccel *ACCEL, cAccel int32) (HACCEL, WIN32_ERROR) 
 var CreateAcceleratorTable = CreateAcceleratorTableW
 
 func CreateAcceleratorTableW(paccel *ACCEL, cAccel int32) (HACCEL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateAcceleratorTableW, libUser32, "CreateAcceleratorTableW")
+	addr := LazyAddr(&pCreateAcceleratorTableW, libUser32, "CreateAcceleratorTableW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(paccel)), uintptr(cAccel))
 	return ret, WIN32_ERROR(err)
 }
 
 func DestroyAcceleratorTable(hAccel HACCEL) BOOL {
-	addr := lazyAddr(&pDestroyAcceleratorTable, libUser32, "DestroyAcceleratorTable")
+	addr := LazyAddr(&pDestroyAcceleratorTable, libUser32, "DestroyAcceleratorTable")
 	ret, _, _ := syscall.SyscallN(addr, hAccel)
 	return BOOL(ret)
 }
 
 func CopyAcceleratorTableA(hAccelSrc HACCEL, lpAccelDst *ACCEL, cAccelEntries int32) int32 {
-	addr := lazyAddr(&pCopyAcceleratorTableA, libUser32, "CopyAcceleratorTableA")
+	addr := LazyAddr(&pCopyAcceleratorTableA, libUser32, "CopyAcceleratorTableA")
 	ret, _, _ := syscall.SyscallN(addr, hAccelSrc, uintptr(unsafe.Pointer(lpAccelDst)), uintptr(cAccelEntries))
 	return int32(ret)
 }
@@ -4763,13 +4763,13 @@ func CopyAcceleratorTableA(hAccelSrc HACCEL, lpAccelDst *ACCEL, cAccelEntries in
 var CopyAcceleratorTable = CopyAcceleratorTableW
 
 func CopyAcceleratorTableW(hAccelSrc HACCEL, lpAccelDst *ACCEL, cAccelEntries int32) int32 {
-	addr := lazyAddr(&pCopyAcceleratorTableW, libUser32, "CopyAcceleratorTableW")
+	addr := LazyAddr(&pCopyAcceleratorTableW, libUser32, "CopyAcceleratorTableW")
 	ret, _, _ := syscall.SyscallN(addr, hAccelSrc, uintptr(unsafe.Pointer(lpAccelDst)), uintptr(cAccelEntries))
 	return int32(ret)
 }
 
 func TranslateAcceleratorA(hWnd HWND, hAccTable HACCEL, lpMsg *MSG) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pTranslateAcceleratorA, libUser32, "TranslateAcceleratorA")
+	addr := LazyAddr(&pTranslateAcceleratorA, libUser32, "TranslateAcceleratorA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hAccTable, uintptr(unsafe.Pointer(lpMsg)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -4777,19 +4777,19 @@ func TranslateAcceleratorA(hWnd HWND, hAccTable HACCEL, lpMsg *MSG) (int32, WIN3
 var TranslateAccelerator = TranslateAcceleratorW
 
 func TranslateAcceleratorW(hWnd HWND, hAccTable HACCEL, lpMsg *MSG) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pTranslateAcceleratorW, libUser32, "TranslateAcceleratorW")
+	addr := LazyAddr(&pTranslateAcceleratorW, libUser32, "TranslateAcceleratorW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hAccTable, uintptr(unsafe.Pointer(lpMsg)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetSystemMetrics(nIndex SYSTEM_METRICS_INDEX) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemMetrics, libUser32, "GetSystemMetrics")
+	addr := LazyAddr(&pGetSystemMetrics, libUser32, "GetSystemMetrics")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nIndex))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func LoadMenuA(hInstance HINSTANCE, lpMenuName PSTR) (HMENU, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadMenuA, libUser32, "LoadMenuA")
+	addr := LazyAddr(&pLoadMenuA, libUser32, "LoadMenuA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpMenuName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -4797,13 +4797,13 @@ func LoadMenuA(hInstance HINSTANCE, lpMenuName PSTR) (HMENU, WIN32_ERROR) {
 var LoadMenu = LoadMenuW
 
 func LoadMenuW(hInstance HINSTANCE, lpMenuName PWSTR) (HMENU, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadMenuW, libUser32, "LoadMenuW")
+	addr := LazyAddr(&pLoadMenuW, libUser32, "LoadMenuW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpMenuName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func LoadMenuIndirectA(lpMenuTemplate unsafe.Pointer) (HMENU, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadMenuIndirectA, libUser32, "LoadMenuIndirectA")
+	addr := LazyAddr(&pLoadMenuIndirectA, libUser32, "LoadMenuIndirectA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lpMenuTemplate))
 	return ret, WIN32_ERROR(err)
 }
@@ -4811,25 +4811,25 @@ func LoadMenuIndirectA(lpMenuTemplate unsafe.Pointer) (HMENU, WIN32_ERROR) {
 var LoadMenuIndirect = LoadMenuIndirectW
 
 func LoadMenuIndirectW(lpMenuTemplate unsafe.Pointer) (HMENU, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadMenuIndirectW, libUser32, "LoadMenuIndirectW")
+	addr := LazyAddr(&pLoadMenuIndirectW, libUser32, "LoadMenuIndirectW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lpMenuTemplate))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetMenu(hWnd HWND) HMENU {
-	addr := lazyAddr(&pGetMenu, libUser32, "GetMenu")
+	addr := LazyAddr(&pGetMenu, libUser32, "GetMenu")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return ret
 }
 
 func SetMenu(hWnd HWND, hMenu HMENU) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetMenu, libUser32, "SetMenu")
+	addr := LazyAddr(&pSetMenu, libUser32, "SetMenu")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hMenu)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ChangeMenuA(hMenu HMENU, cmd uint32, lpszNewItem PSTR, cmdInsert uint32, flags uint32) BOOL {
-	addr := lazyAddr(&pChangeMenuA, libUser32, "ChangeMenuA")
+	addr := LazyAddr(&pChangeMenuA, libUser32, "ChangeMenuA")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(cmd), uintptr(unsafe.Pointer(lpszNewItem)), uintptr(cmdInsert), uintptr(flags))
 	return BOOL(ret)
 }
@@ -4837,19 +4837,19 @@ func ChangeMenuA(hMenu HMENU, cmd uint32, lpszNewItem PSTR, cmdInsert uint32, fl
 var ChangeMenu = ChangeMenuW
 
 func ChangeMenuW(hMenu HMENU, cmd uint32, lpszNewItem PWSTR, cmdInsert uint32, flags uint32) BOOL {
-	addr := lazyAddr(&pChangeMenuW, libUser32, "ChangeMenuW")
+	addr := LazyAddr(&pChangeMenuW, libUser32, "ChangeMenuW")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(cmd), uintptr(unsafe.Pointer(lpszNewItem)), uintptr(cmdInsert), uintptr(flags))
 	return BOOL(ret)
 }
 
 func HiliteMenuItem(hWnd HWND, hMenu HMENU, uIDHiliteItem uint32, uHilite uint32) BOOL {
-	addr := lazyAddr(&pHiliteMenuItem, libUser32, "HiliteMenuItem")
+	addr := LazyAddr(&pHiliteMenuItem, libUser32, "HiliteMenuItem")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hMenu, uintptr(uIDHiliteItem), uintptr(uHilite))
 	return BOOL(ret)
 }
 
 func GetMenuStringA(hMenu HMENU, uIDItem uint32, lpString PSTR, cchMax int32, flags MENU_ITEM_FLAGS) int32 {
-	addr := lazyAddr(&pGetMenuStringA, libUser32, "GetMenuStringA")
+	addr := LazyAddr(&pGetMenuStringA, libUser32, "GetMenuStringA")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(uIDItem), uintptr(unsafe.Pointer(lpString)), uintptr(cchMax), uintptr(flags))
 	return int32(ret)
 }
@@ -4857,79 +4857,79 @@ func GetMenuStringA(hMenu HMENU, uIDItem uint32, lpString PSTR, cchMax int32, fl
 var GetMenuString = GetMenuStringW
 
 func GetMenuStringW(hMenu HMENU, uIDItem uint32, lpString PWSTR, cchMax int32, flags MENU_ITEM_FLAGS) int32 {
-	addr := lazyAddr(&pGetMenuStringW, libUser32, "GetMenuStringW")
+	addr := LazyAddr(&pGetMenuStringW, libUser32, "GetMenuStringW")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(uIDItem), uintptr(unsafe.Pointer(lpString)), uintptr(cchMax), uintptr(flags))
 	return int32(ret)
 }
 
 func GetMenuState(hMenu HMENU, uId uint32, uFlags MENU_ITEM_FLAGS) uint32 {
-	addr := lazyAddr(&pGetMenuState, libUser32, "GetMenuState")
+	addr := LazyAddr(&pGetMenuState, libUser32, "GetMenuState")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(uId), uintptr(uFlags))
 	return uint32(ret)
 }
 
 func DrawMenuBar(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDrawMenuBar, libUser32, "DrawMenuBar")
+	addr := LazyAddr(&pDrawMenuBar, libUser32, "DrawMenuBar")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetSystemMenu(hWnd HWND, bRevert BOOL) HMENU {
-	addr := lazyAddr(&pGetSystemMenu, libUser32, "GetSystemMenu")
+	addr := LazyAddr(&pGetSystemMenu, libUser32, "GetSystemMenu")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(bRevert))
 	return ret
 }
 
 func CreateMenu() (HMENU, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMenu, libUser32, "CreateMenu")
+	addr := LazyAddr(&pCreateMenu, libUser32, "CreateMenu")
 	ret, _, err := syscall.SyscallN(addr)
 	return ret, WIN32_ERROR(err)
 }
 
 func CreatePopupMenu() (HMENU, WIN32_ERROR) {
-	addr := lazyAddr(&pCreatePopupMenu, libUser32, "CreatePopupMenu")
+	addr := LazyAddr(&pCreatePopupMenu, libUser32, "CreatePopupMenu")
 	ret, _, err := syscall.SyscallN(addr)
 	return ret, WIN32_ERROR(err)
 }
 
 func DestroyMenu(hMenu HMENU) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDestroyMenu, libUser32, "DestroyMenu")
+	addr := LazyAddr(&pDestroyMenu, libUser32, "DestroyMenu")
 	ret, _, err := syscall.SyscallN(addr, hMenu)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CheckMenuItem(hMenu HMENU, uIDCheckItem uint32, uCheck uint32) uint32 {
-	addr := lazyAddr(&pCheckMenuItem, libUser32, "CheckMenuItem")
+	addr := LazyAddr(&pCheckMenuItem, libUser32, "CheckMenuItem")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(uIDCheckItem), uintptr(uCheck))
 	return uint32(ret)
 }
 
 func EnableMenuItem(hMenu HMENU, uIDEnableItem uint32, uEnable MENU_ITEM_FLAGS) BOOL {
-	addr := lazyAddr(&pEnableMenuItem, libUser32, "EnableMenuItem")
+	addr := LazyAddr(&pEnableMenuItem, libUser32, "EnableMenuItem")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(uIDEnableItem), uintptr(uEnable))
 	return BOOL(ret)
 }
 
 func GetSubMenu(hMenu HMENU, nPos int32) HMENU {
-	addr := lazyAddr(&pGetSubMenu, libUser32, "GetSubMenu")
+	addr := LazyAddr(&pGetSubMenu, libUser32, "GetSubMenu")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(nPos))
 	return ret
 }
 
 func GetMenuItemID(hMenu HMENU, nPos int32) uint32 {
-	addr := lazyAddr(&pGetMenuItemID, libUser32, "GetMenuItemID")
+	addr := LazyAddr(&pGetMenuItemID, libUser32, "GetMenuItemID")
 	ret, _, _ := syscall.SyscallN(addr, hMenu, uintptr(nPos))
 	return uint32(ret)
 }
 
 func GetMenuItemCount(hMenu HMENU) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMenuItemCount, libUser32, "GetMenuItemCount")
+	addr := LazyAddr(&pGetMenuItemCount, libUser32, "GetMenuItemCount")
 	ret, _, err := syscall.SyscallN(addr, hMenu)
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func InsertMenuA(hMenu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS, uIDNewItem uintptr, lpNewItem PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInsertMenuA, libUser32, "InsertMenuA")
+	addr := LazyAddr(&pInsertMenuA, libUser32, "InsertMenuA")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uPosition), uintptr(uFlags), uIDNewItem, uintptr(unsafe.Pointer(lpNewItem)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4937,13 +4937,13 @@ func InsertMenuA(hMenu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS, uIDNewIt
 var InsertMenu = InsertMenuW
 
 func InsertMenuW(hMenu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS, uIDNewItem uintptr, lpNewItem PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInsertMenuW, libUser32, "InsertMenuW")
+	addr := LazyAddr(&pInsertMenuW, libUser32, "InsertMenuW")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uPosition), uintptr(uFlags), uIDNewItem, uintptr(unsafe.Pointer(lpNewItem)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AppendMenuA(hMenu HMENU, uFlags MENU_ITEM_FLAGS, uIDNewItem uintptr, lpNewItem PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAppendMenuA, libUser32, "AppendMenuA")
+	addr := LazyAddr(&pAppendMenuA, libUser32, "AppendMenuA")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uFlags), uIDNewItem, uintptr(unsafe.Pointer(lpNewItem)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4951,13 +4951,13 @@ func AppendMenuA(hMenu HMENU, uFlags MENU_ITEM_FLAGS, uIDNewItem uintptr, lpNewI
 var AppendMenu = AppendMenuW
 
 func AppendMenuW(hMenu HMENU, uFlags MENU_ITEM_FLAGS, uIDNewItem uintptr, lpNewItem PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAppendMenuW, libUser32, "AppendMenuW")
+	addr := LazyAddr(&pAppendMenuW, libUser32, "AppendMenuW")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uFlags), uIDNewItem, uintptr(unsafe.Pointer(lpNewItem)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ModifyMenuA(hMnu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS, uIDNewItem uintptr, lpNewItem PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pModifyMenuA, libUser32, "ModifyMenuA")
+	addr := LazyAddr(&pModifyMenuA, libUser32, "ModifyMenuA")
 	ret, _, err := syscall.SyscallN(addr, hMnu, uintptr(uPosition), uintptr(uFlags), uIDNewItem, uintptr(unsafe.Pointer(lpNewItem)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4965,73 +4965,73 @@ func ModifyMenuA(hMnu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS, uIDNewIte
 var ModifyMenu = ModifyMenuW
 
 func ModifyMenuW(hMnu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS, uIDNewItem uintptr, lpNewItem PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pModifyMenuW, libUser32, "ModifyMenuW")
+	addr := LazyAddr(&pModifyMenuW, libUser32, "ModifyMenuW")
 	ret, _, err := syscall.SyscallN(addr, hMnu, uintptr(uPosition), uintptr(uFlags), uIDNewItem, uintptr(unsafe.Pointer(lpNewItem)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RemoveMenu(hMenu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRemoveMenu, libUser32, "RemoveMenu")
+	addr := LazyAddr(&pRemoveMenu, libUser32, "RemoveMenu")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uPosition), uintptr(uFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DeleteMenu(hMenu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteMenu, libUser32, "DeleteMenu")
+	addr := LazyAddr(&pDeleteMenu, libUser32, "DeleteMenu")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uPosition), uintptr(uFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetMenuItemBitmaps(hMenu HMENU, uPosition uint32, uFlags MENU_ITEM_FLAGS, hBitmapUnchecked HBITMAP, hBitmapChecked HBITMAP) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetMenuItemBitmaps, libUser32, "SetMenuItemBitmaps")
+	addr := LazyAddr(&pSetMenuItemBitmaps, libUser32, "SetMenuItemBitmaps")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uPosition), uintptr(uFlags), hBitmapUnchecked, hBitmapChecked)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetMenuCheckMarkDimensions() int32 {
-	addr := lazyAddr(&pGetMenuCheckMarkDimensions, libUser32, "GetMenuCheckMarkDimensions")
+	addr := LazyAddr(&pGetMenuCheckMarkDimensions, libUser32, "GetMenuCheckMarkDimensions")
 	ret, _, _ := syscall.SyscallN(addr)
 	return int32(ret)
 }
 
 func TrackPopupMenu(hMenu HMENU, uFlags TRACK_POPUP_MENU_FLAGS, x int32, y int32, nReserved int32, hWnd HWND, prcRect *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTrackPopupMenu, libUser32, "TrackPopupMenu")
+	addr := LazyAddr(&pTrackPopupMenu, libUser32, "TrackPopupMenu")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uFlags), uintptr(x), uintptr(y), uintptr(nReserved), hWnd, uintptr(unsafe.Pointer(prcRect)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func TrackPopupMenuEx(hMenu HMENU, uFlags uint32, x int32, y int32, hwnd HWND, lptpm *TPMPARAMS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTrackPopupMenuEx, libUser32, "TrackPopupMenuEx")
+	addr := LazyAddr(&pTrackPopupMenuEx, libUser32, "TrackPopupMenuEx")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uFlags), uintptr(x), uintptr(y), hwnd, uintptr(unsafe.Pointer(lptpm)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CalculatePopupWindowPosition(anchorPoint *POINT, windowSize *SIZE, flags uint32, excludeRect *RECT, popupWindowPosition *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCalculatePopupWindowPosition, libUser32, "CalculatePopupWindowPosition")
+	addr := LazyAddr(&pCalculatePopupWindowPosition, libUser32, "CalculatePopupWindowPosition")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(anchorPoint)), uintptr(unsafe.Pointer(windowSize)), uintptr(flags), uintptr(unsafe.Pointer(excludeRect)), uintptr(unsafe.Pointer(popupWindowPosition)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetMenuInfo(param0 HMENU, param1 *MENUINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMenuInfo, libUser32, "GetMenuInfo")
+	addr := LazyAddr(&pGetMenuInfo, libUser32, "GetMenuInfo")
 	ret, _, err := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetMenuInfo(param0 HMENU, param1 *MENUINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetMenuInfo, libUser32, "SetMenuInfo")
+	addr := LazyAddr(&pSetMenuInfo, libUser32, "SetMenuInfo")
 	ret, _, err := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EndMenu() (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEndMenu, libUser32, "EndMenu")
+	addr := LazyAddr(&pEndMenu, libUser32, "EndMenu")
 	ret, _, err := syscall.SyscallN(addr)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func InsertMenuItemA(hmenu HMENU, item uint32, fByPosition BOOL, lpmi *MENUITEMINFOA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInsertMenuItemA, libUser32, "InsertMenuItemA")
+	addr := LazyAddr(&pInsertMenuItemA, libUser32, "InsertMenuItemA")
 	ret, _, err := syscall.SyscallN(addr, hmenu, uintptr(item), uintptr(fByPosition), uintptr(unsafe.Pointer(lpmi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5039,13 +5039,13 @@ func InsertMenuItemA(hmenu HMENU, item uint32, fByPosition BOOL, lpmi *MENUITEMI
 var InsertMenuItem = InsertMenuItemW
 
 func InsertMenuItemW(hmenu HMENU, item uint32, fByPosition BOOL, lpmi *MENUITEMINFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pInsertMenuItemW, libUser32, "InsertMenuItemW")
+	addr := LazyAddr(&pInsertMenuItemW, libUser32, "InsertMenuItemW")
 	ret, _, err := syscall.SyscallN(addr, hmenu, uintptr(item), uintptr(fByPosition), uintptr(unsafe.Pointer(lpmi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetMenuItemInfoA(hmenu HMENU, item uint32, fByPosition BOOL, lpmii *MENUITEMINFOA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMenuItemInfoA, libUser32, "GetMenuItemInfoA")
+	addr := LazyAddr(&pGetMenuItemInfoA, libUser32, "GetMenuItemInfoA")
 	ret, _, err := syscall.SyscallN(addr, hmenu, uintptr(item), uintptr(fByPosition), uintptr(unsafe.Pointer(lpmii)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5053,13 +5053,13 @@ func GetMenuItemInfoA(hmenu HMENU, item uint32, fByPosition BOOL, lpmii *MENUITE
 var GetMenuItemInfo = GetMenuItemInfoW
 
 func GetMenuItemInfoW(hmenu HMENU, item uint32, fByPosition BOOL, lpmii *MENUITEMINFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMenuItemInfoW, libUser32, "GetMenuItemInfoW")
+	addr := LazyAddr(&pGetMenuItemInfoW, libUser32, "GetMenuItemInfoW")
 	ret, _, err := syscall.SyscallN(addr, hmenu, uintptr(item), uintptr(fByPosition), uintptr(unsafe.Pointer(lpmii)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetMenuItemInfoA(hmenu HMENU, item uint32, fByPositon BOOL, lpmii *MENUITEMINFOA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetMenuItemInfoA, libUser32, "SetMenuItemInfoA")
+	addr := LazyAddr(&pSetMenuItemInfoA, libUser32, "SetMenuItemInfoA")
 	ret, _, err := syscall.SyscallN(addr, hmenu, uintptr(item), uintptr(fByPositon), uintptr(unsafe.Pointer(lpmii)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5067,108 +5067,108 @@ func SetMenuItemInfoA(hmenu HMENU, item uint32, fByPositon BOOL, lpmii *MENUITEM
 var SetMenuItemInfo = SetMenuItemInfoW
 
 func SetMenuItemInfoW(hmenu HMENU, item uint32, fByPositon BOOL, lpmii *MENUITEMINFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetMenuItemInfoW, libUser32, "SetMenuItemInfoW")
+	addr := LazyAddr(&pSetMenuItemInfoW, libUser32, "SetMenuItemInfoW")
 	ret, _, err := syscall.SyscallN(addr, hmenu, uintptr(item), uintptr(fByPositon), uintptr(unsafe.Pointer(lpmii)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetMenuDefaultItem(hMenu HMENU, fByPos uint32, gmdiFlags GET_MENU_DEFAULT_ITEM_FLAGS) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMenuDefaultItem, libUser32, "GetMenuDefaultItem")
+	addr := LazyAddr(&pGetMenuDefaultItem, libUser32, "GetMenuDefaultItem")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(fByPos), uintptr(gmdiFlags))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetMenuDefaultItem(hMenu HMENU, uItem uint32, fByPos uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetMenuDefaultItem, libUser32, "SetMenuDefaultItem")
+	addr := LazyAddr(&pSetMenuDefaultItem, libUser32, "SetMenuDefaultItem")
 	ret, _, err := syscall.SyscallN(addr, hMenu, uintptr(uItem), uintptr(fByPos))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetMenuItemRect(hWnd HWND, hMenu HMENU, uItem uint32, lprcItem *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMenuItemRect, libUser32, "GetMenuItemRect")
+	addr := LazyAddr(&pGetMenuItemRect, libUser32, "GetMenuItemRect")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hMenu, uintptr(uItem), uintptr(unsafe.Pointer(lprcItem)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func MenuItemFromPoint(hWnd HWND, hMenu HMENU, ptScreen POINT) int32 {
-	addr := lazyAddr(&pMenuItemFromPoint, libUser32, "MenuItemFromPoint")
+	addr := LazyAddr(&pMenuItemFromPoint, libUser32, "MenuItemFromPoint")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hMenu, *(*uintptr)(unsafe.Pointer(&ptScreen)))
 	return int32(ret)
 }
 
 func DragObject(hwndParent HWND, hwndFrom HWND, fmt uint32, data uintptr, hcur HCURSOR) uint32 {
-	addr := lazyAddr(&pDragObject, libUser32, "DragObject")
+	addr := LazyAddr(&pDragObject, libUser32, "DragObject")
 	ret, _, _ := syscall.SyscallN(addr, hwndParent, hwndFrom, uintptr(fmt), data, hcur)
 	return uint32(ret)
 }
 
 func DrawIcon(hDC HDC, X int32, Y int32, hIcon HICON) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDrawIcon, libUser32, "DrawIcon")
+	addr := LazyAddr(&pDrawIcon, libUser32, "DrawIcon")
 	ret, _, err := syscall.SyscallN(addr, hDC, uintptr(X), uintptr(Y), hIcon)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetForegroundWindow() HWND {
-	addr := lazyAddr(&pGetForegroundWindow, libUser32, "GetForegroundWindow")
+	addr := LazyAddr(&pGetForegroundWindow, libUser32, "GetForegroundWindow")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func SwitchToThisWindow(hwnd HWND, fUnknown BOOL) {
-	addr := lazyAddr(&pSwitchToThisWindow, libUser32, "SwitchToThisWindow")
+	addr := LazyAddr(&pSwitchToThisWindow, libUser32, "SwitchToThisWindow")
 	syscall.SyscallN(addr, hwnd, uintptr(fUnknown))
 }
 
 func SetForegroundWindow(hWnd HWND) BOOL {
-	addr := lazyAddr(&pSetForegroundWindow, libUser32, "SetForegroundWindow")
+	addr := LazyAddr(&pSetForegroundWindow, libUser32, "SetForegroundWindow")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func AllowSetForegroundWindow(dwProcessId uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAllowSetForegroundWindow, libUser32, "AllowSetForegroundWindow")
+	addr := LazyAddr(&pAllowSetForegroundWindow, libUser32, "AllowSetForegroundWindow")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwProcessId))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LockSetForegroundWindow(uLockCode FOREGROUND_WINDOW_LOCK_CODE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pLockSetForegroundWindow, libUser32, "LockSetForegroundWindow")
+	addr := LazyAddr(&pLockSetForegroundWindow, libUser32, "LockSetForegroundWindow")
 	ret, _, err := syscall.SyscallN(addr, uintptr(uLockCode))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ScrollWindow(hWnd HWND, XAmount int32, YAmount int32, lpRect *RECT, lpClipRect *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pScrollWindow, libUser32, "ScrollWindow")
+	addr := LazyAddr(&pScrollWindow, libUser32, "ScrollWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(XAmount), uintptr(YAmount), uintptr(unsafe.Pointer(lpRect)), uintptr(unsafe.Pointer(lpClipRect)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ScrollDC(hDC HDC, dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pScrollDC, libUser32, "ScrollDC")
+	addr := LazyAddr(&pScrollDC, libUser32, "ScrollDC")
 	ret, _, err := syscall.SyscallN(addr, hDC, uintptr(dx), uintptr(dy), uintptr(unsafe.Pointer(lprcScroll)), uintptr(unsafe.Pointer(lprcClip)), hrgnUpdate, uintptr(unsafe.Pointer(lprcUpdate)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ScrollWindowEx(hWnd HWND, dx int32, dy int32, prcScroll *RECT, prcClip *RECT, hrgnUpdate HRGN, prcUpdate *RECT, flags SHOW_WINDOW_CMD) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pScrollWindowEx, libUser32, "ScrollWindowEx")
+	addr := LazyAddr(&pScrollWindowEx, libUser32, "ScrollWindowEx")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(dx), uintptr(dy), uintptr(unsafe.Pointer(prcScroll)), uintptr(unsafe.Pointer(prcClip)), hrgnUpdate, uintptr(unsafe.Pointer(prcUpdate)), uintptr(flags))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetScrollPos(hWnd HWND, nBar SCROLLBAR_CONSTANTS) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetScrollPos, libUser32, "GetScrollPos")
+	addr := LazyAddr(&pGetScrollPos, libUser32, "GetScrollPos")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nBar))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetScrollRange(hWnd HWND, nBar SCROLLBAR_CONSTANTS, lpMinPos *int32, lpMaxPos *int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetScrollRange, libUser32, "GetScrollRange")
+	addr := LazyAddr(&pGetScrollRange, libUser32, "GetScrollRange")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nBar), uintptr(unsafe.Pointer(lpMinPos)), uintptr(unsafe.Pointer(lpMaxPos)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetPropA(hWnd HWND, lpString PSTR, hData HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetPropA, libUser32, "SetPropA")
+	addr := LazyAddr(&pSetPropA, libUser32, "SetPropA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)), hData)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5176,13 +5176,13 @@ func SetPropA(hWnd HWND, lpString PSTR, hData HANDLE) (BOOL, WIN32_ERROR) {
 var SetProp = SetPropW
 
 func SetPropW(hWnd HWND, lpString PWSTR, hData HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetPropW, libUser32, "SetPropW")
+	addr := LazyAddr(&pSetPropW, libUser32, "SetPropW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)), hData)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetPropA(hWnd HWND, lpString PSTR) HANDLE {
-	addr := lazyAddr(&pGetPropA, libUser32, "GetPropA")
+	addr := LazyAddr(&pGetPropA, libUser32, "GetPropA")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)))
 	return ret
 }
@@ -5190,13 +5190,13 @@ func GetPropA(hWnd HWND, lpString PSTR) HANDLE {
 var GetProp = GetPropW
 
 func GetPropW(hWnd HWND, lpString PWSTR) HANDLE {
-	addr := lazyAddr(&pGetPropW, libUser32, "GetPropW")
+	addr := LazyAddr(&pGetPropW, libUser32, "GetPropW")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)))
 	return ret
 }
 
 func RemovePropA(hWnd HWND, lpString PSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pRemovePropA, libUser32, "RemovePropA")
+	addr := LazyAddr(&pRemovePropA, libUser32, "RemovePropA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)))
 	return ret, WIN32_ERROR(err)
 }
@@ -5204,13 +5204,13 @@ func RemovePropA(hWnd HWND, lpString PSTR) (HANDLE, WIN32_ERROR) {
 var RemoveProp = RemovePropW
 
 func RemovePropW(hWnd HWND, lpString PWSTR) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pRemovePropW, libUser32, "RemovePropW")
+	addr := LazyAddr(&pRemovePropW, libUser32, "RemovePropW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)))
 	return ret, WIN32_ERROR(err)
 }
 
 func EnumPropsExA(hWnd HWND, lpEnumFunc PROPENUMPROCEXA, lParam LPARAM) int32 {
-	addr := lazyAddr(&pEnumPropsExA, libUser32, "EnumPropsExA")
+	addr := LazyAddr(&pEnumPropsExA, libUser32, "EnumPropsExA")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, lpEnumFunc, lParam)
 	return int32(ret)
 }
@@ -5218,13 +5218,13 @@ func EnumPropsExA(hWnd HWND, lpEnumFunc PROPENUMPROCEXA, lParam LPARAM) int32 {
 var EnumPropsEx = EnumPropsExW
 
 func EnumPropsExW(hWnd HWND, lpEnumFunc PROPENUMPROCEXW, lParam LPARAM) int32 {
-	addr := lazyAddr(&pEnumPropsExW, libUser32, "EnumPropsExW")
+	addr := LazyAddr(&pEnumPropsExW, libUser32, "EnumPropsExW")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, lpEnumFunc, lParam)
 	return int32(ret)
 }
 
 func EnumPropsA(hWnd HWND, lpEnumFunc PROPENUMPROCA) int32 {
-	addr := lazyAddr(&pEnumPropsA, libUser32, "EnumPropsA")
+	addr := LazyAddr(&pEnumPropsA, libUser32, "EnumPropsA")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, lpEnumFunc)
 	return int32(ret)
 }
@@ -5232,13 +5232,13 @@ func EnumPropsA(hWnd HWND, lpEnumFunc PROPENUMPROCA) int32 {
 var EnumProps = EnumPropsW
 
 func EnumPropsW(hWnd HWND, lpEnumFunc PROPENUMPROCW) int32 {
-	addr := lazyAddr(&pEnumPropsW, libUser32, "EnumPropsW")
+	addr := LazyAddr(&pEnumPropsW, libUser32, "EnumPropsW")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, lpEnumFunc)
 	return int32(ret)
 }
 
 func SetWindowTextA(hWnd HWND, lpString PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowTextA, libUser32, "SetWindowTextA")
+	addr := LazyAddr(&pSetWindowTextA, libUser32, "SetWindowTextA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -5246,13 +5246,13 @@ func SetWindowTextA(hWnd HWND, lpString PSTR) (BOOL, WIN32_ERROR) {
 var SetWindowText = SetWindowTextW
 
 func SetWindowTextW(hWnd HWND, lpString PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowTextW, libUser32, "SetWindowTextW")
+	addr := LazyAddr(&pSetWindowTextW, libUser32, "SetWindowTextW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetWindowTextA(hWnd HWND, lpString PSTR, nMaxCount int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowTextA, libUser32, "GetWindowTextA")
+	addr := LazyAddr(&pGetWindowTextA, libUser32, "GetWindowTextA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)), uintptr(nMaxCount))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -5260,13 +5260,13 @@ func GetWindowTextA(hWnd HWND, lpString PSTR, nMaxCount int32) (int32, WIN32_ERR
 var GetWindowText = GetWindowTextW
 
 func GetWindowTextW(hWnd HWND, lpString PWSTR, nMaxCount int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowTextW, libUser32, "GetWindowTextW")
+	addr := LazyAddr(&pGetWindowTextW, libUser32, "GetWindowTextW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpString)), uintptr(nMaxCount))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetWindowTextLengthA(hWnd HWND) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowTextLengthA, libUser32, "GetWindowTextLengthA")
+	addr := LazyAddr(&pGetWindowTextLengthA, libUser32, "GetWindowTextLengthA")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -5274,37 +5274,37 @@ func GetWindowTextLengthA(hWnd HWND) (int32, WIN32_ERROR) {
 var GetWindowTextLength = GetWindowTextLengthW
 
 func GetWindowTextLengthW(hWnd HWND) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowTextLengthW, libUser32, "GetWindowTextLengthW")
+	addr := LazyAddr(&pGetWindowTextLengthW, libUser32, "GetWindowTextLengthW")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetClientRect(hWnd HWND, lpRect *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClientRect, libUser32, "GetClientRect")
+	addr := LazyAddr(&pGetClientRect, libUser32, "GetClientRect")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpRect)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetWindowRect(hWnd HWND, lpRect *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowRect, libUser32, "GetWindowRect")
+	addr := LazyAddr(&pGetWindowRect, libUser32, "GetWindowRect")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpRect)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AdjustWindowRect(lpRect *RECT, dwStyle WINDOW_STYLE, bMenu BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAdjustWindowRect, libUser32, "AdjustWindowRect")
+	addr := LazyAddr(&pAdjustWindowRect, libUser32, "AdjustWindowRect")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRect)), uintptr(dwStyle), uintptr(bMenu))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func AdjustWindowRectEx(lpRect *RECT, dwStyle WINDOW_STYLE, bMenu BOOL, dwExStyle WINDOW_EX_STYLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pAdjustWindowRectEx, libUser32, "AdjustWindowRectEx")
+	addr := LazyAddr(&pAdjustWindowRectEx, libUser32, "AdjustWindowRectEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRect)), uintptr(dwStyle), uintptr(bMenu), uintptr(dwExStyle))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func MessageBoxA(hWnd HWND, lpText PSTR, lpCaption PSTR, uType MESSAGEBOX_STYLE) (MESSAGEBOX_RESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pMessageBoxA, libUser32, "MessageBoxA")
+	addr := LazyAddr(&pMessageBoxA, libUser32, "MessageBoxA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpText)), uintptr(unsafe.Pointer(lpCaption)), uintptr(uType))
 	return MESSAGEBOX_RESULT(ret), WIN32_ERROR(err)
 }
@@ -5312,13 +5312,13 @@ func MessageBoxA(hWnd HWND, lpText PSTR, lpCaption PSTR, uType MESSAGEBOX_STYLE)
 var MessageBox = MessageBoxW
 
 func MessageBoxW(hWnd HWND, lpText PWSTR, lpCaption PWSTR, uType MESSAGEBOX_STYLE) (MESSAGEBOX_RESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pMessageBoxW, libUser32, "MessageBoxW")
+	addr := LazyAddr(&pMessageBoxW, libUser32, "MessageBoxW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpText)), uintptr(unsafe.Pointer(lpCaption)), uintptr(uType))
 	return MESSAGEBOX_RESULT(ret), WIN32_ERROR(err)
 }
 
 func MessageBoxExA(hWnd HWND, lpText PSTR, lpCaption PSTR, uType MESSAGEBOX_STYLE, wLanguageId uint16) (MESSAGEBOX_RESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pMessageBoxExA, libUser32, "MessageBoxExA")
+	addr := LazyAddr(&pMessageBoxExA, libUser32, "MessageBoxExA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpText)), uintptr(unsafe.Pointer(lpCaption)), uintptr(uType), uintptr(wLanguageId))
 	return MESSAGEBOX_RESULT(ret), WIN32_ERROR(err)
 }
@@ -5326,13 +5326,13 @@ func MessageBoxExA(hWnd HWND, lpText PSTR, lpCaption PSTR, uType MESSAGEBOX_STYL
 var MessageBoxEx = MessageBoxExW
 
 func MessageBoxExW(hWnd HWND, lpText PWSTR, lpCaption PWSTR, uType MESSAGEBOX_STYLE, wLanguageId uint16) (MESSAGEBOX_RESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pMessageBoxExW, libUser32, "MessageBoxExW")
+	addr := LazyAddr(&pMessageBoxExW, libUser32, "MessageBoxExW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpText)), uintptr(unsafe.Pointer(lpCaption)), uintptr(uType), uintptr(wLanguageId))
 	return MESSAGEBOX_RESULT(ret), WIN32_ERROR(err)
 }
 
 func MessageBoxIndirectA(lpmbp *MSGBOXPARAMSA) MESSAGEBOX_RESULT {
-	addr := lazyAddr(&pMessageBoxIndirectA, libUser32, "MessageBoxIndirectA")
+	addr := LazyAddr(&pMessageBoxIndirectA, libUser32, "MessageBoxIndirectA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpmbp)))
 	return MESSAGEBOX_RESULT(ret)
 }
@@ -5340,163 +5340,163 @@ func MessageBoxIndirectA(lpmbp *MSGBOXPARAMSA) MESSAGEBOX_RESULT {
 var MessageBoxIndirect = MessageBoxIndirectW
 
 func MessageBoxIndirectW(lpmbp *MSGBOXPARAMSW) MESSAGEBOX_RESULT {
-	addr := lazyAddr(&pMessageBoxIndirectW, libUser32, "MessageBoxIndirectW")
+	addr := LazyAddr(&pMessageBoxIndirectW, libUser32, "MessageBoxIndirectW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpmbp)))
 	return MESSAGEBOX_RESULT(ret)
 }
 
 func ShowCursor(bShow BOOL) int32 {
-	addr := lazyAddr(&pShowCursor, libUser32, "ShowCursor")
+	addr := LazyAddr(&pShowCursor, libUser32, "ShowCursor")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bShow))
 	return int32(ret)
 }
 
 func SetCursorPos(X int32, Y int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetCursorPos, libUser32, "SetCursorPos")
+	addr := LazyAddr(&pSetCursorPos, libUser32, "SetCursorPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(X), uintptr(Y))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetPhysicalCursorPos(X int32, Y int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetPhysicalCursorPos, libUser32, "SetPhysicalCursorPos")
+	addr := LazyAddr(&pSetPhysicalCursorPos, libUser32, "SetPhysicalCursorPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(X), uintptr(Y))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetCursor(hCursor HCURSOR) HCURSOR {
-	addr := lazyAddr(&pSetCursor, libUser32, "SetCursor")
+	addr := LazyAddr(&pSetCursor, libUser32, "SetCursor")
 	ret, _, _ := syscall.SyscallN(addr, hCursor)
 	return ret
 }
 
 func GetCursorPos(lpPoint *POINT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCursorPos, libUser32, "GetCursorPos")
+	addr := LazyAddr(&pGetCursorPos, libUser32, "GetCursorPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPoint)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetPhysicalCursorPos(lpPoint *POINT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetPhysicalCursorPos, libUser32, "GetPhysicalCursorPos")
+	addr := LazyAddr(&pGetPhysicalCursorPos, libUser32, "GetPhysicalCursorPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPoint)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetClipCursor(lpRect *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClipCursor, libUser32, "GetClipCursor")
+	addr := LazyAddr(&pGetClipCursor, libUser32, "GetClipCursor")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRect)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCursor() HCURSOR {
-	addr := lazyAddr(&pGetCursor, libUser32, "GetCursor")
+	addr := LazyAddr(&pGetCursor, libUser32, "GetCursor")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func CreateCaret(hWnd HWND, hBitmap HBITMAP, nWidth int32, nHeight int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateCaret, libUser32, "CreateCaret")
+	addr := LazyAddr(&pCreateCaret, libUser32, "CreateCaret")
 	ret, _, err := syscall.SyscallN(addr, hWnd, hBitmap, uintptr(nWidth), uintptr(nHeight))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCaretBlinkTime() (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCaretBlinkTime, libUser32, "GetCaretBlinkTime")
+	addr := LazyAddr(&pGetCaretBlinkTime, libUser32, "GetCaretBlinkTime")
 	ret, _, err := syscall.SyscallN(addr)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetCaretBlinkTime(uMSeconds uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetCaretBlinkTime, libUser32, "SetCaretBlinkTime")
+	addr := LazyAddr(&pSetCaretBlinkTime, libUser32, "SetCaretBlinkTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(uMSeconds))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DestroyCaret() (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDestroyCaret, libUser32, "DestroyCaret")
+	addr := LazyAddr(&pDestroyCaret, libUser32, "DestroyCaret")
 	ret, _, err := syscall.SyscallN(addr)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func HideCaret(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pHideCaret, libUser32, "HideCaret")
+	addr := LazyAddr(&pHideCaret, libUser32, "HideCaret")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ShowCaret(hWnd HWND) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShowCaret, libUser32, "ShowCaret")
+	addr := LazyAddr(&pShowCaret, libUser32, "ShowCaret")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetCaretPos(X int32, Y int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetCaretPos, libUser32, "SetCaretPos")
+	addr := LazyAddr(&pSetCaretPos, libUser32, "SetCaretPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(X), uintptr(Y))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCaretPos(lpPoint *POINT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCaretPos, libUser32, "GetCaretPos")
+	addr := LazyAddr(&pGetCaretPos, libUser32, "GetCaretPos")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPoint)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LogicalToPhysicalPoint(hWnd HWND, lpPoint *POINT) BOOL {
-	addr := lazyAddr(&pLogicalToPhysicalPoint, libUser32, "LogicalToPhysicalPoint")
+	addr := LazyAddr(&pLogicalToPhysicalPoint, libUser32, "LogicalToPhysicalPoint")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpPoint)))
 	return BOOL(ret)
 }
 
 func PhysicalToLogicalPoint(hWnd HWND, lpPoint *POINT) BOOL {
-	addr := lazyAddr(&pPhysicalToLogicalPoint, libUser32, "PhysicalToLogicalPoint")
+	addr := LazyAddr(&pPhysicalToLogicalPoint, libUser32, "PhysicalToLogicalPoint")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpPoint)))
 	return BOOL(ret)
 }
 
 func WindowFromPoint(Point POINT) HWND {
-	addr := lazyAddr(&pWindowFromPoint, libUser32, "WindowFromPoint")
+	addr := LazyAddr(&pWindowFromPoint, libUser32, "WindowFromPoint")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&Point)))
 	return ret
 }
 
 func WindowFromPhysicalPoint(Point POINT) HWND {
-	addr := lazyAddr(&pWindowFromPhysicalPoint, libUser32, "WindowFromPhysicalPoint")
+	addr := LazyAddr(&pWindowFromPhysicalPoint, libUser32, "WindowFromPhysicalPoint")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&Point)))
 	return ret
 }
 
 func ChildWindowFromPoint(hWndParent HWND, Point POINT) HWND {
-	addr := lazyAddr(&pChildWindowFromPoint, libUser32, "ChildWindowFromPoint")
+	addr := LazyAddr(&pChildWindowFromPoint, libUser32, "ChildWindowFromPoint")
 	ret, _, _ := syscall.SyscallN(addr, hWndParent, *(*uintptr)(unsafe.Pointer(&Point)))
 	return ret
 }
 
 func ClipCursor(lpRect *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pClipCursor, libUser32, "ClipCursor")
+	addr := LazyAddr(&pClipCursor, libUser32, "ClipCursor")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpRect)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ChildWindowFromPointEx(hwnd HWND, pt POINT, flags CWP_FLAGS) HWND {
-	addr := lazyAddr(&pChildWindowFromPointEx, libUser32, "ChildWindowFromPointEx")
+	addr := LazyAddr(&pChildWindowFromPointEx, libUser32, "ChildWindowFromPointEx")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, *(*uintptr)(unsafe.Pointer(&pt)), uintptr(flags))
 	return ret
 }
 
 func GetWindowWord(hWnd HWND, nIndex int32) uint16 {
-	addr := lazyAddr(&pGetWindowWord, libUser32, "GetWindowWord")
+	addr := LazyAddr(&pGetWindowWord, libUser32, "GetWindowWord")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return uint16(ret)
 }
 
 func SetWindowWord(hWnd HWND, nIndex int32, wNewWord uint16) uint16 {
-	addr := lazyAddr(&pSetWindowWord, libUser32, "SetWindowWord")
+	addr := LazyAddr(&pSetWindowWord, libUser32, "SetWindowWord")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(nIndex), uintptr(wNewWord))
 	return uint16(ret)
 }
 
 func GetWindowLongA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowLongA, libUser32, "GetWindowLongA")
+	addr := LazyAddr(&pGetWindowLongA, libUser32, "GetWindowLongA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -5504,13 +5504,13 @@ func GetWindowLongA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (int32, WIN32_ERROR
 var GetWindowLong = GetWindowLongW
 
 func GetWindowLongW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowLongW, libUser32, "GetWindowLongW")
+	addr := LazyAddr(&pGetWindowLongW, libUser32, "GetWindowLongW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func SetWindowLongA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowLongA, libUser32, "SetWindowLongA")
+	addr := LazyAddr(&pSetWindowLongA, libUser32, "SetWindowLongA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), uintptr(dwNewLong))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -5518,25 +5518,25 @@ func SetWindowLongA(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong int32) (i
 var SetWindowLong = SetWindowLongW
 
 func SetWindowLongW(hWnd HWND, nIndex WINDOW_LONG_PTR_INDEX, dwNewLong int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowLongW, libUser32, "SetWindowLongW")
+	addr := LazyAddr(&pSetWindowLongW, libUser32, "SetWindowLongW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), uintptr(dwNewLong))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetClassWord(hWnd HWND, nIndex int32) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassWord, libUser32, "GetClassWord")
+	addr := LazyAddr(&pGetClassWord, libUser32, "GetClassWord")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return uint16(ret), WIN32_ERROR(err)
 }
 
 func SetClassWord(hWnd HWND, nIndex int32, wNewWord uint16) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pSetClassWord, libUser32, "SetClassWord")
+	addr := LazyAddr(&pSetClassWord, libUser32, "SetClassWord")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), uintptr(wNewWord))
 	return uint16(ret), WIN32_ERROR(err)
 }
 
 func GetClassLongA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassLongA, libUser32, "GetClassLongA")
+	addr := LazyAddr(&pGetClassLongA, libUser32, "GetClassLongA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5544,13 +5544,13 @@ func GetClassLongA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uint32, WIN32_ERROR)
 var GetClassLong = GetClassLongW
 
 func GetClassLongW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassLongW, libUser32, "GetClassLongW")
+	addr := LazyAddr(&pGetClassLongW, libUser32, "GetClassLongW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetClassLongA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong int32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSetClassLongA, libUser32, "SetClassLongA")
+	addr := LazyAddr(&pSetClassLongA, libUser32, "SetClassLongA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), uintptr(dwNewLong))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -5558,49 +5558,49 @@ func SetClassLongA(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong int32) (uin
 var SetClassLong = SetClassLongW
 
 func SetClassLongW(hWnd HWND, nIndex GET_CLASS_LONG_INDEX, dwNewLong int32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSetClassLongW, libUser32, "SetClassLongW")
+	addr := LazyAddr(&pSetClassLongW, libUser32, "SetClassLongW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nIndex), uintptr(dwNewLong))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetProcessDefaultLayout(pdwDefaultLayout *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessDefaultLayout, libUser32, "GetProcessDefaultLayout")
+	addr := LazyAddr(&pGetProcessDefaultLayout, libUser32, "GetProcessDefaultLayout")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdwDefaultLayout)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessDefaultLayout(dwDefaultLayout uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessDefaultLayout, libUser32, "SetProcessDefaultLayout")
+	addr := LazyAddr(&pSetProcessDefaultLayout, libUser32, "SetProcessDefaultLayout")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDefaultLayout))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDesktopWindow() HWND {
-	addr := lazyAddr(&pGetDesktopWindow, libUser32, "GetDesktopWindow")
+	addr := LazyAddr(&pGetDesktopWindow, libUser32, "GetDesktopWindow")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func GetParent(hWnd HWND) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pGetParent, libUser32, "GetParent")
+	addr := LazyAddr(&pGetParent, libUser32, "GetParent")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return ret, WIN32_ERROR(err)
 }
 
 func SetParent(hWndChild HWND, hWndNewParent HWND) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pSetParent, libUser32, "SetParent")
+	addr := LazyAddr(&pSetParent, libUser32, "SetParent")
 	ret, _, err := syscall.SyscallN(addr, hWndChild, hWndNewParent)
 	return ret, WIN32_ERROR(err)
 }
 
 func EnumChildWindows(hWndParent HWND, lpEnumFunc WNDENUMPROC, lParam LPARAM) BOOL {
-	addr := lazyAddr(&pEnumChildWindows, libUser32, "EnumChildWindows")
+	addr := LazyAddr(&pEnumChildWindows, libUser32, "EnumChildWindows")
 	ret, _, _ := syscall.SyscallN(addr, hWndParent, lpEnumFunc, lParam)
 	return BOOL(ret)
 }
 
 func FindWindowA(lpClassName PSTR, lpWindowName PSTR) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pFindWindowA, libUser32, "FindWindowA")
+	addr := LazyAddr(&pFindWindowA, libUser32, "FindWindowA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWindowName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -5608,13 +5608,13 @@ func FindWindowA(lpClassName PSTR, lpWindowName PSTR) (HWND, WIN32_ERROR) {
 var FindWindow = FindWindowW
 
 func FindWindowW(lpClassName PWSTR, lpWindowName PWSTR) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pFindWindowW, libUser32, "FindWindowW")
+	addr := LazyAddr(&pFindWindowW, libUser32, "FindWindowW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWindowName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func FindWindowExA(hWndParent HWND, hWndChildAfter HWND, lpszClass PSTR, lpszWindow PSTR) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pFindWindowExA, libUser32, "FindWindowExA")
+	addr := LazyAddr(&pFindWindowExA, libUser32, "FindWindowExA")
 	ret, _, err := syscall.SyscallN(addr, hWndParent, hWndChildAfter, uintptr(unsafe.Pointer(lpszClass)), uintptr(unsafe.Pointer(lpszWindow)))
 	return ret, WIN32_ERROR(err)
 }
@@ -5622,43 +5622,43 @@ func FindWindowExA(hWndParent HWND, hWndChildAfter HWND, lpszClass PSTR, lpszWin
 var FindWindowEx = FindWindowExW
 
 func FindWindowExW(hWndParent HWND, hWndChildAfter HWND, lpszClass PWSTR, lpszWindow PWSTR) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pFindWindowExW, libUser32, "FindWindowExW")
+	addr := LazyAddr(&pFindWindowExW, libUser32, "FindWindowExW")
 	ret, _, err := syscall.SyscallN(addr, hWndParent, hWndChildAfter, uintptr(unsafe.Pointer(lpszClass)), uintptr(unsafe.Pointer(lpszWindow)))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetShellWindow() HWND {
-	addr := lazyAddr(&pGetShellWindow, libUser32, "GetShellWindow")
+	addr := LazyAddr(&pGetShellWindow, libUser32, "GetShellWindow")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func RegisterShellHookWindow(hwnd HWND) BOOL {
-	addr := lazyAddr(&pRegisterShellHookWindow, libUser32, "RegisterShellHookWindow")
+	addr := LazyAddr(&pRegisterShellHookWindow, libUser32, "RegisterShellHookWindow")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return BOOL(ret)
 }
 
 func DeregisterShellHookWindow(hwnd HWND) BOOL {
-	addr := lazyAddr(&pDeregisterShellHookWindow, libUser32, "DeregisterShellHookWindow")
+	addr := LazyAddr(&pDeregisterShellHookWindow, libUser32, "DeregisterShellHookWindow")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return BOOL(ret)
 }
 
 func EnumWindows(lpEnumFunc WNDENUMPROC, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumWindows, libUser32, "EnumWindows")
+	addr := LazyAddr(&pEnumWindows, libUser32, "EnumWindows")
 	ret, _, err := syscall.SyscallN(addr, lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumThreadWindows(dwThreadId uint32, lpfn WNDENUMPROC, lParam LPARAM) BOOL {
-	addr := lazyAddr(&pEnumThreadWindows, libUser32, "EnumThreadWindows")
+	addr := LazyAddr(&pEnumThreadWindows, libUser32, "EnumThreadWindows")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwThreadId), lpfn, lParam)
 	return BOOL(ret)
 }
 
 func GetClassNameA(hWnd HWND, lpClassName PSTR, nMaxCount int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassNameA, libUser32, "GetClassNameA")
+	addr := LazyAddr(&pGetClassNameA, libUser32, "GetClassNameA")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpClassName)), uintptr(nMaxCount))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -5666,43 +5666,43 @@ func GetClassNameA(hWnd HWND, lpClassName PSTR, nMaxCount int32) (int32, WIN32_E
 var GetClassName = GetClassNameW
 
 func GetClassNameW(hWnd HWND, lpClassName PWSTR, nMaxCount int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetClassNameW, libUser32, "GetClassNameW")
+	addr := LazyAddr(&pGetClassNameW, libUser32, "GetClassNameW")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpClassName)), uintptr(nMaxCount))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetTopWindow(hWnd HWND) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTopWindow, libUser32, "GetTopWindow")
+	addr := LazyAddr(&pGetTopWindow, libUser32, "GetTopWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return ret, WIN32_ERROR(err)
 }
 
 func GetWindowThreadProcessId(hWnd HWND, lpdwProcessId *uint32) uint32 {
-	addr := lazyAddr(&pGetWindowThreadProcessId, libUser32, "GetWindowThreadProcessId")
+	addr := LazyAddr(&pGetWindowThreadProcessId, libUser32, "GetWindowThreadProcessId")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpdwProcessId)))
 	return uint32(ret)
 }
 
 func IsGUIThread(bConvert BOOL) BOOL {
-	addr := lazyAddr(&pIsGUIThread, libUser32, "IsGUIThread")
+	addr := LazyAddr(&pIsGUIThread, libUser32, "IsGUIThread")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bConvert))
 	return BOOL(ret)
 }
 
 func GetLastActivePopup(hWnd HWND) HWND {
-	addr := lazyAddr(&pGetLastActivePopup, libUser32, "GetLastActivePopup")
+	addr := LazyAddr(&pGetLastActivePopup, libUser32, "GetLastActivePopup")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return ret
 }
 
 func GetWindow(hWnd HWND, uCmd GET_WINDOW_CMD) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindow, libUser32, "GetWindow")
+	addr := LazyAddr(&pGetWindow, libUser32, "GetWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(uCmd))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetWindowsHookA(nFilterType int32, pfnFilterProc HOOKPROC) HHOOK {
-	addr := lazyAddr(&pSetWindowsHookA, libUser32, "SetWindowsHookA")
+	addr := LazyAddr(&pSetWindowsHookA, libUser32, "SetWindowsHookA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nFilterType), pfnFilterProc)
 	return ret
 }
@@ -5710,19 +5710,19 @@ func SetWindowsHookA(nFilterType int32, pfnFilterProc HOOKPROC) HHOOK {
 var SetWindowsHook = SetWindowsHookW
 
 func SetWindowsHookW(nFilterType int32, pfnFilterProc HOOKPROC) HHOOK {
-	addr := lazyAddr(&pSetWindowsHookW, libUser32, "SetWindowsHookW")
+	addr := LazyAddr(&pSetWindowsHookW, libUser32, "SetWindowsHookW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nFilterType), pfnFilterProc)
 	return ret
 }
 
 func UnhookWindowsHook(nCode int32, pfnFilterProc HOOKPROC) BOOL {
-	addr := lazyAddr(&pUnhookWindowsHook, libUser32, "UnhookWindowsHook")
+	addr := LazyAddr(&pUnhookWindowsHook, libUser32, "UnhookWindowsHook")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nCode), pfnFilterProc)
 	return BOOL(ret)
 }
 
 func SetWindowsHookExA(idHook WINDOWS_HOOK_ID, lpfn HOOKPROC, hmod HINSTANCE, dwThreadId uint32) (HHOOK, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowsHookExA, libUser32, "SetWindowsHookExA")
+	addr := LazyAddr(&pSetWindowsHookExA, libUser32, "SetWindowsHookExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(idHook), lpfn, hmod, uintptr(dwThreadId))
 	return ret, WIN32_ERROR(err)
 }
@@ -5730,31 +5730,31 @@ func SetWindowsHookExA(idHook WINDOWS_HOOK_ID, lpfn HOOKPROC, hmod HINSTANCE, dw
 var SetWindowsHookEx = SetWindowsHookExW
 
 func SetWindowsHookExW(idHook WINDOWS_HOOK_ID, lpfn HOOKPROC, hmod HINSTANCE, dwThreadId uint32) (HHOOK, WIN32_ERROR) {
-	addr := lazyAddr(&pSetWindowsHookExW, libUser32, "SetWindowsHookExW")
+	addr := LazyAddr(&pSetWindowsHookExW, libUser32, "SetWindowsHookExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(idHook), lpfn, hmod, uintptr(dwThreadId))
 	return ret, WIN32_ERROR(err)
 }
 
 func UnhookWindowsHookEx(hhk HHOOK) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnhookWindowsHookEx, libUser32, "UnhookWindowsHookEx")
+	addr := LazyAddr(&pUnhookWindowsHookEx, libUser32, "UnhookWindowsHookEx")
 	ret, _, err := syscall.SyscallN(addr, hhk)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CallNextHookEx(hhk HHOOK, nCode int32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pCallNextHookEx, libUser32, "CallNextHookEx")
+	addr := LazyAddr(&pCallNextHookEx, libUser32, "CallNextHookEx")
 	ret, _, _ := syscall.SyscallN(addr, hhk, uintptr(nCode), wParam, lParam)
 	return ret
 }
 
 func CheckMenuRadioItem(hmenu HMENU, first uint32, last uint32, check uint32, flags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCheckMenuRadioItem, libUser32, "CheckMenuRadioItem")
+	addr := LazyAddr(&pCheckMenuRadioItem, libUser32, "CheckMenuRadioItem")
 	ret, _, err := syscall.SyscallN(addr, hmenu, uintptr(first), uintptr(last), uintptr(check), uintptr(flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LoadCursorA(hInstance HINSTANCE, lpCursorName PSTR) (HCURSOR, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadCursorA, libUser32, "LoadCursorA")
+	addr := LazyAddr(&pLoadCursorA, libUser32, "LoadCursorA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpCursorName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -5762,13 +5762,13 @@ func LoadCursorA(hInstance HINSTANCE, lpCursorName PSTR) (HCURSOR, WIN32_ERROR) 
 var LoadCursor = LoadCursorW
 
 func LoadCursorW(hInstance HINSTANCE, lpCursorName PWSTR) (HCURSOR, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadCursorW, libUser32, "LoadCursorW")
+	addr := LazyAddr(&pLoadCursorW, libUser32, "LoadCursorW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpCursorName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func LoadCursorFromFileA(lpFileName PSTR) (HCURSOR, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadCursorFromFileA, libUser32, "LoadCursorFromFileA")
+	addr := LazyAddr(&pLoadCursorFromFileA, libUser32, "LoadCursorFromFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -5776,31 +5776,31 @@ func LoadCursorFromFileA(lpFileName PSTR) (HCURSOR, WIN32_ERROR) {
 var LoadCursorFromFile = LoadCursorFromFileW
 
 func LoadCursorFromFileW(lpFileName PWSTR) (HCURSOR, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadCursorFromFileW, libUser32, "LoadCursorFromFileW")
+	addr := LazyAddr(&pLoadCursorFromFileW, libUser32, "LoadCursorFromFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateCursor(hInst HINSTANCE, xHotSpot int32, yHotSpot int32, nWidth int32, nHeight int32, pvANDPlane unsafe.Pointer, pvXORPlane unsafe.Pointer) (HCURSOR, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateCursor, libUser32, "CreateCursor")
+	addr := LazyAddr(&pCreateCursor, libUser32, "CreateCursor")
 	ret, _, err := syscall.SyscallN(addr, hInst, uintptr(xHotSpot), uintptr(yHotSpot), uintptr(nWidth), uintptr(nHeight), uintptr(pvANDPlane), uintptr(pvXORPlane))
 	return ret, WIN32_ERROR(err)
 }
 
 func DestroyCursor(hCursor HCURSOR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDestroyCursor, libUser32, "DestroyCursor")
+	addr := LazyAddr(&pDestroyCursor, libUser32, "DestroyCursor")
 	ret, _, err := syscall.SyscallN(addr, hCursor)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetSystemCursor(hcur HCURSOR, id SYSTEM_CURSOR_ID) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetSystemCursor, libUser32, "SetSystemCursor")
+	addr := LazyAddr(&pSetSystemCursor, libUser32, "SetSystemCursor")
 	ret, _, err := syscall.SyscallN(addr, hcur, uintptr(id))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LoadIconA(hInstance HINSTANCE, lpIconName PSTR) (HICON, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadIconA, libUser32, "LoadIconA")
+	addr := LazyAddr(&pLoadIconA, libUser32, "LoadIconA")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpIconName)))
 	return ret, WIN32_ERROR(err)
 }
@@ -5808,13 +5808,13 @@ func LoadIconA(hInstance HINSTANCE, lpIconName PSTR) (HICON, WIN32_ERROR) {
 var LoadIcon = LoadIconW
 
 func LoadIconW(hInstance HINSTANCE, lpIconName PWSTR) (HICON, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadIconW, libUser32, "LoadIconW")
+	addr := LazyAddr(&pLoadIconW, libUser32, "LoadIconW")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpIconName)))
 	return ret, WIN32_ERROR(err)
 }
 
 func PrivateExtractIconsA(szFileName PSTR, nIconIndex int32, cxIcon int32, cyIcon int32, phicon *HICON, piconid *uint32, nIcons uint32, flags uint32) uint32 {
-	addr := lazyAddr(&pPrivateExtractIconsA, libUser32, "PrivateExtractIconsA")
+	addr := LazyAddr(&pPrivateExtractIconsA, libUser32, "PrivateExtractIconsA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(szFileName)), uintptr(nIconIndex), uintptr(cxIcon), uintptr(cyIcon), uintptr(unsafe.Pointer(phicon)), uintptr(unsafe.Pointer(piconid)), uintptr(nIcons), uintptr(flags))
 	return uint32(ret)
 }
@@ -5822,49 +5822,49 @@ func PrivateExtractIconsA(szFileName PSTR, nIconIndex int32, cxIcon int32, cyIco
 var PrivateExtractIcons = PrivateExtractIconsW
 
 func PrivateExtractIconsW(szFileName PWSTR, nIconIndex int32, cxIcon int32, cyIcon int32, phicon *HICON, piconid *uint32, nIcons uint32, flags uint32) uint32 {
-	addr := lazyAddr(&pPrivateExtractIconsW, libUser32, "PrivateExtractIconsW")
+	addr := LazyAddr(&pPrivateExtractIconsW, libUser32, "PrivateExtractIconsW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(szFileName)), uintptr(nIconIndex), uintptr(cxIcon), uintptr(cyIcon), uintptr(unsafe.Pointer(phicon)), uintptr(unsafe.Pointer(piconid)), uintptr(nIcons), uintptr(flags))
 	return uint32(ret)
 }
 
 func CreateIcon(hInstance HINSTANCE, nWidth int32, nHeight int32, cPlanes byte, cBitsPixel byte, lpbANDbits *byte, lpbXORbits *byte) (HICON, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateIcon, libUser32, "CreateIcon")
+	addr := LazyAddr(&pCreateIcon, libUser32, "CreateIcon")
 	ret, _, err := syscall.SyscallN(addr, hInstance, uintptr(nWidth), uintptr(nHeight), uintptr(cPlanes), uintptr(cBitsPixel), uintptr(unsafe.Pointer(lpbANDbits)), uintptr(unsafe.Pointer(lpbXORbits)))
 	return ret, WIN32_ERROR(err)
 }
 
 func DestroyIcon(hIcon HICON) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDestroyIcon, libUser32, "DestroyIcon")
+	addr := LazyAddr(&pDestroyIcon, libUser32, "DestroyIcon")
 	ret, _, err := syscall.SyscallN(addr, hIcon)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LookupIconIdFromDirectory(presbits *byte, fIcon BOOL) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLookupIconIdFromDirectory, libUser32, "LookupIconIdFromDirectory")
+	addr := LazyAddr(&pLookupIconIdFromDirectory, libUser32, "LookupIconIdFromDirectory")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(presbits)), uintptr(fIcon))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func LookupIconIdFromDirectoryEx(presbits *byte, fIcon BOOL, cxDesired int32, cyDesired int32, Flags IMAGE_FLAGS) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLookupIconIdFromDirectoryEx, libUser32, "LookupIconIdFromDirectoryEx")
+	addr := LazyAddr(&pLookupIconIdFromDirectoryEx, libUser32, "LookupIconIdFromDirectoryEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(presbits)), uintptr(fIcon), uintptr(cxDesired), uintptr(cyDesired), uintptr(Flags))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func CreateIconFromResource(presbits *byte, dwResSize uint32, fIcon BOOL, dwVer uint32) (HICON, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateIconFromResource, libUser32, "CreateIconFromResource")
+	addr := LazyAddr(&pCreateIconFromResource, libUser32, "CreateIconFromResource")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(presbits)), uintptr(dwResSize), uintptr(fIcon), uintptr(dwVer))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateIconFromResourceEx(presbits *byte, dwResSize uint32, fIcon BOOL, dwVer uint32, cxDesired int32, cyDesired int32, Flags IMAGE_FLAGS) (HICON, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateIconFromResourceEx, libUser32, "CreateIconFromResourceEx")
+	addr := LazyAddr(&pCreateIconFromResourceEx, libUser32, "CreateIconFromResourceEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(presbits)), uintptr(dwResSize), uintptr(fIcon), uintptr(dwVer), uintptr(cxDesired), uintptr(cyDesired), uintptr(Flags))
 	return ret, WIN32_ERROR(err)
 }
 
 func LoadImageA(hInst HINSTANCE, name PSTR, type_ GDI_IMAGE_TYPE, cx int32, cy int32, fuLoad IMAGE_FLAGS) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadImageA, libUser32, "LoadImageA")
+	addr := LazyAddr(&pLoadImageA, libUser32, "LoadImageA")
 	ret, _, err := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(name)), uintptr(type_), uintptr(cx), uintptr(cy), uintptr(fuLoad))
 	return ret, WIN32_ERROR(err)
 }
@@ -5872,43 +5872,43 @@ func LoadImageA(hInst HINSTANCE, name PSTR, type_ GDI_IMAGE_TYPE, cx int32, cy i
 var LoadImage = LoadImageW
 
 func LoadImageW(hInst HINSTANCE, name PWSTR, type_ GDI_IMAGE_TYPE, cx int32, cy int32, fuLoad IMAGE_FLAGS) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadImageW, libUser32, "LoadImageW")
+	addr := LazyAddr(&pLoadImageW, libUser32, "LoadImageW")
 	ret, _, err := syscall.SyscallN(addr, hInst, uintptr(unsafe.Pointer(name)), uintptr(type_), uintptr(cx), uintptr(cy), uintptr(fuLoad))
 	return ret, WIN32_ERROR(err)
 }
 
 func CopyImage(h HANDLE, type_ GDI_IMAGE_TYPE, cx int32, cy int32, flags IMAGE_FLAGS) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyImage, libUser32, "CopyImage")
+	addr := LazyAddr(&pCopyImage, libUser32, "CopyImage")
 	ret, _, err := syscall.SyscallN(addr, h, uintptr(type_), uintptr(cx), uintptr(cy), uintptr(flags))
 	return ret, WIN32_ERROR(err)
 }
 
 func DrawIconEx(hdc HDC, xLeft int32, yTop int32, hIcon HICON, cxWidth int32, cyWidth int32, istepIfAniCur uint32, hbrFlickerFreeDraw HBRUSH, diFlags DI_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDrawIconEx, libUser32, "DrawIconEx")
+	addr := LazyAddr(&pDrawIconEx, libUser32, "DrawIconEx")
 	ret, _, err := syscall.SyscallN(addr, hdc, uintptr(xLeft), uintptr(yTop), hIcon, uintptr(cxWidth), uintptr(cyWidth), uintptr(istepIfAniCur), hbrFlickerFreeDraw, uintptr(diFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateIconIndirect(piconinfo *ICONINFO) (HICON, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateIconIndirect, libUser32, "CreateIconIndirect")
+	addr := LazyAddr(&pCreateIconIndirect, libUser32, "CreateIconIndirect")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(piconinfo)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CopyIcon(hIcon HICON) (HICON, WIN32_ERROR) {
-	addr := lazyAddr(&pCopyIcon, libUser32, "CopyIcon")
+	addr := LazyAddr(&pCopyIcon, libUser32, "CopyIcon")
 	ret, _, err := syscall.SyscallN(addr, hIcon)
 	return ret, WIN32_ERROR(err)
 }
 
 func GetIconInfo(hIcon HICON, piconinfo *ICONINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetIconInfo, libUser32, "GetIconInfo")
+	addr := LazyAddr(&pGetIconInfo, libUser32, "GetIconInfo")
 	ret, _, err := syscall.SyscallN(addr, hIcon, uintptr(unsafe.Pointer(piconinfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetIconInfoExA(hicon HICON, piconinfo *ICONINFOEXA) BOOL {
-	addr := lazyAddr(&pGetIconInfoExA, libUser32, "GetIconInfoExA")
+	addr := LazyAddr(&pGetIconInfoExA, libUser32, "GetIconInfoExA")
 	ret, _, _ := syscall.SyscallN(addr, hicon, uintptr(unsafe.Pointer(piconinfo)))
 	return BOOL(ret)
 }
@@ -5916,13 +5916,13 @@ func GetIconInfoExA(hicon HICON, piconinfo *ICONINFOEXA) BOOL {
 var GetIconInfoEx = GetIconInfoExW
 
 func GetIconInfoExW(hicon HICON, piconinfo *ICONINFOEXW) BOOL {
-	addr := lazyAddr(&pGetIconInfoExW, libUser32, "GetIconInfoExW")
+	addr := LazyAddr(&pGetIconInfoExW, libUser32, "GetIconInfoExW")
 	ret, _, _ := syscall.SyscallN(addr, hicon, uintptr(unsafe.Pointer(piconinfo)))
 	return BOOL(ret)
 }
 
 func IsDialogMessageA(hDlg HWND, lpMsg *MSG) BOOL {
-	addr := lazyAddr(&pIsDialogMessageA, libUser32, "IsDialogMessageA")
+	addr := LazyAddr(&pIsDialogMessageA, libUser32, "IsDialogMessageA")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(unsafe.Pointer(lpMsg)))
 	return BOOL(ret)
 }
@@ -5930,25 +5930,25 @@ func IsDialogMessageA(hDlg HWND, lpMsg *MSG) BOOL {
 var IsDialogMessage = IsDialogMessageW
 
 func IsDialogMessageW(hDlg HWND, lpMsg *MSG) BOOL {
-	addr := lazyAddr(&pIsDialogMessageW, libUser32, "IsDialogMessageW")
+	addr := LazyAddr(&pIsDialogMessageW, libUser32, "IsDialogMessageW")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(unsafe.Pointer(lpMsg)))
 	return BOOL(ret)
 }
 
 func MapDialogRect(hDlg HWND, lpRect *RECT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pMapDialogRect, libUser32, "MapDialogRect")
+	addr := LazyAddr(&pMapDialogRect, libUser32, "MapDialogRect")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(unsafe.Pointer(lpRect)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetScrollInfo(hwnd HWND, nBar SCROLLBAR_CONSTANTS, lpsi *SCROLLINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetScrollInfo, libUser32, "GetScrollInfo")
+	addr := LazyAddr(&pGetScrollInfo, libUser32, "GetScrollInfo")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(nBar), uintptr(unsafe.Pointer(lpsi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DefFrameProcA(hWnd HWND, hWndMDIClient HWND, uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefFrameProcA, libUser32, "DefFrameProcA")
+	addr := LazyAddr(&pDefFrameProcA, libUser32, "DefFrameProcA")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hWndMDIClient, uintptr(uMsg), wParam, lParam)
 	return ret
 }
@@ -5956,13 +5956,13 @@ func DefFrameProcA(hWnd HWND, hWndMDIClient HWND, uMsg uint32, wParam WPARAM, lP
 var DefFrameProc = DefFrameProcW
 
 func DefFrameProcW(hWnd HWND, hWndMDIClient HWND, uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefFrameProcW, libUser32, "DefFrameProcW")
+	addr := LazyAddr(&pDefFrameProcW, libUser32, "DefFrameProcW")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hWndMDIClient, uintptr(uMsg), wParam, lParam)
 	return ret
 }
 
 func DefMDIChildProcA(hWnd HWND, uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefMDIChildProcA, libUser32, "DefMDIChildProcA")
+	addr := LazyAddr(&pDefMDIChildProcA, libUser32, "DefMDIChildProcA")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(uMsg), wParam, lParam)
 	return ret
 }
@@ -5970,25 +5970,25 @@ func DefMDIChildProcA(hWnd HWND, uMsg uint32, wParam WPARAM, lParam LPARAM) LRES
 var DefMDIChildProc = DefMDIChildProcW
 
 func DefMDIChildProcW(hWnd HWND, uMsg uint32, wParam WPARAM, lParam LPARAM) LRESULT {
-	addr := lazyAddr(&pDefMDIChildProcW, libUser32, "DefMDIChildProcW")
+	addr := LazyAddr(&pDefMDIChildProcW, libUser32, "DefMDIChildProcW")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(uMsg), wParam, lParam)
 	return ret
 }
 
 func TranslateMDISysAccel(hWndClient HWND, lpMsg *MSG) BOOL {
-	addr := lazyAddr(&pTranslateMDISysAccel, libUser32, "TranslateMDISysAccel")
+	addr := LazyAddr(&pTranslateMDISysAccel, libUser32, "TranslateMDISysAccel")
 	ret, _, _ := syscall.SyscallN(addr, hWndClient, uintptr(unsafe.Pointer(lpMsg)))
 	return BOOL(ret)
 }
 
 func ArrangeIconicWindows(hWnd HWND) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pArrangeIconicWindows, libUser32, "ArrangeIconicWindows")
+	addr := LazyAddr(&pArrangeIconicWindows, libUser32, "ArrangeIconicWindows")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func CreateMDIWindowA(lpClassName PSTR, lpWindowName PSTR, dwStyle WINDOW_STYLE, X int32, Y int32, nWidth int32, nHeight int32, hWndParent HWND, hInstance HINSTANCE, lParam LPARAM) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMDIWindowA, libUser32, "CreateMDIWindowA")
+	addr := LazyAddr(&pCreateMDIWindowA, libUser32, "CreateMDIWindowA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWindowName)), uintptr(dwStyle), uintptr(X), uintptr(Y), uintptr(nWidth), uintptr(nHeight), hWndParent, hInstance, lParam)
 	return ret, WIN32_ERROR(err)
 }
@@ -5996,25 +5996,25 @@ func CreateMDIWindowA(lpClassName PSTR, lpWindowName PSTR, dwStyle WINDOW_STYLE,
 var CreateMDIWindow = CreateMDIWindowW
 
 func CreateMDIWindowW(lpClassName PWSTR, lpWindowName PWSTR, dwStyle WINDOW_STYLE, X int32, Y int32, nWidth int32, nHeight int32, hWndParent HWND, hInstance HINSTANCE, lParam LPARAM) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMDIWindowW, libUser32, "CreateMDIWindowW")
+	addr := LazyAddr(&pCreateMDIWindowW, libUser32, "CreateMDIWindowW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpClassName)), uintptr(unsafe.Pointer(lpWindowName)), uintptr(dwStyle), uintptr(X), uintptr(Y), uintptr(nWidth), uintptr(nHeight), hWndParent, hInstance, lParam)
 	return ret, WIN32_ERROR(err)
 }
 
 func TileWindows(hwndParent HWND, wHow TILE_WINDOWS_HOW, lpRect *RECT, cKids uint32, lpKids *HWND) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pTileWindows, libUser32, "TileWindows")
+	addr := LazyAddr(&pTileWindows, libUser32, "TileWindows")
 	ret, _, err := syscall.SyscallN(addr, hwndParent, uintptr(wHow), uintptr(unsafe.Pointer(lpRect)), uintptr(cKids), uintptr(unsafe.Pointer(lpKids)))
 	return uint16(ret), WIN32_ERROR(err)
 }
 
 func CascadeWindows(hwndParent HWND, wHow CASCADE_WINDOWS_HOW, lpRect *RECT, cKids uint32, lpKids *HWND) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pCascadeWindows, libUser32, "CascadeWindows")
+	addr := LazyAddr(&pCascadeWindows, libUser32, "CascadeWindows")
 	ret, _, err := syscall.SyscallN(addr, hwndParent, uintptr(wHow), uintptr(unsafe.Pointer(lpRect)), uintptr(cKids), uintptr(unsafe.Pointer(lpKids)))
 	return uint16(ret), WIN32_ERROR(err)
 }
 
 func SystemParametersInfoA(uiAction SYSTEM_PARAMETERS_INFO_ACTION, uiParam uint32, pvParam unsafe.Pointer, fWinIni SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSystemParametersInfoA, libUser32, "SystemParametersInfoA")
+	addr := LazyAddr(&pSystemParametersInfoA, libUser32, "SystemParametersInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(uiAction), uintptr(uiParam), uintptr(pvParam), uintptr(fWinIni))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6022,60 +6022,60 @@ func SystemParametersInfoA(uiAction SYSTEM_PARAMETERS_INFO_ACTION, uiParam uint3
 var SystemParametersInfo = SystemParametersInfoW
 
 func SystemParametersInfoW(uiAction SYSTEM_PARAMETERS_INFO_ACTION, uiParam uint32, pvParam unsafe.Pointer, fWinIni SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSystemParametersInfoW, libUser32, "SystemParametersInfoW")
+	addr := LazyAddr(&pSystemParametersInfoW, libUser32, "SystemParametersInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(uiAction), uintptr(uiParam), uintptr(pvParam), uintptr(fWinIni))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SoundSentry() BOOL {
-	addr := lazyAddr(&pSoundSentry, libUser32, "SoundSentry")
+	addr := LazyAddr(&pSoundSentry, libUser32, "SoundSentry")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func SetDebugErrorLevel(dwLevel uint32) {
-	addr := lazyAddr(&pSetDebugErrorLevel, libUser32, "SetDebugErrorLevel")
+	addr := LazyAddr(&pSetDebugErrorLevel, libUser32, "SetDebugErrorLevel")
 	syscall.SyscallN(addr, uintptr(dwLevel))
 }
 
 func InternalGetWindowText(hWnd HWND, pString PWSTR, cchMaxCount int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pInternalGetWindowText, libUser32, "InternalGetWindowText")
+	addr := LazyAddr(&pInternalGetWindowText, libUser32, "InternalGetWindowText")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(pString)), uintptr(cchMaxCount))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func CancelShutdown() BOOL {
-	addr := lazyAddr(&pCancelShutdown, libUser32, "CancelShutdown")
+	addr := LazyAddr(&pCancelShutdown, libUser32, "CancelShutdown")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func GetGUIThreadInfo(idThread uint32, pgui *GUITHREADINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetGUIThreadInfo, libUser32, "GetGUIThreadInfo")
+	addr := LazyAddr(&pGetGUIThreadInfo, libUser32, "GetGUIThreadInfo")
 	ret, _, err := syscall.SyscallN(addr, uintptr(idThread), uintptr(unsafe.Pointer(pgui)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessDPIAware() BOOL {
-	addr := lazyAddr(&pSetProcessDPIAware, libUser32, "SetProcessDPIAware")
+	addr := LazyAddr(&pSetProcessDPIAware, libUser32, "SetProcessDPIAware")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func IsProcessDPIAware() BOOL {
-	addr := lazyAddr(&pIsProcessDPIAware, libUser32, "IsProcessDPIAware")
+	addr := LazyAddr(&pIsProcessDPIAware, libUser32, "IsProcessDPIAware")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func InheritWindowMonitor(hwnd HWND, hwndInherit HWND) BOOL {
-	addr := lazyAddr(&pInheritWindowMonitor, libUser32, "InheritWindowMonitor")
+	addr := LazyAddr(&pInheritWindowMonitor, libUser32, "InheritWindowMonitor")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, hwndInherit)
 	return BOOL(ret)
 }
 
 func GetWindowModuleFileNameA(hwnd HWND, pszFileName PSTR, cchFileNameMax uint32) uint32 {
-	addr := lazyAddr(&pGetWindowModuleFileNameA, libUser32, "GetWindowModuleFileNameA")
+	addr := LazyAddr(&pGetWindowModuleFileNameA, libUser32, "GetWindowModuleFileNameA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszFileName)), uintptr(cchFileNameMax))
 	return uint32(ret)
 }
@@ -6083,55 +6083,55 @@ func GetWindowModuleFileNameA(hwnd HWND, pszFileName PSTR, cchFileNameMax uint32
 var GetWindowModuleFileName = GetWindowModuleFileNameW
 
 func GetWindowModuleFileNameW(hwnd HWND, pszFileName PWSTR, cchFileNameMax uint32) uint32 {
-	addr := lazyAddr(&pGetWindowModuleFileNameW, libUser32, "GetWindowModuleFileNameW")
+	addr := LazyAddr(&pGetWindowModuleFileNameW, libUser32, "GetWindowModuleFileNameW")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszFileName)), uintptr(cchFileNameMax))
 	return uint32(ret)
 }
 
 func GetCursorInfo(pci *CURSORINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCursorInfo, libUser32, "GetCursorInfo")
+	addr := LazyAddr(&pGetCursorInfo, libUser32, "GetCursorInfo")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetWindowInfo(hwnd HWND, pwi *WINDOWINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetWindowInfo, libUser32, "GetWindowInfo")
+	addr := LazyAddr(&pGetWindowInfo, libUser32, "GetWindowInfo")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pwi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetTitleBarInfo(hwnd HWND, pti *TITLEBARINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTitleBarInfo, libUser32, "GetTitleBarInfo")
+	addr := LazyAddr(&pGetTitleBarInfo, libUser32, "GetTitleBarInfo")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pti)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetMenuBarInfo(hwnd HWND, idObject OBJECT_IDENTIFIER, idItem int32, pmbi *MENUBARINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMenuBarInfo, libUser32, "GetMenuBarInfo")
+	addr := LazyAddr(&pGetMenuBarInfo, libUser32, "GetMenuBarInfo")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(idObject), uintptr(idItem), uintptr(unsafe.Pointer(pmbi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetScrollBarInfo(hwnd HWND, idObject OBJECT_IDENTIFIER, psbi *SCROLLBARINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetScrollBarInfo, libUser32, "GetScrollBarInfo")
+	addr := LazyAddr(&pGetScrollBarInfo, libUser32, "GetScrollBarInfo")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(idObject), uintptr(unsafe.Pointer(psbi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetAncestor(hwnd HWND, gaFlags GET_ANCESTOR_FLAGS) HWND {
-	addr := lazyAddr(&pGetAncestor, libUser32, "GetAncestor")
+	addr := LazyAddr(&pGetAncestor, libUser32, "GetAncestor")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(gaFlags))
 	return ret
 }
 
 func RealChildWindowFromPoint(hwndParent HWND, ptParentClientCoords POINT) HWND {
-	addr := lazyAddr(&pRealChildWindowFromPoint, libUser32, "RealChildWindowFromPoint")
+	addr := LazyAddr(&pRealChildWindowFromPoint, libUser32, "RealChildWindowFromPoint")
 	ret, _, _ := syscall.SyscallN(addr, hwndParent, *(*uintptr)(unsafe.Pointer(&ptParentClientCoords)))
 	return ret
 }
 
 func RealGetWindowClassA(hwnd HWND, ptszClassName PSTR, cchClassNameMax uint32) uint32 {
-	addr := lazyAddr(&pRealGetWindowClassA, libUser32, "RealGetWindowClassA")
+	addr := LazyAddr(&pRealGetWindowClassA, libUser32, "RealGetWindowClassA")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(ptszClassName)), uintptr(cchClassNameMax))
 	return uint32(ret)
 }
@@ -6139,13 +6139,13 @@ func RealGetWindowClassA(hwnd HWND, ptszClassName PSTR, cchClassNameMax uint32) 
 var RealGetWindowClass = RealGetWindowClassW
 
 func RealGetWindowClassW(hwnd HWND, ptszClassName PWSTR, cchClassNameMax uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pRealGetWindowClassW, libUser32, "RealGetWindowClassW")
+	addr := LazyAddr(&pRealGetWindowClassW, libUser32, "RealGetWindowClassW")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(ptszClassName)), uintptr(cchClassNameMax))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetAltTabInfoA(hwnd HWND, iItem int32, pati *ALTTABINFO, pszItemText PSTR, cchItemText uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetAltTabInfoA, libUser32, "GetAltTabInfoA")
+	addr := LazyAddr(&pGetAltTabInfoA, libUser32, "GetAltTabInfoA")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(iItem), uintptr(unsafe.Pointer(pati)), uintptr(unsafe.Pointer(pszItemText)), uintptr(cchItemText))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6153,19 +6153,19 @@ func GetAltTabInfoA(hwnd HWND, iItem int32, pati *ALTTABINFO, pszItemText PSTR, 
 var GetAltTabInfo = GetAltTabInfoW
 
 func GetAltTabInfoW(hwnd HWND, iItem int32, pati *ALTTABINFO, pszItemText PWSTR, cchItemText uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetAltTabInfoW, libUser32, "GetAltTabInfoW")
+	addr := LazyAddr(&pGetAltTabInfoW, libUser32, "GetAltTabInfoW")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(iItem), uintptr(unsafe.Pointer(pati)), uintptr(unsafe.Pointer(pszItemText)), uintptr(cchItemText))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ChangeWindowMessageFilter(message uint32, dwFlag CHANGE_WINDOW_MESSAGE_FILTER_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pChangeWindowMessageFilter, libUser32, "ChangeWindowMessageFilter")
+	addr := LazyAddr(&pChangeWindowMessageFilter, libUser32, "ChangeWindowMessageFilter")
 	ret, _, err := syscall.SyscallN(addr, uintptr(message), uintptr(dwFlag))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ChangeWindowMessageFilterEx(hwnd HWND, message uint32, action WINDOW_MESSAGE_FILTER_ACTION, pChangeFilterStruct *CHANGEFILTERSTRUCT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pChangeWindowMessageFilterEx, libUser32, "ChangeWindowMessageFilterEx")
+	addr := LazyAddr(&pChangeWindowMessageFilterEx, libUser32, "ChangeWindowMessageFilterEx")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(message), uintptr(action), uintptr(unsafe.Pointer(pChangeFilterStruct)))
 	return BOOL(ret), WIN32_ERROR(err)
 }

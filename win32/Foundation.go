@@ -10096,101 +10096,101 @@ var (
 )
 
 func SysAllocString(psz PWSTR) BSTR {
-	addr := lazyAddr(&pSysAllocString, libOleaut32, "SysAllocString")
+	addr := LazyAddr(&pSysAllocString, libOleaut32, "SysAllocString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)))
 	return (BSTR)(unsafe.Pointer(ret))
 }
 
 func SysReAllocString(pbstr *BSTR, psz PWSTR) int32 {
-	addr := lazyAddr(&pSysReAllocString, libOleaut32, "SysReAllocString")
+	addr := LazyAddr(&pSysReAllocString, libOleaut32, "SysReAllocString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbstr)), uintptr(unsafe.Pointer(psz)))
 	return int32(ret)
 }
 
 func SysAllocStringLen(strIn PWSTR, ui uint32) BSTR {
-	addr := lazyAddr(&pSysAllocStringLen, libOleaut32, "SysAllocStringLen")
+	addr := LazyAddr(&pSysAllocStringLen, libOleaut32, "SysAllocStringLen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(ui))
 	return (BSTR)(unsafe.Pointer(ret))
 }
 
 func SysReAllocStringLen(pbstr *BSTR, psz PWSTR, len uint32) int32 {
-	addr := lazyAddr(&pSysReAllocStringLen, libOleaut32, "SysReAllocStringLen")
+	addr := LazyAddr(&pSysReAllocStringLen, libOleaut32, "SysReAllocStringLen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbstr)), uintptr(unsafe.Pointer(psz)), uintptr(len))
 	return int32(ret)
 }
 
 func SysAddRefString(bstrString BSTR) HRESULT {
-	addr := lazyAddr(&pSysAddRefString, libOleaut32, "SysAddRefString")
+	addr := LazyAddr(&pSysAddRefString, libOleaut32, "SysAddRefString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrString)))
 	return HRESULT(ret)
 }
 
 func SysReleaseString(bstrString BSTR) {
-	addr := lazyAddr(&pSysReleaseString, libOleaut32, "SysReleaseString")
+	addr := LazyAddr(&pSysReleaseString, libOleaut32, "SysReleaseString")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrString)))
 }
 
 func SysFreeString(bstrString BSTR) {
-	addr := lazyAddr(&pSysFreeString, libOleaut32, "SysFreeString")
+	addr := LazyAddr(&pSysFreeString, libOleaut32, "SysFreeString")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrString)))
 }
 
 func SysStringLen(pbstr BSTR) uint32 {
-	addr := lazyAddr(&pSysStringLen, libOleaut32, "SysStringLen")
+	addr := LazyAddr(&pSysStringLen, libOleaut32, "SysStringLen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbstr)))
 	return uint32(ret)
 }
 
 func SysStringByteLen(bstr BSTR) uint32 {
-	addr := lazyAddr(&pSysStringByteLen, libOleaut32, "SysStringByteLen")
+	addr := LazyAddr(&pSysStringByteLen, libOleaut32, "SysStringByteLen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstr)))
 	return uint32(ret)
 }
 
 func SysAllocStringByteLen(psz PSTR, len uint32) BSTR {
-	addr := lazyAddr(&pSysAllocStringByteLen, libOleaut32, "SysAllocStringByteLen")
+	addr := LazyAddr(&pSysAllocStringByteLen, libOleaut32, "SysAllocStringByteLen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psz)), uintptr(len))
 	return (BSTR)(unsafe.Pointer(ret))
 }
 
 func CloseHandle(hObject HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCloseHandle, libKernel32, "CloseHandle")
+	addr := LazyAddr(&pCloseHandle, libKernel32, "CloseHandle")
 	ret, _, err := syscall.SyscallN(addr, hObject)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DuplicateHandle(hSourceProcessHandle HANDLE, hSourceHandle HANDLE, hTargetProcessHandle HANDLE, lpTargetHandle *HANDLE, dwDesiredAccess uint32, bInheritHandle BOOL, dwOptions DUPLICATE_HANDLE_OPTIONS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDuplicateHandle, libKernel32, "DuplicateHandle")
+	addr := LazyAddr(&pDuplicateHandle, libKernel32, "DuplicateHandle")
 	ret, _, err := syscall.SyscallN(addr, hSourceProcessHandle, hSourceHandle, hTargetProcessHandle, uintptr(unsafe.Pointer(lpTargetHandle)), uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(dwOptions))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetHandleInformation(hObject HANDLE, lpdwFlags *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetHandleInformation, libKernel32, "GetHandleInformation")
+	addr := LazyAddr(&pGetHandleInformation, libKernel32, "GetHandleInformation")
 	ret, _, err := syscall.SyscallN(addr, hObject, uintptr(unsafe.Pointer(lpdwFlags)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetHandleInformation(hObject HANDLE, dwMask uint32, dwFlags HANDLE_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetHandleInformation, libKernel32, "SetHandleInformation")
+	addr := LazyAddr(&pSetHandleInformation, libKernel32, "SetHandleInformation")
 	ret, _, err := syscall.SyscallN(addr, hObject, uintptr(dwMask), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetLastError() WIN32_ERROR {
-	addr := lazyAddr(&pGetLastError, libKernel32, "GetLastError")
+	addr := LazyAddr(&pGetLastError, libKernel32, "GetLastError")
 	ret, _, _ := syscall.SyscallN(addr)
 	return WIN32_ERROR(ret)
 }
 
 func SetLastError(dwErrCode WIN32_ERROR) WIN32_ERROR {
-	addr := lazyAddr(&pSetLastError, libKernel32, "SetLastError")
+	addr := LazyAddr(&pSetLastError, libKernel32, "SetLastError")
 	_, _, err := syscall.SyscallN(addr, uintptr(dwErrCode))
 	return WIN32_ERROR(err)
 }
 
 func SetLastErrorEx(dwErrCode WIN32_ERROR, dwType uint32) WIN32_ERROR {
-	addr := lazyAddr(&pSetLastErrorEx, libUser32, "SetLastErrorEx")
+	addr := LazyAddr(&pSetLastErrorEx, libUser32, "SetLastErrorEx")
 	_, _, err := syscall.SyscallN(addr, uintptr(dwErrCode), uintptr(dwType))
 	return WIN32_ERROR(err)
 }

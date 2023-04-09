@@ -856,7 +856,7 @@ var (
 )
 
 func GetOpenFileNameA(param0 *OPENFILENAMEA) BOOL {
-	addr := lazyAddr(&pGetOpenFileNameA, libComdlg32, "GetOpenFileNameA")
+	addr := LazyAddr(&pGetOpenFileNameA, libComdlg32, "GetOpenFileNameA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
@@ -864,13 +864,13 @@ func GetOpenFileNameA(param0 *OPENFILENAMEA) BOOL {
 var GetOpenFileName = GetOpenFileNameW
 
 func GetOpenFileNameW(param0 *OPENFILENAMEW) BOOL {
-	addr := lazyAddr(&pGetOpenFileNameW, libComdlg32, "GetOpenFileNameW")
+	addr := LazyAddr(&pGetOpenFileNameW, libComdlg32, "GetOpenFileNameW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
 
 func GetSaveFileNameA(param0 *OPENFILENAMEA) BOOL {
-	addr := lazyAddr(&pGetSaveFileNameA, libComdlg32, "GetSaveFileNameA")
+	addr := LazyAddr(&pGetSaveFileNameA, libComdlg32, "GetSaveFileNameA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
@@ -878,13 +878,13 @@ func GetSaveFileNameA(param0 *OPENFILENAMEA) BOOL {
 var GetSaveFileName = GetSaveFileNameW
 
 func GetSaveFileNameW(param0 *OPENFILENAMEW) BOOL {
-	addr := lazyAddr(&pGetSaveFileNameW, libComdlg32, "GetSaveFileNameW")
+	addr := LazyAddr(&pGetSaveFileNameW, libComdlg32, "GetSaveFileNameW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
 
 func GetFileTitleA(param0 PSTR, Buf PSTR, cchSize uint16) int16 {
-	addr := lazyAddr(&pGetFileTitleA, libComdlg32, "GetFileTitleA")
+	addr := LazyAddr(&pGetFileTitleA, libComdlg32, "GetFileTitleA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(Buf)), uintptr(cchSize))
 	return int16(ret)
 }
@@ -892,13 +892,13 @@ func GetFileTitleA(param0 PSTR, Buf PSTR, cchSize uint16) int16 {
 var GetFileTitle = GetFileTitleW
 
 func GetFileTitleW(param0 PWSTR, Buf PWSTR, cchSize uint16) int16 {
-	addr := lazyAddr(&pGetFileTitleW, libComdlg32, "GetFileTitleW")
+	addr := LazyAddr(&pGetFileTitleW, libComdlg32, "GetFileTitleW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(Buf)), uintptr(cchSize))
 	return int16(ret)
 }
 
 func ChooseColorA(param0 *CHOOSECOLORA) BOOL {
-	addr := lazyAddr(&pChooseColorA, libComdlg32, "ChooseColorA")
+	addr := LazyAddr(&pChooseColorA, libComdlg32, "ChooseColorA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
@@ -906,13 +906,13 @@ func ChooseColorA(param0 *CHOOSECOLORA) BOOL {
 var ChooseColor = ChooseColorW
 
 func ChooseColorW(param0 *CHOOSECOLORW) BOOL {
-	addr := lazyAddr(&pChooseColorW, libComdlg32, "ChooseColorW")
+	addr := LazyAddr(&pChooseColorW, libComdlg32, "ChooseColorW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
 
 func FindTextA(param0 *FINDREPLACEA) HWND {
-	addr := lazyAddr(&pFindTextA, libComdlg32, "FindTextA")
+	addr := LazyAddr(&pFindTextA, libComdlg32, "FindTextA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret
 }
@@ -920,13 +920,13 @@ func FindTextA(param0 *FINDREPLACEA) HWND {
 var FindText = FindTextW
 
 func FindTextW(param0 *FINDREPLACEW) HWND {
-	addr := lazyAddr(&pFindTextW, libComdlg32, "FindTextW")
+	addr := LazyAddr(&pFindTextW, libComdlg32, "FindTextW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret
 }
 
 func ReplaceTextA(param0 *FINDREPLACEA) HWND {
-	addr := lazyAddr(&pReplaceTextA, libComdlg32, "ReplaceTextA")
+	addr := LazyAddr(&pReplaceTextA, libComdlg32, "ReplaceTextA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret
 }
@@ -934,13 +934,13 @@ func ReplaceTextA(param0 *FINDREPLACEA) HWND {
 var ReplaceText = ReplaceTextW
 
 func ReplaceTextW(param0 *FINDREPLACEW) HWND {
-	addr := lazyAddr(&pReplaceTextW, libComdlg32, "ReplaceTextW")
+	addr := LazyAddr(&pReplaceTextW, libComdlg32, "ReplaceTextW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret
 }
 
 func ChooseFontA(param0 *CHOOSEFONTA) BOOL {
-	addr := lazyAddr(&pChooseFontA, libComdlg32, "ChooseFontA")
+	addr := LazyAddr(&pChooseFontA, libComdlg32, "ChooseFontA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
@@ -948,13 +948,13 @@ func ChooseFontA(param0 *CHOOSEFONTA) BOOL {
 var ChooseFont = ChooseFontW
 
 func ChooseFontW(param0 *CHOOSEFONTW) BOOL {
-	addr := lazyAddr(&pChooseFontW, libComdlg32, "ChooseFontW")
+	addr := LazyAddr(&pChooseFontW, libComdlg32, "ChooseFontW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
 
 func PrintDlgA(pPD *PRINTDLGA) BOOL {
-	addr := lazyAddr(&pPrintDlgA, libComdlg32, "PrintDlgA")
+	addr := LazyAddr(&pPrintDlgA, libComdlg32, "PrintDlgA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pPD)))
 	return BOOL(ret)
 }
@@ -962,13 +962,13 @@ func PrintDlgA(pPD *PRINTDLGA) BOOL {
 var PrintDlg = PrintDlgW
 
 func PrintDlgW(pPD *PRINTDLGW) BOOL {
-	addr := lazyAddr(&pPrintDlgW, libComdlg32, "PrintDlgW")
+	addr := LazyAddr(&pPrintDlgW, libComdlg32, "PrintDlgW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pPD)))
 	return BOOL(ret)
 }
 
 func PrintDlgExA(pPD *PRINTDLGEXA) HRESULT {
-	addr := lazyAddr(&pPrintDlgExA, libComdlg32, "PrintDlgExA")
+	addr := LazyAddr(&pPrintDlgExA, libComdlg32, "PrintDlgExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pPD)))
 	return HRESULT(ret)
 }
@@ -976,19 +976,19 @@ func PrintDlgExA(pPD *PRINTDLGEXA) HRESULT {
 var PrintDlgEx = PrintDlgExW
 
 func PrintDlgExW(pPD *PRINTDLGEXW) HRESULT {
-	addr := lazyAddr(&pPrintDlgExW, libComdlg32, "PrintDlgExW")
+	addr := LazyAddr(&pPrintDlgExW, libComdlg32, "PrintDlgExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pPD)))
 	return HRESULT(ret)
 }
 
 func CommDlgExtendedError() COMMON_DLG_ERRORS {
-	addr := lazyAddr(&pCommDlgExtendedError, libComdlg32, "CommDlgExtendedError")
+	addr := LazyAddr(&pCommDlgExtendedError, libComdlg32, "CommDlgExtendedError")
 	ret, _, _ := syscall.SyscallN(addr)
 	return COMMON_DLG_ERRORS(ret)
 }
 
 func PageSetupDlgA(param0 *PAGESETUPDLGA) BOOL {
-	addr := lazyAddr(&pPageSetupDlgA, libComdlg32, "PageSetupDlgA")
+	addr := LazyAddr(&pPageSetupDlgA, libComdlg32, "PageSetupDlgA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
@@ -996,7 +996,7 @@ func PageSetupDlgA(param0 *PAGESETUPDLGA) BOOL {
 var PageSetupDlg = PageSetupDlgW
 
 func PageSetupDlgW(param0 *PAGESETUPDLGW) BOOL {
-	addr := lazyAddr(&pPageSetupDlgW, libComdlg32, "PageSetupDlgW")
+	addr := LazyAddr(&pPageSetupDlgW, libComdlg32, "PageSetupDlgW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }

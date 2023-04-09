@@ -379,7 +379,7 @@ func init() {
 	imageList_AddIcon = libComctl32.NewProc("ImageList_AddIcon")
 
 	//
-	lazyAddr(&pTlsGetValue, libKernel32, "TlsGetValue")
+	LazyAddr(&pTlsGetValue, libKernel32, "TlsGetValue")
 }
 
 func CopyMemory(Destination unsafe.Pointer, Source unsafe.Pointer, Length uint32) WIN32_ERROR {

@@ -6686,25 +6686,25 @@ var (
 )
 
 func GetTextCharset(hdc HDC) int32 {
-	addr := lazyAddr(&pGetTextCharset, libGdi32, "GetTextCharset")
+	addr := LazyAddr(&pGetTextCharset, libGdi32, "GetTextCharset")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return int32(ret)
 }
 
 func GetTextCharsetInfo(hdc HDC, lpSig *FONTSIGNATURE, dwFlags uint32) int32 {
-	addr := lazyAddr(&pGetTextCharsetInfo, libGdi32, "GetTextCharsetInfo")
+	addr := LazyAddr(&pGetTextCharsetInfo, libGdi32, "GetTextCharsetInfo")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpSig)), uintptr(dwFlags))
 	return int32(ret)
 }
 
 func TranslateCharsetInfo(lpSrc *uint32, lpCs *CHARSETINFO, dwFlags TRANSLATE_CHARSET_INFO_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTranslateCharsetInfo, libGdi32, "TranslateCharsetInfo")
+	addr := LazyAddr(&pTranslateCharsetInfo, libGdi32, "TranslateCharsetInfo")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSrc)), uintptr(unsafe.Pointer(lpCs)), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDateFormatA(Locale uint32, dwFlags uint32, lpDate *SYSTEMTIME, lpFormat PSTR, lpDateStr PSTR, cchDate int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDateFormatA, libKernel32, "GetDateFormatA")
+	addr := LazyAddr(&pGetDateFormatA, libKernel32, "GetDateFormatA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpDate)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpDateStr)), uintptr(cchDate))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6712,13 +6712,13 @@ func GetDateFormatA(Locale uint32, dwFlags uint32, lpDate *SYSTEMTIME, lpFormat 
 var GetDateFormat = GetDateFormatW
 
 func GetDateFormatW(Locale uint32, dwFlags uint32, lpDate *SYSTEMTIME, lpFormat PWSTR, lpDateStr PWSTR, cchDate int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDateFormatW, libKernel32, "GetDateFormatW")
+	addr := LazyAddr(&pGetDateFormatW, libKernel32, "GetDateFormatW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpDate)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpDateStr)), uintptr(cchDate))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetTimeFormatA(Locale uint32, dwFlags uint32, lpTime *SYSTEMTIME, lpFormat PSTR, lpTimeStr PSTR, cchTime int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTimeFormatA, libKernel32, "GetTimeFormatA")
+	addr := LazyAddr(&pGetTimeFormatA, libKernel32, "GetTimeFormatA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpTime)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpTimeStr)), uintptr(cchTime))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6726,37 +6726,37 @@ func GetTimeFormatA(Locale uint32, dwFlags uint32, lpTime *SYSTEMTIME, lpFormat 
 var GetTimeFormat = GetTimeFormatW
 
 func GetTimeFormatW(Locale uint32, dwFlags uint32, lpTime *SYSTEMTIME, lpFormat PWSTR, lpTimeStr PWSTR, cchTime int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTimeFormatW, libKernel32, "GetTimeFormatW")
+	addr := LazyAddr(&pGetTimeFormatW, libKernel32, "GetTimeFormatW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpTime)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpTimeStr)), uintptr(cchTime))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetTimeFormatEx(lpLocaleName PWSTR, dwFlags TIME_FORMAT_FLAGS, lpTime *SYSTEMTIME, lpFormat PWSTR, lpTimeStr PWSTR, cchTime int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTimeFormatEx, libKernel32, "GetTimeFormatEx")
+	addr := LazyAddr(&pGetTimeFormatEx, libKernel32, "GetTimeFormatEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFlags), uintptr(unsafe.Pointer(lpTime)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpTimeStr)), uintptr(cchTime))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetDateFormatEx(lpLocaleName PWSTR, dwFlags ENUM_DATE_FORMATS_FLAGS, lpDate *SYSTEMTIME, lpFormat PWSTR, lpDateStr PWSTR, cchDate int32, lpCalendar PWSTR) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDateFormatEx, libKernel32, "GetDateFormatEx")
+	addr := LazyAddr(&pGetDateFormatEx, libKernel32, "GetDateFormatEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFlags), uintptr(unsafe.Pointer(lpDate)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpDateStr)), uintptr(cchDate), uintptr(unsafe.Pointer(lpCalendar)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetDurationFormatEx(lpLocaleName PWSTR, dwFlags uint32, lpDuration *SYSTEMTIME, ullDuration uint64, lpFormat PWSTR, lpDurationStr PWSTR, cchDuration int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDurationFormatEx, libKernel32, "GetDurationFormatEx")
+	addr := LazyAddr(&pGetDurationFormatEx, libKernel32, "GetDurationFormatEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFlags), uintptr(unsafe.Pointer(lpDuration)), uintptr(ullDuration), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpDurationStr)), uintptr(cchDuration))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func CompareStringEx(lpLocaleName PWSTR, dwCmpFlags COMPARE_STRING_FLAGS, lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32, lpVersionInformation *NLSVERSIONINFO, lpReserved unsafe.Pointer, lParam LPARAM) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pCompareStringEx, libKernel32, "CompareStringEx")
+	addr := LazyAddr(&pCompareStringEx, libKernel32, "CompareStringEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwCmpFlags), uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2), uintptr(unsafe.Pointer(lpVersionInformation)), uintptr(lpReserved), lParam)
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func CompareStringOrdinal(lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32, bIgnoreCase BOOL) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pCompareStringOrdinal, libKernel32, "CompareStringOrdinal")
+	addr := LazyAddr(&pCompareStringOrdinal, libKernel32, "CompareStringOrdinal")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2), uintptr(bIgnoreCase))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6764,7 +6764,7 @@ func CompareStringOrdinal(lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cch
 var CompareString = CompareStringW
 
 func CompareStringW(Locale uint32, dwCmpFlags uint32, lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32) int32 {
-	addr := lazyAddr(&pCompareStringW, libKernel32, "CompareStringW")
+	addr := LazyAddr(&pCompareStringW, libKernel32, "CompareStringW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwCmpFlags), uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2))
 	return int32(ret)
 }
@@ -6772,7 +6772,7 @@ func CompareStringW(Locale uint32, dwCmpFlags uint32, lpString1 PWSTR, cchCount1
 var FoldString = FoldStringW
 
 func FoldStringW(dwMapFlags FOLD_STRING_MAP_FLAGS, lpSrcStr PWSTR, cchSrc int32, lpDestStr PWSTR, cchDest int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pFoldStringW, libKernel32, "FoldStringW")
+	addr := LazyAddr(&pFoldStringW, libKernel32, "FoldStringW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwMapFlags), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpDestStr)), uintptr(cchDest))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6780,7 +6780,7 @@ func FoldStringW(dwMapFlags FOLD_STRING_MAP_FLAGS, lpSrcStr PWSTR, cchSrc int32,
 var GetStringTypeEx = GetStringTypeExW
 
 func GetStringTypeExW(Locale uint32, dwInfoType uint32, lpSrcStr PWSTR, cchSrc int32, lpCharType *uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetStringTypeExW, libKernel32, "GetStringTypeExW")
+	addr := LazyAddr(&pGetStringTypeExW, libKernel32, "GetStringTypeExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwInfoType), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpCharType)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6788,49 +6788,49 @@ func GetStringTypeExW(Locale uint32, dwInfoType uint32, lpSrcStr PWSTR, cchSrc i
 var GetStringType = GetStringTypeW
 
 func GetStringTypeW(dwInfoType uint32, lpSrcStr PWSTR, cchSrc int32, lpCharType *uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetStringTypeW, libKernel32, "GetStringTypeW")
+	addr := LazyAddr(&pGetStringTypeW, libKernel32, "GetStringTypeW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwInfoType), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpCharType)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func MultiByteToWideChar(CodePage uint32, dwFlags MULTI_BYTE_TO_WIDE_CHAR_FLAGS, lpMultiByteStr PSTR, cbMultiByte int32, lpWideCharStr PWSTR, cchWideChar int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pMultiByteToWideChar, libKernel32, "MultiByteToWideChar")
+	addr := LazyAddr(&pMultiByteToWideChar, libKernel32, "MultiByteToWideChar")
 	ret, _, err := syscall.SyscallN(addr, uintptr(CodePage), uintptr(dwFlags), uintptr(unsafe.Pointer(lpMultiByteStr)), uintptr(cbMultiByte), uintptr(unsafe.Pointer(lpWideCharStr)), uintptr(cchWideChar))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func WideCharToMultiByte(CodePage uint32, dwFlags uint32, lpWideCharStr PWSTR, cchWideChar int32, lpMultiByteStr PSTR, cbMultiByte int32, lpDefaultChar PSTR, lpUsedDefaultChar *int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pWideCharToMultiByte, libKernel32, "WideCharToMultiByte")
+	addr := LazyAddr(&pWideCharToMultiByte, libKernel32, "WideCharToMultiByte")
 	ret, _, err := syscall.SyscallN(addr, uintptr(CodePage), uintptr(dwFlags), uintptr(unsafe.Pointer(lpWideCharStr)), uintptr(cchWideChar), uintptr(unsafe.Pointer(lpMultiByteStr)), uintptr(cbMultiByte), uintptr(unsafe.Pointer(lpDefaultChar)), uintptr(unsafe.Pointer(lpUsedDefaultChar)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func IsValidCodePage(CodePage uint32) BOOL {
-	addr := lazyAddr(&pIsValidCodePage, libKernel32, "IsValidCodePage")
+	addr := LazyAddr(&pIsValidCodePage, libKernel32, "IsValidCodePage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(CodePage))
 	return BOOL(ret)
 }
 
 func GetACP() uint32 {
-	addr := lazyAddr(&pGetACP, libKernel32, "GetACP")
+	addr := LazyAddr(&pGetACP, libKernel32, "GetACP")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func GetOEMCP() uint32 {
-	addr := lazyAddr(&pGetOEMCP, libKernel32, "GetOEMCP")
+	addr := LazyAddr(&pGetOEMCP, libKernel32, "GetOEMCP")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func GetCPInfo(CodePage uint32, lpCPInfo *CPINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCPInfo, libKernel32, "GetCPInfo")
+	addr := LazyAddr(&pGetCPInfo, libKernel32, "GetCPInfo")
 	ret, _, err := syscall.SyscallN(addr, uintptr(CodePage), uintptr(unsafe.Pointer(lpCPInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCPInfoExA(CodePage uint32, dwFlags uint32, lpCPInfoEx *CPINFOEXA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCPInfoExA, libKernel32, "GetCPInfoExA")
+	addr := LazyAddr(&pGetCPInfoExA, libKernel32, "GetCPInfoExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(CodePage), uintptr(dwFlags), uintptr(unsafe.Pointer(lpCPInfoEx)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6838,19 +6838,19 @@ func GetCPInfoExA(CodePage uint32, dwFlags uint32, lpCPInfoEx *CPINFOEXA) (BOOL,
 var GetCPInfoEx = GetCPInfoExW
 
 func GetCPInfoExW(CodePage uint32, dwFlags uint32, lpCPInfoEx *CPINFOEXW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCPInfoExW, libKernel32, "GetCPInfoExW")
+	addr := LazyAddr(&pGetCPInfoExW, libKernel32, "GetCPInfoExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(CodePage), uintptr(dwFlags), uintptr(unsafe.Pointer(lpCPInfoEx)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CompareStringA(Locale uint32, dwCmpFlags uint32, lpString1 *int8, cchCount1 int32, lpString2 *int8, cchCount2 int32) int32 {
-	addr := lazyAddr(&pCompareStringA, libKernel32, "CompareStringA")
+	addr := LazyAddr(&pCompareStringA, libKernel32, "CompareStringA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwCmpFlags), uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2))
 	return int32(ret)
 }
 
 func FindNLSString(Locale uint32, dwFindNLSStringFlags uint32, lpStringSource PWSTR, cchSource int32, lpStringValue PWSTR, cchValue int32, pcchFound *int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNLSString, libKernel32, "FindNLSString")
+	addr := LazyAddr(&pFindNLSString, libKernel32, "FindNLSString")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFindNLSStringFlags), uintptr(unsafe.Pointer(lpStringSource)), uintptr(cchSource), uintptr(unsafe.Pointer(lpStringValue)), uintptr(cchValue), uintptr(unsafe.Pointer(pcchFound)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6858,13 +6858,13 @@ func FindNLSString(Locale uint32, dwFindNLSStringFlags uint32, lpStringSource PW
 var LCMapString = LCMapStringW
 
 func LCMapStringW(Locale uint32, dwMapFlags uint32, lpSrcStr PWSTR, cchSrc int32, lpDestStr PWSTR, cchDest int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLCMapStringW, libKernel32, "LCMapStringW")
+	addr := LazyAddr(&pLCMapStringW, libKernel32, "LCMapStringW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwMapFlags), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpDestStr)), uintptr(cchDest))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func LCMapStringA(Locale uint32, dwMapFlags uint32, lpSrcStr PSTR, cchSrc int32, lpDestStr PSTR, cchDest int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLCMapStringA, libKernel32, "LCMapStringA")
+	addr := LazyAddr(&pLCMapStringA, libKernel32, "LCMapStringA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwMapFlags), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpDestStr)), uintptr(cchDest))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6872,19 +6872,19 @@ func LCMapStringA(Locale uint32, dwMapFlags uint32, lpSrcStr PSTR, cchSrc int32,
 var GetLocaleInfo = GetLocaleInfoW
 
 func GetLocaleInfoW(Locale uint32, LCType uint32, lpLCData PWSTR, cchData int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLocaleInfoW, libKernel32, "GetLocaleInfoW")
+	addr := LazyAddr(&pGetLocaleInfoW, libKernel32, "GetLocaleInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(LCType), uintptr(unsafe.Pointer(lpLCData)), uintptr(cchData))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetLocaleInfoA(Locale uint32, LCType uint32, lpLCData PSTR, cchData int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLocaleInfoA, libKernel32, "GetLocaleInfoA")
+	addr := LazyAddr(&pGetLocaleInfoA, libKernel32, "GetLocaleInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(LCType), uintptr(unsafe.Pointer(lpLCData)), uintptr(cchData))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func SetLocaleInfoA(Locale uint32, LCType uint32, lpLCData PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetLocaleInfoA, libKernel32, "SetLocaleInfoA")
+	addr := LazyAddr(&pSetLocaleInfoA, libKernel32, "SetLocaleInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(LCType), uintptr(unsafe.Pointer(lpLCData)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6892,13 +6892,13 @@ func SetLocaleInfoA(Locale uint32, LCType uint32, lpLCData PSTR) (BOOL, WIN32_ER
 var SetLocaleInfo = SetLocaleInfoW
 
 func SetLocaleInfoW(Locale uint32, LCType uint32, lpLCData PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetLocaleInfoW, libKernel32, "SetLocaleInfoW")
+	addr := LazyAddr(&pSetLocaleInfoW, libKernel32, "SetLocaleInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(LCType), uintptr(unsafe.Pointer(lpLCData)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCalendarInfoA(Locale uint32, Calendar uint32, CalType uint32, lpCalData PSTR, cchData int32, lpValue *uint32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCalendarInfoA, libKernel32, "GetCalendarInfoA")
+	addr := LazyAddr(&pGetCalendarInfoA, libKernel32, "GetCalendarInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(Calendar), uintptr(CalType), uintptr(unsafe.Pointer(lpCalData)), uintptr(cchData), uintptr(unsafe.Pointer(lpValue)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6906,13 +6906,13 @@ func GetCalendarInfoA(Locale uint32, Calendar uint32, CalType uint32, lpCalData 
 var GetCalendarInfo = GetCalendarInfoW
 
 func GetCalendarInfoW(Locale uint32, Calendar uint32, CalType uint32, lpCalData PWSTR, cchData int32, lpValue *uint32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCalendarInfoW, libKernel32, "GetCalendarInfoW")
+	addr := LazyAddr(&pGetCalendarInfoW, libKernel32, "GetCalendarInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(Calendar), uintptr(CalType), uintptr(unsafe.Pointer(lpCalData)), uintptr(cchData), uintptr(unsafe.Pointer(lpValue)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func SetCalendarInfoA(Locale uint32, Calendar uint32, CalType uint32, lpCalData PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetCalendarInfoA, libKernel32, "SetCalendarInfoA")
+	addr := LazyAddr(&pSetCalendarInfoA, libKernel32, "SetCalendarInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(Calendar), uintptr(CalType), uintptr(unsafe.Pointer(lpCalData)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6920,43 +6920,43 @@ func SetCalendarInfoA(Locale uint32, Calendar uint32, CalType uint32, lpCalData 
 var SetCalendarInfo = SetCalendarInfoW
 
 func SetCalendarInfoW(Locale uint32, Calendar uint32, CalType uint32, lpCalData PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetCalendarInfoW, libKernel32, "SetCalendarInfoW")
+	addr := LazyAddr(&pSetCalendarInfoW, libKernel32, "SetCalendarInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(Calendar), uintptr(CalType), uintptr(unsafe.Pointer(lpCalData)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsDBCSLeadByte(TestChar byte) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsDBCSLeadByte, libKernel32, "IsDBCSLeadByte")
+	addr := LazyAddr(&pIsDBCSLeadByte, libKernel32, "IsDBCSLeadByte")
 	ret, _, err := syscall.SyscallN(addr, uintptr(TestChar))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsDBCSLeadByteEx(CodePage uint32, TestChar byte) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsDBCSLeadByteEx, libKernel32, "IsDBCSLeadByteEx")
+	addr := LazyAddr(&pIsDBCSLeadByteEx, libKernel32, "IsDBCSLeadByteEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(CodePage), uintptr(TestChar))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LocaleNameToLCID(lpName PWSTR, dwFlags uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pLocaleNameToLCID, libKernel32, "LocaleNameToLCID")
+	addr := LazyAddr(&pLocaleNameToLCID, libKernel32, "LocaleNameToLCID")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func LCIDToLocaleName(Locale uint32, lpName PWSTR, cchName int32, dwFlags uint32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLCIDToLocaleName, libKernel32, "LCIDToLocaleName")
+	addr := LazyAddr(&pLCIDToLocaleName, libKernel32, "LCIDToLocaleName")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(unsafe.Pointer(lpName)), uintptr(cchName), uintptr(dwFlags))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetDurationFormat(Locale uint32, dwFlags uint32, lpDuration *SYSTEMTIME, ullDuration uint64, lpFormat PWSTR, lpDurationStr PWSTR, cchDuration int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDurationFormat, libKernel32, "GetDurationFormat")
+	addr := LazyAddr(&pGetDurationFormat, libKernel32, "GetDurationFormat")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpDuration)), uintptr(ullDuration), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpDurationStr)), uintptr(cchDuration))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetNumberFormatA(Locale uint32, dwFlags uint32, lpValue PSTR, lpFormat *NUMBERFMTA, lpNumberStr PSTR, cchNumber int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumberFormatA, libKernel32, "GetNumberFormatA")
+	addr := LazyAddr(&pGetNumberFormatA, libKernel32, "GetNumberFormatA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpValue)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpNumberStr)), uintptr(cchNumber))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6964,13 +6964,13 @@ func GetNumberFormatA(Locale uint32, dwFlags uint32, lpValue PSTR, lpFormat *NUM
 var GetNumberFormat = GetNumberFormatW
 
 func GetNumberFormatW(Locale uint32, dwFlags uint32, lpValue PWSTR, lpFormat *NUMBERFMTW, lpNumberStr PWSTR, cchNumber int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumberFormatW, libKernel32, "GetNumberFormatW")
+	addr := LazyAddr(&pGetNumberFormatW, libKernel32, "GetNumberFormatW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpValue)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpNumberStr)), uintptr(cchNumber))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetCurrencyFormatA(Locale uint32, dwFlags uint32, lpValue PSTR, lpFormat *CURRENCYFMTA, lpCurrencyStr PSTR, cchCurrency int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCurrencyFormatA, libKernel32, "GetCurrencyFormatA")
+	addr := LazyAddr(&pGetCurrencyFormatA, libKernel32, "GetCurrencyFormatA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpValue)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpCurrencyStr)), uintptr(cchCurrency))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -6978,13 +6978,13 @@ func GetCurrencyFormatA(Locale uint32, dwFlags uint32, lpValue PSTR, lpFormat *C
 var GetCurrencyFormat = GetCurrencyFormatW
 
 func GetCurrencyFormatW(Locale uint32, dwFlags uint32, lpValue PWSTR, lpFormat *CURRENCYFMTW, lpCurrencyStr PWSTR, cchCurrency int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCurrencyFormatW, libKernel32, "GetCurrencyFormatW")
+	addr := LazyAddr(&pGetCurrencyFormatW, libKernel32, "GetCurrencyFormatW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags), uintptr(unsafe.Pointer(lpValue)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpCurrencyStr)), uintptr(cchCurrency))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func EnumCalendarInfoA(lpCalInfoEnumProc CALINFO_ENUMPROCA, Locale uint32, Calendar uint32, CalType uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumCalendarInfoA, libKernel32, "EnumCalendarInfoA")
+	addr := LazyAddr(&pEnumCalendarInfoA, libKernel32, "EnumCalendarInfoA")
 	ret, _, err := syscall.SyscallN(addr, lpCalInfoEnumProc, uintptr(Locale), uintptr(Calendar), uintptr(CalType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -6992,13 +6992,13 @@ func EnumCalendarInfoA(lpCalInfoEnumProc CALINFO_ENUMPROCA, Locale uint32, Calen
 var EnumCalendarInfo = EnumCalendarInfoW
 
 func EnumCalendarInfoW(lpCalInfoEnumProc CALINFO_ENUMPROCW, Locale uint32, Calendar uint32, CalType uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumCalendarInfoW, libKernel32, "EnumCalendarInfoW")
+	addr := LazyAddr(&pEnumCalendarInfoW, libKernel32, "EnumCalendarInfoW")
 	ret, _, err := syscall.SyscallN(addr, lpCalInfoEnumProc, uintptr(Locale), uintptr(Calendar), uintptr(CalType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumCalendarInfoExA(lpCalInfoEnumProcEx CALINFO_ENUMPROCEXA, Locale uint32, Calendar uint32, CalType uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumCalendarInfoExA, libKernel32, "EnumCalendarInfoExA")
+	addr := LazyAddr(&pEnumCalendarInfoExA, libKernel32, "EnumCalendarInfoExA")
 	ret, _, err := syscall.SyscallN(addr, lpCalInfoEnumProcEx, uintptr(Locale), uintptr(Calendar), uintptr(CalType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7006,13 +7006,13 @@ func EnumCalendarInfoExA(lpCalInfoEnumProcEx CALINFO_ENUMPROCEXA, Locale uint32,
 var EnumCalendarInfoEx = EnumCalendarInfoExW
 
 func EnumCalendarInfoExW(lpCalInfoEnumProcEx CALINFO_ENUMPROCEXW, Locale uint32, Calendar uint32, CalType uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumCalendarInfoExW, libKernel32, "EnumCalendarInfoExW")
+	addr := LazyAddr(&pEnumCalendarInfoExW, libKernel32, "EnumCalendarInfoExW")
 	ret, _, err := syscall.SyscallN(addr, lpCalInfoEnumProcEx, uintptr(Locale), uintptr(Calendar), uintptr(CalType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumTimeFormatsA(lpTimeFmtEnumProc TIMEFMT_ENUMPROCA, Locale uint32, dwFlags TIME_FORMAT_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumTimeFormatsA, libKernel32, "EnumTimeFormatsA")
+	addr := LazyAddr(&pEnumTimeFormatsA, libKernel32, "EnumTimeFormatsA")
 	ret, _, err := syscall.SyscallN(addr, lpTimeFmtEnumProc, uintptr(Locale), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7020,13 +7020,13 @@ func EnumTimeFormatsA(lpTimeFmtEnumProc TIMEFMT_ENUMPROCA, Locale uint32, dwFlag
 var EnumTimeFormats = EnumTimeFormatsW
 
 func EnumTimeFormatsW(lpTimeFmtEnumProc TIMEFMT_ENUMPROCW, Locale uint32, dwFlags TIME_FORMAT_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumTimeFormatsW, libKernel32, "EnumTimeFormatsW")
+	addr := LazyAddr(&pEnumTimeFormatsW, libKernel32, "EnumTimeFormatsW")
 	ret, _, err := syscall.SyscallN(addr, lpTimeFmtEnumProc, uintptr(Locale), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumDateFormatsA(lpDateFmtEnumProc DATEFMT_ENUMPROCA, Locale uint32, dwFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDateFormatsA, libKernel32, "EnumDateFormatsA")
+	addr := LazyAddr(&pEnumDateFormatsA, libKernel32, "EnumDateFormatsA")
 	ret, _, err := syscall.SyscallN(addr, lpDateFmtEnumProc, uintptr(Locale), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7034,13 +7034,13 @@ func EnumDateFormatsA(lpDateFmtEnumProc DATEFMT_ENUMPROCA, Locale uint32, dwFlag
 var EnumDateFormats = EnumDateFormatsW
 
 func EnumDateFormatsW(lpDateFmtEnumProc DATEFMT_ENUMPROCW, Locale uint32, dwFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDateFormatsW, libKernel32, "EnumDateFormatsW")
+	addr := LazyAddr(&pEnumDateFormatsW, libKernel32, "EnumDateFormatsW")
 	ret, _, err := syscall.SyscallN(addr, lpDateFmtEnumProc, uintptr(Locale), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumDateFormatsExA(lpDateFmtEnumProcEx DATEFMT_ENUMPROCEXA, Locale uint32, dwFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDateFormatsExA, libKernel32, "EnumDateFormatsExA")
+	addr := LazyAddr(&pEnumDateFormatsExA, libKernel32, "EnumDateFormatsExA")
 	ret, _, err := syscall.SyscallN(addr, lpDateFmtEnumProcEx, uintptr(Locale), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7048,31 +7048,31 @@ func EnumDateFormatsExA(lpDateFmtEnumProcEx DATEFMT_ENUMPROCEXA, Locale uint32, 
 var EnumDateFormatsEx = EnumDateFormatsExW
 
 func EnumDateFormatsExW(lpDateFmtEnumProcEx DATEFMT_ENUMPROCEXW, Locale uint32, dwFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDateFormatsExW, libKernel32, "EnumDateFormatsExW")
+	addr := LazyAddr(&pEnumDateFormatsExW, libKernel32, "EnumDateFormatsExW")
 	ret, _, err := syscall.SyscallN(addr, lpDateFmtEnumProcEx, uintptr(Locale), uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsValidLanguageGroup(LanguageGroup uint32, dwFlags ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS) BOOL {
-	addr := lazyAddr(&pIsValidLanguageGroup, libKernel32, "IsValidLanguageGroup")
+	addr := LazyAddr(&pIsValidLanguageGroup, libKernel32, "IsValidLanguageGroup")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(LanguageGroup), uintptr(dwFlags))
 	return BOOL(ret)
 }
 
 func GetNLSVersion(Function uint32, Locale uint32, lpVersionInformation *NLSVERSIONINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNLSVersion, libKernel32, "GetNLSVersion")
+	addr := LazyAddr(&pGetNLSVersion, libKernel32, "GetNLSVersion")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Function), uintptr(Locale), uintptr(unsafe.Pointer(lpVersionInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsValidLocale(Locale uint32, dwFlags IS_VALID_LOCALE_FLAGS) BOOL {
-	addr := lazyAddr(&pIsValidLocale, libKernel32, "IsValidLocale")
+	addr := LazyAddr(&pIsValidLocale, libKernel32, "IsValidLocale")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwFlags))
 	return BOOL(ret)
 }
 
 func GetGeoInfoA(Location int32, GeoType uint32, lpGeoData PSTR, cchData int32, LangId uint16) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetGeoInfoA, libKernel32, "GetGeoInfoA")
+	addr := LazyAddr(&pGetGeoInfoA, libKernel32, "GetGeoInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Location), uintptr(GeoType), uintptr(unsafe.Pointer(lpGeoData)), uintptr(cchData), uintptr(LangId))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -7080,210 +7080,210 @@ func GetGeoInfoA(Location int32, GeoType uint32, lpGeoData PSTR, cchData int32, 
 var GetGeoInfo = GetGeoInfoW
 
 func GetGeoInfoW(Location int32, GeoType uint32, lpGeoData PWSTR, cchData int32, LangId uint16) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetGeoInfoW, libKernel32, "GetGeoInfoW")
+	addr := LazyAddr(&pGetGeoInfoW, libKernel32, "GetGeoInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Location), uintptr(GeoType), uintptr(unsafe.Pointer(lpGeoData)), uintptr(cchData), uintptr(LangId))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetGeoInfoEx(location PWSTR, geoType uint32, geoData PWSTR, geoDataCount int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetGeoInfoEx, libKernel32, "GetGeoInfoEx")
+	addr := LazyAddr(&pGetGeoInfoEx, libKernel32, "GetGeoInfoEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(location)), uintptr(geoType), uintptr(unsafe.Pointer(geoData)), uintptr(geoDataCount))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func EnumSystemGeoID(GeoClass uint32, ParentGeoId int32, lpGeoEnumProc GEO_ENUMPROC) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemGeoID, libKernel32, "EnumSystemGeoID")
+	addr := LazyAddr(&pEnumSystemGeoID, libKernel32, "EnumSystemGeoID")
 	ret, _, err := syscall.SyscallN(addr, uintptr(GeoClass), uintptr(ParentGeoId), lpGeoEnumProc)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumSystemGeoNames(geoClass uint32, geoEnumProc GEO_ENUMNAMEPROC, data LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemGeoNames, libKernel32, "EnumSystemGeoNames")
+	addr := LazyAddr(&pEnumSystemGeoNames, libKernel32, "EnumSystemGeoNames")
 	ret, _, err := syscall.SyscallN(addr, uintptr(geoClass), geoEnumProc, data)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetUserGeoID(GeoClass uint32) int32 {
-	addr := lazyAddr(&pGetUserGeoID, libKernel32, "GetUserGeoID")
+	addr := LazyAddr(&pGetUserGeoID, libKernel32, "GetUserGeoID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(GeoClass))
 	return int32(ret)
 }
 
 func GetUserDefaultGeoName(geoName PWSTR, geoNameCount int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserDefaultGeoName, libKernel32, "GetUserDefaultGeoName")
+	addr := LazyAddr(&pGetUserDefaultGeoName, libKernel32, "GetUserDefaultGeoName")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(geoName)), uintptr(geoNameCount))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func SetUserGeoID(GeoId int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetUserGeoID, libKernel32, "SetUserGeoID")
+	addr := LazyAddr(&pSetUserGeoID, libKernel32, "SetUserGeoID")
 	ret, _, err := syscall.SyscallN(addr, uintptr(GeoId))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetUserGeoName(geoName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetUserGeoName, libKernel32, "SetUserGeoName")
+	addr := LazyAddr(&pSetUserGeoName, libKernel32, "SetUserGeoName")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(geoName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ConvertDefaultLocale(Locale uint32) uint32 {
-	addr := lazyAddr(&pConvertDefaultLocale, libKernel32, "ConvertDefaultLocale")
+	addr := LazyAddr(&pConvertDefaultLocale, libKernel32, "ConvertDefaultLocale")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale))
 	return uint32(ret)
 }
 
 func GetSystemDefaultUILanguage() uint16 {
-	addr := lazyAddr(&pGetSystemDefaultUILanguage, libKernel32, "GetSystemDefaultUILanguage")
+	addr := LazyAddr(&pGetSystemDefaultUILanguage, libKernel32, "GetSystemDefaultUILanguage")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func GetThreadLocale() uint32 {
-	addr := lazyAddr(&pGetThreadLocale, libKernel32, "GetThreadLocale")
+	addr := LazyAddr(&pGetThreadLocale, libKernel32, "GetThreadLocale")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func SetThreadLocale(Locale uint32) BOOL {
-	addr := lazyAddr(&pSetThreadLocale, libKernel32, "SetThreadLocale")
+	addr := LazyAddr(&pSetThreadLocale, libKernel32, "SetThreadLocale")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale))
 	return BOOL(ret)
 }
 
 func GetUserDefaultUILanguage() uint16 {
-	addr := lazyAddr(&pGetUserDefaultUILanguage, libKernel32, "GetUserDefaultUILanguage")
+	addr := LazyAddr(&pGetUserDefaultUILanguage, libKernel32, "GetUserDefaultUILanguage")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func GetUserDefaultLangID() uint16 {
-	addr := lazyAddr(&pGetUserDefaultLangID, libKernel32, "GetUserDefaultLangID")
+	addr := LazyAddr(&pGetUserDefaultLangID, libKernel32, "GetUserDefaultLangID")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func GetSystemDefaultLangID() uint16 {
-	addr := lazyAddr(&pGetSystemDefaultLangID, libKernel32, "GetSystemDefaultLangID")
+	addr := LazyAddr(&pGetSystemDefaultLangID, libKernel32, "GetSystemDefaultLangID")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func GetSystemDefaultLCID() uint32 {
-	addr := lazyAddr(&pGetSystemDefaultLCID, libKernel32, "GetSystemDefaultLCID")
+	addr := LazyAddr(&pGetSystemDefaultLCID, libKernel32, "GetSystemDefaultLCID")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func GetUserDefaultLCID() uint32 {
-	addr := lazyAddr(&pGetUserDefaultLCID, libKernel32, "GetUserDefaultLCID")
+	addr := LazyAddr(&pGetUserDefaultLCID, libKernel32, "GetUserDefaultLCID")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func SetThreadUILanguage(LangId uint16) (uint16, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadUILanguage, libKernel32, "SetThreadUILanguage")
+	addr := LazyAddr(&pSetThreadUILanguage, libKernel32, "SetThreadUILanguage")
 	ret, _, err := syscall.SyscallN(addr, uintptr(LangId))
 	return uint16(ret), WIN32_ERROR(err)
 }
 
 func GetThreadUILanguage() uint16 {
-	addr := lazyAddr(&pGetThreadUILanguage, libKernel32, "GetThreadUILanguage")
+	addr := LazyAddr(&pGetThreadUILanguage, libKernel32, "GetThreadUILanguage")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func GetProcessPreferredUILanguages(dwFlags uint32, pulNumLanguages *uint32, pwszLanguagesBuffer PWSTR, pcchLanguagesBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessPreferredUILanguages, libKernel32, "GetProcessPreferredUILanguages")
+	addr := LazyAddr(&pGetProcessPreferredUILanguages, libKernel32, "GetProcessPreferredUILanguages")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pulNumLanguages)), uintptr(unsafe.Pointer(pwszLanguagesBuffer)), uintptr(unsafe.Pointer(pcchLanguagesBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessPreferredUILanguages(dwFlags uint32, pwszLanguagesBuffer PWSTR, pulNumLanguages *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessPreferredUILanguages, libKernel32, "SetProcessPreferredUILanguages")
+	addr := LazyAddr(&pSetProcessPreferredUILanguages, libKernel32, "SetProcessPreferredUILanguages")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pwszLanguagesBuffer)), uintptr(unsafe.Pointer(pulNumLanguages)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetUserPreferredUILanguages(dwFlags uint32, pulNumLanguages *uint32, pwszLanguagesBuffer PWSTR, pcchLanguagesBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserPreferredUILanguages, libKernel32, "GetUserPreferredUILanguages")
+	addr := LazyAddr(&pGetUserPreferredUILanguages, libKernel32, "GetUserPreferredUILanguages")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pulNumLanguages)), uintptr(unsafe.Pointer(pwszLanguagesBuffer)), uintptr(unsafe.Pointer(pcchLanguagesBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetSystemPreferredUILanguages(dwFlags uint32, pulNumLanguages *uint32, pwszLanguagesBuffer PWSTR, pcchLanguagesBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemPreferredUILanguages, libKernel32, "GetSystemPreferredUILanguages")
+	addr := LazyAddr(&pGetSystemPreferredUILanguages, libKernel32, "GetSystemPreferredUILanguages")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pulNumLanguages)), uintptr(unsafe.Pointer(pwszLanguagesBuffer)), uintptr(unsafe.Pointer(pcchLanguagesBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadPreferredUILanguages(dwFlags uint32, pulNumLanguages *uint32, pwszLanguagesBuffer PWSTR, pcchLanguagesBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadPreferredUILanguages, libKernel32, "GetThreadPreferredUILanguages")
+	addr := LazyAddr(&pGetThreadPreferredUILanguages, libKernel32, "GetThreadPreferredUILanguages")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pulNumLanguages)), uintptr(unsafe.Pointer(pwszLanguagesBuffer)), uintptr(unsafe.Pointer(pcchLanguagesBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetThreadPreferredUILanguages(dwFlags uint32, pwszLanguagesBuffer PWSTR, pulNumLanguages *uint32) BOOL {
-	addr := lazyAddr(&pSetThreadPreferredUILanguages, libKernel32, "SetThreadPreferredUILanguages")
+	addr := LazyAddr(&pSetThreadPreferredUILanguages, libKernel32, "SetThreadPreferredUILanguages")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pwszLanguagesBuffer)), uintptr(unsafe.Pointer(pulNumLanguages)))
 	return BOOL(ret)
 }
 
 func GetFileMUIInfo(dwFlags uint32, pcwszFilePath PWSTR, pFileMUIInfo *FILEMUIINFO, pcbFileMUIInfo *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileMUIInfo, libKernel32, "GetFileMUIInfo")
+	addr := LazyAddr(&pGetFileMUIInfo, libKernel32, "GetFileMUIInfo")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pcwszFilePath)), uintptr(unsafe.Pointer(pFileMUIInfo)), uintptr(unsafe.Pointer(pcbFileMUIInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetFileMUIPath(dwFlags uint32, pcwszFilePath PWSTR, pwszLanguage PWSTR, pcchLanguage *uint32, pwszFileMUIPath PWSTR, pcchFileMUIPath *uint32, pululEnumerator *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFileMUIPath, libKernel32, "GetFileMUIPath")
+	addr := LazyAddr(&pGetFileMUIPath, libKernel32, "GetFileMUIPath")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pcwszFilePath)), uintptr(unsafe.Pointer(pwszLanguage)), uintptr(unsafe.Pointer(pcchLanguage)), uintptr(unsafe.Pointer(pwszFileMUIPath)), uintptr(unsafe.Pointer(pcchFileMUIPath)), uintptr(unsafe.Pointer(pululEnumerator)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetUILanguageInfo(dwFlags uint32, pwmszLanguage PWSTR, pwszFallbackLanguages PWSTR, pcchFallbackLanguages *uint32, pAttributes *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUILanguageInfo, libKernel32, "GetUILanguageInfo")
+	addr := LazyAddr(&pGetUILanguageInfo, libKernel32, "GetUILanguageInfo")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pwmszLanguage)), uintptr(unsafe.Pointer(pwszFallbackLanguages)), uintptr(unsafe.Pointer(pcchFallbackLanguages)), uintptr(unsafe.Pointer(pAttributes)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetThreadPreferredUILanguages2(flags uint32, languages PWSTR, numLanguagesSet *uint32, snapshot *HSAVEDUILANGUAGES) BOOL {
-	addr := lazyAddr(&pSetThreadPreferredUILanguages2, libKernel32, "SetThreadPreferredUILanguages2")
+	addr := LazyAddr(&pSetThreadPreferredUILanguages2, libKernel32, "SetThreadPreferredUILanguages2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(unsafe.Pointer(languages)), uintptr(unsafe.Pointer(numLanguagesSet)), uintptr(unsafe.Pointer(snapshot)))
 	return BOOL(ret)
 }
 
 func RestoreThreadPreferredUILanguages(snapshot HSAVEDUILANGUAGES) {
-	addr := lazyAddr(&pRestoreThreadPreferredUILanguages, libKernel32, "RestoreThreadPreferredUILanguages")
+	addr := LazyAddr(&pRestoreThreadPreferredUILanguages, libKernel32, "RestoreThreadPreferredUILanguages")
 	syscall.SyscallN(addr, snapshot)
 }
 
 func NotifyUILanguageChange(dwFlags uint32, pcwstrNewLanguage PWSTR, pcwstrPreviousLanguage PWSTR, dwReserved uint32, pdwStatusRtrn *uint32) BOOL {
-	addr := lazyAddr(&pNotifyUILanguageChange, libKernel32, "NotifyUILanguageChange")
+	addr := LazyAddr(&pNotifyUILanguageChange, libKernel32, "NotifyUILanguageChange")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pcwstrNewLanguage)), uintptr(unsafe.Pointer(pcwstrPreviousLanguage)), uintptr(dwReserved), uintptr(unsafe.Pointer(pdwStatusRtrn)))
 	return BOOL(ret)
 }
 
 func GetStringTypeExA(Locale uint32, dwInfoType uint32, lpSrcStr PSTR, cchSrc int32, lpCharType *uint16) BOOL {
-	addr := lazyAddr(&pGetStringTypeExA, libKernel32, "GetStringTypeExA")
+	addr := LazyAddr(&pGetStringTypeExA, libKernel32, "GetStringTypeExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwInfoType), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpCharType)))
 	return BOOL(ret)
 }
 
 func GetStringTypeA(Locale uint32, dwInfoType uint32, lpSrcStr PSTR, cchSrc int32, lpCharType *uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetStringTypeA, libKernel32, "GetStringTypeA")
+	addr := LazyAddr(&pGetStringTypeA, libKernel32, "GetStringTypeA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwInfoType), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpCharType)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FoldStringA(dwMapFlags FOLD_STRING_MAP_FLAGS, lpSrcStr PSTR, cchSrc int32, lpDestStr PSTR, cchDest int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pFoldStringA, libKernel32, "FoldStringA")
+	addr := LazyAddr(&pFoldStringA, libKernel32, "FoldStringA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwMapFlags), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpDestStr)), uintptr(cchDest))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func EnumSystemLocalesA(lpLocaleEnumProc LOCALE_ENUMPROCA, dwFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemLocalesA, libKernel32, "EnumSystemLocalesA")
+	addr := LazyAddr(&pEnumSystemLocalesA, libKernel32, "EnumSystemLocalesA")
 	ret, _, err := syscall.SyscallN(addr, lpLocaleEnumProc, uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7291,13 +7291,13 @@ func EnumSystemLocalesA(lpLocaleEnumProc LOCALE_ENUMPROCA, dwFlags uint32) (BOOL
 var EnumSystemLocales = EnumSystemLocalesW
 
 func EnumSystemLocalesW(lpLocaleEnumProc LOCALE_ENUMPROCW, dwFlags uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemLocalesW, libKernel32, "EnumSystemLocalesW")
+	addr := LazyAddr(&pEnumSystemLocalesW, libKernel32, "EnumSystemLocalesW")
 	ret, _, err := syscall.SyscallN(addr, lpLocaleEnumProc, uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumSystemLanguageGroupsA(lpLanguageGroupEnumProc LANGUAGEGROUP_ENUMPROCA, dwFlags ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS, lParam uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemLanguageGroupsA, libKernel32, "EnumSystemLanguageGroupsA")
+	addr := LazyAddr(&pEnumSystemLanguageGroupsA, libKernel32, "EnumSystemLanguageGroupsA")
 	ret, _, err := syscall.SyscallN(addr, lpLanguageGroupEnumProc, uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7305,13 +7305,13 @@ func EnumSystemLanguageGroupsA(lpLanguageGroupEnumProc LANGUAGEGROUP_ENUMPROCA, 
 var EnumSystemLanguageGroups = EnumSystemLanguageGroupsW
 
 func EnumSystemLanguageGroupsW(lpLanguageGroupEnumProc LANGUAGEGROUP_ENUMPROCW, dwFlags ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS, lParam uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemLanguageGroupsW, libKernel32, "EnumSystemLanguageGroupsW")
+	addr := LazyAddr(&pEnumSystemLanguageGroupsW, libKernel32, "EnumSystemLanguageGroupsW")
 	ret, _, err := syscall.SyscallN(addr, lpLanguageGroupEnumProc, uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumLanguageGroupLocalesA(lpLangGroupLocaleEnumProc LANGGROUPLOCALE_ENUMPROCA, LanguageGroup uint32, dwFlags uint32, lParam uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumLanguageGroupLocalesA, libKernel32, "EnumLanguageGroupLocalesA")
+	addr := LazyAddr(&pEnumLanguageGroupLocalesA, libKernel32, "EnumLanguageGroupLocalesA")
 	ret, _, err := syscall.SyscallN(addr, lpLangGroupLocaleEnumProc, uintptr(LanguageGroup), uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7319,13 +7319,13 @@ func EnumLanguageGroupLocalesA(lpLangGroupLocaleEnumProc LANGGROUPLOCALE_ENUMPRO
 var EnumLanguageGroupLocales = EnumLanguageGroupLocalesW
 
 func EnumLanguageGroupLocalesW(lpLangGroupLocaleEnumProc LANGGROUPLOCALE_ENUMPROCW, LanguageGroup uint32, dwFlags uint32, lParam uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumLanguageGroupLocalesW, libKernel32, "EnumLanguageGroupLocalesW")
+	addr := LazyAddr(&pEnumLanguageGroupLocalesW, libKernel32, "EnumLanguageGroupLocalesW")
 	ret, _, err := syscall.SyscallN(addr, lpLangGroupLocaleEnumProc, uintptr(LanguageGroup), uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumUILanguagesA(lpUILanguageEnumProc UILANGUAGE_ENUMPROCA, dwFlags uint32, lParam uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumUILanguagesA, libKernel32, "EnumUILanguagesA")
+	addr := LazyAddr(&pEnumUILanguagesA, libKernel32, "EnumUILanguagesA")
 	ret, _, err := syscall.SyscallN(addr, lpUILanguageEnumProc, uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7333,13 +7333,13 @@ func EnumUILanguagesA(lpUILanguageEnumProc UILANGUAGE_ENUMPROCA, dwFlags uint32,
 var EnumUILanguages = EnumUILanguagesW
 
 func EnumUILanguagesW(lpUILanguageEnumProc UILANGUAGE_ENUMPROCW, dwFlags uint32, lParam uintptr) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumUILanguagesW, libKernel32, "EnumUILanguagesW")
+	addr := LazyAddr(&pEnumUILanguagesW, libKernel32, "EnumUILanguagesW")
 	ret, _, err := syscall.SyscallN(addr, lpUILanguageEnumProc, uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumSystemCodePagesA(lpCodePageEnumProc CODEPAGE_ENUMPROCA, dwFlags ENUM_SYSTEM_CODE_PAGES_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemCodePagesA, libKernel32, "EnumSystemCodePagesA")
+	addr := LazyAddr(&pEnumSystemCodePagesA, libKernel32, "EnumSystemCodePagesA")
 	ret, _, err := syscall.SyscallN(addr, lpCodePageEnumProc, uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -7347,151 +7347,151 @@ func EnumSystemCodePagesA(lpCodePageEnumProc CODEPAGE_ENUMPROCA, dwFlags ENUM_SY
 var EnumSystemCodePages = EnumSystemCodePagesW
 
 func EnumSystemCodePagesW(lpCodePageEnumProc CODEPAGE_ENUMPROCW, dwFlags ENUM_SYSTEM_CODE_PAGES_FLAGS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemCodePagesW, libKernel32, "EnumSystemCodePagesW")
+	addr := LazyAddr(&pEnumSystemCodePagesW, libKernel32, "EnumSystemCodePagesW")
 	ret, _, err := syscall.SyscallN(addr, lpCodePageEnumProc, uintptr(dwFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IdnToNameprepUnicode(dwFlags uint32, lpUnicodeCharStr PWSTR, cchUnicodeChar int32, lpNameprepCharStr PWSTR, cchNameprepChar int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pIdnToNameprepUnicode, libKernel32, "IdnToNameprepUnicode")
+	addr := LazyAddr(&pIdnToNameprepUnicode, libKernel32, "IdnToNameprepUnicode")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpUnicodeCharStr)), uintptr(cchUnicodeChar), uintptr(unsafe.Pointer(lpNameprepCharStr)), uintptr(cchNameprepChar))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func NormalizeString(NormForm NORM_FORM, lpSrcString PWSTR, cwSrcLength int32, lpDstString PWSTR, cwDstLength int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pNormalizeString, libKernel32, "NormalizeString")
+	addr := LazyAddr(&pNormalizeString, libKernel32, "NormalizeString")
 	ret, _, err := syscall.SyscallN(addr, uintptr(NormForm), uintptr(unsafe.Pointer(lpSrcString)), uintptr(cwSrcLength), uintptr(unsafe.Pointer(lpDstString)), uintptr(cwDstLength))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func IsNormalizedString(NormForm NORM_FORM, lpString PWSTR, cwLength int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsNormalizedString, libKernel32, "IsNormalizedString")
+	addr := LazyAddr(&pIsNormalizedString, libKernel32, "IsNormalizedString")
 	ret, _, err := syscall.SyscallN(addr, uintptr(NormForm), uintptr(unsafe.Pointer(lpString)), uintptr(cwLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func VerifyScripts(dwFlags uint32, lpLocaleScripts PWSTR, cchLocaleScripts int32, lpTestScripts PWSTR, cchTestScripts int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pVerifyScripts, libKernel32, "VerifyScripts")
+	addr := LazyAddr(&pVerifyScripts, libKernel32, "VerifyScripts")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpLocaleScripts)), uintptr(cchLocaleScripts), uintptr(unsafe.Pointer(lpTestScripts)), uintptr(cchTestScripts))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetStringScripts(dwFlags uint32, lpString PWSTR, cchString int32, lpScripts PWSTR, cchScripts int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetStringScripts, libKernel32, "GetStringScripts")
+	addr := LazyAddr(&pGetStringScripts, libKernel32, "GetStringScripts")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpString)), uintptr(cchString), uintptr(unsafe.Pointer(lpScripts)), uintptr(cchScripts))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetLocaleInfoEx(lpLocaleName PWSTR, LCType uint32, lpLCData PWSTR, cchData int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLocaleInfoEx, libKernel32, "GetLocaleInfoEx")
+	addr := LazyAddr(&pGetLocaleInfoEx, libKernel32, "GetLocaleInfoEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(LCType), uintptr(unsafe.Pointer(lpLCData)), uintptr(cchData))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetCalendarInfoEx(lpLocaleName PWSTR, Calendar uint32, lpReserved PWSTR, CalType uint32, lpCalData PWSTR, cchData int32, lpValue *uint32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCalendarInfoEx, libKernel32, "GetCalendarInfoEx")
+	addr := LazyAddr(&pGetCalendarInfoEx, libKernel32, "GetCalendarInfoEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(Calendar), uintptr(unsafe.Pointer(lpReserved)), uintptr(CalType), uintptr(unsafe.Pointer(lpCalData)), uintptr(cchData), uintptr(unsafe.Pointer(lpValue)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetNumberFormatEx(lpLocaleName PWSTR, dwFlags uint32, lpValue PWSTR, lpFormat *NUMBERFMTW, lpNumberStr PWSTR, cchNumber int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNumberFormatEx, libKernel32, "GetNumberFormatEx")
+	addr := LazyAddr(&pGetNumberFormatEx, libKernel32, "GetNumberFormatEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFlags), uintptr(unsafe.Pointer(lpValue)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpNumberStr)), uintptr(cchNumber))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetCurrencyFormatEx(lpLocaleName PWSTR, dwFlags uint32, lpValue PWSTR, lpFormat *CURRENCYFMTW, lpCurrencyStr PWSTR, cchCurrency int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCurrencyFormatEx, libKernel32, "GetCurrencyFormatEx")
+	addr := LazyAddr(&pGetCurrencyFormatEx, libKernel32, "GetCurrencyFormatEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFlags), uintptr(unsafe.Pointer(lpValue)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpCurrencyStr)), uintptr(cchCurrency))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetUserDefaultLocaleName(lpLocaleName PWSTR, cchLocaleName int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserDefaultLocaleName, libKernel32, "GetUserDefaultLocaleName")
+	addr := LazyAddr(&pGetUserDefaultLocaleName, libKernel32, "GetUserDefaultLocaleName")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(cchLocaleName))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetSystemDefaultLocaleName(lpLocaleName PWSTR, cchLocaleName int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemDefaultLocaleName, libKernel32, "GetSystemDefaultLocaleName")
+	addr := LazyAddr(&pGetSystemDefaultLocaleName, libKernel32, "GetSystemDefaultLocaleName")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(cchLocaleName))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func IsNLSDefinedString(Function uint32, dwFlags uint32, lpVersionInformation *NLSVERSIONINFO, lpString PWSTR, cchStr int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsNLSDefinedString, libKernel32, "IsNLSDefinedString")
+	addr := LazyAddr(&pIsNLSDefinedString, libKernel32, "IsNLSDefinedString")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Function), uintptr(dwFlags), uintptr(unsafe.Pointer(lpVersionInformation)), uintptr(unsafe.Pointer(lpString)), uintptr(cchStr))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetNLSVersionEx(function uint32, lpLocaleName PWSTR, lpVersionInformation *NLSVERSIONINFOEX) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetNLSVersionEx, libKernel32, "GetNLSVersionEx")
+	addr := LazyAddr(&pGetNLSVersionEx, libKernel32, "GetNLSVersionEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(function), uintptr(unsafe.Pointer(lpLocaleName)), uintptr(unsafe.Pointer(lpVersionInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsValidNLSVersion(function uint32, lpLocaleName PWSTR, lpVersionInformation *NLSVERSIONINFOEX) uint32 {
-	addr := lazyAddr(&pIsValidNLSVersion, libKernel32, "IsValidNLSVersion")
+	addr := LazyAddr(&pIsValidNLSVersion, libKernel32, "IsValidNLSVersion")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(function), uintptr(unsafe.Pointer(lpLocaleName)), uintptr(unsafe.Pointer(lpVersionInformation)))
 	return uint32(ret)
 }
 
 func FindNLSStringEx(lpLocaleName PWSTR, dwFindNLSStringFlags uint32, lpStringSource PWSTR, cchSource int32, lpStringValue PWSTR, cchValue int32, pcchFound *int32, lpVersionInformation *NLSVERSIONINFO, lpReserved unsafe.Pointer, sortHandle LPARAM) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pFindNLSStringEx, libKernel32, "FindNLSStringEx")
+	addr := LazyAddr(&pFindNLSStringEx, libKernel32, "FindNLSStringEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFindNLSStringFlags), uintptr(unsafe.Pointer(lpStringSource)), uintptr(cchSource), uintptr(unsafe.Pointer(lpStringValue)), uintptr(cchValue), uintptr(unsafe.Pointer(pcchFound)), uintptr(unsafe.Pointer(lpVersionInformation)), uintptr(lpReserved), sortHandle)
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func LCMapStringEx(lpLocaleName PWSTR, dwMapFlags uint32, lpSrcStr PWSTR, cchSrc int32, lpDestStr PWSTR, cchDest int32, lpVersionInformation *NLSVERSIONINFO, lpReserved unsafe.Pointer, sortHandle LPARAM) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLCMapStringEx, libKernel32, "LCMapStringEx")
+	addr := LazyAddr(&pLCMapStringEx, libKernel32, "LCMapStringEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwMapFlags), uintptr(unsafe.Pointer(lpSrcStr)), uintptr(cchSrc), uintptr(unsafe.Pointer(lpDestStr)), uintptr(cchDest), uintptr(unsafe.Pointer(lpVersionInformation)), uintptr(lpReserved), sortHandle)
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func IsValidLocaleName(lpLocaleName PWSTR) BOOL {
-	addr := lazyAddr(&pIsValidLocaleName, libKernel32, "IsValidLocaleName")
+	addr := LazyAddr(&pIsValidLocaleName, libKernel32, "IsValidLocaleName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)))
 	return BOOL(ret)
 }
 
 func EnumCalendarInfoExEx(pCalInfoEnumProcExEx CALINFO_ENUMPROCEXEX, lpLocaleName PWSTR, Calendar uint32, lpReserved PWSTR, CalType uint32, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumCalendarInfoExEx, libKernel32, "EnumCalendarInfoExEx")
+	addr := LazyAddr(&pEnumCalendarInfoExEx, libKernel32, "EnumCalendarInfoExEx")
 	ret, _, err := syscall.SyscallN(addr, pCalInfoEnumProcExEx, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(Calendar), uintptr(unsafe.Pointer(lpReserved)), uintptr(CalType), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumDateFormatsExEx(lpDateFmtEnumProcExEx DATEFMT_ENUMPROCEXEX, lpLocaleName PWSTR, dwFlags ENUM_DATE_FORMATS_FLAGS, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDateFormatsExEx, libKernel32, "EnumDateFormatsExEx")
+	addr := LazyAddr(&pEnumDateFormatsExEx, libKernel32, "EnumDateFormatsExEx")
 	ret, _, err := syscall.SyscallN(addr, lpDateFmtEnumProcExEx, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumTimeFormatsEx(lpTimeFmtEnumProcEx TIMEFMT_ENUMPROCEX, lpLocaleName PWSTR, dwFlags uint32, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumTimeFormatsEx, libKernel32, "EnumTimeFormatsEx")
+	addr := LazyAddr(&pEnumTimeFormatsEx, libKernel32, "EnumTimeFormatsEx")
 	ret, _, err := syscall.SyscallN(addr, lpTimeFmtEnumProcEx, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwFlags), lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumSystemLocalesEx(lpLocaleEnumProcEx LOCALE_ENUMPROCEX, dwFlags uint32, lParam LPARAM, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumSystemLocalesEx, libKernel32, "EnumSystemLocalesEx")
+	addr := LazyAddr(&pEnumSystemLocalesEx, libKernel32, "EnumSystemLocalesEx")
 	ret, _, err := syscall.SyscallN(addr, lpLocaleEnumProcEx, uintptr(dwFlags), lParam, uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ResolveLocaleName(lpNameToResolve PWSTR, lpLocaleName PWSTR, cchLocaleName int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pResolveLocaleName, libKernel32, "ResolveLocaleName")
+	addr := LazyAddr(&pResolveLocaleName, libKernel32, "ResolveLocaleName")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpNameToResolve)), uintptr(unsafe.Pointer(lpLocaleName)), uintptr(cchLocaleName))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func FindStringOrdinal(dwFindStringOrdinalFlags uint32, lpStringSource PWSTR, cchSource int32, lpStringValue PWSTR, cchValue int32, bIgnoreCase BOOL) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pFindStringOrdinal, libKernel32, "FindStringOrdinal")
+	addr := LazyAddr(&pFindStringOrdinal, libKernel32, "FindStringOrdinal")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFindStringOrdinalFlags), uintptr(unsafe.Pointer(lpStringSource)), uintptr(cchSource), uintptr(unsafe.Pointer(lpStringValue)), uintptr(cchValue), uintptr(bIgnoreCase))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func LstrcmpA(lpString1 PSTR, lpString2 PSTR) int32 {
-	addr := lazyAddr(&pLstrcmpA, libKernel32, "lstrcmpA")
+	addr := LazyAddr(&pLstrcmpA, libKernel32, "lstrcmpA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return int32(ret)
 }
@@ -7499,13 +7499,13 @@ func LstrcmpA(lpString1 PSTR, lpString2 PSTR) int32 {
 var Lstrcmp = LstrcmpW
 
 func LstrcmpW(lpString1 PWSTR, lpString2 PWSTR) int32 {
-	addr := lazyAddr(&pLstrcmpW, libKernel32, "lstrcmpW")
+	addr := LazyAddr(&pLstrcmpW, libKernel32, "lstrcmpW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return int32(ret)
 }
 
 func LstrcmpiA(lpString1 PSTR, lpString2 PSTR) int32 {
-	addr := lazyAddr(&pLstrcmpiA, libKernel32, "lstrcmpiA")
+	addr := LazyAddr(&pLstrcmpiA, libKernel32, "lstrcmpiA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return int32(ret)
 }
@@ -7513,13 +7513,13 @@ func LstrcmpiA(lpString1 PSTR, lpString2 PSTR) int32 {
 var Lstrcmpi = LstrcmpiW
 
 func LstrcmpiW(lpString1 PWSTR, lpString2 PWSTR) int32 {
-	addr := lazyAddr(&pLstrcmpiW, libKernel32, "lstrcmpiW")
+	addr := LazyAddr(&pLstrcmpiW, libKernel32, "lstrcmpiW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return int32(ret)
 }
 
 func LstrcpynA(lpString1 PSTR, lpString2 PSTR, iMaxLength int32) PSTR {
-	addr := lazyAddr(&pLstrcpynA, libKernel32, "lstrcpynA")
+	addr := LazyAddr(&pLstrcpynA, libKernel32, "lstrcpynA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)), uintptr(iMaxLength))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -7527,13 +7527,13 @@ func LstrcpynA(lpString1 PSTR, lpString2 PSTR, iMaxLength int32) PSTR {
 var Lstrcpyn = LstrcpynW
 
 func LstrcpynW(lpString1 PWSTR, lpString2 PWSTR, iMaxLength int32) PWSTR {
-	addr := lazyAddr(&pLstrcpynW, libKernel32, "lstrcpynW")
+	addr := LazyAddr(&pLstrcpynW, libKernel32, "lstrcpynW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)), uintptr(iMaxLength))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func LstrcpyA(lpString1 PSTR, lpString2 PSTR) PSTR {
-	addr := lazyAddr(&pLstrcpyA, libKernel32, "lstrcpyA")
+	addr := LazyAddr(&pLstrcpyA, libKernel32, "lstrcpyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -7541,13 +7541,13 @@ func LstrcpyA(lpString1 PSTR, lpString2 PSTR) PSTR {
 var Lstrcpy = LstrcpyW
 
 func LstrcpyW(lpString1 PWSTR, lpString2 PWSTR) PWSTR {
-	addr := lazyAddr(&pLstrcpyW, libKernel32, "lstrcpyW")
+	addr := LazyAddr(&pLstrcpyW, libKernel32, "lstrcpyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func LstrcatA(lpString1 PSTR, lpString2 PSTR) PSTR {
-	addr := lazyAddr(&pLstrcatA, libKernel32, "lstrcatA")
+	addr := LazyAddr(&pLstrcatA, libKernel32, "lstrcatA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return (PSTR)(unsafe.Pointer(ret))
 }
@@ -7555,13 +7555,13 @@ func LstrcatA(lpString1 PSTR, lpString2 PSTR) PSTR {
 var Lstrcat = LstrcatW
 
 func LstrcatW(lpString1 PWSTR, lpString2 PWSTR) PWSTR {
-	addr := lazyAddr(&pLstrcatW, libKernel32, "lstrcatW")
+	addr := LazyAddr(&pLstrcatW, libKernel32, "lstrcatW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(unsafe.Pointer(lpString2)))
 	return (PWSTR)(unsafe.Pointer(ret))
 }
 
 func LstrlenA(lpString PSTR) int32 {
-	addr := lazyAddr(&pLstrlenA, libKernel32, "lstrlenA")
+	addr := LazyAddr(&pLstrlenA, libKernel32, "lstrlenA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString)))
 	return int32(ret)
 }
@@ -7569,13 +7569,13 @@ func LstrlenA(lpString PSTR) int32 {
 var Lstrlen = LstrlenW
 
 func LstrlenW(lpString PWSTR) int32 {
-	addr := lazyAddr(&pLstrlenW, libKernel32, "lstrlenW")
+	addr := LazyAddr(&pLstrlenW, libKernel32, "lstrlenW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString)))
 	return int32(ret)
 }
 
 func IsTextUnicode(lpv unsafe.Pointer, iSize int32, lpiResult *IS_TEXT_UNICODE_RESULT) BOOL {
-	addr := lazyAddr(&pIsTextUnicode, libAdvapi32, "IsTextUnicode")
+	addr := LazyAddr(&pIsTextUnicode, libAdvapi32, "IsTextUnicode")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lpv), uintptr(iSize), uintptr(unsafe.Pointer(lpiResult)))
 	return BOOL(ret)
 }

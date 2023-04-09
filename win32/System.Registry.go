@@ -1185,43 +1185,43 @@ var (
 )
 
 func RegCloseKey(hKey HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegCloseKey, libAdvapi32, "RegCloseKey")
+	addr := LazyAddr(&pRegCloseKey, libAdvapi32, "RegCloseKey")
 	ret, _, _ := syscall.SyscallN(addr, hKey)
 	return WIN32_ERROR(ret)
 }
 
 func RegOverridePredefKey(hKey HKEY, hNewHKey HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegOverridePredefKey, libAdvapi32, "RegOverridePredefKey")
+	addr := LazyAddr(&pRegOverridePredefKey, libAdvapi32, "RegOverridePredefKey")
 	ret, _, _ := syscall.SyscallN(addr, hKey, hNewHKey)
 	return WIN32_ERROR(ret)
 }
 
 func RegOpenUserClassesRoot(hToken HANDLE, dwOptions uint32, samDesired uint32, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenUserClassesRoot, libAdvapi32, "RegOpenUserClassesRoot")
+	addr := LazyAddr(&pRegOpenUserClassesRoot, libAdvapi32, "RegOpenUserClassesRoot")
 	ret, _, _ := syscall.SyscallN(addr, hToken, uintptr(dwOptions), uintptr(samDesired), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
 
 func RegOpenCurrentUser(samDesired uint32, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenCurrentUser, libAdvapi32, "RegOpenCurrentUser")
+	addr := LazyAddr(&pRegOpenCurrentUser, libAdvapi32, "RegOpenCurrentUser")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(samDesired), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
 
 func RegDisablePredefinedCache() WIN32_ERROR {
-	addr := lazyAddr(&pRegDisablePredefinedCache, libAdvapi32, "RegDisablePredefinedCache")
+	addr := LazyAddr(&pRegDisablePredefinedCache, libAdvapi32, "RegDisablePredefinedCache")
 	ret, _, _ := syscall.SyscallN(addr)
 	return WIN32_ERROR(ret)
 }
 
 func RegDisablePredefinedCacheEx() WIN32_ERROR {
-	addr := lazyAddr(&pRegDisablePredefinedCacheEx, libAdvapi32, "RegDisablePredefinedCacheEx")
+	addr := LazyAddr(&pRegDisablePredefinedCacheEx, libAdvapi32, "RegDisablePredefinedCacheEx")
 	ret, _, _ := syscall.SyscallN(addr)
 	return WIN32_ERROR(ret)
 }
 
 func RegConnectRegistryA(lpMachineName PSTR, hKey HKEY, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegConnectRegistryA, libAdvapi32, "RegConnectRegistryA")
+	addr := LazyAddr(&pRegConnectRegistryA, libAdvapi32, "RegConnectRegistryA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), hKey, uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
@@ -1229,13 +1229,13 @@ func RegConnectRegistryA(lpMachineName PSTR, hKey HKEY, phkResult *HKEY) WIN32_E
 var RegConnectRegistry = RegConnectRegistryW
 
 func RegConnectRegistryW(lpMachineName PWSTR, hKey HKEY, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegConnectRegistryW, libAdvapi32, "RegConnectRegistryW")
+	addr := LazyAddr(&pRegConnectRegistryW, libAdvapi32, "RegConnectRegistryW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), hKey, uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
 
 func RegConnectRegistryExA(lpMachineName PSTR, hKey HKEY, Flags uint32, phkResult *HKEY) int32 {
-	addr := lazyAddr(&pRegConnectRegistryExA, libAdvapi32, "RegConnectRegistryExA")
+	addr := LazyAddr(&pRegConnectRegistryExA, libAdvapi32, "RegConnectRegistryExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), hKey, uintptr(Flags), uintptr(unsafe.Pointer(phkResult)))
 	return int32(ret)
 }
@@ -1243,13 +1243,13 @@ func RegConnectRegistryExA(lpMachineName PSTR, hKey HKEY, Flags uint32, phkResul
 var RegConnectRegistryEx = RegConnectRegistryExW
 
 func RegConnectRegistryExW(lpMachineName PWSTR, hKey HKEY, Flags uint32, phkResult *HKEY) int32 {
-	addr := lazyAddr(&pRegConnectRegistryExW, libAdvapi32, "RegConnectRegistryExW")
+	addr := LazyAddr(&pRegConnectRegistryExW, libAdvapi32, "RegConnectRegistryExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), hKey, uintptr(Flags), uintptr(unsafe.Pointer(phkResult)))
 	return int32(ret)
 }
 
 func RegCreateKeyA(hKey HKEY, lpSubKey PSTR, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegCreateKeyA, libAdvapi32, "RegCreateKeyA")
+	addr := LazyAddr(&pRegCreateKeyA, libAdvapi32, "RegCreateKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
@@ -1257,13 +1257,13 @@ func RegCreateKeyA(hKey HKEY, lpSubKey PSTR, phkResult *HKEY) WIN32_ERROR {
 var RegCreateKey = RegCreateKeyW
 
 func RegCreateKeyW(hKey HKEY, lpSubKey PWSTR, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegCreateKeyW, libAdvapi32, "RegCreateKeyW")
+	addr := LazyAddr(&pRegCreateKeyW, libAdvapi32, "RegCreateKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
 
 func RegCreateKeyExA(hKey HKEY, lpSubKey PSTR, Reserved uint32, lpClass PSTR, dwOptions REG_OPEN_CREATE_OPTIONS, samDesired REG_SAM_FLAGS, lpSecurityAttributes *SECURITY_ATTRIBUTES, phkResult *HKEY, lpdwDisposition *REG_CREATE_KEY_DISPOSITION) WIN32_ERROR {
-	addr := lazyAddr(&pRegCreateKeyExA, libAdvapi32, "RegCreateKeyExA")
+	addr := LazyAddr(&pRegCreateKeyExA, libAdvapi32, "RegCreateKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(Reserved), uintptr(unsafe.Pointer(lpClass)), uintptr(dwOptions), uintptr(samDesired), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(unsafe.Pointer(phkResult)), uintptr(unsafe.Pointer(lpdwDisposition)))
 	return WIN32_ERROR(ret)
 }
@@ -1271,13 +1271,13 @@ func RegCreateKeyExA(hKey HKEY, lpSubKey PSTR, Reserved uint32, lpClass PSTR, dw
 var RegCreateKeyEx = RegCreateKeyExW
 
 func RegCreateKeyExW(hKey HKEY, lpSubKey PWSTR, Reserved uint32, lpClass PWSTR, dwOptions REG_OPEN_CREATE_OPTIONS, samDesired REG_SAM_FLAGS, lpSecurityAttributes *SECURITY_ATTRIBUTES, phkResult *HKEY, lpdwDisposition *REG_CREATE_KEY_DISPOSITION) WIN32_ERROR {
-	addr := lazyAddr(&pRegCreateKeyExW, libAdvapi32, "RegCreateKeyExW")
+	addr := LazyAddr(&pRegCreateKeyExW, libAdvapi32, "RegCreateKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(Reserved), uintptr(unsafe.Pointer(lpClass)), uintptr(dwOptions), uintptr(samDesired), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(unsafe.Pointer(phkResult)), uintptr(unsafe.Pointer(lpdwDisposition)))
 	return WIN32_ERROR(ret)
 }
 
 func RegCreateKeyTransactedA(hKey HKEY, lpSubKey PSTR, Reserved uint32, lpClass PSTR, dwOptions REG_OPEN_CREATE_OPTIONS, samDesired REG_SAM_FLAGS, lpSecurityAttributes *SECURITY_ATTRIBUTES, phkResult *HKEY, lpdwDisposition *REG_CREATE_KEY_DISPOSITION, hTransaction HANDLE, pExtendedParemeter unsafe.Pointer) WIN32_ERROR {
-	addr := lazyAddr(&pRegCreateKeyTransactedA, libAdvapi32, "RegCreateKeyTransactedA")
+	addr := LazyAddr(&pRegCreateKeyTransactedA, libAdvapi32, "RegCreateKeyTransactedA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(Reserved), uintptr(unsafe.Pointer(lpClass)), uintptr(dwOptions), uintptr(samDesired), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(unsafe.Pointer(phkResult)), uintptr(unsafe.Pointer(lpdwDisposition)), hTransaction, uintptr(pExtendedParemeter))
 	return WIN32_ERROR(ret)
 }
@@ -1285,13 +1285,13 @@ func RegCreateKeyTransactedA(hKey HKEY, lpSubKey PSTR, Reserved uint32, lpClass 
 var RegCreateKeyTransacted = RegCreateKeyTransactedW
 
 func RegCreateKeyTransactedW(hKey HKEY, lpSubKey PWSTR, Reserved uint32, lpClass PWSTR, dwOptions REG_OPEN_CREATE_OPTIONS, samDesired REG_SAM_FLAGS, lpSecurityAttributes *SECURITY_ATTRIBUTES, phkResult *HKEY, lpdwDisposition *REG_CREATE_KEY_DISPOSITION, hTransaction HANDLE, pExtendedParemeter unsafe.Pointer) WIN32_ERROR {
-	addr := lazyAddr(&pRegCreateKeyTransactedW, libAdvapi32, "RegCreateKeyTransactedW")
+	addr := LazyAddr(&pRegCreateKeyTransactedW, libAdvapi32, "RegCreateKeyTransactedW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(Reserved), uintptr(unsafe.Pointer(lpClass)), uintptr(dwOptions), uintptr(samDesired), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(unsafe.Pointer(phkResult)), uintptr(unsafe.Pointer(lpdwDisposition)), hTransaction, uintptr(pExtendedParemeter))
 	return WIN32_ERROR(ret)
 }
 
 func RegDeleteKeyA(hKey HKEY, lpSubKey PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyA, libAdvapi32, "RegDeleteKeyA")
+	addr := LazyAddr(&pRegDeleteKeyA, libAdvapi32, "RegDeleteKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)))
 	return WIN32_ERROR(ret)
 }
@@ -1299,13 +1299,13 @@ func RegDeleteKeyA(hKey HKEY, lpSubKey PSTR) WIN32_ERROR {
 var RegDeleteKey = RegDeleteKeyW
 
 func RegDeleteKeyW(hKey HKEY, lpSubKey PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyW, libAdvapi32, "RegDeleteKeyW")
+	addr := LazyAddr(&pRegDeleteKeyW, libAdvapi32, "RegDeleteKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)))
 	return WIN32_ERROR(ret)
 }
 
 func RegDeleteKeyExA(hKey HKEY, lpSubKey PSTR, samDesired uint32, Reserved uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyExA, libAdvapi32, "RegDeleteKeyExA")
+	addr := LazyAddr(&pRegDeleteKeyExA, libAdvapi32, "RegDeleteKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(samDesired), uintptr(Reserved))
 	return WIN32_ERROR(ret)
 }
@@ -1313,13 +1313,13 @@ func RegDeleteKeyExA(hKey HKEY, lpSubKey PSTR, samDesired uint32, Reserved uint3
 var RegDeleteKeyEx = RegDeleteKeyExW
 
 func RegDeleteKeyExW(hKey HKEY, lpSubKey PWSTR, samDesired uint32, Reserved uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyExW, libAdvapi32, "RegDeleteKeyExW")
+	addr := LazyAddr(&pRegDeleteKeyExW, libAdvapi32, "RegDeleteKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(samDesired), uintptr(Reserved))
 	return WIN32_ERROR(ret)
 }
 
 func RegDeleteKeyTransactedA(hKey HKEY, lpSubKey PSTR, samDesired uint32, Reserved uint32, hTransaction HANDLE, pExtendedParameter unsafe.Pointer) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyTransactedA, libAdvapi32, "RegDeleteKeyTransactedA")
+	addr := LazyAddr(&pRegDeleteKeyTransactedA, libAdvapi32, "RegDeleteKeyTransactedA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(samDesired), uintptr(Reserved), hTransaction, uintptr(pExtendedParameter))
 	return WIN32_ERROR(ret)
 }
@@ -1327,31 +1327,31 @@ func RegDeleteKeyTransactedA(hKey HKEY, lpSubKey PSTR, samDesired uint32, Reserv
 var RegDeleteKeyTransacted = RegDeleteKeyTransactedW
 
 func RegDeleteKeyTransactedW(hKey HKEY, lpSubKey PWSTR, samDesired uint32, Reserved uint32, hTransaction HANDLE, pExtendedParameter unsafe.Pointer) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyTransactedW, libAdvapi32, "RegDeleteKeyTransactedW")
+	addr := LazyAddr(&pRegDeleteKeyTransactedW, libAdvapi32, "RegDeleteKeyTransactedW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(samDesired), uintptr(Reserved), hTransaction, uintptr(pExtendedParameter))
 	return WIN32_ERROR(ret)
 }
 
 func RegDisableReflectionKey(hBase HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegDisableReflectionKey, libAdvapi32, "RegDisableReflectionKey")
+	addr := LazyAddr(&pRegDisableReflectionKey, libAdvapi32, "RegDisableReflectionKey")
 	ret, _, _ := syscall.SyscallN(addr, hBase)
 	return WIN32_ERROR(ret)
 }
 
 func RegEnableReflectionKey(hBase HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegEnableReflectionKey, libAdvapi32, "RegEnableReflectionKey")
+	addr := LazyAddr(&pRegEnableReflectionKey, libAdvapi32, "RegEnableReflectionKey")
 	ret, _, _ := syscall.SyscallN(addr, hBase)
 	return WIN32_ERROR(ret)
 }
 
 func RegQueryReflectionKey(hBase HKEY, bIsReflectionDisabled *BOOL) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryReflectionKey, libAdvapi32, "RegQueryReflectionKey")
+	addr := LazyAddr(&pRegQueryReflectionKey, libAdvapi32, "RegQueryReflectionKey")
 	ret, _, _ := syscall.SyscallN(addr, hBase, uintptr(unsafe.Pointer(bIsReflectionDisabled)))
 	return WIN32_ERROR(ret)
 }
 
 func RegDeleteValueA(hKey HKEY, lpValueName PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteValueA, libAdvapi32, "RegDeleteValueA")
+	addr := LazyAddr(&pRegDeleteValueA, libAdvapi32, "RegDeleteValueA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpValueName)))
 	return WIN32_ERROR(ret)
 }
@@ -1359,13 +1359,13 @@ func RegDeleteValueA(hKey HKEY, lpValueName PSTR) WIN32_ERROR {
 var RegDeleteValue = RegDeleteValueW
 
 func RegDeleteValueW(hKey HKEY, lpValueName PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteValueW, libAdvapi32, "RegDeleteValueW")
+	addr := LazyAddr(&pRegDeleteValueW, libAdvapi32, "RegDeleteValueW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpValueName)))
 	return WIN32_ERROR(ret)
 }
 
 func RegEnumKeyA(hKey HKEY, dwIndex uint32, lpName PSTR, cchName uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegEnumKeyA, libAdvapi32, "RegEnumKeyA")
+	addr := LazyAddr(&pRegEnumKeyA, libAdvapi32, "RegEnumKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(dwIndex), uintptr(unsafe.Pointer(lpName)), uintptr(cchName))
 	return WIN32_ERROR(ret)
 }
@@ -1373,13 +1373,13 @@ func RegEnumKeyA(hKey HKEY, dwIndex uint32, lpName PSTR, cchName uint32) WIN32_E
 var RegEnumKey = RegEnumKeyW
 
 func RegEnumKeyW(hKey HKEY, dwIndex uint32, lpName PWSTR, cchName uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegEnumKeyW, libAdvapi32, "RegEnumKeyW")
+	addr := LazyAddr(&pRegEnumKeyW, libAdvapi32, "RegEnumKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(dwIndex), uintptr(unsafe.Pointer(lpName)), uintptr(cchName))
 	return WIN32_ERROR(ret)
 }
 
 func RegEnumKeyExA(hKey HKEY, dwIndex uint32, lpName PSTR, lpcchName *uint32, lpReserved *uint32, lpClass PSTR, lpcchClass *uint32, lpftLastWriteTime *FILETIME) WIN32_ERROR {
-	addr := lazyAddr(&pRegEnumKeyExA, libAdvapi32, "RegEnumKeyExA")
+	addr := LazyAddr(&pRegEnumKeyExA, libAdvapi32, "RegEnumKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(dwIndex), uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpcchName)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpClass)), uintptr(unsafe.Pointer(lpcchClass)), uintptr(unsafe.Pointer(lpftLastWriteTime)))
 	return WIN32_ERROR(ret)
 }
@@ -1387,13 +1387,13 @@ func RegEnumKeyExA(hKey HKEY, dwIndex uint32, lpName PSTR, lpcchName *uint32, lp
 var RegEnumKeyEx = RegEnumKeyExW
 
 func RegEnumKeyExW(hKey HKEY, dwIndex uint32, lpName PWSTR, lpcchName *uint32, lpReserved *uint32, lpClass PWSTR, lpcchClass *uint32, lpftLastWriteTime *FILETIME) WIN32_ERROR {
-	addr := lazyAddr(&pRegEnumKeyExW, libAdvapi32, "RegEnumKeyExW")
+	addr := LazyAddr(&pRegEnumKeyExW, libAdvapi32, "RegEnumKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(dwIndex), uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpcchName)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpClass)), uintptr(unsafe.Pointer(lpcchClass)), uintptr(unsafe.Pointer(lpftLastWriteTime)))
 	return WIN32_ERROR(ret)
 }
 
 func RegEnumValueA(hKey HKEY, dwIndex uint32, lpValueName PSTR, lpcchValueName *uint32, lpReserved *uint32, lpType *uint32, lpData *byte, lpcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegEnumValueA, libAdvapi32, "RegEnumValueA")
+	addr := LazyAddr(&pRegEnumValueA, libAdvapi32, "RegEnumValueA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(dwIndex), uintptr(unsafe.Pointer(lpValueName)), uintptr(unsafe.Pointer(lpcchValueName)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpData)), uintptr(unsafe.Pointer(lpcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -1401,25 +1401,25 @@ func RegEnumValueA(hKey HKEY, dwIndex uint32, lpValueName PSTR, lpcchValueName *
 var RegEnumValue = RegEnumValueW
 
 func RegEnumValueW(hKey HKEY, dwIndex uint32, lpValueName PWSTR, lpcchValueName *uint32, lpReserved *uint32, lpType *uint32, lpData *byte, lpcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegEnumValueW, libAdvapi32, "RegEnumValueW")
+	addr := LazyAddr(&pRegEnumValueW, libAdvapi32, "RegEnumValueW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(dwIndex), uintptr(unsafe.Pointer(lpValueName)), uintptr(unsafe.Pointer(lpcchValueName)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpData)), uintptr(unsafe.Pointer(lpcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func RegFlushKey(hKey HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegFlushKey, libAdvapi32, "RegFlushKey")
+	addr := LazyAddr(&pRegFlushKey, libAdvapi32, "RegFlushKey")
 	ret, _, _ := syscall.SyscallN(addr, hKey)
 	return WIN32_ERROR(ret)
 }
 
 func RegGetKeySecurity(hKey HKEY, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR, lpcbSecurityDescriptor *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegGetKeySecurity, libAdvapi32, "RegGetKeySecurity")
+	addr := LazyAddr(&pRegGetKeySecurity, libAdvapi32, "RegGetKeySecurity")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(lpcbSecurityDescriptor)))
 	return WIN32_ERROR(ret)
 }
 
 func RegLoadKeyA(hKey HKEY, lpSubKey PSTR, lpFile PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegLoadKeyA, libAdvapi32, "RegLoadKeyA")
+	addr := LazyAddr(&pRegLoadKeyA, libAdvapi32, "RegLoadKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpFile)))
 	return WIN32_ERROR(ret)
 }
@@ -1427,19 +1427,19 @@ func RegLoadKeyA(hKey HKEY, lpSubKey PSTR, lpFile PSTR) WIN32_ERROR {
 var RegLoadKey = RegLoadKeyW
 
 func RegLoadKeyW(hKey HKEY, lpSubKey PWSTR, lpFile PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegLoadKeyW, libAdvapi32, "RegLoadKeyW")
+	addr := LazyAddr(&pRegLoadKeyW, libAdvapi32, "RegLoadKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpFile)))
 	return WIN32_ERROR(ret)
 }
 
 func RegNotifyChangeKeyValue(hKey HKEY, bWatchSubtree BOOL, dwNotifyFilter REG_NOTIFY_FILTER, hEvent HANDLE, fAsynchronous BOOL) WIN32_ERROR {
-	addr := lazyAddr(&pRegNotifyChangeKeyValue, libAdvapi32, "RegNotifyChangeKeyValue")
+	addr := LazyAddr(&pRegNotifyChangeKeyValue, libAdvapi32, "RegNotifyChangeKeyValue")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(bWatchSubtree), uintptr(dwNotifyFilter), hEvent, uintptr(fAsynchronous))
 	return WIN32_ERROR(ret)
 }
 
 func RegOpenKeyA(hKey HKEY, lpSubKey PSTR, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenKeyA, libAdvapi32, "RegOpenKeyA")
+	addr := LazyAddr(&pRegOpenKeyA, libAdvapi32, "RegOpenKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
@@ -1447,13 +1447,13 @@ func RegOpenKeyA(hKey HKEY, lpSubKey PSTR, phkResult *HKEY) WIN32_ERROR {
 var RegOpenKey = RegOpenKeyW
 
 func RegOpenKeyW(hKey HKEY, lpSubKey PWSTR, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenKeyW, libAdvapi32, "RegOpenKeyW")
+	addr := LazyAddr(&pRegOpenKeyW, libAdvapi32, "RegOpenKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
 
 func RegOpenKeyExA(hKey HKEY, lpSubKey PSTR, ulOptions uint32, samDesired REG_SAM_FLAGS, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenKeyExA, libAdvapi32, "RegOpenKeyExA")
+	addr := LazyAddr(&pRegOpenKeyExA, libAdvapi32, "RegOpenKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(ulOptions), uintptr(samDesired), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
@@ -1461,13 +1461,13 @@ func RegOpenKeyExA(hKey HKEY, lpSubKey PSTR, ulOptions uint32, samDesired REG_SA
 var RegOpenKeyEx = RegOpenKeyExW
 
 func RegOpenKeyExW(hKey HKEY, lpSubKey PWSTR, ulOptions uint32, samDesired REG_SAM_FLAGS, phkResult *HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenKeyExW, libAdvapi32, "RegOpenKeyExW")
+	addr := LazyAddr(&pRegOpenKeyExW, libAdvapi32, "RegOpenKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(ulOptions), uintptr(samDesired), uintptr(unsafe.Pointer(phkResult)))
 	return WIN32_ERROR(ret)
 }
 
 func RegOpenKeyTransactedA(hKey HKEY, lpSubKey PSTR, ulOptions uint32, samDesired REG_SAM_FLAGS, phkResult *HKEY, hTransaction HANDLE, pExtendedParemeter unsafe.Pointer) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenKeyTransactedA, libAdvapi32, "RegOpenKeyTransactedA")
+	addr := LazyAddr(&pRegOpenKeyTransactedA, libAdvapi32, "RegOpenKeyTransactedA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(ulOptions), uintptr(samDesired), uintptr(unsafe.Pointer(phkResult)), hTransaction, uintptr(pExtendedParemeter))
 	return WIN32_ERROR(ret)
 }
@@ -1475,13 +1475,13 @@ func RegOpenKeyTransactedA(hKey HKEY, lpSubKey PSTR, ulOptions uint32, samDesire
 var RegOpenKeyTransacted = RegOpenKeyTransactedW
 
 func RegOpenKeyTransactedW(hKey HKEY, lpSubKey PWSTR, ulOptions uint32, samDesired REG_SAM_FLAGS, phkResult *HKEY, hTransaction HANDLE, pExtendedParemeter unsafe.Pointer) WIN32_ERROR {
-	addr := lazyAddr(&pRegOpenKeyTransactedW, libAdvapi32, "RegOpenKeyTransactedW")
+	addr := LazyAddr(&pRegOpenKeyTransactedW, libAdvapi32, "RegOpenKeyTransactedW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(ulOptions), uintptr(samDesired), uintptr(unsafe.Pointer(phkResult)), hTransaction, uintptr(pExtendedParemeter))
 	return WIN32_ERROR(ret)
 }
 
 func RegQueryInfoKeyA(hKey HKEY, lpClass PSTR, lpcchClass *uint32, lpReserved *uint32, lpcSubKeys *uint32, lpcbMaxSubKeyLen *uint32, lpcbMaxClassLen *uint32, lpcValues *uint32, lpcbMaxValueNameLen *uint32, lpcbMaxValueLen *uint32, lpcbSecurityDescriptor *uint32, lpftLastWriteTime *FILETIME) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryInfoKeyA, libAdvapi32, "RegQueryInfoKeyA")
+	addr := LazyAddr(&pRegQueryInfoKeyA, libAdvapi32, "RegQueryInfoKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpClass)), uintptr(unsafe.Pointer(lpcchClass)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpcSubKeys)), uintptr(unsafe.Pointer(lpcbMaxSubKeyLen)), uintptr(unsafe.Pointer(lpcbMaxClassLen)), uintptr(unsafe.Pointer(lpcValues)), uintptr(unsafe.Pointer(lpcbMaxValueNameLen)), uintptr(unsafe.Pointer(lpcbMaxValueLen)), uintptr(unsafe.Pointer(lpcbSecurityDescriptor)), uintptr(unsafe.Pointer(lpftLastWriteTime)))
 	return WIN32_ERROR(ret)
 }
@@ -1489,13 +1489,13 @@ func RegQueryInfoKeyA(hKey HKEY, lpClass PSTR, lpcchClass *uint32, lpReserved *u
 var RegQueryInfoKey = RegQueryInfoKeyW
 
 func RegQueryInfoKeyW(hKey HKEY, lpClass PWSTR, lpcchClass *uint32, lpReserved *uint32, lpcSubKeys *uint32, lpcbMaxSubKeyLen *uint32, lpcbMaxClassLen *uint32, lpcValues *uint32, lpcbMaxValueNameLen *uint32, lpcbMaxValueLen *uint32, lpcbSecurityDescriptor *uint32, lpftLastWriteTime *FILETIME) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryInfoKeyW, libAdvapi32, "RegQueryInfoKeyW")
+	addr := LazyAddr(&pRegQueryInfoKeyW, libAdvapi32, "RegQueryInfoKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpClass)), uintptr(unsafe.Pointer(lpcchClass)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpcSubKeys)), uintptr(unsafe.Pointer(lpcbMaxSubKeyLen)), uintptr(unsafe.Pointer(lpcbMaxClassLen)), uintptr(unsafe.Pointer(lpcValues)), uintptr(unsafe.Pointer(lpcbMaxValueNameLen)), uintptr(unsafe.Pointer(lpcbMaxValueLen)), uintptr(unsafe.Pointer(lpcbSecurityDescriptor)), uintptr(unsafe.Pointer(lpftLastWriteTime)))
 	return WIN32_ERROR(ret)
 }
 
 func RegQueryValueA(hKey HKEY, lpSubKey PSTR, lpData PSTR, lpcbData *int32) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryValueA, libAdvapi32, "RegQueryValueA")
+	addr := LazyAddr(&pRegQueryValueA, libAdvapi32, "RegQueryValueA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpData)), uintptr(unsafe.Pointer(lpcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -1503,13 +1503,13 @@ func RegQueryValueA(hKey HKEY, lpSubKey PSTR, lpData PSTR, lpcbData *int32) WIN3
 var RegQueryValue = RegQueryValueW
 
 func RegQueryValueW(hKey HKEY, lpSubKey PWSTR, lpData PWSTR, lpcbData *int32) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryValueW, libAdvapi32, "RegQueryValueW")
+	addr := LazyAddr(&pRegQueryValueW, libAdvapi32, "RegQueryValueW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpData)), uintptr(unsafe.Pointer(lpcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func RegQueryMultipleValuesA(hKey HKEY, val_list *VALENTA, num_vals uint32, lpValueBuf PSTR, ldwTotsize *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryMultipleValuesA, libAdvapi32, "RegQueryMultipleValuesA")
+	addr := LazyAddr(&pRegQueryMultipleValuesA, libAdvapi32, "RegQueryMultipleValuesA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(val_list)), uintptr(num_vals), uintptr(unsafe.Pointer(lpValueBuf)), uintptr(unsafe.Pointer(ldwTotsize)))
 	return WIN32_ERROR(ret)
 }
@@ -1517,13 +1517,13 @@ func RegQueryMultipleValuesA(hKey HKEY, val_list *VALENTA, num_vals uint32, lpVa
 var RegQueryMultipleValues = RegQueryMultipleValuesW
 
 func RegQueryMultipleValuesW(hKey HKEY, val_list *VALENTW, num_vals uint32, lpValueBuf PWSTR, ldwTotsize *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryMultipleValuesW, libAdvapi32, "RegQueryMultipleValuesW")
+	addr := LazyAddr(&pRegQueryMultipleValuesW, libAdvapi32, "RegQueryMultipleValuesW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(val_list)), uintptr(num_vals), uintptr(unsafe.Pointer(lpValueBuf)), uintptr(unsafe.Pointer(ldwTotsize)))
 	return WIN32_ERROR(ret)
 }
 
 func RegQueryValueExA(hKey HKEY, lpValueName PSTR, lpReserved *uint32, lpType *REG_VALUE_TYPE, lpData *byte, lpcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryValueExA, libAdvapi32, "RegQueryValueExA")
+	addr := LazyAddr(&pRegQueryValueExA, libAdvapi32, "RegQueryValueExA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpValueName)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpData)), uintptr(unsafe.Pointer(lpcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -1531,13 +1531,13 @@ func RegQueryValueExA(hKey HKEY, lpValueName PSTR, lpReserved *uint32, lpType *R
 var RegQueryValueEx = RegQueryValueExW
 
 func RegQueryValueExW(hKey HKEY, lpValueName PWSTR, lpReserved *uint32, lpType *REG_VALUE_TYPE, lpData *byte, lpcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegQueryValueExW, libAdvapi32, "RegQueryValueExW")
+	addr := LazyAddr(&pRegQueryValueExW, libAdvapi32, "RegQueryValueExW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpValueName)), uintptr(unsafe.Pointer(lpReserved)), uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpData)), uintptr(unsafe.Pointer(lpcbData)))
 	return WIN32_ERROR(ret)
 }
 
 func RegReplaceKeyA(hKey HKEY, lpSubKey PSTR, lpNewFile PSTR, lpOldFile PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegReplaceKeyA, libAdvapi32, "RegReplaceKeyA")
+	addr := LazyAddr(&pRegReplaceKeyA, libAdvapi32, "RegReplaceKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpNewFile)), uintptr(unsafe.Pointer(lpOldFile)))
 	return WIN32_ERROR(ret)
 }
@@ -1545,13 +1545,13 @@ func RegReplaceKeyA(hKey HKEY, lpSubKey PSTR, lpNewFile PSTR, lpOldFile PSTR) WI
 var RegReplaceKey = RegReplaceKeyW
 
 func RegReplaceKeyW(hKey HKEY, lpSubKey PWSTR, lpNewFile PWSTR, lpOldFile PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegReplaceKeyW, libAdvapi32, "RegReplaceKeyW")
+	addr := LazyAddr(&pRegReplaceKeyW, libAdvapi32, "RegReplaceKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpNewFile)), uintptr(unsafe.Pointer(lpOldFile)))
 	return WIN32_ERROR(ret)
 }
 
 func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pRegRestoreKeyA, libAdvapi32, "RegRestoreKeyA")
+	addr := LazyAddr(&pRegRestoreKeyA, libAdvapi32, "RegRestoreKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
@@ -1559,19 +1559,19 @@ func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32
 var RegRestoreKey = RegRestoreKeyW
 
 func RegRestoreKeyW(hKey HKEY, lpFile PWSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32_ERROR {
-	addr := lazyAddr(&pRegRestoreKeyW, libAdvapi32, "RegRestoreKeyW")
+	addr := LazyAddr(&pRegRestoreKeyW, libAdvapi32, "RegRestoreKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
 }
 
 func RegRenameKey(hKey HKEY, lpSubKeyName PWSTR, lpNewKeyName PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegRenameKey, libAdvapi32, "RegRenameKey")
+	addr := LazyAddr(&pRegRenameKey, libAdvapi32, "RegRenameKey")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKeyName)), uintptr(unsafe.Pointer(lpNewKeyName)))
 	return WIN32_ERROR(ret)
 }
 
 func RegSaveKeyA(hKey HKEY, lpFile PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) WIN32_ERROR {
-	addr := lazyAddr(&pRegSaveKeyA, libAdvapi32, "RegSaveKeyA")
+	addr := LazyAddr(&pRegSaveKeyA, libAdvapi32, "RegSaveKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return WIN32_ERROR(ret)
 }
@@ -1579,19 +1579,19 @@ func RegSaveKeyA(hKey HKEY, lpFile PSTR, lpSecurityAttributes *SECURITY_ATTRIBUT
 var RegSaveKey = RegSaveKeyW
 
 func RegSaveKeyW(hKey HKEY, lpFile PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES) WIN32_ERROR {
-	addr := lazyAddr(&pRegSaveKeyW, libAdvapi32, "RegSaveKeyW")
+	addr := LazyAddr(&pRegSaveKeyW, libAdvapi32, "RegSaveKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpSecurityAttributes)))
 	return WIN32_ERROR(ret)
 }
 
 func RegSetKeySecurity(hKey HKEY, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR) WIN32_ERROR {
-	addr := lazyAddr(&pRegSetKeySecurity, libAdvapi32, "RegSetKeySecurity")
+	addr := LazyAddr(&pRegSetKeySecurity, libAdvapi32, "RegSetKeySecurity")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return WIN32_ERROR(ret)
 }
 
 func RegSetValueA(hKey HKEY, lpSubKey PSTR, dwType REG_VALUE_TYPE, lpData PSTR, cbData uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegSetValueA, libAdvapi32, "RegSetValueA")
+	addr := LazyAddr(&pRegSetValueA, libAdvapi32, "RegSetValueA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(dwType), uintptr(unsafe.Pointer(lpData)), uintptr(cbData))
 	return WIN32_ERROR(ret)
 }
@@ -1599,13 +1599,13 @@ func RegSetValueA(hKey HKEY, lpSubKey PSTR, dwType REG_VALUE_TYPE, lpData PSTR, 
 var RegSetValue = RegSetValueW
 
 func RegSetValueW(hKey HKEY, lpSubKey PWSTR, dwType REG_VALUE_TYPE, lpData PWSTR, cbData uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegSetValueW, libAdvapi32, "RegSetValueW")
+	addr := LazyAddr(&pRegSetValueW, libAdvapi32, "RegSetValueW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(dwType), uintptr(unsafe.Pointer(lpData)), uintptr(cbData))
 	return WIN32_ERROR(ret)
 }
 
 func RegSetValueExA(hKey HKEY, lpValueName PSTR, Reserved uint32, dwType REG_VALUE_TYPE, lpData *byte, cbData uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegSetValueExA, libAdvapi32, "RegSetValueExA")
+	addr := LazyAddr(&pRegSetValueExA, libAdvapi32, "RegSetValueExA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpValueName)), uintptr(Reserved), uintptr(dwType), uintptr(unsafe.Pointer(lpData)), uintptr(cbData))
 	return WIN32_ERROR(ret)
 }
@@ -1613,13 +1613,13 @@ func RegSetValueExA(hKey HKEY, lpValueName PSTR, Reserved uint32, dwType REG_VAL
 var RegSetValueEx = RegSetValueExW
 
 func RegSetValueExW(hKey HKEY, lpValueName PWSTR, Reserved uint32, dwType REG_VALUE_TYPE, lpData *byte, cbData uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegSetValueExW, libAdvapi32, "RegSetValueExW")
+	addr := LazyAddr(&pRegSetValueExW, libAdvapi32, "RegSetValueExW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpValueName)), uintptr(Reserved), uintptr(dwType), uintptr(unsafe.Pointer(lpData)), uintptr(cbData))
 	return WIN32_ERROR(ret)
 }
 
 func RegUnLoadKeyA(hKey HKEY, lpSubKey PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegUnLoadKeyA, libAdvapi32, "RegUnLoadKeyA")
+	addr := LazyAddr(&pRegUnLoadKeyA, libAdvapi32, "RegUnLoadKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)))
 	return WIN32_ERROR(ret)
 }
@@ -1627,13 +1627,13 @@ func RegUnLoadKeyA(hKey HKEY, lpSubKey PSTR) WIN32_ERROR {
 var RegUnLoadKey = RegUnLoadKeyW
 
 func RegUnLoadKeyW(hKey HKEY, lpSubKey PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegUnLoadKeyW, libAdvapi32, "RegUnLoadKeyW")
+	addr := LazyAddr(&pRegUnLoadKeyW, libAdvapi32, "RegUnLoadKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)))
 	return WIN32_ERROR(ret)
 }
 
 func RegDeleteKeyValueA(hKey HKEY, lpSubKey PSTR, lpValueName PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyValueA, libAdvapi32, "RegDeleteKeyValueA")
+	addr := LazyAddr(&pRegDeleteKeyValueA, libAdvapi32, "RegDeleteKeyValueA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValueName)))
 	return WIN32_ERROR(ret)
 }
@@ -1641,13 +1641,13 @@ func RegDeleteKeyValueA(hKey HKEY, lpSubKey PSTR, lpValueName PSTR) WIN32_ERROR 
 var RegDeleteKeyValue = RegDeleteKeyValueW
 
 func RegDeleteKeyValueW(hKey HKEY, lpSubKey PWSTR, lpValueName PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteKeyValueW, libAdvapi32, "RegDeleteKeyValueW")
+	addr := LazyAddr(&pRegDeleteKeyValueW, libAdvapi32, "RegDeleteKeyValueW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValueName)))
 	return WIN32_ERROR(ret)
 }
 
 func RegSetKeyValueA(hKey HKEY, lpSubKey PSTR, lpValueName PSTR, dwType uint32, lpData unsafe.Pointer, cbData uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegSetKeyValueA, libAdvapi32, "RegSetKeyValueA")
+	addr := LazyAddr(&pRegSetKeyValueA, libAdvapi32, "RegSetKeyValueA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValueName)), uintptr(dwType), uintptr(lpData), uintptr(cbData))
 	return WIN32_ERROR(ret)
 }
@@ -1655,13 +1655,13 @@ func RegSetKeyValueA(hKey HKEY, lpSubKey PSTR, lpValueName PSTR, dwType uint32, 
 var RegSetKeyValue = RegSetKeyValueW
 
 func RegSetKeyValueW(hKey HKEY, lpSubKey PWSTR, lpValueName PWSTR, dwType uint32, lpData unsafe.Pointer, cbData uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegSetKeyValueW, libAdvapi32, "RegSetKeyValueW")
+	addr := LazyAddr(&pRegSetKeyValueW, libAdvapi32, "RegSetKeyValueW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValueName)), uintptr(dwType), uintptr(lpData), uintptr(cbData))
 	return WIN32_ERROR(ret)
 }
 
 func RegDeleteTreeA(hKey HKEY, lpSubKey PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteTreeA, libAdvapi32, "RegDeleteTreeA")
+	addr := LazyAddr(&pRegDeleteTreeA, libAdvapi32, "RegDeleteTreeA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)))
 	return WIN32_ERROR(ret)
 }
@@ -1669,19 +1669,19 @@ func RegDeleteTreeA(hKey HKEY, lpSubKey PSTR) WIN32_ERROR {
 var RegDeleteTree = RegDeleteTreeW
 
 func RegDeleteTreeW(hKey HKEY, lpSubKey PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegDeleteTreeW, libAdvapi32, "RegDeleteTreeW")
+	addr := LazyAddr(&pRegDeleteTreeW, libAdvapi32, "RegDeleteTreeW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpSubKey)))
 	return WIN32_ERROR(ret)
 }
 
 func RegCopyTreeA(hKeySrc HKEY, lpSubKey PSTR, hKeyDest HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegCopyTreeA, libAdvapi32, "RegCopyTreeA")
+	addr := LazyAddr(&pRegCopyTreeA, libAdvapi32, "RegCopyTreeA")
 	ret, _, _ := syscall.SyscallN(addr, hKeySrc, uintptr(unsafe.Pointer(lpSubKey)), hKeyDest)
 	return WIN32_ERROR(ret)
 }
 
 func RegGetValueA(hkey HKEY, lpSubKey PSTR, lpValue PSTR, dwFlags REG_ROUTINE_FLAGS, pdwType *REG_VALUE_TYPE, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegGetValueA, libAdvapi32, "RegGetValueA")
+	addr := LazyAddr(&pRegGetValueA, libAdvapi32, "RegGetValueA")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValue)), uintptr(dwFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -1689,7 +1689,7 @@ func RegGetValueA(hkey HKEY, lpSubKey PSTR, lpValue PSTR, dwFlags REG_ROUTINE_FL
 var RegGetValue = RegGetValueW
 
 func RegGetValueW(hkey HKEY, lpSubKey PWSTR, lpValue PWSTR, dwFlags REG_ROUTINE_FLAGS, pdwType *REG_VALUE_TYPE, pvData unsafe.Pointer, pcbData *uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegGetValueW, libAdvapi32, "RegGetValueW")
+	addr := LazyAddr(&pRegGetValueW, libAdvapi32, "RegGetValueW")
 	ret, _, _ := syscall.SyscallN(addr, hkey, uintptr(unsafe.Pointer(lpSubKey)), uintptr(unsafe.Pointer(lpValue)), uintptr(dwFlags), uintptr(unsafe.Pointer(pdwType)), uintptr(pvData), uintptr(unsafe.Pointer(pcbData)))
 	return WIN32_ERROR(ret)
 }
@@ -1697,13 +1697,13 @@ func RegGetValueW(hkey HKEY, lpSubKey PWSTR, lpValue PWSTR, dwFlags REG_ROUTINE_
 var RegCopyTree = RegCopyTreeW
 
 func RegCopyTreeW(hKeySrc HKEY, lpSubKey PWSTR, hKeyDest HKEY) WIN32_ERROR {
-	addr := lazyAddr(&pRegCopyTreeW, libAdvapi32, "RegCopyTreeW")
+	addr := LazyAddr(&pRegCopyTreeW, libAdvapi32, "RegCopyTreeW")
 	ret, _, _ := syscall.SyscallN(addr, hKeySrc, uintptr(unsafe.Pointer(lpSubKey)), hKeyDest)
 	return WIN32_ERROR(ret)
 }
 
 func RegLoadMUIStringA(hKey HKEY, pszValue PSTR, pszOutBuf PSTR, cbOutBuf uint32, pcbData *uint32, Flags uint32, pszDirectory PSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegLoadMUIStringA, libAdvapi32, "RegLoadMUIStringA")
+	addr := LazyAddr(&pRegLoadMUIStringA, libAdvapi32, "RegLoadMUIStringA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pszOutBuf)), uintptr(cbOutBuf), uintptr(unsafe.Pointer(pcbData)), uintptr(Flags), uintptr(unsafe.Pointer(pszDirectory)))
 	return WIN32_ERROR(ret)
 }
@@ -1711,13 +1711,13 @@ func RegLoadMUIStringA(hKey HKEY, pszValue PSTR, pszOutBuf PSTR, cbOutBuf uint32
 var RegLoadMUIString = RegLoadMUIStringW
 
 func RegLoadMUIStringW(hKey HKEY, pszValue PWSTR, pszOutBuf PWSTR, cbOutBuf uint32, pcbData *uint32, Flags uint32, pszDirectory PWSTR) WIN32_ERROR {
-	addr := lazyAddr(&pRegLoadMUIStringW, libAdvapi32, "RegLoadMUIStringW")
+	addr := LazyAddr(&pRegLoadMUIStringW, libAdvapi32, "RegLoadMUIStringW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(pszValue)), uintptr(unsafe.Pointer(pszOutBuf)), uintptr(cbOutBuf), uintptr(unsafe.Pointer(pcbData)), uintptr(Flags), uintptr(unsafe.Pointer(pszDirectory)))
 	return WIN32_ERROR(ret)
 }
 
 func RegLoadAppKeyA(lpFile PSTR, phkResult *HKEY, samDesired uint32, dwOptions uint32, Reserved uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegLoadAppKeyA, libAdvapi32, "RegLoadAppKeyA")
+	addr := LazyAddr(&pRegLoadAppKeyA, libAdvapi32, "RegLoadAppKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(phkResult)), uintptr(samDesired), uintptr(dwOptions), uintptr(Reserved))
 	return WIN32_ERROR(ret)
 }
@@ -1725,13 +1725,13 @@ func RegLoadAppKeyA(lpFile PSTR, phkResult *HKEY, samDesired uint32, dwOptions u
 var RegLoadAppKey = RegLoadAppKeyW
 
 func RegLoadAppKeyW(lpFile PWSTR, phkResult *HKEY, samDesired uint32, dwOptions uint32, Reserved uint32) WIN32_ERROR {
-	addr := lazyAddr(&pRegLoadAppKeyW, libAdvapi32, "RegLoadAppKeyW")
+	addr := LazyAddr(&pRegLoadAppKeyW, libAdvapi32, "RegLoadAppKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(phkResult)), uintptr(samDesired), uintptr(dwOptions), uintptr(Reserved))
 	return WIN32_ERROR(ret)
 }
 
 func RegSaveKeyExA(hKey HKEY, lpFile PSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES, Flags REG_SAVE_FORMAT) WIN32_ERROR {
-	addr := lazyAddr(&pRegSaveKeyExA, libAdvapi32, "RegSaveKeyExA")
+	addr := LazyAddr(&pRegSaveKeyExA, libAdvapi32, "RegSaveKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(Flags))
 	return WIN32_ERROR(ret)
 }
@@ -1739,7 +1739,7 @@ func RegSaveKeyExA(hKey HKEY, lpFile PSTR, lpSecurityAttributes *SECURITY_ATTRIB
 var RegSaveKeyEx = RegSaveKeyExW
 
 func RegSaveKeyExW(hKey HKEY, lpFile PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTES, Flags REG_SAVE_FORMAT) WIN32_ERROR {
-	addr := lazyAddr(&pRegSaveKeyExW, libAdvapi32, "RegSaveKeyExW")
+	addr := LazyAddr(&pRegSaveKeyExW, libAdvapi32, "RegSaveKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(Flags))
 	return WIN32_ERROR(ret)
 }

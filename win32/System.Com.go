@@ -7585,631 +7585,631 @@ var (
 )
 
 func CoBuildVersion() uint32 {
-	addr := lazyAddr(&pCoBuildVersion, libOle32, "CoBuildVersion")
+	addr := LazyAddr(&pCoBuildVersion, libOle32, "CoBuildVersion")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func CoInitialize(pvReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoInitialize, libOle32, "CoInitialize")
+	addr := LazyAddr(&pCoInitialize, libOle32, "CoInitialize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pvReserved))
 	return HRESULT(ret)
 }
 
 func CoRegisterMallocSpy(pMallocSpy *IMallocSpy) HRESULT {
-	addr := lazyAddr(&pCoRegisterMallocSpy, libOle32, "CoRegisterMallocSpy")
+	addr := LazyAddr(&pCoRegisterMallocSpy, libOle32, "CoRegisterMallocSpy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pMallocSpy)))
 	return HRESULT(ret)
 }
 
 func CoRevokeMallocSpy() HRESULT {
-	addr := lazyAddr(&pCoRevokeMallocSpy, libOle32, "CoRevokeMallocSpy")
+	addr := LazyAddr(&pCoRevokeMallocSpy, libOle32, "CoRevokeMallocSpy")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func CoRegisterInitializeSpy(pSpy *IInitializeSpy, puliCookie *uint64) HRESULT {
-	addr := lazyAddr(&pCoRegisterInitializeSpy, libOle32, "CoRegisterInitializeSpy")
+	addr := LazyAddr(&pCoRegisterInitializeSpy, libOle32, "CoRegisterInitializeSpy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSpy)), uintptr(unsafe.Pointer(puliCookie)))
 	return HRESULT(ret)
 }
 
 func CoRevokeInitializeSpy(uliCookie uint64) HRESULT {
-	addr := lazyAddr(&pCoRevokeInitializeSpy, libOle32, "CoRevokeInitializeSpy")
+	addr := LazyAddr(&pCoRevokeInitializeSpy, libOle32, "CoRevokeInitializeSpy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uliCookie))
 	return HRESULT(ret)
 }
 
 func CoGetSystemSecurityPermissions(comSDType COMSD, ppSD *PSECURITY_DESCRIPTOR) HRESULT {
-	addr := lazyAddr(&pCoGetSystemSecurityPermissions, libOle32, "CoGetSystemSecurityPermissions")
+	addr := LazyAddr(&pCoGetSystemSecurityPermissions, libOle32, "CoGetSystemSecurityPermissions")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(comSDType), uintptr(unsafe.Pointer(ppSD)))
 	return HRESULT(ret)
 }
 
 func CoLoadLibrary(lpszLibName PWSTR, bAutoFree BOOL) HINSTANCE {
-	addr := lazyAddr(&pCoLoadLibrary, libOle32, "CoLoadLibrary")
+	addr := LazyAddr(&pCoLoadLibrary, libOle32, "CoLoadLibrary")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszLibName)), uintptr(bAutoFree))
 	return ret
 }
 
 func CoFreeLibrary(hInst HINSTANCE) {
-	addr := lazyAddr(&pCoFreeLibrary, libOle32, "CoFreeLibrary")
+	addr := LazyAddr(&pCoFreeLibrary, libOle32, "CoFreeLibrary")
 	syscall.SyscallN(addr, hInst)
 }
 
 func CoFreeAllLibraries() {
-	addr := lazyAddr(&pCoFreeAllLibraries, libOle32, "CoFreeAllLibraries")
+	addr := LazyAddr(&pCoFreeAllLibraries, libOle32, "CoFreeAllLibraries")
 	syscall.SyscallN(addr)
 }
 
 func CoAllowSetForegroundWindow(pUnk *IUnknown, lpvReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoAllowSetForegroundWindow, libOle32, "CoAllowSetForegroundWindow")
+	addr := LazyAddr(&pCoAllowSetForegroundWindow, libOle32, "CoAllowSetForegroundWindow")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnk)), uintptr(lpvReserved))
 	return HRESULT(ret)
 }
 
 func DcomChannelSetHResult(pvReserved unsafe.Pointer, pulReserved *uint32, appsHR HRESULT) HRESULT {
-	addr := lazyAddr(&pDcomChannelSetHResult, libOle32, "DcomChannelSetHResult")
+	addr := LazyAddr(&pDcomChannelSetHResult, libOle32, "DcomChannelSetHResult")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pvReserved), uintptr(unsafe.Pointer(pulReserved)), uintptr(appsHR))
 	return HRESULT(ret)
 }
 
 func CoIsOle1Class(rclsid *syscall.GUID) BOOL {
-	addr := lazyAddr(&pCoIsOle1Class, libOle32, "CoIsOle1Class")
+	addr := LazyAddr(&pCoIsOle1Class, libOle32, "CoIsOle1Class")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)))
 	return BOOL(ret)
 }
 
 func CLSIDFromProgIDEx(lpszProgID PWSTR, lpclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCLSIDFromProgIDEx, libOle32, "CLSIDFromProgIDEx")
+	addr := LazyAddr(&pCLSIDFromProgIDEx, libOle32, "CLSIDFromProgIDEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszProgID)), uintptr(unsafe.Pointer(lpclsid)))
 	return HRESULT(ret)
 }
 
 func CoFileTimeToDosDateTime(lpFileTime *FILETIME, lpDosDate *uint16, lpDosTime *uint16) BOOL {
-	addr := lazyAddr(&pCoFileTimeToDosDateTime, libOle32, "CoFileTimeToDosDateTime")
+	addr := LazyAddr(&pCoFileTimeToDosDateTime, libOle32, "CoFileTimeToDosDateTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileTime)), uintptr(unsafe.Pointer(lpDosDate)), uintptr(unsafe.Pointer(lpDosTime)))
 	return BOOL(ret)
 }
 
 func CoDosDateTimeToFileTime(nDosDate uint16, nDosTime uint16, lpFileTime *FILETIME) BOOL {
-	addr := lazyAddr(&pCoDosDateTimeToFileTime, libOle32, "CoDosDateTimeToFileTime")
+	addr := LazyAddr(&pCoDosDateTimeToFileTime, libOle32, "CoDosDateTimeToFileTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nDosDate), uintptr(nDosTime), uintptr(unsafe.Pointer(lpFileTime)))
 	return BOOL(ret)
 }
 
 func CoFileTimeNow(lpFileTime *FILETIME) HRESULT {
-	addr := lazyAddr(&pCoFileTimeNow, libOle32, "CoFileTimeNow")
+	addr := LazyAddr(&pCoFileTimeNow, libOle32, "CoFileTimeNow")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileTime)))
 	return HRESULT(ret)
 }
 
 func CoRegisterChannelHook(ExtensionUuid *syscall.GUID, pChannelHook *IChannelHook) HRESULT {
-	addr := lazyAddr(&pCoRegisterChannelHook, libOle32, "CoRegisterChannelHook")
+	addr := LazyAddr(&pCoRegisterChannelHook, libOle32, "CoRegisterChannelHook")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ExtensionUuid)), uintptr(unsafe.Pointer(pChannelHook)))
 	return HRESULT(ret)
 }
 
 func CoTreatAsClass(clsidOld *syscall.GUID, clsidNew *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCoTreatAsClass, libOle32, "CoTreatAsClass")
+	addr := LazyAddr(&pCoTreatAsClass, libOle32, "CoTreatAsClass")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsidOld)), uintptr(unsafe.Pointer(clsidNew)))
 	return HRESULT(ret)
 }
 
 func CreateDataAdviseHolder(ppDAHolder **IDataAdviseHolder) HRESULT {
-	addr := lazyAddr(&pCreateDataAdviseHolder, libOle32, "CreateDataAdviseHolder")
+	addr := LazyAddr(&pCreateDataAdviseHolder, libOle32, "CreateDataAdviseHolder")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppDAHolder)))
 	return HRESULT(ret)
 }
 
 func CreateDataCache(pUnkOuter *IUnknown, rclsid *syscall.GUID, iid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCreateDataCache, libOle32, "CreateDataCache")
+	addr := LazyAddr(&pCreateDataCache, libOle32, "CreateDataCache")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnkOuter)), uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(iid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func CoInstall(pbc *IBindCtx, dwFlags uint32, pClassSpec *UCLSSPEC, pQuery *QUERYCONTEXT, pszCodeBase PWSTR) HRESULT {
-	addr := lazyAddr(&pCoInstall, libOle32, "CoInstall")
+	addr := LazyAddr(&pCoInstall, libOle32, "CoInstall")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbc)), uintptr(dwFlags), uintptr(unsafe.Pointer(pClassSpec)), uintptr(unsafe.Pointer(pQuery)), uintptr(unsafe.Pointer(pszCodeBase)))
 	return HRESULT(ret)
 }
 
 func BindMoniker(pmk *IMoniker, grfOpt uint32, iidResult *syscall.GUID, ppvResult unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pBindMoniker, libOle32, "BindMoniker")
+	addr := LazyAddr(&pBindMoniker, libOle32, "BindMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmk)), uintptr(grfOpt), uintptr(unsafe.Pointer(iidResult)), uintptr(ppvResult))
 	return HRESULT(ret)
 }
 
 func CoGetObject(pszName PWSTR, pBindOptions *BIND_OPTS, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoGetObject, libOle32, "CoGetObject")
+	addr := LazyAddr(&pCoGetObject, libOle32, "CoGetObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(pBindOptions)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func MkParseDisplayName(pbc *IBindCtx, szUserName PWSTR, pchEaten *uint32, ppmk **IMoniker) HRESULT {
-	addr := lazyAddr(&pMkParseDisplayName, libOle32, "MkParseDisplayName")
+	addr := LazyAddr(&pMkParseDisplayName, libOle32, "MkParseDisplayName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbc)), uintptr(unsafe.Pointer(szUserName)), uintptr(unsafe.Pointer(pchEaten)), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
 
 func MonikerRelativePathTo(pmkSrc *IMoniker, pmkDest *IMoniker, ppmkRelPath **IMoniker, dwReserved BOOL) HRESULT {
-	addr := lazyAddr(&pMonikerRelativePathTo, libOle32, "MonikerRelativePathTo")
+	addr := LazyAddr(&pMonikerRelativePathTo, libOle32, "MonikerRelativePathTo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkSrc)), uintptr(unsafe.Pointer(pmkDest)), uintptr(unsafe.Pointer(ppmkRelPath)), uintptr(dwReserved))
 	return HRESULT(ret)
 }
 
 func MonikerCommonPrefixWith(pmkThis *IMoniker, pmkOther *IMoniker, ppmkCommon **IMoniker) HRESULT {
-	addr := lazyAddr(&pMonikerCommonPrefixWith, libOle32, "MonikerCommonPrefixWith")
+	addr := LazyAddr(&pMonikerCommonPrefixWith, libOle32, "MonikerCommonPrefixWith")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkThis)), uintptr(unsafe.Pointer(pmkOther)), uintptr(unsafe.Pointer(ppmkCommon)))
 	return HRESULT(ret)
 }
 
 func CreateBindCtx(reserved uint32, ppbc **IBindCtx) HRESULT {
-	addr := lazyAddr(&pCreateBindCtx, libOle32, "CreateBindCtx")
+	addr := LazyAddr(&pCreateBindCtx, libOle32, "CreateBindCtx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(reserved), uintptr(unsafe.Pointer(ppbc)))
 	return HRESULT(ret)
 }
 
 func CreateGenericComposite(pmkFirst *IMoniker, pmkRest *IMoniker, ppmkComposite **IMoniker) HRESULT {
-	addr := lazyAddr(&pCreateGenericComposite, libOle32, "CreateGenericComposite")
+	addr := LazyAddr(&pCreateGenericComposite, libOle32, "CreateGenericComposite")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkFirst)), uintptr(unsafe.Pointer(pmkRest)), uintptr(unsafe.Pointer(ppmkComposite)))
 	return HRESULT(ret)
 }
 
 func GetClassFile(szFilename PWSTR, pclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pGetClassFile, libOle32, "GetClassFile")
+	addr := LazyAddr(&pGetClassFile, libOle32, "GetClassFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(szFilename)), uintptr(unsafe.Pointer(pclsid)))
 	return HRESULT(ret)
 }
 
 func CreateClassMoniker(rclsid *syscall.GUID, ppmk **IMoniker) HRESULT {
-	addr := lazyAddr(&pCreateClassMoniker, libOle32, "CreateClassMoniker")
+	addr := LazyAddr(&pCreateClassMoniker, libOle32, "CreateClassMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
 
 func CreateFileMoniker(lpszPathName PWSTR, ppmk **IMoniker) HRESULT {
-	addr := lazyAddr(&pCreateFileMoniker, libOle32, "CreateFileMoniker")
+	addr := LazyAddr(&pCreateFileMoniker, libOle32, "CreateFileMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszPathName)), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
 
 func CreateItemMoniker(lpszDelim PWSTR, lpszItem PWSTR, ppmk **IMoniker) HRESULT {
-	addr := lazyAddr(&pCreateItemMoniker, libOle32, "CreateItemMoniker")
+	addr := LazyAddr(&pCreateItemMoniker, libOle32, "CreateItemMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDelim)), uintptr(unsafe.Pointer(lpszItem)), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
 
 func CreateAntiMoniker(ppmk **IMoniker) HRESULT {
-	addr := lazyAddr(&pCreateAntiMoniker, libOle32, "CreateAntiMoniker")
+	addr := LazyAddr(&pCreateAntiMoniker, libOle32, "CreateAntiMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
 
 func CreatePointerMoniker(punk *IUnknown, ppmk **IMoniker) HRESULT {
-	addr := lazyAddr(&pCreatePointerMoniker, libOle32, "CreatePointerMoniker")
+	addr := LazyAddr(&pCreatePointerMoniker, libOle32, "CreatePointerMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
 
 func CreateObjrefMoniker(punk *IUnknown, ppmk **IMoniker) HRESULT {
-	addr := lazyAddr(&pCreateObjrefMoniker, libOle32, "CreateObjrefMoniker")
+	addr := LazyAddr(&pCreateObjrefMoniker, libOle32, "CreateObjrefMoniker")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
 
 func GetRunningObjectTable(reserved uint32, pprot **IRunningObjectTable) HRESULT {
-	addr := lazyAddr(&pGetRunningObjectTable, libOle32, "GetRunningObjectTable")
+	addr := LazyAddr(&pGetRunningObjectTable, libOle32, "GetRunningObjectTable")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(reserved), uintptr(unsafe.Pointer(pprot)))
 	return HRESULT(ret)
 }
 
 func CreateStdProgressIndicator(hwndParent HWND, pszTitle PWSTR, pIbscCaller *IBindStatusCallback, ppIbsc **IBindStatusCallback) HRESULT {
-	addr := lazyAddr(&pCreateStdProgressIndicator, libOle32, "CreateStdProgressIndicator")
+	addr := LazyAddr(&pCreateStdProgressIndicator, libOle32, "CreateStdProgressIndicator")
 	ret, _, _ := syscall.SyscallN(addr, hwndParent, uintptr(unsafe.Pointer(pszTitle)), uintptr(unsafe.Pointer(pIbscCaller)), uintptr(unsafe.Pointer(ppIbsc)))
 	return HRESULT(ret)
 }
 
 func CoGetMalloc(dwMemContext uint32, ppMalloc **IMalloc) HRESULT {
-	addr := lazyAddr(&pCoGetMalloc, libOle32, "CoGetMalloc")
+	addr := LazyAddr(&pCoGetMalloc, libOle32, "CoGetMalloc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwMemContext), uintptr(unsafe.Pointer(ppMalloc)))
 	return HRESULT(ret)
 }
 
 func CoUninitialize() {
-	addr := lazyAddr(&pCoUninitialize, libOle32, "CoUninitialize")
+	addr := LazyAddr(&pCoUninitialize, libOle32, "CoUninitialize")
 	syscall.SyscallN(addr)
 }
 
 func CoGetCurrentProcess() uint32 {
-	addr := lazyAddr(&pCoGetCurrentProcess, libOle32, "CoGetCurrentProcess")
+	addr := LazyAddr(&pCoGetCurrentProcess, libOle32, "CoGetCurrentProcess")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func CoInitializeEx(pvReserved unsafe.Pointer, dwCoInit COINIT) HRESULT {
-	addr := lazyAddr(&pCoInitializeEx, libOle32, "CoInitializeEx")
+	addr := LazyAddr(&pCoInitializeEx, libOle32, "CoInitializeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pvReserved), uintptr(dwCoInit))
 	return HRESULT(ret)
 }
 
 func CoGetCallerTID(lpdwTID *uint32) HRESULT {
-	addr := lazyAddr(&pCoGetCallerTID, libOle32, "CoGetCallerTID")
+	addr := LazyAddr(&pCoGetCallerTID, libOle32, "CoGetCallerTID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpdwTID)))
 	return HRESULT(ret)
 }
 
 func CoGetCurrentLogicalThreadId(pguid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCoGetCurrentLogicalThreadId, libOle32, "CoGetCurrentLogicalThreadId")
+	addr := LazyAddr(&pCoGetCurrentLogicalThreadId, libOle32, "CoGetCurrentLogicalThreadId")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pguid)))
 	return HRESULT(ret)
 }
 
 func CoGetContextToken(pToken *uintptr) HRESULT {
-	addr := lazyAddr(&pCoGetContextToken, libOle32, "CoGetContextToken")
+	addr := LazyAddr(&pCoGetContextToken, libOle32, "CoGetContextToken")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pToken)))
 	return HRESULT(ret)
 }
 
 func CoGetApartmentType(pAptType *APTTYPE, pAptQualifier *APTTYPEQUALIFIER) HRESULT {
-	addr := lazyAddr(&pCoGetApartmentType, libOle32, "CoGetApartmentType")
+	addr := LazyAddr(&pCoGetApartmentType, libOle32, "CoGetApartmentType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAptType)), uintptr(unsafe.Pointer(pAptQualifier)))
 	return HRESULT(ret)
 }
 
 func CoIncrementMTAUsage(pCookie *CO_MTA_USAGE_COOKIE) HRESULT {
-	addr := lazyAddr(&pCoIncrementMTAUsage, libOle32, "CoIncrementMTAUsage")
+	addr := LazyAddr(&pCoIncrementMTAUsage, libOle32, "CoIncrementMTAUsage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pCookie)))
 	return HRESULT(ret)
 }
 
 func CoDecrementMTAUsage(Cookie CO_MTA_USAGE_COOKIE) HRESULT {
-	addr := lazyAddr(&pCoDecrementMTAUsage, libOle32, "CoDecrementMTAUsage")
+	addr := LazyAddr(&pCoDecrementMTAUsage, libOle32, "CoDecrementMTAUsage")
 	ret, _, _ := syscall.SyscallN(addr, Cookie)
 	return HRESULT(ret)
 }
 
 func CoAllowUnmarshalerCLSID(clsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCoAllowUnmarshalerCLSID, libOle32, "CoAllowUnmarshalerCLSID")
+	addr := LazyAddr(&pCoAllowUnmarshalerCLSID, libOle32, "CoAllowUnmarshalerCLSID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)))
 	return HRESULT(ret)
 }
 
 func CoGetObjectContext(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoGetObjectContext, libOle32, "CoGetObjectContext")
+	addr := LazyAddr(&pCoGetObjectContext, libOle32, "CoGetObjectContext")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func CoGetClassObject(rclsid *syscall.GUID, dwClsContext CLSCTX, pvReserved unsafe.Pointer, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoGetClassObject, libOle32, "CoGetClassObject")
+	addr := LazyAddr(&pCoGetClassObject, libOle32, "CoGetClassObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(dwClsContext), uintptr(pvReserved), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func CoRegisterClassObject(rclsid *syscall.GUID, pUnk *IUnknown, dwClsContext CLSCTX, flags REGCLS, lpdwRegister *uint32) HRESULT {
-	addr := lazyAddr(&pCoRegisterClassObject, libOle32, "CoRegisterClassObject")
+	addr := LazyAddr(&pCoRegisterClassObject, libOle32, "CoRegisterClassObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(pUnk)), uintptr(dwClsContext), uintptr(flags), uintptr(unsafe.Pointer(lpdwRegister)))
 	return HRESULT(ret)
 }
 
 func CoRevokeClassObject(dwRegister uint32) HRESULT {
-	addr := lazyAddr(&pCoRevokeClassObject, libOle32, "CoRevokeClassObject")
+	addr := LazyAddr(&pCoRevokeClassObject, libOle32, "CoRevokeClassObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwRegister))
 	return HRESULT(ret)
 }
 
 func CoResumeClassObjects() HRESULT {
-	addr := lazyAddr(&pCoResumeClassObjects, libOle32, "CoResumeClassObjects")
+	addr := LazyAddr(&pCoResumeClassObjects, libOle32, "CoResumeClassObjects")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func CoSuspendClassObjects() HRESULT {
-	addr := lazyAddr(&pCoSuspendClassObjects, libOle32, "CoSuspendClassObjects")
+	addr := LazyAddr(&pCoSuspendClassObjects, libOle32, "CoSuspendClassObjects")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func CoAddRefServerProcess() uint32 {
-	addr := lazyAddr(&pCoAddRefServerProcess, libOle32, "CoAddRefServerProcess")
+	addr := LazyAddr(&pCoAddRefServerProcess, libOle32, "CoAddRefServerProcess")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func CoReleaseServerProcess() uint32 {
-	addr := lazyAddr(&pCoReleaseServerProcess, libOle32, "CoReleaseServerProcess")
+	addr := LazyAddr(&pCoReleaseServerProcess, libOle32, "CoReleaseServerProcess")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func CoGetPSClsid(riid *syscall.GUID, pClsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCoGetPSClsid, libOle32, "CoGetPSClsid")
+	addr := LazyAddr(&pCoGetPSClsid, libOle32, "CoGetPSClsid")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(unsafe.Pointer(pClsid)))
 	return HRESULT(ret)
 }
 
 func CoRegisterPSClsid(riid *syscall.GUID, rclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCoRegisterPSClsid, libOle32, "CoRegisterPSClsid")
+	addr := LazyAddr(&pCoRegisterPSClsid, libOle32, "CoRegisterPSClsid")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(unsafe.Pointer(rclsid)))
 	return HRESULT(ret)
 }
 
 func CoRegisterSurrogate(pSurrogate *ISurrogate) HRESULT {
-	addr := lazyAddr(&pCoRegisterSurrogate, libOle32, "CoRegisterSurrogate")
+	addr := LazyAddr(&pCoRegisterSurrogate, libOle32, "CoRegisterSurrogate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSurrogate)))
 	return HRESULT(ret)
 }
 
 func CoDisconnectObject(pUnk *IUnknown, dwReserved uint32) HRESULT {
-	addr := lazyAddr(&pCoDisconnectObject, libOle32, "CoDisconnectObject")
+	addr := LazyAddr(&pCoDisconnectObject, libOle32, "CoDisconnectObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnk)), uintptr(dwReserved))
 	return HRESULT(ret)
 }
 
 func CoLockObjectExternal(pUnk *IUnknown, fLock BOOL, fLastUnlockReleases BOOL) HRESULT {
-	addr := lazyAddr(&pCoLockObjectExternal, libOle32, "CoLockObjectExternal")
+	addr := LazyAddr(&pCoLockObjectExternal, libOle32, "CoLockObjectExternal")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnk)), uintptr(fLock), uintptr(fLastUnlockReleases))
 	return HRESULT(ret)
 }
 
 func CoIsHandlerConnected(pUnk *IUnknown) BOOL {
-	addr := lazyAddr(&pCoIsHandlerConnected, libOle32, "CoIsHandlerConnected")
+	addr := LazyAddr(&pCoIsHandlerConnected, libOle32, "CoIsHandlerConnected")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnk)))
 	return BOOL(ret)
 }
 
 func CoCreateFreeThreadedMarshaler(punkOuter *IUnknown, ppunkMarshal **IUnknown) HRESULT {
-	addr := lazyAddr(&pCoCreateFreeThreadedMarshaler, libOle32, "CoCreateFreeThreadedMarshaler")
+	addr := LazyAddr(&pCoCreateFreeThreadedMarshaler, libOle32, "CoCreateFreeThreadedMarshaler")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punkOuter)), uintptr(unsafe.Pointer(ppunkMarshal)))
 	return HRESULT(ret)
 }
 
 func CoFreeUnusedLibraries() {
-	addr := lazyAddr(&pCoFreeUnusedLibraries, libOle32, "CoFreeUnusedLibraries")
+	addr := LazyAddr(&pCoFreeUnusedLibraries, libOle32, "CoFreeUnusedLibraries")
 	syscall.SyscallN(addr)
 }
 
 func CoFreeUnusedLibrariesEx(dwUnloadDelay uint32, dwReserved uint32) {
-	addr := lazyAddr(&pCoFreeUnusedLibrariesEx, libOle32, "CoFreeUnusedLibrariesEx")
+	addr := LazyAddr(&pCoFreeUnusedLibrariesEx, libOle32, "CoFreeUnusedLibrariesEx")
 	syscall.SyscallN(addr, uintptr(dwUnloadDelay), uintptr(dwReserved))
 }
 
 func CoDisconnectContext(dwTimeout uint32) HRESULT {
-	addr := lazyAddr(&pCoDisconnectContext, libOle32, "CoDisconnectContext")
+	addr := LazyAddr(&pCoDisconnectContext, libOle32, "CoDisconnectContext")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwTimeout))
 	return HRESULT(ret)
 }
 
 func CoInitializeSecurity(pSecDesc PSECURITY_DESCRIPTOR, cAuthSvc int32, asAuthSvc *SOLE_AUTHENTICATION_SERVICE, pReserved1 unsafe.Pointer, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthList unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES, pReserved3 unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoInitializeSecurity, libOle32, "CoInitializeSecurity")
+	addr := LazyAddr(&pCoInitializeSecurity, libOle32, "CoInitializeSecurity")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecDesc)), uintptr(cAuthSvc), uintptr(unsafe.Pointer(asAuthSvc)), uintptr(pReserved1), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthList), uintptr(dwCapabilities), uintptr(pReserved3))
 	return HRESULT(ret)
 }
 
 func CoGetCallContext(riid *syscall.GUID, ppInterface unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoGetCallContext, libOle32, "CoGetCallContext")
+	addr := LazyAddr(&pCoGetCallContext, libOle32, "CoGetCallContext")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(ppInterface))
 	return HRESULT(ret)
 }
 
 func CoQueryProxyBlanket(pProxy *IUnknown, pwAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName *PWSTR, pAuthnLevel *uint32, pImpLevel *uint32, pAuthInfo unsafe.Pointer, pCapabilites *uint32) HRESULT {
-	addr := lazyAddr(&pCoQueryProxyBlanket, libOle32, "CoQueryProxyBlanket")
+	addr := LazyAddr(&pCoQueryProxyBlanket, libOle32, "CoQueryProxyBlanket")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pProxy)), uintptr(unsafe.Pointer(pwAuthnSvc)), uintptr(unsafe.Pointer(pAuthzSvc)), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(unsafe.Pointer(pAuthnLevel)), uintptr(unsafe.Pointer(pImpLevel)), uintptr(pAuthInfo), uintptr(unsafe.Pointer(pCapabilites)))
 	return HRESULT(ret)
 }
 
 func CoSetProxyBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES) HRESULT {
-	addr := lazyAddr(&pCoSetProxyBlanket, libOle32, "CoSetProxyBlanket")
+	addr := LazyAddr(&pCoSetProxyBlanket, libOle32, "CoSetProxyBlanket")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pProxy)), uintptr(dwAuthnSvc), uintptr(dwAuthzSvc), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthInfo), uintptr(dwCapabilities))
 	return HRESULT(ret)
 }
 
 func CoCopyProxy(pProxy *IUnknown, ppCopy **IUnknown) HRESULT {
-	addr := lazyAddr(&pCoCopyProxy, libOle32, "CoCopyProxy")
+	addr := LazyAddr(&pCoCopyProxy, libOle32, "CoCopyProxy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pProxy)), uintptr(unsafe.Pointer(ppCopy)))
 	return HRESULT(ret)
 }
 
 func CoQueryClientBlanket(pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName *PWSTR, pAuthnLevel *uint32, pImpLevel *uint32, pPrivs unsafe.Pointer, pCapabilities *uint32) HRESULT {
-	addr := lazyAddr(&pCoQueryClientBlanket, libOle32, "CoQueryClientBlanket")
+	addr := LazyAddr(&pCoQueryClientBlanket, libOle32, "CoQueryClientBlanket")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pAuthnSvc)), uintptr(unsafe.Pointer(pAuthzSvc)), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(unsafe.Pointer(pAuthnLevel)), uintptr(unsafe.Pointer(pImpLevel)), uintptr(pPrivs), uintptr(unsafe.Pointer(pCapabilities)))
 	return HRESULT(ret)
 }
 
 func CoImpersonateClient() HRESULT {
-	addr := lazyAddr(&pCoImpersonateClient, libOle32, "CoImpersonateClient")
+	addr := LazyAddr(&pCoImpersonateClient, libOle32, "CoImpersonateClient")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func CoRevertToSelf() HRESULT {
-	addr := lazyAddr(&pCoRevertToSelf, libOle32, "CoRevertToSelf")
+	addr := LazyAddr(&pCoRevertToSelf, libOle32, "CoRevertToSelf")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func CoQueryAuthenticationServices(pcAuthSvc *uint32, asAuthSvc **SOLE_AUTHENTICATION_SERVICE) HRESULT {
-	addr := lazyAddr(&pCoQueryAuthenticationServices, libOle32, "CoQueryAuthenticationServices")
+	addr := LazyAddr(&pCoQueryAuthenticationServices, libOle32, "CoQueryAuthenticationServices")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pcAuthSvc)), uintptr(unsafe.Pointer(asAuthSvc)))
 	return HRESULT(ret)
 }
 
 func CoSwitchCallContext(pNewObject *IUnknown, ppOldObject **IUnknown) HRESULT {
-	addr := lazyAddr(&pCoSwitchCallContext, libOle32, "CoSwitchCallContext")
+	addr := LazyAddr(&pCoSwitchCallContext, libOle32, "CoSwitchCallContext")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pNewObject)), uintptr(unsafe.Pointer(ppOldObject)))
 	return HRESULT(ret)
 }
 
 func CoCreateInstance(rclsid *syscall.GUID, pUnkOuter *IUnknown, dwClsContext CLSCTX, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoCreateInstance, libOle32, "CoCreateInstance")
+	addr := LazyAddr(&pCoCreateInstance, libOle32, "CoCreateInstance")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(pUnkOuter)), uintptr(dwClsContext), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func CoCreateInstanceEx(Clsid *syscall.GUID, punkOuter *IUnknown, dwClsCtx CLSCTX, pServerInfo *COSERVERINFO, dwCount uint32, pResults *MULTI_QI) HRESULT {
-	addr := lazyAddr(&pCoCreateInstanceEx, libOle32, "CoCreateInstanceEx")
+	addr := LazyAddr(&pCoCreateInstanceEx, libOle32, "CoCreateInstanceEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Clsid)), uintptr(unsafe.Pointer(punkOuter)), uintptr(dwClsCtx), uintptr(unsafe.Pointer(pServerInfo)), uintptr(dwCount), uintptr(unsafe.Pointer(pResults)))
 	return HRESULT(ret)
 }
 
 func CoCreateInstanceFromApp(Clsid *syscall.GUID, punkOuter *IUnknown, dwClsCtx CLSCTX, reserved unsafe.Pointer, dwCount uint32, pResults *MULTI_QI) HRESULT {
-	addr := lazyAddr(&pCoCreateInstanceFromApp, libOle32, "CoCreateInstanceFromApp")
+	addr := LazyAddr(&pCoCreateInstanceFromApp, libOle32, "CoCreateInstanceFromApp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Clsid)), uintptr(unsafe.Pointer(punkOuter)), uintptr(dwClsCtx), uintptr(reserved), uintptr(dwCount), uintptr(unsafe.Pointer(pResults)))
 	return HRESULT(ret)
 }
 
 func CoRegisterActivationFilter(pActivationFilter *IActivationFilter) HRESULT {
-	addr := lazyAddr(&pCoRegisterActivationFilter, libOle32, "CoRegisterActivationFilter")
+	addr := LazyAddr(&pCoRegisterActivationFilter, libOle32, "CoRegisterActivationFilter")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pActivationFilter)))
 	return HRESULT(ret)
 }
 
 func CoGetCancelObject(dwThreadId uint32, iid *syscall.GUID, ppUnk unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoGetCancelObject, libOle32, "CoGetCancelObject")
+	addr := LazyAddr(&pCoGetCancelObject, libOle32, "CoGetCancelObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwThreadId), uintptr(unsafe.Pointer(iid)), uintptr(ppUnk))
 	return HRESULT(ret)
 }
 
 func CoSetCancelObject(pUnk *IUnknown) HRESULT {
-	addr := lazyAddr(&pCoSetCancelObject, libOle32, "CoSetCancelObject")
+	addr := LazyAddr(&pCoSetCancelObject, libOle32, "CoSetCancelObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnk)))
 	return HRESULT(ret)
 }
 
 func CoCancelCall(dwThreadId uint32, ulTimeout uint32) HRESULT {
-	addr := lazyAddr(&pCoCancelCall, libOle32, "CoCancelCall")
+	addr := LazyAddr(&pCoCancelCall, libOle32, "CoCancelCall")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwThreadId), uintptr(ulTimeout))
 	return HRESULT(ret)
 }
 
 func CoTestCancel() HRESULT {
-	addr := lazyAddr(&pCoTestCancel, libOle32, "CoTestCancel")
+	addr := LazyAddr(&pCoTestCancel, libOle32, "CoTestCancel")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func CoEnableCallCancellation(pReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoEnableCallCancellation, libOle32, "CoEnableCallCancellation")
+	addr := LazyAddr(&pCoEnableCallCancellation, libOle32, "CoEnableCallCancellation")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pReserved))
 	return HRESULT(ret)
 }
 
 func CoDisableCallCancellation(pReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoDisableCallCancellation, libOle32, "CoDisableCallCancellation")
+	addr := LazyAddr(&pCoDisableCallCancellation, libOle32, "CoDisableCallCancellation")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pReserved))
 	return HRESULT(ret)
 }
 
 func StringFromCLSID(rclsid *syscall.GUID, lplpsz *PWSTR) HRESULT {
-	addr := lazyAddr(&pStringFromCLSID, libOle32, "StringFromCLSID")
+	addr := LazyAddr(&pStringFromCLSID, libOle32, "StringFromCLSID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lplpsz)))
 	return HRESULT(ret)
 }
 
 func CLSIDFromString(lpsz PWSTR, pclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCLSIDFromString, libOle32, "CLSIDFromString")
+	addr := LazyAddr(&pCLSIDFromString, libOle32, "CLSIDFromString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)), uintptr(unsafe.Pointer(pclsid)))
 	return HRESULT(ret)
 }
 
 func StringFromIID(rclsid *syscall.GUID, lplpsz *PWSTR) HRESULT {
-	addr := lazyAddr(&pStringFromIID, libOle32, "StringFromIID")
+	addr := LazyAddr(&pStringFromIID, libOle32, "StringFromIID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lplpsz)))
 	return HRESULT(ret)
 }
 
 func IIDFromString(lpsz PWSTR, lpiid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pIIDFromString, libOle32, "IIDFromString")
+	addr := LazyAddr(&pIIDFromString, libOle32, "IIDFromString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpsz)), uintptr(unsafe.Pointer(lpiid)))
 	return HRESULT(ret)
 }
 
 func ProgIDFromCLSID(clsid *syscall.GUID, lplpszProgID *PWSTR) HRESULT {
-	addr := lazyAddr(&pProgIDFromCLSID, libOle32, "ProgIDFromCLSID")
+	addr := LazyAddr(&pProgIDFromCLSID, libOle32, "ProgIDFromCLSID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(unsafe.Pointer(lplpszProgID)))
 	return HRESULT(ret)
 }
 
 func CLSIDFromProgID(lpszProgID PWSTR, lpclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCLSIDFromProgID, libOle32, "CLSIDFromProgID")
+	addr := LazyAddr(&pCLSIDFromProgID, libOle32, "CLSIDFromProgID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszProgID)), uintptr(unsafe.Pointer(lpclsid)))
 	return HRESULT(ret)
 }
 
 func StringFromGUID2(rguid *syscall.GUID, lpsz PWSTR, cchMax int32) int32 {
-	addr := lazyAddr(&pStringFromGUID2, libOle32, "StringFromGUID2")
+	addr := LazyAddr(&pStringFromGUID2, libOle32, "StringFromGUID2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rguid)), uintptr(unsafe.Pointer(lpsz)), uintptr(cchMax))
 	return int32(ret)
 }
 
 func CoCreateGuid(pguid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCoCreateGuid, libOle32, "CoCreateGuid")
+	addr := LazyAddr(&pCoCreateGuid, libOle32, "CoCreateGuid")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pguid)))
 	return HRESULT(ret)
 }
 
 func CoWaitForMultipleHandles(dwFlags uint32, dwTimeout uint32, cHandles uint32, pHandles *HANDLE, lpdwindex *uint32) HRESULT {
-	addr := lazyAddr(&pCoWaitForMultipleHandles, libOle32, "CoWaitForMultipleHandles")
+	addr := LazyAddr(&pCoWaitForMultipleHandles, libOle32, "CoWaitForMultipleHandles")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(dwTimeout), uintptr(cHandles), uintptr(unsafe.Pointer(pHandles)), uintptr(unsafe.Pointer(lpdwindex)))
 	return HRESULT(ret)
 }
 
 func CoWaitForMultipleObjects(dwFlags uint32, dwTimeout uint32, cHandles uint32, pHandles *HANDLE, lpdwindex *uint32) HRESULT {
-	addr := lazyAddr(&pCoWaitForMultipleObjects, libOle32, "CoWaitForMultipleObjects")
+	addr := LazyAddr(&pCoWaitForMultipleObjects, libOle32, "CoWaitForMultipleObjects")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(dwTimeout), uintptr(cHandles), uintptr(unsafe.Pointer(pHandles)), uintptr(unsafe.Pointer(lpdwindex)))
 	return HRESULT(ret)
 }
 
 func CoGetTreatAsClass(clsidOld *syscall.GUID, pClsidNew *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pCoGetTreatAsClass, libOle32, "CoGetTreatAsClass")
+	addr := LazyAddr(&pCoGetTreatAsClass, libOle32, "CoGetTreatAsClass")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsidOld)), uintptr(unsafe.Pointer(pClsidNew)))
 	return HRESULT(ret)
 }
 
 func CoInvalidateRemoteMachineBindings(pszMachineName PWSTR) HRESULT {
-	addr := lazyAddr(&pCoInvalidateRemoteMachineBindings, libOle32, "CoInvalidateRemoteMachineBindings")
+	addr := LazyAddr(&pCoInvalidateRemoteMachineBindings, libOle32, "CoInvalidateRemoteMachineBindings")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszMachineName)))
 	return HRESULT(ret)
 }
 
 func CoTaskMemAlloc(cb uintptr) unsafe.Pointer {
-	addr := lazyAddr(&pCoTaskMemAlloc, libOle32, "CoTaskMemAlloc")
+	addr := LazyAddr(&pCoTaskMemAlloc, libOle32, "CoTaskMemAlloc")
 	ret, _, _ := syscall.SyscallN(addr, cb)
 	return (unsafe.Pointer)(ret)
 }
 
 func CoTaskMemRealloc(pv unsafe.Pointer, cb uintptr) unsafe.Pointer {
-	addr := lazyAddr(&pCoTaskMemRealloc, libOle32, "CoTaskMemRealloc")
+	addr := LazyAddr(&pCoTaskMemRealloc, libOle32, "CoTaskMemRealloc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pv), cb)
 	return (unsafe.Pointer)(ret)
 }
 
 func CoTaskMemFree(pv unsafe.Pointer) {
-	addr := lazyAddr(&pCoTaskMemFree, libOle32, "CoTaskMemFree")
+	addr := LazyAddr(&pCoTaskMemFree, libOle32, "CoTaskMemFree")
 	syscall.SyscallN(addr, uintptr(pv))
 }
 
 func CoRegisterDeviceCatalog(deviceInstanceId PWSTR, cookie *CO_DEVICE_CATALOG_COOKIE) HRESULT {
-	addr := lazyAddr(&pCoRegisterDeviceCatalog, libOle32, "CoRegisterDeviceCatalog")
+	addr := LazyAddr(&pCoRegisterDeviceCatalog, libOle32, "CoRegisterDeviceCatalog")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(deviceInstanceId)), uintptr(unsafe.Pointer(cookie)))
 	return HRESULT(ret)
 }
 
 func CoRevokeDeviceCatalog(cookie CO_DEVICE_CATALOG_COOKIE) HRESULT {
-	addr := lazyAddr(&pCoRevokeDeviceCatalog, libOle32, "CoRevokeDeviceCatalog")
+	addr := LazyAddr(&pCoRevokeDeviceCatalog, libOle32, "CoRevokeDeviceCatalog")
 	ret, _, _ := syscall.SyscallN(addr, cookie)
 	return HRESULT(ret)
 }
 
 func SetErrorInfo(dwReserved uint32, perrinfo *IErrorInfo) HRESULT {
-	addr := lazyAddr(&pSetErrorInfo, libOleaut32, "SetErrorInfo")
+	addr := LazyAddr(&pSetErrorInfo, libOleaut32, "SetErrorInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwReserved), uintptr(unsafe.Pointer(perrinfo)))
 	return HRESULT(ret)
 }
 
 func GetErrorInfo(dwReserved uint32, pperrinfo **IErrorInfo) HRESULT {
-	addr := lazyAddr(&pGetErrorInfo, libOleaut32, "GetErrorInfo")
+	addr := LazyAddr(&pGetErrorInfo, libOleaut32, "GetErrorInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwReserved), uintptr(unsafe.Pointer(pperrinfo)))
 	return HRESULT(ret)
 }

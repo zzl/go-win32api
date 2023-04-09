@@ -62,91 +62,91 @@ var (
 )
 
 func SystemTimeToTzSpecificLocalTime(lpTimeZoneInformation *TIME_ZONE_INFORMATION, lpUniversalTime *SYSTEMTIME, lpLocalTime *SYSTEMTIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSystemTimeToTzSpecificLocalTime, libKernel32, "SystemTimeToTzSpecificLocalTime")
+	addr := LazyAddr(&pSystemTimeToTzSpecificLocalTime, libKernel32, "SystemTimeToTzSpecificLocalTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)), uintptr(unsafe.Pointer(lpUniversalTime)), uintptr(unsafe.Pointer(lpLocalTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func TzSpecificLocalTimeToSystemTime(lpTimeZoneInformation *TIME_ZONE_INFORMATION, lpLocalTime *SYSTEMTIME, lpUniversalTime *SYSTEMTIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTzSpecificLocalTimeToSystemTime, libKernel32, "TzSpecificLocalTimeToSystemTime")
+	addr := LazyAddr(&pTzSpecificLocalTimeToSystemTime, libKernel32, "TzSpecificLocalTimeToSystemTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)), uintptr(unsafe.Pointer(lpLocalTime)), uintptr(unsafe.Pointer(lpUniversalTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FileTimeToSystemTime(lpFileTime *FILETIME, lpSystemTime *SYSTEMTIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFileTimeToSystemTime, libKernel32, "FileTimeToSystemTime")
+	addr := LazyAddr(&pFileTimeToSystemTime, libKernel32, "FileTimeToSystemTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileTime)), uintptr(unsafe.Pointer(lpSystemTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SystemTimeToFileTime(lpSystemTime *SYSTEMTIME, lpFileTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSystemTimeToFileTime, libKernel32, "SystemTimeToFileTime")
+	addr := LazyAddr(&pSystemTimeToFileTime, libKernel32, "SystemTimeToFileTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTime)), uintptr(unsafe.Pointer(lpFileTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetTimeZoneInformation(lpTimeZoneInformation *TIME_ZONE_INFORMATION) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTimeZoneInformation, libKernel32, "GetTimeZoneInformation")
+	addr := LazyAddr(&pGetTimeZoneInformation, libKernel32, "GetTimeZoneInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetTimeZoneInformation(lpTimeZoneInformation *TIME_ZONE_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetTimeZoneInformation, libKernel32, "SetTimeZoneInformation")
+	addr := LazyAddr(&pSetTimeZoneInformation, libKernel32, "SetTimeZoneInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetDynamicTimeZoneInformation(lpTimeZoneInformation *DYNAMIC_TIME_ZONE_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetDynamicTimeZoneInformation, libKernel32, "SetDynamicTimeZoneInformation")
+	addr := LazyAddr(&pSetDynamicTimeZoneInformation, libKernel32, "SetDynamicTimeZoneInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDynamicTimeZoneInformation(pTimeZoneInformation *DYNAMIC_TIME_ZONE_INFORMATION) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetDynamicTimeZoneInformation, libKernel32, "GetDynamicTimeZoneInformation")
+	addr := LazyAddr(&pGetDynamicTimeZoneInformation, libKernel32, "GetDynamicTimeZoneInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pTimeZoneInformation)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetTimeZoneInformationForYear(wYear uint16, pdtzi *DYNAMIC_TIME_ZONE_INFORMATION, ptzi *TIME_ZONE_INFORMATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetTimeZoneInformationForYear, libKernel32, "GetTimeZoneInformationForYear")
+	addr := LazyAddr(&pGetTimeZoneInformationForYear, libKernel32, "GetTimeZoneInformationForYear")
 	ret, _, err := syscall.SyscallN(addr, uintptr(wYear), uintptr(unsafe.Pointer(pdtzi)), uintptr(unsafe.Pointer(ptzi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumDynamicTimeZoneInformation(dwIndex uint32, lpTimeZoneInformation *DYNAMIC_TIME_ZONE_INFORMATION) uint32 {
-	addr := lazyAddr(&pEnumDynamicTimeZoneInformation, libAdvapi32, "EnumDynamicTimeZoneInformation")
+	addr := LazyAddr(&pEnumDynamicTimeZoneInformation, libAdvapi32, "EnumDynamicTimeZoneInformation")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwIndex), uintptr(unsafe.Pointer(lpTimeZoneInformation)))
 	return uint32(ret)
 }
 
 func GetDynamicTimeZoneInformationEffectiveYears(lpTimeZoneInformation *DYNAMIC_TIME_ZONE_INFORMATION, FirstYear *uint32, LastYear *uint32) uint32 {
-	addr := lazyAddr(&pGetDynamicTimeZoneInformationEffectiveYears, libAdvapi32, "GetDynamicTimeZoneInformationEffectiveYears")
+	addr := LazyAddr(&pGetDynamicTimeZoneInformationEffectiveYears, libAdvapi32, "GetDynamicTimeZoneInformationEffectiveYears")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)), uintptr(unsafe.Pointer(FirstYear)), uintptr(unsafe.Pointer(LastYear)))
 	return uint32(ret)
 }
 
 func SystemTimeToTzSpecificLocalTimeEx(lpTimeZoneInformation *DYNAMIC_TIME_ZONE_INFORMATION, lpUniversalTime *SYSTEMTIME, lpLocalTime *SYSTEMTIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSystemTimeToTzSpecificLocalTimeEx, libKernel32, "SystemTimeToTzSpecificLocalTimeEx")
+	addr := LazyAddr(&pSystemTimeToTzSpecificLocalTimeEx, libKernel32, "SystemTimeToTzSpecificLocalTimeEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)), uintptr(unsafe.Pointer(lpUniversalTime)), uintptr(unsafe.Pointer(lpLocalTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func TzSpecificLocalTimeToSystemTimeEx(lpTimeZoneInformation *DYNAMIC_TIME_ZONE_INFORMATION, lpLocalTime *SYSTEMTIME, lpUniversalTime *SYSTEMTIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTzSpecificLocalTimeToSystemTimeEx, libKernel32, "TzSpecificLocalTimeToSystemTimeEx")
+	addr := LazyAddr(&pTzSpecificLocalTimeToSystemTimeEx, libKernel32, "TzSpecificLocalTimeToSystemTimeEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimeZoneInformation)), uintptr(unsafe.Pointer(lpLocalTime)), uintptr(unsafe.Pointer(lpUniversalTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LocalFileTimeToLocalSystemTime(timeZoneInformation *TIME_ZONE_INFORMATION, localFileTime *FILETIME, localSystemTime *SYSTEMTIME) BOOL {
-	addr := lazyAddr(&pLocalFileTimeToLocalSystemTime, libKernel32, "LocalFileTimeToLocalSystemTime")
+	addr := LazyAddr(&pLocalFileTimeToLocalSystemTime, libKernel32, "LocalFileTimeToLocalSystemTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(timeZoneInformation)), uintptr(unsafe.Pointer(localFileTime)), uintptr(unsafe.Pointer(localSystemTime)))
 	return BOOL(ret)
 }
 
 func LocalSystemTimeToLocalFileTime(timeZoneInformation *TIME_ZONE_INFORMATION, localSystemTime *SYSTEMTIME, localFileTime *FILETIME) BOOL {
-	addr := lazyAddr(&pLocalSystemTimeToLocalFileTime, libKernel32, "LocalSystemTimeToLocalFileTime")
+	addr := LazyAddr(&pLocalSystemTimeToLocalFileTime, libKernel32, "LocalSystemTimeToLocalFileTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(timeZoneInformation)), uintptr(unsafe.Pointer(localSystemTime)), uintptr(unsafe.Pointer(localFileTime)))
 	return BOOL(ret)
 }

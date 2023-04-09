@@ -2143,263 +2143,263 @@ var (
 )
 
 func Uaw_lstrcmpW(String1 *uint16, String2 *uint16) int32 {
-	addr := lazyAddr(&pUaw_lstrcmpW, libKernel32, "uaw_lstrcmpW")
+	addr := LazyAddr(&pUaw_lstrcmpW, libKernel32, "uaw_lstrcmpW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
 	return int32(ret)
 }
 
 func Uaw_lstrcmpiW(String1 *uint16, String2 *uint16) int32 {
-	addr := lazyAddr(&pUaw_lstrcmpiW, libKernel32, "uaw_lstrcmpiW")
+	addr := LazyAddr(&pUaw_lstrcmpiW, libKernel32, "uaw_lstrcmpiW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
 	return int32(ret)
 }
 
 func Uaw_lstrlenW(String *uint16) int32 {
-	addr := lazyAddr(&pUaw_lstrlenW, libKernel32, "uaw_lstrlenW")
+	addr := LazyAddr(&pUaw_lstrlenW, libKernel32, "uaw_lstrlenW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)))
 	return int32(ret)
 }
 
 func Uaw_wcschr(String *uint16, Character uint16) *uint16 {
-	addr := lazyAddr(&pUaw_wcschr, libKernel32, "uaw_wcschr")
+	addr := LazyAddr(&pUaw_wcschr, libKernel32, "uaw_wcschr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)), uintptr(Character))
 	return (*uint16)(unsafe.Pointer(ret))
 }
 
 func Uaw_wcscpy(Destination *uint16, Source *uint16) *uint16 {
-	addr := lazyAddr(&pUaw_wcscpy, libKernel32, "uaw_wcscpy")
+	addr := LazyAddr(&pUaw_wcscpy, libKernel32, "uaw_wcscpy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Destination)), uintptr(unsafe.Pointer(Source)))
 	return (*uint16)(unsafe.Pointer(ret))
 }
 
 func Uaw_wcsicmp(String1 *uint16, String2 *uint16) int32 {
-	addr := lazyAddr(&pUaw_wcsicmp, libKernel32, "uaw_wcsicmp")
+	addr := LazyAddr(&pUaw_wcsicmp, libKernel32, "uaw_wcsicmp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String1)), uintptr(unsafe.Pointer(String2)))
 	return int32(ret)
 }
 
 func Uaw_wcslen(String *uint16) uintptr {
-	addr := lazyAddr(&pUaw_wcslen, libKernel32, "uaw_wcslen")
+	addr := LazyAddr(&pUaw_wcslen, libKernel32, "uaw_wcslen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)))
 	return ret
 }
 
 func Uaw_wcsrchr(String *uint16, Character uint16) *uint16 {
-	addr := lazyAddr(&pUaw_wcsrchr, libKernel32, "uaw_wcsrchr")
+	addr := LazyAddr(&pUaw_wcsrchr, libKernel32, "uaw_wcsrchr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(String)), uintptr(Character))
 	return (*uint16)(unsafe.Pointer(ret))
 }
 
 func QueryThreadCycleTime(ThreadHandle HANDLE, CycleTime *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryThreadCycleTime, libKernel32, "QueryThreadCycleTime")
+	addr := LazyAddr(&pQueryThreadCycleTime, libKernel32, "QueryThreadCycleTime")
 	ret, _, err := syscall.SyscallN(addr, ThreadHandle, uintptr(unsafe.Pointer(CycleTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryProcessCycleTime(ProcessHandle HANDLE, CycleTime *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryProcessCycleTime, libKernel32, "QueryProcessCycleTime")
+	addr := LazyAddr(&pQueryProcessCycleTime, libKernel32, "QueryProcessCycleTime")
 	ret, _, err := syscall.SyscallN(addr, ProcessHandle, uintptr(unsafe.Pointer(CycleTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryIdleProcessorCycleTime(BufferLength *uint32, ProcessorIdleCycleTime *uint64) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryIdleProcessorCycleTime, libKernel32, "QueryIdleProcessorCycleTime")
+	addr := LazyAddr(&pQueryIdleProcessorCycleTime, libKernel32, "QueryIdleProcessorCycleTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(BufferLength)), uintptr(unsafe.Pointer(ProcessorIdleCycleTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryIdleProcessorCycleTimeEx(Group uint16, BufferLength *uint32, ProcessorIdleCycleTime *uint64) BOOL {
-	addr := lazyAddr(&pQueryIdleProcessorCycleTimeEx, libKernel32, "QueryIdleProcessorCycleTimeEx")
+	addr := LazyAddr(&pQueryIdleProcessorCycleTimeEx, libKernel32, "QueryIdleProcessorCycleTimeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Group), uintptr(unsafe.Pointer(BufferLength)), uintptr(unsafe.Pointer(ProcessorIdleCycleTime)))
 	return BOOL(ret)
 }
 
 func QueryUnbiasedInterruptTime(UnbiasedTime *uint64) BOOL {
-	addr := lazyAddr(&pQueryUnbiasedInterruptTime, libKernel32, "QueryUnbiasedInterruptTime")
+	addr := LazyAddr(&pQueryUnbiasedInterruptTime, libKernel32, "QueryUnbiasedInterruptTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(UnbiasedTime)))
 	return BOOL(ret)
 }
 
 func GlobalCompact(dwMinFree uint32) uintptr {
-	addr := lazyAddr(&pGlobalCompact, libKernel32, "GlobalCompact")
+	addr := LazyAddr(&pGlobalCompact, libKernel32, "GlobalCompact")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwMinFree))
 	return ret
 }
 
 func GlobalFix(hMem uintptr) {
-	addr := lazyAddr(&pGlobalFix, libKernel32, "GlobalFix")
+	addr := LazyAddr(&pGlobalFix, libKernel32, "GlobalFix")
 	syscall.SyscallN(addr, hMem)
 }
 
 func GlobalUnfix(hMem uintptr) {
-	addr := lazyAddr(&pGlobalUnfix, libKernel32, "GlobalUnfix")
+	addr := LazyAddr(&pGlobalUnfix, libKernel32, "GlobalUnfix")
 	syscall.SyscallN(addr, hMem)
 }
 
 func GlobalWire(hMem uintptr) unsafe.Pointer {
-	addr := lazyAddr(&pGlobalWire, libKernel32, "GlobalWire")
+	addr := LazyAddr(&pGlobalWire, libKernel32, "GlobalWire")
 	ret, _, _ := syscall.SyscallN(addr, hMem)
 	return (unsafe.Pointer)(ret)
 }
 
 func GlobalUnWire(hMem uintptr) BOOL {
-	addr := lazyAddr(&pGlobalUnWire, libKernel32, "GlobalUnWire")
+	addr := LazyAddr(&pGlobalUnWire, libKernel32, "GlobalUnWire")
 	ret, _, _ := syscall.SyscallN(addr, hMem)
 	return BOOL(ret)
 }
 
 func LocalShrink(hMem uintptr, cbNewSize uint32) uintptr {
-	addr := lazyAddr(&pLocalShrink, libKernel32, "LocalShrink")
+	addr := LazyAddr(&pLocalShrink, libKernel32, "LocalShrink")
 	ret, _, _ := syscall.SyscallN(addr, hMem, uintptr(cbNewSize))
 	return ret
 }
 
 func LocalCompact(uMinFree uint32) uintptr {
-	addr := lazyAddr(&pLocalCompact, libKernel32, "LocalCompact")
+	addr := LazyAddr(&pLocalCompact, libKernel32, "LocalCompact")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uMinFree))
 	return ret
 }
 
 func SetEnvironmentStringsA(NewEnvironment PSTR) BOOL {
-	addr := lazyAddr(&pSetEnvironmentStringsA, libKernel32, "SetEnvironmentStringsA")
+	addr := LazyAddr(&pSetEnvironmentStringsA, libKernel32, "SetEnvironmentStringsA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(NewEnvironment)))
 	return BOOL(ret)
 }
 
 func SetHandleCount(uNumber uint32) uint32 {
-	addr := lazyAddr(&pSetHandleCount, libKernel32, "SetHandleCount")
+	addr := LazyAddr(&pSetHandleCount, libKernel32, "SetHandleCount")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uNumber))
 	return uint32(ret)
 }
 
 func RequestDeviceWakeup(hDevice HANDLE) BOOL {
-	addr := lazyAddr(&pRequestDeviceWakeup, libKernel32, "RequestDeviceWakeup")
+	addr := LazyAddr(&pRequestDeviceWakeup, libKernel32, "RequestDeviceWakeup")
 	ret, _, _ := syscall.SyscallN(addr, hDevice)
 	return BOOL(ret)
 }
 
 func CancelDeviceWakeupRequest(hDevice HANDLE) BOOL {
-	addr := lazyAddr(&pCancelDeviceWakeupRequest, libKernel32, "CancelDeviceWakeupRequest")
+	addr := LazyAddr(&pCancelDeviceWakeupRequest, libKernel32, "CancelDeviceWakeupRequest")
 	ret, _, _ := syscall.SyscallN(addr, hDevice)
 	return BOOL(ret)
 }
 
 func SetMessageWaitingIndicator(hMsgIndicator HANDLE, ulMsgCount uint32) BOOL {
-	addr := lazyAddr(&pSetMessageWaitingIndicator, libKernel32, "SetMessageWaitingIndicator")
+	addr := LazyAddr(&pSetMessageWaitingIndicator, libKernel32, "SetMessageWaitingIndicator")
 	ret, _, _ := syscall.SyscallN(addr, hMsgIndicator, uintptr(ulMsgCount))
 	return BOOL(ret)
 }
 
 func MulDiv(nNumber int32, nNumerator int32, nDenominator int32) int32 {
-	addr := lazyAddr(&pMulDiv, libKernel32, "MulDiv")
+	addr := LazyAddr(&pMulDiv, libKernel32, "MulDiv")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nNumber), uintptr(nNumerator), uintptr(nDenominator))
 	return int32(ret)
 }
 
 func GetSystemRegistryQuota(pdwQuotaAllowed *uint32, pdwQuotaUsed *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemRegistryQuota, libKernel32, "GetSystemRegistryQuota")
+	addr := LazyAddr(&pGetSystemRegistryQuota, libKernel32, "GetSystemRegistryQuota")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdwQuotaAllowed)), uintptr(unsafe.Pointer(pdwQuotaUsed)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func FileTimeToDosDateTime(lpFileTime *FILETIME, lpFatDate *uint16, lpFatTime *uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pFileTimeToDosDateTime, libKernel32, "FileTimeToDosDateTime")
+	addr := LazyAddr(&pFileTimeToDosDateTime, libKernel32, "FileTimeToDosDateTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileTime)), uintptr(unsafe.Pointer(lpFatDate)), uintptr(unsafe.Pointer(lpFatTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DosDateTimeToFileTime(wFatDate uint16, wFatTime uint16, lpFileTime *FILETIME) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDosDateTimeToFileTime, libKernel32, "DosDateTimeToFileTime")
+	addr := LazyAddr(&pDosDateTimeToFileTime, libKernel32, "DosDateTimeToFileTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(wFatDate), uintptr(wFatTime), uintptr(unsafe.Pointer(lpFileTime)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func Lopen_(lpPathName PSTR, iReadWrite int32) int32 {
-	addr := lazyAddr(&pLopen_, libKernel32, "_lopen")
+	addr := LazyAddr(&pLopen_, libKernel32, "_lopen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(iReadWrite))
 	return int32(ret)
 }
 
 func Lcreat_(lpPathName PSTR, iAttribute int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLcreat_, libKernel32, "_lcreat")
+	addr := LazyAddr(&pLcreat_, libKernel32, "_lcreat")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(iAttribute))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func Lread_(hFile int32, lpBuffer unsafe.Pointer, uBytes uint32) uint32 {
-	addr := lazyAddr(&pLread_, libKernel32, "_lread")
+	addr := LazyAddr(&pLread_, libKernel32, "_lread")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hFile), uintptr(lpBuffer), uintptr(uBytes))
 	return uint32(ret)
 }
 
 func Lwrite_(hFile int32, lpBuffer PSTR, uBytes uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pLwrite_, libKernel32, "_lwrite")
+	addr := LazyAddr(&pLwrite_, libKernel32, "_lwrite")
 	ret, _, err := syscall.SyscallN(addr, uintptr(hFile), uintptr(unsafe.Pointer(lpBuffer)), uintptr(uBytes))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func Hread_(hFile int32, lpBuffer unsafe.Pointer, lBytes int32) int32 {
-	addr := lazyAddr(&pHread_, libKernel32, "_hread")
+	addr := LazyAddr(&pHread_, libKernel32, "_hread")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hFile), uintptr(lpBuffer), uintptr(lBytes))
 	return int32(ret)
 }
 
 func Hwrite_(hFile int32, lpBuffer PSTR, lBytes int32) int32 {
-	addr := lazyAddr(&pHwrite_, libKernel32, "_hwrite")
+	addr := LazyAddr(&pHwrite_, libKernel32, "_hwrite")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hFile), uintptr(unsafe.Pointer(lpBuffer)), uintptr(lBytes))
 	return int32(ret)
 }
 
 func Lclose_(hFile int32) int32 {
-	addr := lazyAddr(&pLclose_, libKernel32, "_lclose")
+	addr := LazyAddr(&pLclose_, libKernel32, "_lclose")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(hFile))
 	return int32(ret)
 }
 
 func Llseek_(hFile int32, lOffset int32, iOrigin int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pLlseek_, libKernel32, "_llseek")
+	addr := LazyAddr(&pLlseek_, libKernel32, "_llseek")
 	ret, _, err := syscall.SyscallN(addr, uintptr(hFile), uintptr(lOffset), uintptr(iOrigin))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func SignalObjectAndWait(hObjectToSignal HANDLE, hObjectToWaitOn HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
-	addr := lazyAddr(&pSignalObjectAndWait, libKernel32, "SignalObjectAndWait")
+	addr := LazyAddr(&pSignalObjectAndWait, libKernel32, "SignalObjectAndWait")
 	ret, _, err := syscall.SyscallN(addr, hObjectToSignal, hObjectToWaitOn, uintptr(dwMilliseconds), uintptr(bAlertable))
 	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func OpenMutexA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) HANDLE {
-	addr := lazyAddr(&pOpenMutexA, libKernel32, "OpenMutexA")
+	addr := LazyAddr(&pOpenMutexA, libKernel32, "OpenMutexA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret
 }
 
 func OpenSemaphoreA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) HANDLE {
-	addr := lazyAddr(&pOpenSemaphoreA, libKernel32, "OpenSemaphoreA")
+	addr := LazyAddr(&pOpenSemaphoreA, libKernel32, "OpenSemaphoreA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
 	return ret
 }
 
 func CreateWaitableTimerA(lpTimerAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, lpTimerName PSTR) HANDLE {
-	addr := lazyAddr(&pCreateWaitableTimerA, libKernel32, "CreateWaitableTimerA")
+	addr := LazyAddr(&pCreateWaitableTimerA, libKernel32, "CreateWaitableTimerA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(bManualReset), uintptr(unsafe.Pointer(lpTimerName)))
 	return ret
 }
 
 func OpenWaitableTimerA(dwDesiredAccess uint32, bInheritHandle BOOL, lpTimerName PSTR) HANDLE {
-	addr := lazyAddr(&pOpenWaitableTimerA, libKernel32, "OpenWaitableTimerA")
+	addr := LazyAddr(&pOpenWaitableTimerA, libKernel32, "OpenWaitableTimerA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpTimerName)))
 	return ret
 }
 
 func CreateWaitableTimerExA(lpTimerAttributes *SECURITY_ATTRIBUTES, lpTimerName PSTR, dwFlags uint32, dwDesiredAccess uint32) HANDLE {
-	addr := lazyAddr(&pCreateWaitableTimerExA, libKernel32, "CreateWaitableTimerExA")
+	addr := LazyAddr(&pCreateWaitableTimerExA, libKernel32, "CreateWaitableTimerExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(unsafe.Pointer(lpTimerName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret
 }
 
 func GetFirmwareEnvironmentVariableA(lpName PSTR, lpGuid PSTR, pBuffer unsafe.Pointer, nSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFirmwareEnvironmentVariableA, libKernel32, "GetFirmwareEnvironmentVariableA")
+	addr := LazyAddr(&pGetFirmwareEnvironmentVariableA, libKernel32, "GetFirmwareEnvironmentVariableA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pBuffer), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -2407,13 +2407,13 @@ func GetFirmwareEnvironmentVariableA(lpName PSTR, lpGuid PSTR, pBuffer unsafe.Po
 var GetFirmwareEnvironmentVariable = GetFirmwareEnvironmentVariableW
 
 func GetFirmwareEnvironmentVariableW(lpName PWSTR, lpGuid PWSTR, pBuffer unsafe.Pointer, nSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFirmwareEnvironmentVariableW, libKernel32, "GetFirmwareEnvironmentVariableW")
+	addr := LazyAddr(&pGetFirmwareEnvironmentVariableW, libKernel32, "GetFirmwareEnvironmentVariableW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pBuffer), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetFirmwareEnvironmentVariableExA(lpName PSTR, lpGuid PSTR, pBuffer unsafe.Pointer, nSize uint32, pdwAttribubutes *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFirmwareEnvironmentVariableExA, libKernel32, "GetFirmwareEnvironmentVariableExA")
+	addr := LazyAddr(&pGetFirmwareEnvironmentVariableExA, libKernel32, "GetFirmwareEnvironmentVariableExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pBuffer), uintptr(nSize), uintptr(unsafe.Pointer(pdwAttribubutes)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -2421,13 +2421,13 @@ func GetFirmwareEnvironmentVariableExA(lpName PSTR, lpGuid PSTR, pBuffer unsafe.
 var GetFirmwareEnvironmentVariableEx = GetFirmwareEnvironmentVariableExW
 
 func GetFirmwareEnvironmentVariableExW(lpName PWSTR, lpGuid PWSTR, pBuffer unsafe.Pointer, nSize uint32, pdwAttribubutes *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetFirmwareEnvironmentVariableExW, libKernel32, "GetFirmwareEnvironmentVariableExW")
+	addr := LazyAddr(&pGetFirmwareEnvironmentVariableExW, libKernel32, "GetFirmwareEnvironmentVariableExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pBuffer), uintptr(nSize), uintptr(unsafe.Pointer(pdwAttribubutes)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetFirmwareEnvironmentVariableA(lpName PSTR, lpGuid PSTR, pValue unsafe.Pointer, nSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFirmwareEnvironmentVariableA, libKernel32, "SetFirmwareEnvironmentVariableA")
+	addr := LazyAddr(&pSetFirmwareEnvironmentVariableA, libKernel32, "SetFirmwareEnvironmentVariableA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pValue), uintptr(nSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2435,13 +2435,13 @@ func SetFirmwareEnvironmentVariableA(lpName PSTR, lpGuid PSTR, pValue unsafe.Poi
 var SetFirmwareEnvironmentVariable = SetFirmwareEnvironmentVariableW
 
 func SetFirmwareEnvironmentVariableW(lpName PWSTR, lpGuid PWSTR, pValue unsafe.Pointer, nSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFirmwareEnvironmentVariableW, libKernel32, "SetFirmwareEnvironmentVariableW")
+	addr := LazyAddr(&pSetFirmwareEnvironmentVariableW, libKernel32, "SetFirmwareEnvironmentVariableW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pValue), uintptr(nSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFirmwareEnvironmentVariableExA(lpName PSTR, lpGuid PSTR, pValue unsafe.Pointer, nSize uint32, dwAttributes uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFirmwareEnvironmentVariableExA, libKernel32, "SetFirmwareEnvironmentVariableExA")
+	addr := LazyAddr(&pSetFirmwareEnvironmentVariableExA, libKernel32, "SetFirmwareEnvironmentVariableExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pValue), uintptr(nSize), uintptr(dwAttributes))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2449,19 +2449,19 @@ func SetFirmwareEnvironmentVariableExA(lpName PSTR, lpGuid PSTR, pValue unsafe.P
 var SetFirmwareEnvironmentVariableEx = SetFirmwareEnvironmentVariableExW
 
 func SetFirmwareEnvironmentVariableExW(lpName PWSTR, lpGuid PWSTR, pValue unsafe.Pointer, nSize uint32, dwAttributes uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFirmwareEnvironmentVariableExW, libKernel32, "SetFirmwareEnvironmentVariableExW")
+	addr := LazyAddr(&pSetFirmwareEnvironmentVariableExW, libKernel32, "SetFirmwareEnvironmentVariableExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpGuid)), uintptr(pValue), uintptr(nSize), uintptr(dwAttributes))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsNativeVhdBoot(NativeVhdBoot *BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsNativeVhdBoot, libKernel32, "IsNativeVhdBoot")
+	addr := LazyAddr(&pIsNativeVhdBoot, libKernel32, "IsNativeVhdBoot")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(NativeVhdBoot)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProfileIntA(lpAppName PSTR, lpKeyName PSTR, nDefault int32) uint32 {
-	addr := lazyAddr(&pGetProfileIntA, libKernel32, "GetProfileIntA")
+	addr := LazyAddr(&pGetProfileIntA, libKernel32, "GetProfileIntA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(nDefault))
 	return uint32(ret)
 }
@@ -2469,13 +2469,13 @@ func GetProfileIntA(lpAppName PSTR, lpKeyName PSTR, nDefault int32) uint32 {
 var GetProfileInt = GetProfileIntW
 
 func GetProfileIntW(lpAppName PWSTR, lpKeyName PWSTR, nDefault int32) uint32 {
-	addr := lazyAddr(&pGetProfileIntW, libKernel32, "GetProfileIntW")
+	addr := LazyAddr(&pGetProfileIntW, libKernel32, "GetProfileIntW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(nDefault))
 	return uint32(ret)
 }
 
 func GetProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpDefault PSTR, lpReturnedString PSTR, nSize uint32) uint32 {
-	addr := lazyAddr(&pGetProfileStringA, libKernel32, "GetProfileStringA")
+	addr := LazyAddr(&pGetProfileStringA, libKernel32, "GetProfileStringA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpDefault)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize))
 	return uint32(ret)
 }
@@ -2483,13 +2483,13 @@ func GetProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpDefault PSTR, lpReturne
 var GetProfileString = GetProfileStringW
 
 func GetProfileStringW(lpAppName PWSTR, lpKeyName PWSTR, lpDefault PWSTR, lpReturnedString PWSTR, nSize uint32) uint32 {
-	addr := lazyAddr(&pGetProfileStringW, libKernel32, "GetProfileStringW")
+	addr := LazyAddr(&pGetProfileStringW, libKernel32, "GetProfileStringW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpDefault)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize))
 	return uint32(ret)
 }
 
 func WriteProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpString PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWriteProfileStringA, libKernel32, "WriteProfileStringA")
+	addr := LazyAddr(&pWriteProfileStringA, libKernel32, "WriteProfileStringA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2497,13 +2497,13 @@ func WriteProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpString PSTR) (BOOL, W
 var WriteProfileString = WriteProfileStringW
 
 func WriteProfileStringW(lpAppName PWSTR, lpKeyName PWSTR, lpString PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWriteProfileStringW, libKernel32, "WriteProfileStringW")
+	addr := LazyAddr(&pWriteProfileStringW, libKernel32, "WriteProfileStringW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProfileSectionA(lpAppName PSTR, lpReturnedString PSTR, nSize uint32) uint32 {
-	addr := lazyAddr(&pGetProfileSectionA, libKernel32, "GetProfileSectionA")
+	addr := LazyAddr(&pGetProfileSectionA, libKernel32, "GetProfileSectionA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize))
 	return uint32(ret)
 }
@@ -2511,13 +2511,13 @@ func GetProfileSectionA(lpAppName PSTR, lpReturnedString PSTR, nSize uint32) uin
 var GetProfileSection = GetProfileSectionW
 
 func GetProfileSectionW(lpAppName PWSTR, lpReturnedString PWSTR, nSize uint32) uint32 {
-	addr := lazyAddr(&pGetProfileSectionW, libKernel32, "GetProfileSectionW")
+	addr := LazyAddr(&pGetProfileSectionW, libKernel32, "GetProfileSectionW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize))
 	return uint32(ret)
 }
 
 func WriteProfileSectionA(lpAppName PSTR, lpString PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWriteProfileSectionA, libKernel32, "WriteProfileSectionA")
+	addr := LazyAddr(&pWriteProfileSectionA, libKernel32, "WriteProfileSectionA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2525,13 +2525,13 @@ func WriteProfileSectionA(lpAppName PSTR, lpString PSTR) (BOOL, WIN32_ERROR) {
 var WriteProfileSection = WriteProfileSectionW
 
 func WriteProfileSectionW(lpAppName PWSTR, lpString PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWriteProfileSectionW, libKernel32, "WriteProfileSectionW")
+	addr := LazyAddr(&pWriteProfileSectionW, libKernel32, "WriteProfileSectionW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpString)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetPrivateProfileIntA(lpAppName PSTR, lpKeyName PSTR, nDefault int32, lpFileName PSTR) uint32 {
-	addr := lazyAddr(&pGetPrivateProfileIntA, libKernel32, "GetPrivateProfileIntA")
+	addr := LazyAddr(&pGetPrivateProfileIntA, libKernel32, "GetPrivateProfileIntA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(nDefault), uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret)
 }
@@ -2539,13 +2539,13 @@ func GetPrivateProfileIntA(lpAppName PSTR, lpKeyName PSTR, nDefault int32, lpFil
 var GetPrivateProfileInt = GetPrivateProfileIntW
 
 func GetPrivateProfileIntW(lpAppName PWSTR, lpKeyName PWSTR, nDefault int32, lpFileName PWSTR) int32 {
-	addr := lazyAddr(&pGetPrivateProfileIntW, libKernel32, "GetPrivateProfileIntW")
+	addr := LazyAddr(&pGetPrivateProfileIntW, libKernel32, "GetPrivateProfileIntW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(nDefault), uintptr(unsafe.Pointer(lpFileName)))
 	return int32(ret)
 }
 
 func GetPrivateProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpDefault PSTR, lpReturnedString PSTR, nSize uint32, lpFileName PSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetPrivateProfileStringA, libKernel32, "GetPrivateProfileStringA")
+	addr := LazyAddr(&pGetPrivateProfileStringA, libKernel32, "GetPrivateProfileStringA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpDefault)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize), uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -2553,13 +2553,13 @@ func GetPrivateProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpDefault PSTR, lp
 var GetPrivateProfileString = GetPrivateProfileStringW
 
 func GetPrivateProfileStringW(lpAppName PWSTR, lpKeyName PWSTR, lpDefault PWSTR, lpReturnedString PWSTR, nSize uint32, lpFileName PWSTR) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetPrivateProfileStringW, libKernel32, "GetPrivateProfileStringW")
+	addr := LazyAddr(&pGetPrivateProfileStringW, libKernel32, "GetPrivateProfileStringW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpDefault)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize), uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func WritePrivateProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpString PSTR, lpFileName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWritePrivateProfileStringA, libKernel32, "WritePrivateProfileStringA")
+	addr := LazyAddr(&pWritePrivateProfileStringA, libKernel32, "WritePrivateProfileStringA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpString)), uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2567,13 +2567,13 @@ func WritePrivateProfileStringA(lpAppName PSTR, lpKeyName PSTR, lpString PSTR, l
 var WritePrivateProfileString = WritePrivateProfileStringW
 
 func WritePrivateProfileStringW(lpAppName PWSTR, lpKeyName PWSTR, lpString PWSTR, lpFileName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWritePrivateProfileStringW, libKernel32, "WritePrivateProfileStringW")
+	addr := LazyAddr(&pWritePrivateProfileStringW, libKernel32, "WritePrivateProfileStringW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpKeyName)), uintptr(unsafe.Pointer(lpString)), uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetPrivateProfileSectionA(lpAppName PSTR, lpReturnedString PSTR, nSize uint32, lpFileName PSTR) uint32 {
-	addr := lazyAddr(&pGetPrivateProfileSectionA, libKernel32, "GetPrivateProfileSectionA")
+	addr := LazyAddr(&pGetPrivateProfileSectionA, libKernel32, "GetPrivateProfileSectionA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize), uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret)
 }
@@ -2581,13 +2581,13 @@ func GetPrivateProfileSectionA(lpAppName PSTR, lpReturnedString PSTR, nSize uint
 var GetPrivateProfileSection = GetPrivateProfileSectionW
 
 func GetPrivateProfileSectionW(lpAppName PWSTR, lpReturnedString PWSTR, nSize uint32, lpFileName PWSTR) uint32 {
-	addr := lazyAddr(&pGetPrivateProfileSectionW, libKernel32, "GetPrivateProfileSectionW")
+	addr := LazyAddr(&pGetPrivateProfileSectionW, libKernel32, "GetPrivateProfileSectionW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpReturnedString)), uintptr(nSize), uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret)
 }
 
 func WritePrivateProfileSectionA(lpAppName PSTR, lpString PSTR, lpFileName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWritePrivateProfileSectionA, libKernel32, "WritePrivateProfileSectionA")
+	addr := LazyAddr(&pWritePrivateProfileSectionA, libKernel32, "WritePrivateProfileSectionA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpString)), uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2595,13 +2595,13 @@ func WritePrivateProfileSectionA(lpAppName PSTR, lpString PSTR, lpFileName PSTR)
 var WritePrivateProfileSection = WritePrivateProfileSectionW
 
 func WritePrivateProfileSectionW(lpAppName PWSTR, lpString PWSTR, lpFileName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWritePrivateProfileSectionW, libKernel32, "WritePrivateProfileSectionW")
+	addr := LazyAddr(&pWritePrivateProfileSectionW, libKernel32, "WritePrivateProfileSectionW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpAppName)), uintptr(unsafe.Pointer(lpString)), uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetPrivateProfileSectionNamesA(lpszReturnBuffer PSTR, nSize uint32, lpFileName PSTR) uint32 {
-	addr := lazyAddr(&pGetPrivateProfileSectionNamesA, libKernel32, "GetPrivateProfileSectionNamesA")
+	addr := LazyAddr(&pGetPrivateProfileSectionNamesA, libKernel32, "GetPrivateProfileSectionNamesA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszReturnBuffer)), uintptr(nSize), uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret)
 }
@@ -2609,13 +2609,13 @@ func GetPrivateProfileSectionNamesA(lpszReturnBuffer PSTR, nSize uint32, lpFileN
 var GetPrivateProfileSectionNames = GetPrivateProfileSectionNamesW
 
 func GetPrivateProfileSectionNamesW(lpszReturnBuffer PWSTR, nSize uint32, lpFileName PWSTR) uint32 {
-	addr := lazyAddr(&pGetPrivateProfileSectionNamesW, libKernel32, "GetPrivateProfileSectionNamesW")
+	addr := LazyAddr(&pGetPrivateProfileSectionNamesW, libKernel32, "GetPrivateProfileSectionNamesW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszReturnBuffer)), uintptr(nSize), uintptr(unsafe.Pointer(lpFileName)))
 	return uint32(ret)
 }
 
 func GetPrivateProfileStructA(lpszSection PSTR, lpszKey PSTR, lpStruct unsafe.Pointer, uSizeStruct uint32, szFile PSTR) BOOL {
-	addr := lazyAddr(&pGetPrivateProfileStructA, libKernel32, "GetPrivateProfileStructA")
+	addr := LazyAddr(&pGetPrivateProfileStructA, libKernel32, "GetPrivateProfileStructA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSection)), uintptr(unsafe.Pointer(lpszKey)), uintptr(lpStruct), uintptr(uSizeStruct), uintptr(unsafe.Pointer(szFile)))
 	return BOOL(ret)
 }
@@ -2623,13 +2623,13 @@ func GetPrivateProfileStructA(lpszSection PSTR, lpszKey PSTR, lpStruct unsafe.Po
 var GetPrivateProfileStruct = GetPrivateProfileStructW
 
 func GetPrivateProfileStructW(lpszSection PWSTR, lpszKey PWSTR, lpStruct unsafe.Pointer, uSizeStruct uint32, szFile PWSTR) BOOL {
-	addr := lazyAddr(&pGetPrivateProfileStructW, libKernel32, "GetPrivateProfileStructW")
+	addr := LazyAddr(&pGetPrivateProfileStructW, libKernel32, "GetPrivateProfileStructW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSection)), uintptr(unsafe.Pointer(lpszKey)), uintptr(lpStruct), uintptr(uSizeStruct), uintptr(unsafe.Pointer(szFile)))
 	return BOOL(ret)
 }
 
 func WritePrivateProfileStructA(lpszSection PSTR, lpszKey PSTR, lpStruct unsafe.Pointer, uSizeStruct uint32, szFile PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWritePrivateProfileStructA, libKernel32, "WritePrivateProfileStructA")
+	addr := LazyAddr(&pWritePrivateProfileStructA, libKernel32, "WritePrivateProfileStructA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSection)), uintptr(unsafe.Pointer(lpszKey)), uintptr(lpStruct), uintptr(uSizeStruct), uintptr(unsafe.Pointer(szFile)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2637,25 +2637,25 @@ func WritePrivateProfileStructA(lpszSection PSTR, lpszKey PSTR, lpStruct unsafe.
 var WritePrivateProfileStruct = WritePrivateProfileStructW
 
 func WritePrivateProfileStructW(lpszSection PWSTR, lpszKey PWSTR, lpStruct unsafe.Pointer, uSizeStruct uint32, szFile PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pWritePrivateProfileStructW, libKernel32, "WritePrivateProfileStructW")
+	addr := LazyAddr(&pWritePrivateProfileStructW, libKernel32, "WritePrivateProfileStructW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszSection)), uintptr(unsafe.Pointer(lpszKey)), uintptr(lpStruct), uintptr(uSizeStruct), uintptr(unsafe.Pointer(szFile)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsBadHugeReadPtr(lp unsafe.Pointer, ucb uintptr) BOOL {
-	addr := lazyAddr(&pIsBadHugeReadPtr, libKernel32, "IsBadHugeReadPtr")
+	addr := LazyAddr(&pIsBadHugeReadPtr, libKernel32, "IsBadHugeReadPtr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lp), ucb)
 	return BOOL(ret)
 }
 
 func IsBadHugeWritePtr(lp unsafe.Pointer, ucb uintptr) BOOL {
-	addr := lazyAddr(&pIsBadHugeWritePtr, libKernel32, "IsBadHugeWritePtr")
+	addr := LazyAddr(&pIsBadHugeWritePtr, libKernel32, "IsBadHugeWritePtr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lp), ucb)
 	return BOOL(ret)
 }
 
 func GetComputerNameA(lpBuffer PSTR, nSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetComputerNameA, libKernel32, "GetComputerNameA")
+	addr := LazyAddr(&pGetComputerNameA, libKernel32, "GetComputerNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(nSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2663,13 +2663,13 @@ func GetComputerNameA(lpBuffer PSTR, nSize *uint32) (BOOL, WIN32_ERROR) {
 var GetComputerName = GetComputerNameW
 
 func GetComputerNameW(lpBuffer PWSTR, nSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetComputerNameW, libKernel32, "GetComputerNameW")
+	addr := LazyAddr(&pGetComputerNameW, libKernel32, "GetComputerNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(nSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DnsHostnameToComputerNameA(Hostname PSTR, ComputerName PSTR, nSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDnsHostnameToComputerNameA, libKernel32, "DnsHostnameToComputerNameA")
+	addr := LazyAddr(&pDnsHostnameToComputerNameA, libKernel32, "DnsHostnameToComputerNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Hostname)), uintptr(unsafe.Pointer(ComputerName)), uintptr(unsafe.Pointer(nSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2677,13 +2677,13 @@ func DnsHostnameToComputerNameA(Hostname PSTR, ComputerName PSTR, nSize *uint32)
 var DnsHostnameToComputerName = DnsHostnameToComputerNameW
 
 func DnsHostnameToComputerNameW(Hostname PWSTR, ComputerName PWSTR, nSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDnsHostnameToComputerNameW, libKernel32, "DnsHostnameToComputerNameW")
+	addr := LazyAddr(&pDnsHostnameToComputerNameW, libKernel32, "DnsHostnameToComputerNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Hostname)), uintptr(unsafe.Pointer(ComputerName)), uintptr(unsafe.Pointer(nSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetUserNameA(lpBuffer PSTR, pcbBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserNameA, libAdvapi32, "GetUserNameA")
+	addr := LazyAddr(&pGetUserNameA, libAdvapi32, "GetUserNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(pcbBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2691,25 +2691,25 @@ func GetUserNameA(lpBuffer PSTR, pcbBuffer *uint32) (BOOL, WIN32_ERROR) {
 var GetUserName = GetUserNameW
 
 func GetUserNameW(lpBuffer PWSTR, pcbBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserNameW, libAdvapi32, "GetUserNameW")
+	addr := LazyAddr(&pGetUserNameW, libAdvapi32, "GetUserNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBuffer)), uintptr(unsafe.Pointer(pcbBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsTokenUntrusted(TokenHandle HANDLE) BOOL {
-	addr := lazyAddr(&pIsTokenUntrusted, libAdvapi32, "IsTokenUntrusted")
+	addr := LazyAddr(&pIsTokenUntrusted, libAdvapi32, "IsTokenUntrusted")
 	ret, _, _ := syscall.SyscallN(addr, TokenHandle)
 	return BOOL(ret)
 }
 
 func CancelTimerQueueTimer(TimerQueue HANDLE, Timer HANDLE) BOOL {
-	addr := lazyAddr(&pCancelTimerQueueTimer, libKernel32, "CancelTimerQueueTimer")
+	addr := LazyAddr(&pCancelTimerQueueTimer, libKernel32, "CancelTimerQueueTimer")
 	ret, _, _ := syscall.SyscallN(addr, TimerQueue, Timer)
 	return BOOL(ret)
 }
 
 func GetCurrentHwProfileA(lpHwProfileInfo *HW_PROFILE_INFOA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCurrentHwProfileA, libAdvapi32, "GetCurrentHwProfileA")
+	addr := LazyAddr(&pGetCurrentHwProfileA, libAdvapi32, "GetCurrentHwProfileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpHwProfileInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -2717,31 +2717,31 @@ func GetCurrentHwProfileA(lpHwProfileInfo *HW_PROFILE_INFOA) (BOOL, WIN32_ERROR)
 var GetCurrentHwProfile = GetCurrentHwProfileW
 
 func GetCurrentHwProfileW(lpHwProfileInfo *HW_PROFILE_INFOW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCurrentHwProfileW, libAdvapi32, "GetCurrentHwProfileW")
+	addr := LazyAddr(&pGetCurrentHwProfileW, libAdvapi32, "GetCurrentHwProfileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpHwProfileInfo)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ReplacePartitionUnit(TargetPartition PWSTR, SparePartition PWSTR, Flags uint32) BOOL {
-	addr := lazyAddr(&pReplacePartitionUnit, libKernel32, "ReplacePartitionUnit")
+	addr := LazyAddr(&pReplacePartitionUnit, libKernel32, "ReplacePartitionUnit")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(TargetPartition)), uintptr(unsafe.Pointer(SparePartition)), uintptr(Flags))
 	return BOOL(ret)
 }
 
 func GetThreadEnabledXStateFeatures() uint64 {
-	addr := lazyAddr(&pGetThreadEnabledXStateFeatures, libKernel32, "GetThreadEnabledXStateFeatures")
+	addr := LazyAddr(&pGetThreadEnabledXStateFeatures, libKernel32, "GetThreadEnabledXStateFeatures")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint64(ret)
 }
 
 func EnableProcessOptionalXStateFeatures(Features uint64) BOOL {
-	addr := lazyAddr(&pEnableProcessOptionalXStateFeatures, libKernel32, "EnableProcessOptionalXStateFeatures")
+	addr := LazyAddr(&pEnableProcessOptionalXStateFeatures, libKernel32, "EnableProcessOptionalXStateFeatures")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Features))
 	return BOOL(ret)
 }
 
 func SendIMEMessageExA(param0 HWND, param1 LPARAM) LRESULT {
-	addr := lazyAddr(&pSendIMEMessageExA, libUser32, "SendIMEMessageExA")
+	addr := LazyAddr(&pSendIMEMessageExA, libUser32, "SendIMEMessageExA")
 	ret, _, _ := syscall.SyscallN(addr, param0, param1)
 	return ret
 }
@@ -2749,13 +2749,13 @@ func SendIMEMessageExA(param0 HWND, param1 LPARAM) LRESULT {
 var SendIMEMessageEx = SendIMEMessageExW
 
 func SendIMEMessageExW(param0 HWND, param1 LPARAM) LRESULT {
-	addr := lazyAddr(&pSendIMEMessageExW, libUser32, "SendIMEMessageExW")
+	addr := LazyAddr(&pSendIMEMessageExW, libUser32, "SendIMEMessageExW")
 	ret, _, _ := syscall.SyscallN(addr, param0, param1)
 	return ret
 }
 
 func IMPGetIMEA(param0 HWND, param1 *IMEPROA) BOOL {
-	addr := lazyAddr(&pIMPGetIMEA, libUser32, "IMPGetIMEA")
+	addr := LazyAddr(&pIMPGetIMEA, libUser32, "IMPGetIMEA")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return BOOL(ret)
 }
@@ -2763,13 +2763,13 @@ func IMPGetIMEA(param0 HWND, param1 *IMEPROA) BOOL {
 var IMPGetIME = IMPGetIMEW
 
 func IMPGetIMEW(param0 HWND, param1 *IMEPROW) BOOL {
-	addr := lazyAddr(&pIMPGetIMEW, libUser32, "IMPGetIMEW")
+	addr := LazyAddr(&pIMPGetIMEW, libUser32, "IMPGetIMEW")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return BOOL(ret)
 }
 
 func IMPQueryIMEA(param0 *IMEPROA) BOOL {
-	addr := lazyAddr(&pIMPQueryIMEA, libUser32, "IMPQueryIMEA")
+	addr := LazyAddr(&pIMPQueryIMEA, libUser32, "IMPQueryIMEA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
@@ -2777,13 +2777,13 @@ func IMPQueryIMEA(param0 *IMEPROA) BOOL {
 var IMPQueryIME = IMPQueryIMEW
 
 func IMPQueryIMEW(param0 *IMEPROW) BOOL {
-	addr := lazyAddr(&pIMPQueryIMEW, libUser32, "IMPQueryIMEW")
+	addr := LazyAddr(&pIMPQueryIMEW, libUser32, "IMPQueryIMEW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return BOOL(ret)
 }
 
 func IMPSetIMEA(param0 HWND, param1 *IMEPROA) BOOL {
-	addr := lazyAddr(&pIMPSetIMEA, libUser32, "IMPSetIMEA")
+	addr := LazyAddr(&pIMPSetIMEA, libUser32, "IMPSetIMEA")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return BOOL(ret)
 }
@@ -2791,25 +2791,25 @@ func IMPSetIMEA(param0 HWND, param1 *IMEPROA) BOOL {
 var IMPSetIME = IMPSetIMEW
 
 func IMPSetIMEW(param0 HWND, param1 *IMEPROW) BOOL {
-	addr := lazyAddr(&pIMPSetIMEW, libUser32, "IMPSetIMEW")
+	addr := LazyAddr(&pIMPSetIMEW, libUser32, "IMPSetIMEW")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return BOOL(ret)
 }
 
 func WINNLSGetIMEHotkey(param0 HWND) uint32 {
-	addr := lazyAddr(&pWINNLSGetIMEHotkey, libUser32, "WINNLSGetIMEHotkey")
+	addr := LazyAddr(&pWINNLSGetIMEHotkey, libUser32, "WINNLSGetIMEHotkey")
 	ret, _, _ := syscall.SyscallN(addr, param0)
 	return uint32(ret)
 }
 
 func WINNLSEnableIME(param0 HWND, param1 BOOL) BOOL {
-	addr := lazyAddr(&pWINNLSEnableIME, libUser32, "WINNLSEnableIME")
+	addr := LazyAddr(&pWINNLSEnableIME, libUser32, "WINNLSEnableIME")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(param1))
 	return BOOL(ret)
 }
 
 func WINNLSGetEnableStatus(param0 HWND) BOOL {
-	addr := lazyAddr(&pWINNLSGetEnableStatus, libUser32, "WINNLSGetEnableStatus")
+	addr := LazyAddr(&pWINNLSGetEnableStatus, libUser32, "WINNLSGetEnableStatus")
 	ret, _, _ := syscall.SyscallN(addr, param0)
 	return BOOL(ret)
 }

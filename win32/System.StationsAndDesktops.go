@@ -143,7 +143,7 @@ var (
 )
 
 func CreateDesktopA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDesktopA, libUser32, "CreateDesktopA")
+	addr := LazyAddr(&pCreateDesktopA, libUser32, "CreateDesktopA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)))
 	return ret, WIN32_ERROR(err)
 }
@@ -151,13 +151,13 @@ func CreateDesktopA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFla
 var CreateDesktop = CreateDesktopW
 
 func CreateDesktopW(lpszDesktop PWSTR, lpszDevice PWSTR, pDevmode *DEVMODEW, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDesktopW, libUser32, "CreateDesktopW")
+	addr := LazyAddr(&pCreateDesktopW, libUser32, "CreateDesktopW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateDesktopExA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES, ulHeapSize uint32, pvoid unsafe.Pointer) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDesktopExA, libUser32, "CreateDesktopExA")
+	addr := LazyAddr(&pCreateDesktopExA, libUser32, "CreateDesktopExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)), uintptr(ulHeapSize), uintptr(pvoid))
 	return ret, WIN32_ERROR(err)
 }
@@ -165,13 +165,13 @@ func CreateDesktopExA(lpszDesktop PSTR, lpszDevice PSTR, pDevmode *DEVMODEA, dwF
 var CreateDesktopEx = CreateDesktopExW
 
 func CreateDesktopExW(lpszDesktop PWSTR, lpszDevice PWSTR, pDevmode *DEVMODEW, dwFlags DESKTOP_CONTROL_FLAGS, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES, ulHeapSize uint32, pvoid unsafe.Pointer) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDesktopExW, libUser32, "CreateDesktopExW")
+	addr := LazyAddr(&pCreateDesktopExW, libUser32, "CreateDesktopExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(unsafe.Pointer(lpszDevice)), uintptr(unsafe.Pointer(pDevmode)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)), uintptr(ulHeapSize), uintptr(pvoid))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenDesktopA(lpszDesktop PSTR, dwFlags DESKTOP_CONTROL_FLAGS, fInherit BOOL, dwDesiredAccess uint32) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenDesktopA, libUser32, "OpenDesktopA")
+	addr := LazyAddr(&pOpenDesktopA, libUser32, "OpenDesktopA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(dwFlags), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
@@ -179,19 +179,19 @@ func OpenDesktopA(lpszDesktop PSTR, dwFlags DESKTOP_CONTROL_FLAGS, fInherit BOOL
 var OpenDesktop = OpenDesktopW
 
 func OpenDesktopW(lpszDesktop PWSTR, dwFlags DESKTOP_CONTROL_FLAGS, fInherit BOOL, dwDesiredAccess uint32) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenDesktopW, libUser32, "OpenDesktopW")
+	addr := LazyAddr(&pOpenDesktopW, libUser32, "OpenDesktopW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDesktop)), uintptr(dwFlags), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenInputDesktop(dwFlags DESKTOP_CONTROL_FLAGS, fInherit BOOL, dwDesiredAccess DESKTOP_ACCESS_FLAGS) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenInputDesktop, libUser32, "OpenInputDesktop")
+	addr := LazyAddr(&pOpenInputDesktop, libUser32, "OpenInputDesktop")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func EnumDesktopsA(hwinsta HWINSTA, lpEnumFunc DESKTOPENUMPROCA, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDesktopsA, libUser32, "EnumDesktopsA")
+	addr := LazyAddr(&pEnumDesktopsA, libUser32, "EnumDesktopsA")
 	ret, _, err := syscall.SyscallN(addr, hwinsta, lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -199,43 +199,43 @@ func EnumDesktopsA(hwinsta HWINSTA, lpEnumFunc DESKTOPENUMPROCA, lParam LPARAM) 
 var EnumDesktops = EnumDesktopsW
 
 func EnumDesktopsW(hwinsta HWINSTA, lpEnumFunc DESKTOPENUMPROCW, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDesktopsW, libUser32, "EnumDesktopsW")
+	addr := LazyAddr(&pEnumDesktopsW, libUser32, "EnumDesktopsW")
 	ret, _, err := syscall.SyscallN(addr, hwinsta, lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumDesktopWindows(hDesktop HDESK, lpfn WNDENUMPROC, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDesktopWindows, libUser32, "EnumDesktopWindows")
+	addr := LazyAddr(&pEnumDesktopWindows, libUser32, "EnumDesktopWindows")
 	ret, _, err := syscall.SyscallN(addr, hDesktop, lpfn, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SwitchDesktop(hDesktop HDESK) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSwitchDesktop, libUser32, "SwitchDesktop")
+	addr := LazyAddr(&pSwitchDesktop, libUser32, "SwitchDesktop")
 	ret, _, err := syscall.SyscallN(addr, hDesktop)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetThreadDesktop(hDesktop HDESK) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetThreadDesktop, libUser32, "SetThreadDesktop")
+	addr := LazyAddr(&pSetThreadDesktop, libUser32, "SetThreadDesktop")
 	ret, _, err := syscall.SyscallN(addr, hDesktop)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CloseDesktop(hDesktop HDESK) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCloseDesktop, libUser32, "CloseDesktop")
+	addr := LazyAddr(&pCloseDesktop, libUser32, "CloseDesktop")
 	ret, _, err := syscall.SyscallN(addr, hDesktop)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetThreadDesktop(dwThreadId uint32) (HDESK, WIN32_ERROR) {
-	addr := lazyAddr(&pGetThreadDesktop, libUser32, "GetThreadDesktop")
+	addr := LazyAddr(&pGetThreadDesktop, libUser32, "GetThreadDesktop")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwThreadId))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateWindowStationA(lpwinsta PSTR, dwFlags uint32, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HWINSTA, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateWindowStationA, libUser32, "CreateWindowStationA")
+	addr := LazyAddr(&pCreateWindowStationA, libUser32, "CreateWindowStationA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpwinsta)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)))
 	return ret, WIN32_ERROR(err)
 }
@@ -243,13 +243,13 @@ func CreateWindowStationA(lpwinsta PSTR, dwFlags uint32, dwDesiredAccess uint32,
 var CreateWindowStation = CreateWindowStationW
 
 func CreateWindowStationW(lpwinsta PWSTR, dwFlags uint32, dwDesiredAccess uint32, lpsa *SECURITY_ATTRIBUTES) (HWINSTA, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateWindowStationW, libUser32, "CreateWindowStationW")
+	addr := LazyAddr(&pCreateWindowStationW, libUser32, "CreateWindowStationW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpwinsta)), uintptr(dwFlags), uintptr(dwDesiredAccess), uintptr(unsafe.Pointer(lpsa)))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenWindowStationA(lpszWinSta PSTR, fInherit BOOL, dwDesiredAccess uint32) (HWINSTA, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenWindowStationA, libUser32, "OpenWindowStationA")
+	addr := LazyAddr(&pOpenWindowStationA, libUser32, "OpenWindowStationA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszWinSta)), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
@@ -257,13 +257,13 @@ func OpenWindowStationA(lpszWinSta PSTR, fInherit BOOL, dwDesiredAccess uint32) 
 var OpenWindowStation = OpenWindowStationW
 
 func OpenWindowStationW(lpszWinSta PWSTR, fInherit BOOL, dwDesiredAccess uint32) (HWINSTA, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenWindowStationW, libUser32, "OpenWindowStationW")
+	addr := LazyAddr(&pOpenWindowStationW, libUser32, "OpenWindowStationW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszWinSta)), uintptr(fInherit), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func EnumWindowStationsA(lpEnumFunc WINSTAENUMPROCA, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumWindowStationsA, libUser32, "EnumWindowStationsA")
+	addr := LazyAddr(&pEnumWindowStationsA, libUser32, "EnumWindowStationsA")
 	ret, _, err := syscall.SyscallN(addr, lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -271,31 +271,31 @@ func EnumWindowStationsA(lpEnumFunc WINSTAENUMPROCA, lParam LPARAM) (BOOL, WIN32
 var EnumWindowStations = EnumWindowStationsW
 
 func EnumWindowStationsW(lpEnumFunc WINSTAENUMPROCW, lParam LPARAM) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumWindowStationsW, libUser32, "EnumWindowStationsW")
+	addr := LazyAddr(&pEnumWindowStationsW, libUser32, "EnumWindowStationsW")
 	ret, _, err := syscall.SyscallN(addr, lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CloseWindowStation(hWinSta HWINSTA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCloseWindowStation, libUser32, "CloseWindowStation")
+	addr := LazyAddr(&pCloseWindowStation, libUser32, "CloseWindowStation")
 	ret, _, err := syscall.SyscallN(addr, hWinSta)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetProcessWindowStation(hWinSta HWINSTA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetProcessWindowStation, libUser32, "SetProcessWindowStation")
+	addr := LazyAddr(&pSetProcessWindowStation, libUser32, "SetProcessWindowStation")
 	ret, _, err := syscall.SyscallN(addr, hWinSta)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetProcessWindowStation() (HWINSTA, WIN32_ERROR) {
-	addr := lazyAddr(&pGetProcessWindowStation, libUser32, "GetProcessWindowStation")
+	addr := LazyAddr(&pGetProcessWindowStation, libUser32, "GetProcessWindowStation")
 	ret, _, err := syscall.SyscallN(addr)
 	return ret, WIN32_ERROR(err)
 }
 
 func GetUserObjectInformationA(hObj HANDLE, nIndex USER_OBJECT_INFORMATION_INDEX, pvInfo unsafe.Pointer, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserObjectInformationA, libUser32, "GetUserObjectInformationA")
+	addr := LazyAddr(&pGetUserObjectInformationA, libUser32, "GetUserObjectInformationA")
 	ret, _, err := syscall.SyscallN(addr, hObj, uintptr(nIndex), uintptr(pvInfo), uintptr(nLength), uintptr(unsafe.Pointer(lpnLengthNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -303,13 +303,13 @@ func GetUserObjectInformationA(hObj HANDLE, nIndex USER_OBJECT_INFORMATION_INDEX
 var GetUserObjectInformation = GetUserObjectInformationW
 
 func GetUserObjectInformationW(hObj HANDLE, nIndex USER_OBJECT_INFORMATION_INDEX, pvInfo unsafe.Pointer, nLength uint32, lpnLengthNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetUserObjectInformationW, libUser32, "GetUserObjectInformationW")
+	addr := LazyAddr(&pGetUserObjectInformationW, libUser32, "GetUserObjectInformationW")
 	ret, _, err := syscall.SyscallN(addr, hObj, uintptr(nIndex), uintptr(pvInfo), uintptr(nLength), uintptr(unsafe.Pointer(lpnLengthNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetUserObjectInformationA(hObj HANDLE, nIndex int32, pvInfo unsafe.Pointer, nLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetUserObjectInformationA, libUser32, "SetUserObjectInformationA")
+	addr := LazyAddr(&pSetUserObjectInformationA, libUser32, "SetUserObjectInformationA")
 	ret, _, err := syscall.SyscallN(addr, hObj, uintptr(nIndex), uintptr(pvInfo), uintptr(nLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -317,13 +317,13 @@ func SetUserObjectInformationA(hObj HANDLE, nIndex int32, pvInfo unsafe.Pointer,
 var SetUserObjectInformation = SetUserObjectInformationW
 
 func SetUserObjectInformationW(hObj HANDLE, nIndex int32, pvInfo unsafe.Pointer, nLength uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetUserObjectInformationW, libUser32, "SetUserObjectInformationW")
+	addr := LazyAddr(&pSetUserObjectInformationW, libUser32, "SetUserObjectInformationW")
 	ret, _, err := syscall.SyscallN(addr, hObj, uintptr(nIndex), uintptr(pvInfo), uintptr(nLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func BroadcastSystemMessageExA(flags BROADCAST_SYSTEM_MESSAGE_FLAGS, lpInfo *BROADCAST_SYSTEM_MESSAGE_INFO, Msg uint32, wParam WPARAM, lParam LPARAM, pbsmInfo *BSMINFO) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pBroadcastSystemMessageExA, libUser32, "BroadcastSystemMessageExA")
+	addr := LazyAddr(&pBroadcastSystemMessageExA, libUser32, "BroadcastSystemMessageExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(flags), uintptr(unsafe.Pointer(lpInfo)), uintptr(Msg), wParam, lParam, uintptr(unsafe.Pointer(pbsmInfo)))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -331,13 +331,13 @@ func BroadcastSystemMessageExA(flags BROADCAST_SYSTEM_MESSAGE_FLAGS, lpInfo *BRO
 var BroadcastSystemMessageEx = BroadcastSystemMessageExW
 
 func BroadcastSystemMessageExW(flags BROADCAST_SYSTEM_MESSAGE_FLAGS, lpInfo *BROADCAST_SYSTEM_MESSAGE_INFO, Msg uint32, wParam WPARAM, lParam LPARAM, pbsmInfo *BSMINFO) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pBroadcastSystemMessageExW, libUser32, "BroadcastSystemMessageExW")
+	addr := LazyAddr(&pBroadcastSystemMessageExW, libUser32, "BroadcastSystemMessageExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(flags), uintptr(unsafe.Pointer(lpInfo)), uintptr(Msg), wParam, lParam, uintptr(unsafe.Pointer(pbsmInfo)))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func BroadcastSystemMessageA(flags uint32, lpInfo *uint32, Msg uint32, wParam WPARAM, lParam LPARAM) int32 {
-	addr := lazyAddr(&pBroadcastSystemMessageA, libUser32, "BroadcastSystemMessageA")
+	addr := LazyAddr(&pBroadcastSystemMessageA, libUser32, "BroadcastSystemMessageA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(unsafe.Pointer(lpInfo)), uintptr(Msg), wParam, lParam)
 	return int32(ret)
 }
@@ -345,7 +345,7 @@ func BroadcastSystemMessageA(flags uint32, lpInfo *uint32, Msg uint32, wParam WP
 var BroadcastSystemMessage = BroadcastSystemMessageW
 
 func BroadcastSystemMessageW(flags BROADCAST_SYSTEM_MESSAGE_FLAGS, lpInfo *BROADCAST_SYSTEM_MESSAGE_INFO, Msg uint32, wParam WPARAM, lParam LPARAM) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pBroadcastSystemMessageW, libUser32, "BroadcastSystemMessageW")
+	addr := LazyAddr(&pBroadcastSystemMessageW, libUser32, "BroadcastSystemMessageW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(flags), uintptr(unsafe.Pointer(lpInfo)), uintptr(Msg), wParam, lParam)
 	return int32(ret), WIN32_ERROR(err)
 }

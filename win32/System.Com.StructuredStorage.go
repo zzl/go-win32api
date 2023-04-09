@@ -1809,253 +1809,253 @@ var (
 )
 
 func CoGetInstanceFromFile(pServerInfo *COSERVERINFO, pClsid *syscall.GUID, punkOuter *IUnknown, dwClsCtx CLSCTX, grfMode uint32, pwszName PWSTR, dwCount uint32, pResults *MULTI_QI) HRESULT {
-	addr := lazyAddr(&pCoGetInstanceFromFile, libOle32, "CoGetInstanceFromFile")
+	addr := LazyAddr(&pCoGetInstanceFromFile, libOle32, "CoGetInstanceFromFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pServerInfo)), uintptr(unsafe.Pointer(pClsid)), uintptr(unsafe.Pointer(punkOuter)), uintptr(dwClsCtx), uintptr(grfMode), uintptr(unsafe.Pointer(pwszName)), uintptr(dwCount), uintptr(unsafe.Pointer(pResults)))
 	return HRESULT(ret)
 }
 
 func CoGetInstanceFromIStorage(pServerInfo *COSERVERINFO, pClsid *syscall.GUID, punkOuter *IUnknown, dwClsCtx CLSCTX, pstg *IStorage, dwCount uint32, pResults *MULTI_QI) HRESULT {
-	addr := lazyAddr(&pCoGetInstanceFromIStorage, libOle32, "CoGetInstanceFromIStorage")
+	addr := LazyAddr(&pCoGetInstanceFromIStorage, libOle32, "CoGetInstanceFromIStorage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pServerInfo)), uintptr(unsafe.Pointer(pClsid)), uintptr(unsafe.Pointer(punkOuter)), uintptr(dwClsCtx), uintptr(unsafe.Pointer(pstg)), uintptr(dwCount), uintptr(unsafe.Pointer(pResults)))
 	return HRESULT(ret)
 }
 
 func StgOpenAsyncDocfileOnIFillLockBytes(pflb *IFillLockBytes, grfMode uint32, asyncFlags uint32, ppstgOpen **IStorage) HRESULT {
-	addr := lazyAddr(&pStgOpenAsyncDocfileOnIFillLockBytes, libOle32, "StgOpenAsyncDocfileOnIFillLockBytes")
+	addr := LazyAddr(&pStgOpenAsyncDocfileOnIFillLockBytes, libOle32, "StgOpenAsyncDocfileOnIFillLockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pflb)), uintptr(grfMode), uintptr(asyncFlags), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
 }
 
 func StgGetIFillLockBytesOnILockBytes(pilb *ILockBytes, ppflb **IFillLockBytes) HRESULT {
-	addr := lazyAddr(&pStgGetIFillLockBytesOnILockBytes, libOle32, "StgGetIFillLockBytesOnILockBytes")
+	addr := LazyAddr(&pStgGetIFillLockBytesOnILockBytes, libOle32, "StgGetIFillLockBytesOnILockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pilb)), uintptr(unsafe.Pointer(ppflb)))
 	return HRESULT(ret)
 }
 
 func StgGetIFillLockBytesOnFile(pwcsName PWSTR, ppflb **IFillLockBytes) HRESULT {
-	addr := lazyAddr(&pStgGetIFillLockBytesOnFile, libOle32, "StgGetIFillLockBytesOnFile")
+	addr := LazyAddr(&pStgGetIFillLockBytesOnFile, libOle32, "StgGetIFillLockBytesOnFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(unsafe.Pointer(ppflb)))
 	return HRESULT(ret)
 }
 
 func CreateStreamOnHGlobal(hGlobal uintptr, fDeleteOnRelease BOOL, ppstm **IStream) HRESULT {
-	addr := lazyAddr(&pCreateStreamOnHGlobal, libOle32, "CreateStreamOnHGlobal")
+	addr := LazyAddr(&pCreateStreamOnHGlobal, libOle32, "CreateStreamOnHGlobal")
 	ret, _, _ := syscall.SyscallN(addr, hGlobal, uintptr(fDeleteOnRelease), uintptr(unsafe.Pointer(ppstm)))
 	return HRESULT(ret)
 }
 
 func GetHGlobalFromStream(pstm *IStream, phglobal *uintptr) HRESULT {
-	addr := lazyAddr(&pGetHGlobalFromStream, libOle32, "GetHGlobalFromStream")
+	addr := LazyAddr(&pGetHGlobalFromStream, libOle32, "GetHGlobalFromStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(phglobal)))
 	return HRESULT(ret)
 }
 
 func CoGetInterfaceAndReleaseStream(pStm *IStream, iid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pCoGetInterfaceAndReleaseStream, libOle32, "CoGetInterfaceAndReleaseStream")
+	addr := LazyAddr(&pCoGetInterfaceAndReleaseStream, libOle32, "CoGetInterfaceAndReleaseStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStm)), uintptr(unsafe.Pointer(iid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func PropVariantCopy(pvarDest *PROPVARIANT, pvarSrc *PROPVARIANT) HRESULT {
-	addr := lazyAddr(&pPropVariantCopy, libOle32, "PropVariantCopy")
+	addr := LazyAddr(&pPropVariantCopy, libOle32, "PropVariantCopy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarDest)), uintptr(unsafe.Pointer(pvarSrc)))
 	return HRESULT(ret)
 }
 
 func PropVariantClear(pvar *PROPVARIANT) HRESULT {
-	addr := lazyAddr(&pPropVariantClear, libOle32, "PropVariantClear")
+	addr := LazyAddr(&pPropVariantClear, libOle32, "PropVariantClear")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvar)))
 	return HRESULT(ret)
 }
 
 func FreePropVariantArray(cVariants uint32, rgvars *PROPVARIANT) HRESULT {
-	addr := lazyAddr(&pFreePropVariantArray, libOle32, "FreePropVariantArray")
+	addr := LazyAddr(&pFreePropVariantArray, libOle32, "FreePropVariantArray")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cVariants), uintptr(unsafe.Pointer(rgvars)))
 	return HRESULT(ret)
 }
 
 func StgCreateDocfile(pwcsName PWSTR, grfMode STGM, reserved uint32, ppstgOpen **IStorage) HRESULT {
-	addr := lazyAddr(&pStgCreateDocfile, libOle32, "StgCreateDocfile")
+	addr := LazyAddr(&pStgCreateDocfile, libOle32, "StgCreateDocfile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
 }
 
 func StgCreateDocfileOnILockBytes(plkbyt *ILockBytes, grfMode STGM, reserved uint32, ppstgOpen **IStorage) HRESULT {
-	addr := lazyAddr(&pStgCreateDocfileOnILockBytes, libOle32, "StgCreateDocfileOnILockBytes")
+	addr := LazyAddr(&pStgCreateDocfileOnILockBytes, libOle32, "StgCreateDocfileOnILockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plkbyt)), uintptr(grfMode), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
 }
 
 func StgOpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode STGM, snbExclude **uint16, reserved uint32, ppstgOpen **IStorage) HRESULT {
-	addr := lazyAddr(&pStgOpenStorage, libOle32, "StgOpenStorage")
+	addr := LazyAddr(&pStgOpenStorage, libOle32, "StgOpenStorage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(unsafe.Pointer(pstgPriority)), uintptr(grfMode), uintptr(unsafe.Pointer(snbExclude)), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
 }
 
 func StgOpenStorageOnILockBytes(plkbyt *ILockBytes, pstgPriority *IStorage, grfMode STGM, snbExclude **uint16, reserved uint32, ppstgOpen **IStorage) HRESULT {
-	addr := lazyAddr(&pStgOpenStorageOnILockBytes, libOle32, "StgOpenStorageOnILockBytes")
+	addr := LazyAddr(&pStgOpenStorageOnILockBytes, libOle32, "StgOpenStorageOnILockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plkbyt)), uintptr(unsafe.Pointer(pstgPriority)), uintptr(grfMode), uintptr(unsafe.Pointer(snbExclude)), uintptr(reserved), uintptr(unsafe.Pointer(ppstgOpen)))
 	return HRESULT(ret)
 }
 
 func StgIsStorageFile(pwcsName PWSTR) HRESULT {
-	addr := lazyAddr(&pStgIsStorageFile, libOle32, "StgIsStorageFile")
+	addr := LazyAddr(&pStgIsStorageFile, libOle32, "StgIsStorageFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)))
 	return HRESULT(ret)
 }
 
 func StgIsStorageILockBytes(plkbyt *ILockBytes) HRESULT {
-	addr := lazyAddr(&pStgIsStorageILockBytes, libOle32, "StgIsStorageILockBytes")
+	addr := LazyAddr(&pStgIsStorageILockBytes, libOle32, "StgIsStorageILockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plkbyt)))
 	return HRESULT(ret)
 }
 
 func StgSetTimes(lpszName PWSTR, pctime *FILETIME, patime *FILETIME, pmtime *FILETIME) HRESULT {
-	addr := lazyAddr(&pStgSetTimes, libOle32, "StgSetTimes")
+	addr := LazyAddr(&pStgSetTimes, libOle32, "StgSetTimes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszName)), uintptr(unsafe.Pointer(pctime)), uintptr(unsafe.Pointer(patime)), uintptr(unsafe.Pointer(pmtime)))
 	return HRESULT(ret)
 }
 
 func StgCreateStorageEx(pwcsName PWSTR, grfMode STGM, stgfmt STGFMT, grfAttrs uint32, pStgOptions *STGOPTIONS, pSecurityDescriptor PSECURITY_DESCRIPTOR, riid *syscall.GUID, ppObjectOpen unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pStgCreateStorageEx, libOle32, "StgCreateStorageEx")
+	addr := LazyAddr(&pStgCreateStorageEx, libOle32, "StgCreateStorageEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(stgfmt), uintptr(grfAttrs), uintptr(unsafe.Pointer(pStgOptions)), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(riid)), uintptr(ppObjectOpen))
 	return HRESULT(ret)
 }
 
 func StgOpenStorageEx(pwcsName PWSTR, grfMode STGM, stgfmt STGFMT, grfAttrs uint32, pStgOptions *STGOPTIONS, pSecurityDescriptor PSECURITY_DESCRIPTOR, riid *syscall.GUID, ppObjectOpen unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pStgOpenStorageEx, libOle32, "StgOpenStorageEx")
+	addr := LazyAddr(&pStgOpenStorageEx, libOle32, "StgOpenStorageEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwcsName)), uintptr(grfMode), uintptr(stgfmt), uintptr(grfAttrs), uintptr(unsafe.Pointer(pStgOptions)), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(riid)), uintptr(ppObjectOpen))
 	return HRESULT(ret)
 }
 
 func StgCreatePropStg(pUnk *IUnknown, fmtid *syscall.GUID, pclsid *syscall.GUID, grfFlags uint32, dwReserved uint32, ppPropStg **IPropertyStorage) HRESULT {
-	addr := lazyAddr(&pStgCreatePropStg, libOle32, "StgCreatePropStg")
+	addr := LazyAddr(&pStgCreatePropStg, libOle32, "StgCreatePropStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnk)), uintptr(unsafe.Pointer(fmtid)), uintptr(unsafe.Pointer(pclsid)), uintptr(grfFlags), uintptr(dwReserved), uintptr(unsafe.Pointer(ppPropStg)))
 	return HRESULT(ret)
 }
 
 func StgOpenPropStg(pUnk *IUnknown, fmtid *syscall.GUID, grfFlags uint32, dwReserved uint32, ppPropStg **IPropertyStorage) HRESULT {
-	addr := lazyAddr(&pStgOpenPropStg, libOle32, "StgOpenPropStg")
+	addr := LazyAddr(&pStgOpenPropStg, libOle32, "StgOpenPropStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnk)), uintptr(unsafe.Pointer(fmtid)), uintptr(grfFlags), uintptr(dwReserved), uintptr(unsafe.Pointer(ppPropStg)))
 	return HRESULT(ret)
 }
 
 func StgCreatePropSetStg(pStorage *IStorage, dwReserved uint32, ppPropSetStg **IPropertySetStorage) HRESULT {
-	addr := lazyAddr(&pStgCreatePropSetStg, libOle32, "StgCreatePropSetStg")
+	addr := LazyAddr(&pStgCreatePropSetStg, libOle32, "StgCreatePropSetStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStorage)), uintptr(dwReserved), uintptr(unsafe.Pointer(ppPropSetStg)))
 	return HRESULT(ret)
 }
 
 func FmtIdToPropStgName(pfmtid *syscall.GUID, oszName PWSTR) HRESULT {
-	addr := lazyAddr(&pFmtIdToPropStgName, libOle32, "FmtIdToPropStgName")
+	addr := LazyAddr(&pFmtIdToPropStgName, libOle32, "FmtIdToPropStgName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pfmtid)), uintptr(unsafe.Pointer(oszName)))
 	return HRESULT(ret)
 }
 
 func PropStgNameToFmtId(oszName PWSTR, pfmtid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pPropStgNameToFmtId, libOle32, "PropStgNameToFmtId")
+	addr := LazyAddr(&pPropStgNameToFmtId, libOle32, "PropStgNameToFmtId")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(oszName)), uintptr(unsafe.Pointer(pfmtid)))
 	return HRESULT(ret)
 }
 
 func ReadClassStg(pStg *IStorage, pclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pReadClassStg, libOle32, "ReadClassStg")
+	addr := LazyAddr(&pReadClassStg, libOle32, "ReadClassStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStg)), uintptr(unsafe.Pointer(pclsid)))
 	return HRESULT(ret)
 }
 
 func WriteClassStg(pStg *IStorage, rclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pWriteClassStg, libOle32, "WriteClassStg")
+	addr := LazyAddr(&pWriteClassStg, libOle32, "WriteClassStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStg)), uintptr(unsafe.Pointer(rclsid)))
 	return HRESULT(ret)
 }
 
 func ReadClassStm(pStm *IStream, pclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pReadClassStm, libOle32, "ReadClassStm")
+	addr := LazyAddr(&pReadClassStm, libOle32, "ReadClassStm")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStm)), uintptr(unsafe.Pointer(pclsid)))
 	return HRESULT(ret)
 }
 
 func WriteClassStm(pStm *IStream, rclsid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pWriteClassStm, libOle32, "WriteClassStm")
+	addr := LazyAddr(&pWriteClassStm, libOle32, "WriteClassStm")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStm)), uintptr(unsafe.Pointer(rclsid)))
 	return HRESULT(ret)
 }
 
 func GetHGlobalFromILockBytes(plkbyt *ILockBytes, phglobal *uintptr) HRESULT {
-	addr := lazyAddr(&pGetHGlobalFromILockBytes, libOle32, "GetHGlobalFromILockBytes")
+	addr := LazyAddr(&pGetHGlobalFromILockBytes, libOle32, "GetHGlobalFromILockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plkbyt)), uintptr(unsafe.Pointer(phglobal)))
 	return HRESULT(ret)
 }
 
 func CreateILockBytesOnHGlobal(hGlobal uintptr, fDeleteOnRelease BOOL, pplkbyt **ILockBytes) HRESULT {
-	addr := lazyAddr(&pCreateILockBytesOnHGlobal, libOle32, "CreateILockBytesOnHGlobal")
+	addr := LazyAddr(&pCreateILockBytesOnHGlobal, libOle32, "CreateILockBytesOnHGlobal")
 	ret, _, _ := syscall.SyscallN(addr, hGlobal, uintptr(fDeleteOnRelease), uintptr(unsafe.Pointer(pplkbyt)))
 	return HRESULT(ret)
 }
 
 func GetConvertStg(pStg *IStorage) HRESULT {
-	addr := lazyAddr(&pGetConvertStg, libOle32, "GetConvertStg")
+	addr := LazyAddr(&pGetConvertStg, libOle32, "GetConvertStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStg)))
 	return HRESULT(ret)
 }
 
 func StgConvertVariantToProperty(pvar *PROPVARIANT, CodePage uint16, pprop *SERIALIZEDPROPERTYVALUE, pcb *uint32, pid uint32, fReserved BOOLEAN, pcIndirect *uint32) *SERIALIZEDPROPERTYVALUE {
-	addr := lazyAddr(&pStgConvertVariantToProperty, libOle32, "StgConvertVariantToProperty")
+	addr := LazyAddr(&pStgConvertVariantToProperty, libOle32, "StgConvertVariantToProperty")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvar)), uintptr(CodePage), uintptr(unsafe.Pointer(pprop)), uintptr(unsafe.Pointer(pcb)), uintptr(pid), uintptr(fReserved), uintptr(unsafe.Pointer(pcIndirect)))
 	return (*SERIALIZEDPROPERTYVALUE)(unsafe.Pointer(ret))
 }
 
 func StgConvertPropertyToVariant(pprop *SERIALIZEDPROPERTYVALUE, CodePage uint16, pvar *PROPVARIANT, pma *PMemoryAllocator) BOOLEAN {
-	addr := lazyAddr(&pStgConvertPropertyToVariant, libOle32, "StgConvertPropertyToVariant")
+	addr := LazyAddr(&pStgConvertPropertyToVariant, libOle32, "StgConvertPropertyToVariant")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pprop)), uintptr(CodePage), uintptr(unsafe.Pointer(pvar)), uintptr(unsafe.Pointer(pma)))
 	return BOOLEAN(ret)
 }
 
 func StgPropertyLengthAsVariant(pProp *SERIALIZEDPROPERTYVALUE, cbProp uint32, CodePage uint16, bReserved byte) uint32 {
-	addr := lazyAddr(&pStgPropertyLengthAsVariant, libOle32, "StgPropertyLengthAsVariant")
+	addr := LazyAddr(&pStgPropertyLengthAsVariant, libOle32, "StgPropertyLengthAsVariant")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pProp)), uintptr(cbProp), uintptr(CodePage), uintptr(bReserved))
 	return uint32(ret)
 }
 
 func WriteFmtUserTypeStg(pstg *IStorage, cf uint16, lpszUserType PWSTR) HRESULT {
-	addr := lazyAddr(&pWriteFmtUserTypeStg, libOle32, "WriteFmtUserTypeStg")
+	addr := LazyAddr(&pWriteFmtUserTypeStg, libOle32, "WriteFmtUserTypeStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstg)), uintptr(cf), uintptr(unsafe.Pointer(lpszUserType)))
 	return HRESULT(ret)
 }
 
 func ReadFmtUserTypeStg(pstg *IStorage, pcf *uint16, lplpszUserType *PWSTR) HRESULT {
-	addr := lazyAddr(&pReadFmtUserTypeStg, libOle32, "ReadFmtUserTypeStg")
+	addr := LazyAddr(&pReadFmtUserTypeStg, libOle32, "ReadFmtUserTypeStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstg)), uintptr(unsafe.Pointer(pcf)), uintptr(unsafe.Pointer(lplpszUserType)))
 	return HRESULT(ret)
 }
 
 func OleConvertOLESTREAMToIStorage(lpolestream *OLESTREAM, pstg *IStorage, ptd *DVTARGETDEVICE) HRESULT {
-	addr := lazyAddr(&pOleConvertOLESTREAMToIStorage, libOle32, "OleConvertOLESTREAMToIStorage")
+	addr := LazyAddr(&pOleConvertOLESTREAMToIStorage, libOle32, "OleConvertOLESTREAMToIStorage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpolestream)), uintptr(unsafe.Pointer(pstg)), uintptr(unsafe.Pointer(ptd)))
 	return HRESULT(ret)
 }
 
 func OleConvertIStorageToOLESTREAM(pstg *IStorage, lpolestream *OLESTREAM) HRESULT {
-	addr := lazyAddr(&pOleConvertIStorageToOLESTREAM, libOle32, "OleConvertIStorageToOLESTREAM")
+	addr := LazyAddr(&pOleConvertIStorageToOLESTREAM, libOle32, "OleConvertIStorageToOLESTREAM")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstg)), uintptr(unsafe.Pointer(lpolestream)))
 	return HRESULT(ret)
 }
 
 func SetConvertStg(pStg *IStorage, fConvert BOOL) HRESULT {
-	addr := lazyAddr(&pSetConvertStg, libOle32, "SetConvertStg")
+	addr := LazyAddr(&pSetConvertStg, libOle32, "SetConvertStg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStg)), uintptr(fConvert))
 	return HRESULT(ret)
 }
 
 func OleConvertIStorageToOLESTREAMEx(pstg *IStorage, cfFormat uint16, lWidth int32, lHeight int32, dwSize uint32, pmedium *STGMEDIUM, polestm *OLESTREAM) HRESULT {
-	addr := lazyAddr(&pOleConvertIStorageToOLESTREAMEx, libOle32, "OleConvertIStorageToOLESTREAMEx")
+	addr := LazyAddr(&pOleConvertIStorageToOLESTREAMEx, libOle32, "OleConvertIStorageToOLESTREAMEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstg)), uintptr(cfFormat), uintptr(lWidth), uintptr(lHeight), uintptr(dwSize), uintptr(unsafe.Pointer(pmedium)), uintptr(unsafe.Pointer(polestm)))
 	return HRESULT(ret)
 }
 
 func OleConvertOLESTREAMToIStorageEx(polestm *OLESTREAM, pstg *IStorage, pcfFormat *uint16, plwWidth *int32, plHeight *int32, pdwSize *uint32, pmedium *STGMEDIUM) HRESULT {
-	addr := lazyAddr(&pOleConvertOLESTREAMToIStorageEx, libOle32, "OleConvertOLESTREAMToIStorageEx")
+	addr := LazyAddr(&pOleConvertOLESTREAMToIStorageEx, libOle32, "OleConvertOLESTREAMToIStorageEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(polestm)), uintptr(unsafe.Pointer(pstg)), uintptr(unsafe.Pointer(pcfFormat)), uintptr(unsafe.Pointer(plwWidth)), uintptr(unsafe.Pointer(plHeight)), uintptr(unsafe.Pointer(pdwSize)), uintptr(unsafe.Pointer(pmedium)))
 	return HRESULT(ret)
 }

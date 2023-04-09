@@ -9276,7 +9276,7 @@ var (
 )
 
 func CreatePropertySheetPageA(constPropSheetPagePointer *PROPSHEETPAGEA) HPROPSHEETPAGE {
-	addr := lazyAddr(&pCreatePropertySheetPageA, libComctl32, "CreatePropertySheetPageA")
+	addr := LazyAddr(&pCreatePropertySheetPageA, libComctl32, "CreatePropertySheetPageA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(constPropSheetPagePointer)))
 	return ret
 }
@@ -9284,19 +9284,19 @@ func CreatePropertySheetPageA(constPropSheetPagePointer *PROPSHEETPAGEA) HPROPSH
 var CreatePropertySheetPage = CreatePropertySheetPageW
 
 func CreatePropertySheetPageW(constPropSheetPagePointer *PROPSHEETPAGEW) HPROPSHEETPAGE {
-	addr := lazyAddr(&pCreatePropertySheetPageW, libComctl32, "CreatePropertySheetPageW")
+	addr := LazyAddr(&pCreatePropertySheetPageW, libComctl32, "CreatePropertySheetPageW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(constPropSheetPagePointer)))
 	return ret
 }
 
 func DestroyPropertySheetPage(param0 HPROPSHEETPAGE) BOOL {
-	addr := lazyAddr(&pDestroyPropertySheetPage, libComctl32, "DestroyPropertySheetPage")
+	addr := LazyAddr(&pDestroyPropertySheetPage, libComctl32, "DestroyPropertySheetPage")
 	ret, _, _ := syscall.SyscallN(addr, param0)
 	return BOOL(ret)
 }
 
 func PropertySheetA(param0 *PROPSHEETHEADERA_V2) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pPropertySheetA, libComctl32, "PropertySheetA")
+	addr := LazyAddr(&pPropertySheetA, libComctl32, "PropertySheetA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret, WIN32_ERROR(err)
 }
@@ -9304,120 +9304,120 @@ func PropertySheetA(param0 *PROPSHEETHEADERA_V2) (uintptr, WIN32_ERROR) {
 var PropertySheet = PropertySheetW
 
 func PropertySheetW(param0 *PROPSHEETHEADERW_V2) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pPropertySheetW, libComctl32, "PropertySheetW")
+	addr := LazyAddr(&pPropertySheetW, libComctl32, "PropertySheetW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret, WIN32_ERROR(err)
 }
 
 func InitCommonControls() {
-	addr := lazyAddr(&pInitCommonControls, libComctl32, "InitCommonControls")
+	addr := LazyAddr(&pInitCommonControls, libComctl32, "InitCommonControls")
 	syscall.SyscallN(addr)
 }
 
 func InitCommonControlsEx(picce *INITCOMMONCONTROLSEX) BOOL {
-	addr := lazyAddr(&pInitCommonControlsEx, libComctl32, "InitCommonControlsEx")
+	addr := LazyAddr(&pInitCommonControlsEx, libComctl32, "InitCommonControlsEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(picce)))
 	return BOOL(ret)
 }
 
 func ImageList_Create(cx int32, cy int32, flags IMAGELIST_CREATION_FLAGS, cInitial int32, cGrow int32) HIMAGELIST {
-	addr := lazyAddr(&pImageList_Create, libComctl32, "ImageList_Create")
+	addr := LazyAddr(&pImageList_Create, libComctl32, "ImageList_Create")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cx), uintptr(cy), uintptr(flags), uintptr(cInitial), uintptr(cGrow))
 	return ret
 }
 
 func ImageList_Destroy(himl HIMAGELIST) BOOL {
-	addr := lazyAddr(&pImageList_Destroy, libComctl32, "ImageList_Destroy")
+	addr := LazyAddr(&pImageList_Destroy, libComctl32, "ImageList_Destroy")
 	ret, _, _ := syscall.SyscallN(addr, himl)
 	return BOOL(ret)
 }
 
 func ImageList_GetImageCount(himl HIMAGELIST) int32 {
-	addr := lazyAddr(&pImageList_GetImageCount, libComctl32, "ImageList_GetImageCount")
+	addr := LazyAddr(&pImageList_GetImageCount, libComctl32, "ImageList_GetImageCount")
 	ret, _, _ := syscall.SyscallN(addr, himl)
 	return int32(ret)
 }
 
 func ImageList_SetImageCount(himl HIMAGELIST, uNewCount uint32) BOOL {
-	addr := lazyAddr(&pImageList_SetImageCount, libComctl32, "ImageList_SetImageCount")
+	addr := LazyAddr(&pImageList_SetImageCount, libComctl32, "ImageList_SetImageCount")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(uNewCount))
 	return BOOL(ret)
 }
 
 func ImageList_Add(himl HIMAGELIST, hbmImage HBITMAP, hbmMask HBITMAP) int32 {
-	addr := lazyAddr(&pImageList_Add, libComctl32, "ImageList_Add")
+	addr := LazyAddr(&pImageList_Add, libComctl32, "ImageList_Add")
 	ret, _, _ := syscall.SyscallN(addr, himl, hbmImage, hbmMask)
 	return int32(ret)
 }
 
 func ImageList_ReplaceIcon(himl HIMAGELIST, i int32, hicon HICON) int32 {
-	addr := lazyAddr(&pImageList_ReplaceIcon, libComctl32, "ImageList_ReplaceIcon")
+	addr := LazyAddr(&pImageList_ReplaceIcon, libComctl32, "ImageList_ReplaceIcon")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), hicon)
 	return int32(ret)
 }
 
 func ImageList_SetBkColor(himl HIMAGELIST, clrBk COLORREF) COLORREF {
-	addr := lazyAddr(&pImageList_SetBkColor, libComctl32, "ImageList_SetBkColor")
+	addr := LazyAddr(&pImageList_SetBkColor, libComctl32, "ImageList_SetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(clrBk))
 	return COLORREF(ret)
 }
 
 func ImageList_GetBkColor(himl HIMAGELIST) COLORREF {
-	addr := lazyAddr(&pImageList_GetBkColor, libComctl32, "ImageList_GetBkColor")
+	addr := LazyAddr(&pImageList_GetBkColor, libComctl32, "ImageList_GetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, himl)
 	return COLORREF(ret)
 }
 
 func ImageList_SetOverlayImage(himl HIMAGELIST, iImage int32, iOverlay int32) BOOL {
-	addr := lazyAddr(&pImageList_SetOverlayImage, libComctl32, "ImageList_SetOverlayImage")
+	addr := LazyAddr(&pImageList_SetOverlayImage, libComctl32, "ImageList_SetOverlayImage")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(iImage), uintptr(iOverlay))
 	return BOOL(ret)
 }
 
 func ImageList_Draw(himl HIMAGELIST, i int32, hdcDst HDC, x int32, y int32, fStyle IMAGE_LIST_DRAW_STYLE) BOOL {
-	addr := lazyAddr(&pImageList_Draw, libComctl32, "ImageList_Draw")
+	addr := LazyAddr(&pImageList_Draw, libComctl32, "ImageList_Draw")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), hdcDst, uintptr(x), uintptr(y), uintptr(fStyle))
 	return BOOL(ret)
 }
 
 func ImageList_Replace(himl HIMAGELIST, i int32, hbmImage HBITMAP, hbmMask HBITMAP) BOOL {
-	addr := lazyAddr(&pImageList_Replace, libComctl32, "ImageList_Replace")
+	addr := LazyAddr(&pImageList_Replace, libComctl32, "ImageList_Replace")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), hbmImage, hbmMask)
 	return BOOL(ret)
 }
 
 func ImageList_AddMasked(himl HIMAGELIST, hbmImage HBITMAP, crMask COLORREF) int32 {
-	addr := lazyAddr(&pImageList_AddMasked, libComctl32, "ImageList_AddMasked")
+	addr := LazyAddr(&pImageList_AddMasked, libComctl32, "ImageList_AddMasked")
 	ret, _, _ := syscall.SyscallN(addr, himl, hbmImage, uintptr(crMask))
 	return int32(ret)
 }
 
 func ImageList_DrawEx(himl HIMAGELIST, i int32, hdcDst HDC, x int32, y int32, dx int32, dy int32, rgbBk COLORREF, rgbFg COLORREF, fStyle IMAGE_LIST_DRAW_STYLE) BOOL {
-	addr := lazyAddr(&pImageList_DrawEx, libComctl32, "ImageList_DrawEx")
+	addr := LazyAddr(&pImageList_DrawEx, libComctl32, "ImageList_DrawEx")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), hdcDst, uintptr(x), uintptr(y), uintptr(dx), uintptr(dy), uintptr(rgbBk), uintptr(rgbFg), uintptr(fStyle))
 	return BOOL(ret)
 }
 
 func ImageList_DrawIndirect(pimldp *IMAGELISTDRAWPARAMS) BOOL {
-	addr := lazyAddr(&pImageList_DrawIndirect, libComctl32, "ImageList_DrawIndirect")
+	addr := LazyAddr(&pImageList_DrawIndirect, libComctl32, "ImageList_DrawIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pimldp)))
 	return BOOL(ret)
 }
 
 func ImageList_Remove(himl HIMAGELIST, i int32) BOOL {
-	addr := lazyAddr(&pImageList_Remove, libComctl32, "ImageList_Remove")
+	addr := LazyAddr(&pImageList_Remove, libComctl32, "ImageList_Remove")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i))
 	return BOOL(ret)
 }
 
 func ImageList_GetIcon(himl HIMAGELIST, i int32, flags uint32) HICON {
-	addr := lazyAddr(&pImageList_GetIcon, libComctl32, "ImageList_GetIcon")
+	addr := LazyAddr(&pImageList_GetIcon, libComctl32, "ImageList_GetIcon")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), uintptr(flags))
 	return ret
 }
 
 func ImageList_LoadImageA(hi HINSTANCE, lpbmp PSTR, cx int32, cGrow int32, crMask COLORREF, uType uint32, uFlags IMAGE_FLAGS) HIMAGELIST {
-	addr := lazyAddr(&pImageList_LoadImageA, libComctl32, "ImageList_LoadImageA")
+	addr := LazyAddr(&pImageList_LoadImageA, libComctl32, "ImageList_LoadImageA")
 	ret, _, _ := syscall.SyscallN(addr, hi, uintptr(unsafe.Pointer(lpbmp)), uintptr(cx), uintptr(cGrow), uintptr(crMask), uintptr(uType), uintptr(uFlags))
 	return ret
 }
@@ -9425,150 +9425,150 @@ func ImageList_LoadImageA(hi HINSTANCE, lpbmp PSTR, cx int32, cGrow int32, crMas
 var ImageList_LoadImage = ImageList_LoadImageW
 
 func ImageList_LoadImageW(hi HINSTANCE, lpbmp PWSTR, cx int32, cGrow int32, crMask COLORREF, uType uint32, uFlags IMAGE_FLAGS) HIMAGELIST {
-	addr := lazyAddr(&pImageList_LoadImageW, libComctl32, "ImageList_LoadImageW")
+	addr := LazyAddr(&pImageList_LoadImageW, libComctl32, "ImageList_LoadImageW")
 	ret, _, _ := syscall.SyscallN(addr, hi, uintptr(unsafe.Pointer(lpbmp)), uintptr(cx), uintptr(cGrow), uintptr(crMask), uintptr(uType), uintptr(uFlags))
 	return ret
 }
 
 func ImageList_Copy(himlDst HIMAGELIST, iDst int32, himlSrc HIMAGELIST, iSrc int32, uFlags IMAGE_LIST_COPY_FLAGS) BOOL {
-	addr := lazyAddr(&pImageList_Copy, libComctl32, "ImageList_Copy")
+	addr := LazyAddr(&pImageList_Copy, libComctl32, "ImageList_Copy")
 	ret, _, _ := syscall.SyscallN(addr, himlDst, uintptr(iDst), himlSrc, uintptr(iSrc), uintptr(uFlags))
 	return BOOL(ret)
 }
 
 func ImageList_BeginDrag(himlTrack HIMAGELIST, iTrack int32, dxHotspot int32, dyHotspot int32) BOOL {
-	addr := lazyAddr(&pImageList_BeginDrag, libComctl32, "ImageList_BeginDrag")
+	addr := LazyAddr(&pImageList_BeginDrag, libComctl32, "ImageList_BeginDrag")
 	ret, _, _ := syscall.SyscallN(addr, himlTrack, uintptr(iTrack), uintptr(dxHotspot), uintptr(dyHotspot))
 	return BOOL(ret)
 }
 
 func ImageList_EndDrag() {
-	addr := lazyAddr(&pImageList_EndDrag, libComctl32, "ImageList_EndDrag")
+	addr := LazyAddr(&pImageList_EndDrag, libComctl32, "ImageList_EndDrag")
 	syscall.SyscallN(addr)
 }
 
 func ImageList_DragEnter(hwndLock HWND, x int32, y int32) BOOL {
-	addr := lazyAddr(&pImageList_DragEnter, libComctl32, "ImageList_DragEnter")
+	addr := LazyAddr(&pImageList_DragEnter, libComctl32, "ImageList_DragEnter")
 	ret, _, _ := syscall.SyscallN(addr, hwndLock, uintptr(x), uintptr(y))
 	return BOOL(ret)
 }
 
 func ImageList_DragLeave(hwndLock HWND) BOOL {
-	addr := lazyAddr(&pImageList_DragLeave, libComctl32, "ImageList_DragLeave")
+	addr := LazyAddr(&pImageList_DragLeave, libComctl32, "ImageList_DragLeave")
 	ret, _, _ := syscall.SyscallN(addr, hwndLock)
 	return BOOL(ret)
 }
 
 func ImageList_DragMove(x int32, y int32) BOOL {
-	addr := lazyAddr(&pImageList_DragMove, libComctl32, "ImageList_DragMove")
+	addr := LazyAddr(&pImageList_DragMove, libComctl32, "ImageList_DragMove")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(x), uintptr(y))
 	return BOOL(ret)
 }
 
 func ImageList_SetDragCursorImage(himlDrag HIMAGELIST, iDrag int32, dxHotspot int32, dyHotspot int32) BOOL {
-	addr := lazyAddr(&pImageList_SetDragCursorImage, libComctl32, "ImageList_SetDragCursorImage")
+	addr := LazyAddr(&pImageList_SetDragCursorImage, libComctl32, "ImageList_SetDragCursorImage")
 	ret, _, _ := syscall.SyscallN(addr, himlDrag, uintptr(iDrag), uintptr(dxHotspot), uintptr(dyHotspot))
 	return BOOL(ret)
 }
 
 func ImageList_DragShowNolock(fShow BOOL) BOOL {
-	addr := lazyAddr(&pImageList_DragShowNolock, libComctl32, "ImageList_DragShowNolock")
+	addr := LazyAddr(&pImageList_DragShowNolock, libComctl32, "ImageList_DragShowNolock")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fShow))
 	return BOOL(ret)
 }
 
 func ImageList_GetDragImage(ppt *POINT, pptHotspot *POINT) HIMAGELIST {
-	addr := lazyAddr(&pImageList_GetDragImage, libComctl32, "ImageList_GetDragImage")
+	addr := LazyAddr(&pImageList_GetDragImage, libComctl32, "ImageList_GetDragImage")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppt)), uintptr(unsafe.Pointer(pptHotspot)))
 	return ret
 }
 
 func ImageList_Read(pstm *IStream) HIMAGELIST {
-	addr := lazyAddr(&pImageList_Read, libComctl32, "ImageList_Read")
+	addr := LazyAddr(&pImageList_Read, libComctl32, "ImageList_Read")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)))
 	return ret
 }
 
 func ImageList_Write(himl HIMAGELIST, pstm *IStream) BOOL {
-	addr := lazyAddr(&pImageList_Write, libComctl32, "ImageList_Write")
+	addr := LazyAddr(&pImageList_Write, libComctl32, "ImageList_Write")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(unsafe.Pointer(pstm)))
 	return BOOL(ret)
 }
 
 func ImageList_ReadEx(dwFlags uint32, pstm *IStream, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pImageList_ReadEx, libComctl32, "ImageList_ReadEx")
+	addr := LazyAddr(&pImageList_ReadEx, libComctl32, "ImageList_ReadEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func ImageList_WriteEx(himl HIMAGELIST, dwFlags IMAGE_LIST_WRITE_STREAM_FLAGS, pstm *IStream) HRESULT {
-	addr := lazyAddr(&pImageList_WriteEx, libComctl32, "ImageList_WriteEx")
+	addr := LazyAddr(&pImageList_WriteEx, libComctl32, "ImageList_WriteEx")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(dwFlags), uintptr(unsafe.Pointer(pstm)))
 	return HRESULT(ret)
 }
 
 func ImageList_GetIconSize(himl HIMAGELIST, cx *int32, cy *int32) BOOL {
-	addr := lazyAddr(&pImageList_GetIconSize, libComctl32, "ImageList_GetIconSize")
+	addr := LazyAddr(&pImageList_GetIconSize, libComctl32, "ImageList_GetIconSize")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(unsafe.Pointer(cx)), uintptr(unsafe.Pointer(cy)))
 	return BOOL(ret)
 }
 
 func ImageList_SetIconSize(himl HIMAGELIST, cx int32, cy int32) BOOL {
-	addr := lazyAddr(&pImageList_SetIconSize, libComctl32, "ImageList_SetIconSize")
+	addr := LazyAddr(&pImageList_SetIconSize, libComctl32, "ImageList_SetIconSize")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(cx), uintptr(cy))
 	return BOOL(ret)
 }
 
 func ImageList_GetImageInfo(himl HIMAGELIST, i int32, pImageInfo *IMAGEINFO) BOOL {
-	addr := lazyAddr(&pImageList_GetImageInfo, libComctl32, "ImageList_GetImageInfo")
+	addr := LazyAddr(&pImageList_GetImageInfo, libComctl32, "ImageList_GetImageInfo")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), uintptr(unsafe.Pointer(pImageInfo)))
 	return BOOL(ret)
 }
 
 func ImageList_Merge(himl1 HIMAGELIST, i1 int32, himl2 HIMAGELIST, i2 int32, dx int32, dy int32) HIMAGELIST {
-	addr := lazyAddr(&pImageList_Merge, libComctl32, "ImageList_Merge")
+	addr := LazyAddr(&pImageList_Merge, libComctl32, "ImageList_Merge")
 	ret, _, _ := syscall.SyscallN(addr, himl1, uintptr(i1), himl2, uintptr(i2), uintptr(dx), uintptr(dy))
 	return ret
 }
 
 func ImageList_Duplicate(himl HIMAGELIST) HIMAGELIST {
-	addr := lazyAddr(&pImageList_Duplicate, libComctl32, "ImageList_Duplicate")
+	addr := LazyAddr(&pImageList_Duplicate, libComctl32, "ImageList_Duplicate")
 	ret, _, _ := syscall.SyscallN(addr, himl)
 	return ret
 }
 
 func HIMAGELIST_QueryInterface(himl HIMAGELIST, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pHIMAGELIST_QueryInterface, libComctl32, "HIMAGELIST_QueryInterface")
+	addr := LazyAddr(&pHIMAGELIST_QueryInterface, libComctl32, "HIMAGELIST_QueryInterface")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func CreateToolbarEx(hwnd HWND, ws uint32, wID uint32, nBitmaps int32, hBMInst HINSTANCE, wBMID uintptr, lpButtons *TBBUTTON, iNumButtons int32, dxButton int32, dyButton int32, dxBitmap int32, dyBitmap int32, uStructSize uint32) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateToolbarEx, libComctl32, "CreateToolbarEx")
+	addr := LazyAddr(&pCreateToolbarEx, libComctl32, "CreateToolbarEx")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(ws), uintptr(wID), uintptr(nBitmaps), hBMInst, wBMID, uintptr(unsafe.Pointer(lpButtons)), uintptr(iNumButtons), uintptr(dxButton), uintptr(dyButton), uintptr(dxBitmap), uintptr(dyBitmap), uintptr(uStructSize))
 	return ret, WIN32_ERROR(err)
 }
 
 func CreateMappedBitmap(hInstance HINSTANCE, idBitmap uintptr, wFlags uint32, lpColorMap *COLORMAP, iNumMaps int32) (HBITMAP, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateMappedBitmap, libComctl32, "CreateMappedBitmap")
+	addr := LazyAddr(&pCreateMappedBitmap, libComctl32, "CreateMappedBitmap")
 	ret, _, err := syscall.SyscallN(addr, hInstance, idBitmap, uintptr(wFlags), uintptr(unsafe.Pointer(lpColorMap)), uintptr(iNumMaps))
 	return ret, WIN32_ERROR(err)
 }
 
 func DrawStatusTextA(hDC HDC, lprc *RECT, pszText PSTR, uFlags uint32) {
-	addr := lazyAddr(&pDrawStatusTextA, libComctl32, "DrawStatusTextA")
+	addr := LazyAddr(&pDrawStatusTextA, libComctl32, "DrawStatusTextA")
 	syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(lprc)), uintptr(unsafe.Pointer(pszText)), uintptr(uFlags))
 }
 
 var DrawStatusText = DrawStatusTextW
 
 func DrawStatusTextW(hDC HDC, lprc *RECT, pszText PWSTR, uFlags uint32) {
-	addr := lazyAddr(&pDrawStatusTextW, libComctl32, "DrawStatusTextW")
+	addr := LazyAddr(&pDrawStatusTextW, libComctl32, "DrawStatusTextW")
 	syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(lprc)), uintptr(unsafe.Pointer(pszText)), uintptr(uFlags))
 }
 
 func CreateStatusWindowA(style int32, lpszText PSTR, hwndParent HWND, wID uint32) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateStatusWindowA, libComctl32, "CreateStatusWindowA")
+	addr := LazyAddr(&pCreateStatusWindowA, libComctl32, "CreateStatusWindowA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(style), uintptr(unsafe.Pointer(lpszText)), hwndParent, uintptr(wID))
 	return ret, WIN32_ERROR(err)
 }
@@ -9576,915 +9576,915 @@ func CreateStatusWindowA(style int32, lpszText PSTR, hwndParent HWND, wID uint32
 var CreateStatusWindow = CreateStatusWindowW
 
 func CreateStatusWindowW(style int32, lpszText PWSTR, hwndParent HWND, wID uint32) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateStatusWindowW, libComctl32, "CreateStatusWindowW")
+	addr := LazyAddr(&pCreateStatusWindowW, libComctl32, "CreateStatusWindowW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(style), uintptr(unsafe.Pointer(lpszText)), hwndParent, uintptr(wID))
 	return ret, WIN32_ERROR(err)
 }
 
 func MenuHelp(uMsg uint32, wParam WPARAM, lParam LPARAM, hMainMenu HMENU, hInst HINSTANCE, hwndStatus HWND, lpwIDs *uint32) {
-	addr := lazyAddr(&pMenuHelp, libComctl32, "MenuHelp")
+	addr := LazyAddr(&pMenuHelp, libComctl32, "MenuHelp")
 	syscall.SyscallN(addr, uintptr(uMsg), wParam, lParam, hMainMenu, hInst, hwndStatus, uintptr(unsafe.Pointer(lpwIDs)))
 }
 
 func ShowHideMenuCtl(hWnd HWND, uFlags uintptr, lpInfo *int32) BOOL {
-	addr := lazyAddr(&pShowHideMenuCtl, libComctl32, "ShowHideMenuCtl")
+	addr := LazyAddr(&pShowHideMenuCtl, libComctl32, "ShowHideMenuCtl")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uFlags, uintptr(unsafe.Pointer(lpInfo)))
 	return BOOL(ret)
 }
 
 func GetEffectiveClientRect(hWnd HWND, lprc *RECT, lpInfo *int32) {
-	addr := lazyAddr(&pGetEffectiveClientRect, libComctl32, "GetEffectiveClientRect")
+	addr := LazyAddr(&pGetEffectiveClientRect, libComctl32, "GetEffectiveClientRect")
 	syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lprc)), uintptr(unsafe.Pointer(lpInfo)))
 }
 
 func MakeDragList(hLB HWND) BOOL {
-	addr := lazyAddr(&pMakeDragList, libComctl32, "MakeDragList")
+	addr := LazyAddr(&pMakeDragList, libComctl32, "MakeDragList")
 	ret, _, _ := syscall.SyscallN(addr, hLB)
 	return BOOL(ret)
 }
 
 func DrawInsert(handParent HWND, hLB HWND, nItem int32) {
-	addr := lazyAddr(&pDrawInsert, libComctl32, "DrawInsert")
+	addr := LazyAddr(&pDrawInsert, libComctl32, "DrawInsert")
 	syscall.SyscallN(addr, handParent, hLB, uintptr(nItem))
 }
 
 func LBItemFromPt(hLB HWND, pt POINT, bAutoScroll BOOL) int32 {
-	addr := lazyAddr(&pLBItemFromPt, libComctl32, "LBItemFromPt")
+	addr := LazyAddr(&pLBItemFromPt, libComctl32, "LBItemFromPt")
 	ret, _, _ := syscall.SyscallN(addr, hLB, *(*uintptr)(unsafe.Pointer(&pt)), uintptr(bAutoScroll))
 	return int32(ret)
 }
 
 func CreateUpDownControl(dwStyle uint32, x int32, y int32, cx int32, cy int32, hParent HWND, nID int32, hInst HINSTANCE, hBuddy HWND, nUpper int32, nLower int32, nPos int32) HWND {
-	addr := lazyAddr(&pCreateUpDownControl, libComctl32, "CreateUpDownControl")
+	addr := LazyAddr(&pCreateUpDownControl, libComctl32, "CreateUpDownControl")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwStyle), uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), hParent, uintptr(nID), hInst, hBuddy, uintptr(nUpper), uintptr(nLower), uintptr(nPos))
 	return ret
 }
 
 func TaskDialogIndirect(pTaskConfig *TASKDIALOGCONFIG, pnButton *int32, pnRadioButton *int32, pfVerificationFlagChecked *BOOL) HRESULT {
-	addr := lazyAddr(&pTaskDialogIndirect, libComctl32, "TaskDialogIndirect")
+	addr := LazyAddr(&pTaskDialogIndirect, libComctl32, "TaskDialogIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pTaskConfig)), uintptr(unsafe.Pointer(pnButton)), uintptr(unsafe.Pointer(pnRadioButton)), uintptr(unsafe.Pointer(pfVerificationFlagChecked)))
 	return HRESULT(ret)
 }
 
 func TaskDialog(hwndOwner HWND, hInstance HINSTANCE, pszWindowTitle PWSTR, pszMainInstruction PWSTR, pszContent PWSTR, dwCommonButtons TASKDIALOG_COMMON_BUTTON_FLAGS, pszIcon PWSTR, pnButton *int32) HRESULT {
-	addr := lazyAddr(&pTaskDialog, libComctl32, "TaskDialog")
+	addr := LazyAddr(&pTaskDialog, libComctl32, "TaskDialog")
 	ret, _, _ := syscall.SyscallN(addr, hwndOwner, hInstance, uintptr(unsafe.Pointer(pszWindowTitle)), uintptr(unsafe.Pointer(pszMainInstruction)), uintptr(unsafe.Pointer(pszContent)), uintptr(dwCommonButtons), uintptr(unsafe.Pointer(pszIcon)), uintptr(unsafe.Pointer(pnButton)))
 	return HRESULT(ret)
 }
 
 func InitMUILanguage(uiLang uint16) {
-	addr := lazyAddr(&pInitMUILanguage, libComctl32, "InitMUILanguage")
+	addr := LazyAddr(&pInitMUILanguage, libComctl32, "InitMUILanguage")
 	syscall.SyscallN(addr, uintptr(uiLang))
 }
 
 func GetMUILanguage() uint16 {
-	addr := lazyAddr(&pGetMUILanguage, libComctl32, "GetMUILanguage")
+	addr := LazyAddr(&pGetMUILanguage, libComctl32, "GetMUILanguage")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint16(ret)
 }
 
 func DSA_Create(cbItem int32, cItemGrow int32) HDSA {
-	addr := lazyAddr(&pDSA_Create, libComctl32, "DSA_Create")
+	addr := LazyAddr(&pDSA_Create, libComctl32, "DSA_Create")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cbItem), uintptr(cItemGrow))
 	return ret
 }
 
 func DSA_Destroy(hdsa HDSA) BOOL {
-	addr := lazyAddr(&pDSA_Destroy, libComctl32, "DSA_Destroy")
+	addr := LazyAddr(&pDSA_Destroy, libComctl32, "DSA_Destroy")
 	ret, _, _ := syscall.SyscallN(addr, hdsa)
 	return BOOL(ret)
 }
 
 func DSA_DestroyCallback(hdsa HDSA, pfnCB PFNDAENUMCALLBACK, pData unsafe.Pointer) {
-	addr := lazyAddr(&pDSA_DestroyCallback, libComctl32, "DSA_DestroyCallback")
+	addr := LazyAddr(&pDSA_DestroyCallback, libComctl32, "DSA_DestroyCallback")
 	syscall.SyscallN(addr, hdsa, pfnCB, uintptr(pData))
 }
 
 func DSA_DeleteItem(hdsa HDSA, i int32) BOOL {
-	addr := lazyAddr(&pDSA_DeleteItem, libComctl32, "DSA_DeleteItem")
+	addr := LazyAddr(&pDSA_DeleteItem, libComctl32, "DSA_DeleteItem")
 	ret, _, _ := syscall.SyscallN(addr, hdsa, uintptr(i))
 	return BOOL(ret)
 }
 
 func DSA_DeleteAllItems(hdsa HDSA) BOOL {
-	addr := lazyAddr(&pDSA_DeleteAllItems, libComctl32, "DSA_DeleteAllItems")
+	addr := LazyAddr(&pDSA_DeleteAllItems, libComctl32, "DSA_DeleteAllItems")
 	ret, _, _ := syscall.SyscallN(addr, hdsa)
 	return BOOL(ret)
 }
 
 func DSA_EnumCallback(hdsa HDSA, pfnCB PFNDAENUMCALLBACK, pData unsafe.Pointer) {
-	addr := lazyAddr(&pDSA_EnumCallback, libComctl32, "DSA_EnumCallback")
+	addr := LazyAddr(&pDSA_EnumCallback, libComctl32, "DSA_EnumCallback")
 	syscall.SyscallN(addr, hdsa, pfnCB, uintptr(pData))
 }
 
 func DSA_InsertItem(hdsa HDSA, i int32, pitem unsafe.Pointer) int32 {
-	addr := lazyAddr(&pDSA_InsertItem, libComctl32, "DSA_InsertItem")
+	addr := LazyAddr(&pDSA_InsertItem, libComctl32, "DSA_InsertItem")
 	ret, _, _ := syscall.SyscallN(addr, hdsa, uintptr(i), uintptr(pitem))
 	return int32(ret)
 }
 
 func DSA_GetItemPtr(hdsa HDSA, i int32) unsafe.Pointer {
-	addr := lazyAddr(&pDSA_GetItemPtr, libComctl32, "DSA_GetItemPtr")
+	addr := LazyAddr(&pDSA_GetItemPtr, libComctl32, "DSA_GetItemPtr")
 	ret, _, _ := syscall.SyscallN(addr, hdsa, uintptr(i))
 	return (unsafe.Pointer)(ret)
 }
 
 func DSA_GetItem(hdsa HDSA, i int32, pitem unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pDSA_GetItem, libComctl32, "DSA_GetItem")
+	addr := LazyAddr(&pDSA_GetItem, libComctl32, "DSA_GetItem")
 	ret, _, _ := syscall.SyscallN(addr, hdsa, uintptr(i), uintptr(pitem))
 	return BOOL(ret)
 }
 
 func DSA_SetItem(hdsa HDSA, i int32, pitem unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pDSA_SetItem, libComctl32, "DSA_SetItem")
+	addr := LazyAddr(&pDSA_SetItem, libComctl32, "DSA_SetItem")
 	ret, _, _ := syscall.SyscallN(addr, hdsa, uintptr(i), uintptr(pitem))
 	return BOOL(ret)
 }
 
 func DSA_Clone(hdsa HDSA) HDSA {
-	addr := lazyAddr(&pDSA_Clone, libComctl32, "DSA_Clone")
+	addr := LazyAddr(&pDSA_Clone, libComctl32, "DSA_Clone")
 	ret, _, _ := syscall.SyscallN(addr, hdsa)
 	return ret
 }
 
 func DSA_GetSize(hdsa HDSA) uint64 {
-	addr := lazyAddr(&pDSA_GetSize, libComctl32, "DSA_GetSize")
+	addr := LazyAddr(&pDSA_GetSize, libComctl32, "DSA_GetSize")
 	ret, _, _ := syscall.SyscallN(addr, hdsa)
 	return uint64(ret)
 }
 
 func DSA_Sort(pdsa HDSA, pfnCompare PFNDACOMPARE, lParam LPARAM) BOOL {
-	addr := lazyAddr(&pDSA_Sort, libComctl32, "DSA_Sort")
+	addr := LazyAddr(&pDSA_Sort, libComctl32, "DSA_Sort")
 	ret, _, _ := syscall.SyscallN(addr, pdsa, pfnCompare, lParam)
 	return BOOL(ret)
 }
 
 func DPA_Create(cItemGrow int32) HDPA {
-	addr := lazyAddr(&pDPA_Create, libComctl32, "DPA_Create")
+	addr := LazyAddr(&pDPA_Create, libComctl32, "DPA_Create")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cItemGrow))
 	return ret
 }
 
 func DPA_CreateEx(cpGrow int32, hheap HANDLE) HDPA {
-	addr := lazyAddr(&pDPA_CreateEx, libComctl32, "DPA_CreateEx")
+	addr := LazyAddr(&pDPA_CreateEx, libComctl32, "DPA_CreateEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cpGrow), hheap)
 	return ret
 }
 
 func DPA_Clone(hdpa HDPA, hdpaNew HDPA) HDPA {
-	addr := lazyAddr(&pDPA_Clone, libComctl32, "DPA_Clone")
+	addr := LazyAddr(&pDPA_Clone, libComctl32, "DPA_Clone")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, hdpaNew)
 	return ret
 }
 
 func DPA_Destroy(hdpa HDPA) BOOL {
-	addr := lazyAddr(&pDPA_Destroy, libComctl32, "DPA_Destroy")
+	addr := LazyAddr(&pDPA_Destroy, libComctl32, "DPA_Destroy")
 	ret, _, _ := syscall.SyscallN(addr, hdpa)
 	return BOOL(ret)
 }
 
 func DPA_DestroyCallback(hdpa HDPA, pfnCB PFNDAENUMCALLBACK, pData unsafe.Pointer) {
-	addr := lazyAddr(&pDPA_DestroyCallback, libComctl32, "DPA_DestroyCallback")
+	addr := LazyAddr(&pDPA_DestroyCallback, libComctl32, "DPA_DestroyCallback")
 	syscall.SyscallN(addr, hdpa, pfnCB, uintptr(pData))
 }
 
 func DPA_DeletePtr(hdpa HDPA, i int32) unsafe.Pointer {
-	addr := lazyAddr(&pDPA_DeletePtr, libComctl32, "DPA_DeletePtr")
+	addr := LazyAddr(&pDPA_DeletePtr, libComctl32, "DPA_DeletePtr")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, uintptr(i))
 	return (unsafe.Pointer)(ret)
 }
 
 func DPA_DeleteAllPtrs(hdpa HDPA) BOOL {
-	addr := lazyAddr(&pDPA_DeleteAllPtrs, libComctl32, "DPA_DeleteAllPtrs")
+	addr := LazyAddr(&pDPA_DeleteAllPtrs, libComctl32, "DPA_DeleteAllPtrs")
 	ret, _, _ := syscall.SyscallN(addr, hdpa)
 	return BOOL(ret)
 }
 
 func DPA_EnumCallback(hdpa HDPA, pfnCB PFNDAENUMCALLBACK, pData unsafe.Pointer) {
-	addr := lazyAddr(&pDPA_EnumCallback, libComctl32, "DPA_EnumCallback")
+	addr := LazyAddr(&pDPA_EnumCallback, libComctl32, "DPA_EnumCallback")
 	syscall.SyscallN(addr, hdpa, pfnCB, uintptr(pData))
 }
 
 func DPA_Grow(pdpa HDPA, cp int32) BOOL {
-	addr := lazyAddr(&pDPA_Grow, libComctl32, "DPA_Grow")
+	addr := LazyAddr(&pDPA_Grow, libComctl32, "DPA_Grow")
 	ret, _, _ := syscall.SyscallN(addr, pdpa, uintptr(cp))
 	return BOOL(ret)
 }
 
 func DPA_InsertPtr(hdpa HDPA, i int32, p unsafe.Pointer) int32 {
-	addr := lazyAddr(&pDPA_InsertPtr, libComctl32, "DPA_InsertPtr")
+	addr := LazyAddr(&pDPA_InsertPtr, libComctl32, "DPA_InsertPtr")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, uintptr(i), uintptr(p))
 	return int32(ret)
 }
 
 func DPA_SetPtr(hdpa HDPA, i int32, p unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pDPA_SetPtr, libComctl32, "DPA_SetPtr")
+	addr := LazyAddr(&pDPA_SetPtr, libComctl32, "DPA_SetPtr")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, uintptr(i), uintptr(p))
 	return BOOL(ret)
 }
 
 func DPA_GetPtr(hdpa HDPA, i uintptr) unsafe.Pointer {
-	addr := lazyAddr(&pDPA_GetPtr, libComctl32, "DPA_GetPtr")
+	addr := LazyAddr(&pDPA_GetPtr, libComctl32, "DPA_GetPtr")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, i)
 	return (unsafe.Pointer)(ret)
 }
 
 func DPA_GetPtrIndex(hdpa HDPA, p unsafe.Pointer) int32 {
-	addr := lazyAddr(&pDPA_GetPtrIndex, libComctl32, "DPA_GetPtrIndex")
+	addr := LazyAddr(&pDPA_GetPtrIndex, libComctl32, "DPA_GetPtrIndex")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, uintptr(p))
 	return int32(ret)
 }
 
 func DPA_GetSize(hdpa HDPA) uint64 {
-	addr := lazyAddr(&pDPA_GetSize, libComctl32, "DPA_GetSize")
+	addr := LazyAddr(&pDPA_GetSize, libComctl32, "DPA_GetSize")
 	ret, _, _ := syscall.SyscallN(addr, hdpa)
 	return uint64(ret)
 }
 
 func DPA_Sort(hdpa HDPA, pfnCompare PFNDACOMPARE, lParam LPARAM) BOOL {
-	addr := lazyAddr(&pDPA_Sort, libComctl32, "DPA_Sort")
+	addr := LazyAddr(&pDPA_Sort, libComctl32, "DPA_Sort")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, pfnCompare, lParam)
 	return BOOL(ret)
 }
 
 func DPA_LoadStream(phdpa *HDPA, pfn PFNDPASTREAM, pstream *IStream, pvInstData unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pDPA_LoadStream, libComctl32, "DPA_LoadStream")
+	addr := LazyAddr(&pDPA_LoadStream, libComctl32, "DPA_LoadStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(phdpa)), pfn, uintptr(unsafe.Pointer(pstream)), uintptr(pvInstData))
 	return HRESULT(ret)
 }
 
 func DPA_SaveStream(hdpa HDPA, pfn PFNDPASTREAM, pstream *IStream, pvInstData unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pDPA_SaveStream, libComctl32, "DPA_SaveStream")
+	addr := LazyAddr(&pDPA_SaveStream, libComctl32, "DPA_SaveStream")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, pfn, uintptr(unsafe.Pointer(pstream)), uintptr(pvInstData))
 	return HRESULT(ret)
 }
 
 func DPA_Merge(hdpaDest HDPA, hdpaSrc HDPA, dwFlags uint32, pfnCompare PFNDACOMPARE, pfnMerge PFNDPAMERGE, lParam LPARAM) BOOL {
-	addr := lazyAddr(&pDPA_Merge, libComctl32, "DPA_Merge")
+	addr := LazyAddr(&pDPA_Merge, libComctl32, "DPA_Merge")
 	ret, _, _ := syscall.SyscallN(addr, hdpaDest, hdpaSrc, uintptr(dwFlags), pfnCompare, pfnMerge, lParam)
 	return BOOL(ret)
 }
 
 func DPA_Search(hdpa HDPA, pFind unsafe.Pointer, iStart int32, pfnCompare PFNDACOMPARE, lParam LPARAM, options uint32) int32 {
-	addr := lazyAddr(&pDPA_Search, libComctl32, "DPA_Search")
+	addr := LazyAddr(&pDPA_Search, libComctl32, "DPA_Search")
 	ret, _, _ := syscall.SyscallN(addr, hdpa, uintptr(pFind), uintptr(iStart), pfnCompare, lParam, uintptr(options))
 	return int32(ret)
 }
 
 func Str_SetPtrW(ppsz *PWSTR, psz PWSTR) BOOL {
-	addr := lazyAddr(&pStr_SetPtrW, libComctl32, "Str_SetPtrW")
+	addr := LazyAddr(&pStr_SetPtrW, libComctl32, "Str_SetPtrW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppsz)), uintptr(unsafe.Pointer(psz)))
 	return BOOL(ret)
 }
 
 func FlatSB_EnableScrollBar(param0 HWND, param1 int32, param2 uint32) BOOL {
-	addr := lazyAddr(&pFlatSB_EnableScrollBar, libComctl32, "FlatSB_EnableScrollBar")
+	addr := LazyAddr(&pFlatSB_EnableScrollBar, libComctl32, "FlatSB_EnableScrollBar")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(param1), uintptr(param2))
 	return BOOL(ret)
 }
 
 func FlatSB_ShowScrollBar(param0 HWND, code SCROLLBAR_CONSTANTS, param2 BOOL) BOOL {
-	addr := lazyAddr(&pFlatSB_ShowScrollBar, libComctl32, "FlatSB_ShowScrollBar")
+	addr := LazyAddr(&pFlatSB_ShowScrollBar, libComctl32, "FlatSB_ShowScrollBar")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(code), uintptr(param2))
 	return BOOL(ret)
 }
 
 func FlatSB_GetScrollRange(param0 HWND, code SCROLLBAR_CONSTANTS, param2 *int32, param3 *int32) BOOL {
-	addr := lazyAddr(&pFlatSB_GetScrollRange, libComctl32, "FlatSB_GetScrollRange")
+	addr := LazyAddr(&pFlatSB_GetScrollRange, libComctl32, "FlatSB_GetScrollRange")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(code), uintptr(unsafe.Pointer(param2)), uintptr(unsafe.Pointer(param3)))
 	return BOOL(ret)
 }
 
 func FlatSB_GetScrollInfo(param0 HWND, code SCROLLBAR_CONSTANTS, param2 *SCROLLINFO) BOOL {
-	addr := lazyAddr(&pFlatSB_GetScrollInfo, libComctl32, "FlatSB_GetScrollInfo")
+	addr := LazyAddr(&pFlatSB_GetScrollInfo, libComctl32, "FlatSB_GetScrollInfo")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(code), uintptr(unsafe.Pointer(param2)))
 	return BOOL(ret)
 }
 
 func FlatSB_GetScrollPos(param0 HWND, code SCROLLBAR_CONSTANTS) int32 {
-	addr := lazyAddr(&pFlatSB_GetScrollPos, libComctl32, "FlatSB_GetScrollPos")
+	addr := LazyAddr(&pFlatSB_GetScrollPos, libComctl32, "FlatSB_GetScrollPos")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(code))
 	return int32(ret)
 }
 
 func FlatSB_GetScrollProp(param0 HWND, propIndex WSB_PROP, param2 *int32) BOOL {
-	addr := lazyAddr(&pFlatSB_GetScrollProp, libComctl32, "FlatSB_GetScrollProp")
+	addr := LazyAddr(&pFlatSB_GetScrollProp, libComctl32, "FlatSB_GetScrollProp")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(propIndex), uintptr(unsafe.Pointer(param2)))
 	return BOOL(ret)
 }
 
 func FlatSB_SetScrollPos(param0 HWND, code SCROLLBAR_CONSTANTS, pos int32, fRedraw BOOL) int32 {
-	addr := lazyAddr(&pFlatSB_SetScrollPos, libComctl32, "FlatSB_SetScrollPos")
+	addr := LazyAddr(&pFlatSB_SetScrollPos, libComctl32, "FlatSB_SetScrollPos")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(code), uintptr(pos), uintptr(fRedraw))
 	return int32(ret)
 }
 
 func FlatSB_SetScrollInfo(param0 HWND, code SCROLLBAR_CONSTANTS, psi *SCROLLINFO, fRedraw BOOL) int32 {
-	addr := lazyAddr(&pFlatSB_SetScrollInfo, libComctl32, "FlatSB_SetScrollInfo")
+	addr := LazyAddr(&pFlatSB_SetScrollInfo, libComctl32, "FlatSB_SetScrollInfo")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(code), uintptr(unsafe.Pointer(psi)), uintptr(fRedraw))
 	return int32(ret)
 }
 
 func FlatSB_SetScrollRange(param0 HWND, code SCROLLBAR_CONSTANTS, min int32, max int32, fRedraw BOOL) int32 {
-	addr := lazyAddr(&pFlatSB_SetScrollRange, libComctl32, "FlatSB_SetScrollRange")
+	addr := LazyAddr(&pFlatSB_SetScrollRange, libComctl32, "FlatSB_SetScrollRange")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(code), uintptr(min), uintptr(max), uintptr(fRedraw))
 	return int32(ret)
 }
 
 func FlatSB_SetScrollProp(param0 HWND, index WSB_PROP, newValue uintptr, param3 BOOL) BOOL {
-	addr := lazyAddr(&pFlatSB_SetScrollProp, libComctl32, "FlatSB_SetScrollProp")
+	addr := LazyAddr(&pFlatSB_SetScrollProp, libComctl32, "FlatSB_SetScrollProp")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(index), newValue, uintptr(param3))
 	return BOOL(ret)
 }
 
 func InitializeFlatSB(param0 HWND) BOOL {
-	addr := lazyAddr(&pInitializeFlatSB, libComctl32, "InitializeFlatSB")
+	addr := LazyAddr(&pInitializeFlatSB, libComctl32, "InitializeFlatSB")
 	ret, _, _ := syscall.SyscallN(addr, param0)
 	return BOOL(ret)
 }
 
 func UninitializeFlatSB(param0 HWND) HRESULT {
-	addr := lazyAddr(&pUninitializeFlatSB, libComctl32, "UninitializeFlatSB")
+	addr := LazyAddr(&pUninitializeFlatSB, libComctl32, "UninitializeFlatSB")
 	ret, _, _ := syscall.SyscallN(addr, param0)
 	return HRESULT(ret)
 }
 
 func LoadIconMetric(hinst HINSTANCE, pszName PWSTR, lims LI_METRIC_, phico *HICON) HRESULT {
-	addr := lazyAddr(&pLoadIconMetric, libComctl32, "LoadIconMetric")
+	addr := LazyAddr(&pLoadIconMetric, libComctl32, "LoadIconMetric")
 	ret, _, _ := syscall.SyscallN(addr, hinst, uintptr(unsafe.Pointer(pszName)), uintptr(lims), uintptr(unsafe.Pointer(phico)))
 	return HRESULT(ret)
 }
 
 func LoadIconWithScaleDown(hinst HINSTANCE, pszName PWSTR, cx int32, cy int32, phico *HICON) HRESULT {
-	addr := lazyAddr(&pLoadIconWithScaleDown, libComctl32, "LoadIconWithScaleDown")
+	addr := LazyAddr(&pLoadIconWithScaleDown, libComctl32, "LoadIconWithScaleDown")
 	ret, _, _ := syscall.SyscallN(addr, hinst, uintptr(unsafe.Pointer(pszName)), uintptr(cx), uintptr(cy), uintptr(unsafe.Pointer(phico)))
 	return HRESULT(ret)
 }
 
 func DrawShadowText(hdc HDC, pszText PWSTR, cch uint32, prc *RECT, dwFlags uint32, crText COLORREF, crShadow COLORREF, ixOffset int32, iyOffset int32) int32 {
-	addr := lazyAddr(&pDrawShadowText, libComctl32, "DrawShadowText")
+	addr := LazyAddr(&pDrawShadowText, libComctl32, "DrawShadowText")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pszText)), uintptr(cch), uintptr(unsafe.Pointer(prc)), uintptr(dwFlags), uintptr(crText), uintptr(crShadow), uintptr(ixOffset), uintptr(iyOffset))
 	return int32(ret)
 }
 
 func ImageList_CoCreateInstance(rclsid *syscall.GUID, punkOuter *IUnknown, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pImageList_CoCreateInstance, libComctl32, "ImageList_CoCreateInstance")
+	addr := LazyAddr(&pImageList_CoCreateInstance, libComctl32, "ImageList_CoCreateInstance")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(punkOuter)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func BeginPanningFeedback(hwnd HWND) BOOL {
-	addr := lazyAddr(&pBeginPanningFeedback, libUxtheme, "BeginPanningFeedback")
+	addr := LazyAddr(&pBeginPanningFeedback, libUxtheme, "BeginPanningFeedback")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return BOOL(ret)
 }
 
 func UpdatePanningFeedback(hwnd HWND, lTotalOverpanOffsetX int32, lTotalOverpanOffsetY int32, fInInertia BOOL) BOOL {
-	addr := lazyAddr(&pUpdatePanningFeedback, libUxtheme, "UpdatePanningFeedback")
+	addr := LazyAddr(&pUpdatePanningFeedback, libUxtheme, "UpdatePanningFeedback")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(lTotalOverpanOffsetX), uintptr(lTotalOverpanOffsetY), uintptr(fInInertia))
 	return BOOL(ret)
 }
 
 func EndPanningFeedback(hwnd HWND, fAnimateBack BOOL) BOOL {
-	addr := lazyAddr(&pEndPanningFeedback, libUxtheme, "EndPanningFeedback")
+	addr := LazyAddr(&pEndPanningFeedback, libUxtheme, "EndPanningFeedback")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(fAnimateBack))
 	return BOOL(ret)
 }
 
 func GetThemeAnimationProperty(hTheme HTHEME, iStoryboardId int32, iTargetId int32, eProperty TA_PROPERTY, pvProperty unsafe.Pointer, cbSize uint32, pcbSizeOut *uint32) HRESULT {
-	addr := lazyAddr(&pGetThemeAnimationProperty, libUxtheme, "GetThemeAnimationProperty")
+	addr := LazyAddr(&pGetThemeAnimationProperty, libUxtheme, "GetThemeAnimationProperty")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStoryboardId), uintptr(iTargetId), uintptr(eProperty), uintptr(pvProperty), uintptr(cbSize), uintptr(unsafe.Pointer(pcbSizeOut)))
 	return HRESULT(ret)
 }
 
 func GetThemeAnimationTransform(hTheme HTHEME, iStoryboardId int32, iTargetId int32, dwTransformIndex uint32, pTransform *TA_TRANSFORM, cbSize uint32, pcbSizeOut *uint32) HRESULT {
-	addr := lazyAddr(&pGetThemeAnimationTransform, libUxtheme, "GetThemeAnimationTransform")
+	addr := LazyAddr(&pGetThemeAnimationTransform, libUxtheme, "GetThemeAnimationTransform")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStoryboardId), uintptr(iTargetId), uintptr(dwTransformIndex), uintptr(unsafe.Pointer(pTransform)), uintptr(cbSize), uintptr(unsafe.Pointer(pcbSizeOut)))
 	return HRESULT(ret)
 }
 
 func GetThemeTimingFunction(hTheme HTHEME, iTimingFunctionId int32, pTimingFunction *TA_TIMINGFUNCTION, cbSize uint32, pcbSizeOut *uint32) HRESULT {
-	addr := lazyAddr(&pGetThemeTimingFunction, libUxtheme, "GetThemeTimingFunction")
+	addr := LazyAddr(&pGetThemeTimingFunction, libUxtheme, "GetThemeTimingFunction")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iTimingFunctionId), uintptr(unsafe.Pointer(pTimingFunction)), uintptr(cbSize), uintptr(unsafe.Pointer(pcbSizeOut)))
 	return HRESULT(ret)
 }
 
 func OpenThemeData(hwnd HWND, pszClassList PWSTR) HTHEME {
-	addr := lazyAddr(&pOpenThemeData, libUxtheme, "OpenThemeData")
+	addr := LazyAddr(&pOpenThemeData, libUxtheme, "OpenThemeData")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszClassList)))
 	return ret
 }
 
 func OpenThemeDataEx(hwnd HWND, pszClassList PWSTR, dwFlags OPEN_THEME_DATA_FLAGS) HTHEME {
-	addr := lazyAddr(&pOpenThemeDataEx, libUxtheme, "OpenThemeDataEx")
+	addr := LazyAddr(&pOpenThemeDataEx, libUxtheme, "OpenThemeDataEx")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszClassList)), uintptr(dwFlags))
 	return ret
 }
 
 func CloseThemeData(hTheme HTHEME) HRESULT {
-	addr := lazyAddr(&pCloseThemeData, libUxtheme, "CloseThemeData")
+	addr := LazyAddr(&pCloseThemeData, libUxtheme, "CloseThemeData")
 	ret, _, _ := syscall.SyscallN(addr, hTheme)
 	return HRESULT(ret)
 }
 
 func DrawThemeBackground(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pClipRect *RECT) HRESULT {
-	addr := lazyAddr(&pDrawThemeBackground, libUxtheme, "DrawThemeBackground")
+	addr := LazyAddr(&pDrawThemeBackground, libUxtheme, "DrawThemeBackground")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pClipRect)))
 	return HRESULT(ret)
 }
 
 func DrawThemeBackgroundEx(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pOptions *DTBGOPTS) HRESULT {
-	addr := lazyAddr(&pDrawThemeBackgroundEx, libUxtheme, "DrawThemeBackgroundEx")
+	addr := LazyAddr(&pDrawThemeBackgroundEx, libUxtheme, "DrawThemeBackgroundEx")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pOptions)))
 	return HRESULT(ret)
 }
 
 func DrawThemeText(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchText int32, dwTextFlags DRAW_TEXT_FORMAT, dwTextFlags2 uint32, pRect *RECT) HRESULT {
-	addr := lazyAddr(&pDrawThemeText, libUxtheme, "DrawThemeText")
+	addr := LazyAddr(&pDrawThemeText, libUxtheme, "DrawThemeText")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pszText)), uintptr(cchText), uintptr(dwTextFlags), uintptr(dwTextFlags2), uintptr(unsafe.Pointer(pRect)))
 	return HRESULT(ret)
 }
 
 func GetThemeBackgroundContentRect(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pBoundingRect *RECT, pContentRect *RECT) HRESULT {
-	addr := lazyAddr(&pGetThemeBackgroundContentRect, libUxtheme, "GetThemeBackgroundContentRect")
+	addr := LazyAddr(&pGetThemeBackgroundContentRect, libUxtheme, "GetThemeBackgroundContentRect")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pBoundingRect)), uintptr(unsafe.Pointer(pContentRect)))
 	return HRESULT(ret)
 }
 
 func GetThemeBackgroundExtent(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pContentRect *RECT, pExtentRect *RECT) HRESULT {
-	addr := lazyAddr(&pGetThemeBackgroundExtent, libUxtheme, "GetThemeBackgroundExtent")
+	addr := LazyAddr(&pGetThemeBackgroundExtent, libUxtheme, "GetThemeBackgroundExtent")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pContentRect)), uintptr(unsafe.Pointer(pExtentRect)))
 	return HRESULT(ret)
 }
 
 func GetThemeBackgroundRegion(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, pRegion *HRGN) HRESULT {
-	addr := lazyAddr(&pGetThemeBackgroundRegion, libUxtheme, "GetThemeBackgroundRegion")
+	addr := LazyAddr(&pGetThemeBackgroundRegion, libUxtheme, "GetThemeBackgroundRegion")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pRegion)))
 	return HRESULT(ret)
 }
 
 func GetThemePartSize(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, prc *RECT, eSize THEMESIZE, psz *SIZE) HRESULT {
-	addr := lazyAddr(&pGetThemePartSize, libUxtheme, "GetThemePartSize")
+	addr := LazyAddr(&pGetThemePartSize, libUxtheme, "GetThemePartSize")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(prc)), uintptr(eSize), uintptr(unsafe.Pointer(psz)))
 	return HRESULT(ret)
 }
 
 func GetThemeTextExtent(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchCharCount int32, dwTextFlags DRAW_TEXT_FORMAT, pBoundingRect *RECT, pExtentRect *RECT) HRESULT {
-	addr := lazyAddr(&pGetThemeTextExtent, libUxtheme, "GetThemeTextExtent")
+	addr := LazyAddr(&pGetThemeTextExtent, libUxtheme, "GetThemeTextExtent")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pszText)), uintptr(cchCharCount), uintptr(dwTextFlags), uintptr(unsafe.Pointer(pBoundingRect)), uintptr(unsafe.Pointer(pExtentRect)))
 	return HRESULT(ret)
 }
 
 func GetThemeTextMetrics(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, ptm *TEXTMETRICW) HRESULT {
-	addr := lazyAddr(&pGetThemeTextMetrics, libUxtheme, "GetThemeTextMetrics")
+	addr := LazyAddr(&pGetThemeTextMetrics, libUxtheme, "GetThemeTextMetrics")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(ptm)))
 	return HRESULT(ret)
 }
 
 func HitTestThemeBackground(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, dwOptions HIT_TEST_BACKGROUND_OPTIONS, pRect *RECT, hrgn HRGN, ptTest POINT, pwHitTestCode *uint16) HRESULT {
-	addr := lazyAddr(&pHitTestThemeBackground, libUxtheme, "HitTestThemeBackground")
+	addr := LazyAddr(&pHitTestThemeBackground, libUxtheme, "HitTestThemeBackground")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(dwOptions), uintptr(unsafe.Pointer(pRect)), hrgn, *(*uintptr)(unsafe.Pointer(&ptTest)), uintptr(unsafe.Pointer(pwHitTestCode)))
 	return HRESULT(ret)
 }
 
 func DrawThemeEdge(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pDestRect *RECT, uEdge DRAWEDGE_FLAGS, uFlags DRAW_EDGE_FLAGS, pContentRect *RECT) HRESULT {
-	addr := lazyAddr(&pDrawThemeEdge, libUxtheme, "DrawThemeEdge")
+	addr := LazyAddr(&pDrawThemeEdge, libUxtheme, "DrawThemeEdge")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pDestRect)), uintptr(uEdge), uintptr(uFlags), uintptr(unsafe.Pointer(pContentRect)))
 	return HRESULT(ret)
 }
 
 func DrawThemeIcon(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pRect *RECT, himl HIMAGELIST, iImageIndex int32) HRESULT {
-	addr := lazyAddr(&pDrawThemeIcon, libUxtheme, "DrawThemeIcon")
+	addr := LazyAddr(&pDrawThemeIcon, libUxtheme, "DrawThemeIcon")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pRect)), himl, uintptr(iImageIndex))
 	return HRESULT(ret)
 }
 
 func IsThemePartDefined(hTheme HTHEME, iPartId int32, iStateId int32) BOOL {
-	addr := lazyAddr(&pIsThemePartDefined, libUxtheme, "IsThemePartDefined")
+	addr := LazyAddr(&pIsThemePartDefined, libUxtheme, "IsThemePartDefined")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId))
 	return BOOL(ret)
 }
 
 func IsThemeBackgroundPartiallyTransparent(hTheme HTHEME, iPartId int32, iStateId int32) BOOL {
-	addr := lazyAddr(&pIsThemeBackgroundPartiallyTransparent, libUxtheme, "IsThemeBackgroundPartiallyTransparent")
+	addr := LazyAddr(&pIsThemeBackgroundPartiallyTransparent, libUxtheme, "IsThemeBackgroundPartiallyTransparent")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId))
 	return BOOL(ret)
 }
 
 func GetThemeColor(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pColor *COLORREF) HRESULT {
-	addr := lazyAddr(&pGetThemeColor, libUxtheme, "GetThemeColor")
+	addr := LazyAddr(&pGetThemeColor, libUxtheme, "GetThemeColor")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pColor)))
 	return HRESULT(ret)
 }
 
 func GetThemeMetric(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
-	addr := lazyAddr(&pGetThemeMetric, libUxtheme, "GetThemeMetric")
+	addr := LazyAddr(&pGetThemeMetric, libUxtheme, "GetThemeMetric")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
 func GetThemeString(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pszBuff PWSTR, cchMaxBuffChars int32) HRESULT {
-	addr := lazyAddr(&pGetThemeString, libUxtheme, "GetThemeString")
+	addr := LazyAddr(&pGetThemeString, libUxtheme, "GetThemeString")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pszBuff)), uintptr(cchMaxBuffChars))
 	return HRESULT(ret)
 }
 
 func GetThemeBool(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pfVal *BOOL) HRESULT {
-	addr := lazyAddr(&pGetThemeBool, libUxtheme, "GetThemeBool")
+	addr := LazyAddr(&pGetThemeBool, libUxtheme, "GetThemeBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pfVal)))
 	return HRESULT(ret)
 }
 
 func GetThemeInt(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
-	addr := lazyAddr(&pGetThemeInt, libUxtheme, "GetThemeInt")
+	addr := LazyAddr(&pGetThemeInt, libUxtheme, "GetThemeInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
 func GetThemeEnumValue(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
-	addr := lazyAddr(&pGetThemeEnumValue, libUxtheme, "GetThemeEnumValue")
+	addr := LazyAddr(&pGetThemeEnumValue, libUxtheme, "GetThemeEnumValue")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
 func GetThemePosition(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pPoint *POINT) HRESULT {
-	addr := lazyAddr(&pGetThemePosition, libUxtheme, "GetThemePosition")
+	addr := LazyAddr(&pGetThemePosition, libUxtheme, "GetThemePosition")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pPoint)))
 	return HRESULT(ret)
 }
 
 func GetThemeFont(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId int32, pFont *LOGFONTW) HRESULT {
-	addr := lazyAddr(&pGetThemeFont, libUxtheme, "GetThemeFont")
+	addr := LazyAddr(&pGetThemeFont, libUxtheme, "GetThemeFont")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pFont)))
 	return HRESULT(ret)
 }
 
 func GetThemeRect(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pRect *RECT) HRESULT {
-	addr := lazyAddr(&pGetThemeRect, libUxtheme, "GetThemeRect")
+	addr := LazyAddr(&pGetThemeRect, libUxtheme, "GetThemeRect")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pRect)))
 	return HRESULT(ret)
 }
 
 func GetThemeMargins(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, prc *RECT, pMargins *MARGINS) HRESULT {
-	addr := lazyAddr(&pGetThemeMargins, libUxtheme, "GetThemeMargins")
+	addr := LazyAddr(&pGetThemeMargins, libUxtheme, "GetThemeMargins")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(prc)), uintptr(unsafe.Pointer(pMargins)))
 	return HRESULT(ret)
 }
 
 func GetThemeIntList(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pIntList *INTLIST) HRESULT {
-	addr := lazyAddr(&pGetThemeIntList, libUxtheme, "GetThemeIntList")
+	addr := LazyAddr(&pGetThemeIntList, libUxtheme, "GetThemeIntList")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pIntList)))
 	return HRESULT(ret)
 }
 
 func GetThemePropertyOrigin(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pOrigin *PROPERTYORIGIN) HRESULT {
-	addr := lazyAddr(&pGetThemePropertyOrigin, libUxtheme, "GetThemePropertyOrigin")
+	addr := LazyAddr(&pGetThemePropertyOrigin, libUxtheme, "GetThemePropertyOrigin")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pOrigin)))
 	return HRESULT(ret)
 }
 
 func SetWindowTheme(hwnd HWND, pszSubAppName PWSTR, pszSubIdList PWSTR) HRESULT {
-	addr := lazyAddr(&pSetWindowTheme, libUxtheme, "SetWindowTheme")
+	addr := LazyAddr(&pSetWindowTheme, libUxtheme, "SetWindowTheme")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pszSubAppName)), uintptr(unsafe.Pointer(pszSubIdList)))
 	return HRESULT(ret)
 }
 
 func GetThemeFilename(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pszThemeFileName PWSTR, cchMaxBuffChars int32) HRESULT {
-	addr := lazyAddr(&pGetThemeFilename, libUxtheme, "GetThemeFilename")
+	addr := LazyAddr(&pGetThemeFilename, libUxtheme, "GetThemeFilename")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pszThemeFileName)), uintptr(cchMaxBuffChars))
 	return HRESULT(ret)
 }
 
 func GetThemeSysColor(hTheme HTHEME, iColorId int32) COLORREF {
-	addr := lazyAddr(&pGetThemeSysColor, libUxtheme, "GetThemeSysColor")
+	addr := LazyAddr(&pGetThemeSysColor, libUxtheme, "GetThemeSysColor")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iColorId))
 	return COLORREF(ret)
 }
 
 func GetThemeSysColorBrush(hTheme HTHEME, iColorId THEME_PROPERTY_SYMBOL_ID) HBRUSH {
-	addr := lazyAddr(&pGetThemeSysColorBrush, libUxtheme, "GetThemeSysColorBrush")
+	addr := LazyAddr(&pGetThemeSysColorBrush, libUxtheme, "GetThemeSysColorBrush")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iColorId))
 	return ret
 }
 
 func GetThemeSysBool(hTheme HTHEME, iBoolId THEME_PROPERTY_SYMBOL_ID) BOOL {
-	addr := lazyAddr(&pGetThemeSysBool, libUxtheme, "GetThemeSysBool")
+	addr := LazyAddr(&pGetThemeSysBool, libUxtheme, "GetThemeSysBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iBoolId))
 	return BOOL(ret)
 }
 
 func GetThemeSysSize(hTheme HTHEME, iSizeId int32) int32 {
-	addr := lazyAddr(&pGetThemeSysSize, libUxtheme, "GetThemeSysSize")
+	addr := LazyAddr(&pGetThemeSysSize, libUxtheme, "GetThemeSysSize")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iSizeId))
 	return int32(ret)
 }
 
 func GetThemeSysFont(hTheme HTHEME, iFontId THEME_PROPERTY_SYMBOL_ID, plf *LOGFONTW) HRESULT {
-	addr := lazyAddr(&pGetThemeSysFont, libUxtheme, "GetThemeSysFont")
+	addr := LazyAddr(&pGetThemeSysFont, libUxtheme, "GetThemeSysFont")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iFontId), uintptr(unsafe.Pointer(plf)))
 	return HRESULT(ret)
 }
 
 func GetThemeSysString(hTheme HTHEME, iStringId THEME_PROPERTY_SYMBOL_ID, pszStringBuff PWSTR, cchMaxStringChars int32) HRESULT {
-	addr := lazyAddr(&pGetThemeSysString, libUxtheme, "GetThemeSysString")
+	addr := LazyAddr(&pGetThemeSysString, libUxtheme, "GetThemeSysString")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStringId), uintptr(unsafe.Pointer(pszStringBuff)), uintptr(cchMaxStringChars))
 	return HRESULT(ret)
 }
 
 func GetThemeSysInt(hTheme HTHEME, iIntId THEME_PROPERTY_SYMBOL_ID, piValue *int32) HRESULT {
-	addr := lazyAddr(&pGetThemeSysInt, libUxtheme, "GetThemeSysInt")
+	addr := LazyAddr(&pGetThemeSysInt, libUxtheme, "GetThemeSysInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iIntId), uintptr(unsafe.Pointer(piValue)))
 	return HRESULT(ret)
 }
 
 func IsThemeActive() BOOL {
-	addr := lazyAddr(&pIsThemeActive, libUxtheme, "IsThemeActive")
+	addr := LazyAddr(&pIsThemeActive, libUxtheme, "IsThemeActive")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func IsAppThemed() BOOL {
-	addr := lazyAddr(&pIsAppThemed, libUxtheme, "IsAppThemed")
+	addr := LazyAddr(&pIsAppThemed, libUxtheme, "IsAppThemed")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func GetWindowTheme(hwnd HWND) HTHEME {
-	addr := lazyAddr(&pGetWindowTheme, libUxtheme, "GetWindowTheme")
+	addr := LazyAddr(&pGetWindowTheme, libUxtheme, "GetWindowTheme")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return ret
 }
 
 func EnableThemeDialogTexture(hwnd HWND, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pEnableThemeDialogTexture, libUxtheme, "EnableThemeDialogTexture")
+	addr := LazyAddr(&pEnableThemeDialogTexture, libUxtheme, "EnableThemeDialogTexture")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func IsThemeDialogTextureEnabled(hwnd HWND) BOOL {
-	addr := lazyAddr(&pIsThemeDialogTextureEnabled, libUxtheme, "IsThemeDialogTextureEnabled")
+	addr := LazyAddr(&pIsThemeDialogTextureEnabled, libUxtheme, "IsThemeDialogTextureEnabled")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return BOOL(ret)
 }
 
 func GetThemeAppProperties() SET_THEME_APP_PROPERTIES_FLAGS {
-	addr := lazyAddr(&pGetThemeAppProperties, libUxtheme, "GetThemeAppProperties")
+	addr := LazyAddr(&pGetThemeAppProperties, libUxtheme, "GetThemeAppProperties")
 	ret, _, _ := syscall.SyscallN(addr)
 	return SET_THEME_APP_PROPERTIES_FLAGS(ret)
 }
 
 func SetThemeAppProperties(dwFlags SET_THEME_APP_PROPERTIES_FLAGS) {
-	addr := lazyAddr(&pSetThemeAppProperties, libUxtheme, "SetThemeAppProperties")
+	addr := LazyAddr(&pSetThemeAppProperties, libUxtheme, "SetThemeAppProperties")
 	syscall.SyscallN(addr, uintptr(dwFlags))
 }
 
 func GetCurrentThemeName(pszThemeFileName PWSTR, cchMaxNameChars int32, pszColorBuff PWSTR, cchMaxColorChars int32, pszSizeBuff PWSTR, cchMaxSizeChars int32) HRESULT {
-	addr := lazyAddr(&pGetCurrentThemeName, libUxtheme, "GetCurrentThemeName")
+	addr := LazyAddr(&pGetCurrentThemeName, libUxtheme, "GetCurrentThemeName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszThemeFileName)), uintptr(cchMaxNameChars), uintptr(unsafe.Pointer(pszColorBuff)), uintptr(cchMaxColorChars), uintptr(unsafe.Pointer(pszSizeBuff)), uintptr(cchMaxSizeChars))
 	return HRESULT(ret)
 }
 
 func GetThemeDocumentationProperty(pszThemeName PWSTR, pszPropertyName PWSTR, pszValueBuff PWSTR, cchMaxValChars int32) HRESULT {
-	addr := lazyAddr(&pGetThemeDocumentationProperty, libUxtheme, "GetThemeDocumentationProperty")
+	addr := LazyAddr(&pGetThemeDocumentationProperty, libUxtheme, "GetThemeDocumentationProperty")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszThemeName)), uintptr(unsafe.Pointer(pszPropertyName)), uintptr(unsafe.Pointer(pszValueBuff)), uintptr(cchMaxValChars))
 	return HRESULT(ret)
 }
 
 func DrawThemeParentBackground(hwnd HWND, hdc HDC, prc *RECT) HRESULT {
-	addr := lazyAddr(&pDrawThemeParentBackground, libUxtheme, "DrawThemeParentBackground")
+	addr := LazyAddr(&pDrawThemeParentBackground, libUxtheme, "DrawThemeParentBackground")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, hdc, uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
 func EnableTheming(fEnable BOOL) HRESULT {
-	addr := lazyAddr(&pEnableTheming, libUxtheme, "EnableTheming")
+	addr := LazyAddr(&pEnableTheming, libUxtheme, "EnableTheming")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fEnable))
 	return HRESULT(ret)
 }
 
 func DrawThemeParentBackgroundEx(hwnd HWND, hdc HDC, dwFlags DRAW_THEME_PARENT_BACKGROUND_FLAGS, prc *RECT) HRESULT {
-	addr := lazyAddr(&pDrawThemeParentBackgroundEx, libUxtheme, "DrawThemeParentBackgroundEx")
+	addr := LazyAddr(&pDrawThemeParentBackgroundEx, libUxtheme, "DrawThemeParentBackgroundEx")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, hdc, uintptr(dwFlags), uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
 func SetWindowThemeAttribute(hwnd HWND, eAttribute WINDOWTHEMEATTRIBUTETYPE, pvAttribute unsafe.Pointer, cbAttribute uint32) HRESULT {
-	addr := lazyAddr(&pSetWindowThemeAttribute, libUxtheme, "SetWindowThemeAttribute")
+	addr := LazyAddr(&pSetWindowThemeAttribute, libUxtheme, "SetWindowThemeAttribute")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(eAttribute), uintptr(pvAttribute), uintptr(cbAttribute))
 	return HRESULT(ret)
 }
 
 func DrawThemeTextEx(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszText PWSTR, cchText int32, dwTextFlags DRAW_TEXT_FORMAT, pRect *RECT, pOptions *DTTOPTS) HRESULT {
-	addr := lazyAddr(&pDrawThemeTextEx, libUxtheme, "DrawThemeTextEx")
+	addr := LazyAddr(&pDrawThemeTextEx, libUxtheme, "DrawThemeTextEx")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(unsafe.Pointer(pszText)), uintptr(cchText), uintptr(dwTextFlags), uintptr(unsafe.Pointer(pRect)), uintptr(unsafe.Pointer(pOptions)))
 	return HRESULT(ret)
 }
 
 func GetThemeBitmap(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, dwFlags GET_THEME_BITMAP_FLAGS, phBitmap *HBITMAP) HRESULT {
-	addr := lazyAddr(&pGetThemeBitmap, libUxtheme, "GetThemeBitmap")
+	addr := LazyAddr(&pGetThemeBitmap, libUxtheme, "GetThemeBitmap")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(dwFlags), uintptr(unsafe.Pointer(phBitmap)))
 	return HRESULT(ret)
 }
 
 func GetThemeStream(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, ppvStream unsafe.Pointer, pcbStream *uint32, hInst HINSTANCE) HRESULT {
-	addr := lazyAddr(&pGetThemeStream, libUxtheme, "GetThemeStream")
+	addr := LazyAddr(&pGetThemeStream, libUxtheme, "GetThemeStream")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(ppvStream), uintptr(unsafe.Pointer(pcbStream)), hInst)
 	return HRESULT(ret)
 }
 
 func BufferedPaintInit() HRESULT {
-	addr := lazyAddr(&pBufferedPaintInit, libUxtheme, "BufferedPaintInit")
+	addr := LazyAddr(&pBufferedPaintInit, libUxtheme, "BufferedPaintInit")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func BufferedPaintUnInit() HRESULT {
-	addr := lazyAddr(&pBufferedPaintUnInit, libUxtheme, "BufferedPaintUnInit")
+	addr := LazyAddr(&pBufferedPaintUnInit, libUxtheme, "BufferedPaintUnInit")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func BeginBufferedPaint(hdcTarget HDC, prcTarget *RECT, dwFormat BP_BUFFERFORMAT, pPaintParams *BP_PAINTPARAMS, phdc *HDC) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pBeginBufferedPaint, libUxtheme, "BeginBufferedPaint")
+	addr := LazyAddr(&pBeginBufferedPaint, libUxtheme, "BeginBufferedPaint")
 	ret, _, err := syscall.SyscallN(addr, hdcTarget, uintptr(unsafe.Pointer(prcTarget)), uintptr(dwFormat), uintptr(unsafe.Pointer(pPaintParams)), uintptr(unsafe.Pointer(phdc)))
 	return ret, WIN32_ERROR(err)
 }
 
 func EndBufferedPaint(hBufferedPaint uintptr, fUpdateTarget BOOL) HRESULT {
-	addr := lazyAddr(&pEndBufferedPaint, libUxtheme, "EndBufferedPaint")
+	addr := LazyAddr(&pEndBufferedPaint, libUxtheme, "EndBufferedPaint")
 	ret, _, _ := syscall.SyscallN(addr, hBufferedPaint, uintptr(fUpdateTarget))
 	return HRESULT(ret)
 }
 
 func GetBufferedPaintTargetRect(hBufferedPaint uintptr, prc *RECT) HRESULT {
-	addr := lazyAddr(&pGetBufferedPaintTargetRect, libUxtheme, "GetBufferedPaintTargetRect")
+	addr := LazyAddr(&pGetBufferedPaintTargetRect, libUxtheme, "GetBufferedPaintTargetRect")
 	ret, _, _ := syscall.SyscallN(addr, hBufferedPaint, uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
 func GetBufferedPaintTargetDC(hBufferedPaint uintptr) HDC {
-	addr := lazyAddr(&pGetBufferedPaintTargetDC, libUxtheme, "GetBufferedPaintTargetDC")
+	addr := LazyAddr(&pGetBufferedPaintTargetDC, libUxtheme, "GetBufferedPaintTargetDC")
 	ret, _, _ := syscall.SyscallN(addr, hBufferedPaint)
 	return ret
 }
 
 func GetBufferedPaintDC(hBufferedPaint uintptr) HDC {
-	addr := lazyAddr(&pGetBufferedPaintDC, libUxtheme, "GetBufferedPaintDC")
+	addr := LazyAddr(&pGetBufferedPaintDC, libUxtheme, "GetBufferedPaintDC")
 	ret, _, _ := syscall.SyscallN(addr, hBufferedPaint)
 	return ret
 }
 
 func GetBufferedPaintBits(hBufferedPaint uintptr, ppbBuffer **RGBQUAD, pcxRow *int32) HRESULT {
-	addr := lazyAddr(&pGetBufferedPaintBits, libUxtheme, "GetBufferedPaintBits")
+	addr := LazyAddr(&pGetBufferedPaintBits, libUxtheme, "GetBufferedPaintBits")
 	ret, _, _ := syscall.SyscallN(addr, hBufferedPaint, uintptr(unsafe.Pointer(ppbBuffer)), uintptr(unsafe.Pointer(pcxRow)))
 	return HRESULT(ret)
 }
 
 func BufferedPaintClear(hBufferedPaint uintptr, prc *RECT) HRESULT {
-	addr := lazyAddr(&pBufferedPaintClear, libUxtheme, "BufferedPaintClear")
+	addr := LazyAddr(&pBufferedPaintClear, libUxtheme, "BufferedPaintClear")
 	ret, _, _ := syscall.SyscallN(addr, hBufferedPaint, uintptr(unsafe.Pointer(prc)))
 	return HRESULT(ret)
 }
 
 func BufferedPaintSetAlpha(hBufferedPaint uintptr, prc *RECT, alpha byte) HRESULT {
-	addr := lazyAddr(&pBufferedPaintSetAlpha, libUxtheme, "BufferedPaintSetAlpha")
+	addr := LazyAddr(&pBufferedPaintSetAlpha, libUxtheme, "BufferedPaintSetAlpha")
 	ret, _, _ := syscall.SyscallN(addr, hBufferedPaint, uintptr(unsafe.Pointer(prc)), uintptr(alpha))
 	return HRESULT(ret)
 }
 
 func BufferedPaintStopAllAnimations(hwnd HWND) HRESULT {
-	addr := lazyAddr(&pBufferedPaintStopAllAnimations, libUxtheme, "BufferedPaintStopAllAnimations")
+	addr := LazyAddr(&pBufferedPaintStopAllAnimations, libUxtheme, "BufferedPaintStopAllAnimations")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return HRESULT(ret)
 }
 
 func BeginBufferedAnimation(hwnd HWND, hdcTarget HDC, prcTarget *RECT, dwFormat BP_BUFFERFORMAT, pPaintParams *BP_PAINTPARAMS, pAnimationParams *BP_ANIMATIONPARAMS, phdcFrom *HDC, phdcTo *HDC) uintptr {
-	addr := lazyAddr(&pBeginBufferedAnimation, libUxtheme, "BeginBufferedAnimation")
+	addr := LazyAddr(&pBeginBufferedAnimation, libUxtheme, "BeginBufferedAnimation")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, hdcTarget, uintptr(unsafe.Pointer(prcTarget)), uintptr(dwFormat), uintptr(unsafe.Pointer(pPaintParams)), uintptr(unsafe.Pointer(pAnimationParams)), uintptr(unsafe.Pointer(phdcFrom)), uintptr(unsafe.Pointer(phdcTo)))
 	return ret
 }
 
 func EndBufferedAnimation(hbpAnimation uintptr, fUpdateTarget BOOL) HRESULT {
-	addr := lazyAddr(&pEndBufferedAnimation, libUxtheme, "EndBufferedAnimation")
+	addr := LazyAddr(&pEndBufferedAnimation, libUxtheme, "EndBufferedAnimation")
 	ret, _, _ := syscall.SyscallN(addr, hbpAnimation, uintptr(fUpdateTarget))
 	return HRESULT(ret)
 }
 
 func BufferedPaintRenderAnimation(hwnd HWND, hdcTarget HDC) BOOL {
-	addr := lazyAddr(&pBufferedPaintRenderAnimation, libUxtheme, "BufferedPaintRenderAnimation")
+	addr := LazyAddr(&pBufferedPaintRenderAnimation, libUxtheme, "BufferedPaintRenderAnimation")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, hdcTarget)
 	return BOOL(ret)
 }
 
 func IsCompositionActive() BOOL {
-	addr := lazyAddr(&pIsCompositionActive, libUxtheme, "IsCompositionActive")
+	addr := LazyAddr(&pIsCompositionActive, libUxtheme, "IsCompositionActive")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func GetThemeTransitionDuration(hTheme HTHEME, iPartId int32, iStateIdFrom int32, iStateIdTo int32, iPropId int32, pdwDuration *uint32) HRESULT {
-	addr := lazyAddr(&pGetThemeTransitionDuration, libUxtheme, "GetThemeTransitionDuration")
+	addr := LazyAddr(&pGetThemeTransitionDuration, libUxtheme, "GetThemeTransitionDuration")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateIdFrom), uintptr(iStateIdTo), uintptr(iPropId), uintptr(unsafe.Pointer(pdwDuration)))
 	return HRESULT(ret)
 }
 
 func CheckDlgButton(hDlg HWND, nIDButton int32, uCheck DLG_BUTTON_CHECK_STATE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCheckDlgButton, libUser32, "CheckDlgButton")
+	addr := LazyAddr(&pCheckDlgButton, libUser32, "CheckDlgButton")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDButton), uintptr(uCheck))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CheckRadioButton(hDlg HWND, nIDFirstButton int32, nIDLastButton int32, nIDCheckButton int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCheckRadioButton, libUser32, "CheckRadioButton")
+	addr := LazyAddr(&pCheckRadioButton, libUser32, "CheckRadioButton")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(nIDFirstButton), uintptr(nIDLastButton), uintptr(nIDCheckButton))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func IsDlgButtonChecked(hDlg HWND, nIDButton int32) uint32 {
-	addr := lazyAddr(&pIsDlgButtonChecked, libUser32, "IsDlgButtonChecked")
+	addr := LazyAddr(&pIsDlgButtonChecked, libUser32, "IsDlgButtonChecked")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(nIDButton))
 	return uint32(ret)
 }
 
 func IsCharLowerW(ch uint16) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pIsCharLowerW, libUser32, "IsCharLowerW")
+	addr := LazyAddr(&pIsCharLowerW, libUser32, "IsCharLowerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ch))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateSyntheticPointerDevice(pointerType POINTER_INPUT_TYPE, maxCount uint32, mode POINTER_FEEDBACK_MODE) (HSYNTHETICPOINTERDEVICE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateSyntheticPointerDevice, libUser32, "CreateSyntheticPointerDevice")
+	addr := LazyAddr(&pCreateSyntheticPointerDevice, libUser32, "CreateSyntheticPointerDevice")
 	ret, _, err := syscall.SyscallN(addr, uintptr(pointerType), uintptr(maxCount), uintptr(mode))
 	return ret, WIN32_ERROR(err)
 }
 
 func DestroySyntheticPointerDevice(device HSYNTHETICPOINTERDEVICE) {
-	addr := lazyAddr(&pDestroySyntheticPointerDevice, libUser32, "DestroySyntheticPointerDevice")
+	addr := LazyAddr(&pDestroySyntheticPointerDevice, libUser32, "DestroySyntheticPointerDevice")
 	syscall.SyscallN(addr, device)
 }
 
 func RegisterTouchHitTestingWindow(hwnd HWND, value uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterTouchHitTestingWindow, libUser32, "RegisterTouchHitTestingWindow")
+	addr := LazyAddr(&pRegisterTouchHitTestingWindow, libUser32, "RegisterTouchHitTestingWindow")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(value))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EvaluateProximityToRect(controlBoundingBox *RECT, pHitTestingInput *TOUCH_HIT_TESTING_INPUT, pProximityEval *TOUCH_HIT_TESTING_PROXIMITY_EVALUATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEvaluateProximityToRect, libUser32, "EvaluateProximityToRect")
+	addr := LazyAddr(&pEvaluateProximityToRect, libUser32, "EvaluateProximityToRect")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(controlBoundingBox)), uintptr(unsafe.Pointer(pHitTestingInput)), uintptr(unsafe.Pointer(pProximityEval)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EvaluateProximityToPolygon(numVertices uint32, controlPolygon *POINT, pHitTestingInput *TOUCH_HIT_TESTING_INPUT, pProximityEval *TOUCH_HIT_TESTING_PROXIMITY_EVALUATION) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEvaluateProximityToPolygon, libUser32, "EvaluateProximityToPolygon")
+	addr := LazyAddr(&pEvaluateProximityToPolygon, libUser32, "EvaluateProximityToPolygon")
 	ret, _, err := syscall.SyscallN(addr, uintptr(numVertices), uintptr(unsafe.Pointer(controlPolygon)), uintptr(unsafe.Pointer(pHitTestingInput)), uintptr(unsafe.Pointer(pProximityEval)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func PackTouchHitTestingProximityEvaluation(pHitTestingInput *TOUCH_HIT_TESTING_INPUT, pProximityEval *TOUCH_HIT_TESTING_PROXIMITY_EVALUATION) (LRESULT, WIN32_ERROR) {
-	addr := lazyAddr(&pPackTouchHitTestingProximityEvaluation, libUser32, "PackTouchHitTestingProximityEvaluation")
+	addr := LazyAddr(&pPackTouchHitTestingProximityEvaluation, libUser32, "PackTouchHitTestingProximityEvaluation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pHitTestingInput)), uintptr(unsafe.Pointer(pProximityEval)))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetWindowFeedbackSetting(hwnd HWND, feedback FEEDBACK_TYPE, dwFlags uint32, pSize *uint32, config unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pGetWindowFeedbackSetting, libUser32, "GetWindowFeedbackSetting")
+	addr := LazyAddr(&pGetWindowFeedbackSetting, libUser32, "GetWindowFeedbackSetting")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(feedback), uintptr(dwFlags), uintptr(unsafe.Pointer(pSize)), uintptr(config))
 	return BOOL(ret)
 }
 
 func SetWindowFeedbackSetting(hwnd HWND, feedback FEEDBACK_TYPE, dwFlags uint32, size uint32, configuration unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pSetWindowFeedbackSetting, libUser32, "SetWindowFeedbackSetting")
+	addr := LazyAddr(&pSetWindowFeedbackSetting, libUser32, "SetWindowFeedbackSetting")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(feedback), uintptr(dwFlags), uintptr(size), uintptr(configuration))
 	return BOOL(ret)
 }
 
 func SetScrollPos(hWnd HWND, nBar SCROLLBAR_CONSTANTS, nPos int32, bRedraw BOOL) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pSetScrollPos, libUser32, "SetScrollPos")
+	addr := LazyAddr(&pSetScrollPos, libUser32, "SetScrollPos")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nBar), uintptr(nPos), uintptr(bRedraw))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func SetScrollRange(hWnd HWND, nBar SCROLLBAR_CONSTANTS, nMinPos int32, nMaxPos int32, bRedraw BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetScrollRange, libUser32, "SetScrollRange")
+	addr := LazyAddr(&pSetScrollRange, libUser32, "SetScrollRange")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(nBar), uintptr(nMinPos), uintptr(nMaxPos), uintptr(bRedraw))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ShowScrollBar(hWnd HWND, wBar SCROLLBAR_CONSTANTS, bShow BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pShowScrollBar, libUser32, "ShowScrollBar")
+	addr := LazyAddr(&pShowScrollBar, libUser32, "ShowScrollBar")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(wBar), uintptr(bShow))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnableScrollBar(hWnd HWND, wSBflags SCROLLBAR_CONSTANTS, wArrows ENABLE_SCROLL_BAR_ARROWS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnableScrollBar, libUser32, "EnableScrollBar")
+	addr := LazyAddr(&pEnableScrollBar, libUser32, "EnableScrollBar")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(wSBflags), uintptr(wArrows))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DlgDirListA(hDlg HWND, lpPathSpec PSTR, nIDListBox int32, nIDStaticPath int32, uFileType DLG_DIR_LIST_FILE_TYPE) int32 {
-	addr := lazyAddr(&pDlgDirListA, libUser32, "DlgDirListA")
+	addr := LazyAddr(&pDlgDirListA, libUser32, "DlgDirListA")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(unsafe.Pointer(lpPathSpec)), uintptr(nIDListBox), uintptr(nIDStaticPath), uintptr(uFileType))
 	return int32(ret)
 }
@@ -10492,13 +10492,13 @@ func DlgDirListA(hDlg HWND, lpPathSpec PSTR, nIDListBox int32, nIDStaticPath int
 var DlgDirList = DlgDirListW
 
 func DlgDirListW(hDlg HWND, lpPathSpec PWSTR, nIDListBox int32, nIDStaticPath int32, uFileType DLG_DIR_LIST_FILE_TYPE) int32 {
-	addr := lazyAddr(&pDlgDirListW, libUser32, "DlgDirListW")
+	addr := LazyAddr(&pDlgDirListW, libUser32, "DlgDirListW")
 	ret, _, _ := syscall.SyscallN(addr, hDlg, uintptr(unsafe.Pointer(lpPathSpec)), uintptr(nIDListBox), uintptr(nIDStaticPath), uintptr(uFileType))
 	return int32(ret)
 }
 
 func DlgDirSelectExA(hwndDlg HWND, lpString PSTR, chCount int32, idListBox int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDlgDirSelectExA, libUser32, "DlgDirSelectExA")
+	addr := LazyAddr(&pDlgDirSelectExA, libUser32, "DlgDirSelectExA")
 	ret, _, err := syscall.SyscallN(addr, hwndDlg, uintptr(unsafe.Pointer(lpString)), uintptr(chCount), uintptr(idListBox))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -10506,13 +10506,13 @@ func DlgDirSelectExA(hwndDlg HWND, lpString PSTR, chCount int32, idListBox int32
 var DlgDirSelectEx = DlgDirSelectExW
 
 func DlgDirSelectExW(hwndDlg HWND, lpString PWSTR, chCount int32, idListBox int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDlgDirSelectExW, libUser32, "DlgDirSelectExW")
+	addr := LazyAddr(&pDlgDirSelectExW, libUser32, "DlgDirSelectExW")
 	ret, _, err := syscall.SyscallN(addr, hwndDlg, uintptr(unsafe.Pointer(lpString)), uintptr(chCount), uintptr(idListBox))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DlgDirListComboBoxA(hDlg HWND, lpPathSpec PSTR, nIDComboBox int32, nIDStaticPath int32, uFiletype DLG_DIR_LIST_FILE_TYPE) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pDlgDirListComboBoxA, libUser32, "DlgDirListComboBoxA")
+	addr := LazyAddr(&pDlgDirListComboBoxA, libUser32, "DlgDirListComboBoxA")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(unsafe.Pointer(lpPathSpec)), uintptr(nIDComboBox), uintptr(nIDStaticPath), uintptr(uFiletype))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -10520,13 +10520,13 @@ func DlgDirListComboBoxA(hDlg HWND, lpPathSpec PSTR, nIDComboBox int32, nIDStati
 var DlgDirListComboBox = DlgDirListComboBoxW
 
 func DlgDirListComboBoxW(hDlg HWND, lpPathSpec PWSTR, nIDComboBox int32, nIDStaticPath int32, uFiletype DLG_DIR_LIST_FILE_TYPE) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pDlgDirListComboBoxW, libUser32, "DlgDirListComboBoxW")
+	addr := LazyAddr(&pDlgDirListComboBoxW, libUser32, "DlgDirListComboBoxW")
 	ret, _, err := syscall.SyscallN(addr, hDlg, uintptr(unsafe.Pointer(lpPathSpec)), uintptr(nIDComboBox), uintptr(nIDStaticPath), uintptr(uFiletype))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func DlgDirSelectComboBoxExA(hwndDlg HWND, lpString PSTR, cchOut int32, idComboBox int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDlgDirSelectComboBoxExA, libUser32, "DlgDirSelectComboBoxExA")
+	addr := LazyAddr(&pDlgDirSelectComboBoxExA, libUser32, "DlgDirSelectComboBoxExA")
 	ret, _, err := syscall.SyscallN(addr, hwndDlg, uintptr(unsafe.Pointer(lpString)), uintptr(cchOut), uintptr(idComboBox))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -10534,31 +10534,31 @@ func DlgDirSelectComboBoxExA(hwndDlg HWND, lpString PSTR, cchOut int32, idComboB
 var DlgDirSelectComboBoxEx = DlgDirSelectComboBoxExW
 
 func DlgDirSelectComboBoxExW(hwndDlg HWND, lpString PWSTR, cchOut int32, idComboBox int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDlgDirSelectComboBoxExW, libUser32, "DlgDirSelectComboBoxExW")
+	addr := LazyAddr(&pDlgDirSelectComboBoxExW, libUser32, "DlgDirSelectComboBoxExW")
 	ret, _, err := syscall.SyscallN(addr, hwndDlg, uintptr(unsafe.Pointer(lpString)), uintptr(cchOut), uintptr(idComboBox))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetScrollInfo(hwnd HWND, nBar SCROLLBAR_CONSTANTS, lpsi *SCROLLINFO, redraw BOOL) int32 {
-	addr := lazyAddr(&pSetScrollInfo, libUser32, "SetScrollInfo")
+	addr := LazyAddr(&pSetScrollInfo, libUser32, "SetScrollInfo")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(nBar), uintptr(unsafe.Pointer(lpsi)), uintptr(redraw))
 	return int32(ret)
 }
 
 func GetComboBoxInfo(hwndCombo HWND, pcbi *COMBOBOXINFO) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetComboBoxInfo, libUser32, "GetComboBoxInfo")
+	addr := LazyAddr(&pGetComboBoxInfo, libUser32, "GetComboBoxInfo")
 	ret, _, err := syscall.SyscallN(addr, hwndCombo, uintptr(unsafe.Pointer(pcbi)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetListBoxInfo(hwnd HWND) uint32 {
-	addr := lazyAddr(&pGetListBoxInfo, libUser32, "GetListBoxInfo")
+	addr := LazyAddr(&pGetListBoxInfo, libUser32, "GetListBoxInfo")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return uint32(ret)
 }
 
 func RegisterPointerDeviceNotifications(window HWND, notifyRange BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterPointerDeviceNotifications, libUser32, "RegisterPointerDeviceNotifications")
+	addr := LazyAddr(&pRegisterPointerDeviceNotifications, libUser32, "RegisterPointerDeviceNotifications")
 	ret, _, err := syscall.SyscallN(addr, window, uintptr(notifyRange))
 	return BOOL(ret), WIN32_ERROR(err)
 }

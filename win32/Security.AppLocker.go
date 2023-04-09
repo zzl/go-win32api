@@ -197,61 +197,61 @@ var (
 )
 
 func SaferGetPolicyInformation(dwScopeId uint32, SaferPolicyInfoClass SAFER_POLICY_INFO_CLASS, InfoBufferSize uint32, InfoBuffer unsafe.Pointer, InfoBufferRetSize *uint32, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferGetPolicyInformation, libAdvapi32, "SaferGetPolicyInformation")
+	addr := LazyAddr(&pSaferGetPolicyInformation, libAdvapi32, "SaferGetPolicyInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwScopeId), uintptr(SaferPolicyInfoClass), uintptr(InfoBufferSize), uintptr(InfoBuffer), uintptr(unsafe.Pointer(InfoBufferRetSize)), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferSetPolicyInformation(dwScopeId uint32, SaferPolicyInfoClass SAFER_POLICY_INFO_CLASS, InfoBufferSize uint32, InfoBuffer unsafe.Pointer, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferSetPolicyInformation, libAdvapi32, "SaferSetPolicyInformation")
+	addr := LazyAddr(&pSaferSetPolicyInformation, libAdvapi32, "SaferSetPolicyInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwScopeId), uintptr(SaferPolicyInfoClass), uintptr(InfoBufferSize), uintptr(InfoBuffer), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferCreateLevel(dwScopeId uint32, dwLevelId uint32, OpenFlags uint32, pLevelHandle *SAFER_LEVEL_HANDLE, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferCreateLevel, libAdvapi32, "SaferCreateLevel")
+	addr := LazyAddr(&pSaferCreateLevel, libAdvapi32, "SaferCreateLevel")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwScopeId), uintptr(dwLevelId), uintptr(OpenFlags), uintptr(unsafe.Pointer(pLevelHandle)), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferCloseLevel(hLevelHandle SAFER_LEVEL_HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferCloseLevel, libAdvapi32, "SaferCloseLevel")
+	addr := LazyAddr(&pSaferCloseLevel, libAdvapi32, "SaferCloseLevel")
 	ret, _, err := syscall.SyscallN(addr, hLevelHandle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferIdentifyLevel(dwNumProperties uint32, pCodeProperties *SAFER_CODE_PROPERTIES_V2, pLevelHandle *SAFER_LEVEL_HANDLE, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferIdentifyLevel, libAdvapi32, "SaferIdentifyLevel")
+	addr := LazyAddr(&pSaferIdentifyLevel, libAdvapi32, "SaferIdentifyLevel")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwNumProperties), uintptr(unsafe.Pointer(pCodeProperties)), uintptr(unsafe.Pointer(pLevelHandle)), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferComputeTokenFromLevel(LevelHandle SAFER_LEVEL_HANDLE, InAccessToken HANDLE, OutAccessToken *HANDLE, dwFlags SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferComputeTokenFromLevel, libAdvapi32, "SaferComputeTokenFromLevel")
+	addr := LazyAddr(&pSaferComputeTokenFromLevel, libAdvapi32, "SaferComputeTokenFromLevel")
 	ret, _, err := syscall.SyscallN(addr, LevelHandle, InAccessToken, uintptr(unsafe.Pointer(OutAccessToken)), uintptr(dwFlags), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferGetLevelInformation(LevelHandle SAFER_LEVEL_HANDLE, dwInfoType SAFER_OBJECT_INFO_CLASS, lpQueryBuffer unsafe.Pointer, dwInBufferSize uint32, lpdwOutBufferSize *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferGetLevelInformation, libAdvapi32, "SaferGetLevelInformation")
+	addr := LazyAddr(&pSaferGetLevelInformation, libAdvapi32, "SaferGetLevelInformation")
 	ret, _, err := syscall.SyscallN(addr, LevelHandle, uintptr(dwInfoType), uintptr(lpQueryBuffer), uintptr(dwInBufferSize), uintptr(unsafe.Pointer(lpdwOutBufferSize)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferSetLevelInformation(LevelHandle SAFER_LEVEL_HANDLE, dwInfoType SAFER_OBJECT_INFO_CLASS, lpQueryBuffer unsafe.Pointer, dwInBufferSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferSetLevelInformation, libAdvapi32, "SaferSetLevelInformation")
+	addr := LazyAddr(&pSaferSetLevelInformation, libAdvapi32, "SaferSetLevelInformation")
 	ret, _, err := syscall.SyscallN(addr, LevelHandle, uintptr(dwInfoType), uintptr(lpQueryBuffer), uintptr(dwInBufferSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferRecordEventLogEntry(hLevel SAFER_LEVEL_HANDLE, szTargetPath PWSTR, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSaferRecordEventLogEntry, libAdvapi32, "SaferRecordEventLogEntry")
+	addr := LazyAddr(&pSaferRecordEventLogEntry, libAdvapi32, "SaferRecordEventLogEntry")
 	ret, _, err := syscall.SyscallN(addr, hLevel, uintptr(unsafe.Pointer(szTargetPath)), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SaferiIsExecutableFileType(szFullPathname PWSTR, bFromShellExecute BOOLEAN) BOOL {
-	addr := lazyAddr(&pSaferiIsExecutableFileType, libAdvapi32, "SaferiIsExecutableFileType")
+	addr := LazyAddr(&pSaferiIsExecutableFileType, libAdvapi32, "SaferiIsExecutableFileType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(szFullPathname)), uintptr(bFromShellExecute))
 	return BOOL(ret)
 }

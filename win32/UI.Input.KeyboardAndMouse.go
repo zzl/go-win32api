@@ -814,13 +814,13 @@ var (
 )
 
 func TrackMouseEvent_(lpEventTrack *TRACKMOUSEEVENT) BOOL {
-	addr := lazyAddr(&pTrackMouseEvent_, libComctl32, "_TrackMouseEvent")
+	addr := LazyAddr(&pTrackMouseEvent_, libComctl32, "_TrackMouseEvent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpEventTrack)))
 	return BOOL(ret)
 }
 
 func LoadKeyboardLayoutA(pwszKLID PSTR, Flags ACTIVATE_KEYBOARD_LAYOUT_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadKeyboardLayoutA, libUser32, "LoadKeyboardLayoutA")
+	addr := LazyAddr(&pLoadKeyboardLayoutA, libUser32, "LoadKeyboardLayoutA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszKLID)), uintptr(Flags))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
@@ -828,31 +828,31 @@ func LoadKeyboardLayoutA(pwszKLID PSTR, Flags ACTIVATE_KEYBOARD_LAYOUT_FLAGS) (u
 var LoadKeyboardLayout = LoadKeyboardLayoutW
 
 func LoadKeyboardLayoutW(pwszKLID PWSTR, Flags ACTIVATE_KEYBOARD_LAYOUT_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pLoadKeyboardLayoutW, libUser32, "LoadKeyboardLayoutW")
+	addr := LazyAddr(&pLoadKeyboardLayoutW, libUser32, "LoadKeyboardLayoutW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszKLID)), uintptr(Flags))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func ActivateKeyboardLayout(hkl unsafe.Pointer, Flags ACTIVATE_KEYBOARD_LAYOUT_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pActivateKeyboardLayout, libUser32, "ActivateKeyboardLayout")
+	addr := LazyAddr(&pActivateKeyboardLayout, libUser32, "ActivateKeyboardLayout")
 	ret, _, err := syscall.SyscallN(addr, uintptr(hkl), uintptr(Flags))
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func ToUnicodeEx(wVirtKey uint32, wScanCode uint32, lpKeyState *byte, pwszBuff PWSTR, cchBuff int32, wFlags uint32, dwhkl unsafe.Pointer) int32 {
-	addr := lazyAddr(&pToUnicodeEx, libUser32, "ToUnicodeEx")
+	addr := LazyAddr(&pToUnicodeEx, libUser32, "ToUnicodeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wVirtKey), uintptr(wScanCode), uintptr(unsafe.Pointer(lpKeyState)), uintptr(unsafe.Pointer(pwszBuff)), uintptr(cchBuff), uintptr(wFlags), uintptr(dwhkl))
 	return int32(ret)
 }
 
 func UnloadKeyboardLayout(hkl unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnloadKeyboardLayout, libUser32, "UnloadKeyboardLayout")
+	addr := LazyAddr(&pUnloadKeyboardLayout, libUser32, "UnloadKeyboardLayout")
 	ret, _, err := syscall.SyscallN(addr, uintptr(hkl))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetKeyboardLayoutNameA(pwszKLID PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetKeyboardLayoutNameA, libUser32, "GetKeyboardLayoutNameA")
+	addr := LazyAddr(&pGetKeyboardLayoutNameA, libUser32, "GetKeyboardLayoutNameA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszKLID)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -860,115 +860,115 @@ func GetKeyboardLayoutNameA(pwszKLID PSTR) (BOOL, WIN32_ERROR) {
 var GetKeyboardLayoutName = GetKeyboardLayoutNameW
 
 func GetKeyboardLayoutNameW(pwszKLID PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetKeyboardLayoutNameW, libUser32, "GetKeyboardLayoutNameW")
+	addr := LazyAddr(&pGetKeyboardLayoutNameW, libUser32, "GetKeyboardLayoutNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszKLID)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetKeyboardLayoutList(nBuff int32, lpList unsafe.Pointer) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetKeyboardLayoutList, libUser32, "GetKeyboardLayoutList")
+	addr := LazyAddr(&pGetKeyboardLayoutList, libUser32, "GetKeyboardLayoutList")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nBuff), uintptr(lpList))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetKeyboardLayout(idThread uint32) unsafe.Pointer {
-	addr := lazyAddr(&pGetKeyboardLayout, libUser32, "GetKeyboardLayout")
+	addr := LazyAddr(&pGetKeyboardLayout, libUser32, "GetKeyboardLayout")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(idThread))
 	return (unsafe.Pointer)(ret)
 }
 
 func GetMouseMovePointsEx(cbSize uint32, lppt *MOUSEMOVEPOINT, lpptBuf *MOUSEMOVEPOINT, nBufPoints int32, resolution GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetMouseMovePointsEx, libUser32, "GetMouseMovePointsEx")
+	addr := LazyAddr(&pGetMouseMovePointsEx, libUser32, "GetMouseMovePointsEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(cbSize), uintptr(unsafe.Pointer(lppt)), uintptr(unsafe.Pointer(lpptBuf)), uintptr(nBufPoints), uintptr(resolution))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func TrackMouseEvent(lpEventTrack *TRACKMOUSEEVENT) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pTrackMouseEvent, libUser32, "TrackMouseEvent")
+	addr := LazyAddr(&pTrackMouseEvent, libUser32, "TrackMouseEvent")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpEventTrack)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RegisterHotKey(hWnd HWND, id int32, fsModifiers HOT_KEY_MODIFIERS, vk uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterHotKey, libUser32, "RegisterHotKey")
+	addr := LazyAddr(&pRegisterHotKey, libUser32, "RegisterHotKey")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(id), uintptr(fsModifiers), uintptr(vk))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnregisterHotKey(hWnd HWND, id int32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterHotKey, libUser32, "UnregisterHotKey")
+	addr := LazyAddr(&pUnregisterHotKey, libUser32, "UnregisterHotKey")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(id))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SwapMouseButton(fSwap BOOL) BOOL {
-	addr := lazyAddr(&pSwapMouseButton, libUser32, "SwapMouseButton")
+	addr := LazyAddr(&pSwapMouseButton, libUser32, "SwapMouseButton")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fSwap))
 	return BOOL(ret)
 }
 
 func GetDoubleClickTime() uint32 {
-	addr := lazyAddr(&pGetDoubleClickTime, libUser32, "GetDoubleClickTime")
+	addr := LazyAddr(&pGetDoubleClickTime, libUser32, "GetDoubleClickTime")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func SetDoubleClickTime(param0 uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetDoubleClickTime, libUser32, "SetDoubleClickTime")
+	addr := LazyAddr(&pSetDoubleClickTime, libUser32, "SetDoubleClickTime")
 	ret, _, err := syscall.SyscallN(addr, uintptr(param0))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetFocus(hWnd HWND) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pSetFocus, libUser32, "SetFocus")
+	addr := LazyAddr(&pSetFocus, libUser32, "SetFocus")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return ret, WIN32_ERROR(err)
 }
 
 func GetActiveWindow() HWND {
-	addr := lazyAddr(&pGetActiveWindow, libUser32, "GetActiveWindow")
+	addr := LazyAddr(&pGetActiveWindow, libUser32, "GetActiveWindow")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func GetFocus() HWND {
-	addr := lazyAddr(&pGetFocus, libUser32, "GetFocus")
+	addr := LazyAddr(&pGetFocus, libUser32, "GetFocus")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func GetKBCodePage() uint32 {
-	addr := lazyAddr(&pGetKBCodePage, libUser32, "GetKBCodePage")
+	addr := LazyAddr(&pGetKBCodePage, libUser32, "GetKBCodePage")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func GetKeyState(nVirtKey int32) int16 {
-	addr := lazyAddr(&pGetKeyState, libUser32, "GetKeyState")
+	addr := LazyAddr(&pGetKeyState, libUser32, "GetKeyState")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nVirtKey))
 	return int16(ret)
 }
 
 func GetAsyncKeyState(vKey int32) int16 {
-	addr := lazyAddr(&pGetAsyncKeyState, libUser32, "GetAsyncKeyState")
+	addr := LazyAddr(&pGetAsyncKeyState, libUser32, "GetAsyncKeyState")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vKey))
 	return int16(ret)
 }
 
 func GetKeyboardState(lpKeyState *byte) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetKeyboardState, libUser32, "GetKeyboardState")
+	addr := LazyAddr(&pGetKeyboardState, libUser32, "GetKeyboardState")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpKeyState)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetKeyboardState(lpKeyState *byte) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetKeyboardState, libUser32, "SetKeyboardState")
+	addr := LazyAddr(&pSetKeyboardState, libUser32, "SetKeyboardState")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpKeyState)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetKeyNameTextA(lParam int32, lpString PSTR, cchSize int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetKeyNameTextA, libUser32, "GetKeyNameTextA")
+	addr := LazyAddr(&pGetKeyNameTextA, libUser32, "GetKeyNameTextA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lParam), uintptr(unsafe.Pointer(lpString)), uintptr(cchSize))
 	return int32(ret), WIN32_ERROR(err)
 }
@@ -976,43 +976,43 @@ func GetKeyNameTextA(lParam int32, lpString PSTR, cchSize int32) (int32, WIN32_E
 var GetKeyNameText = GetKeyNameTextW
 
 func GetKeyNameTextW(lParam int32, lpString PWSTR, cchSize int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetKeyNameTextW, libUser32, "GetKeyNameTextW")
+	addr := LazyAddr(&pGetKeyNameTextW, libUser32, "GetKeyNameTextW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(lParam), uintptr(unsafe.Pointer(lpString)), uintptr(cchSize))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func GetKeyboardType(nTypeFlag int32) (int32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetKeyboardType, libUser32, "GetKeyboardType")
+	addr := LazyAddr(&pGetKeyboardType, libUser32, "GetKeyboardType")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nTypeFlag))
 	return int32(ret), WIN32_ERROR(err)
 }
 
 func ToAscii(uVirtKey uint32, uScanCode uint32, lpKeyState *byte, lpChar *uint16, uFlags uint32) int32 {
-	addr := lazyAddr(&pToAscii, libUser32, "ToAscii")
+	addr := LazyAddr(&pToAscii, libUser32, "ToAscii")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uVirtKey), uintptr(uScanCode), uintptr(unsafe.Pointer(lpKeyState)), uintptr(unsafe.Pointer(lpChar)), uintptr(uFlags))
 	return int32(ret)
 }
 
 func ToAsciiEx(uVirtKey uint32, uScanCode uint32, lpKeyState *byte, lpChar *uint16, uFlags uint32, dwhkl unsafe.Pointer) int32 {
-	addr := lazyAddr(&pToAsciiEx, libUser32, "ToAsciiEx")
+	addr := LazyAddr(&pToAsciiEx, libUser32, "ToAsciiEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uVirtKey), uintptr(uScanCode), uintptr(unsafe.Pointer(lpKeyState)), uintptr(unsafe.Pointer(lpChar)), uintptr(uFlags), uintptr(dwhkl))
 	return int32(ret)
 }
 
 func ToUnicode(wVirtKey uint32, wScanCode uint32, lpKeyState *byte, pwszBuff PWSTR, cchBuff int32, wFlags uint32) int32 {
-	addr := lazyAddr(&pToUnicode, libUser32, "ToUnicode")
+	addr := LazyAddr(&pToUnicode, libUser32, "ToUnicode")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wVirtKey), uintptr(wScanCode), uintptr(unsafe.Pointer(lpKeyState)), uintptr(unsafe.Pointer(pwszBuff)), uintptr(cchBuff), uintptr(wFlags))
 	return int32(ret)
 }
 
 func OemKeyScan(wOemChar uint16) uint32 {
-	addr := lazyAddr(&pOemKeyScan, libUser32, "OemKeyScan")
+	addr := LazyAddr(&pOemKeyScan, libUser32, "OemKeyScan")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wOemChar))
 	return uint32(ret)
 }
 
 func VkKeyScanA(ch CHAR) int16 {
-	addr := lazyAddr(&pVkKeyScanA, libUser32, "VkKeyScanA")
+	addr := LazyAddr(&pVkKeyScanA, libUser32, "VkKeyScanA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ch))
 	return int16(ret)
 }
@@ -1020,13 +1020,13 @@ func VkKeyScanA(ch CHAR) int16 {
 var VkKeyScan = VkKeyScanW
 
 func VkKeyScanW(ch uint16) int16 {
-	addr := lazyAddr(&pVkKeyScanW, libUser32, "VkKeyScanW")
+	addr := LazyAddr(&pVkKeyScanW, libUser32, "VkKeyScanW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ch))
 	return int16(ret)
 }
 
 func VkKeyScanExA(ch CHAR, dwhkl unsafe.Pointer) int16 {
-	addr := lazyAddr(&pVkKeyScanExA, libUser32, "VkKeyScanExA")
+	addr := LazyAddr(&pVkKeyScanExA, libUser32, "VkKeyScanExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ch), uintptr(dwhkl))
 	return int16(ret)
 }
@@ -1034,35 +1034,35 @@ func VkKeyScanExA(ch CHAR, dwhkl unsafe.Pointer) int16 {
 var VkKeyScanEx = VkKeyScanExW
 
 func VkKeyScanExW(ch uint16, dwhkl unsafe.Pointer) int16 {
-	addr := lazyAddr(&pVkKeyScanExW, libUser32, "VkKeyScanExW")
+	addr := LazyAddr(&pVkKeyScanExW, libUser32, "VkKeyScanExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ch), uintptr(dwhkl))
 	return int16(ret)
 }
 
 func Keybd_event(bVk byte, bScan byte, dwFlags KEYBD_EVENT_FLAGS, dwExtraInfo uintptr) {
-	addr := lazyAddr(&pKeybd_event, libUser32, "keybd_event")
+	addr := LazyAddr(&pKeybd_event, libUser32, "keybd_event")
 	syscall.SyscallN(addr, uintptr(bVk), uintptr(bScan), uintptr(dwFlags), dwExtraInfo)
 }
 
 func Mouse_event(dwFlags MOUSE_EVENT_FLAGS, dx int32, dy int32, dwData int32, dwExtraInfo uintptr) {
-	addr := lazyAddr(&pMouse_event, libUser32, "mouse_event")
+	addr := LazyAddr(&pMouse_event, libUser32, "mouse_event")
 	syscall.SyscallN(addr, uintptr(dwFlags), uintptr(dx), uintptr(dy), uintptr(dwData), dwExtraInfo)
 }
 
 func SendInput(cInputs uint32, pInputs *INPUT, cbSize int32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pSendInput, libUser32, "SendInput")
+	addr := LazyAddr(&pSendInput, libUser32, "SendInput")
 	ret, _, err := syscall.SyscallN(addr, uintptr(cInputs), uintptr(unsafe.Pointer(pInputs)), uintptr(cbSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetLastInputInfo(plii *LASTINPUTINFO) BOOL {
-	addr := lazyAddr(&pGetLastInputInfo, libUser32, "GetLastInputInfo")
+	addr := LazyAddr(&pGetLastInputInfo, libUser32, "GetLastInputInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plii)))
 	return BOOL(ret)
 }
 
 func MapVirtualKeyA(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE) uint32 {
-	addr := lazyAddr(&pMapVirtualKeyA, libUser32, "MapVirtualKeyA")
+	addr := LazyAddr(&pMapVirtualKeyA, libUser32, "MapVirtualKeyA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType))
 	return uint32(ret)
 }
@@ -1070,13 +1070,13 @@ func MapVirtualKeyA(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE) uint32 {
 var MapVirtualKey = MapVirtualKeyW
 
 func MapVirtualKeyW(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE) uint32 {
-	addr := lazyAddr(&pMapVirtualKeyW, libUser32, "MapVirtualKeyW")
+	addr := LazyAddr(&pMapVirtualKeyW, libUser32, "MapVirtualKeyW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType))
 	return uint32(ret)
 }
 
 func MapVirtualKeyExA(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE, dwhkl unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pMapVirtualKeyExA, libUser32, "MapVirtualKeyExA")
+	addr := LazyAddr(&pMapVirtualKeyExA, libUser32, "MapVirtualKeyExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType), uintptr(dwhkl))
 	return uint32(ret)
 }
@@ -1084,55 +1084,55 @@ func MapVirtualKeyExA(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE, dwhkl unsafe.
 var MapVirtualKeyEx = MapVirtualKeyExW
 
 func MapVirtualKeyExW(uCode uint32, uMapType MAP_VIRTUAL_KEY_TYPE, dwhkl unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pMapVirtualKeyExW, libUser32, "MapVirtualKeyExW")
+	addr := LazyAddr(&pMapVirtualKeyExW, libUser32, "MapVirtualKeyExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uCode), uintptr(uMapType), uintptr(dwhkl))
 	return uint32(ret)
 }
 
 func GetCapture() HWND {
-	addr := lazyAddr(&pGetCapture, libUser32, "GetCapture")
+	addr := LazyAddr(&pGetCapture, libUser32, "GetCapture")
 	ret, _, _ := syscall.SyscallN(addr)
 	return ret
 }
 
 func SetCapture(hWnd HWND) HWND {
-	addr := lazyAddr(&pSetCapture, libUser32, "SetCapture")
+	addr := LazyAddr(&pSetCapture, libUser32, "SetCapture")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return ret
 }
 
 func ReleaseCapture() (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pReleaseCapture, libUser32, "ReleaseCapture")
+	addr := LazyAddr(&pReleaseCapture, libUser32, "ReleaseCapture")
 	ret, _, err := syscall.SyscallN(addr)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnableWindow(hWnd HWND, bEnable BOOL) BOOL {
-	addr := lazyAddr(&pEnableWindow, libUser32, "EnableWindow")
+	addr := LazyAddr(&pEnableWindow, libUser32, "EnableWindow")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(bEnable))
 	return BOOL(ret)
 }
 
 func IsWindowEnabled(hWnd HWND) BOOL {
-	addr := lazyAddr(&pIsWindowEnabled, libUser32, "IsWindowEnabled")
+	addr := LazyAddr(&pIsWindowEnabled, libUser32, "IsWindowEnabled")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func DragDetect(hwnd HWND, pt POINT) BOOL {
-	addr := lazyAddr(&pDragDetect, libUser32, "DragDetect")
+	addr := LazyAddr(&pDragDetect, libUser32, "DragDetect")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, *(*uintptr)(unsafe.Pointer(&pt)))
 	return BOOL(ret)
 }
 
 func SetActiveWindow(hWnd HWND) (HWND, WIN32_ERROR) {
-	addr := lazyAddr(&pSetActiveWindow, libUser32, "SetActiveWindow")
+	addr := LazyAddr(&pSetActiveWindow, libUser32, "SetActiveWindow")
 	ret, _, err := syscall.SyscallN(addr, hWnd)
 	return ret, WIN32_ERROR(err)
 }
 
 func BlockInput(fBlockIt BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pBlockInput, libUser32, "BlockInput")
+	addr := LazyAddr(&pBlockInput, libUser32, "BlockInput")
 	ret, _, err := syscall.SyscallN(addr, uintptr(fBlockIt))
 	return BOOL(ret), WIN32_ERROR(err)
 }

@@ -1638,67 +1638,67 @@ var (
 )
 
 func SHGetPropertyStoreFromIDList(pidl *ITEMIDLIST, flags GETPROPERTYSTOREFLAGS, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetPropertyStoreFromIDList, libShell32, "SHGetPropertyStoreFromIDList")
+	addr := LazyAddr(&pSHGetPropertyStoreFromIDList, libShell32, "SHGetPropertyStoreFromIDList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(flags), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHGetPropertyStoreFromParsingName(pszPath PWSTR, pbc *IBindCtx, flags GETPROPERTYSTOREFLAGS, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetPropertyStoreFromParsingName, libShell32, "SHGetPropertyStoreFromParsingName")
+	addr := LazyAddr(&pSHGetPropertyStoreFromParsingName, libShell32, "SHGetPropertyStoreFromParsingName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(pbc)), uintptr(flags), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
 func SHAddDefaultPropertiesByExt(pszExt PWSTR, pPropStore *IPropertyStore) HRESULT {
-	addr := lazyAddr(&pSHAddDefaultPropertiesByExt, libShell32, "SHAddDefaultPropertiesByExt")
+	addr := LazyAddr(&pSHAddDefaultPropertiesByExt, libShell32, "SHAddDefaultPropertiesByExt")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszExt)), uintptr(unsafe.Pointer(pPropStore)))
 	return HRESULT(ret)
 }
 
 func PifMgr_OpenProperties(pszApp PWSTR, pszPIF PWSTR, hInf uint32, flOpt uint32) HANDLE {
-	addr := lazyAddr(&pPifMgr_OpenProperties, libShell32, "PifMgr_OpenProperties")
+	addr := LazyAddr(&pPifMgr_OpenProperties, libShell32, "PifMgr_OpenProperties")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszApp)), uintptr(unsafe.Pointer(pszPIF)), uintptr(hInf), uintptr(flOpt))
 	return ret
 }
 
 func PifMgr_GetProperties(hProps HANDLE, pszGroup PSTR, lpProps unsafe.Pointer, cbProps int32, flOpt uint32) int32 {
-	addr := lazyAddr(&pPifMgr_GetProperties, libShell32, "PifMgr_GetProperties")
+	addr := LazyAddr(&pPifMgr_GetProperties, libShell32, "PifMgr_GetProperties")
 	ret, _, _ := syscall.SyscallN(addr, hProps, uintptr(unsafe.Pointer(pszGroup)), uintptr(lpProps), uintptr(cbProps), uintptr(flOpt))
 	return int32(ret)
 }
 
 func PifMgr_SetProperties(hProps HANDLE, pszGroup PSTR, lpProps unsafe.Pointer, cbProps int32, flOpt uint32) int32 {
-	addr := lazyAddr(&pPifMgr_SetProperties, libShell32, "PifMgr_SetProperties")
+	addr := LazyAddr(&pPifMgr_SetProperties, libShell32, "PifMgr_SetProperties")
 	ret, _, _ := syscall.SyscallN(addr, hProps, uintptr(unsafe.Pointer(pszGroup)), uintptr(lpProps), uintptr(cbProps), uintptr(flOpt))
 	return int32(ret)
 }
 
 func PifMgr_CloseProperties(hProps HANDLE, flOpt uint32) HANDLE {
-	addr := lazyAddr(&pPifMgr_CloseProperties, libShell32, "PifMgr_CloseProperties")
+	addr := LazyAddr(&pPifMgr_CloseProperties, libShell32, "PifMgr_CloseProperties")
 	ret, _, _ := syscall.SyscallN(addr, hProps, uintptr(flOpt))
 	return ret
 }
 
 func SHPropStgCreate(psstg *IPropertySetStorage, fmtid *syscall.GUID, pclsid *syscall.GUID, grfFlags uint32, grfMode uint32, dwDisposition uint32, ppstg **IPropertyStorage, puCodePage *uint32) HRESULT {
-	addr := lazyAddr(&pSHPropStgCreate, libShell32, "SHPropStgCreate")
+	addr := LazyAddr(&pSHPropStgCreate, libShell32, "SHPropStgCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psstg)), uintptr(unsafe.Pointer(fmtid)), uintptr(unsafe.Pointer(pclsid)), uintptr(grfFlags), uintptr(grfMode), uintptr(dwDisposition), uintptr(unsafe.Pointer(ppstg)), uintptr(unsafe.Pointer(puCodePage)))
 	return HRESULT(ret)
 }
 
 func SHPropStgReadMultiple(pps *IPropertyStorage, uCodePage uint32, cpspec uint32, rgpspec *PROPSPEC, rgvar *PROPVARIANT) HRESULT {
-	addr := lazyAddr(&pSHPropStgReadMultiple, libShell32, "SHPropStgReadMultiple")
+	addr := LazyAddr(&pSHPropStgReadMultiple, libShell32, "SHPropStgReadMultiple")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pps)), uintptr(uCodePage), uintptr(cpspec), uintptr(unsafe.Pointer(rgpspec)), uintptr(unsafe.Pointer(rgvar)))
 	return HRESULT(ret)
 }
 
 func SHPropStgWriteMultiple(pps *IPropertyStorage, puCodePage *uint32, cpspec uint32, rgpspec *PROPSPEC, rgvar *PROPVARIANT, propidNameFirst uint32) HRESULT {
-	addr := lazyAddr(&pSHPropStgWriteMultiple, libShell32, "SHPropStgWriteMultiple")
+	addr := LazyAddr(&pSHPropStgWriteMultiple, libShell32, "SHPropStgWriteMultiple")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pps)), uintptr(unsafe.Pointer(puCodePage)), uintptr(cpspec), uintptr(unsafe.Pointer(rgpspec)), uintptr(unsafe.Pointer(rgvar)), uintptr(propidNameFirst))
 	return HRESULT(ret)
 }
 
 func SHGetPropertyStoreForWindow(hwnd HWND, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSHGetPropertyStoreForWindow, libShell32, "SHGetPropertyStoreForWindow")
+	addr := LazyAddr(&pSHGetPropertyStoreForWindow, libShell32, "SHGetPropertyStoreForWindow")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }

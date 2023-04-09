@@ -1012,79 +1012,79 @@ var (
 )
 
 func RegisterPowerSettingNotification(hRecipient HANDLE, PowerSettingGuid *syscall.GUID, Flags uint32) (HPOWERNOTIFY, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterPowerSettingNotification, libUser32, "RegisterPowerSettingNotification")
+	addr := LazyAddr(&pRegisterPowerSettingNotification, libUser32, "RegisterPowerSettingNotification")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(unsafe.Pointer(PowerSettingGuid)), uintptr(Flags))
 	return ret, WIN32_ERROR(err)
 }
 
 func UnregisterPowerSettingNotification(Handle HPOWERNOTIFY) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterPowerSettingNotification, libUser32, "UnregisterPowerSettingNotification")
+	addr := LazyAddr(&pUnregisterPowerSettingNotification, libUser32, "UnregisterPowerSettingNotification")
 	ret, _, err := syscall.SyscallN(addr, Handle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RegisterSuspendResumeNotification(hRecipient HANDLE, Flags uint32) (HPOWERNOTIFY, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterSuspendResumeNotification, libUser32, "RegisterSuspendResumeNotification")
+	addr := LazyAddr(&pRegisterSuspendResumeNotification, libUser32, "RegisterSuspendResumeNotification")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(Flags))
 	return ret, WIN32_ERROR(err)
 }
 
 func UnregisterSuspendResumeNotification(Handle HPOWERNOTIFY) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterSuspendResumeNotification, libUser32, "UnregisterSuspendResumeNotification")
+	addr := LazyAddr(&pUnregisterSuspendResumeNotification, libUser32, "UnregisterSuspendResumeNotification")
 	ret, _, err := syscall.SyscallN(addr, Handle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RequestWakeupLatency(latency LATENCY_TIME) BOOL {
-	addr := lazyAddr(&pRequestWakeupLatency, libKernel32, "RequestWakeupLatency")
+	addr := LazyAddr(&pRequestWakeupLatency, libKernel32, "RequestWakeupLatency")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(latency))
 	return BOOL(ret)
 }
 
 func IsSystemResumeAutomatic() BOOL {
-	addr := lazyAddr(&pIsSystemResumeAutomatic, libKernel32, "IsSystemResumeAutomatic")
+	addr := LazyAddr(&pIsSystemResumeAutomatic, libKernel32, "IsSystemResumeAutomatic")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func SetThreadExecutionState(esFlags EXECUTION_STATE) EXECUTION_STATE {
-	addr := lazyAddr(&pSetThreadExecutionState, libKernel32, "SetThreadExecutionState")
+	addr := LazyAddr(&pSetThreadExecutionState, libKernel32, "SetThreadExecutionState")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(esFlags))
 	return EXECUTION_STATE(ret)
 }
 
 func PowerCreateRequest(Context *REASON_CONTEXT) (HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pPowerCreateRequest, libKernel32, "PowerCreateRequest")
+	addr := LazyAddr(&pPowerCreateRequest, libKernel32, "PowerCreateRequest")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Context)))
 	return ret, WIN32_ERROR(err)
 }
 
 func PowerSetRequest(PowerRequest HANDLE, RequestType POWER_REQUEST_TYPE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPowerSetRequest, libKernel32, "PowerSetRequest")
+	addr := LazyAddr(&pPowerSetRequest, libKernel32, "PowerSetRequest")
 	ret, _, err := syscall.SyscallN(addr, PowerRequest, uintptr(RequestType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func PowerClearRequest(PowerRequest HANDLE, RequestType POWER_REQUEST_TYPE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pPowerClearRequest, libKernel32, "PowerClearRequest")
+	addr := LazyAddr(&pPowerClearRequest, libKernel32, "PowerClearRequest")
 	ret, _, err := syscall.SyscallN(addr, PowerRequest, uintptr(RequestType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetDevicePowerState(hDevice HANDLE, pfOn *BOOL) BOOL {
-	addr := lazyAddr(&pGetDevicePowerState, libKernel32, "GetDevicePowerState")
+	addr := LazyAddr(&pGetDevicePowerState, libKernel32, "GetDevicePowerState")
 	ret, _, _ := syscall.SyscallN(addr, hDevice, uintptr(unsafe.Pointer(pfOn)))
 	return BOOL(ret)
 }
 
 func SetSystemPowerState(fSuspend BOOL, fForce BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetSystemPowerState, libKernel32, "SetSystemPowerState")
+	addr := LazyAddr(&pSetSystemPowerState, libKernel32, "SetSystemPowerState")
 	ret, _, err := syscall.SyscallN(addr, uintptr(fSuspend), uintptr(fForce))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetSystemPowerStatus(lpSystemPowerStatus *SYSTEM_POWER_STATUS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetSystemPowerStatus, libKernel32, "GetSystemPowerStatus")
+	addr := LazyAddr(&pGetSystemPowerStatus, libKernel32, "GetSystemPowerStatus")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemPowerStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }

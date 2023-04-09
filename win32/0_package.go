@@ -30,7 +30,7 @@ var (
 		"api-ms-win-core-winrt-l1-1-0.dll")
 )
 
-func lazyAddr(pAddr *uintptr, lib *windows.LazyDLL, procName string) uintptr {
+func LazyAddr(pAddr *uintptr, lib *windows.LazyDLL, procName string) uintptr {
 	addr := atomic.LoadUintptr(pAddr)
 	if addr == 0 {
 		addr = lib.NewProc(procName).Addr()

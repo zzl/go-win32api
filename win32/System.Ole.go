@@ -8166,2567 +8166,2567 @@ var (
 )
 
 func DosDateTimeToVariantTime(wDosDate uint16, wDosTime uint16, pvtime *float64) int32 {
-	addr := lazyAddr(&pDosDateTimeToVariantTime, libOleaut32, "DosDateTimeToVariantTime")
+	addr := LazyAddr(&pDosDateTimeToVariantTime, libOleaut32, "DosDateTimeToVariantTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(wDosDate), uintptr(wDosTime), uintptr(unsafe.Pointer(pvtime)))
 	return int32(ret)
 }
 
 func VariantTimeToDosDateTime(vtime float64, pwDosDate *uint16, pwDosTime *uint16) int32 {
-	addr := lazyAddr(&pVariantTimeToDosDateTime, libOleaut32, "VariantTimeToDosDateTime")
+	addr := LazyAddr(&pVariantTimeToDosDateTime, libOleaut32, "VariantTimeToDosDateTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vtime), uintptr(unsafe.Pointer(pwDosDate)), uintptr(unsafe.Pointer(pwDosTime)))
 	return int32(ret)
 }
 
 func SystemTimeToVariantTime(lpSystemTime *SYSTEMTIME, pvtime *float64) int32 {
-	addr := lazyAddr(&pSystemTimeToVariantTime, libOleaut32, "SystemTimeToVariantTime")
+	addr := LazyAddr(&pSystemTimeToVariantTime, libOleaut32, "SystemTimeToVariantTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSystemTime)), uintptr(unsafe.Pointer(pvtime)))
 	return int32(ret)
 }
 
 func VariantTimeToSystemTime(vtime float64, lpSystemTime *SYSTEMTIME) int32 {
-	addr := lazyAddr(&pVariantTimeToSystemTime, libOleaut32, "VariantTimeToSystemTime")
+	addr := LazyAddr(&pVariantTimeToSystemTime, libOleaut32, "VariantTimeToSystemTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vtime), uintptr(unsafe.Pointer(lpSystemTime)))
 	return int32(ret)
 }
 
 func SafeArrayAllocDescriptor(cDims uint32, ppsaOut **SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayAllocDescriptor, libOleaut32, "SafeArrayAllocDescriptor")
+	addr := LazyAddr(&pSafeArrayAllocDescriptor, libOleaut32, "SafeArrayAllocDescriptor")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cDims), uintptr(unsafe.Pointer(ppsaOut)))
 	return HRESULT(ret)
 }
 
 func SafeArrayAllocDescriptorEx(vt VARENUM, cDims uint32, ppsaOut **SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayAllocDescriptorEx, libOleaut32, "SafeArrayAllocDescriptorEx")
+	addr := LazyAddr(&pSafeArrayAllocDescriptorEx, libOleaut32, "SafeArrayAllocDescriptorEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(cDims), uintptr(unsafe.Pointer(ppsaOut)))
 	return HRESULT(ret)
 }
 
 func SafeArrayAllocData(psa *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayAllocData, libOleaut32, "SafeArrayAllocData")
+	addr := LazyAddr(&pSafeArrayAllocData, libOleaut32, "SafeArrayAllocData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return HRESULT(ret)
 }
 
 func SafeArrayCreate(vt VARENUM, cDims uint32, rgsabound *SAFEARRAYBOUND) *SAFEARRAY {
-	addr := lazyAddr(&pSafeArrayCreate, libOleaut32, "SafeArrayCreate")
+	addr := LazyAddr(&pSafeArrayCreate, libOleaut32, "SafeArrayCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(cDims), uintptr(unsafe.Pointer(rgsabound)))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
 }
 
 func SafeArrayCreateEx(vt VARENUM, cDims uint32, rgsabound *SAFEARRAYBOUND, pvExtra unsafe.Pointer) *SAFEARRAY {
-	addr := lazyAddr(&pSafeArrayCreateEx, libOleaut32, "SafeArrayCreateEx")
+	addr := LazyAddr(&pSafeArrayCreateEx, libOleaut32, "SafeArrayCreateEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(cDims), uintptr(unsafe.Pointer(rgsabound)), uintptr(pvExtra))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
 }
 
 func SafeArrayCopyData(psaSource *SAFEARRAY, psaTarget *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayCopyData, libOleaut32, "SafeArrayCopyData")
+	addr := LazyAddr(&pSafeArrayCopyData, libOleaut32, "SafeArrayCopyData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psaSource)), uintptr(unsafe.Pointer(psaTarget)))
 	return HRESULT(ret)
 }
 
 func SafeArrayReleaseDescriptor(psa *SAFEARRAY) {
-	addr := lazyAddr(&pSafeArrayReleaseDescriptor, libOleaut32, "SafeArrayReleaseDescriptor")
+	addr := LazyAddr(&pSafeArrayReleaseDescriptor, libOleaut32, "SafeArrayReleaseDescriptor")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 }
 
 func SafeArrayDestroyDescriptor(psa *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayDestroyDescriptor, libOleaut32, "SafeArrayDestroyDescriptor")
+	addr := LazyAddr(&pSafeArrayDestroyDescriptor, libOleaut32, "SafeArrayDestroyDescriptor")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return HRESULT(ret)
 }
 
 func SafeArrayReleaseData(pData unsafe.Pointer) {
-	addr := lazyAddr(&pSafeArrayReleaseData, libOleaut32, "SafeArrayReleaseData")
+	addr := LazyAddr(&pSafeArrayReleaseData, libOleaut32, "SafeArrayReleaseData")
 	syscall.SyscallN(addr, uintptr(pData))
 }
 
 func SafeArrayDestroyData(psa *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayDestroyData, libOleaut32, "SafeArrayDestroyData")
+	addr := LazyAddr(&pSafeArrayDestroyData, libOleaut32, "SafeArrayDestroyData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return HRESULT(ret)
 }
 
 func SafeArrayAddRef(psa *SAFEARRAY, ppDataToRelease unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSafeArrayAddRef, libOleaut32, "SafeArrayAddRef")
+	addr := LazyAddr(&pSafeArrayAddRef, libOleaut32, "SafeArrayAddRef")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(ppDataToRelease))
 	return HRESULT(ret)
 }
 
 func SafeArrayDestroy(psa *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayDestroy, libOleaut32, "SafeArrayDestroy")
+	addr := LazyAddr(&pSafeArrayDestroy, libOleaut32, "SafeArrayDestroy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return HRESULT(ret)
 }
 
 func SafeArrayRedim(psa *SAFEARRAY, psaboundNew *SAFEARRAYBOUND) HRESULT {
-	addr := lazyAddr(&pSafeArrayRedim, libOleaut32, "SafeArrayRedim")
+	addr := LazyAddr(&pSafeArrayRedim, libOleaut32, "SafeArrayRedim")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(psaboundNew)))
 	return HRESULT(ret)
 }
 
 func SafeArrayGetDim(psa *SAFEARRAY) uint32 {
-	addr := lazyAddr(&pSafeArrayGetDim, libOleaut32, "SafeArrayGetDim")
+	addr := LazyAddr(&pSafeArrayGetDim, libOleaut32, "SafeArrayGetDim")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return uint32(ret)
 }
 
 func SafeArrayGetElemsize(psa *SAFEARRAY) uint32 {
-	addr := lazyAddr(&pSafeArrayGetElemsize, libOleaut32, "SafeArrayGetElemsize")
+	addr := LazyAddr(&pSafeArrayGetElemsize, libOleaut32, "SafeArrayGetElemsize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return uint32(ret)
 }
 
 func SafeArrayGetUBound(psa *SAFEARRAY, nDim uint32, plUbound *int32) HRESULT {
-	addr := lazyAddr(&pSafeArrayGetUBound, libOleaut32, "SafeArrayGetUBound")
+	addr := LazyAddr(&pSafeArrayGetUBound, libOleaut32, "SafeArrayGetUBound")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(nDim), uintptr(unsafe.Pointer(plUbound)))
 	return HRESULT(ret)
 }
 
 func SafeArrayGetLBound(psa *SAFEARRAY, nDim uint32, plLbound *int32) HRESULT {
-	addr := lazyAddr(&pSafeArrayGetLBound, libOleaut32, "SafeArrayGetLBound")
+	addr := LazyAddr(&pSafeArrayGetLBound, libOleaut32, "SafeArrayGetLBound")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(nDim), uintptr(unsafe.Pointer(plLbound)))
 	return HRESULT(ret)
 }
 
 func SafeArrayLock(psa *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayLock, libOleaut32, "SafeArrayLock")
+	addr := LazyAddr(&pSafeArrayLock, libOleaut32, "SafeArrayLock")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return HRESULT(ret)
 }
 
 func SafeArrayUnlock(psa *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayUnlock, libOleaut32, "SafeArrayUnlock")
+	addr := LazyAddr(&pSafeArrayUnlock, libOleaut32, "SafeArrayUnlock")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return HRESULT(ret)
 }
 
 func SafeArrayAccessData(psa *SAFEARRAY, ppvData unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSafeArrayAccessData, libOleaut32, "SafeArrayAccessData")
+	addr := LazyAddr(&pSafeArrayAccessData, libOleaut32, "SafeArrayAccessData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(ppvData))
 	return HRESULT(ret)
 }
 
 func SafeArrayUnaccessData(psa *SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayUnaccessData, libOleaut32, "SafeArrayUnaccessData")
+	addr := LazyAddr(&pSafeArrayUnaccessData, libOleaut32, "SafeArrayUnaccessData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)))
 	return HRESULT(ret)
 }
 
 func SafeArrayGetElement(psa *SAFEARRAY, rgIndices *int32, pv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSafeArrayGetElement, libOleaut32, "SafeArrayGetElement")
+	addr := LazyAddr(&pSafeArrayGetElement, libOleaut32, "SafeArrayGetElement")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(rgIndices)), uintptr(pv))
 	return HRESULT(ret)
 }
 
 func SafeArrayPutElement(psa *SAFEARRAY, rgIndices *int32, pv unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSafeArrayPutElement, libOleaut32, "SafeArrayPutElement")
+	addr := LazyAddr(&pSafeArrayPutElement, libOleaut32, "SafeArrayPutElement")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(rgIndices)), uintptr(pv))
 	return HRESULT(ret)
 }
 
 func SafeArrayCopy(psa *SAFEARRAY, ppsaOut **SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pSafeArrayCopy, libOleaut32, "SafeArrayCopy")
+	addr := LazyAddr(&pSafeArrayCopy, libOleaut32, "SafeArrayCopy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(ppsaOut)))
 	return HRESULT(ret)
 }
 
 func SafeArrayPtrOfIndex(psa *SAFEARRAY, rgIndices *int32, ppvData unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pSafeArrayPtrOfIndex, libOleaut32, "SafeArrayPtrOfIndex")
+	addr := LazyAddr(&pSafeArrayPtrOfIndex, libOleaut32, "SafeArrayPtrOfIndex")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(rgIndices)), uintptr(ppvData))
 	return HRESULT(ret)
 }
 
 func SafeArraySetRecordInfo(psa *SAFEARRAY, prinfo *IRecordInfo) HRESULT {
-	addr := lazyAddr(&pSafeArraySetRecordInfo, libOleaut32, "SafeArraySetRecordInfo")
+	addr := LazyAddr(&pSafeArraySetRecordInfo, libOleaut32, "SafeArraySetRecordInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(prinfo)))
 	return HRESULT(ret)
 }
 
 func SafeArrayGetRecordInfo(psa *SAFEARRAY, prinfo **IRecordInfo) HRESULT {
-	addr := lazyAddr(&pSafeArrayGetRecordInfo, libOleaut32, "SafeArrayGetRecordInfo")
+	addr := LazyAddr(&pSafeArrayGetRecordInfo, libOleaut32, "SafeArrayGetRecordInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(prinfo)))
 	return HRESULT(ret)
 }
 
 func SafeArraySetIID(psa *SAFEARRAY, guid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pSafeArraySetIID, libOleaut32, "SafeArraySetIID")
+	addr := LazyAddr(&pSafeArraySetIID, libOleaut32, "SafeArraySetIID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(guid)))
 	return HRESULT(ret)
 }
 
 func SafeArrayGetIID(psa *SAFEARRAY, pguid *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pSafeArrayGetIID, libOleaut32, "SafeArrayGetIID")
+	addr := LazyAddr(&pSafeArrayGetIID, libOleaut32, "SafeArrayGetIID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(pguid)))
 	return HRESULT(ret)
 }
 
 func SafeArrayGetVartype(psa *SAFEARRAY, pvt *VARENUM) HRESULT {
-	addr := lazyAddr(&pSafeArrayGetVartype, libOleaut32, "SafeArrayGetVartype")
+	addr := LazyAddr(&pSafeArrayGetVartype, libOleaut32, "SafeArrayGetVartype")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(pvt)))
 	return HRESULT(ret)
 }
 
 func SafeArrayCreateVector(vt VARENUM, lLbound int32, cElements uint32) *SAFEARRAY {
-	addr := lazyAddr(&pSafeArrayCreateVector, libOleaut32, "SafeArrayCreateVector")
+	addr := LazyAddr(&pSafeArrayCreateVector, libOleaut32, "SafeArrayCreateVector")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(lLbound), uintptr(cElements))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
 }
 
 func SafeArrayCreateVectorEx(vt VARENUM, lLbound int32, cElements uint32, pvExtra unsafe.Pointer) *SAFEARRAY {
-	addr := lazyAddr(&pSafeArrayCreateVectorEx, libOleaut32, "SafeArrayCreateVectorEx")
+	addr := LazyAddr(&pSafeArrayCreateVectorEx, libOleaut32, "SafeArrayCreateVectorEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(vt), uintptr(lLbound), uintptr(cElements), uintptr(pvExtra))
 	return (*SAFEARRAY)(unsafe.Pointer(ret))
 }
 
 func VariantInit(pvarg *VARIANT) {
-	addr := lazyAddr(&pVariantInit, libOleaut32, "VariantInit")
+	addr := LazyAddr(&pVariantInit, libOleaut32, "VariantInit")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarg)))
 }
 
 func VariantClear(pvarg *VARIANT) HRESULT {
-	addr := lazyAddr(&pVariantClear, libOleaut32, "VariantClear")
+	addr := LazyAddr(&pVariantClear, libOleaut32, "VariantClear")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarg)))
 	return HRESULT(ret)
 }
 
 func VariantCopy(pvargDest *VARIANT, pvargSrc *VARIANT) HRESULT {
-	addr := lazyAddr(&pVariantCopy, libOleaut32, "VariantCopy")
+	addr := LazyAddr(&pVariantCopy, libOleaut32, "VariantCopy")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvargDest)), uintptr(unsafe.Pointer(pvargSrc)))
 	return HRESULT(ret)
 }
 
 func VariantCopyInd(pvarDest *VARIANT, pvargSrc *VARIANT) HRESULT {
-	addr := lazyAddr(&pVariantCopyInd, libOleaut32, "VariantCopyInd")
+	addr := LazyAddr(&pVariantCopyInd, libOleaut32, "VariantCopyInd")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarDest)), uintptr(unsafe.Pointer(pvargSrc)))
 	return HRESULT(ret)
 }
 
 func VariantChangeType(pvargDest *VARIANT, pvarSrc *VARIANT, wFlags uint16, vt VARENUM) HRESULT {
-	addr := lazyAddr(&pVariantChangeType, libOleaut32, "VariantChangeType")
+	addr := LazyAddr(&pVariantChangeType, libOleaut32, "VariantChangeType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvargDest)), uintptr(unsafe.Pointer(pvarSrc)), uintptr(wFlags), uintptr(vt))
 	return HRESULT(ret)
 }
 
 func VariantChangeTypeEx(pvargDest *VARIANT, pvarSrc *VARIANT, lcid uint32, wFlags uint16, vt VARENUM) HRESULT {
-	addr := lazyAddr(&pVariantChangeTypeEx, libOleaut32, "VariantChangeTypeEx")
+	addr := LazyAddr(&pVariantChangeTypeEx, libOleaut32, "VariantChangeTypeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvargDest)), uintptr(unsafe.Pointer(pvarSrc)), uintptr(lcid), uintptr(wFlags), uintptr(vt))
 	return HRESULT(ret)
 }
 
 func VectorFromBstr(bstr BSTR, ppsa **SAFEARRAY) HRESULT {
-	addr := lazyAddr(&pVectorFromBstr, libOleaut32, "VectorFromBstr")
+	addr := LazyAddr(&pVectorFromBstr, libOleaut32, "VectorFromBstr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstr)), uintptr(unsafe.Pointer(ppsa)))
 	return HRESULT(ret)
 }
 
 func BstrFromVector(psa *SAFEARRAY, pbstr *BSTR) HRESULT {
-	addr := lazyAddr(&pBstrFromVector, libOleaut32, "BstrFromVector")
+	addr := LazyAddr(&pBstrFromVector, libOleaut32, "BstrFromVector")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(psa)), uintptr(unsafe.Pointer(pbstr)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromI2(sIn int16, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromI2, libOleaut32, "VarUI1FromI2")
+	addr := LazyAddr(&pVarUI1FromI2, libOleaut32, "VarUI1FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromI4(lIn int32, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromI4, libOleaut32, "VarUI1FromI4")
+	addr := LazyAddr(&pVarUI1FromI4, libOleaut32, "VarUI1FromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromI8(i64In int64, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromI8, libOleaut32, "VarUI1FromI8")
+	addr := LazyAddr(&pVarUI1FromI8, libOleaut32, "VarUI1FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromR4(fltIn float32, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromR4, libOleaut32, "VarUI1FromR4")
+	addr := LazyAddr(&pVarUI1FromR4, libOleaut32, "VarUI1FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromR8(dblIn float64, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromR8, libOleaut32, "VarUI1FromR8")
+	addr := LazyAddr(&pVarUI1FromR8, libOleaut32, "VarUI1FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromCy(cyIn CY, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromCy, libOleaut32, "VarUI1FromCy")
+	addr := LazyAddr(&pVarUI1FromCy, libOleaut32, "VarUI1FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromDate(dateIn float64, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromDate, libOleaut32, "VarUI1FromDate")
+	addr := LazyAddr(&pVarUI1FromDate, libOleaut32, "VarUI1FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromStr, libOleaut32, "VarUI1FromStr")
+	addr := LazyAddr(&pVarUI1FromStr, libOleaut32, "VarUI1FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromDisp(pdispIn *IDispatch, lcid uint32, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromDisp, libOleaut32, "VarUI1FromDisp")
+	addr := LazyAddr(&pVarUI1FromDisp, libOleaut32, "VarUI1FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromBool(boolIn VARIANT_BOOL, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromBool, libOleaut32, "VarUI1FromBool")
+	addr := LazyAddr(&pVarUI1FromBool, libOleaut32, "VarUI1FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromI1(cIn CHAR, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromI1, libOleaut32, "VarUI1FromI1")
+	addr := LazyAddr(&pVarUI1FromI1, libOleaut32, "VarUI1FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromUI2(uiIn uint16, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromUI2, libOleaut32, "VarUI1FromUI2")
+	addr := LazyAddr(&pVarUI1FromUI2, libOleaut32, "VarUI1FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromUI4(ulIn uint32, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromUI4, libOleaut32, "VarUI1FromUI4")
+	addr := LazyAddr(&pVarUI1FromUI4, libOleaut32, "VarUI1FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromUI8(ui64In uint64, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromUI8, libOleaut32, "VarUI1FromUI8")
+	addr := LazyAddr(&pVarUI1FromUI8, libOleaut32, "VarUI1FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarUI1FromDec(pdecIn *DECIMAL, pbOut *byte) HRESULT {
-	addr := lazyAddr(&pVarUI1FromDec, libOleaut32, "VarUI1FromDec")
+	addr := LazyAddr(&pVarUI1FromDec, libOleaut32, "VarUI1FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pbOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromUI1(bIn byte, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromUI1, libOleaut32, "VarI2FromUI1")
+	addr := LazyAddr(&pVarI2FromUI1, libOleaut32, "VarI2FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromI4(lIn int32, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromI4, libOleaut32, "VarI2FromI4")
+	addr := LazyAddr(&pVarI2FromI4, libOleaut32, "VarI2FromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromI8(i64In int64, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromI8, libOleaut32, "VarI2FromI8")
+	addr := LazyAddr(&pVarI2FromI8, libOleaut32, "VarI2FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromR4(fltIn float32, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromR4, libOleaut32, "VarI2FromR4")
+	addr := LazyAddr(&pVarI2FromR4, libOleaut32, "VarI2FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromR8(dblIn float64, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromR8, libOleaut32, "VarI2FromR8")
+	addr := LazyAddr(&pVarI2FromR8, libOleaut32, "VarI2FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromCy(cyIn CY, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromCy, libOleaut32, "VarI2FromCy")
+	addr := LazyAddr(&pVarI2FromCy, libOleaut32, "VarI2FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromDate(dateIn float64, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromDate, libOleaut32, "VarI2FromDate")
+	addr := LazyAddr(&pVarI2FromDate, libOleaut32, "VarI2FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromStr, libOleaut32, "VarI2FromStr")
+	addr := LazyAddr(&pVarI2FromStr, libOleaut32, "VarI2FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromDisp(pdispIn *IDispatch, lcid uint32, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromDisp, libOleaut32, "VarI2FromDisp")
+	addr := LazyAddr(&pVarI2FromDisp, libOleaut32, "VarI2FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromBool(boolIn VARIANT_BOOL, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromBool, libOleaut32, "VarI2FromBool")
+	addr := LazyAddr(&pVarI2FromBool, libOleaut32, "VarI2FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromI1(cIn CHAR, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromI1, libOleaut32, "VarI2FromI1")
+	addr := LazyAddr(&pVarI2FromI1, libOleaut32, "VarI2FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromUI2(uiIn uint16, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromUI2, libOleaut32, "VarI2FromUI2")
+	addr := LazyAddr(&pVarI2FromUI2, libOleaut32, "VarI2FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromUI4(ulIn uint32, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromUI4, libOleaut32, "VarI2FromUI4")
+	addr := LazyAddr(&pVarI2FromUI4, libOleaut32, "VarI2FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromUI8(ui64In uint64, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromUI8, libOleaut32, "VarI2FromUI8")
+	addr := LazyAddr(&pVarI2FromUI8, libOleaut32, "VarI2FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI2FromDec(pdecIn *DECIMAL, psOut *int16) HRESULT {
-	addr := lazyAddr(&pVarI2FromDec, libOleaut32, "VarI2FromDec")
+	addr := LazyAddr(&pVarI2FromDec, libOleaut32, "VarI2FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(psOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromUI1(bIn byte, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromUI1, libOleaut32, "VarI4FromUI1")
+	addr := LazyAddr(&pVarI4FromUI1, libOleaut32, "VarI4FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromI2(sIn int16, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromI2, libOleaut32, "VarI4FromI2")
+	addr := LazyAddr(&pVarI4FromI2, libOleaut32, "VarI4FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromI8(i64In int64, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromI8, libOleaut32, "VarI4FromI8")
+	addr := LazyAddr(&pVarI4FromI8, libOleaut32, "VarI4FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromR4(fltIn float32, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromR4, libOleaut32, "VarI4FromR4")
+	addr := LazyAddr(&pVarI4FromR4, libOleaut32, "VarI4FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromR8(dblIn float64, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromR8, libOleaut32, "VarI4FromR8")
+	addr := LazyAddr(&pVarI4FromR8, libOleaut32, "VarI4FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromCy(cyIn CY, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromCy, libOleaut32, "VarI4FromCy")
+	addr := LazyAddr(&pVarI4FromCy, libOleaut32, "VarI4FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromDate(dateIn float64, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromDate, libOleaut32, "VarI4FromDate")
+	addr := LazyAddr(&pVarI4FromDate, libOleaut32, "VarI4FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromStr, libOleaut32, "VarI4FromStr")
+	addr := LazyAddr(&pVarI4FromStr, libOleaut32, "VarI4FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromDisp(pdispIn *IDispatch, lcid uint32, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromDisp, libOleaut32, "VarI4FromDisp")
+	addr := LazyAddr(&pVarI4FromDisp, libOleaut32, "VarI4FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromBool(boolIn VARIANT_BOOL, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromBool, libOleaut32, "VarI4FromBool")
+	addr := LazyAddr(&pVarI4FromBool, libOleaut32, "VarI4FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromI1(cIn CHAR, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromI1, libOleaut32, "VarI4FromI1")
+	addr := LazyAddr(&pVarI4FromI1, libOleaut32, "VarI4FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromUI2(uiIn uint16, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromUI2, libOleaut32, "VarI4FromUI2")
+	addr := LazyAddr(&pVarI4FromUI2, libOleaut32, "VarI4FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromUI4(ulIn uint32, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromUI4, libOleaut32, "VarI4FromUI4")
+	addr := LazyAddr(&pVarI4FromUI4, libOleaut32, "VarI4FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromUI8(ui64In uint64, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromUI8, libOleaut32, "VarI4FromUI8")
+	addr := LazyAddr(&pVarI4FromUI8, libOleaut32, "VarI4FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI4FromDec(pdecIn *DECIMAL, plOut *int32) HRESULT {
-	addr := lazyAddr(&pVarI4FromDec, libOleaut32, "VarI4FromDec")
+	addr := LazyAddr(&pVarI4FromDec, libOleaut32, "VarI4FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarI8FromUI1(bIn byte, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromUI1, libOleaut32, "VarI8FromUI1")
+	addr := LazyAddr(&pVarI8FromUI1, libOleaut32, "VarI8FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromI2(sIn int16, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromI2, libOleaut32, "VarI8FromI2")
+	addr := LazyAddr(&pVarI8FromI2, libOleaut32, "VarI8FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromR4(fltIn float32, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromR4, libOleaut32, "VarI8FromR4")
+	addr := LazyAddr(&pVarI8FromR4, libOleaut32, "VarI8FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromR8(dblIn float64, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromR8, libOleaut32, "VarI8FromR8")
+	addr := LazyAddr(&pVarI8FromR8, libOleaut32, "VarI8FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromCy(cyIn CY, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromCy, libOleaut32, "VarI8FromCy")
+	addr := LazyAddr(&pVarI8FromCy, libOleaut32, "VarI8FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromDate(dateIn float64, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromDate, libOleaut32, "VarI8FromDate")
+	addr := LazyAddr(&pVarI8FromDate, libOleaut32, "VarI8FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromStr, libOleaut32, "VarI8FromStr")
+	addr := LazyAddr(&pVarI8FromStr, libOleaut32, "VarI8FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromDisp(pdispIn *IDispatch, lcid uint32, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromDisp, libOleaut32, "VarI8FromDisp")
+	addr := LazyAddr(&pVarI8FromDisp, libOleaut32, "VarI8FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromBool(boolIn VARIANT_BOOL, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromBool, libOleaut32, "VarI8FromBool")
+	addr := LazyAddr(&pVarI8FromBool, libOleaut32, "VarI8FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromI1(cIn CHAR, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromI1, libOleaut32, "VarI8FromI1")
+	addr := LazyAddr(&pVarI8FromI1, libOleaut32, "VarI8FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromUI2(uiIn uint16, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromUI2, libOleaut32, "VarI8FromUI2")
+	addr := LazyAddr(&pVarI8FromUI2, libOleaut32, "VarI8FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromUI4(ulIn uint32, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromUI4, libOleaut32, "VarI8FromUI4")
+	addr := LazyAddr(&pVarI8FromUI4, libOleaut32, "VarI8FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromUI8(ui64In uint64, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromUI8, libOleaut32, "VarI8FromUI8")
+	addr := LazyAddr(&pVarI8FromUI8, libOleaut32, "VarI8FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarI8FromDec(pdecIn *DECIMAL, pi64Out *int64) HRESULT {
-	addr := lazyAddr(&pVarI8FromDec, libOleaut32, "VarI8FromDec")
+	addr := LazyAddr(&pVarI8FromDec, libOleaut32, "VarI8FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarR4FromUI1(bIn byte, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromUI1, libOleaut32, "VarR4FromUI1")
+	addr := LazyAddr(&pVarR4FromUI1, libOleaut32, "VarR4FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromI2(sIn int16, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromI2, libOleaut32, "VarR4FromI2")
+	addr := LazyAddr(&pVarR4FromI2, libOleaut32, "VarR4FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromI4(lIn int32, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromI4, libOleaut32, "VarR4FromI4")
+	addr := LazyAddr(&pVarR4FromI4, libOleaut32, "VarR4FromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromI8(i64In int64, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromI8, libOleaut32, "VarR4FromI8")
+	addr := LazyAddr(&pVarR4FromI8, libOleaut32, "VarR4FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromR8(dblIn float64, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromR8, libOleaut32, "VarR4FromR8")
+	addr := LazyAddr(&pVarR4FromR8, libOleaut32, "VarR4FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromCy(cyIn CY, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromCy, libOleaut32, "VarR4FromCy")
+	addr := LazyAddr(&pVarR4FromCy, libOleaut32, "VarR4FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromDate(dateIn float64, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromDate, libOleaut32, "VarR4FromDate")
+	addr := LazyAddr(&pVarR4FromDate, libOleaut32, "VarR4FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromStr, libOleaut32, "VarR4FromStr")
+	addr := LazyAddr(&pVarR4FromStr, libOleaut32, "VarR4FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromDisp(pdispIn *IDispatch, lcid uint32, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromDisp, libOleaut32, "VarR4FromDisp")
+	addr := LazyAddr(&pVarR4FromDisp, libOleaut32, "VarR4FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromBool(boolIn VARIANT_BOOL, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromBool, libOleaut32, "VarR4FromBool")
+	addr := LazyAddr(&pVarR4FromBool, libOleaut32, "VarR4FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromI1(cIn CHAR, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromI1, libOleaut32, "VarR4FromI1")
+	addr := LazyAddr(&pVarR4FromI1, libOleaut32, "VarR4FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromUI2(uiIn uint16, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromUI2, libOleaut32, "VarR4FromUI2")
+	addr := LazyAddr(&pVarR4FromUI2, libOleaut32, "VarR4FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromUI4(ulIn uint32, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromUI4, libOleaut32, "VarR4FromUI4")
+	addr := LazyAddr(&pVarR4FromUI4, libOleaut32, "VarR4FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromUI8(ui64In uint64, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromUI8, libOleaut32, "VarR4FromUI8")
+	addr := LazyAddr(&pVarR4FromUI8, libOleaut32, "VarR4FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR4FromDec(pdecIn *DECIMAL, pfltOut *float32) HRESULT {
-	addr := lazyAddr(&pVarR4FromDec, libOleaut32, "VarR4FromDec")
+	addr := LazyAddr(&pVarR4FromDec, libOleaut32, "VarR4FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pfltOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromUI1(bIn byte, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromUI1, libOleaut32, "VarR8FromUI1")
+	addr := LazyAddr(&pVarR8FromUI1, libOleaut32, "VarR8FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromI2(sIn int16, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromI2, libOleaut32, "VarR8FromI2")
+	addr := LazyAddr(&pVarR8FromI2, libOleaut32, "VarR8FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromI4(lIn int32, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromI4, libOleaut32, "VarR8FromI4")
+	addr := LazyAddr(&pVarR8FromI4, libOleaut32, "VarR8FromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromI8(i64In int64, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromI8, libOleaut32, "VarR8FromI8")
+	addr := LazyAddr(&pVarR8FromI8, libOleaut32, "VarR8FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromR4(fltIn float32, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromR4, libOleaut32, "VarR8FromR4")
+	addr := LazyAddr(&pVarR8FromR4, libOleaut32, "VarR8FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromCy(cyIn CY, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromCy, libOleaut32, "VarR8FromCy")
+	addr := LazyAddr(&pVarR8FromCy, libOleaut32, "VarR8FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromDate(dateIn float64, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromDate, libOleaut32, "VarR8FromDate")
+	addr := LazyAddr(&pVarR8FromDate, libOleaut32, "VarR8FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromStr, libOleaut32, "VarR8FromStr")
+	addr := LazyAddr(&pVarR8FromStr, libOleaut32, "VarR8FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromDisp(pdispIn *IDispatch, lcid uint32, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromDisp, libOleaut32, "VarR8FromDisp")
+	addr := LazyAddr(&pVarR8FromDisp, libOleaut32, "VarR8FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromBool(boolIn VARIANT_BOOL, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromBool, libOleaut32, "VarR8FromBool")
+	addr := LazyAddr(&pVarR8FromBool, libOleaut32, "VarR8FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromI1(cIn CHAR, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromI1, libOleaut32, "VarR8FromI1")
+	addr := LazyAddr(&pVarR8FromI1, libOleaut32, "VarR8FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromUI2(uiIn uint16, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromUI2, libOleaut32, "VarR8FromUI2")
+	addr := LazyAddr(&pVarR8FromUI2, libOleaut32, "VarR8FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromUI4(ulIn uint32, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromUI4, libOleaut32, "VarR8FromUI4")
+	addr := LazyAddr(&pVarR8FromUI4, libOleaut32, "VarR8FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromUI8(ui64In uint64, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromUI8, libOleaut32, "VarR8FromUI8")
+	addr := LazyAddr(&pVarR8FromUI8, libOleaut32, "VarR8FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarR8FromDec(pdecIn *DECIMAL, pdblOut *float64) HRESULT {
-	addr := lazyAddr(&pVarR8FromDec, libOleaut32, "VarR8FromDec")
+	addr := LazyAddr(&pVarR8FromDec, libOleaut32, "VarR8FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pdblOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromUI1(bIn byte, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromUI1, libOleaut32, "VarDateFromUI1")
+	addr := LazyAddr(&pVarDateFromUI1, libOleaut32, "VarDateFromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromI2(sIn int16, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromI2, libOleaut32, "VarDateFromI2")
+	addr := LazyAddr(&pVarDateFromI2, libOleaut32, "VarDateFromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromI4(lIn int32, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromI4, libOleaut32, "VarDateFromI4")
+	addr := LazyAddr(&pVarDateFromI4, libOleaut32, "VarDateFromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromI8(i64In int64, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromI8, libOleaut32, "VarDateFromI8")
+	addr := LazyAddr(&pVarDateFromI8, libOleaut32, "VarDateFromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromR4(fltIn float32, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromR4, libOleaut32, "VarDateFromR4")
+	addr := LazyAddr(&pVarDateFromR4, libOleaut32, "VarDateFromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromR8(dblIn float64, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromR8, libOleaut32, "VarDateFromR8")
+	addr := LazyAddr(&pVarDateFromR8, libOleaut32, "VarDateFromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromCy(cyIn CY, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromCy, libOleaut32, "VarDateFromCy")
+	addr := LazyAddr(&pVarDateFromCy, libOleaut32, "VarDateFromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromStr, libOleaut32, "VarDateFromStr")
+	addr := LazyAddr(&pVarDateFromStr, libOleaut32, "VarDateFromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromDisp(pdispIn *IDispatch, lcid uint32, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromDisp, libOleaut32, "VarDateFromDisp")
+	addr := LazyAddr(&pVarDateFromDisp, libOleaut32, "VarDateFromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromBool(boolIn VARIANT_BOOL, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromBool, libOleaut32, "VarDateFromBool")
+	addr := LazyAddr(&pVarDateFromBool, libOleaut32, "VarDateFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromI1(cIn CHAR, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromI1, libOleaut32, "VarDateFromI1")
+	addr := LazyAddr(&pVarDateFromI1, libOleaut32, "VarDateFromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromUI2(uiIn uint16, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromUI2, libOleaut32, "VarDateFromUI2")
+	addr := LazyAddr(&pVarDateFromUI2, libOleaut32, "VarDateFromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromUI4(ulIn uint32, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromUI4, libOleaut32, "VarDateFromUI4")
+	addr := LazyAddr(&pVarDateFromUI4, libOleaut32, "VarDateFromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromUI8(ui64In uint64, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromUI8, libOleaut32, "VarDateFromUI8")
+	addr := LazyAddr(&pVarDateFromUI8, libOleaut32, "VarDateFromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromDec(pdecIn *DECIMAL, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromDec, libOleaut32, "VarDateFromDec")
+	addr := LazyAddr(&pVarDateFromDec, libOleaut32, "VarDateFromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromUI1(bIn byte, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromUI1, libOleaut32, "VarCyFromUI1")
+	addr := LazyAddr(&pVarCyFromUI1, libOleaut32, "VarCyFromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromI2(sIn int16, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromI2, libOleaut32, "VarCyFromI2")
+	addr := LazyAddr(&pVarCyFromI2, libOleaut32, "VarCyFromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromI4(lIn int32, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromI4, libOleaut32, "VarCyFromI4")
+	addr := LazyAddr(&pVarCyFromI4, libOleaut32, "VarCyFromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromI8(i64In int64, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromI8, libOleaut32, "VarCyFromI8")
+	addr := LazyAddr(&pVarCyFromI8, libOleaut32, "VarCyFromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromR4(fltIn float32, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromR4, libOleaut32, "VarCyFromR4")
+	addr := LazyAddr(&pVarCyFromR4, libOleaut32, "VarCyFromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromR8(dblIn float64, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromR8, libOleaut32, "VarCyFromR8")
+	addr := LazyAddr(&pVarCyFromR8, libOleaut32, "VarCyFromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromDate(dateIn float64, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromDate, libOleaut32, "VarCyFromDate")
+	addr := LazyAddr(&pVarCyFromDate, libOleaut32, "VarCyFromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromStr, libOleaut32, "VarCyFromStr")
+	addr := LazyAddr(&pVarCyFromStr, libOleaut32, "VarCyFromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromDisp(pdispIn *IDispatch, lcid uint32, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromDisp, libOleaut32, "VarCyFromDisp")
+	addr := LazyAddr(&pVarCyFromDisp, libOleaut32, "VarCyFromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromBool(boolIn VARIANT_BOOL, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromBool, libOleaut32, "VarCyFromBool")
+	addr := LazyAddr(&pVarCyFromBool, libOleaut32, "VarCyFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromI1(cIn CHAR, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromI1, libOleaut32, "VarCyFromI1")
+	addr := LazyAddr(&pVarCyFromI1, libOleaut32, "VarCyFromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromUI2(uiIn uint16, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromUI2, libOleaut32, "VarCyFromUI2")
+	addr := LazyAddr(&pVarCyFromUI2, libOleaut32, "VarCyFromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromUI4(ulIn uint32, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromUI4, libOleaut32, "VarCyFromUI4")
+	addr := LazyAddr(&pVarCyFromUI4, libOleaut32, "VarCyFromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromUI8(ui64In uint64, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromUI8, libOleaut32, "VarCyFromUI8")
+	addr := LazyAddr(&pVarCyFromUI8, libOleaut32, "VarCyFromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarCyFromDec(pdecIn *DECIMAL, pcyOut *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFromDec, libOleaut32, "VarCyFromDec")
+	addr := LazyAddr(&pVarCyFromDec, libOleaut32, "VarCyFromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pcyOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromUI1(bVal byte, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromUI1, libOleaut32, "VarBstrFromUI1")
+	addr := LazyAddr(&pVarBstrFromUI1, libOleaut32, "VarBstrFromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bVal), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromI2(iVal int16, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromI2, libOleaut32, "VarBstrFromI2")
+	addr := LazyAddr(&pVarBstrFromI2, libOleaut32, "VarBstrFromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iVal), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromI4(lIn int32, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromI4, libOleaut32, "VarBstrFromI4")
+	addr := LazyAddr(&pVarBstrFromI4, libOleaut32, "VarBstrFromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromI8(i64In int64, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromI8, libOleaut32, "VarBstrFromI8")
+	addr := LazyAddr(&pVarBstrFromI8, libOleaut32, "VarBstrFromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromR4(fltIn float32, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromR4, libOleaut32, "VarBstrFromR4")
+	addr := LazyAddr(&pVarBstrFromR4, libOleaut32, "VarBstrFromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromR8(dblIn float64, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromR8, libOleaut32, "VarBstrFromR8")
+	addr := LazyAddr(&pVarBstrFromR8, libOleaut32, "VarBstrFromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromCy(cyIn CY, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromCy, libOleaut32, "VarBstrFromCy")
+	addr := LazyAddr(&pVarBstrFromCy, libOleaut32, "VarBstrFromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromDate(dateIn float64, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromDate, libOleaut32, "VarBstrFromDate")
+	addr := LazyAddr(&pVarBstrFromDate, libOleaut32, "VarBstrFromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromDisp(pdispIn *IDispatch, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromDisp, libOleaut32, "VarBstrFromDisp")
+	addr := LazyAddr(&pVarBstrFromDisp, libOleaut32, "VarBstrFromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromBool(boolIn VARIANT_BOOL, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromBool, libOleaut32, "VarBstrFromBool")
+	addr := LazyAddr(&pVarBstrFromBool, libOleaut32, "VarBstrFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromI1(cIn CHAR, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromI1, libOleaut32, "VarBstrFromI1")
+	addr := LazyAddr(&pVarBstrFromI1, libOleaut32, "VarBstrFromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromUI2(uiIn uint16, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromUI2, libOleaut32, "VarBstrFromUI2")
+	addr := LazyAddr(&pVarBstrFromUI2, libOleaut32, "VarBstrFromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromUI4(ulIn uint32, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromUI4, libOleaut32, "VarBstrFromUI4")
+	addr := LazyAddr(&pVarBstrFromUI4, libOleaut32, "VarBstrFromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromUI8(ui64In uint64, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromUI8, libOleaut32, "VarBstrFromUI8")
+	addr := LazyAddr(&pVarBstrFromUI8, libOleaut32, "VarBstrFromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBstrFromDec(pdecIn *DECIMAL, lcid uint32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarBstrFromDec, libOleaut32, "VarBstrFromDec")
+	addr := LazyAddr(&pVarBstrFromDec, libOleaut32, "VarBstrFromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromUI1(bIn byte, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromUI1, libOleaut32, "VarBoolFromUI1")
+	addr := LazyAddr(&pVarBoolFromUI1, libOleaut32, "VarBoolFromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromI2(sIn int16, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromI2, libOleaut32, "VarBoolFromI2")
+	addr := LazyAddr(&pVarBoolFromI2, libOleaut32, "VarBoolFromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromI4(lIn int32, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromI4, libOleaut32, "VarBoolFromI4")
+	addr := LazyAddr(&pVarBoolFromI4, libOleaut32, "VarBoolFromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromI8(i64In int64, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromI8, libOleaut32, "VarBoolFromI8")
+	addr := LazyAddr(&pVarBoolFromI8, libOleaut32, "VarBoolFromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromR4(fltIn float32, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromR4, libOleaut32, "VarBoolFromR4")
+	addr := LazyAddr(&pVarBoolFromR4, libOleaut32, "VarBoolFromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromR8(dblIn float64, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromR8, libOleaut32, "VarBoolFromR8")
+	addr := LazyAddr(&pVarBoolFromR8, libOleaut32, "VarBoolFromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromDate(dateIn float64, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromDate, libOleaut32, "VarBoolFromDate")
+	addr := LazyAddr(&pVarBoolFromDate, libOleaut32, "VarBoolFromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromCy(cyIn CY, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromCy, libOleaut32, "VarBoolFromCy")
+	addr := LazyAddr(&pVarBoolFromCy, libOleaut32, "VarBoolFromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromStr, libOleaut32, "VarBoolFromStr")
+	addr := LazyAddr(&pVarBoolFromStr, libOleaut32, "VarBoolFromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromDisp(pdispIn *IDispatch, lcid uint32, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromDisp, libOleaut32, "VarBoolFromDisp")
+	addr := LazyAddr(&pVarBoolFromDisp, libOleaut32, "VarBoolFromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromI1(cIn CHAR, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromI1, libOleaut32, "VarBoolFromI1")
+	addr := LazyAddr(&pVarBoolFromI1, libOleaut32, "VarBoolFromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromUI2(uiIn uint16, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromUI2, libOleaut32, "VarBoolFromUI2")
+	addr := LazyAddr(&pVarBoolFromUI2, libOleaut32, "VarBoolFromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromUI4(ulIn uint32, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromUI4, libOleaut32, "VarBoolFromUI4")
+	addr := LazyAddr(&pVarBoolFromUI4, libOleaut32, "VarBoolFromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromUI8(i64In uint64, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromUI8, libOleaut32, "VarBoolFromUI8")
+	addr := LazyAddr(&pVarBoolFromUI8, libOleaut32, "VarBoolFromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarBoolFromDec(pdecIn *DECIMAL, pboolOut *VARIANT_BOOL) HRESULT {
-	addr := lazyAddr(&pVarBoolFromDec, libOleaut32, "VarBoolFromDec")
+	addr := LazyAddr(&pVarBoolFromDec, libOleaut32, "VarBoolFromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pboolOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromUI1(bIn byte, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromUI1, libOleaut32, "VarI1FromUI1")
+	addr := LazyAddr(&pVarI1FromUI1, libOleaut32, "VarI1FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromI2(uiIn int16, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromI2, libOleaut32, "VarI1FromI2")
+	addr := LazyAddr(&pVarI1FromI2, libOleaut32, "VarI1FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromI4(lIn int32, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromI4, libOleaut32, "VarI1FromI4")
+	addr := LazyAddr(&pVarI1FromI4, libOleaut32, "VarI1FromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromI8(i64In int64, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromI8, libOleaut32, "VarI1FromI8")
+	addr := LazyAddr(&pVarI1FromI8, libOleaut32, "VarI1FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromR4(fltIn float32, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromR4, libOleaut32, "VarI1FromR4")
+	addr := LazyAddr(&pVarI1FromR4, libOleaut32, "VarI1FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromR8(dblIn float64, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromR8, libOleaut32, "VarI1FromR8")
+	addr := LazyAddr(&pVarI1FromR8, libOleaut32, "VarI1FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromDate(dateIn float64, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromDate, libOleaut32, "VarI1FromDate")
+	addr := LazyAddr(&pVarI1FromDate, libOleaut32, "VarI1FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromCy(cyIn CY, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromCy, libOleaut32, "VarI1FromCy")
+	addr := LazyAddr(&pVarI1FromCy, libOleaut32, "VarI1FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromStr, libOleaut32, "VarI1FromStr")
+	addr := LazyAddr(&pVarI1FromStr, libOleaut32, "VarI1FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromDisp(pdispIn *IDispatch, lcid uint32, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromDisp, libOleaut32, "VarI1FromDisp")
+	addr := LazyAddr(&pVarI1FromDisp, libOleaut32, "VarI1FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromBool(boolIn VARIANT_BOOL, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromBool, libOleaut32, "VarI1FromBool")
+	addr := LazyAddr(&pVarI1FromBool, libOleaut32, "VarI1FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromUI2(uiIn uint16, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromUI2, libOleaut32, "VarI1FromUI2")
+	addr := LazyAddr(&pVarI1FromUI2, libOleaut32, "VarI1FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromUI4(ulIn uint32, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromUI4, libOleaut32, "VarI1FromUI4")
+	addr := LazyAddr(&pVarI1FromUI4, libOleaut32, "VarI1FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromUI8(i64In uint64, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromUI8, libOleaut32, "VarI1FromUI8")
+	addr := LazyAddr(&pVarI1FromUI8, libOleaut32, "VarI1FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarI1FromDec(pdecIn *DECIMAL, pcOut PSTR) HRESULT {
-	addr := lazyAddr(&pVarI1FromDec, libOleaut32, "VarI1FromDec")
+	addr := LazyAddr(&pVarI1FromDec, libOleaut32, "VarI1FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pcOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromUI1(bIn byte, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromUI1, libOleaut32, "VarUI2FromUI1")
+	addr := LazyAddr(&pVarUI2FromUI1, libOleaut32, "VarUI2FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromI2(uiIn int16, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromI2, libOleaut32, "VarUI2FromI2")
+	addr := LazyAddr(&pVarUI2FromI2, libOleaut32, "VarUI2FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromI4(lIn int32, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromI4, libOleaut32, "VarUI2FromI4")
+	addr := LazyAddr(&pVarUI2FromI4, libOleaut32, "VarUI2FromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromI8(i64In int64, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromI8, libOleaut32, "VarUI2FromI8")
+	addr := LazyAddr(&pVarUI2FromI8, libOleaut32, "VarUI2FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromR4(fltIn float32, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromR4, libOleaut32, "VarUI2FromR4")
+	addr := LazyAddr(&pVarUI2FromR4, libOleaut32, "VarUI2FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromR8(dblIn float64, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromR8, libOleaut32, "VarUI2FromR8")
+	addr := LazyAddr(&pVarUI2FromR8, libOleaut32, "VarUI2FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromDate(dateIn float64, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromDate, libOleaut32, "VarUI2FromDate")
+	addr := LazyAddr(&pVarUI2FromDate, libOleaut32, "VarUI2FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromCy(cyIn CY, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromCy, libOleaut32, "VarUI2FromCy")
+	addr := LazyAddr(&pVarUI2FromCy, libOleaut32, "VarUI2FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromStr, libOleaut32, "VarUI2FromStr")
+	addr := LazyAddr(&pVarUI2FromStr, libOleaut32, "VarUI2FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromDisp(pdispIn *IDispatch, lcid uint32, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromDisp, libOleaut32, "VarUI2FromDisp")
+	addr := LazyAddr(&pVarUI2FromDisp, libOleaut32, "VarUI2FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromBool(boolIn VARIANT_BOOL, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromBool, libOleaut32, "VarUI2FromBool")
+	addr := LazyAddr(&pVarUI2FromBool, libOleaut32, "VarUI2FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromI1(cIn CHAR, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromI1, libOleaut32, "VarUI2FromI1")
+	addr := LazyAddr(&pVarUI2FromI1, libOleaut32, "VarUI2FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromUI4(ulIn uint32, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromUI4, libOleaut32, "VarUI2FromUI4")
+	addr := LazyAddr(&pVarUI2FromUI4, libOleaut32, "VarUI2FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromUI8(i64In uint64, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromUI8, libOleaut32, "VarUI2FromUI8")
+	addr := LazyAddr(&pVarUI2FromUI8, libOleaut32, "VarUI2FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI2FromDec(pdecIn *DECIMAL, puiOut *uint16) HRESULT {
-	addr := lazyAddr(&pVarUI2FromDec, libOleaut32, "VarUI2FromDec")
+	addr := LazyAddr(&pVarUI2FromDec, libOleaut32, "VarUI2FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(puiOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromUI1(bIn byte, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromUI1, libOleaut32, "VarUI4FromUI1")
+	addr := LazyAddr(&pVarUI4FromUI1, libOleaut32, "VarUI4FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromI2(uiIn int16, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromI2, libOleaut32, "VarUI4FromI2")
+	addr := LazyAddr(&pVarUI4FromI2, libOleaut32, "VarUI4FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromI4(lIn int32, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromI4, libOleaut32, "VarUI4FromI4")
+	addr := LazyAddr(&pVarUI4FromI4, libOleaut32, "VarUI4FromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromI8(i64In int64, plOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromI8, libOleaut32, "VarUI4FromI8")
+	addr := LazyAddr(&pVarUI4FromI8, libOleaut32, "VarUI4FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromR4(fltIn float32, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromR4, libOleaut32, "VarUI4FromR4")
+	addr := LazyAddr(&pVarUI4FromR4, libOleaut32, "VarUI4FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromR8(dblIn float64, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromR8, libOleaut32, "VarUI4FromR8")
+	addr := LazyAddr(&pVarUI4FromR8, libOleaut32, "VarUI4FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromDate(dateIn float64, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromDate, libOleaut32, "VarUI4FromDate")
+	addr := LazyAddr(&pVarUI4FromDate, libOleaut32, "VarUI4FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromCy(cyIn CY, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromCy, libOleaut32, "VarUI4FromCy")
+	addr := LazyAddr(&pVarUI4FromCy, libOleaut32, "VarUI4FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromStr, libOleaut32, "VarUI4FromStr")
+	addr := LazyAddr(&pVarUI4FromStr, libOleaut32, "VarUI4FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromDisp(pdispIn *IDispatch, lcid uint32, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromDisp, libOleaut32, "VarUI4FromDisp")
+	addr := LazyAddr(&pVarUI4FromDisp, libOleaut32, "VarUI4FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromBool(boolIn VARIANT_BOOL, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromBool, libOleaut32, "VarUI4FromBool")
+	addr := LazyAddr(&pVarUI4FromBool, libOleaut32, "VarUI4FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromI1(cIn CHAR, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromI1, libOleaut32, "VarUI4FromI1")
+	addr := LazyAddr(&pVarUI4FromI1, libOleaut32, "VarUI4FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromUI2(uiIn uint16, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromUI2, libOleaut32, "VarUI4FromUI2")
+	addr := LazyAddr(&pVarUI4FromUI2, libOleaut32, "VarUI4FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromUI8(ui64In uint64, plOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromUI8, libOleaut32, "VarUI4FromUI8")
+	addr := LazyAddr(&pVarUI4FromUI8, libOleaut32, "VarUI4FromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(plOut)))
 	return HRESULT(ret)
 }
 
 func VarUI4FromDec(pdecIn *DECIMAL, pulOut *uint32) HRESULT {
-	addr := lazyAddr(&pVarUI4FromDec, libOleaut32, "VarUI4FromDec")
+	addr := LazyAddr(&pVarUI4FromDec, libOleaut32, "VarUI4FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pulOut)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromUI1(bIn byte, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromUI1, libOleaut32, "VarUI8FromUI1")
+	addr := LazyAddr(&pVarUI8FromUI1, libOleaut32, "VarUI8FromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromI2(sIn int16, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromI2, libOleaut32, "VarUI8FromI2")
+	addr := LazyAddr(&pVarUI8FromI2, libOleaut32, "VarUI8FromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(sIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromI8(ui64In int64, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromI8, libOleaut32, "VarUI8FromI8")
+	addr := LazyAddr(&pVarUI8FromI8, libOleaut32, "VarUI8FromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromR4(fltIn float32, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromR4, libOleaut32, "VarUI8FromR4")
+	addr := LazyAddr(&pVarUI8FromR4, libOleaut32, "VarUI8FromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromR8(dblIn float64, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromR8, libOleaut32, "VarUI8FromR8")
+	addr := LazyAddr(&pVarUI8FromR8, libOleaut32, "VarUI8FromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromCy(cyIn CY, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromCy, libOleaut32, "VarUI8FromCy")
+	addr := LazyAddr(&pVarUI8FromCy, libOleaut32, "VarUI8FromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromDate(dateIn float64, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromDate, libOleaut32, "VarUI8FromDate")
+	addr := LazyAddr(&pVarUI8FromDate, libOleaut32, "VarUI8FromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromStr, libOleaut32, "VarUI8FromStr")
+	addr := LazyAddr(&pVarUI8FromStr, libOleaut32, "VarUI8FromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromDisp(pdispIn *IDispatch, lcid uint32, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromDisp, libOleaut32, "VarUI8FromDisp")
+	addr := LazyAddr(&pVarUI8FromDisp, libOleaut32, "VarUI8FromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromBool(boolIn VARIANT_BOOL, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromBool, libOleaut32, "VarUI8FromBool")
+	addr := LazyAddr(&pVarUI8FromBool, libOleaut32, "VarUI8FromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromI1(cIn CHAR, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromI1, libOleaut32, "VarUI8FromI1")
+	addr := LazyAddr(&pVarUI8FromI1, libOleaut32, "VarUI8FromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromUI2(uiIn uint16, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromUI2, libOleaut32, "VarUI8FromUI2")
+	addr := LazyAddr(&pVarUI8FromUI2, libOleaut32, "VarUI8FromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromUI4(ulIn uint32, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromUI4, libOleaut32, "VarUI8FromUI4")
+	addr := LazyAddr(&pVarUI8FromUI4, libOleaut32, "VarUI8FromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarUI8FromDec(pdecIn *DECIMAL, pi64Out *uint64) HRESULT {
-	addr := lazyAddr(&pVarUI8FromDec, libOleaut32, "VarUI8FromDec")
+	addr := LazyAddr(&pVarUI8FromDec, libOleaut32, "VarUI8FromDec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pi64Out)))
 	return HRESULT(ret)
 }
 
 func VarDecFromUI1(bIn byte, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromUI1, libOleaut32, "VarDecFromUI1")
+	addr := LazyAddr(&pVarDecFromUI1, libOleaut32, "VarDecFromUI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(bIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromI2(uiIn int16, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromI2, libOleaut32, "VarDecFromI2")
+	addr := LazyAddr(&pVarDecFromI2, libOleaut32, "VarDecFromI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromI4(lIn int32, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromI4, libOleaut32, "VarDecFromI4")
+	addr := LazyAddr(&pVarDecFromI4, libOleaut32, "VarDecFromI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromI8(i64In int64, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromI8, libOleaut32, "VarDecFromI8")
+	addr := LazyAddr(&pVarDecFromI8, libOleaut32, "VarDecFromI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i64In), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromR4(fltIn float32, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromR4, libOleaut32, "VarDecFromR4")
+	addr := LazyAddr(&pVarDecFromR4, libOleaut32, "VarDecFromR4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromR8(dblIn float64, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromR8, libOleaut32, "VarDecFromR8")
+	addr := LazyAddr(&pVarDecFromR8, libOleaut32, "VarDecFromR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromDate(dateIn float64, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromDate, libOleaut32, "VarDecFromDate")
+	addr := LazyAddr(&pVarDecFromDate, libOleaut32, "VarDecFromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromCy(cyIn CY, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromCy, libOleaut32, "VarDecFromCy")
+	addr := LazyAddr(&pVarDecFromCy, libOleaut32, "VarDecFromCy")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromStr, libOleaut32, "VarDecFromStr")
+	addr := LazyAddr(&pVarDecFromStr, libOleaut32, "VarDecFromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromDisp(pdispIn *IDispatch, lcid uint32, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromDisp, libOleaut32, "VarDecFromDisp")
+	addr := LazyAddr(&pVarDecFromDisp, libOleaut32, "VarDecFromDisp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispIn)), uintptr(lcid), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromBool(boolIn VARIANT_BOOL, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromBool, libOleaut32, "VarDecFromBool")
+	addr := LazyAddr(&pVarDecFromBool, libOleaut32, "VarDecFromBool")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(boolIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromI1(cIn CHAR, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromI1, libOleaut32, "VarDecFromI1")
+	addr := LazyAddr(&pVarDecFromI1, libOleaut32, "VarDecFromI1")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromUI2(uiIn uint16, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromUI2, libOleaut32, "VarDecFromUI2")
+	addr := LazyAddr(&pVarDecFromUI2, libOleaut32, "VarDecFromUI2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uiIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromUI4(ulIn uint32, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromUI4, libOleaut32, "VarDecFromUI4")
+	addr := LazyAddr(&pVarDecFromUI4, libOleaut32, "VarDecFromUI4")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ulIn), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarDecFromUI8(ui64In uint64, pdecOut *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFromUI8, libOleaut32, "VarDecFromUI8")
+	addr := LazyAddr(&pVarDecFromUI8, libOleaut32, "VarDecFromUI8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(ui64In), uintptr(unsafe.Pointer(pdecOut)))
 	return HRESULT(ret)
 }
 
 func VarParseNumFromStr(strIn PWSTR, lcid uint32, dwFlags uint32, pnumprs *NUMPARSE, rgbDig *byte) HRESULT {
-	addr := lazyAddr(&pVarParseNumFromStr, libOleaut32, "VarParseNumFromStr")
+	addr := LazyAddr(&pVarParseNumFromStr, libOleaut32, "VarParseNumFromStr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(strIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pnumprs)), uintptr(unsafe.Pointer(rgbDig)))
 	return HRESULT(ret)
 }
 
 func VarNumFromParseNum(pnumprs *NUMPARSE, rgbDig *byte, dwVtBits uint32, pvar *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarNumFromParseNum, libOleaut32, "VarNumFromParseNum")
+	addr := LazyAddr(&pVarNumFromParseNum, libOleaut32, "VarNumFromParseNum")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pnumprs)), uintptr(unsafe.Pointer(rgbDig)), uintptr(dwVtBits), uintptr(unsafe.Pointer(pvar)))
 	return HRESULT(ret)
 }
 
 func VarAdd(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarAdd, libOleaut32, "VarAdd")
+	addr := LazyAddr(&pVarAdd, libOleaut32, "VarAdd")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarAnd(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarAnd, libOleaut32, "VarAnd")
+	addr := LazyAddr(&pVarAnd, libOleaut32, "VarAnd")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarCat(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarCat, libOleaut32, "VarCat")
+	addr := LazyAddr(&pVarCat, libOleaut32, "VarCat")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarDiv(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarDiv, libOleaut32, "VarDiv")
+	addr := LazyAddr(&pVarDiv, libOleaut32, "VarDiv")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarEqv(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarEqv, libOleaut32, "VarEqv")
+	addr := LazyAddr(&pVarEqv, libOleaut32, "VarEqv")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarIdiv(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarIdiv, libOleaut32, "VarIdiv")
+	addr := LazyAddr(&pVarIdiv, libOleaut32, "VarIdiv")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarImp(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarImp, libOleaut32, "VarImp")
+	addr := LazyAddr(&pVarImp, libOleaut32, "VarImp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarMod(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarMod, libOleaut32, "VarMod")
+	addr := LazyAddr(&pVarMod, libOleaut32, "VarMod")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarMul(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarMul, libOleaut32, "VarMul")
+	addr := LazyAddr(&pVarMul, libOleaut32, "VarMul")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarOr(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarOr, libOleaut32, "VarOr")
+	addr := LazyAddr(&pVarOr, libOleaut32, "VarOr")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarPow(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarPow, libOleaut32, "VarPow")
+	addr := LazyAddr(&pVarPow, libOleaut32, "VarPow")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarSub(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarSub, libOleaut32, "VarSub")
+	addr := LazyAddr(&pVarSub, libOleaut32, "VarSub")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarXor(pvarLeft *VARIANT, pvarRight *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarXor, libOleaut32, "VarXor")
+	addr := LazyAddr(&pVarXor, libOleaut32, "VarXor")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarAbs(pvarIn *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarAbs, libOleaut32, "VarAbs")
+	addr := LazyAddr(&pVarAbs, libOleaut32, "VarAbs")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarFix(pvarIn *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarFix, libOleaut32, "VarFix")
+	addr := LazyAddr(&pVarFix, libOleaut32, "VarFix")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarInt(pvarIn *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarInt, libOleaut32, "VarInt")
+	addr := LazyAddr(&pVarInt, libOleaut32, "VarInt")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarNeg(pvarIn *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarNeg, libOleaut32, "VarNeg")
+	addr := LazyAddr(&pVarNeg, libOleaut32, "VarNeg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarNot(pvarIn *VARIANT, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarNot, libOleaut32, "VarNot")
+	addr := LazyAddr(&pVarNot, libOleaut32, "VarNot")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarRound(pvarIn *VARIANT, cDecimals int32, pvarResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pVarRound, libOleaut32, "VarRound")
+	addr := LazyAddr(&pVarRound, libOleaut32, "VarRound")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(cDecimals), uintptr(unsafe.Pointer(pvarResult)))
 	return HRESULT(ret)
 }
 
 func VarCmp(pvarLeft *VARIANT, pvarRight *VARIANT, lcid uint32, dwFlags uint32) VARCMP {
-	addr := lazyAddr(&pVarCmp, libOleaut32, "VarCmp")
+	addr := LazyAddr(&pVarCmp, libOleaut32, "VarCmp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarLeft)), uintptr(unsafe.Pointer(pvarRight)), uintptr(lcid), uintptr(dwFlags))
 	return VARCMP(ret)
 }
 
 func VarDecAdd(pdecLeft *DECIMAL, pdecRight *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecAdd, libOleaut32, "VarDecAdd")
+	addr := LazyAddr(&pVarDecAdd, libOleaut32, "VarDecAdd")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(unsafe.Pointer(pdecRight)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecDiv(pdecLeft *DECIMAL, pdecRight *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecDiv, libOleaut32, "VarDecDiv")
+	addr := LazyAddr(&pVarDecDiv, libOleaut32, "VarDecDiv")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(unsafe.Pointer(pdecRight)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecMul(pdecLeft *DECIMAL, pdecRight *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecMul, libOleaut32, "VarDecMul")
+	addr := LazyAddr(&pVarDecMul, libOleaut32, "VarDecMul")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(unsafe.Pointer(pdecRight)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecSub(pdecLeft *DECIMAL, pdecRight *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecSub, libOleaut32, "VarDecSub")
+	addr := LazyAddr(&pVarDecSub, libOleaut32, "VarDecSub")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(unsafe.Pointer(pdecRight)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecAbs(pdecIn *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecAbs, libOleaut32, "VarDecAbs")
+	addr := LazyAddr(&pVarDecAbs, libOleaut32, "VarDecAbs")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecFix(pdecIn *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecFix, libOleaut32, "VarDecFix")
+	addr := LazyAddr(&pVarDecFix, libOleaut32, "VarDecFix")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecInt(pdecIn *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecInt, libOleaut32, "VarDecInt")
+	addr := LazyAddr(&pVarDecInt, libOleaut32, "VarDecInt")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecNeg(pdecIn *DECIMAL, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecNeg, libOleaut32, "VarDecNeg")
+	addr := LazyAddr(&pVarDecNeg, libOleaut32, "VarDecNeg")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecRound(pdecIn *DECIMAL, cDecimals int32, pdecResult *DECIMAL) HRESULT {
-	addr := lazyAddr(&pVarDecRound, libOleaut32, "VarDecRound")
+	addr := LazyAddr(&pVarDecRound, libOleaut32, "VarDecRound")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecIn)), uintptr(cDecimals), uintptr(unsafe.Pointer(pdecResult)))
 	return HRESULT(ret)
 }
 
 func VarDecCmp(pdecLeft *DECIMAL, pdecRight *DECIMAL) VARCMP {
-	addr := lazyAddr(&pVarDecCmp, libOleaut32, "VarDecCmp")
+	addr := LazyAddr(&pVarDecCmp, libOleaut32, "VarDecCmp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(unsafe.Pointer(pdecRight)))
 	return VARCMP(ret)
 }
 
 func VarDecCmpR8(pdecLeft *DECIMAL, dblRight float64) VARCMP {
-	addr := lazyAddr(&pVarDecCmpR8, libOleaut32, "VarDecCmpR8")
+	addr := LazyAddr(&pVarDecCmpR8, libOleaut32, "VarDecCmpR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdecLeft)), uintptr(dblRight))
 	return VARCMP(ret)
 }
 
 func VarCyAdd(cyLeft CY, cyRight CY, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyAdd, libOleaut32, "VarCyAdd")
+	addr := LazyAddr(&pVarCyAdd, libOleaut32, "VarCyAdd")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), *(*uintptr)(unsafe.Pointer(&cyRight)), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyMul(cyLeft CY, cyRight CY, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyMul, libOleaut32, "VarCyMul")
+	addr := LazyAddr(&pVarCyMul, libOleaut32, "VarCyMul")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), *(*uintptr)(unsafe.Pointer(&cyRight)), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyMulI4(cyLeft CY, lRight int32, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyMulI4, libOleaut32, "VarCyMulI4")
+	addr := LazyAddr(&pVarCyMulI4, libOleaut32, "VarCyMulI4")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), uintptr(lRight), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyMulI8(cyLeft CY, lRight int64, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyMulI8, libOleaut32, "VarCyMulI8")
+	addr := LazyAddr(&pVarCyMulI8, libOleaut32, "VarCyMulI8")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), uintptr(lRight), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCySub(cyLeft CY, cyRight CY, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCySub, libOleaut32, "VarCySub")
+	addr := LazyAddr(&pVarCySub, libOleaut32, "VarCySub")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), *(*uintptr)(unsafe.Pointer(&cyRight)), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyAbs(cyIn CY, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyAbs, libOleaut32, "VarCyAbs")
+	addr := LazyAddr(&pVarCyAbs, libOleaut32, "VarCyAbs")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyFix(cyIn CY, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyFix, libOleaut32, "VarCyFix")
+	addr := LazyAddr(&pVarCyFix, libOleaut32, "VarCyFix")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyInt(cyIn CY, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyInt, libOleaut32, "VarCyInt")
+	addr := LazyAddr(&pVarCyInt, libOleaut32, "VarCyInt")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyNeg(cyIn CY, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyNeg, libOleaut32, "VarCyNeg")
+	addr := LazyAddr(&pVarCyNeg, libOleaut32, "VarCyNeg")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyRound(cyIn CY, cDecimals int32, pcyResult *CY) HRESULT {
-	addr := lazyAddr(&pVarCyRound, libOleaut32, "VarCyRound")
+	addr := LazyAddr(&pVarCyRound, libOleaut32, "VarCyRound")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyIn)), uintptr(cDecimals), uintptr(unsafe.Pointer(pcyResult)))
 	return HRESULT(ret)
 }
 
 func VarCyCmp(cyLeft CY, cyRight CY) VARCMP {
-	addr := lazyAddr(&pVarCyCmp, libOleaut32, "VarCyCmp")
+	addr := LazyAddr(&pVarCyCmp, libOleaut32, "VarCyCmp")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), *(*uintptr)(unsafe.Pointer(&cyRight)))
 	return VARCMP(ret)
 }
 
 func VarCyCmpR8(cyLeft CY, dblRight float64) VARCMP {
-	addr := lazyAddr(&pVarCyCmpR8, libOleaut32, "VarCyCmpR8")
+	addr := LazyAddr(&pVarCyCmpR8, libOleaut32, "VarCyCmpR8")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&cyLeft)), uintptr(dblRight))
 	return VARCMP(ret)
 }
 
 func VarBstrCat(bstrLeft BSTR, bstrRight BSTR, pbstrResult **uint16) HRESULT {
-	addr := lazyAddr(&pVarBstrCat, libOleaut32, "VarBstrCat")
+	addr := LazyAddr(&pVarBstrCat, libOleaut32, "VarBstrCat")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrLeft)), uintptr(unsafe.Pointer(bstrRight)), uintptr(unsafe.Pointer(pbstrResult)))
 	return HRESULT(ret)
 }
 
 func VarBstrCmp(bstrLeft BSTR, bstrRight BSTR, lcid uint32, dwFlags uint32) HRESULT {
-	addr := lazyAddr(&pVarBstrCmp, libOleaut32, "VarBstrCmp")
+	addr := LazyAddr(&pVarBstrCmp, libOleaut32, "VarBstrCmp")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(bstrLeft)), uintptr(unsafe.Pointer(bstrRight)), uintptr(lcid), uintptr(dwFlags))
 	return HRESULT(ret)
 }
 
 func VarR8Pow(dblLeft float64, dblRight float64, pdblResult *float64) HRESULT {
-	addr := lazyAddr(&pVarR8Pow, libOleaut32, "VarR8Pow")
+	addr := LazyAddr(&pVarR8Pow, libOleaut32, "VarR8Pow")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblLeft), uintptr(dblRight), uintptr(unsafe.Pointer(pdblResult)))
 	return HRESULT(ret)
 }
 
 func VarR4CmpR8(fltLeft float32, dblRight float64) VARCMP {
-	addr := lazyAddr(&pVarR4CmpR8, libOleaut32, "VarR4CmpR8")
+	addr := LazyAddr(&pVarR4CmpR8, libOleaut32, "VarR4CmpR8")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(fltLeft), uintptr(dblRight))
 	return VARCMP(ret)
 }
 
 func VarR8Round(dblIn float64, cDecimals int32, pdblResult *float64) HRESULT {
-	addr := lazyAddr(&pVarR8Round, libOleaut32, "VarR8Round")
+	addr := LazyAddr(&pVarR8Round, libOleaut32, "VarR8Round")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dblIn), uintptr(cDecimals), uintptr(unsafe.Pointer(pdblResult)))
 	return HRESULT(ret)
 }
 
 func VarDateFromUdate(pudateIn *UDATE, dwFlags uint32, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromUdate, libOleaut32, "VarDateFromUdate")
+	addr := LazyAddr(&pVarDateFromUdate, libOleaut32, "VarDateFromUdate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pudateIn)), uintptr(dwFlags), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarDateFromUdateEx(pudateIn *UDATE, lcid uint32, dwFlags uint32, pdateOut *float64) HRESULT {
-	addr := lazyAddr(&pVarDateFromUdateEx, libOleaut32, "VarDateFromUdateEx")
+	addr := LazyAddr(&pVarDateFromUdateEx, libOleaut32, "VarDateFromUdateEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pudateIn)), uintptr(lcid), uintptr(dwFlags), uintptr(unsafe.Pointer(pdateOut)))
 	return HRESULT(ret)
 }
 
 func VarUdateFromDate(dateIn float64, dwFlags uint32, pudateOut *UDATE) HRESULT {
-	addr := lazyAddr(&pVarUdateFromDate, libOleaut32, "VarUdateFromDate")
+	addr := LazyAddr(&pVarUdateFromDate, libOleaut32, "VarUdateFromDate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dateIn), uintptr(dwFlags), uintptr(unsafe.Pointer(pudateOut)))
 	return HRESULT(ret)
 }
 
 func GetAltMonthNames(lcid uint32, prgp **PWSTR) HRESULT {
-	addr := lazyAddr(&pGetAltMonthNames, libOleaut32, "GetAltMonthNames")
+	addr := LazyAddr(&pGetAltMonthNames, libOleaut32, "GetAltMonthNames")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lcid), uintptr(unsafe.Pointer(prgp)))
 	return HRESULT(ret)
 }
 
 func VarFormat(pvarIn *VARIANT, pstrFormat PWSTR, iFirstDay VARFORMAT_FIRST_DAY, iFirstWeek VARFORMAT_FIRST_WEEK, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarFormat, libOleaut32, "VarFormat")
+	addr := LazyAddr(&pVarFormat, libOleaut32, "VarFormat")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pstrFormat)), uintptr(iFirstDay), uintptr(iFirstWeek), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarFormatDateTime(pvarIn *VARIANT, iNamedFormat VARFORMAT_NAMED_FORMAT, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarFormatDateTime, libOleaut32, "VarFormatDateTime")
+	addr := LazyAddr(&pVarFormatDateTime, libOleaut32, "VarFormatDateTime")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(iNamedFormat), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarFormatNumber(pvarIn *VARIANT, iNumDig int32, iIncLead VARFORMAT_LEADING_DIGIT, iUseParens VARFORMAT_PARENTHESES, iGroup VARFORMAT_GROUP, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarFormatNumber, libOleaut32, "VarFormatNumber")
+	addr := LazyAddr(&pVarFormatNumber, libOleaut32, "VarFormatNumber")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(iNumDig), uintptr(iIncLead), uintptr(iUseParens), uintptr(iGroup), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarFormatPercent(pvarIn *VARIANT, iNumDig int32, iIncLead VARFORMAT_LEADING_DIGIT, iUseParens VARFORMAT_PARENTHESES, iGroup VARFORMAT_GROUP, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarFormatPercent, libOleaut32, "VarFormatPercent")
+	addr := LazyAddr(&pVarFormatPercent, libOleaut32, "VarFormatPercent")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(iNumDig), uintptr(iIncLead), uintptr(iUseParens), uintptr(iGroup), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarFormatCurrency(pvarIn *VARIANT, iNumDig int32, iIncLead int32, iUseParens int32, iGroup int32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarFormatCurrency, libOleaut32, "VarFormatCurrency")
+	addr := LazyAddr(&pVarFormatCurrency, libOleaut32, "VarFormatCurrency")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(iNumDig), uintptr(iIncLead), uintptr(iUseParens), uintptr(iGroup), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarWeekdayName(iWeekday int32, fAbbrev int32, iFirstDay int32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarWeekdayName, libOleaut32, "VarWeekdayName")
+	addr := LazyAddr(&pVarWeekdayName, libOleaut32, "VarWeekdayName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iWeekday), uintptr(fAbbrev), uintptr(iFirstDay), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarMonthName(iMonth int32, fAbbrev int32, dwFlags uint32, pbstrOut *BSTR) HRESULT {
-	addr := lazyAddr(&pVarMonthName, libOleaut32, "VarMonthName")
+	addr := LazyAddr(&pVarMonthName, libOleaut32, "VarMonthName")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iMonth), uintptr(fAbbrev), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)))
 	return HRESULT(ret)
 }
 
 func VarFormatFromTokens(pvarIn *VARIANT, pstrFormat PWSTR, pbTokCur *byte, dwFlags uint32, pbstrOut *BSTR, lcid uint32) HRESULT {
-	addr := lazyAddr(&pVarFormatFromTokens, libOleaut32, "VarFormatFromTokens")
+	addr := LazyAddr(&pVarFormatFromTokens, libOleaut32, "VarFormatFromTokens")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvarIn)), uintptr(unsafe.Pointer(pstrFormat)), uintptr(unsafe.Pointer(pbTokCur)), uintptr(dwFlags), uintptr(unsafe.Pointer(pbstrOut)), uintptr(lcid))
 	return HRESULT(ret)
 }
 
 func VarTokenizeFormatString(pstrFormat PWSTR, rgbTok *byte, cbTok int32, iFirstDay VARFORMAT_FIRST_DAY, iFirstWeek VARFORMAT_FIRST_WEEK, lcid uint32, pcbActual *int32) HRESULT {
-	addr := lazyAddr(&pVarTokenizeFormatString, libOleaut32, "VarTokenizeFormatString")
+	addr := LazyAddr(&pVarTokenizeFormatString, libOleaut32, "VarTokenizeFormatString")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstrFormat)), uintptr(unsafe.Pointer(rgbTok)), uintptr(cbTok), uintptr(iFirstDay), uintptr(iFirstWeek), uintptr(lcid), uintptr(unsafe.Pointer(pcbActual)))
 	return HRESULT(ret)
 }
 
 func LHashValOfNameSysA(syskind SYSKIND, lcid uint32, szName PSTR) uint32 {
-	addr := lazyAddr(&pLHashValOfNameSysA, libOleaut32, "LHashValOfNameSysA")
+	addr := LazyAddr(&pLHashValOfNameSysA, libOleaut32, "LHashValOfNameSysA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(syskind), uintptr(lcid), uintptr(unsafe.Pointer(szName)))
 	return uint32(ret)
 }
 
 func LHashValOfNameSys(syskind SYSKIND, lcid uint32, szName PWSTR) uint32 {
-	addr := lazyAddr(&pLHashValOfNameSys, libOleaut32, "LHashValOfNameSys")
+	addr := LazyAddr(&pLHashValOfNameSys, libOleaut32, "LHashValOfNameSys")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(syskind), uintptr(lcid), uintptr(unsafe.Pointer(szName)))
 	return uint32(ret)
 }
 
 func LoadTypeLib(szFile PWSTR, pptlib **ITypeLib) HRESULT {
-	addr := lazyAddr(&pLoadTypeLib, libOleaut32, "LoadTypeLib")
+	addr := LazyAddr(&pLoadTypeLib, libOleaut32, "LoadTypeLib")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(szFile)), uintptr(unsafe.Pointer(pptlib)))
 	return HRESULT(ret)
 }
 
 func LoadTypeLibEx(szFile PWSTR, regkind REGKIND, pptlib **ITypeLib) HRESULT {
-	addr := lazyAddr(&pLoadTypeLibEx, libOleaut32, "LoadTypeLibEx")
+	addr := LazyAddr(&pLoadTypeLibEx, libOleaut32, "LoadTypeLibEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(szFile)), uintptr(regkind), uintptr(unsafe.Pointer(pptlib)))
 	return HRESULT(ret)
 }
 
 func LoadRegTypeLib(rguid *syscall.GUID, wVerMajor uint16, wVerMinor uint16, lcid uint32, pptlib **ITypeLib) HRESULT {
-	addr := lazyAddr(&pLoadRegTypeLib, libOleaut32, "LoadRegTypeLib")
+	addr := LazyAddr(&pLoadRegTypeLib, libOleaut32, "LoadRegTypeLib")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rguid)), uintptr(wVerMajor), uintptr(wVerMinor), uintptr(lcid), uintptr(unsafe.Pointer(pptlib)))
 	return HRESULT(ret)
 }
 
 func QueryPathOfRegTypeLib(guid *syscall.GUID, wMaj uint16, wMin uint16, lcid uint32, lpbstrPathName **uint16) HRESULT {
-	addr := lazyAddr(&pQueryPathOfRegTypeLib, libOleaut32, "QueryPathOfRegTypeLib")
+	addr := LazyAddr(&pQueryPathOfRegTypeLib, libOleaut32, "QueryPathOfRegTypeLib")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(guid)), uintptr(wMaj), uintptr(wMin), uintptr(lcid), uintptr(unsafe.Pointer(lpbstrPathName)))
 	return HRESULT(ret)
 }
 
 func RegisterTypeLib(ptlib *ITypeLib, szFullPath PWSTR, szHelpDir PWSTR) HRESULT {
-	addr := lazyAddr(&pRegisterTypeLib, libOleaut32, "RegisterTypeLib")
+	addr := LazyAddr(&pRegisterTypeLib, libOleaut32, "RegisterTypeLib")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ptlib)), uintptr(unsafe.Pointer(szFullPath)), uintptr(unsafe.Pointer(szHelpDir)))
 	return HRESULT(ret)
 }
 
 func UnRegisterTypeLib(libID *syscall.GUID, wVerMajor uint16, wVerMinor uint16, lcid uint32, syskind SYSKIND) HRESULT {
-	addr := lazyAddr(&pUnRegisterTypeLib, libOleaut32, "UnRegisterTypeLib")
+	addr := LazyAddr(&pUnRegisterTypeLib, libOleaut32, "UnRegisterTypeLib")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(libID)), uintptr(wVerMajor), uintptr(wVerMinor), uintptr(lcid), uintptr(syskind))
 	return HRESULT(ret)
 }
 
 func RegisterTypeLibForUser(ptlib *ITypeLib, szFullPath PWSTR, szHelpDir PWSTR) HRESULT {
-	addr := lazyAddr(&pRegisterTypeLibForUser, libOleaut32, "RegisterTypeLibForUser")
+	addr := LazyAddr(&pRegisterTypeLibForUser, libOleaut32, "RegisterTypeLibForUser")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ptlib)), uintptr(unsafe.Pointer(szFullPath)), uintptr(unsafe.Pointer(szHelpDir)))
 	return HRESULT(ret)
 }
 
 func UnRegisterTypeLibForUser(libID *syscall.GUID, wMajorVerNum uint16, wMinorVerNum uint16, lcid uint32, syskind SYSKIND) HRESULT {
-	addr := lazyAddr(&pUnRegisterTypeLibForUser, libOleaut32, "UnRegisterTypeLibForUser")
+	addr := LazyAddr(&pUnRegisterTypeLibForUser, libOleaut32, "UnRegisterTypeLibForUser")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(libID)), uintptr(wMajorVerNum), uintptr(wMinorVerNum), uintptr(lcid), uintptr(syskind))
 	return HRESULT(ret)
 }
 
 func CreateTypeLib(syskind SYSKIND, szFile PWSTR, ppctlib **ICreateTypeLib) HRESULT {
-	addr := lazyAddr(&pCreateTypeLib, libOleaut32, "CreateTypeLib")
+	addr := LazyAddr(&pCreateTypeLib, libOleaut32, "CreateTypeLib")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(syskind), uintptr(unsafe.Pointer(szFile)), uintptr(unsafe.Pointer(ppctlib)))
 	return HRESULT(ret)
 }
 
 func CreateTypeLib2(syskind SYSKIND, szFile PWSTR, ppctlib **ICreateTypeLib2) HRESULT {
-	addr := lazyAddr(&pCreateTypeLib2, libOleaut32, "CreateTypeLib2")
+	addr := LazyAddr(&pCreateTypeLib2, libOleaut32, "CreateTypeLib2")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(syskind), uintptr(unsafe.Pointer(szFile)), uintptr(unsafe.Pointer(ppctlib)))
 	return HRESULT(ret)
 }
 
 func DispGetParam(pdispparams *DISPPARAMS, position uint32, vtTarg VARENUM, pvarResult *VARIANT, puArgErr *uint32) HRESULT {
-	addr := lazyAddr(&pDispGetParam, libOleaut32, "DispGetParam")
+	addr := LazyAddr(&pDispGetParam, libOleaut32, "DispGetParam")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pdispparams)), uintptr(position), uintptr(vtTarg), uintptr(unsafe.Pointer(pvarResult)), uintptr(unsafe.Pointer(puArgErr)))
 	return HRESULT(ret)
 }
 
 func DispGetIDsOfNames(ptinfo *ITypeInfo, rgszNames *PWSTR, cNames uint32, rgdispid *int32) HRESULT {
-	addr := lazyAddr(&pDispGetIDsOfNames, libOleaut32, "DispGetIDsOfNames")
+	addr := LazyAddr(&pDispGetIDsOfNames, libOleaut32, "DispGetIDsOfNames")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ptinfo)), uintptr(unsafe.Pointer(rgszNames)), uintptr(cNames), uintptr(unsafe.Pointer(rgdispid)))
 	return HRESULT(ret)
 }
 
 func DispInvoke(_this unsafe.Pointer, ptinfo *ITypeInfo, dispidMember int32, wFlags uint16, pparams *DISPPARAMS, pvarResult *VARIANT, pexcepinfo *EXCEPINFO, puArgErr *uint32) HRESULT {
-	addr := lazyAddr(&pDispInvoke, libOleaut32, "DispInvoke")
+	addr := LazyAddr(&pDispInvoke, libOleaut32, "DispInvoke")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(_this), uintptr(unsafe.Pointer(ptinfo)), uintptr(dispidMember), uintptr(wFlags), uintptr(unsafe.Pointer(pparams)), uintptr(unsafe.Pointer(pvarResult)), uintptr(unsafe.Pointer(pexcepinfo)), uintptr(unsafe.Pointer(puArgErr)))
 	return HRESULT(ret)
 }
 
 func CreateDispTypeInfo(pidata *INTERFACEDATA, lcid uint32, pptinfo **ITypeInfo) HRESULT {
-	addr := lazyAddr(&pCreateDispTypeInfo, libOleaut32, "CreateDispTypeInfo")
+	addr := LazyAddr(&pCreateDispTypeInfo, libOleaut32, "CreateDispTypeInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidata)), uintptr(lcid), uintptr(unsafe.Pointer(pptinfo)))
 	return HRESULT(ret)
 }
 
 func CreateStdDispatch(punkOuter *IUnknown, pvThis unsafe.Pointer, ptinfo *ITypeInfo, ppunkStdDisp **IUnknown) HRESULT {
-	addr := lazyAddr(&pCreateStdDispatch, libOleaut32, "CreateStdDispatch")
+	addr := LazyAddr(&pCreateStdDispatch, libOleaut32, "CreateStdDispatch")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punkOuter)), uintptr(pvThis), uintptr(unsafe.Pointer(ptinfo)), uintptr(unsafe.Pointer(ppunkStdDisp)))
 	return HRESULT(ret)
 }
 
 func DispCallFunc(pvInstance unsafe.Pointer, oVft uintptr, cc CALLCONV, vtReturn VARENUM, cActuals uint32, prgvt *uint16, prgpvarg **VARIANT, pvargResult *VARIANT) HRESULT {
-	addr := lazyAddr(&pDispCallFunc, libOleaut32, "DispCallFunc")
+	addr := LazyAddr(&pDispCallFunc, libOleaut32, "DispCallFunc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pvInstance), oVft, uintptr(cc), uintptr(vtReturn), uintptr(cActuals), uintptr(unsafe.Pointer(prgvt)), uintptr(unsafe.Pointer(prgpvarg)), uintptr(unsafe.Pointer(pvargResult)))
 	return HRESULT(ret)
 }
 
 func RegisterActiveObject(punk *IUnknown, rclsid *syscall.GUID, dwFlags ACTIVEOBJECT_FLAGS, pdwRegister *uint32) HRESULT {
-	addr := lazyAddr(&pRegisterActiveObject, libOleaut32, "RegisterActiveObject")
+	addr := LazyAddr(&pRegisterActiveObject, libOleaut32, "RegisterActiveObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(unsafe.Pointer(rclsid)), uintptr(dwFlags), uintptr(unsafe.Pointer(pdwRegister)))
 	return HRESULT(ret)
 }
 
 func RevokeActiveObject(dwRegister uint32, pvReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pRevokeActiveObject, libOleaut32, "RevokeActiveObject")
+	addr := LazyAddr(&pRevokeActiveObject, libOleaut32, "RevokeActiveObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwRegister), uintptr(pvReserved))
 	return HRESULT(ret)
 }
 
 func GetActiveObject(rclsid *syscall.GUID, pvReserved unsafe.Pointer, ppunk **IUnknown) HRESULT {
-	addr := lazyAddr(&pGetActiveObject, libOleaut32, "GetActiveObject")
+	addr := LazyAddr(&pGetActiveObject, libOleaut32, "GetActiveObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(pvReserved), uintptr(unsafe.Pointer(ppunk)))
 	return HRESULT(ret)
 }
 
 func CreateErrorInfo(pperrinfo **ICreateErrorInfo) HRESULT {
-	addr := lazyAddr(&pCreateErrorInfo, libOleaut32, "CreateErrorInfo")
+	addr := LazyAddr(&pCreateErrorInfo, libOleaut32, "CreateErrorInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pperrinfo)))
 	return HRESULT(ret)
 }
 
 func GetRecordInfoFromTypeInfo(pTypeInfo *ITypeInfo, ppRecInfo **IRecordInfo) HRESULT {
-	addr := lazyAddr(&pGetRecordInfoFromTypeInfo, libOleaut32, "GetRecordInfoFromTypeInfo")
+	addr := LazyAddr(&pGetRecordInfoFromTypeInfo, libOleaut32, "GetRecordInfoFromTypeInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pTypeInfo)), uintptr(unsafe.Pointer(ppRecInfo)))
 	return HRESULT(ret)
 }
 
 func GetRecordInfoFromGuids(rGuidTypeLib *syscall.GUID, uVerMajor uint32, uVerMinor uint32, lcid uint32, rGuidTypeInfo *syscall.GUID, ppRecInfo **IRecordInfo) HRESULT {
-	addr := lazyAddr(&pGetRecordInfoFromGuids, libOleaut32, "GetRecordInfoFromGuids")
+	addr := LazyAddr(&pGetRecordInfoFromGuids, libOleaut32, "GetRecordInfoFromGuids")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rGuidTypeLib)), uintptr(uVerMajor), uintptr(uVerMinor), uintptr(lcid), uintptr(unsafe.Pointer(rGuidTypeInfo)), uintptr(unsafe.Pointer(ppRecInfo)))
 	return HRESULT(ret)
 }
 
 func OaBuildVersion() uint32 {
-	addr := lazyAddr(&pOaBuildVersion, libOleaut32, "OaBuildVersion")
+	addr := LazyAddr(&pOaBuildVersion, libOleaut32, "OaBuildVersion")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func ClearCustData(pCustData *CUSTDATA) {
-	addr := lazyAddr(&pClearCustData, libOleaut32, "ClearCustData")
+	addr := LazyAddr(&pClearCustData, libOleaut32, "ClearCustData")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pCustData)))
 }
 
 func OaEnablePerUserTLibRegistration() {
-	addr := lazyAddr(&pOaEnablePerUserTLibRegistration, libOleaut32, "OaEnablePerUserTLibRegistration")
+	addr := LazyAddr(&pOaEnablePerUserTLibRegistration, libOleaut32, "OaEnablePerUserTLibRegistration")
 	syscall.SyscallN(addr)
 }
 
 func OleBuildVersion() uint32 {
-	addr := lazyAddr(&pOleBuildVersion, libOle32, "OleBuildVersion")
+	addr := LazyAddr(&pOleBuildVersion, libOle32, "OleBuildVersion")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func OleInitialize(pvReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleInitialize, libOle32, "OleInitialize")
+	addr := LazyAddr(&pOleInitialize, libOle32, "OleInitialize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pvReserved))
 	return HRESULT(ret)
 }
 
 func OleUninitialize() {
-	addr := lazyAddr(&pOleUninitialize, libOle32, "OleUninitialize")
+	addr := LazyAddr(&pOleUninitialize, libOle32, "OleUninitialize")
 	syscall.SyscallN(addr)
 }
 
 func OleQueryLinkFromData(pSrcDataObject *IDataObject) HRESULT {
-	addr := lazyAddr(&pOleQueryLinkFromData, libOle32, "OleQueryLinkFromData")
+	addr := LazyAddr(&pOleQueryLinkFromData, libOle32, "OleQueryLinkFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObject)))
 	return HRESULT(ret)
 }
 
 func OleQueryCreateFromData(pSrcDataObject *IDataObject) HRESULT {
-	addr := lazyAddr(&pOleQueryCreateFromData, libOle32, "OleQueryCreateFromData")
+	addr := LazyAddr(&pOleQueryCreateFromData, libOle32, "OleQueryCreateFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObject)))
 	return HRESULT(ret)
 }
 
 func OleCreate(rclsid *syscall.GUID, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreate, libOle32, "OleCreate")
+	addr := LazyAddr(&pOleCreate, libOle32, "OleCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateEx(rclsid *syscall.GUID, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateEx, libOle32, "OleCreateEx")
+	addr := LazyAddr(&pOleCreateEx, libOle32, "OleCreateEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateFromData, libOle32, "OleCreateFromData")
+	addr := LazyAddr(&pOleCreateFromData, libOle32, "OleCreateFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateFromDataEx, libOle32, "OleCreateFromDataEx")
+	addr := LazyAddr(&pOleCreateFromDataEx, libOle32, "OleCreateFromDataEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateLinkFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateLinkFromData, libOle32, "OleCreateLinkFromData")
+	addr := LazyAddr(&pOleCreateLinkFromData, libOle32, "OleCreateLinkFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateLinkFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateLinkFromDataEx, libOle32, "OleCreateLinkFromDataEx")
+	addr := LazyAddr(&pOleCreateLinkFromDataEx, libOle32, "OleCreateLinkFromDataEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateStaticFromData(pSrcDataObj *IDataObject, iid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateStaticFromData, libOle32, "OleCreateStaticFromData")
+	addr := LazyAddr(&pOleCreateStaticFromData, libOle32, "OleCreateStaticFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(iid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateLink(pmkLinkSrc *IMoniker, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateLink, libOle32, "OleCreateLink")
+	addr := LazyAddr(&pOleCreateLink, libOle32, "OleCreateLink")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkLinkSrc)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateLinkEx(pmkLinkSrc *IMoniker, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateLinkEx, libOle32, "OleCreateLinkEx")
+	addr := LazyAddr(&pOleCreateLinkEx, libOle32, "OleCreateLinkEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkLinkSrc)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateLinkToFile(lpszFileName PWSTR, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateLinkToFile, libOle32, "OleCreateLinkToFile")
+	addr := LazyAddr(&pOleCreateLinkToFile, libOle32, "OleCreateLinkToFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateLinkToFileEx(lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateLinkToFileEx, libOle32, "OleCreateLinkToFileEx")
+	addr := LazyAddr(&pOleCreateLinkToFileEx, libOle32, "OleCreateLinkToFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateFromFile(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateFromFile, libOle32, "OleCreateFromFile")
+	addr := LazyAddr(&pOleCreateFromFile, libOle32, "OleCreateFromFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleCreateFromFileEx(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateFromFileEx, libOle32, "OleCreateFromFileEx")
+	addr := LazyAddr(&pOleCreateFromFileEx, libOle32, "OleCreateFromFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleLoad(pStg *IStorage, riid *syscall.GUID, pClientSite *IOleClientSite, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleLoad, libOle32, "OleLoad")
+	addr := LazyAddr(&pOleLoad, libOle32, "OleLoad")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStg)), uintptr(unsafe.Pointer(riid)), uintptr(unsafe.Pointer(pClientSite)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleSave(pPS *IPersistStorage, pStg *IStorage, fSameAsLoad BOOL) HRESULT {
-	addr := lazyAddr(&pOleSave, libOle32, "OleSave")
+	addr := LazyAddr(&pOleSave, libOle32, "OleSave")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pPS)), uintptr(unsafe.Pointer(pStg)), uintptr(fSameAsLoad))
 	return HRESULT(ret)
 }
 
 func OleLoadFromStream(pStm *IStream, iidInterface *syscall.GUID, ppvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleLoadFromStream, libOle32, "OleLoadFromStream")
+	addr := LazyAddr(&pOleLoadFromStream, libOle32, "OleLoadFromStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStm)), uintptr(unsafe.Pointer(iidInterface)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
 func OleSaveToStream(pPStm *IPersistStream, pStm *IStream) HRESULT {
-	addr := lazyAddr(&pOleSaveToStream, libOle32, "OleSaveToStream")
+	addr := LazyAddr(&pOleSaveToStream, libOle32, "OleSaveToStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pPStm)), uintptr(unsafe.Pointer(pStm)))
 	return HRESULT(ret)
 }
 
 func OleSetContainedObject(pUnknown *IUnknown, fContained BOOL) HRESULT {
-	addr := lazyAddr(&pOleSetContainedObject, libOle32, "OleSetContainedObject")
+	addr := LazyAddr(&pOleSetContainedObject, libOle32, "OleSetContainedObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnknown)), uintptr(fContained))
 	return HRESULT(ret)
 }
 
 func OleNoteObjectVisible(pUnknown *IUnknown, fVisible BOOL) HRESULT {
-	addr := lazyAddr(&pOleNoteObjectVisible, libOle32, "OleNoteObjectVisible")
+	addr := LazyAddr(&pOleNoteObjectVisible, libOle32, "OleNoteObjectVisible")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnknown)), uintptr(fVisible))
 	return HRESULT(ret)
 }
 
 func RegisterDragDrop(hwnd HWND, pDropTarget *IDropTarget) HRESULT {
-	addr := lazyAddr(&pRegisterDragDrop, libOle32, "RegisterDragDrop")
+	addr := LazyAddr(&pRegisterDragDrop, libOle32, "RegisterDragDrop")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(unsafe.Pointer(pDropTarget)))
 	return HRESULT(ret)
 }
 
 func RevokeDragDrop(hwnd HWND) HRESULT {
-	addr := lazyAddr(&pRevokeDragDrop, libOle32, "RevokeDragDrop")
+	addr := LazyAddr(&pRevokeDragDrop, libOle32, "RevokeDragDrop")
 	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return HRESULT(ret)
 }
 
 func DoDragDrop(pDataObj *IDataObject, pDropSource *IDropSource, dwOKEffects DROPEFFECT, pdwEffect *DROPEFFECT) HRESULT {
-	addr := lazyAddr(&pDoDragDrop, libOle32, "DoDragDrop")
+	addr := LazyAddr(&pDoDragDrop, libOle32, "DoDragDrop")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pDataObj)), uintptr(unsafe.Pointer(pDropSource)), uintptr(dwOKEffects), uintptr(unsafe.Pointer(pdwEffect)))
 	return HRESULT(ret)
 }
 
 func OleSetClipboard(pDataObj *IDataObject) HRESULT {
-	addr := lazyAddr(&pOleSetClipboard, libOle32, "OleSetClipboard")
+	addr := LazyAddr(&pOleSetClipboard, libOle32, "OleSetClipboard")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pDataObj)))
 	return HRESULT(ret)
 }
 
 func OleGetClipboard(ppDataObj **IDataObject) HRESULT {
-	addr := lazyAddr(&pOleGetClipboard, libOle32, "OleGetClipboard")
+	addr := LazyAddr(&pOleGetClipboard, libOle32, "OleGetClipboard")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppDataObj)))
 	return HRESULT(ret)
 }
 
 func OleGetClipboardWithEnterpriseInfo(dataObject **IDataObject, dataEnterpriseId *PWSTR, sourceDescription *PWSTR, targetDescription *PWSTR, dataDescription *PWSTR) HRESULT {
-	addr := lazyAddr(&pOleGetClipboardWithEnterpriseInfo, libOle32, "OleGetClipboardWithEnterpriseInfo")
+	addr := LazyAddr(&pOleGetClipboardWithEnterpriseInfo, libOle32, "OleGetClipboardWithEnterpriseInfo")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(dataObject)), uintptr(unsafe.Pointer(dataEnterpriseId)), uintptr(unsafe.Pointer(sourceDescription)), uintptr(unsafe.Pointer(targetDescription)), uintptr(unsafe.Pointer(dataDescription)))
 	return HRESULT(ret)
 }
 
 func OleFlushClipboard() HRESULT {
-	addr := lazyAddr(&pOleFlushClipboard, libOle32, "OleFlushClipboard")
+	addr := LazyAddr(&pOleFlushClipboard, libOle32, "OleFlushClipboard")
 	ret, _, _ := syscall.SyscallN(addr)
 	return HRESULT(ret)
 }
 
 func OleIsCurrentClipboard(pDataObj *IDataObject) HRESULT {
-	addr := lazyAddr(&pOleIsCurrentClipboard, libOle32, "OleIsCurrentClipboard")
+	addr := LazyAddr(&pOleIsCurrentClipboard, libOle32, "OleIsCurrentClipboard")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pDataObj)))
 	return HRESULT(ret)
 }
 
 func OleCreateMenuDescriptor(hmenuCombined HMENU, lpMenuWidths *OLEMENUGROUPWIDTHS) uintptr {
-	addr := lazyAddr(&pOleCreateMenuDescriptor, libOle32, "OleCreateMenuDescriptor")
+	addr := LazyAddr(&pOleCreateMenuDescriptor, libOle32, "OleCreateMenuDescriptor")
 	ret, _, _ := syscall.SyscallN(addr, hmenuCombined, uintptr(unsafe.Pointer(lpMenuWidths)))
 	return ret
 }
 
 func OleSetMenuDescriptor(holemenu uintptr, hwndFrame HWND, hwndActiveObject HWND, lpFrame *IOleInPlaceFrame, lpActiveObj *IOleInPlaceActiveObject) HRESULT {
-	addr := lazyAddr(&pOleSetMenuDescriptor, libOle32, "OleSetMenuDescriptor")
+	addr := LazyAddr(&pOleSetMenuDescriptor, libOle32, "OleSetMenuDescriptor")
 	ret, _, _ := syscall.SyscallN(addr, holemenu, hwndFrame, hwndActiveObject, uintptr(unsafe.Pointer(lpFrame)), uintptr(unsafe.Pointer(lpActiveObj)))
 	return HRESULT(ret)
 }
 
 func OleDestroyMenuDescriptor(holemenu uintptr) HRESULT {
-	addr := lazyAddr(&pOleDestroyMenuDescriptor, libOle32, "OleDestroyMenuDescriptor")
+	addr := LazyAddr(&pOleDestroyMenuDescriptor, libOle32, "OleDestroyMenuDescriptor")
 	ret, _, _ := syscall.SyscallN(addr, holemenu)
 	return HRESULT(ret)
 }
 
 func OleTranslateAccelerator(lpFrame *IOleInPlaceFrame, lpFrameInfo *OLEINPLACEFRAMEINFO, lpmsg *MSG) HRESULT {
-	addr := lazyAddr(&pOleTranslateAccelerator, libOle32, "OleTranslateAccelerator")
+	addr := LazyAddr(&pOleTranslateAccelerator, libOle32, "OleTranslateAccelerator")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFrame)), uintptr(unsafe.Pointer(lpFrameInfo)), uintptr(unsafe.Pointer(lpmsg)))
 	return HRESULT(ret)
 }
 
 func OleDuplicateData(hSrc HANDLE, cfFormat CLIPBOARD_FORMAT, uiFlags GLOBAL_ALLOC_FLAGS) HANDLE {
-	addr := lazyAddr(&pOleDuplicateData, libOle32, "OleDuplicateData")
+	addr := LazyAddr(&pOleDuplicateData, libOle32, "OleDuplicateData")
 	ret, _, _ := syscall.SyscallN(addr, hSrc, uintptr(cfFormat), uintptr(uiFlags))
 	return ret
 }
 
 func OleDraw(pUnknown *IUnknown, dwAspect uint32, hdcDraw HDC, lprcBounds *RECT) HRESULT {
-	addr := lazyAddr(&pOleDraw, libOle32, "OleDraw")
+	addr := LazyAddr(&pOleDraw, libOle32, "OleDraw")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnknown)), uintptr(dwAspect), hdcDraw, uintptr(unsafe.Pointer(lprcBounds)))
 	return HRESULT(ret)
 }
 
 func OleRun(pUnknown *IUnknown) HRESULT {
-	addr := lazyAddr(&pOleRun, libOle32, "OleRun")
+	addr := LazyAddr(&pOleRun, libOle32, "OleRun")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnknown)))
 	return HRESULT(ret)
 }
 
 func OleIsRunning(pObject *IOleObject) BOOL {
-	addr := lazyAddr(&pOleIsRunning, libOle32, "OleIsRunning")
+	addr := LazyAddr(&pOleIsRunning, libOle32, "OleIsRunning")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pObject)))
 	return BOOL(ret)
 }
 
 func OleLockRunning(pUnknown *IUnknown, fLock BOOL, fLastUnlockCloses BOOL) HRESULT {
-	addr := lazyAddr(&pOleLockRunning, libOle32, "OleLockRunning")
+	addr := LazyAddr(&pOleLockRunning, libOle32, "OleLockRunning")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pUnknown)), uintptr(fLock), uintptr(fLastUnlockCloses))
 	return HRESULT(ret)
 }
 
 func ReleaseStgMedium(param0 *STGMEDIUM) {
-	addr := lazyAddr(&pReleaseStgMedium, libOle32, "ReleaseStgMedium")
+	addr := LazyAddr(&pReleaseStgMedium, libOle32, "ReleaseStgMedium")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 }
 
 func CreateOleAdviseHolder(ppOAHolder **IOleAdviseHolder) HRESULT {
-	addr := lazyAddr(&pCreateOleAdviseHolder, libOle32, "CreateOleAdviseHolder")
+	addr := LazyAddr(&pCreateOleAdviseHolder, libOle32, "CreateOleAdviseHolder")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppOAHolder)))
 	return HRESULT(ret)
 }
 
 func OleCreateDefaultHandler(clsid *syscall.GUID, pUnkOuter *IUnknown, riid *syscall.GUID, lplpObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateDefaultHandler, libOle32, "OleCreateDefaultHandler")
+	addr := LazyAddr(&pOleCreateDefaultHandler, libOle32, "OleCreateDefaultHandler")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(unsafe.Pointer(pUnkOuter)), uintptr(unsafe.Pointer(riid)), uintptr(lplpObj))
 	return HRESULT(ret)
 }
 
 func OleCreateEmbeddingHelper(clsid *syscall.GUID, pUnkOuter *IUnknown, flags EMBDHLP_FLAGS, pCF *IClassFactory, riid *syscall.GUID, lplpObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateEmbeddingHelper, libOle32, "OleCreateEmbeddingHelper")
+	addr := LazyAddr(&pOleCreateEmbeddingHelper, libOle32, "OleCreateEmbeddingHelper")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(unsafe.Pointer(pUnkOuter)), uintptr(flags), uintptr(unsafe.Pointer(pCF)), uintptr(unsafe.Pointer(riid)), uintptr(lplpObj))
 	return HRESULT(ret)
 }
 
 func IsAccelerator(hAccel HACCEL, cAccelEntries int32, lpMsg *MSG, lpwCmd *uint16) BOOL {
-	addr := lazyAddr(&pIsAccelerator, libOle32, "IsAccelerator")
+	addr := LazyAddr(&pIsAccelerator, libOle32, "IsAccelerator")
 	ret, _, _ := syscall.SyscallN(addr, hAccel, uintptr(cAccelEntries), uintptr(unsafe.Pointer(lpMsg)), uintptr(unsafe.Pointer(lpwCmd)))
 	return BOOL(ret)
 }
 
 func OleGetIconOfFile(lpszPath PWSTR, fUseFileAsLabel BOOL) uintptr {
-	addr := lazyAddr(&pOleGetIconOfFile, libOle32, "OleGetIconOfFile")
+	addr := LazyAddr(&pOleGetIconOfFile, libOle32, "OleGetIconOfFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszPath)), uintptr(fUseFileAsLabel))
 	return ret
 }
 
 func OleGetIconOfClass(rclsid *syscall.GUID, lpszLabel PWSTR, fUseTypeAsLabel BOOL) uintptr {
-	addr := lazyAddr(&pOleGetIconOfClass, libOle32, "OleGetIconOfClass")
+	addr := LazyAddr(&pOleGetIconOfClass, libOle32, "OleGetIconOfClass")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lpszLabel)), uintptr(fUseTypeAsLabel))
 	return ret
 }
 
 func OleMetafilePictFromIconAndLabel(hIcon HICON, lpszLabel PWSTR, lpszSourceFile PWSTR, iIconIndex uint32) (uintptr, WIN32_ERROR) {
-	addr := lazyAddr(&pOleMetafilePictFromIconAndLabel, libOle32, "OleMetafilePictFromIconAndLabel")
+	addr := LazyAddr(&pOleMetafilePictFromIconAndLabel, libOle32, "OleMetafilePictFromIconAndLabel")
 	ret, _, err := syscall.SyscallN(addr, hIcon, uintptr(unsafe.Pointer(lpszLabel)), uintptr(unsafe.Pointer(lpszSourceFile)), uintptr(iIconIndex))
 	return ret, WIN32_ERROR(err)
 }
 
 func OleRegGetUserType(clsid *syscall.GUID, dwFormOfType USERCLASSTYPE, pszUserType *PWSTR) HRESULT {
-	addr := lazyAddr(&pOleRegGetUserType, libOle32, "OleRegGetUserType")
+	addr := LazyAddr(&pOleRegGetUserType, libOle32, "OleRegGetUserType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(dwFormOfType), uintptr(unsafe.Pointer(pszUserType)))
 	return HRESULT(ret)
 }
 
 func OleRegGetMiscStatus(clsid *syscall.GUID, dwAspect uint32, pdwStatus *uint32) HRESULT {
-	addr := lazyAddr(&pOleRegGetMiscStatus, libOle32, "OleRegGetMiscStatus")
+	addr := LazyAddr(&pOleRegGetMiscStatus, libOle32, "OleRegGetMiscStatus")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(dwAspect), uintptr(unsafe.Pointer(pdwStatus)))
 	return HRESULT(ret)
 }
 
 func OleRegEnumFormatEtc(clsid *syscall.GUID, dwDirection uint32, ppenum **IEnumFORMATETC) HRESULT {
-	addr := lazyAddr(&pOleRegEnumFormatEtc, libOle32, "OleRegEnumFormatEtc")
+	addr := LazyAddr(&pOleRegEnumFormatEtc, libOle32, "OleRegEnumFormatEtc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(dwDirection), uintptr(unsafe.Pointer(ppenum)))
 	return HRESULT(ret)
 }
 
 func OleRegEnumVerbs(clsid *syscall.GUID, ppenum **IEnumOLEVERB) HRESULT {
-	addr := lazyAddr(&pOleRegEnumVerbs, libOle32, "OleRegEnumVerbs")
+	addr := LazyAddr(&pOleRegEnumVerbs, libOle32, "OleRegEnumVerbs")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(unsafe.Pointer(ppenum)))
 	return HRESULT(ret)
 }
 
 func OleDoAutoConvert(pStg *IStorage, pClsidNew *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pOleDoAutoConvert, libOle32, "OleDoAutoConvert")
+	addr := LazyAddr(&pOleDoAutoConvert, libOle32, "OleDoAutoConvert")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStg)), uintptr(unsafe.Pointer(pClsidNew)))
 	return HRESULT(ret)
 }
 
 func OleGetAutoConvert(clsidOld *syscall.GUID, pClsidNew *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pOleGetAutoConvert, libOle32, "OleGetAutoConvert")
+	addr := LazyAddr(&pOleGetAutoConvert, libOle32, "OleGetAutoConvert")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsidOld)), uintptr(unsafe.Pointer(pClsidNew)))
 	return HRESULT(ret)
 }
 
 func OleSetAutoConvert(clsidOld *syscall.GUID, clsidNew *syscall.GUID) HRESULT {
-	addr := lazyAddr(&pOleSetAutoConvert, libOle32, "OleSetAutoConvert")
+	addr := LazyAddr(&pOleSetAutoConvert, libOle32, "OleSetAutoConvert")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsidOld)), uintptr(unsafe.Pointer(clsidNew)))
 	return HRESULT(ret)
 }
 
 func HRGN_UserSize(param0 *uint32, param1 uint32, param2 *HRGN) uint32 {
-	addr := lazyAddr(&pHRGN_UserSize, libOle32, "HRGN_UserSize")
+	addr := LazyAddr(&pHRGN_UserSize, libOle32, "HRGN_UserSize")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(param1), uintptr(unsafe.Pointer(param2)))
 	return uint32(ret)
 }
 
 func HRGN_UserMarshal(param0 *uint32, param1 *byte, param2 *HRGN) *byte {
-	addr := lazyAddr(&pHRGN_UserMarshal, libOle32, "HRGN_UserMarshal")
+	addr := LazyAddr(&pHRGN_UserMarshal, libOle32, "HRGN_UserMarshal")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HRGN_UserUnmarshal(param0 *uint32, param1 *byte, param2 *HRGN) *byte {
-	addr := lazyAddr(&pHRGN_UserUnmarshal, libOle32, "HRGN_UserUnmarshal")
+	addr := LazyAddr(&pHRGN_UserUnmarshal, libOle32, "HRGN_UserUnmarshal")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)), uintptr(unsafe.Pointer(param2)))
 	return (*byte)(unsafe.Pointer(ret))
 }
 
 func HRGN_UserFree(param0 *uint32, param1 *HRGN) {
-	addr := lazyAddr(&pHRGN_UserFree, libOle32, "HRGN_UserFree")
+	addr := LazyAddr(&pHRGN_UserFree, libOle32, "HRGN_UserFree")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)), uintptr(unsafe.Pointer(param1)))
 }
 
 func OleCreatePropertyFrame(hwndOwner HWND, x uint32, y uint32, lpszCaption PWSTR, cObjects uint32, ppUnk **IUnknown, cPages uint32, pPageClsID *syscall.GUID, lcid uint32, dwReserved uint32, pvReserved unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreatePropertyFrame, libOleaut32, "OleCreatePropertyFrame")
+	addr := LazyAddr(&pOleCreatePropertyFrame, libOleaut32, "OleCreatePropertyFrame")
 	ret, _, _ := syscall.SyscallN(addr, hwndOwner, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lpszCaption)), uintptr(cObjects), uintptr(unsafe.Pointer(ppUnk)), uintptr(cPages), uintptr(unsafe.Pointer(pPageClsID)), uintptr(lcid), uintptr(dwReserved), uintptr(pvReserved))
 	return HRESULT(ret)
 }
 
 func OleCreatePropertyFrameIndirect(lpParams *OCPFIPARAMS) HRESULT {
-	addr := lazyAddr(&pOleCreatePropertyFrameIndirect, libOleaut32, "OleCreatePropertyFrameIndirect")
+	addr := LazyAddr(&pOleCreatePropertyFrameIndirect, libOleaut32, "OleCreatePropertyFrameIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpParams)))
 	return HRESULT(ret)
 }
 
 func OleTranslateColor(clr uint32, hpal HPALETTE, lpcolorref *COLORREF) HRESULT {
-	addr := lazyAddr(&pOleTranslateColor, libOleaut32, "OleTranslateColor")
+	addr := LazyAddr(&pOleTranslateColor, libOleaut32, "OleTranslateColor")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(clr), hpal, uintptr(unsafe.Pointer(lpcolorref)))
 	return HRESULT(ret)
 }
 
 func OleCreateFontIndirect(lpFontDesc *FONTDESC, riid *syscall.GUID, lplpvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreateFontIndirect, libOleaut32, "OleCreateFontIndirect")
+	addr := LazyAddr(&pOleCreateFontIndirect, libOleaut32, "OleCreateFontIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFontDesc)), uintptr(unsafe.Pointer(riid)), uintptr(lplpvObj))
 	return HRESULT(ret)
 }
 
 func OleCreatePictureIndirect(lpPictDesc *PICTDESC, riid *syscall.GUID, fOwn BOOL, lplpvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleCreatePictureIndirect, libOleaut32, "OleCreatePictureIndirect")
+	addr := LazyAddr(&pOleCreatePictureIndirect, libOleaut32, "OleCreatePictureIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPictDesc)), uintptr(unsafe.Pointer(riid)), uintptr(fOwn), uintptr(lplpvObj))
 	return HRESULT(ret)
 }
 
 func OleLoadPicture(lpstream *IStream, lSize int32, fRunmode BOOL, riid *syscall.GUID, lplpvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleLoadPicture, libOleaut32, "OleLoadPicture")
+	addr := LazyAddr(&pOleLoadPicture, libOleaut32, "OleLoadPicture")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpstream)), uintptr(lSize), uintptr(fRunmode), uintptr(unsafe.Pointer(riid)), uintptr(lplpvObj))
 	return HRESULT(ret)
 }
 
 func OleLoadPictureEx(lpstream *IStream, lSize int32, fRunmode BOOL, riid *syscall.GUID, xSizeDesired uint32, ySizeDesired uint32, dwFlags LOAD_PICTURE_FLAGS, lplpvObj unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleLoadPictureEx, libOleaut32, "OleLoadPictureEx")
+	addr := LazyAddr(&pOleLoadPictureEx, libOleaut32, "OleLoadPictureEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpstream)), uintptr(lSize), uintptr(fRunmode), uintptr(unsafe.Pointer(riid)), uintptr(xSizeDesired), uintptr(ySizeDesired), uintptr(dwFlags), uintptr(lplpvObj))
 	return HRESULT(ret)
 }
 
 func OleLoadPicturePath(szURLorPath PWSTR, punkCaller *IUnknown, dwReserved uint32, clrReserved uint32, riid *syscall.GUID, ppvRet unsafe.Pointer) HRESULT {
-	addr := lazyAddr(&pOleLoadPicturePath, libOleaut32, "OleLoadPicturePath")
+	addr := LazyAddr(&pOleLoadPicturePath, libOleaut32, "OleLoadPicturePath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(szURLorPath)), uintptr(unsafe.Pointer(punkCaller)), uintptr(dwReserved), uintptr(clrReserved), uintptr(unsafe.Pointer(riid)), uintptr(ppvRet))
 	return HRESULT(ret)
 }
 
 func OleLoadPictureFile(varFileName VARIANT, lplpdispPicture **IDispatch) HRESULT {
-	addr := lazyAddr(&pOleLoadPictureFile, libOleaut32, "OleLoadPictureFile")
+	addr := LazyAddr(&pOleLoadPictureFile, libOleaut32, "OleLoadPictureFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(&varFileName)), uintptr(unsafe.Pointer(lplpdispPicture)))
 	return HRESULT(ret)
 }
 
 func OleLoadPictureFileEx(varFileName VARIANT, xSizeDesired uint32, ySizeDesired uint32, dwFlags LOAD_PICTURE_FLAGS, lplpdispPicture **IDispatch) HRESULT {
-	addr := lazyAddr(&pOleLoadPictureFileEx, libOleaut32, "OleLoadPictureFileEx")
+	addr := LazyAddr(&pOleLoadPictureFileEx, libOleaut32, "OleLoadPictureFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(&varFileName)), uintptr(xSizeDesired), uintptr(ySizeDesired), uintptr(dwFlags), uintptr(unsafe.Pointer(lplpdispPicture)))
 	return HRESULT(ret)
 }
 
 func OleSavePictureFile(lpdispPicture *IDispatch, bstrFileName BSTR) HRESULT {
-	addr := lazyAddr(&pOleSavePictureFile, libOleaut32, "OleSavePictureFile")
+	addr := LazyAddr(&pOleSavePictureFile, libOleaut32, "OleSavePictureFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpdispPicture)), uintptr(unsafe.Pointer(bstrFileName)))
 	return HRESULT(ret)
 }
 
 func OleIconToCursor(hinstExe HINSTANCE, hIcon HICON) HCURSOR {
-	addr := lazyAddr(&pOleIconToCursor, libOleaut32, "OleIconToCursor")
+	addr := LazyAddr(&pOleIconToCursor, libOleaut32, "OleIconToCursor")
 	ret, _, _ := syscall.SyscallN(addr, hinstExe, hIcon)
 	return ret
 }

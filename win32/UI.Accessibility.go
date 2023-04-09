@@ -10715,48 +10715,48 @@ var (
 )
 
 func RegisterPointerInputTarget(hwnd HWND, pointerType POINTER_INPUT_TYPE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterPointerInputTarget, libUser32, "RegisterPointerInputTarget")
+	addr := LazyAddr(&pRegisterPointerInputTarget, libUser32, "RegisterPointerInputTarget")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(pointerType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnregisterPointerInputTarget(hwnd HWND, pointerType POINTER_INPUT_TYPE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnregisterPointerInputTarget, libUser32, "UnregisterPointerInputTarget")
+	addr := LazyAddr(&pUnregisterPointerInputTarget, libUser32, "UnregisterPointerInputTarget")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(pointerType))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RegisterPointerInputTargetEx(hwnd HWND, pointerType POINTER_INPUT_TYPE, fObserve BOOL) BOOL {
-	addr := lazyAddr(&pRegisterPointerInputTargetEx, libUser32, "RegisterPointerInputTargetEx")
+	addr := LazyAddr(&pRegisterPointerInputTargetEx, libUser32, "RegisterPointerInputTargetEx")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(pointerType), uintptr(fObserve))
 	return BOOL(ret)
 }
 
 func UnregisterPointerInputTargetEx(hwnd HWND, pointerType POINTER_INPUT_TYPE) BOOL {
-	addr := lazyAddr(&pUnregisterPointerInputTargetEx, libUser32, "UnregisterPointerInputTargetEx")
+	addr := LazyAddr(&pUnregisterPointerInputTargetEx, libUser32, "UnregisterPointerInputTargetEx")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(pointerType))
 	return BOOL(ret)
 }
 
 func NotifyWinEvent(event uint32, hwnd HWND, idObject int32, idChild int32) {
-	addr := lazyAddr(&pNotifyWinEvent, libUser32, "NotifyWinEvent")
+	addr := LazyAddr(&pNotifyWinEvent, libUser32, "NotifyWinEvent")
 	syscall.SyscallN(addr, uintptr(event), hwnd, uintptr(idObject), uintptr(idChild))
 }
 
 func SetWinEventHook(eventMin uint32, eventMax uint32, hmodWinEventProc HINSTANCE, pfnWinEventProc WINEVENTPROC, idProcess uint32, idThread uint32, dwFlags uint32) HWINEVENTHOOK {
-	addr := lazyAddr(&pSetWinEventHook, libUser32, "SetWinEventHook")
+	addr := LazyAddr(&pSetWinEventHook, libUser32, "SetWinEventHook")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(eventMin), uintptr(eventMax), hmodWinEventProc, pfnWinEventProc, uintptr(idProcess), uintptr(idThread), uintptr(dwFlags))
 	return ret
 }
 
 func IsWinEventHookInstalled(event uint32) BOOL {
-	addr := lazyAddr(&pIsWinEventHookInstalled, libUser32, "IsWinEventHookInstalled")
+	addr := LazyAddr(&pIsWinEventHookInstalled, libUser32, "IsWinEventHookInstalled")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(event))
 	return BOOL(ret)
 }
 
 func UnhookWinEvent(hWinEventHook HWINEVENTHOOK) BOOL {
-	addr := lazyAddr(&pUnhookWinEvent, libUser32, "UnhookWinEvent")
+	addr := LazyAddr(&pUnhookWinEvent, libUser32, "UnhookWinEvent")
 	ret, _, _ := syscall.SyscallN(addr, hWinEventHook)
 	return BOOL(ret)
 }

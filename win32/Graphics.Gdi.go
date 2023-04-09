@@ -4222,13 +4222,13 @@ var (
 )
 
 func GetObjectA(h HGDIOBJ, c int32, pv unsafe.Pointer) int32 {
-	addr := lazyAddr(&pGetObjectA, libGdi32, "GetObjectA")
+	addr := LazyAddr(&pGetObjectA, libGdi32, "GetObjectA")
 	ret, _, _ := syscall.SyscallN(addr, h, uintptr(c), uintptr(pv))
 	return int32(ret)
 }
 
 func AddFontResourceA(param0 PSTR) int32 {
-	addr := lazyAddr(&pAddFontResourceA, libGdi32, "AddFontResourceA")
+	addr := LazyAddr(&pAddFontResourceA, libGdi32, "AddFontResourceA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return int32(ret)
 }
@@ -4236,55 +4236,55 @@ func AddFontResourceA(param0 PSTR) int32 {
 var AddFontResource = AddFontResourceW
 
 func AddFontResourceW(param0 PWSTR) int32 {
-	addr := lazyAddr(&pAddFontResourceW, libGdi32, "AddFontResourceW")
+	addr := LazyAddr(&pAddFontResourceW, libGdi32, "AddFontResourceW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return int32(ret)
 }
 
 func AnimatePalette(hPal HPALETTE, iStartIndex uint32, cEntries uint32, ppe *PALETTEENTRY) BOOL {
-	addr := lazyAddr(&pAnimatePalette, libGdi32, "AnimatePalette")
+	addr := LazyAddr(&pAnimatePalette, libGdi32, "AnimatePalette")
 	ret, _, _ := syscall.SyscallN(addr, hPal, uintptr(iStartIndex), uintptr(cEntries), uintptr(unsafe.Pointer(ppe)))
 	return BOOL(ret)
 }
 
 func Arc(hdc HDC, x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x4 int32, y4 int32) BOOL {
-	addr := lazyAddr(&pArc, libGdi32, "Arc")
+	addr := LazyAddr(&pArc, libGdi32, "Arc")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x1), uintptr(y1), uintptr(x2), uintptr(y2), uintptr(x3), uintptr(y3), uintptr(x4), uintptr(y4))
 	return BOOL(ret)
 }
 
 func BitBlt(hdc HDC, x int32, y int32, cx int32, cy int32, hdcSrc HDC, x1 int32, y1 int32, rop ROP_CODE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pBitBlt, libGdi32, "BitBlt")
+	addr := LazyAddr(&pBitBlt, libGdi32, "BitBlt")
 	ret, _, err := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), hdcSrc, uintptr(x1), uintptr(y1), uintptr(rop))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CancelDC(hdc HDC) BOOL {
-	addr := lazyAddr(&pCancelDC, libGdi32, "CancelDC")
+	addr := LazyAddr(&pCancelDC, libGdi32, "CancelDC")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func Chord(hdc HDC, x1 int32, y1 int32, x2 int32, y2 int32, x3 int32, y3 int32, x4 int32, y4 int32) BOOL {
-	addr := lazyAddr(&pChord, libGdi32, "Chord")
+	addr := LazyAddr(&pChord, libGdi32, "Chord")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x1), uintptr(y1), uintptr(x2), uintptr(y2), uintptr(x3), uintptr(y3), uintptr(x4), uintptr(y4))
 	return BOOL(ret)
 }
 
 func CloseMetaFile(hdc HDC) HMETAFILE {
-	addr := lazyAddr(&pCloseMetaFile, libGdi32, "CloseMetaFile")
+	addr := LazyAddr(&pCloseMetaFile, libGdi32, "CloseMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return ret
 }
 
 func CombineRgn(hrgnDst HRGN, hrgnSrc1 HRGN, hrgnSrc2 HRGN, iMode RGN_COMBINE_MODE) GDI_REGION_TYPE {
-	addr := lazyAddr(&pCombineRgn, libGdi32, "CombineRgn")
+	addr := LazyAddr(&pCombineRgn, libGdi32, "CombineRgn")
 	ret, _, _ := syscall.SyscallN(addr, hrgnDst, hrgnSrc1, hrgnSrc2, uintptr(iMode))
 	return GDI_REGION_TYPE(ret)
 }
 
 func CopyMetaFileA(param0 HMETAFILE, param1 PSTR) HMETAFILE {
-	addr := lazyAddr(&pCopyMetaFileA, libGdi32, "CopyMetaFileA")
+	addr := LazyAddr(&pCopyMetaFileA, libGdi32, "CopyMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return ret
 }
@@ -4292,49 +4292,49 @@ func CopyMetaFileA(param0 HMETAFILE, param1 PSTR) HMETAFILE {
 var CopyMetaFile = CopyMetaFileW
 
 func CopyMetaFileW(param0 HMETAFILE, param1 PWSTR) HMETAFILE {
-	addr := lazyAddr(&pCopyMetaFileW, libGdi32, "CopyMetaFileW")
+	addr := LazyAddr(&pCopyMetaFileW, libGdi32, "CopyMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)))
 	return ret
 }
 
 func CreateBitmap(nWidth int32, nHeight int32, nPlanes uint32, nBitCount uint32, lpBits unsafe.Pointer) HBITMAP {
-	addr := lazyAddr(&pCreateBitmap, libGdi32, "CreateBitmap")
+	addr := LazyAddr(&pCreateBitmap, libGdi32, "CreateBitmap")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nWidth), uintptr(nHeight), uintptr(nPlanes), uintptr(nBitCount), uintptr(lpBits))
 	return ret
 }
 
 func CreateBitmapIndirect(pbm *BITMAP) HBITMAP {
-	addr := lazyAddr(&pCreateBitmapIndirect, libGdi32, "CreateBitmapIndirect")
+	addr := LazyAddr(&pCreateBitmapIndirect, libGdi32, "CreateBitmapIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pbm)))
 	return ret
 }
 
 func CreateBrushIndirect(plbrush *LOGBRUSH) HBRUSH {
-	addr := lazyAddr(&pCreateBrushIndirect, libGdi32, "CreateBrushIndirect")
+	addr := LazyAddr(&pCreateBrushIndirect, libGdi32, "CreateBrushIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plbrush)))
 	return ret
 }
 
 func CreateCompatibleBitmap(hdc HDC, cx int32, cy int32) HBITMAP {
-	addr := lazyAddr(&pCreateCompatibleBitmap, libGdi32, "CreateCompatibleBitmap")
+	addr := LazyAddr(&pCreateCompatibleBitmap, libGdi32, "CreateCompatibleBitmap")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(cx), uintptr(cy))
 	return ret
 }
 
 func CreateDiscardableBitmap(hdc HDC, cx int32, cy int32) HBITMAP {
-	addr := lazyAddr(&pCreateDiscardableBitmap, libGdi32, "CreateDiscardableBitmap")
+	addr := LazyAddr(&pCreateDiscardableBitmap, libGdi32, "CreateDiscardableBitmap")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(cx), uintptr(cy))
 	return ret
 }
 
 func CreateCompatibleDC(hdc HDC) CreatedHDC {
-	addr := lazyAddr(&pCreateCompatibleDC, libGdi32, "CreateCompatibleDC")
+	addr := LazyAddr(&pCreateCompatibleDC, libGdi32, "CreateCompatibleDC")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return ret
 }
 
 func CreateDCA(pwszDriver PSTR, pwszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) CreatedHDC {
-	addr := lazyAddr(&pCreateDCA, libGdi32, "CreateDCA")
+	addr := LazyAddr(&pCreateDCA, libGdi32, "CreateDCA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszDriver)), uintptr(unsafe.Pointer(pwszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
 }
@@ -4342,43 +4342,43 @@ func CreateDCA(pwszDriver PSTR, pwszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) Cr
 var CreateDC = CreateDCW
 
 func CreateDCW(pwszDriver PWSTR, pwszDevice PWSTR, pszPort PWSTR, pdm *DEVMODEW) CreatedHDC {
-	addr := lazyAddr(&pCreateDCW, libGdi32, "CreateDCW")
+	addr := LazyAddr(&pCreateDCW, libGdi32, "CreateDCW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszDriver)), uintptr(unsafe.Pointer(pwszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
 }
 
 func CreateDIBitmap(hdc HDC, pbmih *BITMAPINFOHEADER, flInit uint32, pjBits unsafe.Pointer, pbmi *BITMAPINFO, iUsage DIB_USAGE) HBITMAP {
-	addr := lazyAddr(&pCreateDIBitmap, libGdi32, "CreateDIBitmap")
+	addr := LazyAddr(&pCreateDIBitmap, libGdi32, "CreateDIBitmap")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pbmih)), uintptr(flInit), uintptr(pjBits), uintptr(unsafe.Pointer(pbmi)), uintptr(iUsage))
 	return ret
 }
 
 func CreateDIBPatternBrush(h uintptr, iUsage DIB_USAGE) HBRUSH {
-	addr := lazyAddr(&pCreateDIBPatternBrush, libGdi32, "CreateDIBPatternBrush")
+	addr := LazyAddr(&pCreateDIBPatternBrush, libGdi32, "CreateDIBPatternBrush")
 	ret, _, _ := syscall.SyscallN(addr, h, uintptr(iUsage))
 	return ret
 }
 
 func CreateDIBPatternBrushPt(lpPackedDIB unsafe.Pointer, iUsage DIB_USAGE) HBRUSH {
-	addr := lazyAddr(&pCreateDIBPatternBrushPt, libGdi32, "CreateDIBPatternBrushPt")
+	addr := LazyAddr(&pCreateDIBPatternBrushPt, libGdi32, "CreateDIBPatternBrushPt")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lpPackedDIB), uintptr(iUsage))
 	return ret
 }
 
 func CreateEllipticRgn(x1 int32, y1 int32, x2 int32, y2 int32) HRGN {
-	addr := lazyAddr(&pCreateEllipticRgn, libGdi32, "CreateEllipticRgn")
+	addr := LazyAddr(&pCreateEllipticRgn, libGdi32, "CreateEllipticRgn")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(x1), uintptr(y1), uintptr(x2), uintptr(y2))
 	return ret
 }
 
 func CreateEllipticRgnIndirect(lprect *RECT) HRGN {
-	addr := lazyAddr(&pCreateEllipticRgnIndirect, libGdi32, "CreateEllipticRgnIndirect")
+	addr := LazyAddr(&pCreateEllipticRgnIndirect, libGdi32, "CreateEllipticRgnIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprect)))
 	return ret
 }
 
 func CreateFontIndirectA(lplf *LOGFONTA) HFONT {
-	addr := lazyAddr(&pCreateFontIndirectA, libGdi32, "CreateFontIndirectA")
+	addr := LazyAddr(&pCreateFontIndirectA, libGdi32, "CreateFontIndirectA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lplf)))
 	return ret
 }
@@ -4386,13 +4386,13 @@ func CreateFontIndirectA(lplf *LOGFONTA) HFONT {
 var CreateFontIndirect = CreateFontIndirectW
 
 func CreateFontIndirectW(lplf *LOGFONTW) HFONT {
-	addr := lazyAddr(&pCreateFontIndirectW, libGdi32, "CreateFontIndirectW")
+	addr := LazyAddr(&pCreateFontIndirectW, libGdi32, "CreateFontIndirectW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lplf)))
 	return ret
 }
 
 func CreateFontA(cHeight int32, cWidth int32, cEscapement int32, cOrientation int32, cWeight int32, bItalic uint32, bUnderline uint32, bStrikeOut uint32, iCharSet uint32, iOutPrecision uint32, iClipPrecision uint32, iQuality uint32, iPitchAndFamily uint32, pszFaceName PSTR) HFONT {
-	addr := lazyAddr(&pCreateFontA, libGdi32, "CreateFontA")
+	addr := LazyAddr(&pCreateFontA, libGdi32, "CreateFontA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cHeight), uintptr(cWidth), uintptr(cEscapement), uintptr(cOrientation), uintptr(cWeight), uintptr(bItalic), uintptr(bUnderline), uintptr(bStrikeOut), uintptr(iCharSet), uintptr(iOutPrecision), uintptr(iClipPrecision), uintptr(iQuality), uintptr(iPitchAndFamily), uintptr(unsafe.Pointer(pszFaceName)))
 	return ret
 }
@@ -4400,19 +4400,19 @@ func CreateFontA(cHeight int32, cWidth int32, cEscapement int32, cOrientation in
 var CreateFont = CreateFontW
 
 func CreateFontW(cHeight int32, cWidth int32, cEscapement int32, cOrientation int32, cWeight int32, bItalic uint32, bUnderline uint32, bStrikeOut uint32, iCharSet uint32, iOutPrecision uint32, iClipPrecision uint32, iQuality uint32, iPitchAndFamily uint32, pszFaceName PWSTR) HFONT {
-	addr := lazyAddr(&pCreateFontW, libGdi32, "CreateFontW")
+	addr := LazyAddr(&pCreateFontW, libGdi32, "CreateFontW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cHeight), uintptr(cWidth), uintptr(cEscapement), uintptr(cOrientation), uintptr(cWeight), uintptr(bItalic), uintptr(bUnderline), uintptr(bStrikeOut), uintptr(iCharSet), uintptr(iOutPrecision), uintptr(iClipPrecision), uintptr(iQuality), uintptr(iPitchAndFamily), uintptr(unsafe.Pointer(pszFaceName)))
 	return ret
 }
 
 func CreateHatchBrush(iHatch HATCH_BRUSH_STYLE, color COLORREF) HBRUSH {
-	addr := lazyAddr(&pCreateHatchBrush, libGdi32, "CreateHatchBrush")
+	addr := LazyAddr(&pCreateHatchBrush, libGdi32, "CreateHatchBrush")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iHatch), uintptr(color))
 	return ret
 }
 
 func CreateICA(pszDriver PSTR, pszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) CreatedHDC {
-	addr := lazyAddr(&pCreateICA, libGdi32, "CreateICA")
+	addr := LazyAddr(&pCreateICA, libGdi32, "CreateICA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDriver)), uintptr(unsafe.Pointer(pszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
 }
@@ -4420,13 +4420,13 @@ func CreateICA(pszDriver PSTR, pszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) Crea
 var CreateIC = CreateICW
 
 func CreateICW(pszDriver PWSTR, pszDevice PWSTR, pszPort PWSTR, pdm *DEVMODEW) CreatedHDC {
-	addr := lazyAddr(&pCreateICW, libGdi32, "CreateICW")
+	addr := LazyAddr(&pCreateICW, libGdi32, "CreateICW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDriver)), uintptr(unsafe.Pointer(pszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
 }
 
 func CreateMetaFileA(pszFile PSTR) HdcMetdataFileHandle {
-	addr := lazyAddr(&pCreateMetaFileA, libGdi32, "CreateMetaFileA")
+	addr := LazyAddr(&pCreateMetaFileA, libGdi32, "CreateMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)))
 	return ret
 }
@@ -4434,61 +4434,61 @@ func CreateMetaFileA(pszFile PSTR) HdcMetdataFileHandle {
 var CreateMetaFile = CreateMetaFileW
 
 func CreateMetaFileW(pszFile PWSTR) HdcMetdataFileHandle {
-	addr := lazyAddr(&pCreateMetaFileW, libGdi32, "CreateMetaFileW")
+	addr := LazyAddr(&pCreateMetaFileW, libGdi32, "CreateMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)))
 	return ret
 }
 
 func CreatePalette(plpal *LOGPALETTE) HPALETTE {
-	addr := lazyAddr(&pCreatePalette, libGdi32, "CreatePalette")
+	addr := LazyAddr(&pCreatePalette, libGdi32, "CreatePalette")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plpal)))
 	return ret
 }
 
 func CreatePen(iStyle PEN_STYLE, cWidth int32, color COLORREF) HPEN {
-	addr := lazyAddr(&pCreatePen, libGdi32, "CreatePen")
+	addr := LazyAddr(&pCreatePen, libGdi32, "CreatePen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iStyle), uintptr(cWidth), uintptr(color))
 	return ret
 }
 
 func CreatePenIndirect(plpen *LOGPEN) HPEN {
-	addr := lazyAddr(&pCreatePenIndirect, libGdi32, "CreatePenIndirect")
+	addr := LazyAddr(&pCreatePenIndirect, libGdi32, "CreatePenIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plpen)))
 	return ret
 }
 
 func CreatePolyPolygonRgn(pptl *POINT, pc *int32, cPoly int32, iMode CREATE_POLYGON_RGN_MODE) HRGN {
-	addr := lazyAddr(&pCreatePolyPolygonRgn, libGdi32, "CreatePolyPolygonRgn")
+	addr := LazyAddr(&pCreatePolyPolygonRgn, libGdi32, "CreatePolyPolygonRgn")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pptl)), uintptr(unsafe.Pointer(pc)), uintptr(cPoly), uintptr(iMode))
 	return ret
 }
 
 func CreatePatternBrush(hbm HBITMAP) HBRUSH {
-	addr := lazyAddr(&pCreatePatternBrush, libGdi32, "CreatePatternBrush")
+	addr := LazyAddr(&pCreatePatternBrush, libGdi32, "CreatePatternBrush")
 	ret, _, _ := syscall.SyscallN(addr, hbm)
 	return ret
 }
 
 func CreateRectRgn(x1 int32, y1 int32, x2 int32, y2 int32) HRGN {
-	addr := lazyAddr(&pCreateRectRgn, libGdi32, "CreateRectRgn")
+	addr := LazyAddr(&pCreateRectRgn, libGdi32, "CreateRectRgn")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(x1), uintptr(y1), uintptr(x2), uintptr(y2))
 	return ret
 }
 
 func CreateRectRgnIndirect(lprect *RECT) HRGN {
-	addr := lazyAddr(&pCreateRectRgnIndirect, libGdi32, "CreateRectRgnIndirect")
+	addr := LazyAddr(&pCreateRectRgnIndirect, libGdi32, "CreateRectRgnIndirect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprect)))
 	return ret
 }
 
 func CreateRoundRectRgn(x1 int32, y1 int32, x2 int32, y2 int32, w int32, h int32) HRGN {
-	addr := lazyAddr(&pCreateRoundRectRgn, libGdi32, "CreateRoundRectRgn")
+	addr := LazyAddr(&pCreateRoundRectRgn, libGdi32, "CreateRoundRectRgn")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(x1), uintptr(y1), uintptr(x2), uintptr(y2), uintptr(w), uintptr(h))
 	return ret
 }
 
 func CreateScalableFontResourceA(fdwHidden uint32, lpszFont PSTR, lpszFile PSTR, lpszPath PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateScalableFontResourceA, libGdi32, "CreateScalableFontResourceA")
+	addr := LazyAddr(&pCreateScalableFontResourceA, libGdi32, "CreateScalableFontResourceA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(fdwHidden), uintptr(unsafe.Pointer(lpszFont)), uintptr(unsafe.Pointer(lpszFile)), uintptr(unsafe.Pointer(lpszPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -4496,49 +4496,49 @@ func CreateScalableFontResourceA(fdwHidden uint32, lpszFont PSTR, lpszFile PSTR,
 var CreateScalableFontResource = CreateScalableFontResourceW
 
 func CreateScalableFontResourceW(fdwHidden uint32, lpszFont PWSTR, lpszFile PWSTR, lpszPath PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateScalableFontResourceW, libGdi32, "CreateScalableFontResourceW")
+	addr := LazyAddr(&pCreateScalableFontResourceW, libGdi32, "CreateScalableFontResourceW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(fdwHidden), uintptr(unsafe.Pointer(lpszFont)), uintptr(unsafe.Pointer(lpszFile)), uintptr(unsafe.Pointer(lpszPath)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateSolidBrush(color COLORREF) HBRUSH {
-	addr := lazyAddr(&pCreateSolidBrush, libGdi32, "CreateSolidBrush")
+	addr := LazyAddr(&pCreateSolidBrush, libGdi32, "CreateSolidBrush")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(color))
 	return ret
 }
 
 func DeleteDC(hdc CreatedHDC) BOOL {
-	addr := lazyAddr(&pDeleteDC, libGdi32, "DeleteDC")
+	addr := LazyAddr(&pDeleteDC, libGdi32, "DeleteDC")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func DeleteMetaFile(hmf HMETAFILE) BOOL {
-	addr := lazyAddr(&pDeleteMetaFile, libGdi32, "DeleteMetaFile")
+	addr := LazyAddr(&pDeleteMetaFile, libGdi32, "DeleteMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hmf)
 	return BOOL(ret)
 }
 
 func DeleteObject(ho HGDIOBJ) BOOL {
-	addr := lazyAddr(&pDeleteObject, libGdi32, "DeleteObject")
+	addr := LazyAddr(&pDeleteObject, libGdi32, "DeleteObject")
 	ret, _, _ := syscall.SyscallN(addr, ho)
 	return BOOL(ret)
 }
 
 func DrawEscape(hdc HDC, iEscape int32, cjIn int32, lpIn PSTR) int32 {
-	addr := lazyAddr(&pDrawEscape, libGdi32, "DrawEscape")
+	addr := LazyAddr(&pDrawEscape, libGdi32, "DrawEscape")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iEscape), uintptr(cjIn), uintptr(unsafe.Pointer(lpIn)))
 	return int32(ret)
 }
 
 func Ellipse(hdc HDC, left int32, top int32, right int32, bottom int32) BOOL {
-	addr := lazyAddr(&pEllipse, libGdi32, "Ellipse")
+	addr := LazyAddr(&pEllipse, libGdi32, "Ellipse")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom))
 	return BOOL(ret)
 }
 
 func EnumFontFamiliesExA(hdc HDC, lpLogfont *LOGFONTA, lpProc FONTENUMPROCA, lParam LPARAM, dwFlags uint32) int32 {
-	addr := lazyAddr(&pEnumFontFamiliesExA, libGdi32, "EnumFontFamiliesExA")
+	addr := LazyAddr(&pEnumFontFamiliesExA, libGdi32, "EnumFontFamiliesExA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpLogfont)), lpProc, lParam, uintptr(dwFlags))
 	return int32(ret)
 }
@@ -4546,13 +4546,13 @@ func EnumFontFamiliesExA(hdc HDC, lpLogfont *LOGFONTA, lpProc FONTENUMPROCA, lPa
 var EnumFontFamiliesEx = EnumFontFamiliesExW
 
 func EnumFontFamiliesExW(hdc HDC, lpLogfont *LOGFONTW, lpProc FONTENUMPROCW, lParam LPARAM, dwFlags uint32) int32 {
-	addr := lazyAddr(&pEnumFontFamiliesExW, libGdi32, "EnumFontFamiliesExW")
+	addr := LazyAddr(&pEnumFontFamiliesExW, libGdi32, "EnumFontFamiliesExW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpLogfont)), lpProc, lParam, uintptr(dwFlags))
 	return int32(ret)
 }
 
 func EnumFontFamiliesA(hdc HDC, lpLogfont PSTR, lpProc FONTENUMPROCA, lParam LPARAM) int32 {
-	addr := lazyAddr(&pEnumFontFamiliesA, libGdi32, "EnumFontFamiliesA")
+	addr := LazyAddr(&pEnumFontFamiliesA, libGdi32, "EnumFontFamiliesA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpLogfont)), lpProc, lParam)
 	return int32(ret)
 }
@@ -4560,13 +4560,13 @@ func EnumFontFamiliesA(hdc HDC, lpLogfont PSTR, lpProc FONTENUMPROCA, lParam LPA
 var EnumFontFamilies = EnumFontFamiliesW
 
 func EnumFontFamiliesW(hdc HDC, lpLogfont PWSTR, lpProc FONTENUMPROCW, lParam LPARAM) int32 {
-	addr := lazyAddr(&pEnumFontFamiliesW, libGdi32, "EnumFontFamiliesW")
+	addr := LazyAddr(&pEnumFontFamiliesW, libGdi32, "EnumFontFamiliesW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpLogfont)), lpProc, lParam)
 	return int32(ret)
 }
 
 func EnumFontsA(hdc HDC, lpLogfont PSTR, lpProc FONTENUMPROCA, lParam LPARAM) int32 {
-	addr := lazyAddr(&pEnumFontsA, libGdi32, "EnumFontsA")
+	addr := LazyAddr(&pEnumFontsA, libGdi32, "EnumFontsA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpLogfont)), lpProc, lParam)
 	return int32(ret)
 }
@@ -4574,121 +4574,121 @@ func EnumFontsA(hdc HDC, lpLogfont PSTR, lpProc FONTENUMPROCA, lParam LPARAM) in
 var EnumFonts = EnumFontsW
 
 func EnumFontsW(hdc HDC, lpLogfont PWSTR, lpProc FONTENUMPROCW, lParam LPARAM) int32 {
-	addr := lazyAddr(&pEnumFontsW, libGdi32, "EnumFontsW")
+	addr := LazyAddr(&pEnumFontsW, libGdi32, "EnumFontsW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpLogfont)), lpProc, lParam)
 	return int32(ret)
 }
 
 func EnumObjects(hdc HDC, nType OBJ_TYPE, lpFunc GOBJENUMPROC, lParam LPARAM) int32 {
-	addr := lazyAddr(&pEnumObjects, libGdi32, "EnumObjects")
+	addr := LazyAddr(&pEnumObjects, libGdi32, "EnumObjects")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(nType), lpFunc, lParam)
 	return int32(ret)
 }
 
 func EqualRgn(hrgn1 HRGN, hrgn2 HRGN) BOOL {
-	addr := lazyAddr(&pEqualRgn, libGdi32, "EqualRgn")
+	addr := LazyAddr(&pEqualRgn, libGdi32, "EqualRgn")
 	ret, _, _ := syscall.SyscallN(addr, hrgn1, hrgn2)
 	return BOOL(ret)
 }
 
 func ExcludeClipRect(hdc HDC, left int32, top int32, right int32, bottom int32) GDI_REGION_TYPE {
-	addr := lazyAddr(&pExcludeClipRect, libGdi32, "ExcludeClipRect")
+	addr := LazyAddr(&pExcludeClipRect, libGdi32, "ExcludeClipRect")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom))
 	return GDI_REGION_TYPE(ret)
 }
 
 func ExtCreateRegion(lpx *XFORM, nCount uint32, lpData *RGNDATA) HRGN {
-	addr := lazyAddr(&pExtCreateRegion, libGdi32, "ExtCreateRegion")
+	addr := LazyAddr(&pExtCreateRegion, libGdi32, "ExtCreateRegion")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpx)), uintptr(nCount), uintptr(unsafe.Pointer(lpData)))
 	return ret
 }
 
 func ExtFloodFill(hdc HDC, x int32, y int32, color COLORREF, type_ EXT_FLOOD_FILL_TYPE) BOOL {
-	addr := lazyAddr(&pExtFloodFill, libGdi32, "ExtFloodFill")
+	addr := LazyAddr(&pExtFloodFill, libGdi32, "ExtFloodFill")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color), uintptr(type_))
 	return BOOL(ret)
 }
 
 func FillRgn(hdc HDC, hrgn HRGN, hbr HBRUSH) BOOL {
-	addr := lazyAddr(&pFillRgn, libGdi32, "FillRgn")
+	addr := LazyAddr(&pFillRgn, libGdi32, "FillRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn, hbr)
 	return BOOL(ret)
 }
 
 func FloodFill(hdc HDC, x int32, y int32, color COLORREF) BOOL {
-	addr := lazyAddr(&pFloodFill, libGdi32, "FloodFill")
+	addr := LazyAddr(&pFloodFill, libGdi32, "FloodFill")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color))
 	return BOOL(ret)
 }
 
 func FrameRgn(hdc HDC, hrgn HRGN, hbr HBRUSH, w int32, h int32) BOOL {
-	addr := lazyAddr(&pFrameRgn, libGdi32, "FrameRgn")
+	addr := LazyAddr(&pFrameRgn, libGdi32, "FrameRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn, hbr, uintptr(w), uintptr(h))
 	return BOOL(ret)
 }
 
 func GetROP2(hdc HDC) R2_MODE {
-	addr := lazyAddr(&pGetROP2, libGdi32, "GetROP2")
+	addr := LazyAddr(&pGetROP2, libGdi32, "GetROP2")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return R2_MODE(ret)
 }
 
 func GetAspectRatioFilterEx(hdc HDC, lpsize *SIZE) BOOL {
-	addr := lazyAddr(&pGetAspectRatioFilterEx, libGdi32, "GetAspectRatioFilterEx")
+	addr := LazyAddr(&pGetAspectRatioFilterEx, libGdi32, "GetAspectRatioFilterEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpsize)))
 	return BOOL(ret)
 }
 
 func GetBkColor(hdc HDC) COLORREF {
-	addr := lazyAddr(&pGetBkColor, libGdi32, "GetBkColor")
+	addr := LazyAddr(&pGetBkColor, libGdi32, "GetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return COLORREF(ret)
 }
 
 func GetDCBrushColor(hdc HDC) COLORREF {
-	addr := lazyAddr(&pGetDCBrushColor, libGdi32, "GetDCBrushColor")
+	addr := LazyAddr(&pGetDCBrushColor, libGdi32, "GetDCBrushColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return COLORREF(ret)
 }
 
 func GetDCPenColor(hdc HDC) COLORREF {
-	addr := lazyAddr(&pGetDCPenColor, libGdi32, "GetDCPenColor")
+	addr := LazyAddr(&pGetDCPenColor, libGdi32, "GetDCPenColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return COLORREF(ret)
 }
 
 func GetBkMode(hdc HDC) BACKGROUND_MODE {
-	addr := lazyAddr(&pGetBkMode, libGdi32, "GetBkMode")
+	addr := LazyAddr(&pGetBkMode, libGdi32, "GetBkMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BACKGROUND_MODE(ret)
 }
 
 func GetBitmapBits(hbit HBITMAP, cb int32, lpvBits unsafe.Pointer) int32 {
-	addr := lazyAddr(&pGetBitmapBits, libGdi32, "GetBitmapBits")
+	addr := LazyAddr(&pGetBitmapBits, libGdi32, "GetBitmapBits")
 	ret, _, _ := syscall.SyscallN(addr, hbit, uintptr(cb), uintptr(lpvBits))
 	return int32(ret)
 }
 
 func GetBitmapDimensionEx(hbit HBITMAP, lpsize *SIZE) BOOL {
-	addr := lazyAddr(&pGetBitmapDimensionEx, libGdi32, "GetBitmapDimensionEx")
+	addr := LazyAddr(&pGetBitmapDimensionEx, libGdi32, "GetBitmapDimensionEx")
 	ret, _, _ := syscall.SyscallN(addr, hbit, uintptr(unsafe.Pointer(lpsize)))
 	return BOOL(ret)
 }
 
 func GetBoundsRect(hdc HDC, lprect *RECT, flags uint32) uint32 {
-	addr := lazyAddr(&pGetBoundsRect, libGdi32, "GetBoundsRect")
+	addr := LazyAddr(&pGetBoundsRect, libGdi32, "GetBoundsRect")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lprect)), uintptr(flags))
 	return uint32(ret)
 }
 
 func GetBrushOrgEx(hdc HDC, lppt *POINT) BOOL {
-	addr := lazyAddr(&pGetBrushOrgEx, libGdi32, "GetBrushOrgEx")
+	addr := LazyAddr(&pGetBrushOrgEx, libGdi32, "GetBrushOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func GetCharWidthA(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *int32) BOOL {
-	addr := lazyAddr(&pGetCharWidthA, libGdi32, "GetCharWidthA")
+	addr := LazyAddr(&pGetCharWidthA, libGdi32, "GetCharWidthA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret)
 }
@@ -4696,13 +4696,13 @@ func GetCharWidthA(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *int32) BOOL {
 var GetCharWidth = GetCharWidthW
 
 func GetCharWidthW(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *int32) BOOL {
-	addr := lazyAddr(&pGetCharWidthW, libGdi32, "GetCharWidthW")
+	addr := LazyAddr(&pGetCharWidthW, libGdi32, "GetCharWidthW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret)
 }
 
 func GetCharWidth32A(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *int32) BOOL {
-	addr := lazyAddr(&pGetCharWidth32A, libGdi32, "GetCharWidth32A")
+	addr := LazyAddr(&pGetCharWidth32A, libGdi32, "GetCharWidth32A")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret)
 }
@@ -4710,13 +4710,13 @@ func GetCharWidth32A(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *int32) BOOL
 var GetCharWidth32 = GetCharWidth32W
 
 func GetCharWidth32W(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *int32) BOOL {
-	addr := lazyAddr(&pGetCharWidth32W, libGdi32, "GetCharWidth32W")
+	addr := LazyAddr(&pGetCharWidth32W, libGdi32, "GetCharWidth32W")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret)
 }
 
 func GetCharWidthFloatA(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *float32) BOOL {
-	addr := lazyAddr(&pGetCharWidthFloatA, libGdi32, "GetCharWidthFloatA")
+	addr := LazyAddr(&pGetCharWidthFloatA, libGdi32, "GetCharWidthFloatA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret)
 }
@@ -4724,13 +4724,13 @@ func GetCharWidthFloatA(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *float32)
 var GetCharWidthFloat = GetCharWidthFloatW
 
 func GetCharWidthFloatW(hdc HDC, iFirst uint32, iLast uint32, lpBuffer *float32) BOOL {
-	addr := lazyAddr(&pGetCharWidthFloatW, libGdi32, "GetCharWidthFloatW")
+	addr := LazyAddr(&pGetCharWidthFloatW, libGdi32, "GetCharWidthFloatW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpBuffer)))
 	return BOOL(ret)
 }
 
 func GetCharABCWidthsA(hdc HDC, wFirst uint32, wLast uint32, lpABC *ABC) BOOL {
-	addr := lazyAddr(&pGetCharABCWidthsA, libGdi32, "GetCharABCWidthsA")
+	addr := LazyAddr(&pGetCharABCWidthsA, libGdi32, "GetCharABCWidthsA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(wFirst), uintptr(wLast), uintptr(unsafe.Pointer(lpABC)))
 	return BOOL(ret)
 }
@@ -4738,13 +4738,13 @@ func GetCharABCWidthsA(hdc HDC, wFirst uint32, wLast uint32, lpABC *ABC) BOOL {
 var GetCharABCWidths = GetCharABCWidthsW
 
 func GetCharABCWidthsW(hdc HDC, wFirst uint32, wLast uint32, lpABC *ABC) BOOL {
-	addr := lazyAddr(&pGetCharABCWidthsW, libGdi32, "GetCharABCWidthsW")
+	addr := LazyAddr(&pGetCharABCWidthsW, libGdi32, "GetCharABCWidthsW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(wFirst), uintptr(wLast), uintptr(unsafe.Pointer(lpABC)))
 	return BOOL(ret)
 }
 
 func GetCharABCWidthsFloatA(hdc HDC, iFirst uint32, iLast uint32, lpABC *ABCFLOAT) BOOL {
-	addr := lazyAddr(&pGetCharABCWidthsFloatA, libGdi32, "GetCharABCWidthsFloatA")
+	addr := LazyAddr(&pGetCharABCWidthsFloatA, libGdi32, "GetCharABCWidthsFloatA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpABC)))
 	return BOOL(ret)
 }
@@ -4752,61 +4752,61 @@ func GetCharABCWidthsFloatA(hdc HDC, iFirst uint32, iLast uint32, lpABC *ABCFLOA
 var GetCharABCWidthsFloat = GetCharABCWidthsFloatW
 
 func GetCharABCWidthsFloatW(hdc HDC, iFirst uint32, iLast uint32, lpABC *ABCFLOAT) BOOL {
-	addr := lazyAddr(&pGetCharABCWidthsFloatW, libGdi32, "GetCharABCWidthsFloatW")
+	addr := LazyAddr(&pGetCharABCWidthsFloatW, libGdi32, "GetCharABCWidthsFloatW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iFirst), uintptr(iLast), uintptr(unsafe.Pointer(lpABC)))
 	return BOOL(ret)
 }
 
 func GetClipBox(hdc HDC, lprect *RECT) GDI_REGION_TYPE {
-	addr := lazyAddr(&pGetClipBox, libGdi32, "GetClipBox")
+	addr := LazyAddr(&pGetClipBox, libGdi32, "GetClipBox")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lprect)))
 	return GDI_REGION_TYPE(ret)
 }
 
 func GetClipRgn(hdc HDC, hrgn HRGN) int32 {
-	addr := lazyAddr(&pGetClipRgn, libGdi32, "GetClipRgn")
+	addr := LazyAddr(&pGetClipRgn, libGdi32, "GetClipRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn)
 	return int32(ret)
 }
 
 func GetMetaRgn(hdc HDC, hrgn HRGN) int32 {
-	addr := lazyAddr(&pGetMetaRgn, libGdi32, "GetMetaRgn")
+	addr := LazyAddr(&pGetMetaRgn, libGdi32, "GetMetaRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn)
 	return int32(ret)
 }
 
 func GetCurrentObject(hdc HDC, type_ OBJ_TYPE) HGDIOBJ {
-	addr := lazyAddr(&pGetCurrentObject, libGdi32, "GetCurrentObject")
+	addr := LazyAddr(&pGetCurrentObject, libGdi32, "GetCurrentObject")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(type_))
 	return ret
 }
 
 func GetCurrentPositionEx(hdc HDC, lppt *POINT) BOOL {
-	addr := lazyAddr(&pGetCurrentPositionEx, libGdi32, "GetCurrentPositionEx")
+	addr := LazyAddr(&pGetCurrentPositionEx, libGdi32, "GetCurrentPositionEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func GetDeviceCaps(hdc HDC, index GET_DEVICE_CAPS_INDEX) int32 {
-	addr := lazyAddr(&pGetDeviceCaps, libGdi32, "GetDeviceCaps")
+	addr := LazyAddr(&pGetDeviceCaps, libGdi32, "GetDeviceCaps")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(index))
 	return int32(ret)
 }
 
 func GetDIBits(hdc HDC, hbm HBITMAP, start uint32, cLines uint32, lpvBits unsafe.Pointer, lpbmi *BITMAPINFO, usage DIB_USAGE) int32 {
-	addr := lazyAddr(&pGetDIBits, libGdi32, "GetDIBits")
+	addr := LazyAddr(&pGetDIBits, libGdi32, "GetDIBits")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hbm, uintptr(start), uintptr(cLines), uintptr(lpvBits), uintptr(unsafe.Pointer(lpbmi)), uintptr(usage))
 	return int32(ret)
 }
 
 func GetFontData(hdc HDC, dwTable uint32, dwOffset uint32, pvBuffer unsafe.Pointer, cjBuffer uint32) uint32 {
-	addr := lazyAddr(&pGetFontData, libGdi32, "GetFontData")
+	addr := LazyAddr(&pGetFontData, libGdi32, "GetFontData")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(dwTable), uintptr(dwOffset), uintptr(pvBuffer), uintptr(cjBuffer))
 	return uint32(ret)
 }
 
 func GetGlyphOutlineA(hdc HDC, uChar uint32, fuFormat GET_GLYPH_OUTLINE_FORMAT, lpgm *GLYPHMETRICS, cjBuffer uint32, pvBuffer unsafe.Pointer, lpmat2 *MAT2) uint32 {
-	addr := lazyAddr(&pGetGlyphOutlineA, libGdi32, "GetGlyphOutlineA")
+	addr := LazyAddr(&pGetGlyphOutlineA, libGdi32, "GetGlyphOutlineA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(uChar), uintptr(fuFormat), uintptr(unsafe.Pointer(lpgm)), uintptr(cjBuffer), uintptr(pvBuffer), uintptr(unsafe.Pointer(lpmat2)))
 	return uint32(ret)
 }
@@ -4814,31 +4814,31 @@ func GetGlyphOutlineA(hdc HDC, uChar uint32, fuFormat GET_GLYPH_OUTLINE_FORMAT, 
 var GetGlyphOutline = GetGlyphOutlineW
 
 func GetGlyphOutlineW(hdc HDC, uChar uint32, fuFormat GET_GLYPH_OUTLINE_FORMAT, lpgm *GLYPHMETRICS, cjBuffer uint32, pvBuffer unsafe.Pointer, lpmat2 *MAT2) uint32 {
-	addr := lazyAddr(&pGetGlyphOutlineW, libGdi32, "GetGlyphOutlineW")
+	addr := LazyAddr(&pGetGlyphOutlineW, libGdi32, "GetGlyphOutlineW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(uChar), uintptr(fuFormat), uintptr(unsafe.Pointer(lpgm)), uintptr(cjBuffer), uintptr(pvBuffer), uintptr(unsafe.Pointer(lpmat2)))
 	return uint32(ret)
 }
 
 func GetGraphicsMode(hdc HDC) int32 {
-	addr := lazyAddr(&pGetGraphicsMode, libGdi32, "GetGraphicsMode")
+	addr := LazyAddr(&pGetGraphicsMode, libGdi32, "GetGraphicsMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return int32(ret)
 }
 
 func GetMapMode(hdc HDC) HDC_MAP_MODE {
-	addr := lazyAddr(&pGetMapMode, libGdi32, "GetMapMode")
+	addr := LazyAddr(&pGetMapMode, libGdi32, "GetMapMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return HDC_MAP_MODE(ret)
 }
 
 func GetMetaFileBitsEx(hMF HMETAFILE, cbBuffer uint32, lpData unsafe.Pointer) uint32 {
-	addr := lazyAddr(&pGetMetaFileBitsEx, libGdi32, "GetMetaFileBitsEx")
+	addr := LazyAddr(&pGetMetaFileBitsEx, libGdi32, "GetMetaFileBitsEx")
 	ret, _, _ := syscall.SyscallN(addr, hMF, uintptr(cbBuffer), uintptr(lpData))
 	return uint32(ret)
 }
 
 func GetMetaFileA(lpName PSTR) HMETAFILE {
-	addr := lazyAddr(&pGetMetaFileA, libGdi32, "GetMetaFileA")
+	addr := LazyAddr(&pGetMetaFileA, libGdi32, "GetMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)))
 	return ret
 }
@@ -4846,31 +4846,31 @@ func GetMetaFileA(lpName PSTR) HMETAFILE {
 var GetMetaFile = GetMetaFileW
 
 func GetMetaFileW(lpName PWSTR) HMETAFILE {
-	addr := lazyAddr(&pGetMetaFileW, libGdi32, "GetMetaFileW")
+	addr := LazyAddr(&pGetMetaFileW, libGdi32, "GetMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)))
 	return ret
 }
 
 func GetNearestColor(hdc HDC, color COLORREF) COLORREF {
-	addr := lazyAddr(&pGetNearestColor, libGdi32, "GetNearestColor")
+	addr := LazyAddr(&pGetNearestColor, libGdi32, "GetNearestColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
 	return COLORREF(ret)
 }
 
 func GetNearestPaletteIndex(h HPALETTE, color COLORREF) uint32 {
-	addr := lazyAddr(&pGetNearestPaletteIndex, libGdi32, "GetNearestPaletteIndex")
+	addr := LazyAddr(&pGetNearestPaletteIndex, libGdi32, "GetNearestPaletteIndex")
 	ret, _, _ := syscall.SyscallN(addr, h, uintptr(color))
 	return uint32(ret)
 }
 
 func GetObjectType(h HGDIOBJ) uint32 {
-	addr := lazyAddr(&pGetObjectType, libGdi32, "GetObjectType")
+	addr := LazyAddr(&pGetObjectType, libGdi32, "GetObjectType")
 	ret, _, _ := syscall.SyscallN(addr, h)
 	return uint32(ret)
 }
 
 func GetOutlineTextMetricsA(hdc HDC, cjCopy uint32, potm *OUTLINETEXTMETRICA) uint32 {
-	addr := lazyAddr(&pGetOutlineTextMetricsA, libGdi32, "GetOutlineTextMetricsA")
+	addr := LazyAddr(&pGetOutlineTextMetricsA, libGdi32, "GetOutlineTextMetricsA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(cjCopy), uintptr(unsafe.Pointer(potm)))
 	return uint32(ret)
 }
@@ -4878,97 +4878,97 @@ func GetOutlineTextMetricsA(hdc HDC, cjCopy uint32, potm *OUTLINETEXTMETRICA) ui
 var GetOutlineTextMetrics = GetOutlineTextMetricsW
 
 func GetOutlineTextMetricsW(hdc HDC, cjCopy uint32, potm *OUTLINETEXTMETRICW) uint32 {
-	addr := lazyAddr(&pGetOutlineTextMetricsW, libGdi32, "GetOutlineTextMetricsW")
+	addr := LazyAddr(&pGetOutlineTextMetricsW, libGdi32, "GetOutlineTextMetricsW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(cjCopy), uintptr(unsafe.Pointer(potm)))
 	return uint32(ret)
 }
 
 func GetPaletteEntries(hpal HPALETTE, iStart uint32, cEntries uint32, pPalEntries *PALETTEENTRY) uint32 {
-	addr := lazyAddr(&pGetPaletteEntries, libGdi32, "GetPaletteEntries")
+	addr := LazyAddr(&pGetPaletteEntries, libGdi32, "GetPaletteEntries")
 	ret, _, _ := syscall.SyscallN(addr, hpal, uintptr(iStart), uintptr(cEntries), uintptr(unsafe.Pointer(pPalEntries)))
 	return uint32(ret)
 }
 
 func GetPixel(hdc HDC, x int32, y int32) COLORREF {
-	addr := lazyAddr(&pGetPixel, libGdi32, "GetPixel")
+	addr := LazyAddr(&pGetPixel, libGdi32, "GetPixel")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y))
 	return COLORREF(ret)
 }
 
 func GetPolyFillMode(hdc HDC) int32 {
-	addr := lazyAddr(&pGetPolyFillMode, libGdi32, "GetPolyFillMode")
+	addr := LazyAddr(&pGetPolyFillMode, libGdi32, "GetPolyFillMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return int32(ret)
 }
 
 func GetRasterizerCaps(lpraststat *RASTERIZER_STATUS, cjBytes uint32) BOOL {
-	addr := lazyAddr(&pGetRasterizerCaps, libGdi32, "GetRasterizerCaps")
+	addr := LazyAddr(&pGetRasterizerCaps, libGdi32, "GetRasterizerCaps")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpraststat)), uintptr(cjBytes))
 	return BOOL(ret)
 }
 
 func GetRandomRgn(hdc HDC, hrgn HRGN, i int32) int32 {
-	addr := lazyAddr(&pGetRandomRgn, libGdi32, "GetRandomRgn")
+	addr := LazyAddr(&pGetRandomRgn, libGdi32, "GetRandomRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn, uintptr(i))
 	return int32(ret)
 }
 
 func GetRegionData(hrgn HRGN, nCount uint32, lpRgnData *RGNDATA) uint32 {
-	addr := lazyAddr(&pGetRegionData, libGdi32, "GetRegionData")
+	addr := LazyAddr(&pGetRegionData, libGdi32, "GetRegionData")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(nCount), uintptr(unsafe.Pointer(lpRgnData)))
 	return uint32(ret)
 }
 
 func GetRgnBox(hrgn HRGN, lprc *RECT) GDI_REGION_TYPE {
-	addr := lazyAddr(&pGetRgnBox, libGdi32, "GetRgnBox")
+	addr := LazyAddr(&pGetRgnBox, libGdi32, "GetRgnBox")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(unsafe.Pointer(lprc)))
 	return GDI_REGION_TYPE(ret)
 }
 
 func GetStockObject(i GET_STOCK_OBJECT_FLAGS) HGDIOBJ {
-	addr := lazyAddr(&pGetStockObject, libGdi32, "GetStockObject")
+	addr := LazyAddr(&pGetStockObject, libGdi32, "GetStockObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(i))
 	return ret
 }
 
 func GetStretchBltMode(hdc HDC) int32 {
-	addr := lazyAddr(&pGetStretchBltMode, libGdi32, "GetStretchBltMode")
+	addr := LazyAddr(&pGetStretchBltMode, libGdi32, "GetStretchBltMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return int32(ret)
 }
 
 func GetSystemPaletteEntries(hdc HDC, iStart uint32, cEntries uint32, pPalEntries *PALETTEENTRY) uint32 {
-	addr := lazyAddr(&pGetSystemPaletteEntries, libGdi32, "GetSystemPaletteEntries")
+	addr := LazyAddr(&pGetSystemPaletteEntries, libGdi32, "GetSystemPaletteEntries")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iStart), uintptr(cEntries), uintptr(unsafe.Pointer(pPalEntries)))
 	return uint32(ret)
 }
 
 func GetSystemPaletteUse(hdc HDC) uint32 {
-	addr := lazyAddr(&pGetSystemPaletteUse, libGdi32, "GetSystemPaletteUse")
+	addr := LazyAddr(&pGetSystemPaletteUse, libGdi32, "GetSystemPaletteUse")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return uint32(ret)
 }
 
 func GetTextCharacterExtra(hdc HDC) int32 {
-	addr := lazyAddr(&pGetTextCharacterExtra, libGdi32, "GetTextCharacterExtra")
+	addr := LazyAddr(&pGetTextCharacterExtra, libGdi32, "GetTextCharacterExtra")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return int32(ret)
 }
 
 func GetTextAlign(hdc HDC) TEXT_ALIGN_OPTIONS {
-	addr := lazyAddr(&pGetTextAlign, libGdi32, "GetTextAlign")
+	addr := LazyAddr(&pGetTextAlign, libGdi32, "GetTextAlign")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return TEXT_ALIGN_OPTIONS(ret)
 }
 
 func GetTextColor(hdc HDC) COLORREF {
-	addr := lazyAddr(&pGetTextColor, libGdi32, "GetTextColor")
+	addr := LazyAddr(&pGetTextColor, libGdi32, "GetTextColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return COLORREF(ret)
 }
 
 func GetTextExtentPointA(hdc HDC, lpString PSTR, c int32, lpsz *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentPointA, libGdi32, "GetTextExtentPointA")
+	addr := LazyAddr(&pGetTextExtentPointA, libGdi32, "GetTextExtentPointA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(c), uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
@@ -4976,13 +4976,13 @@ func GetTextExtentPointA(hdc HDC, lpString PSTR, c int32, lpsz *SIZE) BOOL {
 var GetTextExtentPoint = GetTextExtentPointW
 
 func GetTextExtentPointW(hdc HDC, lpString PWSTR, c int32, lpsz *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentPointW, libGdi32, "GetTextExtentPointW")
+	addr := LazyAddr(&pGetTextExtentPointW, libGdi32, "GetTextExtentPointW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(c), uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func GetTextExtentPoint32A(hdc HDC, lpString PSTR, c int32, psizl *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentPoint32A, libGdi32, "GetTextExtentPoint32A")
+	addr := LazyAddr(&pGetTextExtentPoint32A, libGdi32, "GetTextExtentPoint32A")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(c), uintptr(unsafe.Pointer(psizl)))
 	return BOOL(ret)
 }
@@ -4990,13 +4990,13 @@ func GetTextExtentPoint32A(hdc HDC, lpString PSTR, c int32, psizl *SIZE) BOOL {
 var GetTextExtentPoint32 = GetTextExtentPoint32W
 
 func GetTextExtentPoint32W(hdc HDC, lpString PWSTR, c int32, psizl *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentPoint32W, libGdi32, "GetTextExtentPoint32W")
+	addr := LazyAddr(&pGetTextExtentPoint32W, libGdi32, "GetTextExtentPoint32W")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(c), uintptr(unsafe.Pointer(psizl)))
 	return BOOL(ret)
 }
 
 func GetTextExtentExPointA(hdc HDC, lpszString PSTR, cchString int32, nMaxExtent int32, lpnFit *int32, lpnDx *int32, lpSize *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentExPointA, libGdi32, "GetTextExtentExPointA")
+	addr := LazyAddr(&pGetTextExtentExPointA, libGdi32, "GetTextExtentExPointA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpszString)), uintptr(cchString), uintptr(nMaxExtent), uintptr(unsafe.Pointer(lpnFit)), uintptr(unsafe.Pointer(lpnDx)), uintptr(unsafe.Pointer(lpSize)))
 	return BOOL(ret)
 }
@@ -5004,19 +5004,19 @@ func GetTextExtentExPointA(hdc HDC, lpszString PSTR, cchString int32, nMaxExtent
 var GetTextExtentExPoint = GetTextExtentExPointW
 
 func GetTextExtentExPointW(hdc HDC, lpszString PWSTR, cchString int32, nMaxExtent int32, lpnFit *int32, lpnDx *int32, lpSize *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentExPointW, libGdi32, "GetTextExtentExPointW")
+	addr := LazyAddr(&pGetTextExtentExPointW, libGdi32, "GetTextExtentExPointW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpszString)), uintptr(cchString), uintptr(nMaxExtent), uintptr(unsafe.Pointer(lpnFit)), uintptr(unsafe.Pointer(lpnDx)), uintptr(unsafe.Pointer(lpSize)))
 	return BOOL(ret)
 }
 
 func GetFontLanguageInfo(hdc HDC) uint32 {
-	addr := lazyAddr(&pGetFontLanguageInfo, libGdi32, "GetFontLanguageInfo")
+	addr := LazyAddr(&pGetFontLanguageInfo, libGdi32, "GetFontLanguageInfo")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return uint32(ret)
 }
 
 func GetCharacterPlacementA(hdc HDC, lpString PSTR, nCount int32, nMexExtent int32, lpResults *GCP_RESULTSA, dwFlags GET_CHARACTER_PLACEMENT_FLAGS) uint32 {
-	addr := lazyAddr(&pGetCharacterPlacementA, libGdi32, "GetCharacterPlacementA")
+	addr := LazyAddr(&pGetCharacterPlacementA, libGdi32, "GetCharacterPlacementA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(nCount), uintptr(nMexExtent), uintptr(unsafe.Pointer(lpResults)), uintptr(dwFlags))
 	return uint32(ret)
 }
@@ -5024,19 +5024,19 @@ func GetCharacterPlacementA(hdc HDC, lpString PSTR, nCount int32, nMexExtent int
 var GetCharacterPlacement = GetCharacterPlacementW
 
 func GetCharacterPlacementW(hdc HDC, lpString PWSTR, nCount int32, nMexExtent int32, lpResults *GCP_RESULTSW, dwFlags GET_CHARACTER_PLACEMENT_FLAGS) uint32 {
-	addr := lazyAddr(&pGetCharacterPlacementW, libGdi32, "GetCharacterPlacementW")
+	addr := LazyAddr(&pGetCharacterPlacementW, libGdi32, "GetCharacterPlacementW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(nCount), uintptr(nMexExtent), uintptr(unsafe.Pointer(lpResults)), uintptr(dwFlags))
 	return uint32(ret)
 }
 
 func GetFontUnicodeRanges(hdc HDC, lpgs *GLYPHSET) uint32 {
-	addr := lazyAddr(&pGetFontUnicodeRanges, libGdi32, "GetFontUnicodeRanges")
+	addr := LazyAddr(&pGetFontUnicodeRanges, libGdi32, "GetFontUnicodeRanges")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpgs)))
 	return uint32(ret)
 }
 
 func GetGlyphIndicesA(hdc HDC, lpstr PSTR, c int32, pgi *uint16, fl uint32) uint32 {
-	addr := lazyAddr(&pGetGlyphIndicesA, libGdi32, "GetGlyphIndicesA")
+	addr := LazyAddr(&pGetGlyphIndicesA, libGdi32, "GetGlyphIndicesA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpstr)), uintptr(c), uintptr(unsafe.Pointer(pgi)), uintptr(fl))
 	return uint32(ret)
 }
@@ -5044,37 +5044,37 @@ func GetGlyphIndicesA(hdc HDC, lpstr PSTR, c int32, pgi *uint16, fl uint32) uint
 var GetGlyphIndices = GetGlyphIndicesW
 
 func GetGlyphIndicesW(hdc HDC, lpstr PWSTR, c int32, pgi *uint16, fl uint32) uint32 {
-	addr := lazyAddr(&pGetGlyphIndicesW, libGdi32, "GetGlyphIndicesW")
+	addr := LazyAddr(&pGetGlyphIndicesW, libGdi32, "GetGlyphIndicesW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpstr)), uintptr(c), uintptr(unsafe.Pointer(pgi)), uintptr(fl))
 	return uint32(ret)
 }
 
 func GetTextExtentPointI(hdc HDC, pgiIn *uint16, cgi int32, psize *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentPointI, libGdi32, "GetTextExtentPointI")
+	addr := LazyAddr(&pGetTextExtentPointI, libGdi32, "GetTextExtentPointI")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pgiIn)), uintptr(cgi), uintptr(unsafe.Pointer(psize)))
 	return BOOL(ret)
 }
 
 func GetTextExtentExPointI(hdc HDC, lpwszString *uint16, cwchString int32, nMaxExtent int32, lpnFit *int32, lpnDx *int32, lpSize *SIZE) BOOL {
-	addr := lazyAddr(&pGetTextExtentExPointI, libGdi32, "GetTextExtentExPointI")
+	addr := LazyAddr(&pGetTextExtentExPointI, libGdi32, "GetTextExtentExPointI")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpwszString)), uintptr(cwchString), uintptr(nMaxExtent), uintptr(unsafe.Pointer(lpnFit)), uintptr(unsafe.Pointer(lpnDx)), uintptr(unsafe.Pointer(lpSize)))
 	return BOOL(ret)
 }
 
 func GetCharWidthI(hdc HDC, giFirst uint32, cgi uint32, pgi *uint16, piWidths *int32) BOOL {
-	addr := lazyAddr(&pGetCharWidthI, libGdi32, "GetCharWidthI")
+	addr := LazyAddr(&pGetCharWidthI, libGdi32, "GetCharWidthI")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(giFirst), uintptr(cgi), uintptr(unsafe.Pointer(pgi)), uintptr(unsafe.Pointer(piWidths)))
 	return BOOL(ret)
 }
 
 func GetCharABCWidthsI(hdc HDC, giFirst uint32, cgi uint32, pgi *uint16, pabc *ABC) BOOL {
-	addr := lazyAddr(&pGetCharABCWidthsI, libGdi32, "GetCharABCWidthsI")
+	addr := LazyAddr(&pGetCharABCWidthsI, libGdi32, "GetCharABCWidthsI")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(giFirst), uintptr(cgi), uintptr(unsafe.Pointer(pgi)), uintptr(unsafe.Pointer(pabc)))
 	return BOOL(ret)
 }
 
 func AddFontResourceExA(name PSTR, fl FONT_RESOURCE_CHARACTERISTICS, res unsafe.Pointer) int32 {
-	addr := lazyAddr(&pAddFontResourceExA, libGdi32, "AddFontResourceExA")
+	addr := LazyAddr(&pAddFontResourceExA, libGdi32, "AddFontResourceExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(name)), uintptr(fl), uintptr(res))
 	return int32(ret)
 }
@@ -5082,13 +5082,13 @@ func AddFontResourceExA(name PSTR, fl FONT_RESOURCE_CHARACTERISTICS, res unsafe.
 var AddFontResourceEx = AddFontResourceExW
 
 func AddFontResourceExW(name PWSTR, fl FONT_RESOURCE_CHARACTERISTICS, res unsafe.Pointer) int32 {
-	addr := lazyAddr(&pAddFontResourceExW, libGdi32, "AddFontResourceExW")
+	addr := LazyAddr(&pAddFontResourceExW, libGdi32, "AddFontResourceExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(name)), uintptr(fl), uintptr(res))
 	return int32(ret)
 }
 
 func RemoveFontResourceExA(name PSTR, fl uint32, pdv unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pRemoveFontResourceExA, libGdi32, "RemoveFontResourceExA")
+	addr := LazyAddr(&pRemoveFontResourceExA, libGdi32, "RemoveFontResourceExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(name)), uintptr(fl), uintptr(pdv))
 	return BOOL(ret)
 }
@@ -5096,25 +5096,25 @@ func RemoveFontResourceExA(name PSTR, fl uint32, pdv unsafe.Pointer) BOOL {
 var RemoveFontResourceEx = RemoveFontResourceExW
 
 func RemoveFontResourceExW(name PWSTR, fl uint32, pdv unsafe.Pointer) BOOL {
-	addr := lazyAddr(&pRemoveFontResourceExW, libGdi32, "RemoveFontResourceExW")
+	addr := LazyAddr(&pRemoveFontResourceExW, libGdi32, "RemoveFontResourceExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(name)), uintptr(fl), uintptr(pdv))
 	return BOOL(ret)
 }
 
 func AddFontMemResourceEx(pFileView unsafe.Pointer, cjSize uint32, pvResrved unsafe.Pointer, pNumFonts *uint32) HANDLE {
-	addr := lazyAddr(&pAddFontMemResourceEx, libGdi32, "AddFontMemResourceEx")
+	addr := LazyAddr(&pAddFontMemResourceEx, libGdi32, "AddFontMemResourceEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(pFileView), uintptr(cjSize), uintptr(pvResrved), uintptr(unsafe.Pointer(pNumFonts)))
 	return ret
 }
 
 func RemoveFontMemResourceEx(h HANDLE) BOOL {
-	addr := lazyAddr(&pRemoveFontMemResourceEx, libGdi32, "RemoveFontMemResourceEx")
+	addr := LazyAddr(&pRemoveFontMemResourceEx, libGdi32, "RemoveFontMemResourceEx")
 	ret, _, _ := syscall.SyscallN(addr, h)
 	return BOOL(ret)
 }
 
 func CreateFontIndirectExA(param0 *ENUMLOGFONTEXDVA) HFONT {
-	addr := lazyAddr(&pCreateFontIndirectExA, libGdi32, "CreateFontIndirectExA")
+	addr := LazyAddr(&pCreateFontIndirectExA, libGdi32, "CreateFontIndirectExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret
 }
@@ -5122,151 +5122,151 @@ func CreateFontIndirectExA(param0 *ENUMLOGFONTEXDVA) HFONT {
 var CreateFontIndirectEx = CreateFontIndirectExW
 
 func CreateFontIndirectExW(param0 *ENUMLOGFONTEXDVW) HFONT {
-	addr := lazyAddr(&pCreateFontIndirectExW, libGdi32, "CreateFontIndirectExW")
+	addr := LazyAddr(&pCreateFontIndirectExW, libGdi32, "CreateFontIndirectExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(param0)))
 	return ret
 }
 
 func GetViewportExtEx(hdc HDC, lpsize *SIZE) BOOL {
-	addr := lazyAddr(&pGetViewportExtEx, libGdi32, "GetViewportExtEx")
+	addr := LazyAddr(&pGetViewportExtEx, libGdi32, "GetViewportExtEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpsize)))
 	return BOOL(ret)
 }
 
 func GetViewportOrgEx(hdc HDC, lppoint *POINT) BOOL {
-	addr := lazyAddr(&pGetViewportOrgEx, libGdi32, "GetViewportOrgEx")
+	addr := LazyAddr(&pGetViewportOrgEx, libGdi32, "GetViewportOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lppoint)))
 	return BOOL(ret)
 }
 
 func GetWindowExtEx(hdc HDC, lpsize *SIZE) BOOL {
-	addr := lazyAddr(&pGetWindowExtEx, libGdi32, "GetWindowExtEx")
+	addr := LazyAddr(&pGetWindowExtEx, libGdi32, "GetWindowExtEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpsize)))
 	return BOOL(ret)
 }
 
 func GetWindowOrgEx(hdc HDC, lppoint *POINT) BOOL {
-	addr := lazyAddr(&pGetWindowOrgEx, libGdi32, "GetWindowOrgEx")
+	addr := LazyAddr(&pGetWindowOrgEx, libGdi32, "GetWindowOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lppoint)))
 	return BOOL(ret)
 }
 
 func IntersectClipRect(hdc HDC, left int32, top int32, right int32, bottom int32) GDI_REGION_TYPE {
-	addr := lazyAddr(&pIntersectClipRect, libGdi32, "IntersectClipRect")
+	addr := LazyAddr(&pIntersectClipRect, libGdi32, "IntersectClipRect")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom))
 	return GDI_REGION_TYPE(ret)
 }
 
 func InvertRgn(hdc HDC, hrgn HRGN) BOOL {
-	addr := lazyAddr(&pInvertRgn, libGdi32, "InvertRgn")
+	addr := LazyAddr(&pInvertRgn, libGdi32, "InvertRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn)
 	return BOOL(ret)
 }
 
 func LineDDA(xStart int32, yStart int32, xEnd int32, yEnd int32, lpProc LINEDDAPROC, data LPARAM) BOOL {
-	addr := lazyAddr(&pLineDDA, libGdi32, "LineDDA")
+	addr := LazyAddr(&pLineDDA, libGdi32, "LineDDA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(xStart), uintptr(yStart), uintptr(xEnd), uintptr(yEnd), lpProc, data)
 	return BOOL(ret)
 }
 
 func LineTo(hdc HDC, x int32, y int32) BOOL {
-	addr := lazyAddr(&pLineTo, libGdi32, "LineTo")
+	addr := LazyAddr(&pLineTo, libGdi32, "LineTo")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y))
 	return BOOL(ret)
 }
 
 func MaskBlt(hdcDest HDC, xDest int32, yDest int32, width int32, height int32, hdcSrc HDC, xSrc int32, ySrc int32, hbmMask HBITMAP, xMask int32, yMask int32, rop uint32) BOOL {
-	addr := lazyAddr(&pMaskBlt, libGdi32, "MaskBlt")
+	addr := LazyAddr(&pMaskBlt, libGdi32, "MaskBlt")
 	ret, _, _ := syscall.SyscallN(addr, hdcDest, uintptr(xDest), uintptr(yDest), uintptr(width), uintptr(height), hdcSrc, uintptr(xSrc), uintptr(ySrc), hbmMask, uintptr(xMask), uintptr(yMask), uintptr(rop))
 	return BOOL(ret)
 }
 
 func PlgBlt(hdcDest HDC, lpPoint *POINT, hdcSrc HDC, xSrc int32, ySrc int32, width int32, height int32, hbmMask HBITMAP, xMask int32, yMask int32) BOOL {
-	addr := lazyAddr(&pPlgBlt, libGdi32, "PlgBlt")
+	addr := LazyAddr(&pPlgBlt, libGdi32, "PlgBlt")
 	ret, _, _ := syscall.SyscallN(addr, hdcDest, uintptr(unsafe.Pointer(lpPoint)), hdcSrc, uintptr(xSrc), uintptr(ySrc), uintptr(width), uintptr(height), hbmMask, uintptr(xMask), uintptr(yMask))
 	return BOOL(ret)
 }
 
 func OffsetClipRgn(hdc HDC, x int32, y int32) GDI_REGION_TYPE {
-	addr := lazyAddr(&pOffsetClipRgn, libGdi32, "OffsetClipRgn")
+	addr := LazyAddr(&pOffsetClipRgn, libGdi32, "OffsetClipRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y))
 	return GDI_REGION_TYPE(ret)
 }
 
 func OffsetRgn(hrgn HRGN, x int32, y int32) GDI_REGION_TYPE {
-	addr := lazyAddr(&pOffsetRgn, libGdi32, "OffsetRgn")
+	addr := LazyAddr(&pOffsetRgn, libGdi32, "OffsetRgn")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(x), uintptr(y))
 	return GDI_REGION_TYPE(ret)
 }
 
 func PatBlt(hdc HDC, x int32, y int32, w int32, h int32, rop ROP_CODE) BOOL {
-	addr := lazyAddr(&pPatBlt, libGdi32, "PatBlt")
+	addr := LazyAddr(&pPatBlt, libGdi32, "PatBlt")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(w), uintptr(h), uintptr(rop))
 	return BOOL(ret)
 }
 
 func Pie(hdc HDC, left int32, top int32, right int32, bottom int32, xr1 int32, yr1 int32, xr2 int32, yr2 int32) BOOL {
-	addr := lazyAddr(&pPie, libGdi32, "Pie")
+	addr := LazyAddr(&pPie, libGdi32, "Pie")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom), uintptr(xr1), uintptr(yr1), uintptr(xr2), uintptr(yr2))
 	return BOOL(ret)
 }
 
 func PlayMetaFile(hdc HDC, hmf HMETAFILE) BOOL {
-	addr := lazyAddr(&pPlayMetaFile, libGdi32, "PlayMetaFile")
+	addr := LazyAddr(&pPlayMetaFile, libGdi32, "PlayMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hmf)
 	return BOOL(ret)
 }
 
 func PaintRgn(hdc HDC, hrgn HRGN) BOOL {
-	addr := lazyAddr(&pPaintRgn, libGdi32, "PaintRgn")
+	addr := LazyAddr(&pPaintRgn, libGdi32, "PaintRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn)
 	return BOOL(ret)
 }
 
 func PolyPolygon(hdc HDC, apt *POINT, asz *int32, csz int32) BOOL {
-	addr := lazyAddr(&pPolyPolygon, libGdi32, "PolyPolygon")
+	addr := LazyAddr(&pPolyPolygon, libGdi32, "PolyPolygon")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(unsafe.Pointer(asz)), uintptr(csz))
 	return BOOL(ret)
 }
 
 func PtInRegion(hrgn HRGN, x int32, y int32) BOOL {
-	addr := lazyAddr(&pPtInRegion, libGdi32, "PtInRegion")
+	addr := LazyAddr(&pPtInRegion, libGdi32, "PtInRegion")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(x), uintptr(y))
 	return BOOL(ret)
 }
 
 func PtVisible(hdc HDC, x int32, y int32) BOOL {
-	addr := lazyAddr(&pPtVisible, libGdi32, "PtVisible")
+	addr := LazyAddr(&pPtVisible, libGdi32, "PtVisible")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y))
 	return BOOL(ret)
 }
 
 func RectInRegion(hrgn HRGN, lprect *RECT) BOOL {
-	addr := lazyAddr(&pRectInRegion, libGdi32, "RectInRegion")
+	addr := LazyAddr(&pRectInRegion, libGdi32, "RectInRegion")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(unsafe.Pointer(lprect)))
 	return BOOL(ret)
 }
 
 func RectVisible(hdc HDC, lprect *RECT) BOOL {
-	addr := lazyAddr(&pRectVisible, libGdi32, "RectVisible")
+	addr := LazyAddr(&pRectVisible, libGdi32, "RectVisible")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lprect)))
 	return BOOL(ret)
 }
 
 func Rectangle(hdc HDC, left int32, top int32, right int32, bottom int32) BOOL {
-	addr := lazyAddr(&pRectangle, libGdi32, "Rectangle")
+	addr := LazyAddr(&pRectangle, libGdi32, "Rectangle")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom))
 	return BOOL(ret)
 }
 
 func RestoreDC(hdc HDC, nSavedDC int32) BOOL {
-	addr := lazyAddr(&pRestoreDC, libGdi32, "RestoreDC")
+	addr := LazyAddr(&pRestoreDC, libGdi32, "RestoreDC")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(nSavedDC))
 	return BOOL(ret)
 }
 
 func ResetDCA(hdc HDC, lpdm *DEVMODEA) HDC {
-	addr := lazyAddr(&pResetDCA, libGdi32, "ResetDCA")
+	addr := LazyAddr(&pResetDCA, libGdi32, "ResetDCA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpdm)))
 	return ret
 }
@@ -5274,19 +5274,19 @@ func ResetDCA(hdc HDC, lpdm *DEVMODEA) HDC {
 var ResetDC = ResetDCW
 
 func ResetDCW(hdc HDC, lpdm *DEVMODEW) HDC {
-	addr := lazyAddr(&pResetDCW, libGdi32, "ResetDCW")
+	addr := LazyAddr(&pResetDCW, libGdi32, "ResetDCW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpdm)))
 	return ret
 }
 
 func RealizePalette(hdc HDC) uint32 {
-	addr := lazyAddr(&pRealizePalette, libGdi32, "RealizePalette")
+	addr := LazyAddr(&pRealizePalette, libGdi32, "RealizePalette")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return uint32(ret)
 }
 
 func RemoveFontResourceA(lpFileName PSTR) BOOL {
-	addr := lazyAddr(&pRemoveFontResourceA, libGdi32, "RemoveFontResourceA")
+	addr := LazyAddr(&pRemoveFontResourceA, libGdi32, "RemoveFontResourceA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret)
 }
@@ -5294,289 +5294,289 @@ func RemoveFontResourceA(lpFileName PSTR) BOOL {
 var RemoveFontResource = RemoveFontResourceW
 
 func RemoveFontResourceW(lpFileName PWSTR) BOOL {
-	addr := lazyAddr(&pRemoveFontResourceW, libGdi32, "RemoveFontResourceW")
+	addr := LazyAddr(&pRemoveFontResourceW, libGdi32, "RemoveFontResourceW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)))
 	return BOOL(ret)
 }
 
 func RoundRect(hdc HDC, left int32, top int32, right int32, bottom int32, width int32, height int32) BOOL {
-	addr := lazyAddr(&pRoundRect, libGdi32, "RoundRect")
+	addr := LazyAddr(&pRoundRect, libGdi32, "RoundRect")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom), uintptr(width), uintptr(height))
 	return BOOL(ret)
 }
 
 func ResizePalette(hpal HPALETTE, n uint32) BOOL {
-	addr := lazyAddr(&pResizePalette, libGdi32, "ResizePalette")
+	addr := LazyAddr(&pResizePalette, libGdi32, "ResizePalette")
 	ret, _, _ := syscall.SyscallN(addr, hpal, uintptr(n))
 	return BOOL(ret)
 }
 
 func SaveDC(hdc HDC) int32 {
-	addr := lazyAddr(&pSaveDC, libGdi32, "SaveDC")
+	addr := LazyAddr(&pSaveDC, libGdi32, "SaveDC")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return int32(ret)
 }
 
 func SelectClipRgn(hdc HDC, hrgn HRGN) GDI_REGION_TYPE {
-	addr := lazyAddr(&pSelectClipRgn, libGdi32, "SelectClipRgn")
+	addr := LazyAddr(&pSelectClipRgn, libGdi32, "SelectClipRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn)
 	return GDI_REGION_TYPE(ret)
 }
 
 func ExtSelectClipRgn(hdc HDC, hrgn HRGN, mode RGN_COMBINE_MODE) GDI_REGION_TYPE {
-	addr := lazyAddr(&pExtSelectClipRgn, libGdi32, "ExtSelectClipRgn")
+	addr := LazyAddr(&pExtSelectClipRgn, libGdi32, "ExtSelectClipRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hrgn, uintptr(mode))
 	return GDI_REGION_TYPE(ret)
 }
 
 func SetMetaRgn(hdc HDC) GDI_REGION_TYPE {
-	addr := lazyAddr(&pSetMetaRgn, libGdi32, "SetMetaRgn")
+	addr := LazyAddr(&pSetMetaRgn, libGdi32, "SetMetaRgn")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return GDI_REGION_TYPE(ret)
 }
 
 func SelectObject(hdc HDC, h HGDIOBJ) HGDIOBJ {
-	addr := lazyAddr(&pSelectObject, libGdi32, "SelectObject")
+	addr := LazyAddr(&pSelectObject, libGdi32, "SelectObject")
 	ret, _, _ := syscall.SyscallN(addr, hdc, h)
 	return ret
 }
 
 func SelectPalette(hdc HDC, hPal HPALETTE, bForceBkgd BOOL) HPALETTE {
-	addr := lazyAddr(&pSelectPalette, libGdi32, "SelectPalette")
+	addr := LazyAddr(&pSelectPalette, libGdi32, "SelectPalette")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hPal, uintptr(bForceBkgd))
 	return ret
 }
 
 func SetBkColor(hdc HDC, color COLORREF) COLORREF {
-	addr := lazyAddr(&pSetBkColor, libGdi32, "SetBkColor")
+	addr := LazyAddr(&pSetBkColor, libGdi32, "SetBkColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
 	return COLORREF(ret)
 }
 
 func SetDCBrushColor(hdc HDC, color COLORREF) COLORREF {
-	addr := lazyAddr(&pSetDCBrushColor, libGdi32, "SetDCBrushColor")
+	addr := LazyAddr(&pSetDCBrushColor, libGdi32, "SetDCBrushColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
 	return COLORREF(ret)
 }
 
 func SetDCPenColor(hdc HDC, color COLORREF) COLORREF {
-	addr := lazyAddr(&pSetDCPenColor, libGdi32, "SetDCPenColor")
+	addr := LazyAddr(&pSetDCPenColor, libGdi32, "SetDCPenColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
 	return COLORREF(ret)
 }
 
 func SetBkMode(hdc HDC, mode BACKGROUND_MODE) int32 {
-	addr := lazyAddr(&pSetBkMode, libGdi32, "SetBkMode")
+	addr := LazyAddr(&pSetBkMode, libGdi32, "SetBkMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(mode))
 	return int32(ret)
 }
 
 func SetBitmapBits(hbm HBITMAP, cb uint32, pvBits unsafe.Pointer) int32 {
-	addr := lazyAddr(&pSetBitmapBits, libGdi32, "SetBitmapBits")
+	addr := LazyAddr(&pSetBitmapBits, libGdi32, "SetBitmapBits")
 	ret, _, _ := syscall.SyscallN(addr, hbm, uintptr(cb), uintptr(pvBits))
 	return int32(ret)
 }
 
 func SetBoundsRect(hdc HDC, lprect *RECT, flags SET_BOUNDS_RECT_FLAGS) uint32 {
-	addr := lazyAddr(&pSetBoundsRect, libGdi32, "SetBoundsRect")
+	addr := LazyAddr(&pSetBoundsRect, libGdi32, "SetBoundsRect")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lprect)), uintptr(flags))
 	return uint32(ret)
 }
 
 func SetDIBits(hdc HDC, hbm HBITMAP, start uint32, cLines uint32, lpBits unsafe.Pointer, lpbmi *BITMAPINFO, ColorUse DIB_USAGE) int32 {
-	addr := lazyAddr(&pSetDIBits, libGdi32, "SetDIBits")
+	addr := LazyAddr(&pSetDIBits, libGdi32, "SetDIBits")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hbm, uintptr(start), uintptr(cLines), uintptr(lpBits), uintptr(unsafe.Pointer(lpbmi)), uintptr(ColorUse))
 	return int32(ret)
 }
 
 func SetDIBitsToDevice(hdc HDC, xDest int32, yDest int32, w uint32, h uint32, xSrc int32, ySrc int32, StartScan uint32, cLines uint32, lpvBits unsafe.Pointer, lpbmi *BITMAPINFO, ColorUse DIB_USAGE) int32 {
-	addr := lazyAddr(&pSetDIBitsToDevice, libGdi32, "SetDIBitsToDevice")
+	addr := LazyAddr(&pSetDIBitsToDevice, libGdi32, "SetDIBitsToDevice")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(xDest), uintptr(yDest), uintptr(w), uintptr(h), uintptr(xSrc), uintptr(ySrc), uintptr(StartScan), uintptr(cLines), uintptr(lpvBits), uintptr(unsafe.Pointer(lpbmi)), uintptr(ColorUse))
 	return int32(ret)
 }
 
 func SetMapperFlags(hdc HDC, flags uint32) uint32 {
-	addr := lazyAddr(&pSetMapperFlags, libGdi32, "SetMapperFlags")
+	addr := LazyAddr(&pSetMapperFlags, libGdi32, "SetMapperFlags")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(flags))
 	return uint32(ret)
 }
 
 func SetGraphicsMode(hdc HDC, iMode GRAPHICS_MODE) int32 {
-	addr := lazyAddr(&pSetGraphicsMode, libGdi32, "SetGraphicsMode")
+	addr := LazyAddr(&pSetGraphicsMode, libGdi32, "SetGraphicsMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iMode))
 	return int32(ret)
 }
 
 func SetMapMode(hdc HDC, iMode HDC_MAP_MODE) int32 {
-	addr := lazyAddr(&pSetMapMode, libGdi32, "SetMapMode")
+	addr := LazyAddr(&pSetMapMode, libGdi32, "SetMapMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iMode))
 	return int32(ret)
 }
 
 func SetLayout(hdc HDC, l DC_LAYOUT) uint32 {
-	addr := lazyAddr(&pSetLayout, libGdi32, "SetLayout")
+	addr := LazyAddr(&pSetLayout, libGdi32, "SetLayout")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(l))
 	return uint32(ret)
 }
 
 func GetLayout(hdc HDC) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetLayout, libGdi32, "GetLayout")
+	addr := LazyAddr(&pGetLayout, libGdi32, "GetLayout")
 	ret, _, err := syscall.SyscallN(addr, hdc)
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func SetMetaFileBitsEx(cbBuffer uint32, lpData *byte) HMETAFILE {
-	addr := lazyAddr(&pSetMetaFileBitsEx, libGdi32, "SetMetaFileBitsEx")
+	addr := LazyAddr(&pSetMetaFileBitsEx, libGdi32, "SetMetaFileBitsEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(cbBuffer), uintptr(unsafe.Pointer(lpData)))
 	return ret
 }
 
 func SetPaletteEntries(hpal HPALETTE, iStart uint32, cEntries uint32, pPalEntries *PALETTEENTRY) uint32 {
-	addr := lazyAddr(&pSetPaletteEntries, libGdi32, "SetPaletteEntries")
+	addr := LazyAddr(&pSetPaletteEntries, libGdi32, "SetPaletteEntries")
 	ret, _, _ := syscall.SyscallN(addr, hpal, uintptr(iStart), uintptr(cEntries), uintptr(unsafe.Pointer(pPalEntries)))
 	return uint32(ret)
 }
 
 func SetPixel(hdc HDC, x int32, y int32, color COLORREF) COLORREF {
-	addr := lazyAddr(&pSetPixel, libGdi32, "SetPixel")
+	addr := LazyAddr(&pSetPixel, libGdi32, "SetPixel")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color))
 	return COLORREF(ret)
 }
 
 func SetPixelV(hdc HDC, x int32, y int32, color COLORREF) BOOL {
-	addr := lazyAddr(&pSetPixelV, libGdi32, "SetPixelV")
+	addr := LazyAddr(&pSetPixelV, libGdi32, "SetPixelV")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(color))
 	return BOOL(ret)
 }
 
 func SetPolyFillMode(hdc HDC, mode CREATE_POLYGON_RGN_MODE) int32 {
-	addr := lazyAddr(&pSetPolyFillMode, libGdi32, "SetPolyFillMode")
+	addr := LazyAddr(&pSetPolyFillMode, libGdi32, "SetPolyFillMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(mode))
 	return int32(ret)
 }
 
 func StretchBlt(hdcDest HDC, xDest int32, yDest int32, wDest int32, hDest int32, hdcSrc HDC, xSrc int32, ySrc int32, wSrc int32, hSrc int32, rop ROP_CODE) BOOL {
-	addr := lazyAddr(&pStretchBlt, libGdi32, "StretchBlt")
+	addr := LazyAddr(&pStretchBlt, libGdi32, "StretchBlt")
 	ret, _, _ := syscall.SyscallN(addr, hdcDest, uintptr(xDest), uintptr(yDest), uintptr(wDest), uintptr(hDest), hdcSrc, uintptr(xSrc), uintptr(ySrc), uintptr(wSrc), uintptr(hSrc), uintptr(rop))
 	return BOOL(ret)
 }
 
 func SetRectRgn(hrgn HRGN, left int32, top int32, right int32, bottom int32) BOOL {
-	addr := lazyAddr(&pSetRectRgn, libGdi32, "SetRectRgn")
+	addr := LazyAddr(&pSetRectRgn, libGdi32, "SetRectRgn")
 	ret, _, _ := syscall.SyscallN(addr, hrgn, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom))
 	return BOOL(ret)
 }
 
 func StretchDIBits(hdc HDC, xDest int32, yDest int32, DestWidth int32, DestHeight int32, xSrc int32, ySrc int32, SrcWidth int32, SrcHeight int32, lpBits unsafe.Pointer, lpbmi *BITMAPINFO, iUsage DIB_USAGE, rop ROP_CODE) int32 {
-	addr := lazyAddr(&pStretchDIBits, libGdi32, "StretchDIBits")
+	addr := LazyAddr(&pStretchDIBits, libGdi32, "StretchDIBits")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(xDest), uintptr(yDest), uintptr(DestWidth), uintptr(DestHeight), uintptr(xSrc), uintptr(ySrc), uintptr(SrcWidth), uintptr(SrcHeight), uintptr(lpBits), uintptr(unsafe.Pointer(lpbmi)), uintptr(iUsage), uintptr(rop))
 	return int32(ret)
 }
 
 func SetROP2(hdc HDC, rop2 R2_MODE) int32 {
-	addr := lazyAddr(&pSetROP2, libGdi32, "SetROP2")
+	addr := LazyAddr(&pSetROP2, libGdi32, "SetROP2")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(rop2))
 	return int32(ret)
 }
 
 func SetStretchBltMode(hdc HDC, mode STRETCH_BLT_MODE) int32 {
-	addr := lazyAddr(&pSetStretchBltMode, libGdi32, "SetStretchBltMode")
+	addr := LazyAddr(&pSetStretchBltMode, libGdi32, "SetStretchBltMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(mode))
 	return int32(ret)
 }
 
 func SetSystemPaletteUse(hdc HDC, use SYSTEM_PALETTE_USE) uint32 {
-	addr := lazyAddr(&pSetSystemPaletteUse, libGdi32, "SetSystemPaletteUse")
+	addr := LazyAddr(&pSetSystemPaletteUse, libGdi32, "SetSystemPaletteUse")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(use))
 	return uint32(ret)
 }
 
 func SetTextCharacterExtra(hdc HDC, extra int32) int32 {
-	addr := lazyAddr(&pSetTextCharacterExtra, libGdi32, "SetTextCharacterExtra")
+	addr := LazyAddr(&pSetTextCharacterExtra, libGdi32, "SetTextCharacterExtra")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(extra))
 	return int32(ret)
 }
 
 func SetTextColor(hdc HDC, color COLORREF) COLORREF {
-	addr := lazyAddr(&pSetTextColor, libGdi32, "SetTextColor")
+	addr := LazyAddr(&pSetTextColor, libGdi32, "SetTextColor")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(color))
 	return COLORREF(ret)
 }
 
 func SetTextAlign(hdc HDC, align TEXT_ALIGN_OPTIONS) uint32 {
-	addr := lazyAddr(&pSetTextAlign, libGdi32, "SetTextAlign")
+	addr := LazyAddr(&pSetTextAlign, libGdi32, "SetTextAlign")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(align))
 	return uint32(ret)
 }
 
 func SetTextJustification(hdc HDC, extra int32, count int32) BOOL {
-	addr := lazyAddr(&pSetTextJustification, libGdi32, "SetTextJustification")
+	addr := LazyAddr(&pSetTextJustification, libGdi32, "SetTextJustification")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(extra), uintptr(count))
 	return BOOL(ret)
 }
 
 func UpdateColors(hdc HDC) BOOL {
-	addr := lazyAddr(&pUpdateColors, libGdi32, "UpdateColors")
+	addr := LazyAddr(&pUpdateColors, libGdi32, "UpdateColors")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func AlphaBlend(hdcDest HDC, xoriginDest int32, yoriginDest int32, wDest int32, hDest int32, hdcSrc HDC, xoriginSrc int32, yoriginSrc int32, wSrc int32, hSrc int32, ftn BLENDFUNCTION) BOOL {
-	addr := lazyAddr(&pAlphaBlend, libMsimg32, "AlphaBlend")
+	addr := LazyAddr(&pAlphaBlend, libMsimg32, "AlphaBlend")
 	ret, _, _ := syscall.SyscallN(addr, hdcDest, uintptr(xoriginDest), uintptr(yoriginDest), uintptr(wDest), uintptr(hDest), hdcSrc, uintptr(xoriginSrc), uintptr(yoriginSrc), uintptr(wSrc), uintptr(hSrc), *(*uintptr)(unsafe.Pointer(&ftn)))
 	return BOOL(ret)
 }
 
 func TransparentBlt(hdcDest HDC, xoriginDest int32, yoriginDest int32, wDest int32, hDest int32, hdcSrc HDC, xoriginSrc int32, yoriginSrc int32, wSrc int32, hSrc int32, crTransparent uint32) BOOL {
-	addr := lazyAddr(&pTransparentBlt, libMsimg32, "TransparentBlt")
+	addr := LazyAddr(&pTransparentBlt, libMsimg32, "TransparentBlt")
 	ret, _, _ := syscall.SyscallN(addr, hdcDest, uintptr(xoriginDest), uintptr(yoriginDest), uintptr(wDest), uintptr(hDest), hdcSrc, uintptr(xoriginSrc), uintptr(yoriginSrc), uintptr(wSrc), uintptr(hSrc), uintptr(crTransparent))
 	return BOOL(ret)
 }
 
 func GradientFill(hdc HDC, pVertex *TRIVERTEX, nVertex uint32, pMesh unsafe.Pointer, nMesh uint32, ulMode GRADIENT_FILL) BOOL {
-	addr := lazyAddr(&pGradientFill, libMsimg32, "GradientFill")
+	addr := LazyAddr(&pGradientFill, libMsimg32, "GradientFill")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pVertex)), uintptr(nVertex), uintptr(pMesh), uintptr(nMesh), uintptr(ulMode))
 	return BOOL(ret)
 }
 
 func GdiAlphaBlend(hdcDest HDC, xoriginDest int32, yoriginDest int32, wDest int32, hDest int32, hdcSrc HDC, xoriginSrc int32, yoriginSrc int32, wSrc int32, hSrc int32, ftn BLENDFUNCTION) BOOL {
-	addr := lazyAddr(&pGdiAlphaBlend, libGdi32, "GdiAlphaBlend")
+	addr := LazyAddr(&pGdiAlphaBlend, libGdi32, "GdiAlphaBlend")
 	ret, _, _ := syscall.SyscallN(addr, hdcDest, uintptr(xoriginDest), uintptr(yoriginDest), uintptr(wDest), uintptr(hDest), hdcSrc, uintptr(xoriginSrc), uintptr(yoriginSrc), uintptr(wSrc), uintptr(hSrc), *(*uintptr)(unsafe.Pointer(&ftn)))
 	return BOOL(ret)
 }
 
 func GdiTransparentBlt(hdcDest HDC, xoriginDest int32, yoriginDest int32, wDest int32, hDest int32, hdcSrc HDC, xoriginSrc int32, yoriginSrc int32, wSrc int32, hSrc int32, crTransparent uint32) BOOL {
-	addr := lazyAddr(&pGdiTransparentBlt, libGdi32, "GdiTransparentBlt")
+	addr := LazyAddr(&pGdiTransparentBlt, libGdi32, "GdiTransparentBlt")
 	ret, _, _ := syscall.SyscallN(addr, hdcDest, uintptr(xoriginDest), uintptr(yoriginDest), uintptr(wDest), uintptr(hDest), hdcSrc, uintptr(xoriginSrc), uintptr(yoriginSrc), uintptr(wSrc), uintptr(hSrc), uintptr(crTransparent))
 	return BOOL(ret)
 }
 
 func GdiGradientFill(hdc HDC, pVertex *TRIVERTEX, nVertex uint32, pMesh unsafe.Pointer, nCount uint32, ulMode GRADIENT_FILL) BOOL {
-	addr := lazyAddr(&pGdiGradientFill, libGdi32, "GdiGradientFill")
+	addr := LazyAddr(&pGdiGradientFill, libGdi32, "GdiGradientFill")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pVertex)), uintptr(nVertex), uintptr(pMesh), uintptr(nCount), uintptr(ulMode))
 	return BOOL(ret)
 }
 
 func PlayMetaFileRecord(hdc HDC, lpHandleTable *HANDLETABLE, lpMR *METARECORD, noObjs uint32) BOOL {
-	addr := lazyAddr(&pPlayMetaFileRecord, libGdi32, "PlayMetaFileRecord")
+	addr := LazyAddr(&pPlayMetaFileRecord, libGdi32, "PlayMetaFileRecord")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpHandleTable)), uintptr(unsafe.Pointer(lpMR)), uintptr(noObjs))
 	return BOOL(ret)
 }
 
 func EnumMetaFile(hdc HDC, hmf HMETAFILE, proc MFENUMPROC, param3 LPARAM) BOOL {
-	addr := lazyAddr(&pEnumMetaFile, libGdi32, "EnumMetaFile")
+	addr := LazyAddr(&pEnumMetaFile, libGdi32, "EnumMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hmf, proc, param3)
 	return BOOL(ret)
 }
 
 func CloseEnhMetaFile(hdc HDC) HENHMETAFILE {
-	addr := lazyAddr(&pCloseEnhMetaFile, libGdi32, "CloseEnhMetaFile")
+	addr := LazyAddr(&pCloseEnhMetaFile, libGdi32, "CloseEnhMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return ret
 }
 
 func CopyEnhMetaFileA(hEnh HENHMETAFILE, lpFileName PSTR) HENHMETAFILE {
-	addr := lazyAddr(&pCopyEnhMetaFileA, libGdi32, "CopyEnhMetaFileA")
+	addr := LazyAddr(&pCopyEnhMetaFileA, libGdi32, "CopyEnhMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, hEnh, uintptr(unsafe.Pointer(lpFileName)))
 	return ret
 }
@@ -5584,13 +5584,13 @@ func CopyEnhMetaFileA(hEnh HENHMETAFILE, lpFileName PSTR) HENHMETAFILE {
 var CopyEnhMetaFile = CopyEnhMetaFileW
 
 func CopyEnhMetaFileW(hEnh HENHMETAFILE, lpFileName PWSTR) HENHMETAFILE {
-	addr := lazyAddr(&pCopyEnhMetaFileW, libGdi32, "CopyEnhMetaFileW")
+	addr := LazyAddr(&pCopyEnhMetaFileW, libGdi32, "CopyEnhMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, hEnh, uintptr(unsafe.Pointer(lpFileName)))
 	return ret
 }
 
 func CreateEnhMetaFileA(hdc HDC, lpFilename PSTR, lprc *RECT, lpDesc PSTR) HdcMetdataEnhFileHandle {
-	addr := lazyAddr(&pCreateEnhMetaFileA, libGdi32, "CreateEnhMetaFileA")
+	addr := LazyAddr(&pCreateEnhMetaFileA, libGdi32, "CreateEnhMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpFilename)), uintptr(unsafe.Pointer(lprc)), uintptr(unsafe.Pointer(lpDesc)))
 	return ret
 }
@@ -5598,25 +5598,25 @@ func CreateEnhMetaFileA(hdc HDC, lpFilename PSTR, lprc *RECT, lpDesc PSTR) HdcMe
 var CreateEnhMetaFile = CreateEnhMetaFileW
 
 func CreateEnhMetaFileW(hdc HDC, lpFilename PWSTR, lprc *RECT, lpDesc PWSTR) HdcMetdataEnhFileHandle {
-	addr := lazyAddr(&pCreateEnhMetaFileW, libGdi32, "CreateEnhMetaFileW")
+	addr := LazyAddr(&pCreateEnhMetaFileW, libGdi32, "CreateEnhMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpFilename)), uintptr(unsafe.Pointer(lprc)), uintptr(unsafe.Pointer(lpDesc)))
 	return ret
 }
 
 func DeleteEnhMetaFile(hmf HENHMETAFILE) BOOL {
-	addr := lazyAddr(&pDeleteEnhMetaFile, libGdi32, "DeleteEnhMetaFile")
+	addr := LazyAddr(&pDeleteEnhMetaFile, libGdi32, "DeleteEnhMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hmf)
 	return BOOL(ret)
 }
 
 func EnumEnhMetaFile(hdc HDC, hmf HENHMETAFILE, proc ENHMFENUMPROC, param3 unsafe.Pointer, lpRect *RECT) BOOL {
-	addr := lazyAddr(&pEnumEnhMetaFile, libGdi32, "EnumEnhMetaFile")
+	addr := LazyAddr(&pEnumEnhMetaFile, libGdi32, "EnumEnhMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hmf, proc, uintptr(param3), uintptr(unsafe.Pointer(lpRect)))
 	return BOOL(ret)
 }
 
 func GetEnhMetaFileA(lpName PSTR) HENHMETAFILE {
-	addr := lazyAddr(&pGetEnhMetaFileA, libGdi32, "GetEnhMetaFileA")
+	addr := LazyAddr(&pGetEnhMetaFileA, libGdi32, "GetEnhMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)))
 	return ret
 }
@@ -5624,19 +5624,19 @@ func GetEnhMetaFileA(lpName PSTR) HENHMETAFILE {
 var GetEnhMetaFile = GetEnhMetaFileW
 
 func GetEnhMetaFileW(lpName PWSTR) HENHMETAFILE {
-	addr := lazyAddr(&pGetEnhMetaFileW, libGdi32, "GetEnhMetaFileW")
+	addr := LazyAddr(&pGetEnhMetaFileW, libGdi32, "GetEnhMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpName)))
 	return ret
 }
 
 func GetEnhMetaFileBits(hEMF HENHMETAFILE, nSize uint32, lpData *byte) uint32 {
-	addr := lazyAddr(&pGetEnhMetaFileBits, libGdi32, "GetEnhMetaFileBits")
+	addr := LazyAddr(&pGetEnhMetaFileBits, libGdi32, "GetEnhMetaFileBits")
 	ret, _, _ := syscall.SyscallN(addr, hEMF, uintptr(nSize), uintptr(unsafe.Pointer(lpData)))
 	return uint32(ret)
 }
 
 func GetEnhMetaFileDescriptionA(hemf HENHMETAFILE, cchBuffer uint32, lpDescription PSTR) uint32 {
-	addr := lazyAddr(&pGetEnhMetaFileDescriptionA, libGdi32, "GetEnhMetaFileDescriptionA")
+	addr := LazyAddr(&pGetEnhMetaFileDescriptionA, libGdi32, "GetEnhMetaFileDescriptionA")
 	ret, _, _ := syscall.SyscallN(addr, hemf, uintptr(cchBuffer), uintptr(unsafe.Pointer(lpDescription)))
 	return uint32(ret)
 }
@@ -5644,55 +5644,55 @@ func GetEnhMetaFileDescriptionA(hemf HENHMETAFILE, cchBuffer uint32, lpDescripti
 var GetEnhMetaFileDescription = GetEnhMetaFileDescriptionW
 
 func GetEnhMetaFileDescriptionW(hemf HENHMETAFILE, cchBuffer uint32, lpDescription PWSTR) uint32 {
-	addr := lazyAddr(&pGetEnhMetaFileDescriptionW, libGdi32, "GetEnhMetaFileDescriptionW")
+	addr := LazyAddr(&pGetEnhMetaFileDescriptionW, libGdi32, "GetEnhMetaFileDescriptionW")
 	ret, _, _ := syscall.SyscallN(addr, hemf, uintptr(cchBuffer), uintptr(unsafe.Pointer(lpDescription)))
 	return uint32(ret)
 }
 
 func GetEnhMetaFileHeader(hemf HENHMETAFILE, nSize uint32, lpEnhMetaHeader *ENHMETAHEADER) uint32 {
-	addr := lazyAddr(&pGetEnhMetaFileHeader, libGdi32, "GetEnhMetaFileHeader")
+	addr := LazyAddr(&pGetEnhMetaFileHeader, libGdi32, "GetEnhMetaFileHeader")
 	ret, _, _ := syscall.SyscallN(addr, hemf, uintptr(nSize), uintptr(unsafe.Pointer(lpEnhMetaHeader)))
 	return uint32(ret)
 }
 
 func GetEnhMetaFilePaletteEntries(hemf HENHMETAFILE, nNumEntries uint32, lpPaletteEntries *PALETTEENTRY) uint32 {
-	addr := lazyAddr(&pGetEnhMetaFilePaletteEntries, libGdi32, "GetEnhMetaFilePaletteEntries")
+	addr := LazyAddr(&pGetEnhMetaFilePaletteEntries, libGdi32, "GetEnhMetaFilePaletteEntries")
 	ret, _, _ := syscall.SyscallN(addr, hemf, uintptr(nNumEntries), uintptr(unsafe.Pointer(lpPaletteEntries)))
 	return uint32(ret)
 }
 
 func GetWinMetaFileBits(hemf HENHMETAFILE, cbData16 uint32, pData16 *byte, iMapMode int32, hdcRef HDC) uint32 {
-	addr := lazyAddr(&pGetWinMetaFileBits, libGdi32, "GetWinMetaFileBits")
+	addr := LazyAddr(&pGetWinMetaFileBits, libGdi32, "GetWinMetaFileBits")
 	ret, _, _ := syscall.SyscallN(addr, hemf, uintptr(cbData16), uintptr(unsafe.Pointer(pData16)), uintptr(iMapMode), hdcRef)
 	return uint32(ret)
 }
 
 func PlayEnhMetaFile(hdc HDC, hmf HENHMETAFILE, lprect *RECT) BOOL {
-	addr := lazyAddr(&pPlayEnhMetaFile, libGdi32, "PlayEnhMetaFile")
+	addr := LazyAddr(&pPlayEnhMetaFile, libGdi32, "PlayEnhMetaFile")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hmf, uintptr(unsafe.Pointer(lprect)))
 	return BOOL(ret)
 }
 
 func PlayEnhMetaFileRecord(hdc HDC, pht *HANDLETABLE, pmr *ENHMETARECORD, cht uint32) BOOL {
-	addr := lazyAddr(&pPlayEnhMetaFileRecord, libGdi32, "PlayEnhMetaFileRecord")
+	addr := LazyAddr(&pPlayEnhMetaFileRecord, libGdi32, "PlayEnhMetaFileRecord")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pht)), uintptr(unsafe.Pointer(pmr)), uintptr(cht))
 	return BOOL(ret)
 }
 
 func SetEnhMetaFileBits(nSize uint32, pb *byte) HENHMETAFILE {
-	addr := lazyAddr(&pSetEnhMetaFileBits, libGdi32, "SetEnhMetaFileBits")
+	addr := LazyAddr(&pSetEnhMetaFileBits, libGdi32, "SetEnhMetaFileBits")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nSize), uintptr(unsafe.Pointer(pb)))
 	return ret
 }
 
 func GdiComment(hdc HDC, nSize uint32, lpData *byte) BOOL {
-	addr := lazyAddr(&pGdiComment, libGdi32, "GdiComment")
+	addr := LazyAddr(&pGdiComment, libGdi32, "GdiComment")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(nSize), uintptr(unsafe.Pointer(lpData)))
 	return BOOL(ret)
 }
 
 func GetTextMetricsA(hdc HDC, lptm *TEXTMETRICA) BOOL {
-	addr := lazyAddr(&pGetTextMetricsA, libGdi32, "GetTextMetricsA")
+	addr := LazyAddr(&pGetTextMetricsA, libGdi32, "GetTextMetricsA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lptm)))
 	return BOOL(ret)
 }
@@ -5700,193 +5700,193 @@ func GetTextMetricsA(hdc HDC, lptm *TEXTMETRICA) BOOL {
 var GetTextMetrics = GetTextMetricsW
 
 func GetTextMetricsW(hdc HDC, lptm *TEXTMETRICW) BOOL {
-	addr := lazyAddr(&pGetTextMetricsW, libGdi32, "GetTextMetricsW")
+	addr := LazyAddr(&pGetTextMetricsW, libGdi32, "GetTextMetricsW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lptm)))
 	return BOOL(ret)
 }
 
 func AngleArc(hdc HDC, x int32, y int32, r uint32, StartAngle float32, SweepAngle float32) BOOL {
-	addr := lazyAddr(&pAngleArc, libGdi32, "AngleArc")
+	addr := LazyAddr(&pAngleArc, libGdi32, "AngleArc")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(r), uintptr(StartAngle), uintptr(SweepAngle))
 	return BOOL(ret)
 }
 
 func PolyPolyline(hdc HDC, apt *POINT, asz *uint32, csz uint32) BOOL {
-	addr := lazyAddr(&pPolyPolyline, libGdi32, "PolyPolyline")
+	addr := LazyAddr(&pPolyPolyline, libGdi32, "PolyPolyline")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(unsafe.Pointer(asz)), uintptr(csz))
 	return BOOL(ret)
 }
 
 func GetWorldTransform(hdc HDC, lpxf *XFORM) BOOL {
-	addr := lazyAddr(&pGetWorldTransform, libGdi32, "GetWorldTransform")
+	addr := LazyAddr(&pGetWorldTransform, libGdi32, "GetWorldTransform")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpxf)))
 	return BOOL(ret)
 }
 
 func SetWorldTransform(hdc HDC, lpxf *XFORM) BOOL {
-	addr := lazyAddr(&pSetWorldTransform, libGdi32, "SetWorldTransform")
+	addr := LazyAddr(&pSetWorldTransform, libGdi32, "SetWorldTransform")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpxf)))
 	return BOOL(ret)
 }
 
 func ModifyWorldTransform(hdc HDC, lpxf *XFORM, mode MODIFY_WORLD_TRANSFORM_MODE) BOOL {
-	addr := lazyAddr(&pModifyWorldTransform, libGdi32, "ModifyWorldTransform")
+	addr := LazyAddr(&pModifyWorldTransform, libGdi32, "ModifyWorldTransform")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpxf)), uintptr(mode))
 	return BOOL(ret)
 }
 
 func CombineTransform(lpxfOut *XFORM, lpxf1 *XFORM, lpxf2 *XFORM) BOOL {
-	addr := lazyAddr(&pCombineTransform, libGdi32, "CombineTransform")
+	addr := LazyAddr(&pCombineTransform, libGdi32, "CombineTransform")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpxfOut)), uintptr(unsafe.Pointer(lpxf1)), uintptr(unsafe.Pointer(lpxf2)))
 	return BOOL(ret)
 }
 
 func CreateDIBSection(hdc HDC, pbmi *BITMAPINFO, usage DIB_USAGE, ppvBits unsafe.Pointer, hSection HANDLE, offset uint32) (HBITMAP, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateDIBSection, libGdi32, "CreateDIBSection")
+	addr := LazyAddr(&pCreateDIBSection, libGdi32, "CreateDIBSection")
 	ret, _, err := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(pbmi)), uintptr(usage), uintptr(ppvBits), hSection, uintptr(offset))
 	return ret, WIN32_ERROR(err)
 }
 
 func GetDIBColorTable(hdc HDC, iStart uint32, cEntries uint32, prgbq *RGBQUAD) uint32 {
-	addr := lazyAddr(&pGetDIBColorTable, libGdi32, "GetDIBColorTable")
+	addr := LazyAddr(&pGetDIBColorTable, libGdi32, "GetDIBColorTable")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iStart), uintptr(cEntries), uintptr(unsafe.Pointer(prgbq)))
 	return uint32(ret)
 }
 
 func SetDIBColorTable(hdc HDC, iStart uint32, cEntries uint32, prgbq *RGBQUAD) uint32 {
-	addr := lazyAddr(&pSetDIBColorTable, libGdi32, "SetDIBColorTable")
+	addr := LazyAddr(&pSetDIBColorTable, libGdi32, "SetDIBColorTable")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(iStart), uintptr(cEntries), uintptr(unsafe.Pointer(prgbq)))
 	return uint32(ret)
 }
 
 func SetColorAdjustment(hdc HDC, lpca *COLORADJUSTMENT) BOOL {
-	addr := lazyAddr(&pSetColorAdjustment, libGdi32, "SetColorAdjustment")
+	addr := LazyAddr(&pSetColorAdjustment, libGdi32, "SetColorAdjustment")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpca)))
 	return BOOL(ret)
 }
 
 func GetColorAdjustment(hdc HDC, lpca *COLORADJUSTMENT) BOOL {
-	addr := lazyAddr(&pGetColorAdjustment, libGdi32, "GetColorAdjustment")
+	addr := LazyAddr(&pGetColorAdjustment, libGdi32, "GetColorAdjustment")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpca)))
 	return BOOL(ret)
 }
 
 func CreateHalftonePalette(hdc HDC) HPALETTE {
-	addr := lazyAddr(&pCreateHalftonePalette, libGdi32, "CreateHalftonePalette")
+	addr := LazyAddr(&pCreateHalftonePalette, libGdi32, "CreateHalftonePalette")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return ret
 }
 
 func AbortPath(hdc HDC) BOOL {
-	addr := lazyAddr(&pAbortPath, libGdi32, "AbortPath")
+	addr := LazyAddr(&pAbortPath, libGdi32, "AbortPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func ArcTo(hdc HDC, left int32, top int32, right int32, bottom int32, xr1 int32, yr1 int32, xr2 int32, yr2 int32) BOOL {
-	addr := lazyAddr(&pArcTo, libGdi32, "ArcTo")
+	addr := LazyAddr(&pArcTo, libGdi32, "ArcTo")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(left), uintptr(top), uintptr(right), uintptr(bottom), uintptr(xr1), uintptr(yr1), uintptr(xr2), uintptr(yr2))
 	return BOOL(ret)
 }
 
 func BeginPath(hdc HDC) BOOL {
-	addr := lazyAddr(&pBeginPath, libGdi32, "BeginPath")
+	addr := LazyAddr(&pBeginPath, libGdi32, "BeginPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func CloseFigure(hdc HDC) BOOL {
-	addr := lazyAddr(&pCloseFigure, libGdi32, "CloseFigure")
+	addr := LazyAddr(&pCloseFigure, libGdi32, "CloseFigure")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func EndPath(hdc HDC) BOOL {
-	addr := lazyAddr(&pEndPath, libGdi32, "EndPath")
+	addr := LazyAddr(&pEndPath, libGdi32, "EndPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func FillPath(hdc HDC) BOOL {
-	addr := lazyAddr(&pFillPath, libGdi32, "FillPath")
+	addr := LazyAddr(&pFillPath, libGdi32, "FillPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func FlattenPath(hdc HDC) BOOL {
-	addr := lazyAddr(&pFlattenPath, libGdi32, "FlattenPath")
+	addr := LazyAddr(&pFlattenPath, libGdi32, "FlattenPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func GetPath(hdc HDC, apt *POINT, aj *byte, cpt int32) int32 {
-	addr := lazyAddr(&pGetPath, libGdi32, "GetPath")
+	addr := LazyAddr(&pGetPath, libGdi32, "GetPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(unsafe.Pointer(aj)), uintptr(cpt))
 	return int32(ret)
 }
 
 func PathToRegion(hdc HDC) HRGN {
-	addr := lazyAddr(&pPathToRegion, libGdi32, "PathToRegion")
+	addr := LazyAddr(&pPathToRegion, libGdi32, "PathToRegion")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return ret
 }
 
 func PolyDraw(hdc HDC, apt *POINT, aj *byte, cpt int32) BOOL {
-	addr := lazyAddr(&pPolyDraw, libGdi32, "PolyDraw")
+	addr := LazyAddr(&pPolyDraw, libGdi32, "PolyDraw")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(unsafe.Pointer(aj)), uintptr(cpt))
 	return BOOL(ret)
 }
 
 func SelectClipPath(hdc HDC, mode RGN_COMBINE_MODE) BOOL {
-	addr := lazyAddr(&pSelectClipPath, libGdi32, "SelectClipPath")
+	addr := LazyAddr(&pSelectClipPath, libGdi32, "SelectClipPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(mode))
 	return BOOL(ret)
 }
 
 func SetArcDirection(hdc HDC, dir ARC_DIRECTION) int32 {
-	addr := lazyAddr(&pSetArcDirection, libGdi32, "SetArcDirection")
+	addr := LazyAddr(&pSetArcDirection, libGdi32, "SetArcDirection")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(dir))
 	return int32(ret)
 }
 
 func SetMiterLimit(hdc HDC, limit float32, old *float32) BOOL {
-	addr := lazyAddr(&pSetMiterLimit, libGdi32, "SetMiterLimit")
+	addr := LazyAddr(&pSetMiterLimit, libGdi32, "SetMiterLimit")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(limit), uintptr(unsafe.Pointer(old)))
 	return BOOL(ret)
 }
 
 func StrokeAndFillPath(hdc HDC) BOOL {
-	addr := lazyAddr(&pStrokeAndFillPath, libGdi32, "StrokeAndFillPath")
+	addr := LazyAddr(&pStrokeAndFillPath, libGdi32, "StrokeAndFillPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func StrokePath(hdc HDC) BOOL {
-	addr := lazyAddr(&pStrokePath, libGdi32, "StrokePath")
+	addr := LazyAddr(&pStrokePath, libGdi32, "StrokePath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func WidenPath(hdc HDC) BOOL {
-	addr := lazyAddr(&pWidenPath, libGdi32, "WidenPath")
+	addr := LazyAddr(&pWidenPath, libGdi32, "WidenPath")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func ExtCreatePen(iPenStyle PEN_STYLE, cWidth uint32, plbrush *LOGBRUSH, cStyle uint32, pstyle *uint32) HPEN {
-	addr := lazyAddr(&pExtCreatePen, libGdi32, "ExtCreatePen")
+	addr := LazyAddr(&pExtCreatePen, libGdi32, "ExtCreatePen")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(iPenStyle), uintptr(cWidth), uintptr(unsafe.Pointer(plbrush)), uintptr(cStyle), uintptr(unsafe.Pointer(pstyle)))
 	return ret
 }
 
 func GetMiterLimit(hdc HDC, plimit *float32) BOOL {
-	addr := lazyAddr(&pGetMiterLimit, libGdi32, "GetMiterLimit")
+	addr := LazyAddr(&pGetMiterLimit, libGdi32, "GetMiterLimit")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(plimit)))
 	return BOOL(ret)
 }
 
 func GetArcDirection(hdc HDC) int32 {
-	addr := lazyAddr(&pGetArcDirection, libGdi32, "GetArcDirection")
+	addr := LazyAddr(&pGetArcDirection, libGdi32, "GetArcDirection")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return int32(ret)
 }
@@ -5894,19 +5894,19 @@ func GetArcDirection(hdc HDC) int32 {
 var GetObject = GetObjectW
 
 func GetObjectW(h HGDIOBJ, c int32, pv unsafe.Pointer) int32 {
-	addr := lazyAddr(&pGetObjectW, libGdi32, "GetObjectW")
+	addr := LazyAddr(&pGetObjectW, libGdi32, "GetObjectW")
 	ret, _, _ := syscall.SyscallN(addr, h, uintptr(c), uintptr(pv))
 	return int32(ret)
 }
 
 func MoveToEx(hdc HDC, x int32, y int32, lppt *POINT) BOOL {
-	addr := lazyAddr(&pMoveToEx, libGdi32, "MoveToEx")
+	addr := LazyAddr(&pMoveToEx, libGdi32, "MoveToEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func TextOutA(hdc HDC, x int32, y int32, lpString PSTR, c int32) BOOL {
-	addr := lazyAddr(&pTextOutA, libGdi32, "TextOutA")
+	addr := LazyAddr(&pTextOutA, libGdi32, "TextOutA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lpString)), uintptr(c))
 	return BOOL(ret)
 }
@@ -5914,13 +5914,13 @@ func TextOutA(hdc HDC, x int32, y int32, lpString PSTR, c int32) BOOL {
 var TextOut = TextOutW
 
 func TextOutW(hdc HDC, x int32, y int32, lpString PWSTR, c int32) BOOL {
-	addr := lazyAddr(&pTextOutW, libGdi32, "TextOutW")
+	addr := LazyAddr(&pTextOutW, libGdi32, "TextOutW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lpString)), uintptr(c))
 	return BOOL(ret)
 }
 
 func ExtTextOutA(hdc HDC, x int32, y int32, options ETO_OPTIONS, lprect *RECT, lpString PSTR, c uint32, lpDx *int32) BOOL {
-	addr := lazyAddr(&pExtTextOutA, libGdi32, "ExtTextOutA")
+	addr := LazyAddr(&pExtTextOutA, libGdi32, "ExtTextOutA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(options), uintptr(unsafe.Pointer(lprect)), uintptr(unsafe.Pointer(lpString)), uintptr(c), uintptr(unsafe.Pointer(lpDx)))
 	return BOOL(ret)
 }
@@ -5928,13 +5928,13 @@ func ExtTextOutA(hdc HDC, x int32, y int32, options ETO_OPTIONS, lprect *RECT, l
 var ExtTextOut = ExtTextOutW
 
 func ExtTextOutW(hdc HDC, x int32, y int32, options ETO_OPTIONS, lprect *RECT, lpString PWSTR, c uint32, lpDx *int32) BOOL {
-	addr := lazyAddr(&pExtTextOutW, libGdi32, "ExtTextOutW")
+	addr := LazyAddr(&pExtTextOutW, libGdi32, "ExtTextOutW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(options), uintptr(unsafe.Pointer(lprect)), uintptr(unsafe.Pointer(lpString)), uintptr(c), uintptr(unsafe.Pointer(lpDx)))
 	return BOOL(ret)
 }
 
 func PolyTextOutA(hdc HDC, ppt *POLYTEXTA, nstrings int32) BOOL {
-	addr := lazyAddr(&pPolyTextOutA, libGdi32, "PolyTextOutA")
+	addr := LazyAddr(&pPolyTextOutA, libGdi32, "PolyTextOutA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(ppt)), uintptr(nstrings))
 	return BOOL(ret)
 }
@@ -5942,121 +5942,121 @@ func PolyTextOutA(hdc HDC, ppt *POLYTEXTA, nstrings int32) BOOL {
 var PolyTextOut = PolyTextOutW
 
 func PolyTextOutW(hdc HDC, ppt *POLYTEXTW, nstrings int32) BOOL {
-	addr := lazyAddr(&pPolyTextOutW, libGdi32, "PolyTextOutW")
+	addr := LazyAddr(&pPolyTextOutW, libGdi32, "PolyTextOutW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(ppt)), uintptr(nstrings))
 	return BOOL(ret)
 }
 
 func CreatePolygonRgn(pptl *POINT, cPoint int32, iMode CREATE_POLYGON_RGN_MODE) HRGN {
-	addr := lazyAddr(&pCreatePolygonRgn, libGdi32, "CreatePolygonRgn")
+	addr := LazyAddr(&pCreatePolygonRgn, libGdi32, "CreatePolygonRgn")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pptl)), uintptr(cPoint), uintptr(iMode))
 	return ret
 }
 
 func DPtoLP(hdc HDC, lppt *POINT, c int32) BOOL {
-	addr := lazyAddr(&pDPtoLP, libGdi32, "DPtoLP")
+	addr := LazyAddr(&pDPtoLP, libGdi32, "DPtoLP")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lppt)), uintptr(c))
 	return BOOL(ret)
 }
 
 func LPtoDP(hdc HDC, lppt *POINT, c int32) BOOL {
-	addr := lazyAddr(&pLPtoDP, libGdi32, "LPtoDP")
+	addr := LazyAddr(&pLPtoDP, libGdi32, "LPtoDP")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lppt)), uintptr(c))
 	return BOOL(ret)
 }
 
 func Polygon(hdc HDC, apt *POINT, cpt int32) BOOL {
-	addr := lazyAddr(&pPolygon, libGdi32, "Polygon")
+	addr := LazyAddr(&pPolygon, libGdi32, "Polygon")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(cpt))
 	return BOOL(ret)
 }
 
 func Polyline(hdc HDC, apt *POINT, cpt int32) BOOL {
-	addr := lazyAddr(&pPolyline, libGdi32, "Polyline")
+	addr := LazyAddr(&pPolyline, libGdi32, "Polyline")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(cpt))
 	return BOOL(ret)
 }
 
 func PolyBezier(hdc HDC, apt *POINT, cpt uint32) BOOL {
-	addr := lazyAddr(&pPolyBezier, libGdi32, "PolyBezier")
+	addr := LazyAddr(&pPolyBezier, libGdi32, "PolyBezier")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(cpt))
 	return BOOL(ret)
 }
 
 func PolyBezierTo(hdc HDC, apt *POINT, cpt uint32) BOOL {
-	addr := lazyAddr(&pPolyBezierTo, libGdi32, "PolyBezierTo")
+	addr := LazyAddr(&pPolyBezierTo, libGdi32, "PolyBezierTo")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(cpt))
 	return BOOL(ret)
 }
 
 func PolylineTo(hdc HDC, apt *POINT, cpt uint32) BOOL {
-	addr := lazyAddr(&pPolylineTo, libGdi32, "PolylineTo")
+	addr := LazyAddr(&pPolylineTo, libGdi32, "PolylineTo")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(apt)), uintptr(cpt))
 	return BOOL(ret)
 }
 
 func SetViewportExtEx(hdc HDC, x int32, y int32, lpsz *SIZE) BOOL {
-	addr := lazyAddr(&pSetViewportExtEx, libGdi32, "SetViewportExtEx")
+	addr := LazyAddr(&pSetViewportExtEx, libGdi32, "SetViewportExtEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func SetViewportOrgEx(hdc HDC, x int32, y int32, lppt *POINT) BOOL {
-	addr := lazyAddr(&pSetViewportOrgEx, libGdi32, "SetViewportOrgEx")
+	addr := LazyAddr(&pSetViewportOrgEx, libGdi32, "SetViewportOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func SetWindowExtEx(hdc HDC, x int32, y int32, lpsz *SIZE) BOOL {
-	addr := lazyAddr(&pSetWindowExtEx, libGdi32, "SetWindowExtEx")
+	addr := LazyAddr(&pSetWindowExtEx, libGdi32, "SetWindowExtEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func SetWindowOrgEx(hdc HDC, x int32, y int32, lppt *POINT) BOOL {
-	addr := lazyAddr(&pSetWindowOrgEx, libGdi32, "SetWindowOrgEx")
+	addr := LazyAddr(&pSetWindowOrgEx, libGdi32, "SetWindowOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func OffsetViewportOrgEx(hdc HDC, x int32, y int32, lppt *POINT) BOOL {
-	addr := lazyAddr(&pOffsetViewportOrgEx, libGdi32, "OffsetViewportOrgEx")
+	addr := LazyAddr(&pOffsetViewportOrgEx, libGdi32, "OffsetViewportOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func OffsetWindowOrgEx(hdc HDC, x int32, y int32, lppt *POINT) BOOL {
-	addr := lazyAddr(&pOffsetWindowOrgEx, libGdi32, "OffsetWindowOrgEx")
+	addr := LazyAddr(&pOffsetWindowOrgEx, libGdi32, "OffsetWindowOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func ScaleViewportExtEx(hdc HDC, xn int32, dx int32, yn int32, yd int32, lpsz *SIZE) BOOL {
-	addr := lazyAddr(&pScaleViewportExtEx, libGdi32, "ScaleViewportExtEx")
+	addr := LazyAddr(&pScaleViewportExtEx, libGdi32, "ScaleViewportExtEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(xn), uintptr(dx), uintptr(yn), uintptr(yd), uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func ScaleWindowExtEx(hdc HDC, xn int32, xd int32, yn int32, yd int32, lpsz *SIZE) BOOL {
-	addr := lazyAddr(&pScaleWindowExtEx, libGdi32, "ScaleWindowExtEx")
+	addr := LazyAddr(&pScaleWindowExtEx, libGdi32, "ScaleWindowExtEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(xn), uintptr(xd), uintptr(yn), uintptr(yd), uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func SetBitmapDimensionEx(hbm HBITMAP, w int32, h int32, lpsz *SIZE) BOOL {
-	addr := lazyAddr(&pSetBitmapDimensionEx, libGdi32, "SetBitmapDimensionEx")
+	addr := LazyAddr(&pSetBitmapDimensionEx, libGdi32, "SetBitmapDimensionEx")
 	ret, _, _ := syscall.SyscallN(addr, hbm, uintptr(w), uintptr(h), uintptr(unsafe.Pointer(lpsz)))
 	return BOOL(ret)
 }
 
 func SetBrushOrgEx(hdc HDC, x int32, y int32, lppt *POINT) BOOL {
-	addr := lazyAddr(&pSetBrushOrgEx, libGdi32, "SetBrushOrgEx")
+	addr := LazyAddr(&pSetBrushOrgEx, libGdi32, "SetBrushOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func GetTextFaceA(hdc HDC, c int32, lpName PSTR) int32 {
-	addr := lazyAddr(&pGetTextFaceA, libGdi32, "GetTextFaceA")
+	addr := LazyAddr(&pGetTextFaceA, libGdi32, "GetTextFaceA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(c), uintptr(unsafe.Pointer(lpName)))
 	return int32(ret)
 }
@@ -6064,13 +6064,13 @@ func GetTextFaceA(hdc HDC, c int32, lpName PSTR) int32 {
 var GetTextFace = GetTextFaceW
 
 func GetTextFaceW(hdc HDC, c int32, lpName PWSTR) int32 {
-	addr := lazyAddr(&pGetTextFaceW, libGdi32, "GetTextFaceW")
+	addr := LazyAddr(&pGetTextFaceW, libGdi32, "GetTextFaceW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(c), uintptr(unsafe.Pointer(lpName)))
 	return int32(ret)
 }
 
 func GetKerningPairsA(hdc HDC, nPairs uint32, lpKernPair *KERNINGPAIR) uint32 {
-	addr := lazyAddr(&pGetKerningPairsA, libGdi32, "GetKerningPairsA")
+	addr := LazyAddr(&pGetKerningPairsA, libGdi32, "GetKerningPairsA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(nPairs), uintptr(unsafe.Pointer(lpKernPair)))
 	return uint32(ret)
 }
@@ -6078,73 +6078,73 @@ func GetKerningPairsA(hdc HDC, nPairs uint32, lpKernPair *KERNINGPAIR) uint32 {
 var GetKerningPairs = GetKerningPairsW
 
 func GetKerningPairsW(hdc HDC, nPairs uint32, lpKernPair *KERNINGPAIR) uint32 {
-	addr := lazyAddr(&pGetKerningPairsW, libGdi32, "GetKerningPairsW")
+	addr := LazyAddr(&pGetKerningPairsW, libGdi32, "GetKerningPairsW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(nPairs), uintptr(unsafe.Pointer(lpKernPair)))
 	return uint32(ret)
 }
 
 func GetDCOrgEx(hdc HDC, lppt *POINT) BOOL {
-	addr := lazyAddr(&pGetDCOrgEx, libGdi32, "GetDCOrgEx")
+	addr := LazyAddr(&pGetDCOrgEx, libGdi32, "GetDCOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lppt)))
 	return BOOL(ret)
 }
 
 func FixBrushOrgEx(hdc HDC, x int32, y int32, ptl *POINT) BOOL {
-	addr := lazyAddr(&pFixBrushOrgEx, libGdi32, "FixBrushOrgEx")
+	addr := LazyAddr(&pFixBrushOrgEx, libGdi32, "FixBrushOrgEx")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(ptl)))
 	return BOOL(ret)
 }
 
 func UnrealizeObject(h HGDIOBJ) BOOL {
-	addr := lazyAddr(&pUnrealizeObject, libGdi32, "UnrealizeObject")
+	addr := LazyAddr(&pUnrealizeObject, libGdi32, "UnrealizeObject")
 	ret, _, _ := syscall.SyscallN(addr, h)
 	return BOOL(ret)
 }
 
 func GdiFlush() BOOL {
-	addr := lazyAddr(&pGdiFlush, libGdi32, "GdiFlush")
+	addr := LazyAddr(&pGdiFlush, libGdi32, "GdiFlush")
 	ret, _, _ := syscall.SyscallN(addr)
 	return BOOL(ret)
 }
 
 func GdiSetBatchLimit(dw uint32) uint32 {
-	addr := lazyAddr(&pGdiSetBatchLimit, libGdi32, "GdiSetBatchLimit")
+	addr := LazyAddr(&pGdiSetBatchLimit, libGdi32, "GdiSetBatchLimit")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dw))
 	return uint32(ret)
 }
 
 func GdiGetBatchLimit() uint32 {
-	addr := lazyAddr(&pGdiGetBatchLimit, libGdi32, "GdiGetBatchLimit")
+	addr := LazyAddr(&pGdiGetBatchLimit, libGdi32, "GdiGetBatchLimit")
 	ret, _, _ := syscall.SyscallN(addr)
 	return uint32(ret)
 }
 
 func DrawEdge(hdc HDC, qrc *RECT, edge DRAWEDGE_FLAGS, grfFlags DRAW_EDGE_FLAGS) BOOL {
-	addr := lazyAddr(&pDrawEdge, libUser32, "DrawEdge")
+	addr := LazyAddr(&pDrawEdge, libUser32, "DrawEdge")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(qrc)), uintptr(edge), uintptr(grfFlags))
 	return BOOL(ret)
 }
 
 func DrawFrameControl(param0 HDC, param1 *RECT, param2 DFC_TYPE, param3 DFCS_STATE) BOOL {
-	addr := lazyAddr(&pDrawFrameControl, libUser32, "DrawFrameControl")
+	addr := LazyAddr(&pDrawFrameControl, libUser32, "DrawFrameControl")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(unsafe.Pointer(param1)), uintptr(param2), uintptr(param3))
 	return BOOL(ret)
 }
 
 func DrawCaption(hwnd HWND, hdc HDC, lprect *RECT, flags DRAW_CAPTION_FLAGS) BOOL {
-	addr := lazyAddr(&pDrawCaption, libUser32, "DrawCaption")
+	addr := LazyAddr(&pDrawCaption, libUser32, "DrawCaption")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, hdc, uintptr(unsafe.Pointer(lprect)), uintptr(flags))
 	return BOOL(ret)
 }
 
 func DrawAnimatedRects(hwnd HWND, idAni int32, lprcFrom *RECT, lprcTo *RECT) BOOL {
-	addr := lazyAddr(&pDrawAnimatedRects, libUser32, "DrawAnimatedRects")
+	addr := LazyAddr(&pDrawAnimatedRects, libUser32, "DrawAnimatedRects")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(idAni), uintptr(unsafe.Pointer(lprcFrom)), uintptr(unsafe.Pointer(lprcTo)))
 	return BOOL(ret)
 }
 
 func DrawTextA(hdc HDC, lpchText PSTR, cchText int32, lprc *RECT, format DRAW_TEXT_FORMAT) int32 {
-	addr := lazyAddr(&pDrawTextA, libUser32, "DrawTextA")
+	addr := LazyAddr(&pDrawTextA, libUser32, "DrawTextA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpchText)), uintptr(cchText), uintptr(unsafe.Pointer(lprc)), uintptr(format))
 	return int32(ret)
 }
@@ -6152,13 +6152,13 @@ func DrawTextA(hdc HDC, lpchText PSTR, cchText int32, lprc *RECT, format DRAW_TE
 var DrawText = DrawTextW
 
 func DrawTextW(hdc HDC, lpchText PWSTR, cchText int32, lprc *RECT, format DRAW_TEXT_FORMAT) int32 {
-	addr := lazyAddr(&pDrawTextW, libUser32, "DrawTextW")
+	addr := LazyAddr(&pDrawTextW, libUser32, "DrawTextW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpchText)), uintptr(cchText), uintptr(unsafe.Pointer(lprc)), uintptr(format))
 	return int32(ret)
 }
 
 func DrawTextExA(hdc HDC, lpchText PSTR, cchText int32, lprc *RECT, format DRAW_TEXT_FORMAT, lpdtp *DRAWTEXTPARAMS) int32 {
-	addr := lazyAddr(&pDrawTextExA, libUser32, "DrawTextExA")
+	addr := LazyAddr(&pDrawTextExA, libUser32, "DrawTextExA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpchText)), uintptr(cchText), uintptr(unsafe.Pointer(lprc)), uintptr(format), uintptr(unsafe.Pointer(lpdtp)))
 	return int32(ret)
 }
@@ -6166,13 +6166,13 @@ func DrawTextExA(hdc HDC, lpchText PSTR, cchText int32, lprc *RECT, format DRAW_
 var DrawTextEx = DrawTextExW
 
 func DrawTextExW(hdc HDC, lpchText PWSTR, cchText int32, lprc *RECT, format DRAW_TEXT_FORMAT, lpdtp *DRAWTEXTPARAMS) int32 {
-	addr := lazyAddr(&pDrawTextExW, libUser32, "DrawTextExW")
+	addr := LazyAddr(&pDrawTextExW, libUser32, "DrawTextExW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpchText)), uintptr(cchText), uintptr(unsafe.Pointer(lprc)), uintptr(format), uintptr(unsafe.Pointer(lpdtp)))
 	return int32(ret)
 }
 
 func GrayStringA(hDC HDC, hBrush HBRUSH, lpOutputFunc GRAYSTRINGPROC, lpData LPARAM, nCount int32, X int32, Y int32, nWidth int32, nHeight int32) BOOL {
-	addr := lazyAddr(&pGrayStringA, libUser32, "GrayStringA")
+	addr := LazyAddr(&pGrayStringA, libUser32, "GrayStringA")
 	ret, _, _ := syscall.SyscallN(addr, hDC, hBrush, lpOutputFunc, lpData, uintptr(nCount), uintptr(X), uintptr(Y), uintptr(nWidth), uintptr(nHeight))
 	return BOOL(ret)
 }
@@ -6180,13 +6180,13 @@ func GrayStringA(hDC HDC, hBrush HBRUSH, lpOutputFunc GRAYSTRINGPROC, lpData LPA
 var GrayString = GrayStringW
 
 func GrayStringW(hDC HDC, hBrush HBRUSH, lpOutputFunc GRAYSTRINGPROC, lpData LPARAM, nCount int32, X int32, Y int32, nWidth int32, nHeight int32) BOOL {
-	addr := lazyAddr(&pGrayStringW, libUser32, "GrayStringW")
+	addr := LazyAddr(&pGrayStringW, libUser32, "GrayStringW")
 	ret, _, _ := syscall.SyscallN(addr, hDC, hBrush, lpOutputFunc, lpData, uintptr(nCount), uintptr(X), uintptr(Y), uintptr(nWidth), uintptr(nHeight))
 	return BOOL(ret)
 }
 
 func DrawStateA(hdc HDC, hbrFore HBRUSH, qfnCallBack DRAWSTATEPROC, lData LPARAM, wData WPARAM, x int32, y int32, cx int32, cy int32, uFlags DRAWSTATE_FLAGS) BOOL {
-	addr := lazyAddr(&pDrawStateA, libUser32, "DrawStateA")
+	addr := LazyAddr(&pDrawStateA, libUser32, "DrawStateA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hbrFore, qfnCallBack, lData, wData, uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), uintptr(uFlags))
 	return BOOL(ret)
 }
@@ -6194,13 +6194,13 @@ func DrawStateA(hdc HDC, hbrFore HBRUSH, qfnCallBack DRAWSTATEPROC, lData LPARAM
 var DrawState = DrawStateW
 
 func DrawStateW(hdc HDC, hbrFore HBRUSH, qfnCallBack DRAWSTATEPROC, lData LPARAM, wData WPARAM, x int32, y int32, cx int32, cy int32, uFlags DRAWSTATE_FLAGS) BOOL {
-	addr := lazyAddr(&pDrawStateW, libUser32, "DrawStateW")
+	addr := LazyAddr(&pDrawStateW, libUser32, "DrawStateW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, hbrFore, qfnCallBack, lData, wData, uintptr(x), uintptr(y), uintptr(cx), uintptr(cy), uintptr(uFlags))
 	return BOOL(ret)
 }
 
 func TabbedTextOutA(hdc HDC, x int32, y int32, lpString PSTR, chCount int32, nTabPositions int32, lpnTabStopPositions *int32, nTabOrigin int32) int32 {
-	addr := lazyAddr(&pTabbedTextOutA, libUser32, "TabbedTextOutA")
+	addr := LazyAddr(&pTabbedTextOutA, libUser32, "TabbedTextOutA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lpString)), uintptr(chCount), uintptr(nTabPositions), uintptr(unsafe.Pointer(lpnTabStopPositions)), uintptr(nTabOrigin))
 	return int32(ret)
 }
@@ -6208,13 +6208,13 @@ func TabbedTextOutA(hdc HDC, x int32, y int32, lpString PSTR, chCount int32, nTa
 var TabbedTextOut = TabbedTextOutW
 
 func TabbedTextOutW(hdc HDC, x int32, y int32, lpString PWSTR, chCount int32, nTabPositions int32, lpnTabStopPositions *int32, nTabOrigin int32) int32 {
-	addr := lazyAddr(&pTabbedTextOutW, libUser32, "TabbedTextOutW")
+	addr := LazyAddr(&pTabbedTextOutW, libUser32, "TabbedTextOutW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(x), uintptr(y), uintptr(unsafe.Pointer(lpString)), uintptr(chCount), uintptr(nTabPositions), uintptr(unsafe.Pointer(lpnTabStopPositions)), uintptr(nTabOrigin))
 	return int32(ret)
 }
 
 func GetTabbedTextExtentA(hdc HDC, lpString PSTR, chCount int32, nTabPositions int32, lpnTabStopPositions *int32) uint32 {
-	addr := lazyAddr(&pGetTabbedTextExtentA, libUser32, "GetTabbedTextExtentA")
+	addr := LazyAddr(&pGetTabbedTextExtentA, libUser32, "GetTabbedTextExtentA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(chCount), uintptr(nTabPositions), uintptr(unsafe.Pointer(lpnTabStopPositions)))
 	return uint32(ret)
 }
@@ -6222,265 +6222,265 @@ func GetTabbedTextExtentA(hdc HDC, lpString PSTR, chCount int32, nTabPositions i
 var GetTabbedTextExtent = GetTabbedTextExtentW
 
 func GetTabbedTextExtentW(hdc HDC, lpString PWSTR, chCount int32, nTabPositions int32, lpnTabStopPositions *int32) uint32 {
-	addr := lazyAddr(&pGetTabbedTextExtentW, libUser32, "GetTabbedTextExtentW")
+	addr := LazyAddr(&pGetTabbedTextExtentW, libUser32, "GetTabbedTextExtentW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpString)), uintptr(chCount), uintptr(nTabPositions), uintptr(unsafe.Pointer(lpnTabStopPositions)))
 	return uint32(ret)
 }
 
 func UpdateWindow(hWnd HWND) BOOL {
-	addr := lazyAddr(&pUpdateWindow, libUser32, "UpdateWindow")
+	addr := LazyAddr(&pUpdateWindow, libUser32, "UpdateWindow")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return BOOL(ret)
 }
 
 func PaintDesktop(hdc HDC) BOOL {
-	addr := lazyAddr(&pPaintDesktop, libUser32, "PaintDesktop")
+	addr := LazyAddr(&pPaintDesktop, libUser32, "PaintDesktop")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
 }
 
 func WindowFromDC(hDC HDC) HWND {
-	addr := lazyAddr(&pWindowFromDC, libUser32, "WindowFromDC")
+	addr := LazyAddr(&pWindowFromDC, libUser32, "WindowFromDC")
 	ret, _, _ := syscall.SyscallN(addr, hDC)
 	return ret
 }
 
 func GetDC(hWnd HWND) HDC {
-	addr := lazyAddr(&pGetDC, libUser32, "GetDC")
+	addr := LazyAddr(&pGetDC, libUser32, "GetDC")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return ret
 }
 
 func GetDCEx(hWnd HWND, hrgnClip HRGN, flags GET_DCX_FLAGS) HDC {
-	addr := lazyAddr(&pGetDCEx, libUser32, "GetDCEx")
+	addr := LazyAddr(&pGetDCEx, libUser32, "GetDCEx")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hrgnClip, uintptr(flags))
 	return ret
 }
 
 func GetWindowDC(hWnd HWND) HDC {
-	addr := lazyAddr(&pGetWindowDC, libUser32, "GetWindowDC")
+	addr := LazyAddr(&pGetWindowDC, libUser32, "GetWindowDC")
 	ret, _, _ := syscall.SyscallN(addr, hWnd)
 	return ret
 }
 
 func ReleaseDC(hWnd HWND, hDC HDC) int32 {
-	addr := lazyAddr(&pReleaseDC, libUser32, "ReleaseDC")
+	addr := LazyAddr(&pReleaseDC, libUser32, "ReleaseDC")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hDC)
 	return int32(ret)
 }
 
 func BeginPaint(hWnd HWND, lpPaint *PAINTSTRUCT) HDC {
-	addr := lazyAddr(&pBeginPaint, libUser32, "BeginPaint")
+	addr := LazyAddr(&pBeginPaint, libUser32, "BeginPaint")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpPaint)))
 	return ret
 }
 
 func EndPaint(hWnd HWND, lpPaint *PAINTSTRUCT) BOOL {
-	addr := lazyAddr(&pEndPaint, libUser32, "EndPaint")
+	addr := LazyAddr(&pEndPaint, libUser32, "EndPaint")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpPaint)))
 	return BOOL(ret)
 }
 
 func GetUpdateRect(hWnd HWND, lpRect *RECT, bErase BOOL) BOOL {
-	addr := lazyAddr(&pGetUpdateRect, libUser32, "GetUpdateRect")
+	addr := LazyAddr(&pGetUpdateRect, libUser32, "GetUpdateRect")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpRect)), uintptr(bErase))
 	return BOOL(ret)
 }
 
 func GetUpdateRgn(hWnd HWND, hRgn HRGN, bErase BOOL) GDI_REGION_TYPE {
-	addr := lazyAddr(&pGetUpdateRgn, libUser32, "GetUpdateRgn")
+	addr := LazyAddr(&pGetUpdateRgn, libUser32, "GetUpdateRgn")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hRgn, uintptr(bErase))
 	return GDI_REGION_TYPE(ret)
 }
 
 func SetWindowRgn(hWnd HWND, hRgn HRGN, bRedraw BOOL) int32 {
-	addr := lazyAddr(&pSetWindowRgn, libUser32, "SetWindowRgn")
+	addr := LazyAddr(&pSetWindowRgn, libUser32, "SetWindowRgn")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hRgn, uintptr(bRedraw))
 	return int32(ret)
 }
 
 func GetWindowRgn(hWnd HWND, hRgn HRGN) GDI_REGION_TYPE {
-	addr := lazyAddr(&pGetWindowRgn, libUser32, "GetWindowRgn")
+	addr := LazyAddr(&pGetWindowRgn, libUser32, "GetWindowRgn")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hRgn)
 	return GDI_REGION_TYPE(ret)
 }
 
 func GetWindowRgnBox(hWnd HWND, lprc *RECT) GDI_REGION_TYPE {
-	addr := lazyAddr(&pGetWindowRgnBox, libUser32, "GetWindowRgnBox")
+	addr := LazyAddr(&pGetWindowRgnBox, libUser32, "GetWindowRgnBox")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lprc)))
 	return GDI_REGION_TYPE(ret)
 }
 
 func ExcludeUpdateRgn(hDC HDC, hWnd HWND) int32 {
-	addr := lazyAddr(&pExcludeUpdateRgn, libUser32, "ExcludeUpdateRgn")
+	addr := LazyAddr(&pExcludeUpdateRgn, libUser32, "ExcludeUpdateRgn")
 	ret, _, _ := syscall.SyscallN(addr, hDC, hWnd)
 	return int32(ret)
 }
 
 func InvalidateRect(hWnd HWND, lpRect *RECT, bErase BOOL) BOOL {
-	addr := lazyAddr(&pInvalidateRect, libUser32, "InvalidateRect")
+	addr := LazyAddr(&pInvalidateRect, libUser32, "InvalidateRect")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpRect)), uintptr(bErase))
 	return BOOL(ret)
 }
 
 func ValidateRect(hWnd HWND, lpRect *RECT) BOOL {
-	addr := lazyAddr(&pValidateRect, libUser32, "ValidateRect")
+	addr := LazyAddr(&pValidateRect, libUser32, "ValidateRect")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpRect)))
 	return BOOL(ret)
 }
 
 func InvalidateRgn(hWnd HWND, hRgn HRGN, bErase BOOL) BOOL {
-	addr := lazyAddr(&pInvalidateRgn, libUser32, "InvalidateRgn")
+	addr := LazyAddr(&pInvalidateRgn, libUser32, "InvalidateRgn")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hRgn, uintptr(bErase))
 	return BOOL(ret)
 }
 
 func ValidateRgn(hWnd HWND, hRgn HRGN) BOOL {
-	addr := lazyAddr(&pValidateRgn, libUser32, "ValidateRgn")
+	addr := LazyAddr(&pValidateRgn, libUser32, "ValidateRgn")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, hRgn)
 	return BOOL(ret)
 }
 
 func RedrawWindow(hWnd HWND, lprcUpdate *RECT, hrgnUpdate HRGN, flags REDRAW_WINDOW_FLAGS) BOOL {
-	addr := lazyAddr(&pRedrawWindow, libUser32, "RedrawWindow")
+	addr := LazyAddr(&pRedrawWindow, libUser32, "RedrawWindow")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lprcUpdate)), hrgnUpdate, uintptr(flags))
 	return BOOL(ret)
 }
 
 func LockWindowUpdate(hWndLock HWND) BOOL {
-	addr := lazyAddr(&pLockWindowUpdate, libUser32, "LockWindowUpdate")
+	addr := LazyAddr(&pLockWindowUpdate, libUser32, "LockWindowUpdate")
 	ret, _, _ := syscall.SyscallN(addr, hWndLock)
 	return BOOL(ret)
 }
 
 func ClientToScreen(hWnd HWND, lpPoint *POINT) BOOL {
-	addr := lazyAddr(&pClientToScreen, libUser32, "ClientToScreen")
+	addr := LazyAddr(&pClientToScreen, libUser32, "ClientToScreen")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpPoint)))
 	return BOOL(ret)
 }
 
 func ScreenToClient(hWnd HWND, lpPoint *POINT) BOOL {
-	addr := lazyAddr(&pScreenToClient, libUser32, "ScreenToClient")
+	addr := LazyAddr(&pScreenToClient, libUser32, "ScreenToClient")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(unsafe.Pointer(lpPoint)))
 	return BOOL(ret)
 }
 
 func MapWindowPoints(hWndFrom HWND, hWndTo HWND, lpPoints *POINT, cPoints uint32) int32 {
-	addr := lazyAddr(&pMapWindowPoints, libUser32, "MapWindowPoints")
+	addr := LazyAddr(&pMapWindowPoints, libUser32, "MapWindowPoints")
 	ret, _, _ := syscall.SyscallN(addr, hWndFrom, hWndTo, uintptr(unsafe.Pointer(lpPoints)), uintptr(cPoints))
 	return int32(ret)
 }
 
 func GetSysColor(nIndex SYS_COLOR_INDEX) uint32 {
-	addr := lazyAddr(&pGetSysColor, libUser32, "GetSysColor")
+	addr := LazyAddr(&pGetSysColor, libUser32, "GetSysColor")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nIndex))
 	return uint32(ret)
 }
 
 func GetSysColorBrush(nIndex SYS_COLOR_INDEX) HBRUSH {
-	addr := lazyAddr(&pGetSysColorBrush, libUser32, "GetSysColorBrush")
+	addr := LazyAddr(&pGetSysColorBrush, libUser32, "GetSysColorBrush")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(nIndex))
 	return ret
 }
 
 func SetSysColors(cElements int32, lpaElements *int32, lpaRgbValues *COLORREF) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetSysColors, libUser32, "SetSysColors")
+	addr := LazyAddr(&pSetSysColors, libUser32, "SetSysColors")
 	ret, _, err := syscall.SyscallN(addr, uintptr(cElements), uintptr(unsafe.Pointer(lpaElements)), uintptr(unsafe.Pointer(lpaRgbValues)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func DrawFocusRect(hDC HDC, lprc *RECT) BOOL {
-	addr := lazyAddr(&pDrawFocusRect, libUser32, "DrawFocusRect")
+	addr := LazyAddr(&pDrawFocusRect, libUser32, "DrawFocusRect")
 	ret, _, _ := syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(lprc)))
 	return BOOL(ret)
 }
 
 func FillRect(hDC HDC, lprc *RECT, hbr HBRUSH) int32 {
-	addr := lazyAddr(&pFillRect, libUser32, "FillRect")
+	addr := LazyAddr(&pFillRect, libUser32, "FillRect")
 	ret, _, _ := syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(lprc)), hbr)
 	return int32(ret)
 }
 
 func FrameRect(hDC HDC, lprc *RECT, hbr HBRUSH) int32 {
-	addr := lazyAddr(&pFrameRect, libUser32, "FrameRect")
+	addr := LazyAddr(&pFrameRect, libUser32, "FrameRect")
 	ret, _, _ := syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(lprc)), hbr)
 	return int32(ret)
 }
 
 func InvertRect(hDC HDC, lprc *RECT) BOOL {
-	addr := lazyAddr(&pInvertRect, libUser32, "InvertRect")
+	addr := LazyAddr(&pInvertRect, libUser32, "InvertRect")
 	ret, _, _ := syscall.SyscallN(addr, hDC, uintptr(unsafe.Pointer(lprc)))
 	return BOOL(ret)
 }
 
 func SetRect(lprc *RECT, xLeft int32, yTop int32, xRight int32, yBottom int32) BOOL {
-	addr := lazyAddr(&pSetRect, libUser32, "SetRect")
+	addr := LazyAddr(&pSetRect, libUser32, "SetRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc)), uintptr(xLeft), uintptr(yTop), uintptr(xRight), uintptr(yBottom))
 	return BOOL(ret)
 }
 
 func SetRectEmpty(lprc *RECT) BOOL {
-	addr := lazyAddr(&pSetRectEmpty, libUser32, "SetRectEmpty")
+	addr := LazyAddr(&pSetRectEmpty, libUser32, "SetRectEmpty")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc)))
 	return BOOL(ret)
 }
 
 func CopyRect(lprcDst *RECT, lprcSrc *RECT) BOOL {
-	addr := lazyAddr(&pCopyRect, libUser32, "CopyRect")
+	addr := LazyAddr(&pCopyRect, libUser32, "CopyRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprcDst)), uintptr(unsafe.Pointer(lprcSrc)))
 	return BOOL(ret)
 }
 
 func InflateRect(lprc *RECT, dx int32, dy int32) BOOL {
-	addr := lazyAddr(&pInflateRect, libUser32, "InflateRect")
+	addr := LazyAddr(&pInflateRect, libUser32, "InflateRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc)), uintptr(dx), uintptr(dy))
 	return BOOL(ret)
 }
 
 func IntersectRect(lprcDst *RECT, lprcSrc1 *RECT, lprcSrc2 *RECT) BOOL {
-	addr := lazyAddr(&pIntersectRect, libUser32, "IntersectRect")
+	addr := LazyAddr(&pIntersectRect, libUser32, "IntersectRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprcDst)), uintptr(unsafe.Pointer(lprcSrc1)), uintptr(unsafe.Pointer(lprcSrc2)))
 	return BOOL(ret)
 }
 
 func UnionRect(lprcDst *RECT, lprcSrc1 *RECT, lprcSrc2 *RECT) BOOL {
-	addr := lazyAddr(&pUnionRect, libUser32, "UnionRect")
+	addr := LazyAddr(&pUnionRect, libUser32, "UnionRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprcDst)), uintptr(unsafe.Pointer(lprcSrc1)), uintptr(unsafe.Pointer(lprcSrc2)))
 	return BOOL(ret)
 }
 
 func SubtractRect(lprcDst *RECT, lprcSrc1 *RECT, lprcSrc2 *RECT) BOOL {
-	addr := lazyAddr(&pSubtractRect, libUser32, "SubtractRect")
+	addr := LazyAddr(&pSubtractRect, libUser32, "SubtractRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprcDst)), uintptr(unsafe.Pointer(lprcSrc1)), uintptr(unsafe.Pointer(lprcSrc2)))
 	return BOOL(ret)
 }
 
 func OffsetRect(lprc *RECT, dx int32, dy int32) BOOL {
-	addr := lazyAddr(&pOffsetRect, libUser32, "OffsetRect")
+	addr := LazyAddr(&pOffsetRect, libUser32, "OffsetRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc)), uintptr(dx), uintptr(dy))
 	return BOOL(ret)
 }
 
 func IsRectEmpty(lprc *RECT) BOOL {
-	addr := lazyAddr(&pIsRectEmpty, libUser32, "IsRectEmpty")
+	addr := LazyAddr(&pIsRectEmpty, libUser32, "IsRectEmpty")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc)))
 	return BOOL(ret)
 }
 
 func EqualRect(lprc1 *RECT, lprc2 *RECT) BOOL {
-	addr := lazyAddr(&pEqualRect, libUser32, "EqualRect")
+	addr := LazyAddr(&pEqualRect, libUser32, "EqualRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc1)), uintptr(unsafe.Pointer(lprc2)))
 	return BOOL(ret)
 }
 
 func PtInRect(lprc *RECT, pt POINT) BOOL {
-	addr := lazyAddr(&pPtInRect, libUser32, "PtInRect")
+	addr := LazyAddr(&pPtInRect, libUser32, "PtInRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc)), *(*uintptr)(unsafe.Pointer(&pt)))
 	return BOOL(ret)
 }
 
 func LoadBitmapA(hInstance HINSTANCE, lpBitmapName PSTR) HBITMAP {
-	addr := lazyAddr(&pLoadBitmapA, libUser32, "LoadBitmapA")
+	addr := LazyAddr(&pLoadBitmapA, libUser32, "LoadBitmapA")
 	ret, _, _ := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpBitmapName)))
 	return ret
 }
@@ -6488,13 +6488,13 @@ func LoadBitmapA(hInstance HINSTANCE, lpBitmapName PSTR) HBITMAP {
 var LoadBitmap = LoadBitmapW
 
 func LoadBitmapW(hInstance HINSTANCE, lpBitmapName PWSTR) HBITMAP {
-	addr := lazyAddr(&pLoadBitmapW, libUser32, "LoadBitmapW")
+	addr := LazyAddr(&pLoadBitmapW, libUser32, "LoadBitmapW")
 	ret, _, _ := syscall.SyscallN(addr, hInstance, uintptr(unsafe.Pointer(lpBitmapName)))
 	return ret
 }
 
 func ChangeDisplaySettingsA(lpDevMode *DEVMODEA, dwFlags CDS_TYPE) DISP_CHANGE {
-	addr := lazyAddr(&pChangeDisplaySettingsA, libUser32, "ChangeDisplaySettingsA")
+	addr := LazyAddr(&pChangeDisplaySettingsA, libUser32, "ChangeDisplaySettingsA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDevMode)), uintptr(dwFlags))
 	return DISP_CHANGE(ret)
 }
@@ -6502,13 +6502,13 @@ func ChangeDisplaySettingsA(lpDevMode *DEVMODEA, dwFlags CDS_TYPE) DISP_CHANGE {
 var ChangeDisplaySettings = ChangeDisplaySettingsW
 
 func ChangeDisplaySettingsW(lpDevMode *DEVMODEW, dwFlags CDS_TYPE) DISP_CHANGE {
-	addr := lazyAddr(&pChangeDisplaySettingsW, libUser32, "ChangeDisplaySettingsW")
+	addr := LazyAddr(&pChangeDisplaySettingsW, libUser32, "ChangeDisplaySettingsW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDevMode)), uintptr(dwFlags))
 	return DISP_CHANGE(ret)
 }
 
 func ChangeDisplaySettingsExA(lpszDeviceName PSTR, lpDevMode *DEVMODEA, hwnd HWND, dwflags CDS_TYPE, lParam unsafe.Pointer) DISP_CHANGE {
-	addr := lazyAddr(&pChangeDisplaySettingsExA, libUser32, "ChangeDisplaySettingsExA")
+	addr := LazyAddr(&pChangeDisplaySettingsExA, libUser32, "ChangeDisplaySettingsExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(unsafe.Pointer(lpDevMode)), hwnd, uintptr(dwflags), uintptr(lParam))
 	return DISP_CHANGE(ret)
 }
@@ -6516,13 +6516,13 @@ func ChangeDisplaySettingsExA(lpszDeviceName PSTR, lpDevMode *DEVMODEA, hwnd HWN
 var ChangeDisplaySettingsEx = ChangeDisplaySettingsExW
 
 func ChangeDisplaySettingsExW(lpszDeviceName PWSTR, lpDevMode *DEVMODEW, hwnd HWND, dwflags CDS_TYPE, lParam unsafe.Pointer) DISP_CHANGE {
-	addr := lazyAddr(&pChangeDisplaySettingsExW, libUser32, "ChangeDisplaySettingsExW")
+	addr := LazyAddr(&pChangeDisplaySettingsExW, libUser32, "ChangeDisplaySettingsExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(unsafe.Pointer(lpDevMode)), hwnd, uintptr(dwflags), uintptr(lParam))
 	return DISP_CHANGE(ret)
 }
 
 func EnumDisplaySettingsA(lpszDeviceName PSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEA) BOOL {
-	addr := lazyAddr(&pEnumDisplaySettingsA, libUser32, "EnumDisplaySettingsA")
+	addr := LazyAddr(&pEnumDisplaySettingsA, libUser32, "EnumDisplaySettingsA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(iModeNum), uintptr(unsafe.Pointer(lpDevMode)))
 	return BOOL(ret)
 }
@@ -6530,13 +6530,13 @@ func EnumDisplaySettingsA(lpszDeviceName PSTR, iModeNum ENUM_DISPLAY_SETTINGS_MO
 var EnumDisplaySettings = EnumDisplaySettingsW
 
 func EnumDisplaySettingsW(lpszDeviceName PWSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEW) BOOL {
-	addr := lazyAddr(&pEnumDisplaySettingsW, libUser32, "EnumDisplaySettingsW")
+	addr := LazyAddr(&pEnumDisplaySettingsW, libUser32, "EnumDisplaySettingsW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(iModeNum), uintptr(unsafe.Pointer(lpDevMode)))
 	return BOOL(ret)
 }
 
 func EnumDisplaySettingsExA(lpszDeviceName PSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEA, dwFlags ENUM_DISPLAY_SETTINGS_FLAGS) BOOL {
-	addr := lazyAddr(&pEnumDisplaySettingsExA, libUser32, "EnumDisplaySettingsExA")
+	addr := LazyAddr(&pEnumDisplaySettingsExA, libUser32, "EnumDisplaySettingsExA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(iModeNum), uintptr(unsafe.Pointer(lpDevMode)), uintptr(dwFlags))
 	return BOOL(ret)
 }
@@ -6544,13 +6544,13 @@ func EnumDisplaySettingsExA(lpszDeviceName PSTR, iModeNum ENUM_DISPLAY_SETTINGS_
 var EnumDisplaySettingsEx = EnumDisplaySettingsExW
 
 func EnumDisplaySettingsExW(lpszDeviceName PWSTR, iModeNum ENUM_DISPLAY_SETTINGS_MODE, lpDevMode *DEVMODEW, dwFlags ENUM_DISPLAY_SETTINGS_FLAGS) BOOL {
-	addr := lazyAddr(&pEnumDisplaySettingsExW, libUser32, "EnumDisplaySettingsExW")
+	addr := LazyAddr(&pEnumDisplaySettingsExW, libUser32, "EnumDisplaySettingsExW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszDeviceName)), uintptr(iModeNum), uintptr(unsafe.Pointer(lpDevMode)), uintptr(dwFlags))
 	return BOOL(ret)
 }
 
 func EnumDisplayDevicesA(lpDevice PSTR, iDevNum uint32, lpDisplayDevice *DISPLAY_DEVICEA, dwFlags uint32) BOOL {
-	addr := lazyAddr(&pEnumDisplayDevicesA, libUser32, "EnumDisplayDevicesA")
+	addr := LazyAddr(&pEnumDisplayDevicesA, libUser32, "EnumDisplayDevicesA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDevice)), uintptr(iDevNum), uintptr(unsafe.Pointer(lpDisplayDevice)), uintptr(dwFlags))
 	return BOOL(ret)
 }
@@ -6558,31 +6558,31 @@ func EnumDisplayDevicesA(lpDevice PSTR, iDevNum uint32, lpDisplayDevice *DISPLAY
 var EnumDisplayDevices = EnumDisplayDevicesW
 
 func EnumDisplayDevicesW(lpDevice PWSTR, iDevNum uint32, lpDisplayDevice *DISPLAY_DEVICEW, dwFlags uint32) BOOL {
-	addr := lazyAddr(&pEnumDisplayDevicesW, libUser32, "EnumDisplayDevicesW")
+	addr := LazyAddr(&pEnumDisplayDevicesW, libUser32, "EnumDisplayDevicesW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpDevice)), uintptr(iDevNum), uintptr(unsafe.Pointer(lpDisplayDevice)), uintptr(dwFlags))
 	return BOOL(ret)
 }
 
 func MonitorFromPoint(pt POINT, dwFlags MONITOR_FROM_FLAGS) HMONITOR {
-	addr := lazyAddr(&pMonitorFromPoint, libUser32, "MonitorFromPoint")
+	addr := LazyAddr(&pMonitorFromPoint, libUser32, "MonitorFromPoint")
 	ret, _, _ := syscall.SyscallN(addr, *(*uintptr)(unsafe.Pointer(&pt)), uintptr(dwFlags))
 	return ret
 }
 
 func MonitorFromRect(lprc *RECT, dwFlags MONITOR_FROM_FLAGS) HMONITOR {
-	addr := lazyAddr(&pMonitorFromRect, libUser32, "MonitorFromRect")
+	addr := LazyAddr(&pMonitorFromRect, libUser32, "MonitorFromRect")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lprc)), uintptr(dwFlags))
 	return ret
 }
 
 func MonitorFromWindow(hwnd HWND, dwFlags MONITOR_FROM_FLAGS) HMONITOR {
-	addr := lazyAddr(&pMonitorFromWindow, libUser32, "MonitorFromWindow")
+	addr := LazyAddr(&pMonitorFromWindow, libUser32, "MonitorFromWindow")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(dwFlags))
 	return ret
 }
 
 func GetMonitorInfoA(hMonitor HMONITOR, lpmi *MONITORINFO) BOOL {
-	addr := lazyAddr(&pGetMonitorInfoA, libUser32, "GetMonitorInfoA")
+	addr := LazyAddr(&pGetMonitorInfoA, libUser32, "GetMonitorInfoA")
 	ret, _, _ := syscall.SyscallN(addr, hMonitor, uintptr(unsafe.Pointer(lpmi)))
 	return BOOL(ret)
 }
@@ -6590,13 +6590,13 @@ func GetMonitorInfoA(hMonitor HMONITOR, lpmi *MONITORINFO) BOOL {
 var GetMonitorInfo = GetMonitorInfoW
 
 func GetMonitorInfoW(hMonitor HMONITOR, lpmi *MONITORINFO) BOOL {
-	addr := lazyAddr(&pGetMonitorInfoW, libUser32, "GetMonitorInfoW")
+	addr := LazyAddr(&pGetMonitorInfoW, libUser32, "GetMonitorInfoW")
 	ret, _, _ := syscall.SyscallN(addr, hMonitor, uintptr(unsafe.Pointer(lpmi)))
 	return BOOL(ret)
 }
 
 func EnumDisplayMonitors(hdc HDC, lprcClip *RECT, lpfnEnum MONITORENUMPROC, dwData LPARAM) BOOL {
-	addr := lazyAddr(&pEnumDisplayMonitors, libUser32, "EnumDisplayMonitors")
+	addr := LazyAddr(&pEnumDisplayMonitors, libUser32, "EnumDisplayMonitors")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lprcClip)), lpfnEnum, dwData)
 	return BOOL(ret)
 }

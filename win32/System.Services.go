@@ -726,13 +726,13 @@ var (
 )
 
 func SetServiceBits(hServiceStatus SERVICE_STATUS_HANDLE, dwServiceBits uint32, bSetBitsOn BOOL, bUpdateImmediately BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetServiceBits, libAdvapi32, "SetServiceBits")
+	addr := LazyAddr(&pSetServiceBits, libAdvapi32, "SetServiceBits")
 	ret, _, err := syscall.SyscallN(addr, hServiceStatus, uintptr(dwServiceBits), uintptr(bSetBitsOn), uintptr(bUpdateImmediately))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ChangeServiceConfigA(hService SC_HANDLE, dwServiceType uint32, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PSTR, lpLoadOrderGroup PSTR, lpdwTagId *uint32, lpDependencies PSTR, lpServiceStartName PSTR, lpPassword PSTR, lpDisplayName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pChangeServiceConfigA, libAdvapi32, "ChangeServiceConfigA")
+	addr := LazyAddr(&pChangeServiceConfigA, libAdvapi32, "ChangeServiceConfigA")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwServiceType), uintptr(dwStartType), uintptr(dwErrorControl), uintptr(unsafe.Pointer(lpBinaryPathName)), uintptr(unsafe.Pointer(lpLoadOrderGroup)), uintptr(unsafe.Pointer(lpdwTagId)), uintptr(unsafe.Pointer(lpDependencies)), uintptr(unsafe.Pointer(lpServiceStartName)), uintptr(unsafe.Pointer(lpPassword)), uintptr(unsafe.Pointer(lpDisplayName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -740,13 +740,13 @@ func ChangeServiceConfigA(hService SC_HANDLE, dwServiceType uint32, dwStartType 
 var ChangeServiceConfig = ChangeServiceConfigW
 
 func ChangeServiceConfigW(hService SC_HANDLE, dwServiceType uint32, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PWSTR, lpLoadOrderGroup PWSTR, lpdwTagId *uint32, lpDependencies PWSTR, lpServiceStartName PWSTR, lpPassword PWSTR, lpDisplayName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pChangeServiceConfigW, libAdvapi32, "ChangeServiceConfigW")
+	addr := LazyAddr(&pChangeServiceConfigW, libAdvapi32, "ChangeServiceConfigW")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwServiceType), uintptr(dwStartType), uintptr(dwErrorControl), uintptr(unsafe.Pointer(lpBinaryPathName)), uintptr(unsafe.Pointer(lpLoadOrderGroup)), uintptr(unsafe.Pointer(lpdwTagId)), uintptr(unsafe.Pointer(lpDependencies)), uintptr(unsafe.Pointer(lpServiceStartName)), uintptr(unsafe.Pointer(lpPassword)), uintptr(unsafe.Pointer(lpDisplayName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ChangeServiceConfig2A(hService SC_HANDLE, dwInfoLevel SERVICE_CONFIG, lpInfo unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pChangeServiceConfig2A, libAdvapi32, "ChangeServiceConfig2A")
+	addr := LazyAddr(&pChangeServiceConfig2A, libAdvapi32, "ChangeServiceConfig2A")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwInfoLevel), uintptr(lpInfo))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -754,25 +754,25 @@ func ChangeServiceConfig2A(hService SC_HANDLE, dwInfoLevel SERVICE_CONFIG, lpInf
 var ChangeServiceConfig2 = ChangeServiceConfig2W
 
 func ChangeServiceConfig2W(hService SC_HANDLE, dwInfoLevel SERVICE_CONFIG, lpInfo unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pChangeServiceConfig2W, libAdvapi32, "ChangeServiceConfig2W")
+	addr := LazyAddr(&pChangeServiceConfig2W, libAdvapi32, "ChangeServiceConfig2W")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwInfoLevel), uintptr(lpInfo))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CloseServiceHandle(hSCObject SC_HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pCloseServiceHandle, libAdvapi32, "CloseServiceHandle")
+	addr := LazyAddr(&pCloseServiceHandle, libAdvapi32, "CloseServiceHandle")
 	ret, _, err := syscall.SyscallN(addr, hSCObject)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func ControlService(hService SC_HANDLE, dwControl uint32, lpServiceStatus *SERVICE_STATUS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pControlService, libAdvapi32, "ControlService")
+	addr := LazyAddr(&pControlService, libAdvapi32, "ControlService")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwControl), uintptr(unsafe.Pointer(lpServiceStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func CreateServiceA(hSCManager SC_HANDLE, lpServiceName PSTR, lpDisplayName PSTR, dwDesiredAccess uint32, dwServiceType ENUM_SERVICE_TYPE, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PSTR, lpLoadOrderGroup PSTR, lpdwTagId *uint32, lpDependencies PSTR, lpServiceStartName PSTR, lpPassword PSTR) (SC_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateServiceA, libAdvapi32, "CreateServiceA")
+	addr := LazyAddr(&pCreateServiceA, libAdvapi32, "CreateServiceA")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpServiceName)), uintptr(unsafe.Pointer(lpDisplayName)), uintptr(dwDesiredAccess), uintptr(dwServiceType), uintptr(dwStartType), uintptr(dwErrorControl), uintptr(unsafe.Pointer(lpBinaryPathName)), uintptr(unsafe.Pointer(lpLoadOrderGroup)), uintptr(unsafe.Pointer(lpdwTagId)), uintptr(unsafe.Pointer(lpDependencies)), uintptr(unsafe.Pointer(lpServiceStartName)), uintptr(unsafe.Pointer(lpPassword)))
 	return ret, WIN32_ERROR(err)
 }
@@ -780,19 +780,19 @@ func CreateServiceA(hSCManager SC_HANDLE, lpServiceName PSTR, lpDisplayName PSTR
 var CreateService = CreateServiceW
 
 func CreateServiceW(hSCManager SC_HANDLE, lpServiceName PWSTR, lpDisplayName PWSTR, dwDesiredAccess uint32, dwServiceType ENUM_SERVICE_TYPE, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PWSTR, lpLoadOrderGroup PWSTR, lpdwTagId *uint32, lpDependencies PWSTR, lpServiceStartName PWSTR, lpPassword PWSTR) (SC_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pCreateServiceW, libAdvapi32, "CreateServiceW")
+	addr := LazyAddr(&pCreateServiceW, libAdvapi32, "CreateServiceW")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpServiceName)), uintptr(unsafe.Pointer(lpDisplayName)), uintptr(dwDesiredAccess), uintptr(dwServiceType), uintptr(dwStartType), uintptr(dwErrorControl), uintptr(unsafe.Pointer(lpBinaryPathName)), uintptr(unsafe.Pointer(lpLoadOrderGroup)), uintptr(unsafe.Pointer(lpdwTagId)), uintptr(unsafe.Pointer(lpDependencies)), uintptr(unsafe.Pointer(lpServiceStartName)), uintptr(unsafe.Pointer(lpPassword)))
 	return ret, WIN32_ERROR(err)
 }
 
 func DeleteService(hService SC_HANDLE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pDeleteService, libAdvapi32, "DeleteService")
+	addr := LazyAddr(&pDeleteService, libAdvapi32, "DeleteService")
 	ret, _, err := syscall.SyscallN(addr, hService)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumDependentServicesA(hService SC_HANDLE, dwServiceState ENUM_SERVICE_STATE, lpServices *ENUM_SERVICE_STATUSA, cbBufSize uint32, pcbBytesNeeded *uint32, lpServicesReturned *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDependentServicesA, libAdvapi32, "EnumDependentServicesA")
+	addr := LazyAddr(&pEnumDependentServicesA, libAdvapi32, "EnumDependentServicesA")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwServiceState), uintptr(unsafe.Pointer(lpServices)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)), uintptr(unsafe.Pointer(lpServicesReturned)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -800,13 +800,13 @@ func EnumDependentServicesA(hService SC_HANDLE, dwServiceState ENUM_SERVICE_STAT
 var EnumDependentServices = EnumDependentServicesW
 
 func EnumDependentServicesW(hService SC_HANDLE, dwServiceState ENUM_SERVICE_STATE, lpServices *ENUM_SERVICE_STATUSW, cbBufSize uint32, pcbBytesNeeded *uint32, lpServicesReturned *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumDependentServicesW, libAdvapi32, "EnumDependentServicesW")
+	addr := LazyAddr(&pEnumDependentServicesW, libAdvapi32, "EnumDependentServicesW")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwServiceState), uintptr(unsafe.Pointer(lpServices)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)), uintptr(unsafe.Pointer(lpServicesReturned)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumServicesStatusA(hSCManager SC_HANDLE, dwServiceType ENUM_SERVICE_TYPE, dwServiceState ENUM_SERVICE_STATE, lpServices *ENUM_SERVICE_STATUSA, cbBufSize uint32, pcbBytesNeeded *uint32, lpServicesReturned *uint32, lpResumeHandle *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumServicesStatusA, libAdvapi32, "EnumServicesStatusA")
+	addr := LazyAddr(&pEnumServicesStatusA, libAdvapi32, "EnumServicesStatusA")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(dwServiceType), uintptr(dwServiceState), uintptr(unsafe.Pointer(lpServices)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)), uintptr(unsafe.Pointer(lpServicesReturned)), uintptr(unsafe.Pointer(lpResumeHandle)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -814,13 +814,13 @@ func EnumServicesStatusA(hSCManager SC_HANDLE, dwServiceType ENUM_SERVICE_TYPE, 
 var EnumServicesStatus = EnumServicesStatusW
 
 func EnumServicesStatusW(hSCManager SC_HANDLE, dwServiceType ENUM_SERVICE_TYPE, dwServiceState ENUM_SERVICE_STATE, lpServices *ENUM_SERVICE_STATUSW, cbBufSize uint32, pcbBytesNeeded *uint32, lpServicesReturned *uint32, lpResumeHandle *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumServicesStatusW, libAdvapi32, "EnumServicesStatusW")
+	addr := LazyAddr(&pEnumServicesStatusW, libAdvapi32, "EnumServicesStatusW")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(dwServiceType), uintptr(dwServiceState), uintptr(unsafe.Pointer(lpServices)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)), uintptr(unsafe.Pointer(lpServicesReturned)), uintptr(unsafe.Pointer(lpResumeHandle)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func EnumServicesStatusExA(hSCManager SC_HANDLE, InfoLevel SC_ENUM_TYPE, dwServiceType ENUM_SERVICE_TYPE, dwServiceState ENUM_SERVICE_STATE, lpServices *byte, cbBufSize uint32, pcbBytesNeeded *uint32, lpServicesReturned *uint32, lpResumeHandle *uint32, pszGroupName PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumServicesStatusExA, libAdvapi32, "EnumServicesStatusExA")
+	addr := LazyAddr(&pEnumServicesStatusExA, libAdvapi32, "EnumServicesStatusExA")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(InfoLevel), uintptr(dwServiceType), uintptr(dwServiceState), uintptr(unsafe.Pointer(lpServices)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)), uintptr(unsafe.Pointer(lpServicesReturned)), uintptr(unsafe.Pointer(lpResumeHandle)), uintptr(unsafe.Pointer(pszGroupName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -828,13 +828,13 @@ func EnumServicesStatusExA(hSCManager SC_HANDLE, InfoLevel SC_ENUM_TYPE, dwServi
 var EnumServicesStatusEx = EnumServicesStatusExW
 
 func EnumServicesStatusExW(hSCManager SC_HANDLE, InfoLevel SC_ENUM_TYPE, dwServiceType ENUM_SERVICE_TYPE, dwServiceState ENUM_SERVICE_STATE, lpServices *byte, cbBufSize uint32, pcbBytesNeeded *uint32, lpServicesReturned *uint32, lpResumeHandle *uint32, pszGroupName PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pEnumServicesStatusExW, libAdvapi32, "EnumServicesStatusExW")
+	addr := LazyAddr(&pEnumServicesStatusExW, libAdvapi32, "EnumServicesStatusExW")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(InfoLevel), uintptr(dwServiceType), uintptr(dwServiceState), uintptr(unsafe.Pointer(lpServices)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)), uintptr(unsafe.Pointer(lpServicesReturned)), uintptr(unsafe.Pointer(lpResumeHandle)), uintptr(unsafe.Pointer(pszGroupName)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetServiceKeyNameA(hSCManager SC_HANDLE, lpDisplayName PSTR, lpServiceName PSTR, lpcchBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetServiceKeyNameA, libAdvapi32, "GetServiceKeyNameA")
+	addr := LazyAddr(&pGetServiceKeyNameA, libAdvapi32, "GetServiceKeyNameA")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpDisplayName)), uintptr(unsafe.Pointer(lpServiceName)), uintptr(unsafe.Pointer(lpcchBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -842,13 +842,13 @@ func GetServiceKeyNameA(hSCManager SC_HANDLE, lpDisplayName PSTR, lpServiceName 
 var GetServiceKeyName = GetServiceKeyNameW
 
 func GetServiceKeyNameW(hSCManager SC_HANDLE, lpDisplayName PWSTR, lpServiceName PWSTR, lpcchBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetServiceKeyNameW, libAdvapi32, "GetServiceKeyNameW")
+	addr := LazyAddr(&pGetServiceKeyNameW, libAdvapi32, "GetServiceKeyNameW")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpDisplayName)), uintptr(unsafe.Pointer(lpServiceName)), uintptr(unsafe.Pointer(lpcchBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetServiceDisplayNameA(hSCManager SC_HANDLE, lpServiceName PSTR, lpDisplayName PSTR, lpcchBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetServiceDisplayNameA, libAdvapi32, "GetServiceDisplayNameA")
+	addr := LazyAddr(&pGetServiceDisplayNameA, libAdvapi32, "GetServiceDisplayNameA")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpServiceName)), uintptr(unsafe.Pointer(lpDisplayName)), uintptr(unsafe.Pointer(lpcchBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -856,25 +856,25 @@ func GetServiceDisplayNameA(hSCManager SC_HANDLE, lpServiceName PSTR, lpDisplayN
 var GetServiceDisplayName = GetServiceDisplayNameW
 
 func GetServiceDisplayNameW(hSCManager SC_HANDLE, lpServiceName PWSTR, lpDisplayName PWSTR, lpcchBuffer *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetServiceDisplayNameW, libAdvapi32, "GetServiceDisplayNameW")
+	addr := LazyAddr(&pGetServiceDisplayNameW, libAdvapi32, "GetServiceDisplayNameW")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpServiceName)), uintptr(unsafe.Pointer(lpDisplayName)), uintptr(unsafe.Pointer(lpcchBuffer)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func LockServiceDatabase(hSCManager SC_HANDLE) (unsafe.Pointer, WIN32_ERROR) {
-	addr := lazyAddr(&pLockServiceDatabase, libAdvapi32, "LockServiceDatabase")
+	addr := LazyAddr(&pLockServiceDatabase, libAdvapi32, "LockServiceDatabase")
 	ret, _, err := syscall.SyscallN(addr, hSCManager)
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
 func NotifyBootConfigStatus(BootAcceptable BOOL) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pNotifyBootConfigStatus, libAdvapi32, "NotifyBootConfigStatus")
+	addr := LazyAddr(&pNotifyBootConfigStatus, libAdvapi32, "NotifyBootConfigStatus")
 	ret, _, err := syscall.SyscallN(addr, uintptr(BootAcceptable))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func OpenSCManagerA(lpMachineName PSTR, lpDatabaseName PSTR, dwDesiredAccess uint32) (SC_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenSCManagerA, libAdvapi32, "OpenSCManagerA")
+	addr := LazyAddr(&pOpenSCManagerA, libAdvapi32, "OpenSCManagerA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpDatabaseName)), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
@@ -882,13 +882,13 @@ func OpenSCManagerA(lpMachineName PSTR, lpDatabaseName PSTR, dwDesiredAccess uin
 var OpenSCManager = OpenSCManagerW
 
 func OpenSCManagerW(lpMachineName PWSTR, lpDatabaseName PWSTR, dwDesiredAccess uint32) (SC_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenSCManagerW, libAdvapi32, "OpenSCManagerW")
+	addr := LazyAddr(&pOpenSCManagerW, libAdvapi32, "OpenSCManagerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpMachineName)), uintptr(unsafe.Pointer(lpDatabaseName)), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func OpenServiceA(hSCManager SC_HANDLE, lpServiceName PSTR, dwDesiredAccess uint32) (SC_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenServiceA, libAdvapi32, "OpenServiceA")
+	addr := LazyAddr(&pOpenServiceA, libAdvapi32, "OpenServiceA")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpServiceName)), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
@@ -896,13 +896,13 @@ func OpenServiceA(hSCManager SC_HANDLE, lpServiceName PSTR, dwDesiredAccess uint
 var OpenService = OpenServiceW
 
 func OpenServiceW(hSCManager SC_HANDLE, lpServiceName PWSTR, dwDesiredAccess uint32) (SC_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pOpenServiceW, libAdvapi32, "OpenServiceW")
+	addr := LazyAddr(&pOpenServiceW, libAdvapi32, "OpenServiceW")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpServiceName)), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
 }
 
 func QueryServiceConfigA(hService SC_HANDLE, lpServiceConfig *QUERY_SERVICE_CONFIGA, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceConfigA, libAdvapi32, "QueryServiceConfigA")
+	addr := LazyAddr(&pQueryServiceConfigA, libAdvapi32, "QueryServiceConfigA")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(unsafe.Pointer(lpServiceConfig)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -910,13 +910,13 @@ func QueryServiceConfigA(hService SC_HANDLE, lpServiceConfig *QUERY_SERVICE_CONF
 var QueryServiceConfig = QueryServiceConfigW
 
 func QueryServiceConfigW(hService SC_HANDLE, lpServiceConfig *QUERY_SERVICE_CONFIGW, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceConfigW, libAdvapi32, "QueryServiceConfigW")
+	addr := LazyAddr(&pQueryServiceConfigW, libAdvapi32, "QueryServiceConfigW")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(unsafe.Pointer(lpServiceConfig)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryServiceConfig2A(hService SC_HANDLE, dwInfoLevel SERVICE_CONFIG, lpBuffer *byte, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceConfig2A, libAdvapi32, "QueryServiceConfig2A")
+	addr := LazyAddr(&pQueryServiceConfig2A, libAdvapi32, "QueryServiceConfig2A")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwInfoLevel), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -924,13 +924,13 @@ func QueryServiceConfig2A(hService SC_HANDLE, dwInfoLevel SERVICE_CONFIG, lpBuff
 var QueryServiceConfig2 = QueryServiceConfig2W
 
 func QueryServiceConfig2W(hService SC_HANDLE, dwInfoLevel SERVICE_CONFIG, lpBuffer *byte, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceConfig2W, libAdvapi32, "QueryServiceConfig2W")
+	addr := LazyAddr(&pQueryServiceConfig2W, libAdvapi32, "QueryServiceConfig2W")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwInfoLevel), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryServiceLockStatusA(hSCManager SC_HANDLE, lpLockStatus *QUERY_SERVICE_LOCK_STATUSA, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceLockStatusA, libAdvapi32, "QueryServiceLockStatusA")
+	addr := LazyAddr(&pQueryServiceLockStatusA, libAdvapi32, "QueryServiceLockStatusA")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpLockStatus)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -938,31 +938,31 @@ func QueryServiceLockStatusA(hSCManager SC_HANDLE, lpLockStatus *QUERY_SERVICE_L
 var QueryServiceLockStatus = QueryServiceLockStatusW
 
 func QueryServiceLockStatusW(hSCManager SC_HANDLE, lpLockStatus *QUERY_SERVICE_LOCK_STATUSW, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceLockStatusW, libAdvapi32, "QueryServiceLockStatusW")
+	addr := LazyAddr(&pQueryServiceLockStatusW, libAdvapi32, "QueryServiceLockStatusW")
 	ret, _, err := syscall.SyscallN(addr, hSCManager, uintptr(unsafe.Pointer(lpLockStatus)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryServiceObjectSecurity(hService SC_HANDLE, dwSecurityInformation uint32, lpSecurityDescriptor PSECURITY_DESCRIPTOR, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceObjectSecurity, libAdvapi32, "QueryServiceObjectSecurity")
+	addr := LazyAddr(&pQueryServiceObjectSecurity, libAdvapi32, "QueryServiceObjectSecurity")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwSecurityInformation), uintptr(unsafe.Pointer(lpSecurityDescriptor)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryServiceStatus(hService SC_HANDLE, lpServiceStatus *SERVICE_STATUS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceStatus, libAdvapi32, "QueryServiceStatus")
+	addr := LazyAddr(&pQueryServiceStatus, libAdvapi32, "QueryServiceStatus")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(unsafe.Pointer(lpServiceStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryServiceStatusEx(hService SC_HANDLE, InfoLevel SC_STATUS_TYPE, lpBuffer *byte, cbBufSize uint32, pcbBytesNeeded *uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceStatusEx, libAdvapi32, "QueryServiceStatusEx")
+	addr := LazyAddr(&pQueryServiceStatusEx, libAdvapi32, "QueryServiceStatusEx")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(InfoLevel), uintptr(unsafe.Pointer(lpBuffer)), uintptr(cbBufSize), uintptr(unsafe.Pointer(pcbBytesNeeded)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func RegisterServiceCtrlHandlerA(lpServiceName PSTR, lpHandlerProc LPHANDLER_FUNCTION) (SERVICE_STATUS_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterServiceCtrlHandlerA, libAdvapi32, "RegisterServiceCtrlHandlerA")
+	addr := LazyAddr(&pRegisterServiceCtrlHandlerA, libAdvapi32, "RegisterServiceCtrlHandlerA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpServiceName)), lpHandlerProc)
 	return ret, WIN32_ERROR(err)
 }
@@ -970,13 +970,13 @@ func RegisterServiceCtrlHandlerA(lpServiceName PSTR, lpHandlerProc LPHANDLER_FUN
 var RegisterServiceCtrlHandler = RegisterServiceCtrlHandlerW
 
 func RegisterServiceCtrlHandlerW(lpServiceName PWSTR, lpHandlerProc LPHANDLER_FUNCTION) (SERVICE_STATUS_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterServiceCtrlHandlerW, libAdvapi32, "RegisterServiceCtrlHandlerW")
+	addr := LazyAddr(&pRegisterServiceCtrlHandlerW, libAdvapi32, "RegisterServiceCtrlHandlerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpServiceName)), lpHandlerProc)
 	return ret, WIN32_ERROR(err)
 }
 
 func RegisterServiceCtrlHandlerExA(lpServiceName PSTR, lpHandlerProc LPHANDLER_FUNCTION_EX, lpContext unsafe.Pointer) (SERVICE_STATUS_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterServiceCtrlHandlerExA, libAdvapi32, "RegisterServiceCtrlHandlerExA")
+	addr := LazyAddr(&pRegisterServiceCtrlHandlerExA, libAdvapi32, "RegisterServiceCtrlHandlerExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpServiceName)), lpHandlerProc, uintptr(lpContext))
 	return ret, WIN32_ERROR(err)
 }
@@ -984,25 +984,25 @@ func RegisterServiceCtrlHandlerExA(lpServiceName PSTR, lpHandlerProc LPHANDLER_F
 var RegisterServiceCtrlHandlerEx = RegisterServiceCtrlHandlerExW
 
 func RegisterServiceCtrlHandlerExW(lpServiceName PWSTR, lpHandlerProc LPHANDLER_FUNCTION_EX, lpContext unsafe.Pointer) (SERVICE_STATUS_HANDLE, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterServiceCtrlHandlerExW, libAdvapi32, "RegisterServiceCtrlHandlerExW")
+	addr := LazyAddr(&pRegisterServiceCtrlHandlerExW, libAdvapi32, "RegisterServiceCtrlHandlerExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpServiceName)), lpHandlerProc, uintptr(lpContext))
 	return ret, WIN32_ERROR(err)
 }
 
 func SetServiceObjectSecurity(hService SC_HANDLE, dwSecurityInformation OBJECT_SECURITY_INFORMATION, lpSecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetServiceObjectSecurity, libAdvapi32, "SetServiceObjectSecurity")
+	addr := LazyAddr(&pSetServiceObjectSecurity, libAdvapi32, "SetServiceObjectSecurity")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwSecurityInformation), uintptr(unsafe.Pointer(lpSecurityDescriptor)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func SetServiceStatus(hServiceStatus SERVICE_STATUS_HANDLE, lpServiceStatus *SERVICE_STATUS) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pSetServiceStatus, libAdvapi32, "SetServiceStatus")
+	addr := LazyAddr(&pSetServiceStatus, libAdvapi32, "SetServiceStatus")
 	ret, _, err := syscall.SyscallN(addr, hServiceStatus, uintptr(unsafe.Pointer(lpServiceStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func StartServiceCtrlDispatcherA(lpServiceStartTable *SERVICE_TABLE_ENTRYA) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pStartServiceCtrlDispatcherA, libAdvapi32, "StartServiceCtrlDispatcherA")
+	addr := LazyAddr(&pStartServiceCtrlDispatcherA, libAdvapi32, "StartServiceCtrlDispatcherA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpServiceStartTable)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1010,13 +1010,13 @@ func StartServiceCtrlDispatcherA(lpServiceStartTable *SERVICE_TABLE_ENTRYA) (BOO
 var StartServiceCtrlDispatcher = StartServiceCtrlDispatcherW
 
 func StartServiceCtrlDispatcherW(lpServiceStartTable *SERVICE_TABLE_ENTRYW) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pStartServiceCtrlDispatcherW, libAdvapi32, "StartServiceCtrlDispatcherW")
+	addr := LazyAddr(&pStartServiceCtrlDispatcherW, libAdvapi32, "StartServiceCtrlDispatcherW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpServiceStartTable)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func StartServiceA(hService SC_HANDLE, dwNumServiceArgs uint32, lpServiceArgVectors *PSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pStartServiceA, libAdvapi32, "StartServiceA")
+	addr := LazyAddr(&pStartServiceA, libAdvapi32, "StartServiceA")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwNumServiceArgs), uintptr(unsafe.Pointer(lpServiceArgVectors)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1024,19 +1024,19 @@ func StartServiceA(hService SC_HANDLE, dwNumServiceArgs uint32, lpServiceArgVect
 var StartService = StartServiceW
 
 func StartServiceW(hService SC_HANDLE, dwNumServiceArgs uint32, lpServiceArgVectors *PWSTR) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pStartServiceW, libAdvapi32, "StartServiceW")
+	addr := LazyAddr(&pStartServiceW, libAdvapi32, "StartServiceW")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwNumServiceArgs), uintptr(unsafe.Pointer(lpServiceArgVectors)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func UnlockServiceDatabase(ScLock unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pUnlockServiceDatabase, libAdvapi32, "UnlockServiceDatabase")
+	addr := LazyAddr(&pUnlockServiceDatabase, libAdvapi32, "UnlockServiceDatabase")
 	ret, _, err := syscall.SyscallN(addr, uintptr(ScLock))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func NotifyServiceStatusChangeA(hService SC_HANDLE, dwNotifyMask SERVICE_NOTIFY, pNotifyBuffer *SERVICE_NOTIFY_2A) uint32 {
-	addr := lazyAddr(&pNotifyServiceStatusChangeA, libAdvapi32, "NotifyServiceStatusChangeA")
+	addr := LazyAddr(&pNotifyServiceStatusChangeA, libAdvapi32, "NotifyServiceStatusChangeA")
 	ret, _, _ := syscall.SyscallN(addr, hService, uintptr(dwNotifyMask), uintptr(unsafe.Pointer(pNotifyBuffer)))
 	return uint32(ret)
 }
@@ -1044,13 +1044,13 @@ func NotifyServiceStatusChangeA(hService SC_HANDLE, dwNotifyMask SERVICE_NOTIFY,
 var NotifyServiceStatusChange = NotifyServiceStatusChangeW
 
 func NotifyServiceStatusChangeW(hService SC_HANDLE, dwNotifyMask SERVICE_NOTIFY, pNotifyBuffer *SERVICE_NOTIFY_2W) uint32 {
-	addr := lazyAddr(&pNotifyServiceStatusChangeW, libAdvapi32, "NotifyServiceStatusChangeW")
+	addr := LazyAddr(&pNotifyServiceStatusChangeW, libAdvapi32, "NotifyServiceStatusChangeW")
 	ret, _, _ := syscall.SyscallN(addr, hService, uintptr(dwNotifyMask), uintptr(unsafe.Pointer(pNotifyBuffer)))
 	return uint32(ret)
 }
 
 func ControlServiceExA(hService SC_HANDLE, dwControl uint32, dwInfoLevel uint32, pControlParams unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pControlServiceExA, libAdvapi32, "ControlServiceExA")
+	addr := LazyAddr(&pControlServiceExA, libAdvapi32, "ControlServiceExA")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwControl), uintptr(dwInfoLevel), uintptr(pControlParams))
 	return BOOL(ret), WIN32_ERROR(err)
 }
@@ -1058,19 +1058,19 @@ func ControlServiceExA(hService SC_HANDLE, dwControl uint32, dwInfoLevel uint32,
 var ControlServiceEx = ControlServiceExW
 
 func ControlServiceExW(hService SC_HANDLE, dwControl uint32, dwInfoLevel uint32, pControlParams unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pControlServiceExW, libAdvapi32, "ControlServiceExW")
+	addr := LazyAddr(&pControlServiceExW, libAdvapi32, "ControlServiceExW")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwControl), uintptr(dwInfoLevel), uintptr(pControlParams))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func QueryServiceDynamicInformation(hServiceStatus SERVICE_STATUS_HANDLE, dwInfoLevel uint32, ppDynamicInfo unsafe.Pointer) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pQueryServiceDynamicInformation, libAdvapi32, "QueryServiceDynamicInformation")
+	addr := LazyAddr(&pQueryServiceDynamicInformation, libAdvapi32, "QueryServiceDynamicInformation")
 	ret, _, err := syscall.SyscallN(addr, hServiceStatus, uintptr(dwInfoLevel), uintptr(ppDynamicInfo))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func WaitServiceState(hService SC_HANDLE, dwNotify uint32, dwTimeout uint32, hCancelEvent HANDLE) uint32 {
-	addr := lazyAddr(&pWaitServiceState, libAdvapi32, "WaitServiceState")
+	addr := LazyAddr(&pWaitServiceState, libAdvapi32, "WaitServiceState")
 	ret, _, _ := syscall.SyscallN(addr, hService, uintptr(dwNotify), uintptr(dwTimeout), hCancelEvent)
 	return uint32(ret)
 }

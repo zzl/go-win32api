@@ -378,61 +378,61 @@ var (
 )
 
 func PssCaptureSnapshot(ProcessHandle HANDLE, CaptureFlags PSS_CAPTURE_FLAGS, ThreadContextFlags uint32, SnapshotHandle *HPSS) uint32 {
-	addr := lazyAddr(&pPssCaptureSnapshot, libKernel32, "PssCaptureSnapshot")
+	addr := LazyAddr(&pPssCaptureSnapshot, libKernel32, "PssCaptureSnapshot")
 	ret, _, _ := syscall.SyscallN(addr, ProcessHandle, uintptr(CaptureFlags), uintptr(ThreadContextFlags), uintptr(unsafe.Pointer(SnapshotHandle)))
 	return uint32(ret)
 }
 
 func PssFreeSnapshot(ProcessHandle HANDLE, SnapshotHandle HPSS) uint32 {
-	addr := lazyAddr(&pPssFreeSnapshot, libKernel32, "PssFreeSnapshot")
+	addr := LazyAddr(&pPssFreeSnapshot, libKernel32, "PssFreeSnapshot")
 	ret, _, _ := syscall.SyscallN(addr, ProcessHandle, SnapshotHandle)
 	return uint32(ret)
 }
 
 func PssQuerySnapshot(SnapshotHandle HPSS, InformationClass PSS_QUERY_INFORMATION_CLASS, Buffer unsafe.Pointer, BufferLength uint32) uint32 {
-	addr := lazyAddr(&pPssQuerySnapshot, libKernel32, "PssQuerySnapshot")
+	addr := LazyAddr(&pPssQuerySnapshot, libKernel32, "PssQuerySnapshot")
 	ret, _, _ := syscall.SyscallN(addr, SnapshotHandle, uintptr(InformationClass), uintptr(Buffer), uintptr(BufferLength))
 	return uint32(ret)
 }
 
 func PssWalkSnapshot(SnapshotHandle HPSS, InformationClass PSS_WALK_INFORMATION_CLASS, WalkMarkerHandle HPSSWALK, Buffer unsafe.Pointer, BufferLength uint32) uint32 {
-	addr := lazyAddr(&pPssWalkSnapshot, libKernel32, "PssWalkSnapshot")
+	addr := LazyAddr(&pPssWalkSnapshot, libKernel32, "PssWalkSnapshot")
 	ret, _, _ := syscall.SyscallN(addr, SnapshotHandle, uintptr(InformationClass), WalkMarkerHandle, uintptr(Buffer), uintptr(BufferLength))
 	return uint32(ret)
 }
 
 func PssDuplicateSnapshot(SourceProcessHandle HANDLE, SnapshotHandle HPSS, TargetProcessHandle HANDLE, TargetSnapshotHandle *HPSS, Flags PSS_DUPLICATE_FLAGS) uint32 {
-	addr := lazyAddr(&pPssDuplicateSnapshot, libKernel32, "PssDuplicateSnapshot")
+	addr := LazyAddr(&pPssDuplicateSnapshot, libKernel32, "PssDuplicateSnapshot")
 	ret, _, _ := syscall.SyscallN(addr, SourceProcessHandle, SnapshotHandle, TargetProcessHandle, uintptr(unsafe.Pointer(TargetSnapshotHandle)), uintptr(Flags))
 	return uint32(ret)
 }
 
 func PssWalkMarkerCreate(Allocator *PSS_ALLOCATOR, WalkMarkerHandle *HPSSWALK) uint32 {
-	addr := lazyAddr(&pPssWalkMarkerCreate, libKernel32, "PssWalkMarkerCreate")
+	addr := LazyAddr(&pPssWalkMarkerCreate, libKernel32, "PssWalkMarkerCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Allocator)), uintptr(unsafe.Pointer(WalkMarkerHandle)))
 	return uint32(ret)
 }
 
 func PssWalkMarkerFree(WalkMarkerHandle HPSSWALK) uint32 {
-	addr := lazyAddr(&pPssWalkMarkerFree, libKernel32, "PssWalkMarkerFree")
+	addr := LazyAddr(&pPssWalkMarkerFree, libKernel32, "PssWalkMarkerFree")
 	ret, _, _ := syscall.SyscallN(addr, WalkMarkerHandle)
 	return uint32(ret)
 }
 
 func PssWalkMarkerGetPosition(WalkMarkerHandle HPSSWALK, Position *uintptr) uint32 {
-	addr := lazyAddr(&pPssWalkMarkerGetPosition, libKernel32, "PssWalkMarkerGetPosition")
+	addr := LazyAddr(&pPssWalkMarkerGetPosition, libKernel32, "PssWalkMarkerGetPosition")
 	ret, _, _ := syscall.SyscallN(addr, WalkMarkerHandle, uintptr(unsafe.Pointer(Position)))
 	return uint32(ret)
 }
 
 func PssWalkMarkerSetPosition(WalkMarkerHandle HPSSWALK, Position uintptr) uint32 {
-	addr := lazyAddr(&pPssWalkMarkerSetPosition, libKernel32, "PssWalkMarkerSetPosition")
+	addr := LazyAddr(&pPssWalkMarkerSetPosition, libKernel32, "PssWalkMarkerSetPosition")
 	ret, _, _ := syscall.SyscallN(addr, WalkMarkerHandle, Position)
 	return uint32(ret)
 }
 
 func PssWalkMarkerSeekToBeginning(WalkMarkerHandle HPSSWALK) uint32 {
-	addr := lazyAddr(&pPssWalkMarkerSeekToBeginning, libKernel32, "PssWalkMarkerSeekToBeginning")
+	addr := LazyAddr(&pPssWalkMarkerSeekToBeginning, libKernel32, "PssWalkMarkerSeekToBeginning")
 	ret, _, _ := syscall.SyscallN(addr, WalkMarkerHandle)
 	return uint32(ret)
 }

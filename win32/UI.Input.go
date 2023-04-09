@@ -256,13 +256,13 @@ var (
 )
 
 func GetRawInputData(hRawInput HRAWINPUT, uiCommand RAW_INPUT_DATA_COMMAND_FLAGS, pData unsafe.Pointer, pcbSize *uint32, cbSizeHeader uint32) uint32 {
-	addr := lazyAddr(&pGetRawInputData, libUser32, "GetRawInputData")
+	addr := LazyAddr(&pGetRawInputData, libUser32, "GetRawInputData")
 	ret, _, _ := syscall.SyscallN(addr, hRawInput, uintptr(uiCommand), uintptr(pData), uintptr(unsafe.Pointer(pcbSize)), uintptr(cbSizeHeader))
 	return uint32(ret)
 }
 
 func GetRawInputDeviceInfoA(hDevice HANDLE, uiCommand RAW_INPUT_DEVICE_INFO_COMMAND, pData unsafe.Pointer, pcbSize *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetRawInputDeviceInfoA, libUser32, "GetRawInputDeviceInfoA")
+	addr := LazyAddr(&pGetRawInputDeviceInfoA, libUser32, "GetRawInputDeviceInfoA")
 	ret, _, err := syscall.SyscallN(addr, hDevice, uintptr(uiCommand), uintptr(pData), uintptr(unsafe.Pointer(pcbSize)))
 	return uint32(ret), WIN32_ERROR(err)
 }
@@ -270,49 +270,49 @@ func GetRawInputDeviceInfoA(hDevice HANDLE, uiCommand RAW_INPUT_DEVICE_INFO_COMM
 var GetRawInputDeviceInfo = GetRawInputDeviceInfoW
 
 func GetRawInputDeviceInfoW(hDevice HANDLE, uiCommand RAW_INPUT_DEVICE_INFO_COMMAND, pData unsafe.Pointer, pcbSize *uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetRawInputDeviceInfoW, libUser32, "GetRawInputDeviceInfoW")
+	addr := LazyAddr(&pGetRawInputDeviceInfoW, libUser32, "GetRawInputDeviceInfoW")
 	ret, _, err := syscall.SyscallN(addr, hDevice, uintptr(uiCommand), uintptr(pData), uintptr(unsafe.Pointer(pcbSize)))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetRawInputBuffer(pData *RAWINPUT, pcbSize *uint32, cbSizeHeader uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetRawInputBuffer, libUser32, "GetRawInputBuffer")
+	addr := LazyAddr(&pGetRawInputBuffer, libUser32, "GetRawInputBuffer")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pData)), uintptr(unsafe.Pointer(pcbSize)), uintptr(cbSizeHeader))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func RegisterRawInputDevices(pRawInputDevices *RAWINPUTDEVICE, uiNumDevices uint32, cbSize uint32) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pRegisterRawInputDevices, libUser32, "RegisterRawInputDevices")
+	addr := LazyAddr(&pRegisterRawInputDevices, libUser32, "RegisterRawInputDevices")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pRawInputDevices)), uintptr(uiNumDevices), uintptr(cbSize))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetRegisteredRawInputDevices(pRawInputDevices *RAWINPUTDEVICE, puiNumDevices *uint32, cbSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetRegisteredRawInputDevices, libUser32, "GetRegisteredRawInputDevices")
+	addr := LazyAddr(&pGetRegisteredRawInputDevices, libUser32, "GetRegisteredRawInputDevices")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pRawInputDevices)), uintptr(unsafe.Pointer(puiNumDevices)), uintptr(cbSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func GetRawInputDeviceList(pRawInputDeviceList *RAWINPUTDEVICELIST, puiNumDevices *uint32, cbSize uint32) (uint32, WIN32_ERROR) {
-	addr := lazyAddr(&pGetRawInputDeviceList, libUser32, "GetRawInputDeviceList")
+	addr := LazyAddr(&pGetRawInputDeviceList, libUser32, "GetRawInputDeviceList")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pRawInputDeviceList)), uintptr(unsafe.Pointer(puiNumDevices)), uintptr(cbSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
 func DefRawInputProc(paRawInput **RAWINPUT, nInput int32, cbSizeHeader uint32) LRESULT {
-	addr := lazyAddr(&pDefRawInputProc, libUser32, "DefRawInputProc")
+	addr := LazyAddr(&pDefRawInputProc, libUser32, "DefRawInputProc")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(paRawInput)), uintptr(nInput), uintptr(cbSizeHeader))
 	return ret
 }
 
 func GetCurrentInputMessageSource(inputMessageSource *INPUT_MESSAGE_SOURCE) (BOOL, WIN32_ERROR) {
-	addr := lazyAddr(&pGetCurrentInputMessageSource, libUser32, "GetCurrentInputMessageSource")
+	addr := LazyAddr(&pGetCurrentInputMessageSource, libUser32, "GetCurrentInputMessageSource")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(inputMessageSource)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func GetCIMSSM(inputMessageSource *INPUT_MESSAGE_SOURCE) BOOL {
-	addr := lazyAddr(&pGetCIMSSM, libUser32, "GetCIMSSM")
+	addr := LazyAddr(&pGetCIMSSM, libUser32, "GetCIMSSM")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(inputMessageSource)))
 	return BOOL(ret)
 }
