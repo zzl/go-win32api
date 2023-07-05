@@ -542,7 +542,8 @@ const (
 	TokenChildProcessFlags               TOKEN_INFORMATION_CLASS = 45
 	TokenIsLessPrivilegedAppContainer    TOKEN_INFORMATION_CLASS = 46
 	TokenIsSandboxed                     TOKEN_INFORMATION_CLASS = 47
-	MaxTokenInfoClass                    TOKEN_INFORMATION_CLASS = 48
+	TokenIsAppSilo                       TOKEN_INFORMATION_CLASS = 48
+	MaxTokenInfoClass                    TOKEN_INFORMATION_CLASS = 49
 )
 
 // enum

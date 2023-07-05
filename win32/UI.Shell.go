@@ -6,9 +6,10 @@ import (
 )
 
 type (
-	ShFindChangeNotificationHandle = uintptr
-	HDROP                          = uintptr
-	HPSXA                          = uintptr
+	HDROP                      = uintptr
+	HPSXA                      = uintptr
+	PAPPCONSTRAIN_REGISTRATION = uintptr
+	PAPPSTATE_REGISTRATION     = uintptr
 )
 
 const (
@@ -512,6 +513,7 @@ const (
 	ITSSFLAG_COMPLETE_ON_DESTROY                              uint32  = 0x0
 	ITSSFLAG_KILL_ON_DESTROY                                  uint32  = 0x1
 	ITSSFLAG_FLAGS_MASK                                       uint32  = 0x3
+	ITSS_THREAD_TIMEOUT_NO_CHANGE                             uint32  = 0xfffffffe
 	CSIDL_FLAG_PFTI_TRACKTARGET                               uint32  = 0x4000
 	SHCIDS_ALLFIELDS                                          int32   = -2147483648
 	SHCIDS_CANONICALONLY                                      int32   = 268435456
@@ -2302,7 +2304,7 @@ var (
 
 // enum
 // flags
-type SHGFI_FLAGS int32
+type SHGFI_FLAGS uint32
 
 const (
 	SHGFI_ADDOVERLAYS       SHGFI_FLAGS = 32
@@ -2914,6 +2916,7 @@ const (
 )
 
 // enum
+// flags
 type STORAGE_PROVIDER_FILE_FLAGS int32
 
 const (
@@ -2940,6 +2943,7 @@ const (
 )
 
 // enum
+// flags
 type FOLDERFLAGS int32
 
 const (
@@ -3029,6 +3033,7 @@ const (
 )
 
 // enum
+// flags
 type SVGIO_ int32
 
 const (
@@ -3066,6 +3071,7 @@ const (
 )
 
 // enum
+// flags
 type CM_MASK int32
 
 const (
@@ -3077,6 +3083,7 @@ const (
 )
 
 // enum
+// flags
 type CM_STATE int32
 
 const (
@@ -3088,6 +3095,7 @@ const (
 )
 
 // enum
+// flags
 type CM_ENUM_FLAGS int32
 
 const (
@@ -3130,6 +3138,7 @@ const (
 )
 
 // enum
+// flags
 type DATAOBJ_GET_ITEM_FLAGS int32
 
 const (
@@ -3201,6 +3210,7 @@ const (
 )
 
 // enum
+// flags
 type SIATTRIBFLAGS int32
 
 const (
@@ -3212,6 +3222,7 @@ const (
 )
 
 // enum
+// flags
 type CATEGORYINFO_FLAGS int32
 
 const (
@@ -3228,6 +3239,7 @@ const (
 )
 
 // enum
+// flags
 type CATSORT_FLAGS int32
 
 const (
@@ -3236,6 +3248,7 @@ const (
 )
 
 // enum
+// flags
 type SLR_FLAGS int32
 
 const (
@@ -3257,6 +3270,7 @@ const (
 )
 
 // enum
+// flags
 type SLGP_FLAGS int32
 
 const (
@@ -3336,6 +3350,7 @@ const (
 )
 
 // enum
+// flags
 type THUMBBUTTONFLAGS int32
 
 const (
@@ -3348,6 +3363,7 @@ const (
 )
 
 // enum
+// flags
 type THUMBBUTTONMASK int32
 
 const (
@@ -3358,6 +3374,7 @@ const (
 )
 
 // enum
+// flags
 type TBPFLAG int32
 
 const (
@@ -3369,6 +3386,7 @@ const (
 )
 
 // enum
+// flags
 type STPFLAG int32
 
 const (
@@ -3380,6 +3398,7 @@ const (
 )
 
 // enum
+// flags
 type EXPLORER_BROWSER_OPTIONS int32
 
 const (
@@ -3395,6 +3414,7 @@ const (
 )
 
 // enum
+// flags
 type EXPLORER_BROWSER_FILL_FLAGS int32
 
 const (
@@ -3429,6 +3449,7 @@ const (
 )
 
 // enum
+// flags
 type FILE_OPERATION_FLAGS2 int32
 
 const (
@@ -3437,6 +3458,7 @@ const (
 )
 
 // enum
+// flags
 type NAMESPACEWALKFLAG int32
 
 const (
@@ -3572,6 +3594,7 @@ const (
 )
 
 // enum
+// flags
 type CDCONTROLSTATEF int32
 
 const (
@@ -3627,6 +3650,7 @@ const (
 )
 
 // enum
+// flags
 type NWMF int32
 
 const (
@@ -3870,6 +3894,7 @@ const (
 )
 
 // enum
+// flags
 type NSTCFOLDERCAPABILITIES int32
 
 const (
@@ -3946,6 +3971,7 @@ const (
 )
 
 // enum
+// flags
 type DESKTOP_SLIDESHOW_OPTIONS int32
 
 const (
@@ -3953,6 +3979,7 @@ const (
 )
 
 // enum
+// flags
 type DESKTOP_SLIDESHOW_STATE int32
 
 const (
@@ -3982,6 +4009,7 @@ const (
 )
 
 // enum
+// flags
 type HOMEGROUPSHARINGCHOICES int32
 
 const (
@@ -4003,6 +4031,7 @@ const (
 )
 
 // enum
+// flags
 type LIBRARYOPTIONFLAGS int32
 
 const (
@@ -4021,6 +4050,7 @@ const (
 )
 
 // enum
+// flags
 type LIBRARYSAVEFLAGS int32
 
 const (
@@ -4030,6 +4060,7 @@ const (
 )
 
 // enum
+// flags
 type DEFAULT_FOLDER_MENU_RESTRICTIONS int32
 
 const (
@@ -4047,6 +4078,7 @@ const (
 )
 
 // enum
+// flags
 type ACTIVATEOPTIONS int32
 
 const (
@@ -4058,6 +4090,7 @@ const (
 )
 
 // enum
+// flags
 type LIBRARYMANAGEDIALOGOPTIONS int32
 
 const (
@@ -4066,6 +4099,7 @@ const (
 )
 
 // enum
+// flags
 type AHTYPE int32
 
 const (
@@ -4080,6 +4114,7 @@ const (
 )
 
 // enum
+// flags
 type ASSOC_FILTER int32
 
 const (
@@ -4160,6 +4195,7 @@ const (
 )
 
 // enum
+// flags
 type ADJACENT_DISPLAY_EDGES int32
 
 const (
@@ -4222,6 +4258,7 @@ const (
 )
 
 // enum
+// flags
 type FOLDERVIEWOPTIONS int32
 
 const (
@@ -4245,6 +4282,7 @@ const (
 )
 
 // enum
+// flags
 type VPWATERMARKFLAGS int32
 
 const (
@@ -4264,6 +4302,7 @@ const (
 )
 
 // enum
+// flags
 type DSH_FLAGS int32
 
 const (
@@ -4289,6 +4328,7 @@ const (
 )
 
 // enum
+// flags
 type NSTCSTYLE2 int32
 
 const (
@@ -4525,6 +4565,7 @@ const (
 )
 
 // enum
+// flags
 type SHELL_LINK_DATA_FLAGS int32
 
 const (
@@ -4569,6 +4610,7 @@ const (
 )
 
 // enum
+// flags
 type KNOWN_FOLDER_FLAG int32
 
 const (
@@ -4828,7 +4870,7 @@ const (
 
 // enum
 // flags
-type OPEN_AS_INFO_FLAGS uint32
+type OPEN_AS_INFO_FLAGS int32
 
 const (
 	OAIF_ALLOW_REGISTRATION OPEN_AS_INFO_FLAGS = 1
@@ -4860,7 +4902,7 @@ const (
 
 // enum
 // flags
-type SCALE_CHANGE_FLAGS uint32
+type SCALE_CHANGE_FLAGS int32
 
 const (
 	SCF_VALUE_NONE SCALE_CHANGE_FLAGS = 0
@@ -5159,6 +5201,7 @@ const (
 )
 
 // enum
+// flags
 type FILETYPEATTRIBUTEFLAGS int32
 
 const (
@@ -5370,6 +5413,7 @@ const (
 )
 
 // enum
+// flags
 type CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS int32
 
 const (
@@ -5379,6 +5423,7 @@ const (
 )
 
 // enum
+// flags
 type CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS int32
 
 const (
@@ -5601,6 +5646,7 @@ const (
 )
 
 // enum
+// flags
 type WTS_FLAGS int32
 
 const (
@@ -5624,6 +5670,7 @@ const (
 )
 
 // enum
+// flags
 type WTS_CACHEFLAGS int32
 
 const (
@@ -5633,6 +5680,7 @@ const (
 )
 
 // enum
+// flags
 type WTS_CONTEXTFLAGS int32
 
 const (
@@ -5748,6 +5796,7 @@ const (
 )
 
 // enum
+// flags
 type ThumbnailStreamCacheOptions int32
 
 const (
@@ -5822,7 +5871,7 @@ const (
 
 // enum
 // flags
-type HLFNAMEF uint32
+type HLFNAMEF int32
 
 const (
 	HLFNAMEF_DEFAULT          HLFNAMEF = 0
@@ -5868,7 +5917,7 @@ const (
 
 // enum
 // flags
-type HLBWIF_FLAGS uint32
+type HLBWIF_FLAGS int32
 
 const (
 	HLBWIF_HASFRAMEWNDINFO   HLBWIF_FLAGS = 1
@@ -6013,12 +6062,6 @@ const (
 )
 
 // structs
-
-type APPSTATE_REGISTRATION_ struct {
-}
-
-type APPCONSTRAIN_REGISTRATION_ struct {
-}
 
 type APPCATEGORYINFO struct {
 	Locale         uint32
@@ -6369,216 +6412,6 @@ type HELPWININFOW struct {
 	RgchMember  [2]uint16
 }
 
-type QueryCancelAutoPlay struct {
-}
-
-type TimeCategorizer struct {
-}
-
-type AlphabeticalCategorizer struct {
-}
-
-type MergedCategorizer struct {
-}
-
-type ImageProperties struct {
-}
-
-type CDBurn struct {
-}
-
-type StartMenuPin struct {
-}
-
-type WebWizardHost struct {
-}
-
-type PublishDropTarget struct {
-}
-
-type PublishingWizard struct {
-}
-
-type InternetPrintOrdering struct {
-}
-
-type FolderViewHost struct {
-}
-
-type ExplorerBrowser struct {
-}
-
-type ImageRecompress struct {
-}
-
-type TrayBandSiteService struct {
-}
-
-type TrayDeskBand struct {
-}
-
-type AttachmentServices struct {
-}
-
-type DocPropShellExtension struct {
-}
-
-type FSCopyHandler struct {
-}
-
-type PreviousVersions struct {
-}
-
-type NamespaceTreeControl struct {
-}
-
-type IENamespaceTreeControl struct {
-}
-
-type ApplicationAssociationRegistrationUI struct {
-}
-
-type DesktopGadget struct {
-}
-
-type AccessibilityDockingService struct {
-}
-
-type ExecuteFolder struct {
-}
-
-type VirtualDesktopManager struct {
-}
-
-type StorageProviderBanners struct {
-}
-
-type DesktopWallpaper struct {
-}
-
-type ShellDesktop struct {
-}
-
-type ShellFSFolder struct {
-}
-
-type NetworkPlaces struct {
-}
-
-type ShellLink struct {
-}
-
-type DriveSizeCategorizer struct {
-}
-
-type DriveTypeCategorizer struct {
-}
-
-type FreeSpaceCategorizer struct {
-}
-
-type SizeCategorizer struct {
-}
-
-type PropertiesUI struct {
-}
-
-type UserNotification struct {
-}
-
-type TaskbarList struct {
-}
-
-type ShellItem struct {
-}
-
-type NamespaceWalker struct {
-}
-
-type FileOperation struct {
-}
-
-type FileOpenDialog struct {
-}
-
-type FileSaveDialog struct {
-}
-
-type KnownFolderManager struct {
-}
-
-type SharingConfigurationManager struct {
-}
-
-type NetworkConnections struct {
-}
-
-type ScheduledTasks struct {
-}
-
-type ApplicationAssociationRegistration struct {
-}
-
-type SearchFolderItemFactory struct {
-}
-
-type OpenControlPanel struct {
-}
-
-type MailRecipient struct {
-}
-
-type NetworkExplorerFolder struct {
-}
-
-type DestinationList struct {
-}
-
-type ApplicationDestinations struct {
-}
-
-type ApplicationDocumentLists struct {
-}
-
-type HomeGroup struct {
-}
-
-type ShellLibrary struct {
-}
-
-type AppStartupLink struct {
-}
-
-type EnumerableObjectCollection struct {
-}
-
-type FrameworkInputPane struct {
-}
-
-type DefFolderMenu struct {
-}
-
-type AppVisibility struct {
-}
-
-type AppShellVerbHandler struct {
-}
-
-type ExecuteUnknown struct {
-}
-
-type PackageDebugSettings struct {
-}
-
-type SuspensionDependencyManager struct {
-}
-
-type ApplicationActivationManager struct {
-}
-
-type ApplicationDesignModeSettings struct {
-}
-
 type CMINVOKECOMMANDINFO struct {
 	CbSize       uint32
 	FMask        uint32
@@ -6771,6 +6604,132 @@ type PREVIEWHANDLERFRAMEINFO struct {
 	CAccelEntries uint32
 }
 
+type DesktopWallpaper struct {
+}
+
+type ShellDesktop struct {
+}
+
+type ShellFSFolder struct {
+}
+
+type NetworkPlaces struct {
+}
+
+type ShellLink struct {
+}
+
+type DriveSizeCategorizer struct {
+}
+
+type DriveTypeCategorizer struct {
+}
+
+type FreeSpaceCategorizer struct {
+}
+
+type SizeCategorizer struct {
+}
+
+type PropertiesUI struct {
+}
+
+type UserNotification struct {
+}
+
+type TaskbarList struct {
+}
+
+type ShellItem struct {
+}
+
+type NamespaceWalker struct {
+}
+
+type FileOperation struct {
+}
+
+type FileOpenDialog struct {
+}
+
+type FileSaveDialog struct {
+}
+
+type KnownFolderManager struct {
+}
+
+type SharingConfigurationManager struct {
+}
+
+type NetworkConnections struct {
+}
+
+type ScheduledTasks struct {
+}
+
+type ApplicationAssociationRegistration struct {
+}
+
+type SearchFolderItemFactory struct {
+}
+
+type OpenControlPanel struct {
+}
+
+type MailRecipient struct {
+}
+
+type NetworkExplorerFolder struct {
+}
+
+type DestinationList struct {
+}
+
+type ApplicationDestinations struct {
+}
+
+type ApplicationDocumentLists struct {
+}
+
+type HomeGroup struct {
+}
+
+type ShellLibrary struct {
+}
+
+type AppStartupLink struct {
+}
+
+type EnumerableObjectCollection struct {
+}
+
+type FrameworkInputPane struct {
+}
+
+type DefFolderMenu struct {
+}
+
+type AppVisibility struct {
+}
+
+type AppShellVerbHandler struct {
+}
+
+type ExecuteUnknown struct {
+}
+
+type PackageDebugSettings struct {
+}
+
+type SuspensionDependencyManager struct {
+}
+
+type ApplicationActivationManager struct {
+}
+
+type ApplicationDesignModeSettings struct {
+}
+
 type BANNER_NOTIFICATION struct {
 	Event            BANNER_NOTIFICATION_EVENT
 	ProviderIdentity PWSTR
@@ -6786,6 +6745,90 @@ type NSTCCUSTOMDRAW struct {
 	Himl       HIMAGELIST
 	ILevel     int32
 	IIndent    int32
+}
+
+type QueryCancelAutoPlay struct {
+}
+
+type TimeCategorizer struct {
+}
+
+type AlphabeticalCategorizer struct {
+}
+
+type MergedCategorizer struct {
+}
+
+type ImageProperties struct {
+}
+
+type CDBurn struct {
+}
+
+type StartMenuPin struct {
+}
+
+type WebWizardHost struct {
+}
+
+type PublishDropTarget struct {
+}
+
+type PublishingWizard struct {
+}
+
+type InternetPrintOrdering struct {
+}
+
+type FolderViewHost struct {
+}
+
+type ExplorerBrowser struct {
+}
+
+type ImageRecompress struct {
+}
+
+type TrayBandSiteService struct {
+}
+
+type TrayDeskBand struct {
+}
+
+type AttachmentServices struct {
+}
+
+type DocPropShellExtension struct {
+}
+
+type FSCopyHandler struct {
+}
+
+type PreviousVersions struct {
+}
+
+type NamespaceTreeControl struct {
+}
+
+type IENamespaceTreeControl struct {
+}
+
+type ApplicationAssociationRegistrationUI struct {
+}
+
+type DesktopGadget struct {
+}
+
+type AccessibilityDockingService struct {
+}
+
+type ExecuteFolder struct {
+}
+
+type VirtualDesktopManager struct {
+}
+
+type StorageProviderBanners struct {
 }
 
 type WebBrowser_V1 struct {
@@ -7045,7 +7088,7 @@ type SHChangeUpdateImageIDList struct {
 }
 
 type SHDESCRIPTIONID struct {
-	DwDescriptionId SHDID_ID
+	DwDescriptionId uint32
 	Clsid           syscall.GUID
 }
 
@@ -7247,11 +7290,8 @@ type AASHELLMENUITEM struct {
 	Psz         PWSTR
 }
 
-type NC_ADDRESS_NET_ADDRESS_INFO struct {
-}
-
 type NC_ADDRESS struct {
-	PAddrInfo    *NC_ADDRESS_NET_ADDRESS_INFO
+	PAddrInfo    uintptr
 	PortNumber   uint16
 	PrefixLength byte
 }
@@ -7334,6 +7374,20 @@ type PUBAPPINFO struct {
 	StExpire    SYSTEMTIME
 }
 
+type CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR struct {
+	DwFieldID     uint32
+	Cpft          CREDENTIAL_PROVIDER_FIELD_TYPE
+	PszLabel      PWSTR
+	GuidFieldType syscall.GUID
+}
+
+type CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION struct {
+	UlAuthenticationPackage uint32
+	ClsidCredentialProvider syscall.GUID
+	CbSerialization         uint32
+	RgbSerialization        *byte
+}
+
 type PasswordCredentialProvider struct {
 }
 
@@ -7382,18 +7436,23 @@ type WinBioCredentialProvider struct {
 type V1WinBioCredentialProvider struct {
 }
 
-type CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR struct {
-	DwFieldID     uint32
-	Cpft          CREDENTIAL_PROVIDER_FIELD_TYPE
-	PszLabel      PWSTR
-	GuidFieldType syscall.GUID
+type SYNCMGR_CONFLICT_ID_INFO struct {
+	PblobID    *BYTE_BLOB
+	PblobExtra *BYTE_BLOB
 }
 
-type CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION struct {
-	UlAuthenticationPackage uint32
-	ClsidCredentialProvider syscall.GUID
-	CbSerialization         uint32
-	RgbSerialization        *byte
+type CONFIRM_CONFLICT_ITEM struct {
+	PShellItem       *IShellItem2
+	PszOriginalName  PWSTR
+	PszAlternateName PWSTR
+	PszLocationShort PWSTR
+	PszLocationFull  PWSTR
+	NType            SYNCMGR_CONFLICT_ITEM_TYPE
+}
+
+type CONFIRM_CONFLICT_RESULT_INFO struct {
+	PszNewName PWSTR
+	IItemIndex uint32
 }
 
 type SyncMgrClient struct {
@@ -7420,26 +7479,11 @@ type SyncResultsFolder struct {
 type SimpleConflictPresenter struct {
 }
 
-type SYNCMGR_CONFLICT_ID_INFO struct {
-	PblobID    *BYTE_BLOB
-	PblobExtra *BYTE_BLOB
-}
-
-type CONFIRM_CONFLICT_ITEM struct {
-	PShellItem       *IShellItem2
-	PszOriginalName  PWSTR
-	PszAlternateName PWSTR
-	PszLocationShort PWSTR
-	PszLocationFull  PWSTR
-	NType            SYNCMGR_CONFLICT_ITEM_TYPE
-}
-
-type CONFIRM_CONFLICT_RESULT_INFO struct {
-	PszNewName PWSTR
-	IItemIndex uint32
-}
-
 type InputPanelConfiguration struct {
+}
+
+type WTS_THUMBNAILID struct {
+	RgbKey [16]byte
 }
 
 type LocalThumbnailCache struct {
@@ -7448,14 +7492,7 @@ type LocalThumbnailCache struct {
 type SharedBitmap struct {
 }
 
-type WTS_THUMBNAILID struct {
-	RgbKey [16]byte
-}
-
 type ShellImageDataFactory struct {
-}
-
-type SyncMgr struct {
 }
 
 type SYNCMGRPROGRESSITEM struct {
@@ -7492,10 +7529,10 @@ type SYNCMGRHANDLERINFO struct {
 	WszHandlerName      [32]uint16
 }
 
-type ThumbnailStreamCache struct {
+type SyncMgr struct {
 }
 
-type TrackShellMenu struct {
+type ThumbnailStreamCache struct {
 }
 
 type WINDOWDATA struct {
@@ -7596,6 +7633,9 @@ type TOOLBARITEM struct {
 	PwszItem     PWSTR
 	FShow        BOOL
 	HMon         HMONITOR
+}
+
+type TrackShellMenu struct {
 }
 
 type ImageTranscode struct {
@@ -10763,8 +10803,8 @@ type IShellLinkAInterface interface {
 	SetArguments(pszArgs PSTR) HRESULT
 	GetHotkey(pwHotkey *uint16) HRESULT
 	SetHotkey(wHotkey uint16) HRESULT
-	GetShowCmd(piShowCmd *int32) HRESULT
-	SetShowCmd(iShowCmd int32) HRESULT
+	GetShowCmd(piShowCmd *SHOW_WINDOW_CMD) HRESULT
+	SetShowCmd(iShowCmd SHOW_WINDOW_CMD) HRESULT
 	GetIconLocation(pszIconPath PSTR, cch int32, piIcon *int32) HRESULT
 	SetIconLocation(pszIconPath PSTR, iIcon int32) HRESULT
 	SetRelativePath(pszPathRel PSTR, dwReserved uint32) HRESULT
@@ -10857,12 +10897,12 @@ func (this *IShellLinkA) SetHotkey(wHotkey uint16) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkA) GetShowCmd(piShowCmd *int32) HRESULT {
+func (this *IShellLinkA) GetShowCmd(piShowCmd *SHOW_WINDOW_CMD) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetShowCmd, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piShowCmd)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkA) SetShowCmd(iShowCmd int32) HRESULT {
+func (this *IShellLinkA) SetShowCmd(iShowCmd SHOW_WINDOW_CMD) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetShowCmd, uintptr(unsafe.Pointer(this)), uintptr(iShowCmd))
 	return HRESULT(ret)
 }
@@ -10909,8 +10949,8 @@ type IShellLinkWInterface interface {
 	SetArguments(pszArgs PWSTR) HRESULT
 	GetHotkey(pwHotkey *uint16) HRESULT
 	SetHotkey(wHotkey uint16) HRESULT
-	GetShowCmd(piShowCmd *int32) HRESULT
-	SetShowCmd(iShowCmd int32) HRESULT
+	GetShowCmd(piShowCmd *SHOW_WINDOW_CMD) HRESULT
+	SetShowCmd(iShowCmd SHOW_WINDOW_CMD) HRESULT
 	GetIconLocation(pszIconPath PWSTR, cch int32, piIcon *int32) HRESULT
 	SetIconLocation(pszIconPath PWSTR, iIcon int32) HRESULT
 	SetRelativePath(pszPathRel PWSTR, dwReserved uint32) HRESULT
@@ -11003,12 +11043,12 @@ func (this *IShellLinkW) SetHotkey(wHotkey uint16) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkW) GetShowCmd(piShowCmd *int32) HRESULT {
+func (this *IShellLinkW) GetShowCmd(piShowCmd *SHOW_WINDOW_CMD) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetShowCmd, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(piShowCmd)))
 	return HRESULT(ret)
 }
 
-func (this *IShellLinkW) SetShowCmd(iShowCmd int32) HRESULT {
+func (this *IShellLinkW) SetShowCmd(iShowCmd SHOW_WINDOW_CMD) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetShowCmd, uintptr(unsafe.Pointer(this)), uintptr(iShowCmd))
 	return HRESULT(ret)
 }
@@ -19907,12 +19947,12 @@ type IShellWindowsInterface interface {
 	Get_Count(Count *int32) HRESULT
 	Item(index VARIANT, Folder **IDispatch) HRESULT
 	NewEnum_(ppunk **IUnknown) HRESULT
-	Register(pid *IDispatch, hwnd int32, swClass int32, plCookie *int32) HRESULT
-	RegisterPending(lThreadId int32, pvarloc *VARIANT, pvarlocRoot *VARIANT, swClass int32, plCookie *int32) HRESULT
+	Register(pid *IDispatch, hwnd int32, swClass ShellWindowTypeConstants, plCookie *int32) HRESULT
+	RegisterPending(lThreadId int32, pvarloc *VARIANT, pvarlocRoot *VARIANT, swClass ShellWindowTypeConstants, plCookie *int32) HRESULT
 	Revoke(lCookie int32) HRESULT
 	OnNavigate(lCookie int32, pvarLoc *VARIANT) HRESULT
 	OnActivated(lCookie int32, fActive VARIANT_BOOL) HRESULT
-	FindWindowSW(pvarLoc *VARIANT, pvarLocRoot *VARIANT, swClass int32, phwnd *int32, swfwOptions int32, ppdispOut **IDispatch) HRESULT
+	FindWindowSW(pvarLoc *VARIANT, pvarLocRoot *VARIANT, swClass ShellWindowTypeConstants, phwnd *int32, swfwOptions ShellWindowFindWindowOptions, ppdispOut **IDispatch) HRESULT
 	OnCreated(lCookie int32, punk *IUnknown) HRESULT
 	ProcessAttachDetach(fAttach VARIANT_BOOL) HRESULT
 }
@@ -19955,12 +19995,12 @@ func (this *IShellWindows) NewEnum_(ppunk **IUnknown) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellWindows) Register(pid *IDispatch, hwnd int32, swClass int32, plCookie *int32) HRESULT {
+func (this *IShellWindows) Register(pid *IDispatch, hwnd int32, swClass ShellWindowTypeConstants, plCookie *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Register, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pid)), uintptr(hwnd), uintptr(swClass), uintptr(unsafe.Pointer(plCookie)))
 	return HRESULT(ret)
 }
 
-func (this *IShellWindows) RegisterPending(lThreadId int32, pvarloc *VARIANT, pvarlocRoot *VARIANT, swClass int32, plCookie *int32) HRESULT {
+func (this *IShellWindows) RegisterPending(lThreadId int32, pvarloc *VARIANT, pvarlocRoot *VARIANT, swClass ShellWindowTypeConstants, plCookie *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RegisterPending, uintptr(unsafe.Pointer(this)), uintptr(lThreadId), uintptr(unsafe.Pointer(pvarloc)), uintptr(unsafe.Pointer(pvarlocRoot)), uintptr(swClass), uintptr(unsafe.Pointer(plCookie)))
 	return HRESULT(ret)
 }
@@ -19980,7 +20020,7 @@ func (this *IShellWindows) OnActivated(lCookie int32, fActive VARIANT_BOOL) HRES
 	return HRESULT(ret)
 }
 
-func (this *IShellWindows) FindWindowSW(pvarLoc *VARIANT, pvarLocRoot *VARIANT, swClass int32, phwnd *int32, swfwOptions int32, ppdispOut **IDispatch) HRESULT {
+func (this *IShellWindows) FindWindowSW(pvarLoc *VARIANT, pvarLocRoot *VARIANT, swClass ShellWindowTypeConstants, phwnd *int32, swfwOptions ShellWindowFindWindowOptions, ppdispOut **IDispatch) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().FindWindowSW, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pvarLoc)), uintptr(unsafe.Pointer(pvarLocRoot)), uintptr(swClass), uintptr(unsafe.Pointer(phwnd)), uintptr(swfwOptions), uintptr(unsafe.Pointer(ppdispOut)))
 	return HRESULT(ret)
 }
@@ -23589,7 +23629,7 @@ var IID_IQueryInfo = syscall.GUID{0x00021500, 0x0000, 0x0000,
 
 type IQueryInfoInterface interface {
 	IUnknownInterface
-	GetInfoTip(dwFlags QITIPF_FLAGS, ppwszTip *PWSTR) HRESULT
+	GetInfoTip(dwFlags uint32, ppwszTip *PWSTR) HRESULT
 	GetInfoFlags(pdwFlags *uint32) HRESULT
 }
 
@@ -23607,7 +23647,7 @@ func (this *IQueryInfo) Vtbl() *IQueryInfoVtbl {
 	return (*IQueryInfoVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IQueryInfo) GetInfoTip(dwFlags QITIPF_FLAGS, ppwszTip *PWSTR) HRESULT {
+func (this *IQueryInfo) GetInfoTip(dwFlags uint32, ppwszTip *PWSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetInfoTip, uintptr(unsafe.Pointer(this)), uintptr(dwFlags), uintptr(unsafe.Pointer(ppwszTip)))
 	return HRESULT(ret)
 }
@@ -23623,7 +23663,7 @@ var IID_IShellFolderViewCB = syscall.GUID{0x2047E320, 0xF2A9, 0x11CE,
 
 type IShellFolderViewCBInterface interface {
 	IUnknownInterface
-	MessageSFVCB(uMsg SFVM_MESSAGE_ID, wParam WPARAM, lParam LPARAM) HRESULT
+	MessageSFVCB(uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT
 }
 
 type IShellFolderViewCBVtbl struct {
@@ -23639,7 +23679,7 @@ func (this *IShellFolderViewCB) Vtbl() *IShellFolderViewCBVtbl {
 	return (*IShellFolderViewCBVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellFolderViewCB) MessageSFVCB(uMsg SFVM_MESSAGE_ID, wParam WPARAM, lParam LPARAM) HRESULT {
+func (this *IShellFolderViewCB) MessageSFVCB(uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MessageSFVCB, uintptr(unsafe.Pointer(this)), uintptr(uMsg), wParam, lParam)
 	return HRESULT(ret)
 }
@@ -23675,7 +23715,7 @@ type IShellFolderViewInterface interface {
 	SetPoints(pDataObject *IDataObject) HRESULT
 	GetItemSpacing(pSpacing *ITEMSPACING) HRESULT
 	SetCallback(pNewCB *IShellFolderViewCB, ppOldCB **IShellFolderViewCB) HRESULT
-	Select(dwFlags SFVS_SELECT) HRESULT
+	Select(dwFlags uint32) HRESULT
 	QuerySupport(pdwSupport *uint32) HRESULT
 	SetAutomationObject(pdisp *IDispatch) HRESULT
 }
@@ -23845,7 +23885,7 @@ func (this *IShellFolderView) SetCallback(pNewCB *IShellFolderViewCB, ppOldCB **
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderView) Select(dwFlags SFVS_SELECT) HRESULT {
+func (this *IShellFolderView) Select(dwFlags uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Select, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -28555,7 +28595,7 @@ type IBrowserServiceInterface interface {
 	GetSetCodePage(pvarIn *VARIANT, pvarOut *VARIANT) HRESULT
 	OnHttpEquiv(psv *IShellView, fDone BOOL, pvarargIn *VARIANT, pvarargOut *VARIANT) HRESULT
 	GetPalette(hpal *HPALETTE) HRESULT
-	RegisterWindow(fForceRegister BOOL, swc int32) HRESULT
+	RegisterWindow(fForceRegister BOOL, swc ShellWindowTypeConstants) HRESULT
 }
 
 type IBrowserServiceVtbl struct {
@@ -28745,7 +28785,7 @@ func (this *IBrowserService) GetPalette(hpal *HPALETTE) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IBrowserService) RegisterWindow(fForceRegister BOOL, swc int32) HRESULT {
+func (this *IBrowserService) RegisterWindow(fForceRegister BOOL, swc ShellWindowTypeConstants) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RegisterWindow, uintptr(unsafe.Pointer(this)), uintptr(fForceRegister), uintptr(swc))
 	return HRESULT(ret)
 }
@@ -29477,6 +29517,7 @@ func (this *IInputPaneAnimationCoordinator) AddAnimation(device *IUnknown, anima
 }
 
 var (
+	//p#660	uintptr
 	pLoadUserProfileA                            uintptr
 	pLoadUserProfileW                            uintptr
 	pUnloadUserProfile                           uintptr
@@ -29492,6 +29533,10 @@ var (
 	pGetAllUsersProfileDirectoryW                uintptr
 	pGetUserProfileDirectoryA                    uintptr
 	pGetUserProfileDirectoryW                    uintptr
+	pInitPropVariantFromStrRet                   uintptr
+	pPropVariantToStrRet                         uintptr
+	pInitVariantFromStrRet                       uintptr
+	pVariantToStrRet                             uintptr
 	pSetWindowSubclass                           uintptr
 	pGetWindowSubclass                           uintptr
 	pRemoveWindowSubclass                        uintptr
@@ -30103,6 +30148,12 @@ var (
 	pColorAdjustLuma                             uintptr
 	pIsInternetESCEnabled                        uintptr
 )
+
+//func #660(fRestoreCache BOOL) BOOL {
+//	addr := LazyAddr(&p#660, libShell32, "#660")
+//	ret, _, _ := syscall.SyscallN(addr, uintptr(fRestoreCache))
+//	return BOOL(ret)
+//}
 
 func LoadUserProfileA(hToken HANDLE, lpProfileInfo *PROFILEINFOA) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pLoadUserProfileA, libUserenv, "LoadUserProfileA")
@@ -30747,7 +30798,7 @@ func SHSetKnownFolderPath(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, psz
 	return HRESULT(ret)
 }
 
-func SHGetKnownFolderPath(rfid *syscall.GUID, dwFlags KNOWN_FOLDER_FLAG, hToken HANDLE, ppszPath *PWSTR) HRESULT {
+func SHGetKnownFolderPath(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, ppszPath *PWSTR) HRESULT {
 	addr := LazyAddr(&pSHGetKnownFolderPath, libShell32, "SHGetKnownFolderPath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rfid)), uintptr(dwFlags), hToken, uintptr(unsafe.Pointer(ppszPath)))
 	return HRESULT(ret)
@@ -30791,7 +30842,7 @@ func SHGetDesktopFolder(ppshf **IShellFolder) HRESULT {
 	return HRESULT(ret)
 }
 
-func SHChangeNotify(wEventId SHCNE_ID, uFlags SHCNF_FLAGS, dwItem1 unsafe.Pointer, dwItem2 unsafe.Pointer) {
+func SHChangeNotify(wEventId int32, uFlags SHCNF_FLAGS, dwItem1 unsafe.Pointer, dwItem2 unsafe.Pointer) {
 	addr := LazyAddr(&pSHChangeNotify, libShell32, "SHChangeNotify")
 	syscall.SyscallN(addr, uintptr(wEventId), uintptr(uFlags), uintptr(dwItem1), uintptr(dwItem2))
 }
@@ -30831,7 +30882,7 @@ func SHChangeNotifyDeregister(ulID uint32) BOOL {
 	return BOOL(ret)
 }
 
-func SHChangeNotification_Lock(hChange HANDLE, dwProcId uint32, pppidl ***ITEMIDLIST, plEvent *int32) ShFindChangeNotificationHandle {
+func SHChangeNotification_Lock(hChange HANDLE, dwProcId uint32, pppidl ***ITEMIDLIST, plEvent *int32) HANDLE {
 	addr := LazyAddr(&pSHChangeNotification_Lock, libShell32, "SHChangeNotification_Lock")
 	ret, _, _ := syscall.SyscallN(addr, hChange, uintptr(dwProcId), uintptr(unsafe.Pointer(pppidl)), uintptr(unsafe.Pointer(plEvent)))
 	return ret
@@ -30977,13 +31028,13 @@ func PathIsExe(pszPath PWSTR) BOOL {
 	return BOOL(ret)
 }
 
-func PathCleanupSpec(pszDir PWSTR, pszSpec PWSTR) PCS_RET {
+func PathCleanupSpec(pszDir PWSTR, pszSpec PWSTR) int32 {
 	addr := LazyAddr(&pPathCleanupSpec, libShell32, "PathCleanupSpec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDir)), uintptr(unsafe.Pointer(pszSpec)))
-	return PCS_RET(ret)
+	return int32(ret)
 }
 
-func PathResolve(pszPath PWSTR, dirs **uint16, fFlags PRF_FLAGS) (int32, WIN32_ERROR) {
+func PathResolve(pszPath PWSTR, dirs **uint16, fFlags uint32) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pPathResolve, libShell32, "PathResolve")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(dirs)), uintptr(fFlags))
 	return int32(ret), WIN32_ERROR(err)
@@ -31019,13 +31070,13 @@ func Shell_MergeMenus(hmDst HMENU, hmSrc HMENU, uInsert uint32, uIDAdjust uint32
 	return uint32(ret)
 }
 
-func SHObjectProperties(hwnd HWND, shopObjectType SHOP_TYPE, pszObjectName PWSTR, pszPropertyPage PWSTR) BOOL {
+func SHObjectProperties(hwnd HWND, shopObjectType uint32, pszObjectName PWSTR, pszPropertyPage PWSTR) BOOL {
 	addr := LazyAddr(&pSHObjectProperties, libShell32, "SHObjectProperties")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(shopObjectType), uintptr(unsafe.Pointer(pszObjectName)), uintptr(unsafe.Pointer(pszPropertyPage)))
 	return BOOL(ret)
 }
 
-func SHFormatDrive(hwnd HWND, drive uint32, fmtID SHFMT_ID, options SHFMT_OPT) uint32 {
+func SHFormatDrive(hwnd HWND, drive uint32, fmtID SHFMT_ID, options uint32) uint32 {
 	addr := LazyAddr(&pSHFormatDrive, libShell32, "SHFormatDrive")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(drive), uintptr(fmtID), uintptr(options))
 	return uint32(ret)
@@ -31147,7 +31198,7 @@ func Shell_GetCachedImageIndexW(pszIconPath PWSTR, iIconIndex int32, uIconFlags 
 	return int32(ret)
 }
 
-func SHValidateUNC(hwndOwner HWND, pszFile PWSTR, fConnect VALIDATEUNC_OPTION) BOOL {
+func SHValidateUNC(hwndOwner HWND, pszFile PWSTR, fConnect uint32) BOOL {
 	addr := LazyAddr(&pSHValidateUNC, libShell32, "SHValidateUNC")
 	ret, _, _ := syscall.SyscallN(addr, hwndOwner, uintptr(unsafe.Pointer(pszFile)), uintptr(fConnect))
 	return BOOL(ret)
@@ -33705,10 +33756,10 @@ func SHRegSetUSValueW(pwzSubKey PWSTR, pwzValue PWSTR, dwType uint32, pvData uns
 	return WIN32_ERROR(ret)
 }
 
-func SHRegGetIntW(hk HKEY, pwzKey PWSTR, iDefault int32) WIN32_ERROR {
+func SHRegGetIntW(hk HKEY, pwzKey PWSTR, iDefault int32) int32 {
 	addr := LazyAddr(&pSHRegGetIntW, libShlwapi, "SHRegGetIntW")
 	ret, _, _ := syscall.SyscallN(addr, hk, uintptr(unsafe.Pointer(pwzKey)), uintptr(iDefault))
-	return WIN32_ERROR(ret)
+	return int32(ret)
 }
 
 func SHRegGetBoolUSValueA(pszSubKey PSTR, pszValue PSTR, fIgnoreHKCU BOOL, fDefault BOOL) BOOL {

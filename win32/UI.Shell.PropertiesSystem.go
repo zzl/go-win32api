@@ -5,6 +5,11 @@ import (
 	"unsafe"
 )
 
+type (
+	SERIALIZEDPROPSTORAGE    = uintptr
+	PCUSERIALIZEDPROPSTORAGE = uintptr
+)
+
 const (
 	PKEY_PIDSTR_MAX uint32 = 0xa
 )
@@ -13,7 +18,7 @@ const (
 
 // enum
 // flags
-type GETPROPERTYSTOREFLAGS uint32
+type GETPROPERTYSTOREFLAGS int32
 
 const (
 	GPS_DEFAULT                 GETPROPERTYSTOREFLAGS = 0
@@ -35,7 +40,7 @@ const (
 
 // enum
 // flags
-type PKA_FLAGS uint32
+type PKA_FLAGS int32
 
 const (
 	PKA_SET    PKA_FLAGS = 0
@@ -88,7 +93,7 @@ const (
 
 // enum
 // flags
-type PROPDESC_VIEW_FLAGS uint32
+type PROPDESC_VIEW_FLAGS int32
 
 const (
 	PDVF_DEFAULT             PROPDESC_VIEW_FLAGS = 0
@@ -133,7 +138,7 @@ const (
 
 // enum
 // flags
-type PROPDESC_FORMAT_FLAGS uint32
+type PROPDESC_FORMAT_FLAGS int32
 
 const (
 	PDFF_DEFAULT              PROPDESC_FORMAT_FLAGS = 0
@@ -209,7 +214,7 @@ const (
 
 // enum
 // flags
-type PROPDESC_SEARCHINFO_FLAGS uint32
+type PROPDESC_SEARCHINFO_FLAGS int32
 
 const (
 	PDSIF_DEFAULT         PROPDESC_SEARCHINFO_FLAGS = 0
@@ -256,69 +261,7 @@ const (
 
 // enum
 // flags
-type PSTIME_FLAGS uint32
-
-const (
-	PSTF_UTC   PSTIME_FLAGS = 0
-	PSTF_LOCAL PSTIME_FLAGS = 1
-)
-
-// enum
-type PROPVAR_COMPARE_UNIT int32
-
-const (
-	PVCU_DEFAULT PROPVAR_COMPARE_UNIT = 0
-	PVCU_SECOND  PROPVAR_COMPARE_UNIT = 1
-	PVCU_MINUTE  PROPVAR_COMPARE_UNIT = 2
-	PVCU_HOUR    PROPVAR_COMPARE_UNIT = 3
-	PVCU_DAY     PROPVAR_COMPARE_UNIT = 4
-	PVCU_MONTH   PROPVAR_COMPARE_UNIT = 5
-	PVCU_YEAR    PROPVAR_COMPARE_UNIT = 6
-)
-
-// enum
-// flags
-type PROPVAR_COMPARE_FLAGS uint32
-
-const (
-	PVCF_DEFAULT                       PROPVAR_COMPARE_FLAGS = 0
-	PVCF_TREATEMPTYASGREATERTHAN       PROPVAR_COMPARE_FLAGS = 1
-	PVCF_USESTRCMP                     PROPVAR_COMPARE_FLAGS = 2
-	PVCF_USESTRCMPC                    PROPVAR_COMPARE_FLAGS = 4
-	PVCF_USESTRCMPI                    PROPVAR_COMPARE_FLAGS = 8
-	PVCF_USESTRCMPIC                   PROPVAR_COMPARE_FLAGS = 16
-	PVCF_DIGITSASNUMBERS_CASESENSITIVE PROPVAR_COMPARE_FLAGS = 32
-)
-
-// enum
-// flags
-type PROPVAR_CHANGE_FLAGS uint32
-
-const (
-	PVCHF_DEFAULT        PROPVAR_CHANGE_FLAGS = 0
-	PVCHF_NOVALUEPROP    PROPVAR_CHANGE_FLAGS = 1
-	PVCHF_ALPHABOOL      PROPVAR_CHANGE_FLAGS = 2
-	PVCHF_NOUSEROVERRIDE PROPVAR_CHANGE_FLAGS = 4
-	PVCHF_LOCALBOOL      PROPVAR_CHANGE_FLAGS = 8
-	PVCHF_NOHEXSTRING    PROPVAR_CHANGE_FLAGS = 16
-)
-
-// enum
-// flags
-type DRAWPROGRESSFLAGS uint32
-
-const (
-	DPF_NONE             DRAWPROGRESSFLAGS = 0
-	DPF_MARQUEE          DRAWPROGRESSFLAGS = 1
-	DPF_MARQUEE_COMPLETE DRAWPROGRESSFLAGS = 2
-	DPF_ERROR            DRAWPROGRESSFLAGS = 4
-	DPF_WARNING          DRAWPROGRESSFLAGS = 8
-	DPF_STOPPED          DRAWPROGRESSFLAGS = 16
-)
-
-// enum
-// flags
-type SYNC_TRANSFER_STATUS uint32
+type SYNC_TRANSFER_STATUS int32
 
 const (
 	STS_NONE                   SYNC_TRANSFER_STATUS = 0
@@ -337,7 +280,7 @@ const (
 
 // enum
 // flags
-type PLACEHOLDER_STATES uint32
+type PLACEHOLDER_STATES int32
 
 const (
 	PS_NONE                            PLACEHOLDER_STATES = 0
@@ -351,7 +294,7 @@ const (
 
 // enum
 // flags
-type PROPERTYUI_NAME_FLAGS uint32
+type PROPERTYUI_NAME_FLAGS int32
 
 const (
 	PUIFNF_DEFAULT  PROPERTYUI_NAME_FLAGS = 0
@@ -360,7 +303,7 @@ const (
 
 // enum
 // flags
-type PROPERTYUI_FLAGS uint32
+type PROPERTYUI_FLAGS int32
 
 const (
 	PUIF_DEFAULT          PROPERTYUI_FLAGS = 0
@@ -370,7 +313,7 @@ const (
 
 // enum
 // flags
-type PROPERTYUI_FORMAT_FLAGS uint32
+type PROPERTYUI_FORMAT_FLAGS int32
 
 const (
 	PUIFFDF_DEFAULT      PROPERTYUI_FORMAT_FLAGS = 0
@@ -393,7 +336,7 @@ const (
 
 // enum
 // flags
-type SYNC_ENGINE_STATE_FLAGS uint32
+type SYNC_ENGINE_STATE_FLAGS int32
 
 const (
 	SESF_NONE                          SYNC_ENGINE_STATE_FLAGS = 0
@@ -423,9 +366,6 @@ type InMemoryPropertyStoreMarshalByValue struct {
 }
 
 type PropertySystem struct {
-}
-
-type SERIALIZEDPROPSTORAGE struct {
 }
 
 type PROPPRG struct {
@@ -1425,7 +1365,7 @@ var IID_IPersistSerializedPropStorage = syscall.GUID{0xE318AD57, 0x0AA0, 0x450F,
 type IPersistSerializedPropStorageInterface interface {
 	IUnknownInterface
 	SetFlags(flags int32) HRESULT
-	SetPropertyStorage(psps *SERIALIZEDPROPSTORAGE, cb uint32) HRESULT
+	SetPropertyStorage(psps PCUSERIALIZEDPROPSTORAGE, cb uint32) HRESULT
 	GetPropertyStorage(ppsps **SERIALIZEDPROPSTORAGE, pcb *uint32) HRESULT
 }
 
@@ -1449,8 +1389,8 @@ func (this *IPersistSerializedPropStorage) SetFlags(flags int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IPersistSerializedPropStorage) SetPropertyStorage(psps *SERIALIZEDPROPSTORAGE, cb uint32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPropertyStorage, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(psps)), uintptr(cb))
+func (this *IPersistSerializedPropStorage) SetPropertyStorage(psps PCUSERIALIZEDPROPSTORAGE, cb uint32) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SetPropertyStorage, uintptr(unsafe.Pointer(this)), psps, uintptr(cb))
 	return HRESULT(ret)
 }
 
@@ -1624,17 +1564,82 @@ func (this *IPropertyUI) GetHelpInfo(fmtid *syscall.GUID, pid uint32, pwszHelpFi
 }
 
 var (
-	pSHGetPropertyStoreFromIDList      uintptr
-	pSHGetPropertyStoreFromParsingName uintptr
-	pSHAddDefaultPropertiesByExt       uintptr
-	pPifMgr_OpenProperties             uintptr
-	pPifMgr_GetProperties              uintptr
-	pPifMgr_SetProperties              uintptr
-	pPifMgr_CloseProperties            uintptr
-	pSHPropStgCreate                   uintptr
-	pSHPropStgReadMultiple             uintptr
-	pSHPropStgWriteMultiple            uintptr
-	pSHGetPropertyStoreForWindow       uintptr
+	pPSFormatForDisplay                          uintptr
+	pPSFormatForDisplayAlloc                     uintptr
+	pPSFormatPropertyValue                       uintptr
+	pPSGetImageReferenceForValue                 uintptr
+	pPSStringFromPropertyKey                     uintptr
+	pPSPropertyKeyFromString                     uintptr
+	pPSCreateMemoryPropertyStore                 uintptr
+	pPSCreateDelayedMultiplexPropertyStore       uintptr
+	pPSCreateMultiplexPropertyStore              uintptr
+	pPSCreatePropertyChangeArray                 uintptr
+	pPSCreateSimplePropertyChange                uintptr
+	pPSGetPropertyDescription                    uintptr
+	pPSGetPropertyDescriptionByName              uintptr
+	pPSLookupPropertyHandlerCLSID                uintptr
+	pPSGetItemPropertyHandler                    uintptr
+	pPSGetItemPropertyHandlerWithCreateObject    uintptr
+	pPSGetPropertyValue                          uintptr
+	pPSSetPropertyValue                          uintptr
+	pPSRegisterPropertySchema                    uintptr
+	pPSUnregisterPropertySchema                  uintptr
+	pPSRefreshPropertySchema                     uintptr
+	pPSEnumeratePropertyDescriptions             uintptr
+	pPSGetPropertyKeyFromName                    uintptr
+	pPSGetNameFromPropertyKey                    uintptr
+	pPSCoerceToCanonicalValue                    uintptr
+	pPSGetPropertyDescriptionListFromString      uintptr
+	pPSCreatePropertyStoreFromPropertySetStorage uintptr
+	pPSCreatePropertyStoreFromObject             uintptr
+	pPSCreateAdapterFromPropertyStore            uintptr
+	pPSGetPropertySystem                         uintptr
+	pPSGetPropertyFromPropertyStorage            uintptr
+	pPSGetNamedPropertyFromPropertyStorage       uintptr
+	pPSPropertyBag_ReadType                      uintptr
+	pPSPropertyBag_ReadStr                       uintptr
+	pPSPropertyBag_ReadStrAlloc                  uintptr
+	pPSPropertyBag_ReadBSTR                      uintptr
+	pPSPropertyBag_WriteStr                      uintptr
+	pPSPropertyBag_WriteBSTR                     uintptr
+	pPSPropertyBag_ReadInt                       uintptr
+	pPSPropertyBag_WriteInt                      uintptr
+	pPSPropertyBag_ReadSHORT                     uintptr
+	pPSPropertyBag_WriteSHORT                    uintptr
+	pPSPropertyBag_ReadLONG                      uintptr
+	pPSPropertyBag_WriteLONG                     uintptr
+	pPSPropertyBag_ReadDWORD                     uintptr
+	pPSPropertyBag_WriteDWORD                    uintptr
+	pPSPropertyBag_ReadBOOL                      uintptr
+	pPSPropertyBag_WriteBOOL                     uintptr
+	pPSPropertyBag_ReadPOINTL                    uintptr
+	pPSPropertyBag_WritePOINTL                   uintptr
+	pPSPropertyBag_ReadPOINTS                    uintptr
+	pPSPropertyBag_WritePOINTS                   uintptr
+	pPSPropertyBag_ReadRECTL                     uintptr
+	pPSPropertyBag_WriteRECTL                    uintptr
+	pPSPropertyBag_ReadStream                    uintptr
+	pPSPropertyBag_WriteStream                   uintptr
+	pPSPropertyBag_Delete                        uintptr
+	pPSPropertyBag_ReadULONGLONG                 uintptr
+	pPSPropertyBag_WriteULONGLONG                uintptr
+	pPSPropertyBag_ReadUnknown                   uintptr
+	pPSPropertyBag_WriteUnknown                  uintptr
+	pPSPropertyBag_ReadGUID                      uintptr
+	pPSPropertyBag_WriteGUID                     uintptr
+	pPSPropertyBag_ReadPropertyKey               uintptr
+	pPSPropertyBag_WritePropertyKey              uintptr
+	pSHGetPropertyStoreFromIDList                uintptr
+	pSHGetPropertyStoreFromParsingName           uintptr
+	pSHAddDefaultPropertiesByExt                 uintptr
+	pPifMgr_OpenProperties                       uintptr
+	pPifMgr_GetProperties                        uintptr
+	pPifMgr_SetProperties                        uintptr
+	pPifMgr_CloseProperties                      uintptr
+	pSHPropStgCreate                             uintptr
+	pSHPropStgReadMultiple                       uintptr
+	pSHPropStgWriteMultiple                      uintptr
+	pSHGetPropertyStoreForWindow                 uintptr
 )
 
 func SHGetPropertyStoreFromIDList(pidl *ITEMIDLIST, flags GETPROPERTYSTOREFLAGS, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {

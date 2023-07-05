@@ -40,7 +40,7 @@ const (
 
 // enum
 // flags
-type DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS uint32
+type DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS int32
 
 const (
 	DCDC_DEFAULT             DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = 0
@@ -50,7 +50,7 @@ const (
 
 // enum
 // flags
-type DIALOG_DPI_CHANGE_BEHAVIORS uint32
+type DIALOG_DPI_CHANGE_BEHAVIORS int32
 
 const (
 	DDC_DEFAULT                  DIALOG_DPI_CHANGE_BEHAVIORS = 0

@@ -101,7 +101,7 @@ type MODULEENTRY32W struct {
 	ProccntUsage  uint32
 	ModBaseAddr   *byte
 	ModBaseSize   uint32
-	HModule       HINSTANCE
+	HModule       HMODULE
 	SzModule      [256]uint16
 	SzExePath     [260]uint16
 }
@@ -114,7 +114,7 @@ type MODULEENTRY32 struct {
 	ProccntUsage  uint32
 	ModBaseAddr   *byte
 	ModBaseSize   uint32
-	HModule       HINSTANCE
+	HModule       HMODULE
 	SzModule      [256]CHAR
 	SzExePath     [260]CHAR
 }

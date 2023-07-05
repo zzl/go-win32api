@@ -1465,6 +1465,176 @@ const (
 
 // structs
 
+type RICHEDIT_IMAGE_PARAMETERS struct {
+	XWidth            int32
+	YHeight           int32
+	Ascent            int32
+	Type              int32
+	PwszAlternateText PWSTR
+	PIStream          *IStream
+}
+
+type ENDCOMPOSITIONNOTIFY struct {
+	Nmhdr  NMHDR
+	DwCode ENDCOMPOSITIONNOTIFY_CODE
+}
+
+type TEXTRANGEA struct {
+	Chrg      CHARRANGE
+	LpstrText PSTR
+}
+
+type TEXTRANGE = TEXTRANGEW
+type TEXTRANGEW struct {
+	Chrg      CHARRANGE
+	LpstrText PWSTR
+}
+
+type EDITSTREAM struct {
+	DwCookie    uintptr
+	DwError     uint32
+	PfnCallback EDITSTREAMCALLBACK
+}
+
+type FINDTEXTA struct {
+	Chrg      CHARRANGE
+	LpstrText PSTR
+}
+
+type FINDTEXT = FINDTEXTW
+type FINDTEXTW struct {
+	Chrg      CHARRANGE
+	LpstrText PWSTR
+}
+
+type FINDTEXTEXA struct {
+	Chrg      CHARRANGE
+	LpstrText PSTR
+	ChrgText  CHARRANGE
+}
+
+type FINDTEXTEX = FINDTEXTEXW
+type FINDTEXTEXW struct {
+	Chrg      CHARRANGE
+	LpstrText PWSTR
+	ChrgText  CHARRANGE
+}
+
+type FORMATRANGE struct {
+	Hdc       HDC
+	HdcTarget HDC
+	Rc        RECT
+	RcPage    RECT
+	Chrg      CHARRANGE
+}
+
+type MSGFILTER struct {
+	Nmhdr  NMHDR
+	Msg    uint32
+	WParam WPARAM
+	LParam LPARAM
+}
+
+type REQRESIZE struct {
+	Nmhdr NMHDR
+	Rc    RECT
+}
+
+type SELCHANGE struct {
+	Nmhdr  NMHDR
+	Chrg   CHARRANGE
+	Seltyp RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
+}
+
+type CLIPBOARDFORMAT struct {
+	Nmhdr NMHDR
+	Cf    uint16
+}
+
+type GETCONTEXTMENUEX struct {
+	Chrg       CHARRANGE
+	DwFlags    uint32
+	Pt         POINT
+	PvReserved unsafe.Pointer
+}
+
+type ENDROPFILES struct {
+	Nmhdr      NMHDR
+	HDrop      HANDLE
+	Cp         int32
+	FProtected BOOL
+}
+
+type ENPROTECTED struct {
+	Nmhdr  NMHDR
+	Msg    uint32
+	WParam WPARAM
+	LParam LPARAM
+	Chrg   CHARRANGE
+}
+
+type ENSAVECLIPBOARD struct {
+	Nmhdr        NMHDR
+	CObjectCount int32
+	Cch          int32
+}
+
+type ENOLEOPFAILED struct {
+	Nmhdr NMHDR
+	Iob   int32
+	LOper int32
+	Hr    HRESULT
+}
+
+type OBJECTPOSITIONS struct {
+	Nmhdr        NMHDR
+	CObjectCount int32
+	PcpPositions *int32
+}
+
+type ENLINK struct {
+	Nmhdr  NMHDR
+	Msg    uint32
+	WParam WPARAM
+	LParam LPARAM
+	Chrg   CHARRANGE
+}
+
+type ENLOWFIRTF struct {
+	Nmhdr     NMHDR
+	SzControl PSTR
+}
+
+type ENCORRECTTEXT struct {
+	Nmhdr  NMHDR
+	Chrg   CHARRANGE
+	Seltyp RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
+}
+
+type PUNCTUATION struct {
+	ISize         uint32
+	SzPunctuation PSTR
+}
+
+type REPASTESPECIAL struct {
+	DwAspect DVASPECT
+	DwParam  uintptr
+}
+
+type GETTEXTEX struct {
+	Cb            uint32
+	Flags         GETTEXTEX_FLAGS
+	Codepage      uint32
+	LpDefaultChar PSTR
+	LpUsedDefChar *int32
+}
+
+type HYPHENATEINFO struct {
+	CbSize          int16
+	DxHyphenateZone int16
+	PfnHyphenate    uintptr
+}
+
 type IMECOMPTEXT struct {
 	Cb    int32
 	Flags IMECOMPTEXT_FLAGS
@@ -1500,20 +1670,6 @@ type TABLECELLPARMS struct {
 	CrForePat    COLORREF
 }
 
-type RICHEDIT_IMAGE_PARAMETERS struct {
-	XWidth            int32
-	YHeight           int32
-	Ascent            int32
-	Type              TEXT_ALIGN_OPTIONS
-	PwszAlternateText PWSTR
-	PIStream          *IStream
-}
-
-type ENDCOMPOSITIONNOTIFY struct {
-	Nmhdr  NMHDR
-	DwCode ENDCOMPOSITIONNOTIFY_CODE
-}
-
 type CHARFORMATA struct {
 	CbSize          uint32
 	DwMask          CFM_MASK
@@ -1521,7 +1677,7 @@ type CHARFORMATA struct {
 	YHeight         int32
 	YOffset         int32
 	CrTextColor     COLORREF
-	BCharSet        EMBED_FONT_CHARSET
+	BCharSet        FONT_CHARSET
 	BPitchAndFamily byte
 	SzFaceName      [32]CHAR
 }
@@ -1534,7 +1690,7 @@ type CHARFORMATW struct {
 	YHeight         int32
 	YOffset         int32
 	CrTextColor     COLORREF
-	BCharSet        EMBED_FONT_CHARSET
+	BCharSet        FONT_CHARSET
 	BPitchAndFamily byte
 	SzFaceName      [32]uint16
 }
@@ -1615,55 +1771,6 @@ type CHARRANGE struct {
 	CpMax int32
 }
 
-type TEXTRANGEA struct {
-	Chrg      CHARRANGE
-	LpstrText PSTR
-}
-
-type TEXTRANGE = TEXTRANGEW
-type TEXTRANGEW struct {
-	Chrg      CHARRANGE
-	LpstrText PWSTR
-}
-
-type EDITSTREAM struct {
-	DwCookie    uintptr
-	DwError     uint32
-	PfnCallback EDITSTREAMCALLBACK
-}
-
-type FINDTEXTA struct {
-	Chrg      CHARRANGE
-	LpstrText PSTR
-}
-
-type FINDTEXT = FINDTEXTW
-type FINDTEXTW struct {
-	Chrg      CHARRANGE
-	LpstrText PWSTR
-}
-
-type FINDTEXTEXA struct {
-	Chrg      CHARRANGE
-	LpstrText PSTR
-	ChrgText  CHARRANGE
-}
-
-type FINDTEXTEX = FINDTEXTEXW
-type FINDTEXTEXW struct {
-	Chrg      CHARRANGE
-	LpstrText PWSTR
-	ChrgText  CHARRANGE
-}
-
-type FORMATRANGE struct {
-	Hdc       HDC
-	HdcTarget HDC
-	Rc        RECT
-	RcPage    RECT
-	Chrg      CHARRANGE
-}
-
 type PARAFORMAT_Anonymous struct {
 	Data [1]uint16
 }
@@ -1715,97 +1822,9 @@ type PARAFORMAT2 struct {
 	WBorders         PARAFORMAT_BORDERS
 }
 
-type MSGFILTER struct {
-	Nmhdr  NMHDR
-	Msg    uint32
-	WParam WPARAM
-	LParam LPARAM
-}
-
-type REQRESIZE struct {
-	Nmhdr NMHDR
-	Rc    RECT
-}
-
-type SELCHANGE struct {
-	Nmhdr  NMHDR
-	Chrg   CHARRANGE
-	Seltyp RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
-}
-
 type GROUPTYPINGCHANGE struct {
 	Nmhdr        NMHDR
 	FGroupTyping BOOL
-}
-
-type CLIPBOARDFORMAT struct {
-	Nmhdr NMHDR
-	Cf    uint16
-}
-
-type GETCONTEXTMENUEX struct {
-	Chrg       CHARRANGE
-	DwFlags    uint32
-	Pt         POINT
-	PvReserved unsafe.Pointer
-}
-
-type ENDROPFILES struct {
-	Nmhdr      NMHDR
-	HDrop      HANDLE
-	Cp         int32
-	FProtected BOOL
-}
-
-type ENPROTECTED struct {
-	Nmhdr  NMHDR
-	Msg    uint32
-	WParam WPARAM
-	LParam LPARAM
-	Chrg   CHARRANGE
-}
-
-type ENSAVECLIPBOARD struct {
-	Nmhdr        NMHDR
-	CObjectCount int32
-	Cch          int32
-}
-
-type ENOLEOPFAILED struct {
-	Nmhdr NMHDR
-	Iob   int32
-	LOper int32
-	Hr    HRESULT
-}
-
-type OBJECTPOSITIONS struct {
-	Nmhdr        NMHDR
-	CObjectCount int32
-	PcpPositions *int32
-}
-
-type ENLINK struct {
-	Nmhdr  NMHDR
-	Msg    uint32
-	WParam WPARAM
-	LParam LPARAM
-	Chrg   CHARRANGE
-}
-
-type ENLOWFIRTF struct {
-	Nmhdr     NMHDR
-	SzControl PSTR
-}
-
-type ENCORRECTTEXT struct {
-	Nmhdr  NMHDR
-	Chrg   CHARRANGE
-	Seltyp RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE
-}
-
-type PUNCTUATION struct {
-	ISize         uint32
-	SzPunctuation PSTR
 }
 
 type COMPCOLOR struct {
@@ -1814,22 +1833,9 @@ type COMPCOLOR struct {
 	DwEffects    uint32
 }
 
-type REPASTESPECIAL struct {
-	DwAspect DVASPECT
-	DwParam  uintptr
-}
-
 type SETTEXTEX struct {
 	Flags    uint32
 	Codepage uint32
-}
-
-type GETTEXTEX struct {
-	Cb            uint32
-	Flags         GETTEXTEX_FLAGS
-	Codepage      uint32
-	LpDefaultChar PSTR
-	LpUsedDefChar *int32
 }
 
 type GETTEXTLENGTHEX struct {
@@ -1849,14 +1855,8 @@ type HYPHRESULT struct {
 	ChHyph  uint16
 }
 
-type HYPHENATEINFO struct {
-	CbSize          int16
-	DxHyphenateZone int16
-	PfnHyphenate    uintptr
-}
-
 type CHANGENOTIFY struct {
-	DwChangeType CHANGETYPE
+	DwChangeType uint32
 	PvCookieData unsafe.Pointer
 }
 
@@ -2067,7 +2067,7 @@ type ITextHostInterface interface {
 	TxGetDC() HDC
 	TxReleaseDC(hdc HDC) int32
 	TxShowScrollBar(fnBar int32, fShow BOOL) BOOL
-	TxEnableScrollBar(fuSBFlags SCROLLBAR_CONSTANTS, fuArrowflags ENABLE_SCROLL_BAR_ARROWS) BOOL
+	TxEnableScrollBar(fuSBFlags SCROLLBAR_CONSTANTS, fuArrowflags int32) BOOL
 	TxSetScrollRange(fnBar int32, nMinPos int32, nMaxPos int32, fRedraw BOOL) BOOL
 	TxSetScrollPos(fnBar int32, nPos int32, fRedraw BOOL) BOOL
 	TxInvalidateRect(prc *RECT, fMode BOOL)
@@ -2077,7 +2077,7 @@ type ITextHostInterface interface {
 	TxSetCaretPos(x int32, y int32) BOOL
 	TxSetTimer(idTimer uint32, uTimeout uint32) BOOL
 	TxKillTimer(idTimer uint32)
-	TxScrollWindowEx(dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT, fuScroll SHOW_WINDOW_CMD)
+	TxScrollWindowEx(dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT, fuScroll SCROLL_WINDOW_FLAGS)
 	TxSetCapture(fCapture BOOL)
 	TxSetFocus()
 	TxSetCursor(hcur HCURSOR, fText BOOL)
@@ -2171,7 +2171,7 @@ func (this *ITextHost) TxShowScrollBar(fnBar int32, fShow BOOL) BOOL {
 	return BOOL(ret)
 }
 
-func (this *ITextHost) TxEnableScrollBar(fuSBFlags SCROLLBAR_CONSTANTS, fuArrowflags ENABLE_SCROLL_BAR_ARROWS) BOOL {
+func (this *ITextHost) TxEnableScrollBar(fuSBFlags SCROLLBAR_CONSTANTS, fuArrowflags int32) BOOL {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxEnableScrollBar, uintptr(unsafe.Pointer(this)), uintptr(fuSBFlags), uintptr(fuArrowflags))
 	return BOOL(ret)
 }
@@ -2218,7 +2218,7 @@ func (this *ITextHost) TxKillTimer(idTimer uint32) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxKillTimer, uintptr(unsafe.Pointer(this)), uintptr(idTimer))
 }
 
-func (this *ITextHost) TxScrollWindowEx(dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT, fuScroll SHOW_WINDOW_CMD) {
+func (this *ITextHost) TxScrollWindowEx(dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrgnUpdate HRGN, lprcUpdate *RECT, fuScroll SCROLL_WINDOW_FLAGS) {
 	_, _, _ = syscall.SyscallN(this.Vtbl().TxScrollWindowEx, uintptr(unsafe.Pointer(this)), uintptr(dx), uintptr(dy), uintptr(unsafe.Pointer(lprcScroll)), uintptr(unsafe.Pointer(lprcClip)), hrgnUpdate, uintptr(unsafe.Pointer(lprcUpdate)), uintptr(fuScroll))
 }
 
@@ -2528,7 +2528,7 @@ type IRichEditOleInterface interface {
 	InPlaceDeactivate() HRESULT
 	ContextSensitiveHelp(fEnterMode BOOL) HRESULT
 	GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpdataobj **IDataObject) HRESULT
-	ImportDataObject(lpdataobj *IDataObject, cf uint16, hMetaPict uintptr) HRESULT
+	ImportDataObject(lpdataobj *IDataObject, cf uint16, hMetaPict HGLOBAL) HRESULT
 }
 
 type IRichEditOleVtbl struct {
@@ -2634,8 +2634,8 @@ func (this *IRichEditOle) GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpd
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOle) ImportDataObject(lpdataobj *IDataObject, cf uint16, hMetaPict uintptr) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().ImportDataObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpdataobj)), uintptr(cf), hMetaPict)
+func (this *IRichEditOle) ImportDataObject(lpdataobj *IDataObject, cf uint16, hMetaPict HGLOBAL) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ImportDataObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpdataobj)), uintptr(cf), uintptr(unsafe.Pointer(hMetaPict)))
 	return HRESULT(ret)
 }
 
@@ -2650,7 +2650,7 @@ type IRichEditOleCallbackInterface interface {
 	ShowContainerUI(fShow BOOL) HRESULT
 	QueryInsertObject(lpclsid *syscall.GUID, lpstg *IStorage, cp int32) HRESULT
 	DeleteObject(lpoleobj *IOleObject) HRESULT
-	QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco RECO_FLAGS, fReally BOOL, hMetaPict uintptr) HRESULT
+	QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco RECO_FLAGS, fReally BOOL, hMetaPict HGLOBAL) HRESULT
 	ContextSensitiveHelp(fEnterMode BOOL) HRESULT
 	GetClipboardData(lpchrg *CHARRANGE, reco uint32, lplpdataobj **IDataObject) HRESULT
 	GetDragDropEffect(fDrag BOOL, grfKeyState MODIFIERKEYS_FLAGS, pdwEffect *DROPEFFECT) HRESULT
@@ -2704,8 +2704,8 @@ func (this *IRichEditOleCallback) DeleteObject(lpoleobj *IOleObject) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IRichEditOleCallback) QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco RECO_FLAGS, fReally BOOL, hMetaPict uintptr) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryAcceptData, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpdataobj)), uintptr(unsafe.Pointer(lpcfFormat)), uintptr(reco), uintptr(fReally), hMetaPict)
+func (this *IRichEditOleCallback) QueryAcceptData(lpdataobj *IDataObject, lpcfFormat *uint16, reco RECO_FLAGS, fReally BOOL, hMetaPict HGLOBAL) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryAcceptData, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(lpdataobj)), uintptr(unsafe.Pointer(lpcfFormat)), uintptr(reco), uintptr(fReally), uintptr(unsafe.Pointer(hMetaPict)))
 	return HRESULT(ret)
 }
 
@@ -4524,7 +4524,7 @@ type ITextRange2Interface interface {
 	UnicodeToHex() HRESULT
 	SetInlineObject(Type int32, Align int32, Char int32, Char1 int32, Char2 int32, Count int32, TeXStyle int32, cCol int32) HRESULT
 	GetMathFunctionType(bstr BSTR, pValue *int32) HRESULT
-	InsertImage(width int32, height int32, ascent int32, Type TEXT_ALIGN_OPTIONS, bstrAltText BSTR, pStream *IStream) HRESULT
+	InsertImage(width int32, height int32, ascent int32, Type int32, bstrAltText BSTR, pStream *IStream) HRESULT
 }
 
 type ITextRange2Vtbl struct {
@@ -4774,7 +4774,7 @@ func (this *ITextRange2) GetMathFunctionType(bstr BSTR, pValue *int32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ITextRange2) InsertImage(width int32, height int32, ascent int32, Type TEXT_ALIGN_OPTIONS, bstrAltText BSTR, pStream *IStream) HRESULT {
+func (this *ITextRange2) InsertImage(width int32, height int32, ascent int32, Type int32, bstrAltText BSTR, pStream *IStream) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().InsertImage, uintptr(unsafe.Pointer(this)), uintptr(width), uintptr(height), uintptr(ascent), uintptr(Type), uintptr(unsafe.Pointer(bstrAltText)), uintptr(unsafe.Pointer(pStream)))
 	return HRESULT(ret)
 }

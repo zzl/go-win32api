@@ -6,23 +6,95 @@ import (
 )
 
 type (
-	HHOOK   = uintptr
-	HICON   = uintptr
-	HMENU   = uintptr
-	HCURSOR = uintptr
-	HACCEL  = uintptr
-	HDWP    = uintptr
+	HHOOK      = uintptr
+	HICON      = uintptr
+	HMENU      = uintptr
+	HCURSOR    = uintptr
+	HACCEL     = uintptr
+	HDEVNOTIFY = unsafe.Pointer
+	HDWP       = uintptr
 )
 
 const (
-	WM_DEVICECHANGE                                            uint32  = 0x219
-	BSM_VXDS                                                   uint32  = 0x1
-	BSM_NETDRIVER                                              uint32  = 0x2
-	BSM_INSTALLABLEDRIVERS                                     uint32  = 0x4
 	WM_CONTEXTMENU                                             uint32  = 0x7b
 	WM_UNICHAR                                                 uint32  = 0x109
 	WM_PRINTCLIENT                                             uint32  = 0x318
 	WM_NOTIFY                                                  uint32  = 0x4e
+	STRSAFE_USE_SECURE_CRT                                     uint32  = 0x0
+	STRSAFE_MAX_CCH                                            uint32  = 0x7fffffff
+	STRSAFE_MAX_LENGTH                                         uint32  = 0x7ffffffe
+	STRSAFE_IGNORE_NULLS                                       uint32  = 0x100
+	STRSAFE_FILL_BEHIND_NULL                                   uint32  = 0x200
+	STRSAFE_FILL_ON_FAILURE                                    uint32  = 0x400
+	STRSAFE_NULL_ON_FAILURE                                    uint32  = 0x800
+	STRSAFE_NO_TRUNCATION                                      uint32  = 0x1000
+	STRSAFE_E_INSUFFICIENT_BUFFER                              HRESULT = -2147024774
+	STRSAFE_E_INVALID_PARAMETER                                HRESULT = -2147024809
+	STRSAFE_E_END_OF_FILE                                      HRESULT = -2147024858
+	WARNING_CYCLOMATIC_COMPLEXITY__                            uint32  = 0x703e
+	WARNING_USING_UNINIT_VAR__                                 uint32  = 0x1771
+	WARNING_RETURN_UNINIT_VAR__                                uint32  = 0x17d5
+	WARNING_DEREF_NULL_PTR__                                   uint32  = 0x177b
+	WARNING_MISSING_ZERO_TERMINATION2__                        uint32  = 0x17a6
+	WARNING_INVALID_PARAM_VALUE_1__                            uint32  = 0x18f3
+	WARNING_INCORRECT_ANNOTATION__                             uint32  = 0x6597
+	WARNING_POTENTIAL_BUFFER_OVERFLOW_HIGH_PRIORITY__          uint32  = 0x659f
+	WARNING_PRECONDITION_NULLTERMINATION_VIOLATION__           uint32  = 0x65b3
+	WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION__          uint32  = 0x65b4
+	WARNING_HIGH_PRIORITY_OVERFLOW_POSTCONDITION__             uint32  = 0x65bd
+	WARNING_RANGE_POSTCONDITION_VIOLATION__                    uint32  = 0x65cd
+	WARNING_POTENTIAL_RANGE_POSTCONDITION_VIOLATION__          uint32  = 0x65d7
+	WARNING_INVALID_PARAM_VALUE_3__                            uint32  = 0x6e17
+	WARNING_RETURNING_BAD_RESULT__                             uint32  = 0x6e24
+	WARNING_BANNED_API_USAGE__                                 uint32  = 0x702f
+	WARNING_POST_EXPECTED__                                    uint32  = 0x6e32
+	WM_DEVICECHANGE                                            uint32  = 0x219
+	BSF_MSGSRV32ISOK                                           uint32  = 0x80000000
+	BSF_MSGSRV32ISOK_BIT                                       uint32  = 0x1f
+	BSM_VXDS                                                   uint32  = 0x1
+	BSM_NETDRIVER                                              uint32  = 0x2
+	BSM_INSTALLABLEDRIVERS                                     uint32  = 0x4
+	DBT_APPYBEGIN                                              uint32  = 0x0
+	DBT_APPYEND                                                uint32  = 0x1
+	DBT_DEVNODES_CHANGED                                       uint32  = 0x7
+	DBT_QUERYCHANGECONFIG                                      uint32  = 0x17
+	DBT_CONFIGCHANGED                                          uint32  = 0x18
+	DBT_CONFIGCHANGECANCELED                                   uint32  = 0x19
+	DBT_MONITORCHANGE                                          uint32  = 0x1b
+	DBT_SHELLLOGGEDON                                          uint32  = 0x20
+	DBT_CONFIGMGAPI32                                          uint32  = 0x22
+	DBT_VXDINITCOMPLETE                                        uint32  = 0x23
+	DBT_VOLLOCKQUERYLOCK                                       uint32  = 0x8041
+	DBT_VOLLOCKLOCKTAKEN                                       uint32  = 0x8042
+	DBT_VOLLOCKLOCKFAILED                                      uint32  = 0x8043
+	DBT_VOLLOCKQUERYUNLOCK                                     uint32  = 0x8044
+	DBT_VOLLOCKLOCKRELEASED                                    uint32  = 0x8045
+	DBT_VOLLOCKUNLOCKFAILED                                    uint32  = 0x8046
+	LOCKP_ALLOW_WRITES                                         uint32  = 0x1
+	LOCKP_FAIL_WRITES                                          uint32  = 0x0
+	LOCKP_FAIL_MEM_MAPPING                                     uint32  = 0x2
+	LOCKP_ALLOW_MEM_MAPPING                                    uint32  = 0x0
+	LOCKP_USER_MASK                                            uint32  = 0x3
+	LOCKP_LOCK_FOR_FORMAT                                      uint32  = 0x4
+	LOCKF_LOGICAL_LOCK                                         uint32  = 0x0
+	LOCKF_PHYSICAL_LOCK                                        uint32  = 0x1
+	DBT_NO_DISK_SPACE                                          uint32  = 0x47
+	DBT_LOW_DISK_SPACE                                         uint32  = 0x48
+	DBT_CONFIGMGPRIVATE                                        uint32  = 0x7fff
+	DBT_DEVICEARRIVAL                                          uint32  = 0x8000
+	DBT_DEVICEQUERYREMOVE                                      uint32  = 0x8001
+	DBT_DEVICEQUERYREMOVEFAILED                                uint32  = 0x8002
+	DBT_DEVICEREMOVEPENDING                                    uint32  = 0x8003
+	DBT_DEVICEREMOVECOMPLETE                                   uint32  = 0x8004
+	DBT_DEVICETYPESPECIFIC                                     uint32  = 0x8005
+	DBT_CUSTOMEVENT                                            uint32  = 0x8006
+	DBT_DEVTYP_DEVNODE                                         uint32  = 0x1
+	DBT_DEVTYP_NET                                             uint32  = 0x4
+	DBTF_RESOURCE                                              uint32  = 0x1
+	DBTF_XPORT                                                 uint32  = 0x2
+	DBTF_SLOWNET                                               uint32  = 0x4
+	DBT_VPOWERDAPI                                             uint32  = 0x8100
+	DBT_USERDEFINED                                            uint32  = 0xffff
 	DIFFERENCE                                                 uint32  = 0xb
 	RT_MANIFEST                                                uint32  = 0x18
 	CREATEPROCESS_MANIFEST_RESOURCE_ID                         uint32  = 0x1
@@ -493,7 +565,6 @@ const (
 	EWX_CHECK_SAFE_FOR_SERVER                                  uint32  = 0x8000000
 	EWX_SYSTEM_INITIATED                                       uint32  = 0x10000000
 	BROADCAST_QUERY_DENY                                       uint32  = 0x424d5144
-	DEVICE_NOTIFY_ALL_INTERFACE_CLASSES                        uint32  = 0x4
 	HWND_MESSAGE                                               HWND    = ^HWND(0x2)
 	ISMEX_NOSEND                                               uint32  = 0x0
 	ISMEX_SEND                                                 uint32  = 0x1
@@ -661,9 +732,6 @@ const (
 	OIC_INFORMATION                                            uint32  = 0x7f04
 	OIC_SHIELD                                                 uint32  = 0x7f06
 	ORD_LANGDRIVER                                             uint32  = 0x1
-	IDI_WARNING                                                uint32  = 0x7f03
-	IDI_ERROR                                                  uint32  = 0x7f01
-	IDI_INFORMATION                                            uint32  = 0x7f04
 	ES_LEFT                                                    int32   = 0
 	ES_CENTER                                                  int32   = 1
 	ES_RIGHT                                                   int32   = 2
@@ -1247,33 +1315,7 @@ const (
 	NID_MULTI_INPUT                                            uint32  = 0x40
 	NID_READY                                                  uint32  = 0x80
 	MAX_STR_BLOCKREASON                                        uint32  = 0x100
-	STRSAFE_USE_SECURE_CRT                                     uint32  = 0x0
-	STRSAFE_MAX_CCH                                            uint32  = 0x7fffffff
-	STRSAFE_IGNORE_NULLS                                       uint32  = 0x100
-	STRSAFE_FILL_BEHIND_NULL                                   uint32  = 0x200
-	STRSAFE_FILL_ON_FAILURE                                    uint32  = 0x400
-	STRSAFE_NULL_ON_FAILURE                                    uint32  = 0x800
-	STRSAFE_NO_TRUNCATION                                      uint32  = 0x1000
-	STRSAFE_E_INSUFFICIENT_BUFFER                              HRESULT = -2147024774
-	STRSAFE_E_INVALID_PARAMETER                                HRESULT = -2147024809
-	STRSAFE_E_END_OF_FILE                                      HRESULT = -2147024858
-	WARNING_CYCLOMATIC_COMPLEXITY__                            uint32  = 0x703e
-	WARNING_USING_UNINIT_VAR__                                 uint32  = 0x1771
-	WARNING_RETURN_UNINIT_VAR__                                uint32  = 0x17d5
-	WARNING_DEREF_NULL_PTR__                                   uint32  = 0x177b
-	WARNING_MISSING_ZERO_TERMINATION2__                        uint32  = 0x17a6
-	WARNING_INVALID_PARAM_VALUE_1__                            uint32  = 0x18f3
-	WARNING_INCORRECT_ANNOTATION__                             uint32  = 0x6597
-	WARNING_POTENTIAL_BUFFER_OVERFLOW_HIGH_PRIORITY__          uint32  = 0x659f
-	WARNING_PRECONDITION_NULLTERMINATION_VIOLATION__           uint32  = 0x65b3
-	WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION__          uint32  = 0x65b4
-	WARNING_HIGH_PRIORITY_OVERFLOW_POSTCONDITION__             uint32  = 0x65bd
-	WARNING_RANGE_POSTCONDITION_VIOLATION__                    uint32  = 0x65cd
-	WARNING_POTENTIAL_RANGE_POSTCONDITION_VIOLATION__          uint32  = 0x65d7
-	WARNING_INVALID_PARAM_VALUE_3__                            uint32  = 0x6e17
-	WARNING_RETURNING_BAD_RESULT__                             uint32  = 0x6e24
-	WARNING_BANNED_API_USAGE__                                 uint32  = 0x702f
-	WARNING_POST_EXPECTED__                                    uint32  = 0x6e32
+	WM_TOOLTIPDISMISS                                          uint32  = 0x345
 	HBMMENU_CALLBACK                                           HBITMAP = ^HBITMAP(0x0)
 	HBMMENU_SYSTEM                                             HBITMAP = 1
 	HBMMENU_MBAR_RESTORE                                       HBITMAP = 2
@@ -1290,40 +1332,40 @@ const (
 )
 
 var (
-	RT_CURSOR       = PWSTR(unsafe.Pointer(uintptr(1)))
-	RT_BITMAP       = PWSTR(unsafe.Pointer(uintptr(2)))
-	RT_ICON         = PWSTR(unsafe.Pointer(uintptr(3)))
-	RT_MENU         = PWSTR(unsafe.Pointer(uintptr(4)))
-	RT_DIALOG       = PWSTR(unsafe.Pointer(uintptr(5)))
-	RT_FONTDIR      = PWSTR(unsafe.Pointer(uintptr(7)))
-	RT_FONT         = PWSTR(unsafe.Pointer(uintptr(8)))
-	RT_ACCELERATOR  = PWSTR(unsafe.Pointer(uintptr(9)))
-	RT_MESSAGETABLE = PWSTR(unsafe.Pointer(uintptr(11)))
-	RT_VERSION      = PWSTR(unsafe.Pointer(uintptr(16)))
-	RT_DLGINCLUDE   = PWSTR(unsafe.Pointer(uintptr(17)))
-	RT_PLUGPLAY     = PWSTR(unsafe.Pointer(uintptr(19)))
-	RT_VXD          = PWSTR(unsafe.Pointer(uintptr(20)))
-	RT_ANICURSOR    = PWSTR(unsafe.Pointer(uintptr(21)))
-	RT_ANIICON      = PWSTR(unsafe.Pointer(uintptr(22)))
-	RT_HTML         = PWSTR(unsafe.Pointer(uintptr(23)))
-	IDC_ARROW       = PWSTR(unsafe.Pointer(uintptr(32512)))
-	IDC_IBEAM       = PWSTR(unsafe.Pointer(uintptr(32513)))
-	IDC_WAIT        = PWSTR(unsafe.Pointer(uintptr(32514)))
-	IDC_CROSS       = PWSTR(unsafe.Pointer(uintptr(32515)))
-	IDC_UPARROW     = PWSTR(unsafe.Pointer(uintptr(32516)))
-	IDC_SIZE        = PWSTR(unsafe.Pointer(uintptr(32640)))
-	IDC_ICON        = PWSTR(unsafe.Pointer(uintptr(32641)))
-	IDC_SIZENWSE    = PWSTR(unsafe.Pointer(uintptr(32642)))
-	IDC_SIZENESW    = PWSTR(unsafe.Pointer(uintptr(32643)))
-	IDC_SIZEWE      = PWSTR(unsafe.Pointer(uintptr(32644)))
-	IDC_SIZENS      = PWSTR(unsafe.Pointer(uintptr(32645)))
-	IDC_SIZEALL     = PWSTR(unsafe.Pointer(uintptr(32646)))
-	IDC_NO          = PWSTR(unsafe.Pointer(uintptr(32648)))
-	IDC_HAND        = PWSTR(unsafe.Pointer(uintptr(32649)))
-	IDC_APPSTARTING = PWSTR(unsafe.Pointer(uintptr(32650)))
-	IDC_HELP        = PWSTR(unsafe.Pointer(uintptr(32651)))
-	IDC_PIN         = PWSTR(unsafe.Pointer(uintptr(32671)))
-	IDC_PERSON      = PWSTR(unsafe.Pointer(uintptr(32672)))
+	RT_CURSOR       = PWSTR(unsafe.Pointer(uintptr(0x1)))
+	RT_BITMAP       = PWSTR(unsafe.Pointer(uintptr(0x2)))
+	RT_ICON         = PWSTR(unsafe.Pointer(uintptr(0x3)))
+	RT_MENU         = PWSTR(unsafe.Pointer(uintptr(0x4)))
+	RT_DIALOG       = PWSTR(unsafe.Pointer(uintptr(0x5)))
+	RT_FONTDIR      = PWSTR(unsafe.Pointer(uintptr(0x7)))
+	RT_FONT         = PWSTR(unsafe.Pointer(uintptr(0x8)))
+	RT_ACCELERATOR  = PWSTR(unsafe.Pointer(uintptr(0x9)))
+	RT_MESSAGETABLE = PWSTR(unsafe.Pointer(uintptr(0xb)))
+	RT_VERSION      = PWSTR(unsafe.Pointer(uintptr(0x10)))
+	RT_DLGINCLUDE   = PWSTR(unsafe.Pointer(uintptr(0x11)))
+	RT_PLUGPLAY     = PWSTR(unsafe.Pointer(uintptr(0x13)))
+	RT_VXD          = PWSTR(unsafe.Pointer(uintptr(0x14)))
+	RT_ANICURSOR    = PWSTR(unsafe.Pointer(uintptr(0x15)))
+	RT_ANIICON      = PWSTR(unsafe.Pointer(uintptr(0x16)))
+	RT_HTML         = PWSTR(unsafe.Pointer(uintptr(0x17)))
+	IDC_ARROW       = PWSTR(unsafe.Pointer(uintptr(0x7f00)))
+	IDC_IBEAM       = PWSTR(unsafe.Pointer(uintptr(0x7f01)))
+	IDC_WAIT        = PWSTR(unsafe.Pointer(uintptr(0x7f02)))
+	IDC_CROSS       = PWSTR(unsafe.Pointer(uintptr(0x7f03)))
+	IDC_UPARROW     = PWSTR(unsafe.Pointer(uintptr(0x7f04)))
+	IDC_SIZE        = PWSTR(unsafe.Pointer(uintptr(0x7f80)))
+	IDC_ICON        = PWSTR(unsafe.Pointer(uintptr(0x7f81)))
+	IDC_SIZENWSE    = PWSTR(unsafe.Pointer(uintptr(0x7f82)))
+	IDC_SIZENESW    = PWSTR(unsafe.Pointer(uintptr(0x7f83)))
+	IDC_SIZEWE      = PWSTR(unsafe.Pointer(uintptr(0x7f84)))
+	IDC_SIZENS      = PWSTR(unsafe.Pointer(uintptr(0x7f85)))
+	IDC_SIZEALL     = PWSTR(unsafe.Pointer(uintptr(0x7f86)))
+	IDC_NO          = PWSTR(unsafe.Pointer(uintptr(0x7f88)))
+	IDC_HAND        = PWSTR(unsafe.Pointer(uintptr(0x7f89)))
+	IDC_APPSTARTING = PWSTR(unsafe.Pointer(uintptr(0x7f8a)))
+	IDC_HELP        = PWSTR(unsafe.Pointer(uintptr(0x7f8b)))
+	IDC_PIN         = PWSTR(unsafe.Pointer(uintptr(0x7f9f)))
+	IDC_PERSON      = PWSTR(unsafe.Pointer(uintptr(0x7fa0)))
 	IDI_APPLICATION = PWSTR(unsafe.Pointer(uintptr(0x7f00)))
 	IDI_HAND        = PWSTR(unsafe.Pointer(uintptr(0x7f01)))
 	IDI_QUESTION    = PWSTR(unsafe.Pointer(uintptr(0x7f02)))
@@ -1331,6 +1373,110 @@ var (
 	IDI_ASTERISK    = PWSTR(unsafe.Pointer(uintptr(0x7f04)))
 	IDI_WINLOGO     = PWSTR(unsafe.Pointer(uintptr(0x7f05)))
 	IDI_SHIELD      = PWSTR(unsafe.Pointer(uintptr(0x7f06)))
+	IDI_WARNING     = PWSTR(unsafe.Pointer(uintptr(0x7f03)))
+	IDI_ERROR       = PWSTR(unsafe.Pointer(uintptr(0x7f01)))
+	IDI_INFORMATION = PWSTR(unsafe.Pointer(uintptr(0x7f04)))
+)
+
+var (
+	GUID_IO_VOLUME_CHANGE = syscall.GUID{0x7373654A, 0x812A, 0x11D0,
+		[8]byte{0xBE, 0xC7, 0x08, 0x00, 0x2B, 0xE2, 0x09, 0x2F}}
+
+	GUID_IO_VOLUME_DISMOUNT = syscall.GUID{0xD16A55E8, 0x1059, 0x11D2,
+		[8]byte{0x8F, 0xFD, 0x00, 0xA0, 0xC9, 0xA0, 0x6D, 0x32}}
+
+	GUID_IO_VOLUME_DISMOUNT_FAILED = syscall.GUID{0xE3C5B178, 0x105D, 0x11D2,
+		[8]byte{0x8F, 0xFD, 0x00, 0xA0, 0xC9, 0xA0, 0x6D, 0x32}}
+
+	GUID_IO_VOLUME_MOUNT = syscall.GUID{0xB5804878, 0x1A96, 0x11D2,
+		[8]byte{0x8F, 0xFD, 0x00, 0xA0, 0xC9, 0xA0, 0x6D, 0x32}}
+
+	GUID_IO_VOLUME_LOCK = syscall.GUID{0x50708874, 0xC9AF, 0x11D1,
+		[8]byte{0x8F, 0xEF, 0x00, 0xA0, 0xC9, 0xA0, 0x6D, 0x32}}
+
+	GUID_IO_VOLUME_LOCK_FAILED = syscall.GUID{0xAE2EED10, 0x0BA8, 0x11D2,
+		[8]byte{0x8F, 0xFB, 0x00, 0xA0, 0xC9, 0xA0, 0x6D, 0x32}}
+
+	GUID_IO_VOLUME_UNLOCK = syscall.GUID{0x9A8C3D68, 0xD0CB, 0x11D1,
+		[8]byte{0x8F, 0xEF, 0x00, 0xA0, 0xC9, 0xA0, 0x6D, 0x32}}
+
+	GUID_IO_VOLUME_NAME_CHANGE = syscall.GUID{0x2DE97F83, 0x4C06, 0x11D2,
+		[8]byte{0xA5, 0x32, 0x00, 0x60, 0x97, 0x13, 0x05, 0x5A}}
+
+	GUID_IO_VOLUME_NEED_CHKDSK = syscall.GUID{0x799A0960, 0x0A0B, 0x4E03,
+		[8]byte{0xAD, 0x88, 0x2F, 0xA7, 0xC6, 0xCE, 0x74, 0x8A}}
+
+	GUID_IO_VOLUME_WORM_NEAR_FULL = syscall.GUID{0xF3BFFF82, 0xF3DE, 0x48D2,
+		[8]byte{0xAF, 0x95, 0x45, 0x7F, 0x80, 0xB7, 0x63, 0xF2}}
+
+	GUID_IO_VOLUME_WEARING_OUT = syscall.GUID{0x873113CA, 0x1486, 0x4508,
+		[8]byte{0x82, 0xAC, 0xC3, 0xB2, 0xE5, 0x29, 0x7A, 0xAA}}
+
+	GUID_IO_VOLUME_FORCE_CLOSED = syscall.GUID{0x411AD84F, 0x433E, 0x4DC2,
+		[8]byte{0xA5, 0xAE, 0x4A, 0x2D, 0x1A, 0x2D, 0xE6, 0x54}}
+
+	GUID_IO_VOLUME_INFO_MAKE_COMPAT = syscall.GUID{0x3AB9A0D2, 0xEF80, 0x45CF,
+		[8]byte{0x8C, 0xDC, 0xCB, 0xE0, 0x2A, 0x21, 0x29, 0x06}}
+
+	GUID_IO_VOLUME_PREPARING_EJECT = syscall.GUID{0xC79EB16E, 0x0DAC, 0x4E7A,
+		[8]byte{0xA8, 0x6C, 0xB2, 0x5C, 0xEE, 0xAA, 0x88, 0xF6}}
+
+	GUID_IO_VOLUME_BACKGROUND_FORMAT = syscall.GUID{0xA2E5FC86, 0xD5CD, 0x4038,
+		[8]byte{0xB2, 0xE3, 0x44, 0x45, 0x06, 0x5C, 0x23, 0x77}}
+
+	GUID_IO_VOLUME_PHYSICAL_CONFIGURATION_CHANGE = syscall.GUID{0x2DE97F84, 0x4C06, 0x11D2,
+		[8]byte{0xA5, 0x32, 0x00, 0x60, 0x97, 0x13, 0x05, 0x5A}}
+
+	GUID_IO_VOLUME_UNIQUE_ID_CHANGE = syscall.GUID{0xAF39DA42, 0x6622, 0x41F5,
+		[8]byte{0x97, 0x0B, 0x13, 0x9D, 0x09, 0x2F, 0xA3, 0xD9}}
+
+	GUID_IO_VOLUME_FVE_STATUS_CHANGE = syscall.GUID{0x062998B2, 0xEE1F, 0x4B6A,
+		[8]byte{0xB8, 0x57, 0xE7, 0x6C, 0xBB, 0xE9, 0xA6, 0xDA}}
+
+	GUID_IO_VOLUME_DEVICE_INTERFACE = syscall.GUID{0x53F5630D, 0xB6BF, 0x11D0,
+		[8]byte{0x94, 0xF2, 0x00, 0xA0, 0xC9, 0x1E, 0xFB, 0x8B}}
+
+	GUID_IO_VOLUME_CHANGE_SIZE = syscall.GUID{0x3A1625BE, 0xAD03, 0x49F1,
+		[8]byte{0x8E, 0xF8, 0x6B, 0xBA, 0xC1, 0x82, 0xD1, 0xFD}}
+
+	GUID_IO_MEDIA_ARRIVAL = syscall.GUID{0xD07433C0, 0xA98E, 0x11D2,
+		[8]byte{0x91, 0x7A, 0x00, 0xA0, 0xC9, 0x06, 0x8F, 0xF3}}
+
+	GUID_IO_MEDIA_REMOVAL = syscall.GUID{0xD07433C1, 0xA98E, 0x11D2,
+		[8]byte{0x91, 0x7A, 0x00, 0xA0, 0xC9, 0x06, 0x8F, 0xF3}}
+
+	GUID_IO_CDROM_EXCLUSIVE_LOCK = syscall.GUID{0xBC56C139, 0x7A10, 0x47EE,
+		[8]byte{0xA2, 0x94, 0x4C, 0x6A, 0x38, 0xF0, 0x14, 0x9A}}
+
+	GUID_IO_CDROM_EXCLUSIVE_UNLOCK = syscall.GUID{0xA3B6D27D, 0x5E35, 0x4885,
+		[8]byte{0x81, 0xE5, 0xEE, 0x18, 0xC0, 0x0E, 0xD7, 0x79}}
+
+	GUID_IO_DEVICE_BECOMING_READY = syscall.GUID{0xD07433F0, 0xA98E, 0x11D2,
+		[8]byte{0x91, 0x7A, 0x00, 0xA0, 0xC9, 0x06, 0x8F, 0xF3}}
+
+	GUID_IO_DEVICE_EXTERNAL_REQUEST = syscall.GUID{0xD07433D0, 0xA98E, 0x11D2,
+		[8]byte{0x91, 0x7A, 0x00, 0xA0, 0xC9, 0x06, 0x8F, 0xF3}}
+
+	GUID_IO_MEDIA_EJECT_REQUEST = syscall.GUID{0xD07433D1, 0xA98E, 0x11D2,
+		[8]byte{0x91, 0x7A, 0x00, 0xA0, 0xC9, 0x06, 0x8F, 0xF3}}
+
+	GUID_IO_DRIVE_REQUIRES_CLEANING = syscall.GUID{0x7207877C, 0x90ED, 0x44E5,
+		[8]byte{0xA0, 0x00, 0x81, 0x42, 0x8D, 0x4C, 0x79, 0xBB}}
+
+	GUID_IO_TAPE_ERASE = syscall.GUID{0x852D11EB, 0x4BB8, 0x4507,
+		[8]byte{0x9D, 0x9B, 0x41, 0x7C, 0xC2, 0xB1, 0xB4, 0x38}}
+
+	GUID_DEVICE_EVENT_RBC = syscall.GUID{0xD0744792, 0xA98E, 0x11D2,
+		[8]byte{0x91, 0x7A, 0x00, 0xA0, 0xC9, 0x06, 0x8F, 0xF3}}
+
+	GUID_IO_DISK_CLONE_ARRIVAL = syscall.GUID{0x6A61885B, 0x7C39, 0x43DD,
+		[8]byte{0x9B, 0x56, 0xB8, 0xAC, 0x22, 0xA5, 0x49, 0xAA}}
+
+	GUID_IO_DISK_LAYOUT_CHANGE = syscall.GUID{0x11DFF54C, 0x8469, 0x41F9,
+		[8]byte{0xB3, 0xDE, 0xEF, 0x83, 0x64, 0x87, 0xC5, 0x4A}}
+
+	GUID_IO_DISK_HEALTH_NOTIFICATION = syscall.GUID{0x0F1BD644, 0x3916, 0x49C5,
+		[8]byte{0xB0, 0x63, 0x99, 0x19, 0x40, 0x11, 0x8F, 0xB2}}
 )
 
 // enums
@@ -1446,33 +1592,45 @@ const (
 )
 
 // enum
-// flags
-type SHOW_WINDOW_CMD uint32
+type SHOW_WINDOW_CMD int32
 
 const (
-	SW_FORCEMINIMIZE   SHOW_WINDOW_CMD = 11
 	SW_HIDE            SHOW_WINDOW_CMD = 0
-	SW_MAXIMIZE        SHOW_WINDOW_CMD = 3
-	SW_MINIMIZE        SHOW_WINDOW_CMD = 6
-	SW_RESTORE         SHOW_WINDOW_CMD = 9
-	SW_SHOW            SHOW_WINDOW_CMD = 5
-	SW_SHOWDEFAULT     SHOW_WINDOW_CMD = 10
-	SW_SHOWMAXIMIZED   SHOW_WINDOW_CMD = 3
-	SW_SHOWMINIMIZED   SHOW_WINDOW_CMD = 2
-	SW_SHOWMINNOACTIVE SHOW_WINDOW_CMD = 7
-	SW_SHOWNA          SHOW_WINDOW_CMD = 8
-	SW_SHOWNOACTIVATE  SHOW_WINDOW_CMD = 4
 	SW_SHOWNORMAL      SHOW_WINDOW_CMD = 1
 	SW_NORMAL          SHOW_WINDOW_CMD = 1
+	SW_SHOWMINIMIZED   SHOW_WINDOW_CMD = 2
+	SW_SHOWMAXIMIZED   SHOW_WINDOW_CMD = 3
+	SW_MAXIMIZE        SHOW_WINDOW_CMD = 3
+	SW_SHOWNOACTIVATE  SHOW_WINDOW_CMD = 4
+	SW_SHOW            SHOW_WINDOW_CMD = 5
+	SW_MINIMIZE        SHOW_WINDOW_CMD = 6
+	SW_SHOWMINNOACTIVE SHOW_WINDOW_CMD = 7
+	SW_SHOWNA          SHOW_WINDOW_CMD = 8
+	SW_RESTORE         SHOW_WINDOW_CMD = 9
+	SW_SHOWDEFAULT     SHOW_WINDOW_CMD = 10
+	SW_FORCEMINIMIZE   SHOW_WINDOW_CMD = 11
 	SW_MAX             SHOW_WINDOW_CMD = 11
-	SW_PARENTCLOSING   SHOW_WINDOW_CMD = 1
-	SW_OTHERZOOM       SHOW_WINDOW_CMD = 2
-	SW_PARENTOPENING   SHOW_WINDOW_CMD = 3
-	SW_OTHERUNZOOM     SHOW_WINDOW_CMD = 4
-	SW_SCROLLCHILDREN  SHOW_WINDOW_CMD = 1
-	SW_INVALIDATE      SHOW_WINDOW_CMD = 2
-	SW_ERASE           SHOW_WINDOW_CMD = 4
-	SW_SMOOTHSCROLL    SHOW_WINDOW_CMD = 16
+)
+
+// enum
+type SHOW_WINDOW_STATUS uint32
+
+const (
+	SW_PARENTCLOSING SHOW_WINDOW_STATUS = 1
+	SW_OTHERZOOM     SHOW_WINDOW_STATUS = 2
+	SW_PARENTOPENING SHOW_WINDOW_STATUS = 3
+	SW_OTHERUNZOOM   SHOW_WINDOW_STATUS = 4
+)
+
+// enum
+// flags
+type SCROLL_WINDOW_FLAGS uint32
+
+const (
+	SW_SCROLLCHILDREN SCROLL_WINDOW_FLAGS = 1
+	SW_INVALIDATE     SCROLL_WINDOW_FLAGS = 2
+	SW_ERASE          SCROLL_WINDOW_FLAGS = 4
+	SW_SMOOTHSCROLL   SCROLL_WINDOW_FLAGS = 16
 )
 
 // enum
@@ -1891,7 +2049,7 @@ const (
 
 // enum
 // flags
-type SCROLLBAR_CONSTANTS uint32
+type SCROLLBAR_CONSTANTS int32
 
 const (
 	SB_CTL  SCROLLBAR_CONSTANTS = 2
@@ -2090,6 +2248,16 @@ const (
 )
 
 // enum
+type REGISTER_NOTIFICATION_FLAGS uint32
+
+const (
+	DEVICE_NOTIFY_SERVICE_HANDLE        REGISTER_NOTIFICATION_FLAGS = 1
+	DEVICE_NOTIFY_CALLBACK              REGISTER_NOTIFICATION_FLAGS = 2
+	DEVICE_NOTIFY_WINDOW_HANDLE         REGISTER_NOTIFICATION_FLAGS = 0
+	DEVICE_NOTIFY_ALL_INTERFACE_CLASSES REGISTER_NOTIFICATION_FLAGS = 4
+)
+
+// enum
 type SYSTEM_CURSOR_ID uint32
 
 const (
@@ -2158,7 +2326,7 @@ const (
 )
 
 // enum
-type SYSTEM_METRICS_INDEX uint32
+type SYSTEM_METRICS_INDEX int32
 
 const (
 	SM_ARRANGE                     SYSTEM_METRICS_INDEX = 56
@@ -2403,6 +2571,17 @@ const (
 )
 
 // enum
+type DEV_BROADCAST_HDR_DEVICE_TYPE uint32
+
+const (
+	DBT_DEVTYP_DEVICEINTERFACE DEV_BROADCAST_HDR_DEVICE_TYPE = 5
+	DBT_DEVTYP_HANDLE          DEV_BROADCAST_HDR_DEVICE_TYPE = 6
+	DBT_DEVTYP_OEM             DEV_BROADCAST_HDR_DEVICE_TYPE = 0
+	DBT_DEVTYP_PORT            DEV_BROADCAST_HDR_DEVICE_TYPE = 3
+	DBT_DEVTYP_VOLUME          DEV_BROADCAST_HDR_DEVICE_TYPE = 2
+)
+
+// enum
 type MINIMIZEDMETRICS_ARRANGE int32
 
 const (
@@ -2410,6 +2589,14 @@ const (
 	ARW_BOTTOMRIGHT MINIMIZEDMETRICS_ARRANGE = 1
 	ARW_TOPLEFT     MINIMIZEDMETRICS_ARRANGE = 2
 	ARW_TOPRIGHT    MINIMIZEDMETRICS_ARRANGE = 3
+)
+
+// enum
+type DEV_BROADCAST_VOLUME_FLAGS uint16
+
+const (
+	DBTF_MEDIA DEV_BROADCAST_VOLUME_FLAGS = 1
+	DBTF_NET   DEV_BROADCAST_VOLUME_FLAGS = 2
 )
 
 // enum
@@ -2528,6 +2715,14 @@ type HANDEDNESS int32
 const (
 	HANDEDNESS_LEFT  HANDEDNESS = 0
 	HANDEDNESS_RIGHT HANDEDNESS = 1
+)
+
+// enum
+type TOOLTIP_DISMISS_FLAGS int32
+
+const (
+	TDF_REGISTER   TOOLTIP_DISMISS_FLAGS = 1
+	TDF_UNREGISTER TOOLTIP_DISMISS_FLAGS = 2
 )
 
 // enum
@@ -2827,7 +3022,7 @@ type CREATESTRUCTW struct {
 type WINDOWPLACEMENT struct {
 	Length           uint32
 	Flags            WINDOWPLACEMENT_FLAGS
-	ShowCmd          SHOW_WINDOW_CMD
+	ShowCmd          uint32
 	PtMinPosition    POINT
 	PtMaxPosition    POINT
 	RcNormalPosition RECT
@@ -2877,6 +3072,12 @@ type DLGITEMTEMPLATE struct {
 	Cx              int16
 	Cy              int16
 	Id              uint16
+}
+
+type GETCLIPBMETADATA struct {
+	Version         uint32
+	IsDelayRendered BOOL
+	IsSynthetic     BOOL
 }
 
 type TPMPARAMS struct {
@@ -3225,6 +3426,54 @@ type CHANGEFILTERSTRUCT struct {
 	ExtStatus MSGFLTINFO_STATUS
 }
 
+type MENUEX_TEMPLATE_HEADER struct {
+	WVersion uint16
+	WOffset  uint16
+	DwHelpId uint32
+}
+
+type MENUEX_TEMPLATE_ITEM struct {
+	DwType  uint32
+	DwState uint32
+	UId     uint32
+	WFlags  uint16
+	SzText  [1]uint16
+}
+
+type MENUTEMPLATEEX_Anonymous_Menu struct {
+	MitHeader  MENUITEMTEMPLATEHEADER
+	MiTemplate [1]MENUITEMTEMPLATE
+}
+
+type MENUTEMPLATEEX_Anonymous_MenuEx struct {
+	MexHeader MENUEX_TEMPLATE_HEADER
+	MexItem   [1]MENUEX_TEMPLATE_ITEM
+}
+
+type MENUTEMPLATEEX_Anonymous struct {
+	Data [6]uint32
+}
+
+func (this *MENUTEMPLATEEX_Anonymous) Menu() *MENUTEMPLATEEX_Anonymous_Menu {
+	return (*MENUTEMPLATEEX_Anonymous_Menu)(unsafe.Pointer(this))
+}
+
+func (this *MENUTEMPLATEEX_Anonymous) MenuVal() MENUTEMPLATEEX_Anonymous_Menu {
+	return *(*MENUTEMPLATEEX_Anonymous_Menu)(unsafe.Pointer(this))
+}
+
+func (this *MENUTEMPLATEEX_Anonymous) MenuEx() *MENUTEMPLATEEX_Anonymous_MenuEx {
+	return (*MENUTEMPLATEEX_Anonymous_MenuEx)(unsafe.Pointer(this))
+}
+
+func (this *MENUTEMPLATEEX_Anonymous) MenuExVal() MENUTEMPLATEEX_Anonymous_MenuEx {
+	return *(*MENUTEMPLATEEX_Anonymous_MenuEx)(unsafe.Pointer(this))
+}
+
+type MENUTEMPLATEEX struct {
+	MENUTEMPLATEEX_Anonymous
+}
+
 type IndexedResourceQualifier struct {
 	Name  PWSTR
 	Value PWSTR
@@ -3238,6 +3487,170 @@ type MrmResourceIndexerMessage struct {
 	Severity MrmResourceIndexerMessageSeverity
 	Id       uint32
 	Text     PWSTR
+}
+
+type DEV_BROADCAST_HDR struct {
+	Dbch_size       uint32
+	Dbch_devicetype DEV_BROADCAST_HDR_DEVICE_TYPE
+	Dbch_reserved   uint32
+}
+
+type VolLockBroadcast struct {
+	Vlb_dbh      DEV_BROADCAST_HDR
+	Vlb_owner    uint32
+	Vlb_perms    byte
+	Vlb_lockType byte
+	Vlb_drive    byte
+	Vlb_flags    byte
+}
+
+type DEV_BROADCAST_HEADER_ struct {
+	Dbcd_size       uint32
+	Dbcd_devicetype uint32
+	Dbcd_reserved   uint32
+}
+
+type DEV_BROADCAST_OEM struct {
+	Dbco_size       uint32
+	Dbco_devicetype uint32
+	Dbco_reserved   uint32
+	Dbco_identifier uint32
+	Dbco_suppfunc   uint32
+}
+
+type DEV_BROADCAST_DEVNODE struct {
+	Dbcd_size       uint32
+	Dbcd_devicetype uint32
+	Dbcd_reserved   uint32
+	Dbcd_devnode    uint32
+}
+
+type DEV_BROADCAST_VOLUME struct {
+	Dbcv_size       uint32
+	Dbcv_devicetype uint32
+	Dbcv_reserved   uint32
+	Dbcv_unitmask   uint32
+	Dbcv_flags      DEV_BROADCAST_VOLUME_FLAGS
+}
+
+type DEV_BROADCAST_PORT_A struct {
+	Dbcp_size       uint32
+	Dbcp_devicetype uint32
+	Dbcp_reserved   uint32
+	Dbcp_name       [1]CHAR
+}
+
+type DEV_BROADCAST_PORT_ = DEV_BROADCAST_PORT_W
+type DEV_BROADCAST_PORT_W struct {
+	Dbcp_size       uint32
+	Dbcp_devicetype uint32
+	Dbcp_reserved   uint32
+	Dbcp_name       [1]uint16
+}
+
+type DEV_BROADCAST_NET struct {
+	Dbcn_size       uint32
+	Dbcn_devicetype uint32
+	Dbcn_reserved   uint32
+	Dbcn_resource   uint32
+	Dbcn_flags      uint32
+}
+
+type DEV_BROADCAST_DEVICEINTERFACE_A struct {
+	Dbcc_size       uint32
+	Dbcc_devicetype uint32
+	Dbcc_reserved   uint32
+	Dbcc_classguid  syscall.GUID
+	Dbcc_name       [1]CHAR
+}
+
+type DEV_BROADCAST_DEVICEINTERFACE_ = DEV_BROADCAST_DEVICEINTERFACE_W
+type DEV_BROADCAST_DEVICEINTERFACE_W struct {
+	Dbcc_size       uint32
+	Dbcc_devicetype uint32
+	Dbcc_reserved   uint32
+	Dbcc_classguid  syscall.GUID
+	Dbcc_name       [1]uint16
+}
+
+type DEV_BROADCAST_HANDLE struct {
+	Dbch_size       uint32
+	Dbch_devicetype uint32
+	Dbch_reserved   uint32
+	Dbch_handle     HANDLE
+	Dbch_hdevnotify HDEVNOTIFY
+	Dbch_eventguid  syscall.GUID
+	Dbch_nameoffset int32
+	Dbch_data       [1]byte
+}
+
+type DEV_BROADCAST_HANDLE32 struct {
+	Dbch_size       uint32
+	Dbch_devicetype uint32
+	Dbch_reserved   uint32
+	Dbch_handle     uint32
+	Dbch_hdevnotify uint32
+	Dbch_eventguid  syscall.GUID
+	Dbch_nameoffset int32
+	Dbch_data       [1]byte
+}
+
+type DEV_BROADCAST_HANDLE64 struct {
+	Dbch_size       uint32
+	Dbch_devicetype uint32
+	Dbch_reserved   uint32
+	Dbch_handle     uint64
+	Dbch_hdevnotify uint64
+	Dbch_eventguid  syscall.GUID
+	Dbch_nameoffset int32
+	Dbch_data       [1]byte
+}
+
+type DEV_BROADCAST_USERDEFINED_ struct {
+	Dbud_dbh    DEV_BROADCAST_HDR
+	Dbud_szName [1]CHAR
+}
+
+type DEVICE_EVENT_MOUNT struct {
+	Version              uint32
+	Flags                uint32
+	FileSystemNameLength uint32
+	FileSystemNameOffset uint32
+}
+
+type DEVICE_EVENT_BECOMING_READY struct {
+	Version               uint32
+	Reason                uint32
+	Estimated100msToReady uint32
+}
+
+type DEVICE_EVENT_EXTERNAL_REQUEST struct {
+	Version      uint32
+	DeviceClass  uint32
+	ButtonStatus uint16
+	Request      uint16
+	SystemTime   int64
+}
+
+type DEVICE_EVENT_GENERIC_DATA struct {
+	EventNumber uint32
+}
+
+type DEVICE_EVENT_RBC_DATA struct {
+	EventNumber    uint32
+	SenseQualifier byte
+	SenseCode      byte
+	SenseKey       byte
+	Reserved       byte
+	Information    uint32
+}
+
+type GUID_IO_DISK_CLONE_ARRIVAL_INFORMATION struct {
+	DiskNumber uint32
+}
+
+type DISK_HEALTH_NOTIFICATION_DATA struct {
+	DeviceGuid syscall.GUID
 }
 
 // func types
@@ -3285,391 +3698,394 @@ type MSGBOXCALLBACK = uintptr
 type MSGBOXCALLBACK_func = func(lpHelpInfo *HELPINFO)
 
 var (
-	pLoadStringA                   uintptr
-	pLoadStringW                   uintptr
-	pGetWindowLongPtrA             uintptr
-	pGetWindowLongPtrW             uintptr
-	pSetWindowLongPtrA             uintptr
-	pSetWindowLongPtrW             uintptr
-	pGetClassLongPtrA              uintptr
-	pGetClassLongPtrW              uintptr
-	pSetClassLongPtrA              uintptr
-	pSetClassLongPtrW              uintptr
-	pWvsprintfA                    uintptr
-	pWvsprintfW                    uintptr
-	pWsprintfA                     uintptr
-	pWsprintfW                     uintptr
-	pIsHungAppWindow               uintptr
-	pDisableProcessWindowsGhosting uintptr
-	pRegisterWindowMessageA        uintptr
-	pRegisterWindowMessageW        uintptr
-	pGetMessageA                   uintptr
-	pGetMessageW                   uintptr
-	pTranslateMessage              uintptr
-	pDispatchMessageA              uintptr
-	pDispatchMessageW              uintptr
-	pSetMessageQueue               uintptr
-	pPeekMessageA                  uintptr
-	pPeekMessageW                  uintptr
-	pGetMessagePos                 uintptr
-	pGetMessageTime                uintptr
-	pGetMessageExtraInfo           uintptr
-	pIsWow64Message                uintptr
-	pSetMessageExtraInfo           uintptr
-	pSendMessageA                  uintptr
-	pSendMessageW                  uintptr
-	pSendMessageTimeoutA           uintptr
-	pSendMessageTimeoutW           uintptr
-	pSendNotifyMessageA            uintptr
-	pSendNotifyMessageW            uintptr
-	pSendMessageCallbackA          uintptr
-	pSendMessageCallbackW          uintptr
-	pRegisterDeviceNotificationA   uintptr
-	pRegisterDeviceNotificationW   uintptr
-	pPostMessageA                  uintptr
-	pPostMessageW                  uintptr
-	pPostThreadMessageA            uintptr
-	pPostThreadMessageW            uintptr
-	pReplyMessage                  uintptr
-	pWaitMessage                   uintptr
-	pDefWindowProcA                uintptr
-	pDefWindowProcW                uintptr
-	pPostQuitMessage               uintptr
-	pCallWindowProcA               uintptr
-	pCallWindowProcW               uintptr
-	pInSendMessage                 uintptr
-	pInSendMessageEx               uintptr
-	pRegisterClassA                uintptr
-	pRegisterClassW                uintptr
-	pUnregisterClassA              uintptr
-	pUnregisterClassW              uintptr
-	pGetClassInfoA                 uintptr
-	pGetClassInfoW                 uintptr
-	pRegisterClassExA              uintptr
-	pRegisterClassExW              uintptr
-	pGetClassInfoExA               uintptr
-	pGetClassInfoExW               uintptr
-	pCreateWindowExA               uintptr
-	pCreateWindowExW               uintptr
-	pIsWindow                      uintptr
-	pIsMenu                        uintptr
-	pIsChild                       uintptr
-	pDestroyWindow                 uintptr
-	pShowWindow                    uintptr
-	pAnimateWindow                 uintptr
-	pUpdateLayeredWindow           uintptr
-	pUpdateLayeredWindowIndirect   uintptr
-	pGetLayeredWindowAttributes    uintptr
-	pSetLayeredWindowAttributes    uintptr
-	pShowWindowAsync               uintptr
-	pFlashWindow                   uintptr
-	pFlashWindowEx                 uintptr
-	pShowOwnedPopups               uintptr
-	pOpenIcon                      uintptr
-	pCloseWindow                   uintptr
-	pMoveWindow                    uintptr
-	pSetWindowPos                  uintptr
-	pGetWindowPlacement            uintptr
-	pSetWindowPlacement            uintptr
-	pGetWindowDisplayAffinity      uintptr
-	pSetWindowDisplayAffinity      uintptr
-	pBeginDeferWindowPos           uintptr
-	pDeferWindowPos                uintptr
-	pEndDeferWindowPos             uintptr
-	pIsWindowVisible               uintptr
-	pIsIconic                      uintptr
-	pAnyPopup                      uintptr
-	pBringWindowToTop              uintptr
-	pIsZoomed                      uintptr
-	pCreateDialogParamA            uintptr
-	pCreateDialogParamW            uintptr
-	pCreateDialogIndirectParamA    uintptr
-	pCreateDialogIndirectParamW    uintptr
-	pDialogBoxParamA               uintptr
-	pDialogBoxParamW               uintptr
-	pDialogBoxIndirectParamA       uintptr
-	pDialogBoxIndirectParamW       uintptr
-	pEndDialog                     uintptr
-	pGetDlgItem                    uintptr
-	pSetDlgItemInt                 uintptr
-	pGetDlgItemInt                 uintptr
-	pSetDlgItemTextA               uintptr
-	pSetDlgItemTextW               uintptr
-	pGetDlgItemTextA               uintptr
-	pGetDlgItemTextW               uintptr
-	pSendDlgItemMessageA           uintptr
-	pSendDlgItemMessageW           uintptr
-	pGetNextDlgGroupItem           uintptr
-	pGetNextDlgTabItem             uintptr
-	pGetDlgCtrlID                  uintptr
-	pGetDialogBaseUnits            uintptr
-	pDefDlgProcA                   uintptr
-	pDefDlgProcW                   uintptr
-	pCallMsgFilterA                uintptr
-	pCallMsgFilterW                uintptr
-	pCharToOemA                    uintptr
-	pCharToOemW                    uintptr
-	pOemToCharA                    uintptr
-	pOemToCharW                    uintptr
-	pCharToOemBuffA                uintptr
-	pCharToOemBuffW                uintptr
-	pOemToCharBuffA                uintptr
-	pOemToCharBuffW                uintptr
-	pCharUpperA                    uintptr
-	pCharUpperW                    uintptr
-	pCharUpperBuffA                uintptr
-	pCharUpperBuffW                uintptr
-	pCharLowerA                    uintptr
-	pCharLowerW                    uintptr
-	pCharLowerBuffA                uintptr
-	pCharLowerBuffW                uintptr
-	pCharNextA                     uintptr
-	pCharNextW                     uintptr
-	pCharPrevA                     uintptr
-	pCharPrevW                     uintptr
-	pCharNextExA                   uintptr
-	pCharPrevExA                   uintptr
-	pIsCharAlphaA                  uintptr
-	pIsCharAlphaW                  uintptr
-	pIsCharAlphaNumericA           uintptr
-	pIsCharAlphaNumericW           uintptr
-	pIsCharUpperA                  uintptr
-	pIsCharUpperW                  uintptr
-	pIsCharLowerA                  uintptr
-	pGetInputState                 uintptr
-	pGetQueueStatus                uintptr
-	pMsgWaitForMultipleObjects     uintptr
-	pMsgWaitForMultipleObjectsEx   uintptr
-	pSetTimer                      uintptr
-	pSetCoalescableTimer           uintptr
-	pKillTimer                     uintptr
-	pIsWindowUnicode               uintptr
-	pLoadAcceleratorsA             uintptr
-	pLoadAcceleratorsW             uintptr
-	pCreateAcceleratorTableA       uintptr
-	pCreateAcceleratorTableW       uintptr
-	pDestroyAcceleratorTable       uintptr
-	pCopyAcceleratorTableA         uintptr
-	pCopyAcceleratorTableW         uintptr
-	pTranslateAcceleratorA         uintptr
-	pTranslateAcceleratorW         uintptr
-	pGetSystemMetrics              uintptr
-	pLoadMenuA                     uintptr
-	pLoadMenuW                     uintptr
-	pLoadMenuIndirectA             uintptr
-	pLoadMenuIndirectW             uintptr
-	pGetMenu                       uintptr
-	pSetMenu                       uintptr
-	pChangeMenuA                   uintptr
-	pChangeMenuW                   uintptr
-	pHiliteMenuItem                uintptr
-	pGetMenuStringA                uintptr
-	pGetMenuStringW                uintptr
-	pGetMenuState                  uintptr
-	pDrawMenuBar                   uintptr
-	pGetSystemMenu                 uintptr
-	pCreateMenu                    uintptr
-	pCreatePopupMenu               uintptr
-	pDestroyMenu                   uintptr
-	pCheckMenuItem                 uintptr
-	pEnableMenuItem                uintptr
-	pGetSubMenu                    uintptr
-	pGetMenuItemID                 uintptr
-	pGetMenuItemCount              uintptr
-	pInsertMenuA                   uintptr
-	pInsertMenuW                   uintptr
-	pAppendMenuA                   uintptr
-	pAppendMenuW                   uintptr
-	pModifyMenuA                   uintptr
-	pModifyMenuW                   uintptr
-	pRemoveMenu                    uintptr
-	pDeleteMenu                    uintptr
-	pSetMenuItemBitmaps            uintptr
-	pGetMenuCheckMarkDimensions    uintptr
-	pTrackPopupMenu                uintptr
-	pTrackPopupMenuEx              uintptr
-	pCalculatePopupWindowPosition  uintptr
-	pGetMenuInfo                   uintptr
-	pSetMenuInfo                   uintptr
-	pEndMenu                       uintptr
-	pInsertMenuItemA               uintptr
-	pInsertMenuItemW               uintptr
-	pGetMenuItemInfoA              uintptr
-	pGetMenuItemInfoW              uintptr
-	pSetMenuItemInfoA              uintptr
-	pSetMenuItemInfoW              uintptr
-	pGetMenuDefaultItem            uintptr
-	pSetMenuDefaultItem            uintptr
-	pGetMenuItemRect               uintptr
-	pMenuItemFromPoint             uintptr
-	pDragObject                    uintptr
-	pDrawIcon                      uintptr
-	pGetForegroundWindow           uintptr
-	pSwitchToThisWindow            uintptr
-	pSetForegroundWindow           uintptr
-	pAllowSetForegroundWindow      uintptr
-	pLockSetForegroundWindow       uintptr
-	pScrollWindow                  uintptr
-	pScrollDC                      uintptr
-	pScrollWindowEx                uintptr
-	pGetScrollPos                  uintptr
-	pGetScrollRange                uintptr
-	pSetPropA                      uintptr
-	pSetPropW                      uintptr
-	pGetPropA                      uintptr
-	pGetPropW                      uintptr
-	pRemovePropA                   uintptr
-	pRemovePropW                   uintptr
-	pEnumPropsExA                  uintptr
-	pEnumPropsExW                  uintptr
-	pEnumPropsA                    uintptr
-	pEnumPropsW                    uintptr
-	pSetWindowTextA                uintptr
-	pSetWindowTextW                uintptr
-	pGetWindowTextA                uintptr
-	pGetWindowTextW                uintptr
-	pGetWindowTextLengthA          uintptr
-	pGetWindowTextLengthW          uintptr
-	pGetClientRect                 uintptr
-	pGetWindowRect                 uintptr
-	pAdjustWindowRect              uintptr
-	pAdjustWindowRectEx            uintptr
-	pMessageBoxA                   uintptr
-	pMessageBoxW                   uintptr
-	pMessageBoxExA                 uintptr
-	pMessageBoxExW                 uintptr
-	pMessageBoxIndirectA           uintptr
-	pMessageBoxIndirectW           uintptr
-	pShowCursor                    uintptr
-	pSetCursorPos                  uintptr
-	pSetPhysicalCursorPos          uintptr
-	pSetCursor                     uintptr
-	pGetCursorPos                  uintptr
-	pGetPhysicalCursorPos          uintptr
-	pGetClipCursor                 uintptr
-	pGetCursor                     uintptr
-	pCreateCaret                   uintptr
-	pGetCaretBlinkTime             uintptr
-	pSetCaretBlinkTime             uintptr
-	pDestroyCaret                  uintptr
-	pHideCaret                     uintptr
-	pShowCaret                     uintptr
-	pSetCaretPos                   uintptr
-	pGetCaretPos                   uintptr
-	pLogicalToPhysicalPoint        uintptr
-	pPhysicalToLogicalPoint        uintptr
-	pWindowFromPoint               uintptr
-	pWindowFromPhysicalPoint       uintptr
-	pChildWindowFromPoint          uintptr
-	pClipCursor                    uintptr
-	pChildWindowFromPointEx        uintptr
-	pGetWindowWord                 uintptr
-	pSetWindowWord                 uintptr
-	pGetWindowLongA                uintptr
-	pGetWindowLongW                uintptr
-	pSetWindowLongA                uintptr
-	pSetWindowLongW                uintptr
-	pGetClassWord                  uintptr
-	pSetClassWord                  uintptr
-	pGetClassLongA                 uintptr
-	pGetClassLongW                 uintptr
-	pSetClassLongA                 uintptr
-	pSetClassLongW                 uintptr
-	pGetProcessDefaultLayout       uintptr
-	pSetProcessDefaultLayout       uintptr
-	pGetDesktopWindow              uintptr
-	pGetParent                     uintptr
-	pSetParent                     uintptr
-	pEnumChildWindows              uintptr
-	pFindWindowA                   uintptr
-	pFindWindowW                   uintptr
-	pFindWindowExA                 uintptr
-	pFindWindowExW                 uintptr
-	pGetShellWindow                uintptr
-	pRegisterShellHookWindow       uintptr
-	pDeregisterShellHookWindow     uintptr
-	pEnumWindows                   uintptr
-	pEnumThreadWindows             uintptr
-	pGetClassNameA                 uintptr
-	pGetClassNameW                 uintptr
-	pGetTopWindow                  uintptr
-	pGetWindowThreadProcessId      uintptr
-	pIsGUIThread                   uintptr
-	pGetLastActivePopup            uintptr
-	pGetWindow                     uintptr
-	pSetWindowsHookA               uintptr
-	pSetWindowsHookW               uintptr
-	pUnhookWindowsHook             uintptr
-	pSetWindowsHookExA             uintptr
-	pSetWindowsHookExW             uintptr
-	pUnhookWindowsHookEx           uintptr
-	pCallNextHookEx                uintptr
-	pCheckMenuRadioItem            uintptr
-	pLoadCursorA                   uintptr
-	pLoadCursorW                   uintptr
-	pLoadCursorFromFileA           uintptr
-	pLoadCursorFromFileW           uintptr
-	pCreateCursor                  uintptr
-	pDestroyCursor                 uintptr
-	pSetSystemCursor               uintptr
-	pLoadIconA                     uintptr
-	pLoadIconW                     uintptr
-	pPrivateExtractIconsA          uintptr
-	pPrivateExtractIconsW          uintptr
-	pCreateIcon                    uintptr
-	pDestroyIcon                   uintptr
-	pLookupIconIdFromDirectory     uintptr
-	pLookupIconIdFromDirectoryEx   uintptr
-	pCreateIconFromResource        uintptr
-	pCreateIconFromResourceEx      uintptr
-	pLoadImageA                    uintptr
-	pLoadImageW                    uintptr
-	pCopyImage                     uintptr
-	pDrawIconEx                    uintptr
-	pCreateIconIndirect            uintptr
-	pCopyIcon                      uintptr
-	pGetIconInfo                   uintptr
-	pGetIconInfoExA                uintptr
-	pGetIconInfoExW                uintptr
-	pIsDialogMessageA              uintptr
-	pIsDialogMessageW              uintptr
-	pMapDialogRect                 uintptr
-	pGetScrollInfo                 uintptr
-	pDefFrameProcA                 uintptr
-	pDefFrameProcW                 uintptr
-	pDefMDIChildProcA              uintptr
-	pDefMDIChildProcW              uintptr
-	pTranslateMDISysAccel          uintptr
-	pArrangeIconicWindows          uintptr
-	pCreateMDIWindowA              uintptr
-	pCreateMDIWindowW              uintptr
-	pTileWindows                   uintptr
-	pCascadeWindows                uintptr
-	pSystemParametersInfoA         uintptr
-	pSystemParametersInfoW         uintptr
-	pSoundSentry                   uintptr
-	pSetDebugErrorLevel            uintptr
-	pInternalGetWindowText         uintptr
-	pCancelShutdown                uintptr
-	pGetGUIThreadInfo              uintptr
-	pSetProcessDPIAware            uintptr
-	pIsProcessDPIAware             uintptr
-	pInheritWindowMonitor          uintptr
-	pGetWindowModuleFileNameA      uintptr
-	pGetWindowModuleFileNameW      uintptr
-	pGetCursorInfo                 uintptr
-	pGetWindowInfo                 uintptr
-	pGetTitleBarInfo               uintptr
-	pGetMenuBarInfo                uintptr
-	pGetScrollBarInfo              uintptr
-	pGetAncestor                   uintptr
-	pRealChildWindowFromPoint      uintptr
-	pRealGetWindowClassA           uintptr
-	pRealGetWindowClassW           uintptr
-	pGetAltTabInfoA                uintptr
-	pGetAltTabInfoW                uintptr
-	pChangeWindowMessageFilter     uintptr
-	pChangeWindowMessageFilterEx   uintptr
+	pLoadStringA                           uintptr
+	pLoadStringW                           uintptr
+	pGetWindowLongPtrA                     uintptr
+	pGetWindowLongPtrW                     uintptr
+	pSetWindowLongPtrA                     uintptr
+	pSetWindowLongPtrW                     uintptr
+	pGetClassLongPtrA                      uintptr
+	pGetClassLongPtrW                      uintptr
+	pSetClassLongPtrA                      uintptr
+	pSetClassLongPtrW                      uintptr
+	pWvsprintfA                            uintptr
+	pWvsprintfW                            uintptr
+	pWsprintfA                             uintptr
+	pWsprintfW                             uintptr
+	pIsHungAppWindow                       uintptr
+	pDisableProcessWindowsGhosting         uintptr
+	pRegisterWindowMessageA                uintptr
+	pRegisterWindowMessageW                uintptr
+	pGetMessageA                           uintptr
+	pGetMessageW                           uintptr
+	pTranslateMessage                      uintptr
+	pDispatchMessageA                      uintptr
+	pDispatchMessageW                      uintptr
+	pSetMessageQueue                       uintptr
+	pPeekMessageA                          uintptr
+	pPeekMessageW                          uintptr
+	pGetMessagePos                         uintptr
+	pGetMessageTime                        uintptr
+	pGetMessageExtraInfo                   uintptr
+	pIsWow64Message                        uintptr
+	pSetMessageExtraInfo                   uintptr
+	pSendMessageA                          uintptr
+	pSendMessageW                          uintptr
+	pSendMessageTimeoutA                   uintptr
+	pSendMessageTimeoutW                   uintptr
+	pSendNotifyMessageA                    uintptr
+	pSendNotifyMessageW                    uintptr
+	pSendMessageCallbackA                  uintptr
+	pSendMessageCallbackW                  uintptr
+	pRegisterDeviceNotificationA           uintptr
+	pRegisterDeviceNotificationW           uintptr
+	pUnregisterDeviceNotification          uintptr
+	pPostMessageA                          uintptr
+	pPostMessageW                          uintptr
+	pPostThreadMessageA                    uintptr
+	pPostThreadMessageW                    uintptr
+	pReplyMessage                          uintptr
+	pWaitMessage                           uintptr
+	pDefWindowProcA                        uintptr
+	pDefWindowProcW                        uintptr
+	pPostQuitMessage                       uintptr
+	pCallWindowProcA                       uintptr
+	pCallWindowProcW                       uintptr
+	pInSendMessage                         uintptr
+	pInSendMessageEx                       uintptr
+	pRegisterClassA                        uintptr
+	pRegisterClassW                        uintptr
+	pUnregisterClassA                      uintptr
+	pUnregisterClassW                      uintptr
+	pGetClassInfoA                         uintptr
+	pGetClassInfoW                         uintptr
+	pRegisterClassExA                      uintptr
+	pRegisterClassExW                      uintptr
+	pGetClassInfoExA                       uintptr
+	pGetClassInfoExW                       uintptr
+	pCreateWindowExA                       uintptr
+	pCreateWindowExW                       uintptr
+	pIsWindow                              uintptr
+	pIsMenu                                uintptr
+	pIsChild                               uintptr
+	pDestroyWindow                         uintptr
+	pShowWindow                            uintptr
+	pAnimateWindow                         uintptr
+	pUpdateLayeredWindow                   uintptr
+	pUpdateLayeredWindowIndirect           uintptr
+	pGetLayeredWindowAttributes            uintptr
+	pSetLayeredWindowAttributes            uintptr
+	pShowWindowAsync                       uintptr
+	pFlashWindow                           uintptr
+	pFlashWindowEx                         uintptr
+	pShowOwnedPopups                       uintptr
+	pOpenIcon                              uintptr
+	pCloseWindow                           uintptr
+	pMoveWindow                            uintptr
+	pSetWindowPos                          uintptr
+	pGetWindowPlacement                    uintptr
+	pSetWindowPlacement                    uintptr
+	pGetWindowDisplayAffinity              uintptr
+	pSetWindowDisplayAffinity              uintptr
+	pBeginDeferWindowPos                   uintptr
+	pDeferWindowPos                        uintptr
+	pEndDeferWindowPos                     uintptr
+	pIsWindowVisible                       uintptr
+	pIsIconic                              uintptr
+	pAnyPopup                              uintptr
+	pBringWindowToTop                      uintptr
+	pIsZoomed                              uintptr
+	pCreateDialogParamA                    uintptr
+	pCreateDialogParamW                    uintptr
+	pCreateDialogIndirectParamA            uintptr
+	pCreateDialogIndirectParamW            uintptr
+	pDialogBoxParamA                       uintptr
+	pDialogBoxParamW                       uintptr
+	pDialogBoxIndirectParamA               uintptr
+	pDialogBoxIndirectParamW               uintptr
+	pEndDialog                             uintptr
+	pGetDlgItem                            uintptr
+	pSetDlgItemInt                         uintptr
+	pGetDlgItemInt                         uintptr
+	pSetDlgItemTextA                       uintptr
+	pSetDlgItemTextW                       uintptr
+	pGetDlgItemTextA                       uintptr
+	pGetDlgItemTextW                       uintptr
+	pSendDlgItemMessageA                   uintptr
+	pSendDlgItemMessageW                   uintptr
+	pGetNextDlgGroupItem                   uintptr
+	pGetNextDlgTabItem                     uintptr
+	pGetDlgCtrlID                          uintptr
+	pGetDialogBaseUnits                    uintptr
+	pDefDlgProcA                           uintptr
+	pDefDlgProcW                           uintptr
+	pCallMsgFilterA                        uintptr
+	pCallMsgFilterW                        uintptr
+	pCharToOemA                            uintptr
+	pCharToOemW                            uintptr
+	pOemToCharA                            uintptr
+	pOemToCharW                            uintptr
+	pCharToOemBuffA                        uintptr
+	pCharToOemBuffW                        uintptr
+	pOemToCharBuffA                        uintptr
+	pOemToCharBuffW                        uintptr
+	pCharUpperA                            uintptr
+	pCharUpperW                            uintptr
+	pCharUpperBuffA                        uintptr
+	pCharUpperBuffW                        uintptr
+	pCharLowerA                            uintptr
+	pCharLowerW                            uintptr
+	pCharLowerBuffA                        uintptr
+	pCharLowerBuffW                        uintptr
+	pCharNextA                             uintptr
+	pCharNextW                             uintptr
+	pCharPrevA                             uintptr
+	pCharPrevW                             uintptr
+	pCharNextExA                           uintptr
+	pCharPrevExA                           uintptr
+	pIsCharAlphaA                          uintptr
+	pIsCharAlphaW                          uintptr
+	pIsCharAlphaNumericA                   uintptr
+	pIsCharAlphaNumericW                   uintptr
+	pIsCharUpperA                          uintptr
+	pIsCharUpperW                          uintptr
+	pIsCharLowerA                          uintptr
+	pGetInputState                         uintptr
+	pGetQueueStatus                        uintptr
+	pMsgWaitForMultipleObjects             uintptr
+	pMsgWaitForMultipleObjectsEx           uintptr
+	pSetTimer                              uintptr
+	pSetCoalescableTimer                   uintptr
+	pKillTimer                             uintptr
+	pIsWindowUnicode                       uintptr
+	pLoadAcceleratorsA                     uintptr
+	pLoadAcceleratorsW                     uintptr
+	pCreateAcceleratorTableA               uintptr
+	pCreateAcceleratorTableW               uintptr
+	pDestroyAcceleratorTable               uintptr
+	pCopyAcceleratorTableA                 uintptr
+	pCopyAcceleratorTableW                 uintptr
+	pTranslateAcceleratorA                 uintptr
+	pTranslateAcceleratorW                 uintptr
+	pGetSystemMetrics                      uintptr
+	pLoadMenuA                             uintptr
+	pLoadMenuW                             uintptr
+	pLoadMenuIndirectA                     uintptr
+	pLoadMenuIndirectW                     uintptr
+	pGetMenu                               uintptr
+	pSetMenu                               uintptr
+	pChangeMenuA                           uintptr
+	pChangeMenuW                           uintptr
+	pHiliteMenuItem                        uintptr
+	pGetMenuStringA                        uintptr
+	pGetMenuStringW                        uintptr
+	pGetMenuState                          uintptr
+	pDrawMenuBar                           uintptr
+	pGetSystemMenu                         uintptr
+	pCreateMenu                            uintptr
+	pCreatePopupMenu                       uintptr
+	pDestroyMenu                           uintptr
+	pCheckMenuItem                         uintptr
+	pEnableMenuItem                        uintptr
+	pGetSubMenu                            uintptr
+	pGetMenuItemID                         uintptr
+	pGetMenuItemCount                      uintptr
+	pInsertMenuA                           uintptr
+	pInsertMenuW                           uintptr
+	pAppendMenuA                           uintptr
+	pAppendMenuW                           uintptr
+	pModifyMenuA                           uintptr
+	pModifyMenuW                           uintptr
+	pRemoveMenu                            uintptr
+	pDeleteMenu                            uintptr
+	pSetMenuItemBitmaps                    uintptr
+	pGetMenuCheckMarkDimensions            uintptr
+	pTrackPopupMenu                        uintptr
+	pTrackPopupMenuEx                      uintptr
+	pCalculatePopupWindowPosition          uintptr
+	pGetMenuInfo                           uintptr
+	pSetMenuInfo                           uintptr
+	pEndMenu                               uintptr
+	pInsertMenuItemA                       uintptr
+	pInsertMenuItemW                       uintptr
+	pGetMenuItemInfoA                      uintptr
+	pGetMenuItemInfoW                      uintptr
+	pSetMenuItemInfoA                      uintptr
+	pSetMenuItemInfoW                      uintptr
+	pGetMenuDefaultItem                    uintptr
+	pSetMenuDefaultItem                    uintptr
+	pGetMenuItemRect                       uintptr
+	pMenuItemFromPoint                     uintptr
+	pDragObject                            uintptr
+	pDrawIcon                              uintptr
+	pGetForegroundWindow                   uintptr
+	pSwitchToThisWindow                    uintptr
+	pSetForegroundWindow                   uintptr
+	pAllowSetForegroundWindow              uintptr
+	pLockSetForegroundWindow               uintptr
+	pScrollWindow                          uintptr
+	pScrollDC                              uintptr
+	pScrollWindowEx                        uintptr
+	pGetScrollPos                          uintptr
+	pGetScrollRange                        uintptr
+	pSetPropA                              uintptr
+	pSetPropW                              uintptr
+	pGetPropA                              uintptr
+	pGetPropW                              uintptr
+	pRemovePropA                           uintptr
+	pRemovePropW                           uintptr
+	pEnumPropsExA                          uintptr
+	pEnumPropsExW                          uintptr
+	pEnumPropsA                            uintptr
+	pEnumPropsW                            uintptr
+	pSetWindowTextA                        uintptr
+	pSetWindowTextW                        uintptr
+	pGetWindowTextA                        uintptr
+	pGetWindowTextW                        uintptr
+	pGetWindowTextLengthA                  uintptr
+	pGetWindowTextLengthW                  uintptr
+	pGetClientRect                         uintptr
+	pGetWindowRect                         uintptr
+	pAdjustWindowRect                      uintptr
+	pAdjustWindowRectEx                    uintptr
+	pMessageBoxA                           uintptr
+	pMessageBoxW                           uintptr
+	pMessageBoxExA                         uintptr
+	pMessageBoxExW                         uintptr
+	pMessageBoxIndirectA                   uintptr
+	pMessageBoxIndirectW                   uintptr
+	pShowCursor                            uintptr
+	pSetCursorPos                          uintptr
+	pSetPhysicalCursorPos                  uintptr
+	pSetCursor                             uintptr
+	pGetCursorPos                          uintptr
+	pGetPhysicalCursorPos                  uintptr
+	pGetClipCursor                         uintptr
+	pGetCursor                             uintptr
+	pCreateCaret                           uintptr
+	pGetCaretBlinkTime                     uintptr
+	pSetCaretBlinkTime                     uintptr
+	pDestroyCaret                          uintptr
+	pHideCaret                             uintptr
+	pShowCaret                             uintptr
+	pSetCaretPos                           uintptr
+	pGetCaretPos                           uintptr
+	pLogicalToPhysicalPoint                uintptr
+	pPhysicalToLogicalPoint                uintptr
+	pWindowFromPoint                       uintptr
+	pWindowFromPhysicalPoint               uintptr
+	pChildWindowFromPoint                  uintptr
+	pClipCursor                            uintptr
+	pChildWindowFromPointEx                uintptr
+	pGetWindowWord                         uintptr
+	pSetWindowWord                         uintptr
+	pGetWindowLongA                        uintptr
+	pGetWindowLongW                        uintptr
+	pSetWindowLongA                        uintptr
+	pSetWindowLongW                        uintptr
+	pGetClassWord                          uintptr
+	pSetClassWord                          uintptr
+	pGetClassLongA                         uintptr
+	pGetClassLongW                         uintptr
+	pSetClassLongA                         uintptr
+	pSetClassLongW                         uintptr
+	pGetProcessDefaultLayout               uintptr
+	pSetProcessDefaultLayout               uintptr
+	pGetDesktopWindow                      uintptr
+	pGetParent                             uintptr
+	pSetParent                             uintptr
+	pEnumChildWindows                      uintptr
+	pFindWindowA                           uintptr
+	pFindWindowW                           uintptr
+	pFindWindowExA                         uintptr
+	pFindWindowExW                         uintptr
+	pGetShellWindow                        uintptr
+	pRegisterShellHookWindow               uintptr
+	pDeregisterShellHookWindow             uintptr
+	pEnumWindows                           uintptr
+	pEnumThreadWindows                     uintptr
+	pGetClassNameA                         uintptr
+	pGetClassNameW                         uintptr
+	pGetTopWindow                          uintptr
+	pGetWindowThreadProcessId              uintptr
+	pIsGUIThread                           uintptr
+	pGetLastActivePopup                    uintptr
+	pGetWindow                             uintptr
+	pSetWindowsHookA                       uintptr
+	pSetWindowsHookW                       uintptr
+	pUnhookWindowsHook                     uintptr
+	pSetWindowsHookExA                     uintptr
+	pSetWindowsHookExW                     uintptr
+	pUnhookWindowsHookEx                   uintptr
+	pCallNextHookEx                        uintptr
+	pCheckMenuRadioItem                    uintptr
+	pLoadCursorA                           uintptr
+	pLoadCursorW                           uintptr
+	pLoadCursorFromFileA                   uintptr
+	pLoadCursorFromFileW                   uintptr
+	pCreateCursor                          uintptr
+	pDestroyCursor                         uintptr
+	pSetSystemCursor                       uintptr
+	pLoadIconA                             uintptr
+	pLoadIconW                             uintptr
+	pPrivateExtractIconsA                  uintptr
+	pPrivateExtractIconsW                  uintptr
+	pCreateIcon                            uintptr
+	pDestroyIcon                           uintptr
+	pLookupIconIdFromDirectory             uintptr
+	pLookupIconIdFromDirectoryEx           uintptr
+	pCreateIconFromResource                uintptr
+	pCreateIconFromResourceEx              uintptr
+	pLoadImageA                            uintptr
+	pLoadImageW                            uintptr
+	pCopyImage                             uintptr
+	pDrawIconEx                            uintptr
+	pCreateIconIndirect                    uintptr
+	pCopyIcon                              uintptr
+	pGetIconInfo                           uintptr
+	pGetIconInfoExA                        uintptr
+	pGetIconInfoExW                        uintptr
+	pIsDialogMessageA                      uintptr
+	pIsDialogMessageW                      uintptr
+	pMapDialogRect                         uintptr
+	pGetScrollInfo                         uintptr
+	pDefFrameProcA                         uintptr
+	pDefFrameProcW                         uintptr
+	pDefMDIChildProcA                      uintptr
+	pDefMDIChildProcW                      uintptr
+	pTranslateMDISysAccel                  uintptr
+	pArrangeIconicWindows                  uintptr
+	pCreateMDIWindowA                      uintptr
+	pCreateMDIWindowW                      uintptr
+	pTileWindows                           uintptr
+	pCascadeWindows                        uintptr
+	pSystemParametersInfoA                 uintptr
+	pSystemParametersInfoW                 uintptr
+	pSoundSentry                           uintptr
+	pSetDebugErrorLevel                    uintptr
+	pInternalGetWindowText                 uintptr
+	pCancelShutdown                        uintptr
+	pGetGUIThreadInfo                      uintptr
+	pSetProcessDPIAware                    uintptr
+	pIsProcessDPIAware                     uintptr
+	pInheritWindowMonitor                  uintptr
+	pGetWindowModuleFileNameA              uintptr
+	pGetWindowModuleFileNameW              uintptr
+	pGetCursorInfo                         uintptr
+	pGetWindowInfo                         uintptr
+	pGetTitleBarInfo                       uintptr
+	pGetMenuBarInfo                        uintptr
+	pGetScrollBarInfo                      uintptr
+	pGetAncestor                           uintptr
+	pRealChildWindowFromPoint              uintptr
+	pRealGetWindowClassA                   uintptr
+	pRealGetWindowClassW                   uintptr
+	pGetAltTabInfoA                        uintptr
+	pGetAltTabInfoW                        uintptr
+	pChangeWindowMessageFilter             uintptr
+	pChangeWindowMessageFilterEx           uintptr
+	pSetAdditionalForegroundBoostProcesses uintptr
+	pRegisterForTooltipDismissNotification uintptr
 )
 
 func LoadStringA(hInstance HINSTANCE, uID uint32, lpBuffer PSTR, cchBufferMax int32) (int32, WIN32_ERROR) {
@@ -3935,18 +4351,24 @@ func SendMessageCallbackW(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM, l
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func RegisterDeviceNotificationA(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags POWER_SETTING_REGISTER_NOTIFICATION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
+func RegisterDeviceNotificationA(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags REGISTER_NOTIFICATION_FLAGS) (HDEVNOTIFY, WIN32_ERROR) {
 	addr := LazyAddr(&pRegisterDeviceNotificationA, libUser32, "RegisterDeviceNotificationA")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(NotificationFilter), uintptr(Flags))
-	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
+	return (HDEVNOTIFY)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
 var RegisterDeviceNotification = RegisterDeviceNotificationW
 
-func RegisterDeviceNotificationW(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags POWER_SETTING_REGISTER_NOTIFICATION_FLAGS) (unsafe.Pointer, WIN32_ERROR) {
+func RegisterDeviceNotificationW(hRecipient HANDLE, NotificationFilter unsafe.Pointer, Flags REGISTER_NOTIFICATION_FLAGS) (HDEVNOTIFY, WIN32_ERROR) {
 	addr := LazyAddr(&pRegisterDeviceNotificationW, libUser32, "RegisterDeviceNotificationW")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(NotificationFilter), uintptr(Flags))
-	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
+	return (HDEVNOTIFY)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+}
+
+func UnregisterDeviceNotification(Handle HDEVNOTIFY) (BOOL, WIN32_ERROR) {
+	addr := LazyAddr(&pUnregisterDeviceNotification, libUser32, "UnregisterDeviceNotification")
+	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Handle)))
+	return BOOL(ret), WIN32_ERROR(err)
 }
 
 func PostMessageA(hWnd HWND, Msg uint32, wParam WPARAM, lParam LPARAM) (BOOL, WIN32_ERROR) {
@@ -4684,16 +5106,16 @@ func GetQueueStatus(flags QUEUE_STATUS_FLAGS) uint32 {
 	return uint32(ret)
 }
 
-func MsgWaitForMultipleObjects(nCount uint32, pHandles *HANDLE, fWaitAll BOOL, dwMilliseconds uint32, dwWakeMask QUEUE_STATUS_FLAGS) (uint32, WIN32_ERROR) {
+func MsgWaitForMultipleObjects(nCount uint32, pHandles *HANDLE, fWaitAll BOOL, dwMilliseconds uint32, dwWakeMask QUEUE_STATUS_FLAGS) (WAIT_EVENT, WIN32_ERROR) {
 	addr := LazyAddr(&pMsgWaitForMultipleObjects, libUser32, "MsgWaitForMultipleObjects")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(pHandles)), uintptr(fWaitAll), uintptr(dwMilliseconds), uintptr(dwWakeMask))
-	return uint32(ret), WIN32_ERROR(err)
+	return WAIT_EVENT(ret), WIN32_ERROR(err)
 }
 
-func MsgWaitForMultipleObjectsEx(nCount uint32, pHandles *HANDLE, dwMilliseconds uint32, dwWakeMask QUEUE_STATUS_FLAGS, dwFlags MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS) (uint32, WIN32_ERROR) {
+func MsgWaitForMultipleObjectsEx(nCount uint32, pHandles *HANDLE, dwMilliseconds uint32, dwWakeMask QUEUE_STATUS_FLAGS, dwFlags MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS) (WAIT_EVENT, WIN32_ERROR) {
 	addr := LazyAddr(&pMsgWaitForMultipleObjectsEx, libUser32, "MsgWaitForMultipleObjectsEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(pHandles)), uintptr(dwMilliseconds), uintptr(dwWakeMask), uintptr(dwFlags))
-	return uint32(ret), WIN32_ERROR(err)
+	return WAIT_EVENT(ret), WIN32_ERROR(err)
 }
 
 func SetTimer(hWnd HWND, nIDEvent uintptr, uElapse uint32, lpTimerFunc TIMERPROC) (uintptr, WIN32_ERROR) {
@@ -5149,7 +5571,7 @@ func ScrollDC(hDC HDC, dx int32, dy int32, lprcScroll *RECT, lprcClip *RECT, hrg
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ScrollWindowEx(hWnd HWND, dx int32, dy int32, prcScroll *RECT, prcClip *RECT, hrgnUpdate HRGN, prcUpdate *RECT, flags SHOW_WINDOW_CMD) (int32, WIN32_ERROR) {
+func ScrollWindowEx(hWnd HWND, dx int32, dy int32, prcScroll *RECT, prcClip *RECT, hrgnUpdate HRGN, prcUpdate *RECT, flags SCROLL_WINDOW_FLAGS) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pScrollWindowEx, libUser32, "ScrollWindowEx")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(dx), uintptr(dy), uintptr(unsafe.Pointer(prcScroll)), uintptr(unsafe.Pointer(prcClip)), hrgnUpdate, uintptr(unsafe.Pointer(prcUpdate)), uintptr(flags))
 	return int32(ret), WIN32_ERROR(err)
@@ -6168,4 +6590,16 @@ func ChangeWindowMessageFilterEx(hwnd HWND, message uint32, action WINDOW_MESSAG
 	addr := LazyAddr(&pChangeWindowMessageFilterEx, libUser32, "ChangeWindowMessageFilterEx")
 	ret, _, err := syscall.SyscallN(addr, hwnd, uintptr(message), uintptr(action), uintptr(unsafe.Pointer(pChangeFilterStruct)))
 	return BOOL(ret), WIN32_ERROR(err)
+}
+
+func SetAdditionalForegroundBoostProcesses(topLevelWindow HWND, processHandleCount uint32, processHandleArray *HANDLE) BOOL {
+	addr := LazyAddr(&pSetAdditionalForegroundBoostProcesses, libUser32, "SetAdditionalForegroundBoostProcesses")
+	ret, _, _ := syscall.SyscallN(addr, topLevelWindow, uintptr(processHandleCount), uintptr(unsafe.Pointer(processHandleArray)))
+	return BOOL(ret)
+}
+
+func RegisterForTooltipDismissNotification(hWnd HWND, tdFlags TOOLTIP_DISMISS_FLAGS) BOOL {
+	addr := LazyAddr(&pRegisterForTooltipDismissNotification, libUser32, "RegisterForTooltipDismissNotification")
+	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(tdFlags))
+	return BOOL(ret)
 }

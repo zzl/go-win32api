@@ -10,6 +10,7 @@ type (
 	HSTRING_BUFFER                         = uintptr
 	ROPARAMIIDHANDLE                       = uintptr
 	APARTMENT_SHUTDOWN_REGISTRATION_COOKIE = uintptr
+	RO_REGISTRATION_COOKIE                 = uintptr
 )
 
 const (
@@ -101,7 +102,7 @@ const (
 
 // enum
 // flags
-type RO_ERROR_REPORTING_FLAGS uint32
+type RO_ERROR_REPORTING_FLAGS int32
 
 const (
 	RO_ERROR_REPORTING_NONE                 RO_ERROR_REPORTING_FLAGS = 0
@@ -145,9 +146,6 @@ type DispatcherQueueOptions struct {
 	ApartmentType DISPATCHERQUEUE_THREAD_APARTMENTTYPE
 }
 
-type RO_REGISTRATION_COOKIE_ struct {
-}
-
 // func types
 
 type PINSPECT_HSTRING_CALLBACK = uintptr
@@ -155,6 +153,9 @@ type PINSPECT_HSTRING_CALLBACK_func = func(context unsafe.Pointer, readAddress u
 
 type PINSPECT_HSTRING_CALLBACK2 = uintptr
 type PINSPECT_HSTRING_CALLBACK2_func = func(context unsafe.Pointer, readAddress uint64, length uint32, buffer *byte) HRESULT
+
+type PFNGETACTIVATIONFACTORY = uintptr
+type PFNGETACTIVATIONFACTORY_func = func(param0 HSTRING, param1 **IActivationFactory) HRESULT
 
 type PINSPECT_MEMORY_CALLBACK = uintptr
 type PINSPECT_MEMORY_CALLBACK_func = func(context unsafe.Pointer, readAddress uintptr, length uint32, buffer *byte) HRESULT
@@ -1035,119 +1036,6 @@ func (this *IBufferByteAccess) Buffer(value **byte) HRESULT {
 	return HRESULT(ret)
 }
 
-// 00000000-0000-0000-0000-000000000000
-var IID_IRoSimpleMetaDataBuilder = syscall.GUID{0x00000000, 0x0000, 0x0000,
-	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
-
-type IRoSimpleMetaDataBuilderInterface interface {
-	SetWinRtInterface(iid syscall.GUID) HRESULT
-	SetDelegate(iid syscall.GUID) HRESULT
-	SetInterfaceGroupSimpleDefault(name PWSTR, defaultInterfaceName PWSTR, defaultInterfaceIID *syscall.GUID) HRESULT
-	SetInterfaceGroupParameterizedDefault(name PWSTR, elementCount uint32, defaultInterfaceNameElements *PWSTR) HRESULT
-	SetRuntimeClassSimpleDefault(name PWSTR, defaultInterfaceName PWSTR, defaultInterfaceIID *syscall.GUID) HRESULT
-	SetRuntimeClassParameterizedDefault(name PWSTR, elementCount uint32, defaultInterfaceNameElements *PWSTR) HRESULT
-	SetStruct(name PWSTR, numFields uint32, fieldTypeNames *PWSTR) HRESULT
-	SetEnum(name PWSTR, baseType PWSTR) HRESULT
-	SetParameterizedInterface(piid syscall.GUID, numArgs uint32) HRESULT
-	SetParameterizedDelegate(piid syscall.GUID, numArgs uint32) HRESULT
-}
-
-type IRoSimpleMetaDataBuilderVtbl struct {
-	SetWinRtInterface                     uintptr
-	SetDelegate                           uintptr
-	SetInterfaceGroupSimpleDefault        uintptr
-	SetInterfaceGroupParameterizedDefault uintptr
-	SetRuntimeClassSimpleDefault          uintptr
-	SetRuntimeClassParameterizedDefault   uintptr
-	SetStruct                             uintptr
-	SetEnum                               uintptr
-	SetParameterizedInterface             uintptr
-	SetParameterizedDelegate              uintptr
-}
-
-type IRoSimpleMetaDataBuilder struct {
-	LpVtbl *[1024]uintptr
-}
-
-func (this *IRoSimpleMetaDataBuilder) Vtbl() *IRoSimpleMetaDataBuilderVtbl {
-	return (*IRoSimpleMetaDataBuilderVtbl)(unsafe.Pointer(this.LpVtbl))
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetWinRtInterface(iid syscall.GUID) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetWinRtInterface, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(&iid)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetDelegate(iid syscall.GUID) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetDelegate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(&iid)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetInterfaceGroupSimpleDefault(name PWSTR, defaultInterfaceName PWSTR, defaultInterfaceIID *syscall.GUID) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetInterfaceGroupSimpleDefault, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)), uintptr(unsafe.Pointer(defaultInterfaceName)), uintptr(unsafe.Pointer(defaultInterfaceIID)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetInterfaceGroupParameterizedDefault(name PWSTR, elementCount uint32, defaultInterfaceNameElements *PWSTR) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetInterfaceGroupParameterizedDefault, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)), uintptr(elementCount), uintptr(unsafe.Pointer(defaultInterfaceNameElements)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetRuntimeClassSimpleDefault(name PWSTR, defaultInterfaceName PWSTR, defaultInterfaceIID *syscall.GUID) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetRuntimeClassSimpleDefault, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)), uintptr(unsafe.Pointer(defaultInterfaceName)), uintptr(unsafe.Pointer(defaultInterfaceIID)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetRuntimeClassParameterizedDefault(name PWSTR, elementCount uint32, defaultInterfaceNameElements *PWSTR) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetRuntimeClassParameterizedDefault, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)), uintptr(elementCount), uintptr(unsafe.Pointer(defaultInterfaceNameElements)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetStruct(name PWSTR, numFields uint32, fieldTypeNames *PWSTR) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetStruct, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)), uintptr(numFields), uintptr(unsafe.Pointer(fieldTypeNames)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetEnum(name PWSTR, baseType PWSTR) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetEnum, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(name)), uintptr(unsafe.Pointer(baseType)))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetParameterizedInterface(piid syscall.GUID, numArgs uint32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetParameterizedInterface, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(&piid)), uintptr(numArgs))
-	return HRESULT(ret)
-}
-
-func (this *IRoSimpleMetaDataBuilder) SetParameterizedDelegate(piid syscall.GUID, numArgs uint32) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().SetParameterizedDelegate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(&piid)), uintptr(numArgs))
-	return HRESULT(ret)
-}
-
-// 00000000-0000-0000-0000-000000000000
-var IID_IRoMetaDataLocator = syscall.GUID{0x00000000, 0x0000, 0x0000,
-	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
-
-type IRoMetaDataLocatorInterface interface {
-	Locate(nameElement PWSTR, metaDataDestination *IRoSimpleMetaDataBuilder) HRESULT
-}
-
-type IRoMetaDataLocatorVtbl struct {
-	Locate uintptr
-}
-
-type IRoMetaDataLocator struct {
-	LpVtbl *[1024]uintptr
-}
-
-func (this *IRoMetaDataLocator) Vtbl() *IRoMetaDataLocatorVtbl {
-	return (*IRoMetaDataLocatorVtbl)(unsafe.Pointer(this.LpVtbl))
-}
-
-func (this *IRoMetaDataLocator) Locate(nameElement PWSTR, metaDataDestination *IRoSimpleMetaDataBuilder) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().Locate, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(nameElement)), uintptr(unsafe.Pointer(metaDataDestination)))
-	return HRESULT(ret)
-}
-
 // 5B0D3235-4DBA-4D44-865E-8F1D0E4FD04D
 var IID_IMemoryBufferByteAccess = syscall.GUID{0x5B0D3235, 0x4DBA, 0x4D44,
 	[8]byte{0x86, 0x5E, 0x8F, 0x1D, 0x0E, 0x4F, 0xD0, 0x4D}}
@@ -1745,13 +1633,13 @@ func RoActivateInstance(activatableClassId HSTRING, instance **IInspectable) HRE
 	return HRESULT(ret)
 }
 
-func RoRegisterActivationFactories(activatableClassIds *HSTRING, activationFactoryCallbacks *uintptr, count uint32, cookie *uintptr) HRESULT {
+func RoRegisterActivationFactories(activatableClassIds *HSTRING, activationFactoryCallbacks *PFNGETACTIVATIONFACTORY, count uint32, cookie *RO_REGISTRATION_COOKIE) HRESULT {
 	addr := LazyAddr(&pRoRegisterActivationFactories, libApi_ms_win_core_winrt_l1_1_0, "RoRegisterActivationFactories")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(activatableClassIds)), uintptr(unsafe.Pointer(activationFactoryCallbacks)), uintptr(count), uintptr(unsafe.Pointer(cookie)))
 	return HRESULT(ret)
 }
 
-func RoRevokeActivationFactories(cookie uintptr) {
+func RoRevokeActivationFactories(cookie RO_REGISTRATION_COOKIE) {
 	addr := LazyAddr(&pRoRevokeActivationFactories, libApi_ms_win_core_winrt_l1_1_0, "RoRevokeActivationFactories")
 	syscall.SyscallN(addr, cookie)
 }

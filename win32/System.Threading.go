@@ -6,11 +6,14 @@ import (
 )
 
 type (
-	TimerQueueHandle             = uintptr
 	PTP_POOL                     = uintptr
-	NamespaceHandle              = uintptr
-	BoundaryDescriptorHandle     = uintptr
+	PTP_CLEANUP_GROUP            = uintptr
 	LPPROC_THREAD_ATTRIBUTE_LIST = unsafe.Pointer
+	PTP_IO                       = uintptr
+	PTP_TIMER                    = uintptr
+	PTP_WAIT                     = uintptr
+	PTP_WORK                     = uintptr
+	PTP_CALLBACK_INSTANCE        = uintptr
 )
 
 const (
@@ -40,6 +43,7 @@ const (
 	SYNCHRONIZATION_BARRIER_FLAGS_SPIN_ONLY               uint32 = 0x1
 	SYNCHRONIZATION_BARRIER_FLAGS_BLOCK_ONLY              uint32 = 0x2
 	SYNCHRONIZATION_BARRIER_FLAGS_NO_DELETE               uint32 = 0x4
+	INFINITE                                              uint32 = 0xffffffff
 	PROC_THREAD_ATTRIBUTE_PARENT_PROCESS                  uint32 = 0x20000
 	PROC_THREAD_ATTRIBUTE_HANDLE_LIST                     uint32 = 0x20002
 	PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY                  uint32 = 0x30003
@@ -366,6 +370,7 @@ type QUEUE_USER_APC_FLAGS int32
 const (
 	QUEUE_USER_APC_FLAGS_NONE             QUEUE_USER_APC_FLAGS = 0
 	QUEUE_USER_APC_FLAGS_SPECIAL_USER_APC QUEUE_USER_APC_FLAGS = 1
+	QUEUE_USER_APC_CALLBACK_DATA_CONTEXT  QUEUE_USER_APC_FLAGS = 65536
 )
 
 // enum
@@ -398,7 +403,7 @@ const (
 
 // enum
 // flags
-type MACHINE_ATTRIBUTES uint32
+type MACHINE_ATTRIBUTES int32
 
 const (
 	UserEnabled    MACHINE_ATTRIBUTES = 1
@@ -426,6 +431,15 @@ const (
 )
 
 // enum
+type RTWQ_WORKQUEUE_TYPE int32
+
+const (
+	RTWQ_STANDARD_WORKQUEUE      RTWQ_WORKQUEUE_TYPE = 0
+	RTWQ_WINDOW_WORKQUEUE        RTWQ_WORKQUEUE_TYPE = 1
+	RTWQ_MULTITHREADED_WORKQUEUE RTWQ_WORKQUEUE_TYPE = 2
+)
+
+// enum
 type PROCESS_MITIGATION_POLICY int32
 
 const (
@@ -446,21 +460,23 @@ const (
 	ProcessSideChannelIsolationPolicy  PROCESS_MITIGATION_POLICY = 14
 	ProcessUserShadowStackPolicy       PROCESS_MITIGATION_POLICY = 15
 	ProcessRedirectionTrustPolicy      PROCESS_MITIGATION_POLICY = 16
-	MaxProcessMitigationPolicy         PROCESS_MITIGATION_POLICY = 17
+	ProcessUserPointerAuthPolicy       PROCESS_MITIGATION_POLICY = 17
+	ProcessSEHOPPolicy                 PROCESS_MITIGATION_POLICY = 18
+	MaxProcessMitigationPolicy         PROCESS_MITIGATION_POLICY = 19
 )
 
 // enum
-type RTL_UMS_THREAD_INFO_CLASS int32
+type UMS_THREAD_INFO_CLASS int32
 
 const (
-	UmsThreadInvalidInfoClass RTL_UMS_THREAD_INFO_CLASS = 0
-	UmsThreadUserContext      RTL_UMS_THREAD_INFO_CLASS = 1
-	UmsThreadPriority         RTL_UMS_THREAD_INFO_CLASS = 2
-	UmsThreadAffinity         RTL_UMS_THREAD_INFO_CLASS = 3
-	UmsThreadTeb              RTL_UMS_THREAD_INFO_CLASS = 4
-	UmsThreadIsSuspended      RTL_UMS_THREAD_INFO_CLASS = 5
-	UmsThreadIsTerminated     RTL_UMS_THREAD_INFO_CLASS = 6
-	UmsThreadMaxInfoClass     RTL_UMS_THREAD_INFO_CLASS = 7
+	UmsThreadInvalidInfoClass UMS_THREAD_INFO_CLASS = 0
+	UmsThreadUserContext      UMS_THREAD_INFO_CLASS = 1
+	UmsThreadPriority         UMS_THREAD_INFO_CLASS = 2
+	UmsThreadAffinity         UMS_THREAD_INFO_CLASS = 3
+	UmsThreadTeb              UMS_THREAD_INFO_CLASS = 4
+	UmsThreadIsSuspended      UMS_THREAD_INFO_CLASS = 5
+	UmsThreadIsTerminated     UMS_THREAD_INFO_CLASS = 6
+	UmsThreadMaxInfoClass     UMS_THREAD_INFO_CLASS = 7
 )
 
 // enum
@@ -498,46 +514,22 @@ const (
 	ProcThreadAttributeMachineType                  PROC_THREAD_ATTRIBUTE_NUM = 25
 	ProcThreadAttributeComponentFilter              PROC_THREAD_ATTRIBUTE_NUM = 26
 	ProcThreadAttributeEnableOptionalXStateFeatures PROC_THREAD_ATTRIBUTE_NUM = 27
-)
-
-// enum
-type PROCESSINFOCLASS int32
-
-const (
-	ProcessBasicInformation   PROCESSINFOCLASS = 0
-	ProcessDebugPort          PROCESSINFOCLASS = 7
-	ProcessWow64Information   PROCESSINFOCLASS = 26
-	ProcessImageFileName      PROCESSINFOCLASS = 27
-	ProcessBreakOnTermination PROCESSINFOCLASS = 29
-)
-
-// enum
-type THREADINFOCLASS int32
-
-const (
-	ThreadIsIoPending     THREADINFOCLASS = 16
-	ThreadNameInformation THREADINFOCLASS = 38
+	ProcThreadAttributeTrustedApp                   PROC_THREAD_ATTRIBUTE_NUM = 29
 )
 
 // structs
 
-type TP_CALLBACK_INSTANCE struct {
-}
-
-type TP_WORK struct {
-}
-
-type TP_TIMER struct {
-}
-
-type TP_WAIT struct {
-}
-
-type TP_IO struct {
+type PROCESS_BASIC_INFORMATION struct {
+	ExitStatus                   NTSTATUS
+	PebBaseAddress               *PEB
+	AffinityMask                 uintptr
+	BasePriority                 int32
+	UniqueProcessId              uintptr
+	InheritedFromUniqueProcessId uintptr
 }
 
 type REASON_CONTEXT_Reason_Detailed struct {
-	LocalizedReasonModule HINSTANCE
+	LocalizedReasonModule HMODULE
 	LocalizedReasonId     uint32
 	ReasonStringCount     uint32
 	ReasonStrings         *PWSTR
@@ -698,19 +690,19 @@ type IO_COUNTERS struct {
 	OtherTransferCount  uint64
 }
 
-type RTL_RUN_ONCE struct {
+type INIT_ONCE struct {
 	Data [1]uint64
 }
 
-func (this *RTL_RUN_ONCE) Ptr() *unsafe.Pointer {
+func (this *INIT_ONCE) Ptr() *unsafe.Pointer {
 	return (*unsafe.Pointer)(unsafe.Pointer(this))
 }
 
-func (this *RTL_RUN_ONCE) PtrVal() unsafe.Pointer {
+func (this *INIT_ONCE) PtrVal() unsafe.Pointer {
 	return *(*unsafe.Pointer)(unsafe.Pointer(this))
 }
 
-type RTL_BARRIER struct {
+type SYNCHRONIZATION_BARRIER struct {
 	Reserved1 uint32
 	Reserved2 uint32
 	Reserved3 [2]uintptr
@@ -718,20 +710,20 @@ type RTL_BARRIER struct {
 	Reserved5 uint32
 }
 
-type RTL_CRITICAL_SECTION_DEBUG struct {
+type CRITICAL_SECTION_DEBUG struct {
 	Type                      uint16
 	CreatorBackTraceIndex     uint16
-	CriticalSection           *RTL_CRITICAL_SECTION
+	CriticalSection           *CRITICAL_SECTION
 	ProcessLocksList          LIST_ENTRY
 	EntryCount                uint32
 	ContentionCount           uint32
 	Flags                     uint32
 	CreatorBackTraceIndexHigh uint16
-	SpareWORD                 uint16
+	Identifier                uint16
 }
 
-type RTL_CRITICAL_SECTION struct {
-	DebugInfo      *RTL_CRITICAL_SECTION_DEBUG
+type CRITICAL_SECTION struct {
+	DebugInfo      *CRITICAL_SECTION_DEBUG
 	LockCount      int32
 	RecursionCount int32
 	OwningThread   HANDLE
@@ -739,20 +731,17 @@ type RTL_CRITICAL_SECTION struct {
 	SpinCount      uintptr
 }
 
-type RTL_SRWLOCK struct {
+type SRWLOCK struct {
 	Ptr unsafe.Pointer
 }
 
-type RTL_CONDITION_VARIABLE struct {
+type CONDITION_VARIABLE struct {
 	Ptr unsafe.Pointer
 }
 
 type TP_POOL_STACK_INFORMATION struct {
 	StackReserve uintptr
 	StackCommit  uintptr
-}
-
-type TP_CALLBACK_ENVIRON_V3_ACTIVATION_CONTEXT struct {
 }
 
 type TP_CALLBACK_ENVIRON_V3_U_S struct {
@@ -782,7 +771,7 @@ func (this *TP_CALLBACK_ENVIRON_V3_U) SVal() TP_CALLBACK_ENVIRON_V3_U_S {
 type TP_CALLBACK_ENVIRON_V3 struct {
 	Version                    uint32
 	Pool                       PTP_POOL
-	CleanupGroup               uintptr
+	CleanupGroup               PTP_CLEANUP_GROUP
 	CleanupGroupCancelCallback PTP_CLEANUP_GROUP_CANCEL_CALLBACK
 	RaceDll                    unsafe.Pointer
 	ActivationContext          uintptr
@@ -874,12 +863,17 @@ type PEB struct {
 	SessionId              uint32
 }
 
-type PROCESS_BASIC_INFORMATION struct {
-	Reserved1       unsafe.Pointer
-	PebBaseAddress  *PEB
-	Reserved2       [2]unsafe.Pointer
-	UniqueProcessId uintptr
-	Reserved3       unsafe.Pointer
+type TEB struct {
+	Reserved1               [12]unsafe.Pointer
+	ProcessEnvironmentBlock *PEB
+	Reserved2               [399]unsafe.Pointer
+	Reserved3               [1952]byte
+	TlsSlots                [64]unsafe.Pointer
+	Reserved4               [8]byte
+	Reserved5               [26]unsafe.Pointer
+	ReservedForOle          unsafe.Pointer
+	Reserved6               [4]unsafe.Pointer
+	TlsExpansionSlots       unsafe.Pointer
 }
 
 // func types
@@ -888,13 +882,16 @@ type LPTHREAD_START_ROUTINE = uintptr
 type LPTHREAD_START_ROUTINE_func = func(lpThreadParameter unsafe.Pointer) uint32
 
 type PINIT_ONCE_FN = uintptr
-type PINIT_ONCE_FN_func = func(InitOnce *RTL_RUN_ONCE, Parameter unsafe.Pointer, Context unsafe.Pointer) BOOL
+type PINIT_ONCE_FN_func = func(InitOnce *INIT_ONCE, Parameter unsafe.Pointer, Context unsafe.Pointer) BOOL
 
 type PTIMERAPCROUTINE = uintptr
 type PTIMERAPCROUTINE_func = func(lpArgToCompletionRoutine unsafe.Pointer, dwTimerLowValue uint32, dwTimerHighValue uint32)
 
 type PTP_WIN32_IO_CALLBACK = uintptr
-type PTP_WIN32_IO_CALLBACK_func = func(Instance *TP_CALLBACK_INSTANCE, Context unsafe.Pointer, Overlapped unsafe.Pointer, IoResult uint32, NumberOfBytesTransferred uintptr, Io *TP_IO)
+type PTP_WIN32_IO_CALLBACK_func = func(Instance PTP_CALLBACK_INSTANCE, Context unsafe.Pointer, Overlapped unsafe.Pointer, IoResult uint32, NumberOfBytesTransferred uintptr, Io PTP_IO)
+
+type RTWQPERIODICCALLBACK = uintptr
+type RTWQPERIODICCALLBACK_func = func(context *IUnknown)
 
 type PRTL_UMS_SCHEDULER_ENTRY_POINT = uintptr
 type PRTL_UMS_SCHEDULER_ENTRY_POINT_func = func(Reason RTL_UMS_SCHEDULER_REASON, ActivationPayload uintptr, SchedulerParam unsafe.Pointer)
@@ -902,29 +899,187 @@ type PRTL_UMS_SCHEDULER_ENTRY_POINT_func = func(Reason RTL_UMS_SCHEDULER_REASON,
 type WAITORTIMERCALLBACK = uintptr
 type WAITORTIMERCALLBACK_func = func(param0 unsafe.Pointer, param1 BOOLEAN)
 
+type WORKERCALLBACKFUNC = uintptr
+type WORKERCALLBACKFUNC_func = func(param0 unsafe.Pointer)
+
+type APC_CALLBACK_FUNCTION = uintptr
+type APC_CALLBACK_FUNCTION_func = func(param0 uint32, param1 unsafe.Pointer, param2 unsafe.Pointer)
+
 type PFLS_CALLBACK_FUNCTION = uintptr
 type PFLS_CALLBACK_FUNCTION_func = func(lpFlsData unsafe.Pointer)
 
 type PTP_SIMPLE_CALLBACK = uintptr
-type PTP_SIMPLE_CALLBACK_func = func(Instance *TP_CALLBACK_INSTANCE, Context unsafe.Pointer)
+type PTP_SIMPLE_CALLBACK_func = func(Instance PTP_CALLBACK_INSTANCE, Context unsafe.Pointer)
 
 type PTP_CLEANUP_GROUP_CANCEL_CALLBACK = uintptr
 type PTP_CLEANUP_GROUP_CANCEL_CALLBACK_func = func(ObjectContext unsafe.Pointer, CleanupContext unsafe.Pointer)
 
 type PTP_WORK_CALLBACK = uintptr
-type PTP_WORK_CALLBACK_func = func(Instance *TP_CALLBACK_INSTANCE, Context unsafe.Pointer, Work *TP_WORK)
+type PTP_WORK_CALLBACK_func = func(Instance PTP_CALLBACK_INSTANCE, Context unsafe.Pointer, Work PTP_WORK)
 
 type PTP_TIMER_CALLBACK = uintptr
-type PTP_TIMER_CALLBACK_func = func(Instance *TP_CALLBACK_INSTANCE, Context unsafe.Pointer, Timer *TP_TIMER)
+type PTP_TIMER_CALLBACK_func = func(Instance PTP_CALLBACK_INSTANCE, Context unsafe.Pointer, Timer PTP_TIMER)
 
 type PTP_WAIT_CALLBACK = uintptr
-type PTP_WAIT_CALLBACK_func = func(Instance *TP_CALLBACK_INSTANCE, Context unsafe.Pointer, Wait *TP_WAIT, WaitResult uint32)
+type PTP_WAIT_CALLBACK_func = func(Instance PTP_CALLBACK_INSTANCE, Context unsafe.Pointer, Wait PTP_WAIT, WaitResult uint32)
 
 type LPFIBER_START_ROUTINE = uintptr
 type LPFIBER_START_ROUTINE_func = func(lpFiberParameter unsafe.Pointer)
 
 type PPS_POST_PROCESS_INIT_ROUTINE = uintptr
 type PPS_POST_PROCESS_INIT_ROUTINE_func = func()
+
+// interfaces
+
+// AC6B7889-0740-4D51-8619-905994A55CC6
+var IID_IRtwqAsyncResult = syscall.GUID{0xAC6B7889, 0x0740, 0x4D51,
+	[8]byte{0x86, 0x19, 0x90, 0x59, 0x94, 0xA5, 0x5C, 0xC6}}
+
+type IRtwqAsyncResultInterface interface {
+	IUnknownInterface
+	GetState(ppunkState **IUnknown) HRESULT
+	GetStatus() HRESULT
+	SetStatus(hrStatus HRESULT) HRESULT
+	GetObject(ppObject **IUnknown) HRESULT
+	GetStateNoAddRef() *IUnknown
+}
+
+type IRtwqAsyncResultVtbl struct {
+	IUnknownVtbl
+	GetState         uintptr
+	GetStatus        uintptr
+	SetStatus        uintptr
+	GetObject        uintptr
+	GetStateNoAddRef uintptr
+}
+
+type IRtwqAsyncResult struct {
+	IUnknown
+}
+
+func (this *IRtwqAsyncResult) Vtbl() *IRtwqAsyncResultVtbl {
+	return (*IRtwqAsyncResultVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IRtwqAsyncResult) GetState(ppunkState **IUnknown) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetState, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppunkState)))
+	return HRESULT(ret)
+}
+
+func (this *IRtwqAsyncResult) GetStatus() HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStatus, uintptr(unsafe.Pointer(this)))
+	return HRESULT(ret)
+}
+
+func (this *IRtwqAsyncResult) SetStatus(hrStatus HRESULT) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SetStatus, uintptr(unsafe.Pointer(this)), uintptr(hrStatus))
+	return HRESULT(ret)
+}
+
+func (this *IRtwqAsyncResult) GetObject(ppObject **IUnknown) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppObject)))
+	return HRESULT(ret)
+}
+
+func (this *IRtwqAsyncResult) GetStateNoAddRef() *IUnknown {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetStateNoAddRef, uintptr(unsafe.Pointer(this)))
+	return (*IUnknown)(unsafe.Pointer(ret))
+}
+
+// A27003CF-2354-4F2A-8D6A-AB7CFF15437E
+var IID_IRtwqAsyncCallback = syscall.GUID{0xA27003CF, 0x2354, 0x4F2A,
+	[8]byte{0x8D, 0x6A, 0xAB, 0x7C, 0xFF, 0x15, 0x43, 0x7E}}
+
+type IRtwqAsyncCallbackInterface interface {
+	IUnknownInterface
+	GetParameters(pdwFlags *uint32, pdwQueue *uint32) HRESULT
+	Invoke(pAsyncResult *IRtwqAsyncResult) HRESULT
+}
+
+type IRtwqAsyncCallbackVtbl struct {
+	IUnknownVtbl
+	GetParameters uintptr
+	Invoke        uintptr
+}
+
+type IRtwqAsyncCallback struct {
+	IUnknown
+}
+
+func (this *IRtwqAsyncCallback) Vtbl() *IRtwqAsyncCallbackVtbl {
+	return (*IRtwqAsyncCallbackVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IRtwqAsyncCallback) GetParameters(pdwFlags *uint32, pdwQueue *uint32) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetParameters, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pdwFlags)), uintptr(unsafe.Pointer(pdwQueue)))
+	return HRESULT(ret)
+}
+
+func (this *IRtwqAsyncCallback) Invoke(pAsyncResult *IRtwqAsyncResult) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Invoke, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pAsyncResult)))
+	return HRESULT(ret)
+}
+
+// 00000000-0000-0000-0000-000000000000
+var IID_RTWQASYNCRESULT = syscall.GUID{0x00000000, 0x0000, 0x0000,
+	[8]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}}
+
+type RTWQASYNCRESULTInterface interface {
+	IRtwqAsyncResultInterface
+}
+
+type RTWQASYNCRESULTVtbl struct {
+	IRtwqAsyncResultVtbl
+}
+
+type RTWQASYNCRESULT struct {
+	IRtwqAsyncResult
+}
+
+func (this *RTWQASYNCRESULT) Vtbl() *RTWQASYNCRESULTVtbl {
+	return (*RTWQASYNCRESULTVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+// 63D9255A-7FF1-4B61-8FAF-ED6460DACF2B
+var IID_IRtwqPlatformEvents = syscall.GUID{0x63D9255A, 0x7FF1, 0x4B61,
+	[8]byte{0x8F, 0xAF, 0xED, 0x64, 0x60, 0xDA, 0xCF, 0x2B}}
+
+type IRtwqPlatformEventsInterface interface {
+	IUnknownInterface
+	InitializationComplete() HRESULT
+	ShutdownStart() HRESULT
+	ShutdownComplete() HRESULT
+}
+
+type IRtwqPlatformEventsVtbl struct {
+	IUnknownVtbl
+	InitializationComplete uintptr
+	ShutdownStart          uintptr
+	ShutdownComplete       uintptr
+}
+
+type IRtwqPlatformEvents struct {
+	IUnknown
+}
+
+func (this *IRtwqPlatformEvents) Vtbl() *IRtwqPlatformEventsVtbl {
+	return (*IRtwqPlatformEventsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IRtwqPlatformEvents) InitializationComplete() HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().InitializationComplete, uintptr(unsafe.Pointer(this)))
+	return HRESULT(ret)
+}
+
+func (this *IRtwqPlatformEvents) ShutdownStart() HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ShutdownStart, uintptr(unsafe.Pointer(this)))
+	return HRESULT(ret)
+}
+
+func (this *IRtwqPlatformEvents) ShutdownComplete() HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ShutdownComplete, uintptr(unsafe.Pointer(this)))
+	return HRESULT(ret)
+}
 
 var (
 	pGetProcessWorkingSetSize                     uintptr
@@ -1179,6 +1334,7 @@ var (
 	pGetProcessDEPPolicy                          uintptr
 	pPulseEvent                                   uintptr
 	pWinExec                                      uintptr
+	pSignalObjectAndWait                          uintptr
 	pCreateSemaphoreA                             uintptr
 	pCreateSemaphoreExA                           uintptr
 	pQueryFullProcessImageNameA                   uintptr
@@ -1248,132 +1404,132 @@ func IsThreadAFiber() BOOL {
 	return BOOL(ret)
 }
 
-func InitializeSRWLock(SRWLock *RTL_SRWLOCK) {
+func InitializeSRWLock(SRWLock *SRWLOCK) {
 	addr := LazyAddr(&pInitializeSRWLock, libKernel32, "InitializeSRWLock")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
-func ReleaseSRWLockExclusive(SRWLock *RTL_SRWLOCK) {
+func ReleaseSRWLockExclusive(SRWLock *SRWLOCK) {
 	addr := LazyAddr(&pReleaseSRWLockExclusive, libKernel32, "ReleaseSRWLockExclusive")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
-func ReleaseSRWLockShared(SRWLock *RTL_SRWLOCK) {
+func ReleaseSRWLockShared(SRWLock *SRWLOCK) {
 	addr := LazyAddr(&pReleaseSRWLockShared, libKernel32, "ReleaseSRWLockShared")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
-func AcquireSRWLockExclusive(SRWLock *RTL_SRWLOCK) {
+func AcquireSRWLockExclusive(SRWLock *SRWLOCK) {
 	addr := LazyAddr(&pAcquireSRWLockExclusive, libKernel32, "AcquireSRWLockExclusive")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
-func AcquireSRWLockShared(SRWLock *RTL_SRWLOCK) {
+func AcquireSRWLockShared(SRWLock *SRWLOCK) {
 	addr := LazyAddr(&pAcquireSRWLockShared, libKernel32, "AcquireSRWLockShared")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 }
 
-func TryAcquireSRWLockExclusive(SRWLock *RTL_SRWLOCK) BOOLEAN {
+func TryAcquireSRWLockExclusive(SRWLock *SRWLOCK) BOOLEAN {
 	addr := LazyAddr(&pTryAcquireSRWLockExclusive, libKernel32, "TryAcquireSRWLockExclusive")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 	return BOOLEAN(ret)
 }
 
-func TryAcquireSRWLockShared(SRWLock *RTL_SRWLOCK) BOOLEAN {
+func TryAcquireSRWLockShared(SRWLock *SRWLOCK) BOOLEAN {
 	addr := LazyAddr(&pTryAcquireSRWLockShared, libKernel32, "TryAcquireSRWLockShared")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SRWLock)))
 	return BOOLEAN(ret)
 }
 
-func InitializeCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
+func InitializeCriticalSection(lpCriticalSection *CRITICAL_SECTION) {
 	addr := LazyAddr(&pInitializeCriticalSection, libKernel32, "InitializeCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
-func EnterCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
+func EnterCriticalSection(lpCriticalSection *CRITICAL_SECTION) {
 	addr := LazyAddr(&pEnterCriticalSection, libKernel32, "EnterCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
-func LeaveCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
+func LeaveCriticalSection(lpCriticalSection *CRITICAL_SECTION) {
 	addr := LazyAddr(&pLeaveCriticalSection, libKernel32, "LeaveCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
-func InitializeCriticalSectionAndSpinCount(lpCriticalSection *RTL_CRITICAL_SECTION, dwSpinCount uint32) (BOOL, WIN32_ERROR) {
+func InitializeCriticalSectionAndSpinCount(lpCriticalSection *CRITICAL_SECTION, dwSpinCount uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pInitializeCriticalSectionAndSpinCount, libKernel32, "InitializeCriticalSectionAndSpinCount")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)), uintptr(dwSpinCount))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func InitializeCriticalSectionEx(lpCriticalSection *RTL_CRITICAL_SECTION, dwSpinCount uint32, Flags uint32) (BOOL, WIN32_ERROR) {
+func InitializeCriticalSectionEx(lpCriticalSection *CRITICAL_SECTION, dwSpinCount uint32, Flags uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pInitializeCriticalSectionEx, libKernel32, "InitializeCriticalSectionEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)), uintptr(dwSpinCount), uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetCriticalSectionSpinCount(lpCriticalSection *RTL_CRITICAL_SECTION, dwSpinCount uint32) uint32 {
+func SetCriticalSectionSpinCount(lpCriticalSection *CRITICAL_SECTION, dwSpinCount uint32) uint32 {
 	addr := LazyAddr(&pSetCriticalSectionSpinCount, libKernel32, "SetCriticalSectionSpinCount")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)), uintptr(dwSpinCount))
 	return uint32(ret)
 }
 
-func TryEnterCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) BOOL {
+func TryEnterCriticalSection(lpCriticalSection *CRITICAL_SECTION) BOOL {
 	addr := LazyAddr(&pTryEnterCriticalSection, libKernel32, "TryEnterCriticalSection")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 	return BOOL(ret)
 }
 
-func DeleteCriticalSection(lpCriticalSection *RTL_CRITICAL_SECTION) {
+func DeleteCriticalSection(lpCriticalSection *CRITICAL_SECTION) {
 	addr := LazyAddr(&pDeleteCriticalSection, libKernel32, "DeleteCriticalSection")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCriticalSection)))
 }
 
-func InitOnceInitialize(InitOnce *RTL_RUN_ONCE) {
+func InitOnceInitialize(InitOnce *INIT_ONCE) {
 	addr := LazyAddr(&pInitOnceInitialize, libKernel32, "InitOnceInitialize")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(InitOnce)))
 }
 
-func InitOnceExecuteOnce(InitOnce *RTL_RUN_ONCE, InitFn PINIT_ONCE_FN, Parameter unsafe.Pointer, Context unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func InitOnceExecuteOnce(InitOnce *INIT_ONCE, InitFn PINIT_ONCE_FN, Parameter unsafe.Pointer, Context unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pInitOnceExecuteOnce, libKernel32, "InitOnceExecuteOnce")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(InitOnce)), InitFn, uintptr(Parameter), uintptr(Context))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func InitOnceBeginInitialize(lpInitOnce *RTL_RUN_ONCE, dwFlags uint32, fPending *BOOL, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func InitOnceBeginInitialize(lpInitOnce *INIT_ONCE, dwFlags uint32, fPending *BOOL, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pInitOnceBeginInitialize, libKernel32, "InitOnceBeginInitialize")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpInitOnce)), uintptr(dwFlags), uintptr(unsafe.Pointer(fPending)), uintptr(lpContext))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func InitOnceComplete(lpInitOnce *RTL_RUN_ONCE, dwFlags uint32, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func InitOnceComplete(lpInitOnce *INIT_ONCE, dwFlags uint32, lpContext unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pInitOnceComplete, libKernel32, "InitOnceComplete")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpInitOnce)), uintptr(dwFlags), uintptr(lpContext))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func InitializeConditionVariable(ConditionVariable *RTL_CONDITION_VARIABLE) {
+func InitializeConditionVariable(ConditionVariable *CONDITION_VARIABLE) {
 	addr := LazyAddr(&pInitializeConditionVariable, libKernel32, "InitializeConditionVariable")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)))
 }
 
-func WakeConditionVariable(ConditionVariable *RTL_CONDITION_VARIABLE) {
+func WakeConditionVariable(ConditionVariable *CONDITION_VARIABLE) {
 	addr := LazyAddr(&pWakeConditionVariable, libKernel32, "WakeConditionVariable")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)))
 }
 
-func WakeAllConditionVariable(ConditionVariable *RTL_CONDITION_VARIABLE) {
+func WakeAllConditionVariable(ConditionVariable *CONDITION_VARIABLE) {
 	addr := LazyAddr(&pWakeAllConditionVariable, libKernel32, "WakeAllConditionVariable")
 	syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)))
 }
 
-func SleepConditionVariableCS(ConditionVariable *RTL_CONDITION_VARIABLE, CriticalSection *RTL_CRITICAL_SECTION, dwMilliseconds uint32) (BOOL, WIN32_ERROR) {
+func SleepConditionVariableCS(ConditionVariable *CONDITION_VARIABLE, CriticalSection *CRITICAL_SECTION, dwMilliseconds uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSleepConditionVariableCS, libKernel32, "SleepConditionVariableCS")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)), uintptr(unsafe.Pointer(CriticalSection)), uintptr(dwMilliseconds))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SleepConditionVariableSRW(ConditionVariable *RTL_CONDITION_VARIABLE, SRWLock *RTL_SRWLOCK, dwMilliseconds uint32, Flags uint32) (BOOL, WIN32_ERROR) {
+func SleepConditionVariableSRW(ConditionVariable *CONDITION_VARIABLE, SRWLock *SRWLOCK, dwMilliseconds uint32, Flags uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSleepConditionVariableSRW, libKernel32, "SleepConditionVariableSRW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ConditionVariable)), uintptr(unsafe.Pointer(SRWLock)), uintptr(dwMilliseconds), uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1403,10 +1559,10 @@ func ReleaseMutex(hMutex HANDLE) (BOOL, WIN32_ERROR) {
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WaitForSingleObject(hHandle HANDLE, dwMilliseconds uint32) (WIN32_ERROR, WIN32_ERROR) {
+func WaitForSingleObject(hHandle HANDLE, dwMilliseconds uint32) (WAIT_EVENT, WIN32_ERROR) {
 	addr := LazyAddr(&pWaitForSingleObject, libKernel32, "WaitForSingleObject")
 	ret, _, err := syscall.SyscallN(addr, hHandle, uintptr(dwMilliseconds))
-	return WIN32_ERROR(ret), WIN32_ERROR(err)
+	return WAIT_EVENT(ret), WIN32_ERROR(err)
 }
 
 func SleepEx(dwMilliseconds uint32, bAlertable BOOL) uint32 {
@@ -1415,16 +1571,16 @@ func SleepEx(dwMilliseconds uint32, bAlertable BOOL) uint32 {
 	return uint32(ret)
 }
 
-func WaitForSingleObjectEx(hHandle HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
+func WaitForSingleObjectEx(hHandle HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WAIT_EVENT, WIN32_ERROR) {
 	addr := LazyAddr(&pWaitForSingleObjectEx, libKernel32, "WaitForSingleObjectEx")
 	ret, _, err := syscall.SyscallN(addr, hHandle, uintptr(dwMilliseconds), uintptr(bAlertable))
-	return WIN32_ERROR(ret), WIN32_ERROR(err)
+	return WAIT_EVENT(ret), WIN32_ERROR(err)
 }
 
-func WaitForMultipleObjectsEx(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
+func WaitForMultipleObjectsEx(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32, bAlertable BOOL) (WAIT_EVENT, WIN32_ERROR) {
 	addr := LazyAddr(&pWaitForMultipleObjectsEx, libKernel32, "WaitForMultipleObjectsEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(lpHandles)), uintptr(bWaitAll), uintptr(dwMilliseconds), uintptr(bAlertable))
-	return WIN32_ERROR(ret), WIN32_ERROR(err)
+	return WAIT_EVENT(ret), WIN32_ERROR(err)
 }
 
 func CreateMutexA(lpMutexAttributes *SECURITY_ATTRIBUTES, bInitialOwner BOOL, lpName PSTR) (HANDLE, WIN32_ERROR) {
@@ -1547,19 +1703,19 @@ func CreateWaitableTimerExW(lpTimerAttributes *SECURITY_ATTRIBUTES, lpTimerName 
 	return ret, WIN32_ERROR(err)
 }
 
-func EnterSynchronizationBarrier(lpBarrier *RTL_BARRIER, dwFlags uint32) BOOL {
+func EnterSynchronizationBarrier(lpBarrier *SYNCHRONIZATION_BARRIER, dwFlags uint32) BOOL {
 	addr := LazyAddr(&pEnterSynchronizationBarrier, libKernel32, "EnterSynchronizationBarrier")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBarrier)), uintptr(dwFlags))
 	return BOOL(ret)
 }
 
-func InitializeSynchronizationBarrier(lpBarrier *RTL_BARRIER, lTotalThreads int32, lSpinCount int32) (BOOL, WIN32_ERROR) {
+func InitializeSynchronizationBarrier(lpBarrier *SYNCHRONIZATION_BARRIER, lTotalThreads int32, lSpinCount int32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pInitializeSynchronizationBarrier, libKernel32, "InitializeSynchronizationBarrier")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBarrier)), uintptr(lTotalThreads), uintptr(lSpinCount))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func DeleteSynchronizationBarrier(lpBarrier *RTL_BARRIER) BOOL {
+func DeleteSynchronizationBarrier(lpBarrier *SYNCHRONIZATION_BARRIER) BOOL {
 	addr := LazyAddr(&pDeleteSynchronizationBarrier, libKernel32, "DeleteSynchronizationBarrier")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpBarrier)))
 	return BOOL(ret)
@@ -1570,10 +1726,10 @@ func Sleep(dwMilliseconds uint32) {
 	syscall.SyscallN(addr, uintptr(dwMilliseconds))
 }
 
-func WaitForMultipleObjects(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32) (WIN32_ERROR, WIN32_ERROR) {
+func WaitForMultipleObjects(nCount uint32, lpHandles *HANDLE, bWaitAll BOOL, dwMilliseconds uint32) (WAIT_EVENT, WIN32_ERROR) {
 	addr := LazyAddr(&pWaitForMultipleObjects, libKernel32, "WaitForMultipleObjects")
 	ret, _, err := syscall.SyscallN(addr, uintptr(nCount), uintptr(unsafe.Pointer(lpHandles)), uintptr(bWaitAll), uintptr(dwMilliseconds))
-	return WIN32_ERROR(ret), WIN32_ERROR(err)
+	return WAIT_EVENT(ret), WIN32_ERROR(err)
 }
 
 var CreateSemaphore = CreateSemaphoreW
@@ -2228,56 +2384,56 @@ func CloseThreadpool(ptpp PTP_POOL) {
 	syscall.SyscallN(addr, ptpp)
 }
 
-func CreateThreadpoolCleanupGroup() (uintptr, WIN32_ERROR) {
+func CreateThreadpoolCleanupGroup() (PTP_CLEANUP_GROUP, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateThreadpoolCleanupGroup, libKernel32, "CreateThreadpoolCleanupGroup")
 	ret, _, err := syscall.SyscallN(addr)
 	return ret, WIN32_ERROR(err)
 }
 
-func CloseThreadpoolCleanupGroupMembers(ptpcg uintptr, fCancelPendingCallbacks BOOL, pvCleanupContext unsafe.Pointer) {
+func CloseThreadpoolCleanupGroupMembers(ptpcg PTP_CLEANUP_GROUP, fCancelPendingCallbacks BOOL, pvCleanupContext unsafe.Pointer) {
 	addr := LazyAddr(&pCloseThreadpoolCleanupGroupMembers, libKernel32, "CloseThreadpoolCleanupGroupMembers")
 	syscall.SyscallN(addr, ptpcg, uintptr(fCancelPendingCallbacks), uintptr(pvCleanupContext))
 }
 
-func CloseThreadpoolCleanupGroup(ptpcg uintptr) {
+func CloseThreadpoolCleanupGroup(ptpcg PTP_CLEANUP_GROUP) {
 	addr := LazyAddr(&pCloseThreadpoolCleanupGroup, libKernel32, "CloseThreadpoolCleanupGroup")
 	syscall.SyscallN(addr, ptpcg)
 }
 
-func SetEventWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, evt HANDLE) {
+func SetEventWhenCallbackReturns(pci PTP_CALLBACK_INSTANCE, evt HANDLE) {
 	addr := LazyAddr(&pSetEventWhenCallbackReturns, libKernel32, "SetEventWhenCallbackReturns")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), evt)
+	syscall.SyscallN(addr, pci, evt)
 }
 
-func ReleaseSemaphoreWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, sem HANDLE, crel uint32) {
+func ReleaseSemaphoreWhenCallbackReturns(pci PTP_CALLBACK_INSTANCE, sem HANDLE, crel uint32) {
 	addr := LazyAddr(&pReleaseSemaphoreWhenCallbackReturns, libKernel32, "ReleaseSemaphoreWhenCallbackReturns")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), sem, uintptr(crel))
+	syscall.SyscallN(addr, pci, sem, uintptr(crel))
 }
 
-func ReleaseMutexWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, mut HANDLE) {
+func ReleaseMutexWhenCallbackReturns(pci PTP_CALLBACK_INSTANCE, mut HANDLE) {
 	addr := LazyAddr(&pReleaseMutexWhenCallbackReturns, libKernel32, "ReleaseMutexWhenCallbackReturns")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), mut)
+	syscall.SyscallN(addr, pci, mut)
 }
 
-func LeaveCriticalSectionWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, pcs *RTL_CRITICAL_SECTION) {
+func LeaveCriticalSectionWhenCallbackReturns(pci PTP_CALLBACK_INSTANCE, pcs *CRITICAL_SECTION) {
 	addr := LazyAddr(&pLeaveCriticalSectionWhenCallbackReturns, libKernel32, "LeaveCriticalSectionWhenCallbackReturns")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), uintptr(unsafe.Pointer(pcs)))
+	syscall.SyscallN(addr, pci, uintptr(unsafe.Pointer(pcs)))
 }
 
-func FreeLibraryWhenCallbackReturns(pci *TP_CALLBACK_INSTANCE, mod HINSTANCE) {
+func FreeLibraryWhenCallbackReturns(pci PTP_CALLBACK_INSTANCE, mod HMODULE) {
 	addr := LazyAddr(&pFreeLibraryWhenCallbackReturns, libKernel32, "FreeLibraryWhenCallbackReturns")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)), mod)
+	syscall.SyscallN(addr, pci, mod)
 }
 
-func CallbackMayRunLong(pci *TP_CALLBACK_INSTANCE) BOOL {
+func CallbackMayRunLong(pci PTP_CALLBACK_INSTANCE) BOOL {
 	addr := LazyAddr(&pCallbackMayRunLong, libKernel32, "CallbackMayRunLong")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)))
+	ret, _, _ := syscall.SyscallN(addr, pci)
 	return BOOL(ret)
 }
 
-func DisassociateCurrentThreadFromCallback(pci *TP_CALLBACK_INSTANCE) {
+func DisassociateCurrentThreadFromCallback(pci PTP_CALLBACK_INSTANCE) {
 	addr := LazyAddr(&pDisassociateCurrentThreadFromCallback, libKernel32, "DisassociateCurrentThreadFromCallback")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pci)))
+	syscall.SyscallN(addr, pci)
 }
 
 func TrySubmitThreadpoolCallback(pfns PTP_SIMPLE_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (BOOL, WIN32_ERROR) {
@@ -2286,110 +2442,110 @@ func TrySubmitThreadpoolCallback(pfns PTP_SIMPLE_CALLBACK, pv unsafe.Pointer, pc
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreateThreadpoolWork(pfnwk PTP_WORK_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_WORK, WIN32_ERROR) {
+func CreateThreadpoolWork(pfnwk PTP_WORK_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (PTP_WORK, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateThreadpoolWork, libKernel32, "CreateThreadpoolWork")
 	ret, _, err := syscall.SyscallN(addr, pfnwk, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
-	return (*TP_WORK)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return ret, WIN32_ERROR(err)
 }
 
-func SubmitThreadpoolWork(pwk *TP_WORK) {
+func SubmitThreadpoolWork(pwk PTP_WORK) {
 	addr := LazyAddr(&pSubmitThreadpoolWork, libKernel32, "SubmitThreadpoolWork")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwk)))
+	syscall.SyscallN(addr, pwk)
 }
 
-func WaitForThreadpoolWorkCallbacks(pwk *TP_WORK, fCancelPendingCallbacks BOOL) {
+func WaitForThreadpoolWorkCallbacks(pwk PTP_WORK, fCancelPendingCallbacks BOOL) {
 	addr := LazyAddr(&pWaitForThreadpoolWorkCallbacks, libKernel32, "WaitForThreadpoolWorkCallbacks")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwk)), uintptr(fCancelPendingCallbacks))
+	syscall.SyscallN(addr, pwk, uintptr(fCancelPendingCallbacks))
 }
 
-func CloseThreadpoolWork(pwk *TP_WORK) {
+func CloseThreadpoolWork(pwk PTP_WORK) {
 	addr := LazyAddr(&pCloseThreadpoolWork, libKernel32, "CloseThreadpoolWork")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwk)))
+	syscall.SyscallN(addr, pwk)
 }
 
-func CreateThreadpoolTimer(pfnti PTP_TIMER_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_TIMER, WIN32_ERROR) {
+func CreateThreadpoolTimer(pfnti PTP_TIMER_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (PTP_TIMER, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateThreadpoolTimer, libKernel32, "CreateThreadpoolTimer")
 	ret, _, err := syscall.SyscallN(addr, pfnti, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
-	return (*TP_TIMER)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return ret, WIN32_ERROR(err)
 }
 
-func SetThreadpoolTimer(pti *TP_TIMER, pftDueTime *FILETIME, msPeriod uint32, msWindowLength uint32) {
+func SetThreadpoolTimer(pti PTP_TIMER, pftDueTime *FILETIME, msPeriod uint32, msWindowLength uint32) {
 	addr := LazyAddr(&pSetThreadpoolTimer, libKernel32, "SetThreadpoolTimer")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)), uintptr(unsafe.Pointer(pftDueTime)), uintptr(msPeriod), uintptr(msWindowLength))
+	syscall.SyscallN(addr, pti, uintptr(unsafe.Pointer(pftDueTime)), uintptr(msPeriod), uintptr(msWindowLength))
 }
 
-func IsThreadpoolTimerSet(pti *TP_TIMER) BOOL {
+func IsThreadpoolTimerSet(pti PTP_TIMER) BOOL {
 	addr := LazyAddr(&pIsThreadpoolTimerSet, libKernel32, "IsThreadpoolTimerSet")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)))
+	ret, _, _ := syscall.SyscallN(addr, pti)
 	return BOOL(ret)
 }
 
-func WaitForThreadpoolTimerCallbacks(pti *TP_TIMER, fCancelPendingCallbacks BOOL) {
+func WaitForThreadpoolTimerCallbacks(pti PTP_TIMER, fCancelPendingCallbacks BOOL) {
 	addr := LazyAddr(&pWaitForThreadpoolTimerCallbacks, libKernel32, "WaitForThreadpoolTimerCallbacks")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)), uintptr(fCancelPendingCallbacks))
+	syscall.SyscallN(addr, pti, uintptr(fCancelPendingCallbacks))
 }
 
-func CloseThreadpoolTimer(pti *TP_TIMER) {
+func CloseThreadpoolTimer(pti PTP_TIMER) {
 	addr := LazyAddr(&pCloseThreadpoolTimer, libKernel32, "CloseThreadpoolTimer")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)))
+	syscall.SyscallN(addr, pti)
 }
 
-func CreateThreadpoolWait(pfnwa PTP_WAIT_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_WAIT, WIN32_ERROR) {
+func CreateThreadpoolWait(pfnwa PTP_WAIT_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (PTP_WAIT, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateThreadpoolWait, libKernel32, "CreateThreadpoolWait")
 	ret, _, err := syscall.SyscallN(addr, pfnwa, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
-	return (*TP_WAIT)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return ret, WIN32_ERROR(err)
 }
 
-func SetThreadpoolWait(pwa *TP_WAIT, h HANDLE, pftTimeout *FILETIME) {
+func SetThreadpoolWait(pwa PTP_WAIT, h HANDLE, pftTimeout *FILETIME) {
 	addr := LazyAddr(&pSetThreadpoolWait, libKernel32, "SetThreadpoolWait")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)), h, uintptr(unsafe.Pointer(pftTimeout)))
+	syscall.SyscallN(addr, pwa, h, uintptr(unsafe.Pointer(pftTimeout)))
 }
 
-func WaitForThreadpoolWaitCallbacks(pwa *TP_WAIT, fCancelPendingCallbacks BOOL) {
+func WaitForThreadpoolWaitCallbacks(pwa PTP_WAIT, fCancelPendingCallbacks BOOL) {
 	addr := LazyAddr(&pWaitForThreadpoolWaitCallbacks, libKernel32, "WaitForThreadpoolWaitCallbacks")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)), uintptr(fCancelPendingCallbacks))
+	syscall.SyscallN(addr, pwa, uintptr(fCancelPendingCallbacks))
 }
 
-func CloseThreadpoolWait(pwa *TP_WAIT) {
+func CloseThreadpoolWait(pwa PTP_WAIT) {
 	addr := LazyAddr(&pCloseThreadpoolWait, libKernel32, "CloseThreadpoolWait")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)))
+	syscall.SyscallN(addr, pwa)
 }
 
-func CreateThreadpoolIo(fl HANDLE, pfnio PTP_WIN32_IO_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (*TP_IO, WIN32_ERROR) {
+func CreateThreadpoolIo(fl HANDLE, pfnio PTP_WIN32_IO_CALLBACK, pv unsafe.Pointer, pcbe *TP_CALLBACK_ENVIRON_V3) (PTP_IO, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateThreadpoolIo, libKernel32, "CreateThreadpoolIo")
 	ret, _, err := syscall.SyscallN(addr, fl, pfnio, uintptr(pv), uintptr(unsafe.Pointer(pcbe)))
-	return (*TP_IO)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+	return ret, WIN32_ERROR(err)
 }
 
-func StartThreadpoolIo(pio *TP_IO) {
+func StartThreadpoolIo(pio PTP_IO) {
 	addr := LazyAddr(&pStartThreadpoolIo, libKernel32, "StartThreadpoolIo")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)))
+	syscall.SyscallN(addr, pio)
 }
 
-func CancelThreadpoolIo(pio *TP_IO) {
+func CancelThreadpoolIo(pio PTP_IO) {
 	addr := LazyAddr(&pCancelThreadpoolIo, libKernel32, "CancelThreadpoolIo")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)))
+	syscall.SyscallN(addr, pio)
 }
 
-func WaitForThreadpoolIoCallbacks(pio *TP_IO, fCancelPendingCallbacks BOOL) {
+func WaitForThreadpoolIoCallbacks(pio PTP_IO, fCancelPendingCallbacks BOOL) {
 	addr := LazyAddr(&pWaitForThreadpoolIoCallbacks, libKernel32, "WaitForThreadpoolIoCallbacks")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)), uintptr(fCancelPendingCallbacks))
+	syscall.SyscallN(addr, pio, uintptr(fCancelPendingCallbacks))
 }
 
-func CloseThreadpoolIo(pio *TP_IO) {
+func CloseThreadpoolIo(pio PTP_IO) {
 	addr := LazyAddr(&pCloseThreadpoolIo, libKernel32, "CloseThreadpoolIo")
-	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pio)))
+	syscall.SyscallN(addr, pio)
 }
 
-func SetThreadpoolTimerEx(pti *TP_TIMER, pftDueTime *FILETIME, msPeriod uint32, msWindowLength uint32) BOOL {
+func SetThreadpoolTimerEx(pti PTP_TIMER, pftDueTime *FILETIME, msPeriod uint32, msWindowLength uint32) BOOL {
 	addr := LazyAddr(&pSetThreadpoolTimerEx, libKernel32, "SetThreadpoolTimerEx")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pti)), uintptr(unsafe.Pointer(pftDueTime)), uintptr(msPeriod), uintptr(msWindowLength))
+	ret, _, _ := syscall.SyscallN(addr, pti, uintptr(unsafe.Pointer(pftDueTime)), uintptr(msPeriod), uintptr(msWindowLength))
 	return BOOL(ret)
 }
 
-func SetThreadpoolWaitEx(pwa *TP_WAIT, h HANDLE, pftTimeout *FILETIME, Reserved unsafe.Pointer) BOOL {
+func SetThreadpoolWaitEx(pwa PTP_WAIT, h HANDLE, pftTimeout *FILETIME, Reserved unsafe.Pointer) BOOL {
 	addr := LazyAddr(&pSetThreadpoolWaitEx, libKernel32, "SetThreadpoolWaitEx")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwa)), h, uintptr(unsafe.Pointer(pftTimeout)), uintptr(Reserved))
+	ret, _, _ := syscall.SyscallN(addr, pwa, h, uintptr(unsafe.Pointer(pftTimeout)), uintptr(Reserved))
 	return BOOL(ret)
 }
 
@@ -2413,7 +2569,7 @@ func Wow64SuspendThread(hThread HANDLE) (uint32, WIN32_ERROR) {
 
 var CreatePrivateNamespace = CreatePrivateNamespaceW
 
-func CreatePrivateNamespaceW(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PWSTR) NamespaceHandle {
+func CreatePrivateNamespaceW(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PWSTR) HANDLE {
 	addr := LazyAddr(&pCreatePrivateNamespaceW, libKernel32, "CreatePrivateNamespaceW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPrivateNamespaceAttributes)), uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret
@@ -2421,13 +2577,13 @@ func CreatePrivateNamespaceW(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, 
 
 var OpenPrivateNamespace = OpenPrivateNamespaceW
 
-func OpenPrivateNamespaceW(lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PWSTR) NamespaceHandle {
+func OpenPrivateNamespaceW(lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PWSTR) HANDLE {
 	addr := LazyAddr(&pOpenPrivateNamespaceW, libKernel32, "OpenPrivateNamespaceW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret
 }
 
-func ClosePrivateNamespace(Handle NamespaceHandle, Flags uint32) (BOOLEAN, WIN32_ERROR) {
+func ClosePrivateNamespace(Handle HANDLE, Flags uint32) (BOOLEAN, WIN32_ERROR) {
 	addr := LazyAddr(&pClosePrivateNamespace, libKernel32, "ClosePrivateNamespace")
 	ret, _, err := syscall.SyscallN(addr, Handle, uintptr(Flags))
 	return BOOLEAN(ret), WIN32_ERROR(err)
@@ -2435,7 +2591,7 @@ func ClosePrivateNamespace(Handle NamespaceHandle, Flags uint32) (BOOLEAN, WIN32
 
 var CreateBoundaryDescriptor = CreateBoundaryDescriptorW
 
-func CreateBoundaryDescriptorW(Name PWSTR, Flags uint32) BoundaryDescriptorHandle {
+func CreateBoundaryDescriptorW(Name PWSTR, Flags uint32) HANDLE {
 	addr := LazyAddr(&pCreateBoundaryDescriptorW, libKernel32, "CreateBoundaryDescriptorW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Name)), uintptr(Flags))
 	return ret
@@ -2447,7 +2603,7 @@ func AddSIDToBoundaryDescriptor(BoundaryDescriptor *HANDLE, RequiredSid PSID) (B
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func DeleteBoundaryDescriptor(BoundaryDescriptor BoundaryDescriptorHandle) {
+func DeleteBoundaryDescriptor(BoundaryDescriptor HANDLE) {
 	addr := LazyAddr(&pDeleteBoundaryDescriptor, libKernel32, "DeleteBoundaryDescriptor")
 	syscall.SyscallN(addr, BoundaryDescriptor)
 }
@@ -2630,13 +2786,13 @@ func GetNextUmsListItem(UmsContext unsafe.Pointer) (unsafe.Pointer, WIN32_ERROR)
 	return (unsafe.Pointer)(ret), WIN32_ERROR(err)
 }
 
-func QueryUmsThreadInformation(UmsThread unsafe.Pointer, UmsThreadInfoClass RTL_UMS_THREAD_INFO_CLASS, UmsThreadInformation unsafe.Pointer, UmsThreadInformationLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
+func QueryUmsThreadInformation(UmsThread unsafe.Pointer, UmsThreadInfoClass UMS_THREAD_INFO_CLASS, UmsThreadInformation unsafe.Pointer, UmsThreadInformationLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pQueryUmsThreadInformation, libKernel32, "QueryUmsThreadInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsThread), uintptr(UmsThreadInfoClass), uintptr(UmsThreadInformation), uintptr(UmsThreadInformationLength), uintptr(unsafe.Pointer(ReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetUmsThreadInformation(UmsThread unsafe.Pointer, UmsThreadInfoClass RTL_UMS_THREAD_INFO_CLASS, UmsThreadInformation unsafe.Pointer, UmsThreadInformationLength uint32) (BOOL, WIN32_ERROR) {
+func SetUmsThreadInformation(UmsThread unsafe.Pointer, UmsThreadInfoClass UMS_THREAD_INFO_CLASS, UmsThreadInformation unsafe.Pointer, UmsThreadInformationLength uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSetUmsThreadInformation, libKernel32, "SetUmsThreadInformation")
 	ret, _, err := syscall.SyscallN(addr, uintptr(UmsThread), uintptr(UmsThreadInfoClass), uintptr(UmsThreadInformation), uintptr(UmsThreadInformationLength))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -2694,6 +2850,12 @@ func WinExec(lpCmdLine PSTR, uCmdShow uint32) uint32 {
 	addr := LazyAddr(&pWinExec, libKernel32, "WinExec")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCmdLine)), uintptr(uCmdShow))
 	return uint32(ret)
+}
+
+func SignalObjectAndWait(hObjectToSignal HANDLE, hObjectToWaitOn HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WAIT_EVENT, WIN32_ERROR) {
+	addr := LazyAddr(&pSignalObjectAndWait, libKernel32, "SignalObjectAndWait")
+	ret, _, err := syscall.SyscallN(addr, hObjectToSignal, hObjectToWaitOn, uintptr(dwMilliseconds), uintptr(bAlertable))
+	return WAIT_EVENT(ret), WIN32_ERROR(err)
 }
 
 func CreateSemaphoreA(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount int32, lMaximumCount int32, lpName PSTR) (HANDLE, WIN32_ERROR) {
@@ -2757,19 +2919,19 @@ func SetTimerQueueTimer(TimerQueue HANDLE, Callback WAITORTIMERCALLBACK, Paramet
 	return ret
 }
 
-func CreatePrivateNamespaceA(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PSTR) (NamespaceHandle, WIN32_ERROR) {
+func CreatePrivateNamespaceA(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PSTR) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreatePrivateNamespaceA, libKernel32, "CreatePrivateNamespaceA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPrivateNamespaceAttributes)), uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret, WIN32_ERROR(err)
 }
 
-func OpenPrivateNamespaceA(lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PSTR) NamespaceHandle {
+func OpenPrivateNamespaceA(lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PSTR) HANDLE {
 	addr := LazyAddr(&pOpenPrivateNamespaceA, libKernel32, "OpenPrivateNamespaceA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(lpBoundaryDescriptor), uintptr(unsafe.Pointer(lpAliasPrefix)))
 	return ret
 }
 
-func CreateBoundaryDescriptorA(Name PSTR, Flags uint32) (BoundaryDescriptorHandle, WIN32_ERROR) {
+func CreateBoundaryDescriptorA(Name PSTR, Flags uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateBoundaryDescriptorA, libKernel32, "CreateBoundaryDescriptorA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(Name)), uintptr(Flags))
 	return ret, WIN32_ERROR(err)

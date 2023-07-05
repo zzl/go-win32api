@@ -6,20 +6,17 @@ import (
 )
 
 type (
-	HDC                     = uintptr
-	CreatedHDC              = uintptr
-	HBITMAP                 = uintptr
-	HRGN                    = uintptr
-	HPEN                    = uintptr
-	HBRUSH                  = uintptr
-	HFONT                   = uintptr
-	HMETAFILE               = uintptr
-	HENHMETAFILE            = uintptr
-	HPALETTE                = uintptr
-	HdcMetdataFileHandle    = uintptr
-	HdcMetdataEnhFileHandle = uintptr
-	HGDIOBJ                 = uintptr
-	HMONITOR                = uintptr
+	HBITMAP      = uintptr
+	HRGN         = uintptr
+	HPEN         = uintptr
+	HBRUSH       = uintptr
+	HFONT        = uintptr
+	HMETAFILE    = uintptr
+	HENHMETAFILE = uintptr
+	HPALETTE     = uintptr
+	HDC          = uintptr
+	HGDIOBJ      = uintptr
+	HMONITOR     = uintptr
 )
 
 const (
@@ -1115,7 +1112,7 @@ const (
 
 // enum
 // flags
-type PEN_STYLE uint32
+type PEN_STYLE int32
 
 const (
 	PS_GEOMETRIC     PEN_STYLE = 65536
@@ -1235,7 +1232,7 @@ const (
 )
 
 // enum
-type GET_STOCK_OBJECT_FLAGS uint32
+type GET_STOCK_OBJECT_FLAGS int32
 
 const (
 	BLACK_BRUSH         GET_STOCK_OBJECT_FLAGS = 4
@@ -1286,7 +1283,7 @@ const (
 )
 
 // enum
-type CREATE_POLYGON_RGN_MODE uint32
+type CREATE_POLYGON_RGN_MODE int32
 
 const (
 	ALTERNATE CREATE_POLYGON_RGN_MODE = 1
@@ -1440,7 +1437,7 @@ const (
 )
 
 // enum
-type ARC_DIRECTION uint32
+type ARC_DIRECTION int32
 
 const (
 	AD_COUNTERCLOCKWISE ARC_DIRECTION = 1
@@ -1457,7 +1454,7 @@ const (
 )
 
 // enum
-type STRETCH_BLT_MODE uint32
+type STRETCH_BLT_MODE int32
 
 const (
 	BLACKONWHITE        STRETCH_BLT_MODE = 1
@@ -1601,7 +1598,7 @@ const (
 )
 
 // enum
-type CREATE_FONT_PACKAGE_SUBSET_ENCODING uint16
+type CREATE_FONT_PACKAGE_SUBSET_ENCODING int16
 
 const (
 	TTFCFP_STD_MAC_CHAR_SET CREATE_FONT_PACKAGE_SUBSET_ENCODING = 0
@@ -1618,7 +1615,7 @@ const (
 )
 
 // enum
-type HATCH_BRUSH_STYLE uint32
+type HATCH_BRUSH_STYLE int32
 
 const (
 	HS_BDIAGONAL  HATCH_BRUSH_STYLE = 3
@@ -1653,7 +1650,7 @@ const (
 )
 
 // enum
-type GRAPHICS_MODE uint32
+type GRAPHICS_MODE int32
 
 const (
 	GM_COMPATIBLE GRAPHICS_MODE = 1
@@ -1706,7 +1703,7 @@ const (
 )
 
 // enum
-type CREATE_FONT_PACKAGE_SUBSET_PLATFORM uint16
+type CREATE_FONT_PACKAGE_SUBSET_PLATFORM int16
 
 const (
 	TTFCFP_UNICODE_PLATFORMID CREATE_FONT_PACKAGE_SUBSET_PLATFORM = 0
@@ -1714,7 +1711,7 @@ const (
 )
 
 // enum
-type HDC_MAP_MODE uint32
+type HDC_MAP_MODE int32
 
 const (
 	MM_ANISOTROPIC HDC_MAP_MODE = 8
@@ -1766,7 +1763,7 @@ const (
 )
 
 // enum
-type BI_COMPRESSION int32
+type BI_COMPRESSION uint32
 
 const (
 	BI_RGB       BI_COMPRESSION = 0
@@ -1954,7 +1951,7 @@ const (
 )
 
 // enum
-type DEVMODE_COLOR uint16
+type DEVMODE_COLOR int16
 
 const (
 	DMCOLOR_MONOCHROME DEVMODE_COLOR = 1
@@ -1962,7 +1959,7 @@ const (
 )
 
 // enum
-type DEVMODE_DUPLEX uint16
+type DEVMODE_DUPLEX int16
 
 const (
 	DMDUP_SIMPLEX    DEVMODE_DUPLEX = 1
@@ -1971,7 +1968,7 @@ const (
 )
 
 // enum
-type DEVMODE_COLLATE uint16
+type DEVMODE_COLLATE int16
 
 const (
 	DMCOLLATE_FALSE DEVMODE_COLLATE = 0
@@ -1998,7 +1995,7 @@ const (
 )
 
 // enum
-type DEVMODE_TRUETYPE_OPTION uint16
+type DEVMODE_TRUETYPE_OPTION int16
 
 const (
 	DMTT_BITMAP           DEVMODE_TRUETYPE_OPTION = 1
@@ -2008,7 +2005,7 @@ const (
 )
 
 // enum
-type PAN_FAMILY_TYPE uint32
+type PAN_FAMILY_TYPE byte
 
 const (
 	PAN_FAMILY_ANY          PAN_FAMILY_TYPE = 0
@@ -2020,7 +2017,7 @@ const (
 )
 
 // enum
-type PAN_SERIF_STYLE uint32
+type PAN_SERIF_STYLE byte
 
 const (
 	PAN_SERIF_ANY                PAN_SERIF_STYLE = 0
@@ -2042,7 +2039,7 @@ const (
 )
 
 // enum
-type PAN_WEIGHT uint32
+type PAN_WEIGHT byte
 
 const (
 	PAN_WEIGHT_ANY        PAN_WEIGHT = 0
@@ -2061,7 +2058,7 @@ const (
 )
 
 // enum
-type PAN_STROKE_VARIATION uint32
+type PAN_STROKE_VARIATION byte
 
 const (
 	PAN_STROKE_ANY          PAN_STROKE_VARIATION = 0
@@ -2076,7 +2073,7 @@ const (
 )
 
 // enum
-type PAN_PROPORTION uint32
+type PAN_PROPORTION byte
 
 const (
 	PAN_PROP_ANY            PAN_PROPORTION = 0
@@ -2092,7 +2089,7 @@ const (
 )
 
 // enum
-type PAN_CONTRAST uint32
+type PAN_CONTRAST byte
 
 const (
 	PAN_CONTRAST_ANY         PAN_CONTRAST = 0
@@ -2109,7 +2106,7 @@ const (
 )
 
 // enum
-type PAN_ARM_STYLE uint32
+type PAN_ARM_STYLE byte
 
 const (
 	PAN_ARM_ANY                    PAN_ARM_STYLE = 0
@@ -2127,7 +2124,7 @@ const (
 )
 
 // enum
-type PAN_LETT_FORM uint32
+type PAN_LETT_FORM byte
 
 const (
 	PAN_LETT_FORM_ANY           PAN_LETT_FORM = 0
@@ -2149,7 +2146,7 @@ const (
 )
 
 // enum
-type PAN_MIDLINE uint32
+type PAN_MIDLINE byte
 
 const (
 	PAN_MIDLINE_ANY              PAN_MIDLINE = 0
@@ -2170,7 +2167,7 @@ const (
 )
 
 // enum
-type PAN_XHEIGHT uint32
+type PAN_XHEIGHT byte
 
 const (
 	PAN_XHEIGHT_ANY            PAN_XHEIGHT = 0
@@ -2197,12 +2194,11 @@ const (
 type DISPLAYCONFIG_COLOR_ENCODING int32
 
 const (
-	DISPLAYCONFIG_COLOR_ENCODING_RGB          DISPLAYCONFIG_COLOR_ENCODING = 0
-	DISPLAYCONFIG_COLOR_ENCODING_YCBCR444     DISPLAYCONFIG_COLOR_ENCODING = 1
-	DISPLAYCONFIG_COLOR_ENCODING_YCBCR422     DISPLAYCONFIG_COLOR_ENCODING = 2
-	DISPLAYCONFIG_COLOR_ENCODING_YCBCR420     DISPLAYCONFIG_COLOR_ENCODING = 3
-	DISPLAYCONFIG_COLOR_ENCODING_INTENSITY    DISPLAYCONFIG_COLOR_ENCODING = 4
-	DISPLAYCONFIG_COLOR_ENCODING_FORCE_UINT32 DISPLAYCONFIG_COLOR_ENCODING = -1
+	DISPLAYCONFIG_COLOR_ENCODING_RGB       DISPLAYCONFIG_COLOR_ENCODING = 0
+	DISPLAYCONFIG_COLOR_ENCODING_YCBCR444  DISPLAYCONFIG_COLOR_ENCODING = 1
+	DISPLAYCONFIG_COLOR_ENCODING_YCBCR422  DISPLAYCONFIG_COLOR_ENCODING = 2
+	DISPLAYCONFIG_COLOR_ENCODING_YCBCR420  DISPLAYCONFIG_COLOR_ENCODING = 3
+	DISPLAYCONFIG_COLOR_ENCODING_INTENSITY DISPLAYCONFIG_COLOR_ENCODING = 4
 )
 
 // structs
@@ -2523,13 +2519,13 @@ type LOGBRUSH32 struct {
 }
 
 type LOGPEN struct {
-	LopnStyle PEN_STYLE
+	LopnStyle uint32
 	LopnWidth POINT
 	LopnColor COLORREF
 }
 
 type EXTLOGPEN struct {
-	ElpPenStyle   PEN_STYLE
+	ElpPenStyle   uint32
 	ElpWidth      uint32
 	ElpBrushStyle uint32
 	ElpColor      COLORREF
@@ -2539,7 +2535,7 @@ type EXTLOGPEN struct {
 }
 
 type EXTLOGPEN32 struct {
-	ElpPenStyle   PEN_STYLE
+	ElpPenStyle   uint32
 	ElpWidth      uint32
 	ElpBrushStyle uint32
 	ElpColor      COLORREF
@@ -3408,7 +3404,7 @@ type EMRFRAMERGN struct {
 type EMREXTSELECTCLIPRGN struct {
 	Emr       EMR
 	CbRgnData uint32
-	IMode     RGN_COMBINE_MODE
+	IMode     uint32
 	RgnData   [1]byte
 }
 
@@ -3804,7 +3800,7 @@ type LINEDDAPROC = uintptr
 type LINEDDAPROC_func = func(param0 int32, param1 int32, param2 LPARAM)
 
 type LPFNDEVMODE = uintptr
-type LPFNDEVMODE_func = func(param0 HWND, param1 HINSTANCE, param2 *DEVMODEA, param3 PSTR, param4 PSTR, param5 *DEVMODEA, param6 PSTR, param7 uint32) uint32
+type LPFNDEVMODE_func = func(param0 HWND, param1 HMODULE, param2 *DEVMODEA, param3 PSTR, param4 PSTR, param5 *DEVMODEA, param6 PSTR, param7 uint32) uint32
 
 type LPFNDEVCAPS = uintptr
 type LPFNDEVCAPS_func = func(param0 PSTR, param1 PSTR, param2 uint32, param3 PSTR, param4 *DEVMODEA) uint32
@@ -4327,13 +4323,13 @@ func CreateDiscardableBitmap(hdc HDC, cx int32, cy int32) HBITMAP {
 	return ret
 }
 
-func CreateCompatibleDC(hdc HDC) CreatedHDC {
+func CreateCompatibleDC(hdc HDC) HDC {
 	addr := LazyAddr(&pCreateCompatibleDC, libGdi32, "CreateCompatibleDC")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return ret
 }
 
-func CreateDCA(pwszDriver PSTR, pwszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) CreatedHDC {
+func CreateDCA(pwszDriver PSTR, pwszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) HDC {
 	addr := LazyAddr(&pCreateDCA, libGdi32, "CreateDCA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszDriver)), uintptr(unsafe.Pointer(pwszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
@@ -4341,7 +4337,7 @@ func CreateDCA(pwszDriver PSTR, pwszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) Cr
 
 var CreateDC = CreateDCW
 
-func CreateDCW(pwszDriver PWSTR, pwszDevice PWSTR, pszPort PWSTR, pdm *DEVMODEW) CreatedHDC {
+func CreateDCW(pwszDriver PWSTR, pwszDevice PWSTR, pszPort PWSTR, pdm *DEVMODEW) HDC {
 	addr := LazyAddr(&pCreateDCW, libGdi32, "CreateDCW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pwszDriver)), uintptr(unsafe.Pointer(pwszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
@@ -4353,9 +4349,9 @@ func CreateDIBitmap(hdc HDC, pbmih *BITMAPINFOHEADER, flInit uint32, pjBits unsa
 	return ret
 }
 
-func CreateDIBPatternBrush(h uintptr, iUsage DIB_USAGE) HBRUSH {
+func CreateDIBPatternBrush(h HGLOBAL, iUsage DIB_USAGE) HBRUSH {
 	addr := LazyAddr(&pCreateDIBPatternBrush, libGdi32, "CreateDIBPatternBrush")
-	ret, _, _ := syscall.SyscallN(addr, h, uintptr(iUsage))
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(h)), uintptr(iUsage))
 	return ret
 }
 
@@ -4411,7 +4407,7 @@ func CreateHatchBrush(iHatch HATCH_BRUSH_STYLE, color COLORREF) HBRUSH {
 	return ret
 }
 
-func CreateICA(pszDriver PSTR, pszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) CreatedHDC {
+func CreateICA(pszDriver PSTR, pszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) HDC {
 	addr := LazyAddr(&pCreateICA, libGdi32, "CreateICA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDriver)), uintptr(unsafe.Pointer(pszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
@@ -4419,13 +4415,13 @@ func CreateICA(pszDriver PSTR, pszDevice PSTR, pszPort PSTR, pdm *DEVMODEA) Crea
 
 var CreateIC = CreateICW
 
-func CreateICW(pszDriver PWSTR, pszDevice PWSTR, pszPort PWSTR, pdm *DEVMODEW) CreatedHDC {
+func CreateICW(pszDriver PWSTR, pszDevice PWSTR, pszPort PWSTR, pdm *DEVMODEW) HDC {
 	addr := LazyAddr(&pCreateICW, libGdi32, "CreateICW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszDriver)), uintptr(unsafe.Pointer(pszDevice)), uintptr(unsafe.Pointer(pszPort)), uintptr(unsafe.Pointer(pdm)))
 	return ret
 }
 
-func CreateMetaFileA(pszFile PSTR) HdcMetdataFileHandle {
+func CreateMetaFileA(pszFile PSTR) HDC {
 	addr := LazyAddr(&pCreateMetaFileA, libGdi32, "CreateMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)))
 	return ret
@@ -4433,7 +4429,7 @@ func CreateMetaFileA(pszFile PSTR) HdcMetdataFileHandle {
 
 var CreateMetaFile = CreateMetaFileW
 
-func CreateMetaFileW(pszFile PWSTR) HdcMetdataFileHandle {
+func CreateMetaFileW(pszFile PWSTR) HDC {
 	addr := LazyAddr(&pCreateMetaFileW, libGdi32, "CreateMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFile)))
 	return ret
@@ -4507,7 +4503,7 @@ func CreateSolidBrush(color COLORREF) HBRUSH {
 	return ret
 }
 
-func DeleteDC(hdc CreatedHDC) BOOL {
+func DeleteDC(hdc HDC) BOOL {
 	addr := LazyAddr(&pDeleteDC, libGdi32, "DeleteDC")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
 	return BOOL(ret)
@@ -4657,10 +4653,10 @@ func GetDCPenColor(hdc HDC) COLORREF {
 	return COLORREF(ret)
 }
 
-func GetBkMode(hdc HDC) BACKGROUND_MODE {
+func GetBkMode(hdc HDC) int32 {
 	addr := LazyAddr(&pGetBkMode, libGdi32, "GetBkMode")
 	ret, _, _ := syscall.SyscallN(addr, hdc)
-	return BACKGROUND_MODE(ret)
+	return int32(ret)
 }
 
 func GetBitmapBits(hbit HBITMAP, cb int32, lpvBits unsafe.Pointer) int32 {
@@ -4775,7 +4771,7 @@ func GetMetaRgn(hdc HDC, hrgn HRGN) int32 {
 	return int32(ret)
 }
 
-func GetCurrentObject(hdc HDC, type_ OBJ_TYPE) HGDIOBJ {
+func GetCurrentObject(hdc HDC, type_ uint32) HGDIOBJ {
 	addr := LazyAddr(&pGetCurrentObject, libGdi32, "GetCurrentObject")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(type_))
 	return ret
@@ -5589,7 +5585,7 @@ func CopyEnhMetaFileW(hEnh HENHMETAFILE, lpFileName PWSTR) HENHMETAFILE {
 	return ret
 }
 
-func CreateEnhMetaFileA(hdc HDC, lpFilename PSTR, lprc *RECT, lpDesc PSTR) HdcMetdataEnhFileHandle {
+func CreateEnhMetaFileA(hdc HDC, lpFilename PSTR, lprc *RECT, lpDesc PSTR) HDC {
 	addr := LazyAddr(&pCreateEnhMetaFileA, libGdi32, "CreateEnhMetaFileA")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpFilename)), uintptr(unsafe.Pointer(lprc)), uintptr(unsafe.Pointer(lpDesc)))
 	return ret
@@ -5597,7 +5593,7 @@ func CreateEnhMetaFileA(hdc HDC, lpFilename PSTR, lprc *RECT, lpDesc PSTR) HdcMe
 
 var CreateEnhMetaFile = CreateEnhMetaFileW
 
-func CreateEnhMetaFileW(hdc HDC, lpFilename PWSTR, lprc *RECT, lpDesc PWSTR) HdcMetdataEnhFileHandle {
+func CreateEnhMetaFileW(hdc HDC, lpFilename PWSTR, lprc *RECT, lpDesc PWSTR) HDC {
 	addr := LazyAddr(&pCreateEnhMetaFileW, libGdi32, "CreateEnhMetaFileW")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(unsafe.Pointer(lpFilename)), uintptr(unsafe.Pointer(lprc)), uintptr(unsafe.Pointer(lpDesc)))
 	return ret

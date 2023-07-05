@@ -8,11 +8,11 @@ import (
 type (
 	HPROPSHEETPAGE          = uintptr
 	HIMAGELIST              = uintptr
+	HTHEME                  = uintptr
 	HSYNTHETICPOINTERDEVICE = uintptr
 	HTREEITEM               = uintptr
 	HDSA                    = uintptr
 	HDPA                    = uintptr
-	HTHEME                  = uintptr
 )
 
 const (
@@ -20,7 +20,29 @@ const (
 	TVI_FIRST                     HTREEITEM = ^HTREEITEM(0xfffe)
 	TVI_LAST                      HTREEITEM = ^HTREEITEM(0xfffd)
 	TVI_SORT                      HTREEITEM = ^HTREEITEM(0xfffc)
-	BCN_FIRST                     uint32    = 0xfffffb1e
+	NM_FIRST                      uint32    = 0x0
+	NM_OUTOFMEMORY                uint32    = 0xffffffff
+	NM_CLICK                      uint32    = 0xfffffffe
+	NM_DBLCLK                     uint32    = 0xfffffffd
+	NM_RETURN                     uint32    = 0xfffffffc
+	NM_RCLICK                     uint32    = 0xfffffffb
+	NM_RDBLCLK                    uint32    = 0xfffffffa
+	NM_SETFOCUS                   uint32    = 0xfffffff9
+	NM_KILLFOCUS                  uint32    = 0xfffffff8
+	NM_CUSTOMDRAW                 uint32    = 0xfffffff4
+	NM_HOVER                      uint32    = 0xfffffff3
+	NM_NCHITTEST                  uint32    = 0xfffffff2
+	NM_KEYDOWN                    uint32    = 0xfffffff1
+	NM_RELEASEDCAPTURE            uint32    = 0xfffffff0
+	NM_SETCURSOR                  uint32    = 0xffffffef
+	NM_CHAR                       uint32    = 0xffffffee
+	NM_TOOLTIPSCREATED            uint32    = 0xffffffed
+	NM_LDOWN                      uint32    = 0xffffffec
+	NM_RDOWN                      uint32    = 0xffffffeb
+	NM_THEMECHANGED               uint32    = 0xffffffea
+	NM_FONTCHANGED                uint32    = 0xffffffe9
+	NM_CUSTOMTEXT                 uint32    = 0xffffffe8
+	NM_TVSTATEIMAGECHANGING       uint32    = 0xffffffe8
 	EM_SCROLLCARET                uint32    = 0xb7
 	EM_SETLIMITTEXT               uint32    = 0xc5
 	EM_GETLIMITTEXT               uint32    = 0xd5
@@ -51,6 +73,47 @@ const (
 	CCM_SETWINDOWTHEME            uint32    = 0x200b
 	CCM_DPISCALE                  uint32    = 0x200c
 	INFOTIPSIZE                   uint32    = 0x400
+	NM_LAST                       uint32    = 0xffffff9d
+	LVN_FIRST                     uint32    = 0xffffff9c
+	LVN_LAST                      uint32    = 0xffffff39
+	HDN_FIRST                     uint32    = 0xfffffed4
+	HDN_LAST                      uint32    = 0xfffffe71
+	TVN_FIRST                     uint32    = 0xfffffe70
+	TVN_LAST                      uint32    = 0xfffffe0d
+	TTN_FIRST                     uint32    = 0xfffffdf8
+	TTN_LAST                      uint32    = 0xfffffddb
+	TCN_FIRST                     uint32    = 0xfffffdda
+	TCN_LAST                      uint32    = 0xfffffdbc
+	CDN_FIRST                     uint32    = 0xfffffda7
+	CDN_LAST                      uint32    = 0xfffffd45
+	TBN_FIRST                     uint32    = 0xfffffd44
+	TBN_LAST                      uint32    = 0xfffffd30
+	UDN_FIRST                     uint32    = 0xfffffd2f
+	UDN_LAST                      uint32    = 0xfffffd27
+	DTN_FIRST                     uint32    = 0xfffffd1c
+	DTN_LAST                      uint32    = 0xfffffd17
+	MCN_FIRST                     uint32    = 0xfffffd16
+	MCN_LAST                      uint32    = 0xfffffd10
+	DTN_FIRST2                    uint32    = 0xfffffd0f
+	DTN_LAST2                     uint32    = 0xfffffce1
+	CBEN_FIRST                    uint32    = 0xfffffce0
+	CBEN_LAST                     uint32    = 0xfffffcc2
+	RBN_FIRST                     uint32    = 0xfffffcc1
+	RBN_LAST                      uint32    = 0xfffffca5
+	IPN_FIRST                     uint32    = 0xfffffca4
+	IPN_LAST                      uint32    = 0xfffffc91
+	SBN_FIRST                     uint32    = 0xfffffc90
+	SBN_LAST                      uint32    = 0xfffffc7d
+	PGN_FIRST                     uint32    = 0xfffffc7c
+	PGN_LAST                      uint32    = 0xfffffc4a
+	WMN_FIRST                     uint32    = 0xfffffc18
+	WMN_LAST                      uint32    = 0xfffffb50
+	BCN_FIRST                     uint32    = 0xfffffb1e
+	BCN_LAST                      uint32    = 0xfffffaba
+	TRBN_FIRST                    uint32    = 0xfffffa23
+	TRBN_LAST                     uint32    = 0xfffffa11
+	EN_FIRST                      uint32    = 0xfffffa10
+	EN_LAST                       uint32    = 0xfffff9fc
 	MSGF_COMMCTRL_BEGINDRAG       uint32    = 0x4200
 	MSGF_COMMCTRL_SIZEHEADER      uint32    = 0x4201
 	MSGF_COMMCTRL_DRAGSELECT      uint32    = 0x4202
@@ -125,6 +188,43 @@ const (
 	HDM_GETOVERFLOWRECT           uint32    = 0x121a
 	HDM_GETFOCUSEDITEM            uint32    = 0x121b
 	HDM_SETFOCUSEDITEM            uint32    = 0x121c
+	HDN_ITEMCHANGINGA             uint32    = 0xfffffed4
+	HDN_ITEMCHANGINGW             uint32    = 0xfffffec0
+	HDN_ITEMCHANGEDA              uint32    = 0xfffffed3
+	HDN_ITEMCHANGEDW              uint32    = 0xfffffebf
+	HDN_ITEMCLICKA                uint32    = 0xfffffed2
+	HDN_ITEMCLICKW                uint32    = 0xfffffebe
+	HDN_ITEMDBLCLICKA             uint32    = 0xfffffed1
+	HDN_ITEMDBLCLICKW             uint32    = 0xfffffebd
+	HDN_DIVIDERDBLCLICKA          uint32    = 0xfffffecf
+	HDN_DIVIDERDBLCLICKW          uint32    = 0xfffffebb
+	HDN_BEGINTRACKA               uint32    = 0xfffffece
+	HDN_BEGINTRACKW               uint32    = 0xfffffeba
+	HDN_ENDTRACKA                 uint32    = 0xfffffecd
+	HDN_ENDTRACKW                 uint32    = 0xfffffeb9
+	HDN_TRACKA                    uint32    = 0xfffffecc
+	HDN_TRACKW                    uint32    = 0xfffffeb8
+	HDN_GETDISPINFOA              uint32    = 0xfffffecb
+	HDN_GETDISPINFOW              uint32    = 0xfffffeb7
+	HDN_BEGINDRAG                 uint32    = 0xfffffeca
+	HDN_ENDDRAG                   uint32    = 0xfffffec9
+	HDN_FILTERCHANGE              uint32    = 0xfffffec8
+	HDN_FILTERBTNCLICK            uint32    = 0xfffffec7
+	HDN_BEGINFILTEREDIT           uint32    = 0xfffffec6
+	HDN_ENDFILTEREDIT             uint32    = 0xfffffec5
+	HDN_ITEMSTATEICONCLICK        uint32    = 0xfffffec4
+	HDN_ITEMKEYDOWN               uint32    = 0xfffffec3
+	HDN_DROPDOWN                  uint32    = 0xfffffec2
+	HDN_OVERFLOWCLICK             uint32    = 0xfffffec1
+	HDN_ITEMCHANGING              uint32    = 0xfffffec0
+	HDN_ITEMCHANGED               uint32    = 0xfffffebf
+	HDN_ITEMCLICK                 uint32    = 0xfffffebe
+	HDN_ITEMDBLCLICK              uint32    = 0xfffffebd
+	HDN_DIVIDERDBLCLICK           uint32    = 0xfffffebb
+	HDN_BEGINTRACK                uint32    = 0xfffffeba
+	HDN_ENDTRACK                  uint32    = 0xfffffeb9
+	HDN_TRACK                     uint32    = 0xfffffeb8
+	HDN_GETDISPINFO               uint32    = 0xfffffeb7
 	TOOLBARCLASSNAMEW             string    = "ToolbarWindow32"
 	TOOLBARCLASSNAMEA             string    = "ToolbarWindow32"
 	TOOLBARCLASSNAME              string    = "ToolbarWindow32"
@@ -333,11 +433,42 @@ const (
 	TB_SETPRESSEDIMAGELIST        uint32    = 0x468
 	TB_GETPRESSEDIMAGELIST        uint32    = 0x469
 	TB_SETWINDOWTHEME             uint32    = 0x200b
+	TBN_GETBUTTONINFOA            uint32    = 0xfffffd44
+	TBN_BEGINDRAG                 uint32    = 0xfffffd43
+	TBN_ENDDRAG                   uint32    = 0xfffffd42
+	TBN_BEGINADJUST               uint32    = 0xfffffd41
+	TBN_ENDADJUST                 uint32    = 0xfffffd40
+	TBN_RESET                     uint32    = 0xfffffd3f
+	TBN_QUERYINSERT               uint32    = 0xfffffd3e
+	TBN_QUERYDELETE               uint32    = 0xfffffd3d
+	TBN_TOOLBARCHANGE             uint32    = 0xfffffd3c
+	TBN_CUSTHELP                  uint32    = 0xfffffd3b
+	TBN_DROPDOWN                  uint32    = 0xfffffd3a
+	TBN_GETOBJECT                 uint32    = 0xfffffd38
+	TBN_HOTITEMCHANGE             uint32    = 0xfffffd37
+	TBN_DRAGOUT                   uint32    = 0xfffffd36
+	TBN_DELETINGBUTTON            uint32    = 0xfffffd35
+	TBN_GETDISPINFOA              uint32    = 0xfffffd34
+	TBN_GETDISPINFOW              uint32    = 0xfffffd33
+	TBN_GETINFOTIPA               uint32    = 0xfffffd32
+	TBN_GETINFOTIPW               uint32    = 0xfffffd31
+	TBN_GETBUTTONINFOW            uint32    = 0xfffffd30
+	TBN_RESTORE                   uint32    = 0xfffffd2f
+	TBN_SAVE                      uint32    = 0xfffffd2e
+	TBN_INITCUSTOMIZE             uint32    = 0xfffffd2d
 	TBNRF_HIDEHELP                uint32    = 0x1
 	TBNRF_ENDCUSTOMIZE            uint32    = 0x2
+	TBN_WRAPHOTITEM               uint32    = 0xfffffd2c
+	TBN_DUPACCELERATOR            uint32    = 0xfffffd2b
+	TBN_WRAPACCELERATOR           uint32    = 0xfffffd2a
+	TBN_DRAGOVER                  uint32    = 0xfffffd29
+	TBN_MAPACCELERATOR            uint32    = 0xfffffd28
+	TBN_GETINFOTIP                uint32    = 0xfffffd31
+	TBN_GETDISPINFO               uint32    = 0xfffffd33
 	TBDDRET_DEFAULT               uint32    = 0x0
 	TBDDRET_NODEFAULT             uint32    = 0x1
 	TBDDRET_TREATPRESSED          uint32    = 0x2
+	TBN_GETBUTTONINFO             uint32    = 0xfffffd30
 	REBARCLASSNAMEW               string    = "ReBarWindow32"
 	REBARCLASSNAMEA               string    = "ReBarWindow32"
 	REBARCLASSNAME                string    = "ReBarWindow32"
@@ -425,6 +556,19 @@ const (
 	RB_GETEXTENDEDSTYLE           uint32    = 0x42a
 	RB_PUSHCHEVRON                uint32    = 0x42b
 	RB_SETBANDWIDTH               uint32    = 0x42c
+	RBN_HEIGHTCHANGE              uint32    = 0xfffffcc1
+	RBN_GETOBJECT                 uint32    = 0xfffffcc0
+	RBN_LAYOUTCHANGED             uint32    = 0xfffffcbf
+	RBN_AUTOSIZE                  uint32    = 0xfffffcbe
+	RBN_BEGINDRAG                 uint32    = 0xfffffcbd
+	RBN_ENDDRAG                   uint32    = 0xfffffcbc
+	RBN_DELETINGBAND              uint32    = 0xfffffcbb
+	RBN_DELETEDBAND               uint32    = 0xfffffcba
+	RBN_CHILDSIZE                 uint32    = 0xfffffcb9
+	RBN_CHEVRONPUSHED             uint32    = 0xfffffcb7
+	RBN_SPLITTERDRAG              uint32    = 0xfffffcb6
+	RBN_MINMAX                    uint32    = 0xfffffcac
+	RBN_AUTOBREAK                 uint32    = 0xfffffcab
 	RBAB_AUTOSIZE                 uint32    = 0x1
 	RBAB_ADDBAND                  uint32    = 0x2
 	RBHT_NOWHERE                  uint32    = 0x1
@@ -503,6 +647,15 @@ const (
 	TTM_GETCURRENTTOOL            uint32    = 0x43b
 	TTM_SETTITLE                  uint32    = 0x421
 	TTM_SETWINDOWTHEME            uint32    = 0x200b
+	TTN_GETDISPINFOA              uint32    = 0xfffffdf8
+	TTN_GETDISPINFOW              uint32    = 0xfffffdee
+	TTN_SHOW                      uint32    = 0xfffffdf7
+	TTN_POP                       uint32    = 0xfffffdf6
+	TTN_LINKCLICK                 uint32    = 0xfffffdf5
+	TTN_GETDISPINFO               uint32    = 0xfffffdee
+	TTN_NEEDTEXT                  uint32    = 0xfffffdee
+	TTN_NEEDTEXTA                 uint32    = 0xfffffdf8
+	TTN_NEEDTEXTW                 uint32    = 0xfffffdee
 	SBARS_SIZEGRIP                uint32    = 0x100
 	SBARS_TOOLTIPS                uint32    = 0x800
 	SBT_TOOLTIPS                  uint32    = 0x800
@@ -539,6 +692,7 @@ const (
 	SBT_RTLREADING                uint32    = 0x400
 	SBT_NOTABPARSING              uint32    = 0x800
 	SB_SETBKCOLOR                 uint32    = 0x2001
+	SBN_SIMPLEMODECHANGE          uint32    = 0xfffffc90
 	SB_SIMPLEID                   uint32    = 0xff
 	TRACKBAR_CLASSA               string    = "msctls_trackbar32"
 	TRACKBAR_CLASSW               string    = "msctls_trackbar32"
@@ -611,6 +765,7 @@ const (
 	TBCD_TICS                     uint32    = 0x1
 	TBCD_THUMB                    uint32    = 0x2
 	TBCD_CHANNEL                  uint32    = 0x3
+	TRBN_THUMBPOSCHANGING         uint32    = 0xfffffa22
 	DL_CURSORSET                  uint32    = 0x0
 	DL_STOPCURSOR                 uint32    = 0x1
 	DL_COPYCURSOR                 uint32    = 0x2
@@ -645,6 +800,7 @@ const (
 	UDM_GETUNICODEFORMAT          uint32    = 0x2006
 	UDM_SETPOS32                  uint32    = 0x471
 	UDM_GETPOS32                  uint32    = 0x472
+	UDN_DELTAPOS                  uint32    = 0xfffffd2e
 	PROGRESS_CLASSA               string    = "msctls_progress32"
 	PROGRESS_CLASSW               string    = "msctls_progress32"
 	PROGRESS_CLASS                string    = "msctls_progress32"
@@ -986,9 +1142,50 @@ const (
 	LVKF_SHIFT                    uint32    = 0x4
 	LVCDRF_NOSELECT               uint32    = 0x10000
 	LVCDRF_NOGROUPFRAME           uint32    = 0x20000
+	LVN_ITEMCHANGING              uint32    = 0xffffff9c
+	LVN_ITEMCHANGED               uint32    = 0xffffff9b
+	LVN_INSERTITEM                uint32    = 0xffffff9a
+	LVN_DELETEITEM                uint32    = 0xffffff99
+	LVN_DELETEALLITEMS            uint32    = 0xffffff98
+	LVN_BEGINLABELEDITA           uint32    = 0xffffff97
+	LVN_BEGINLABELEDITW           uint32    = 0xffffff51
+	LVN_ENDLABELEDITA             uint32    = 0xffffff96
+	LVN_ENDLABELEDITW             uint32    = 0xffffff50
+	LVN_COLUMNCLICK               uint32    = 0xffffff94
+	LVN_BEGINDRAG                 uint32    = 0xffffff93
+	LVN_BEGINRDRAG                uint32    = 0xffffff91
+	LVN_ODCACHEHINT               uint32    = 0xffffff8f
+	LVN_ODFINDITEMA               uint32    = 0xffffff68
+	LVN_ODFINDITEMW               uint32    = 0xffffff4d
+	LVN_ITEMACTIVATE              uint32    = 0xffffff8e
+	LVN_ODSTATECHANGED            uint32    = 0xffffff8d
+	LVN_ODFINDITEM                uint32    = 0xffffff4d
+	LVN_HOTTRACK                  uint32    = 0xffffff87
+	LVN_GETDISPINFOA              uint32    = 0xffffff6a
+	LVN_GETDISPINFOW              uint32    = 0xffffff4f
+	LVN_SETDISPINFOA              uint32    = 0xffffff69
+	LVN_SETDISPINFOW              uint32    = 0xffffff4e
+	LVN_BEGINLABELEDIT            uint32    = 0xffffff51
+	LVN_ENDLABELEDIT              uint32    = 0xffffff50
+	LVN_GETDISPINFO               uint32    = 0xffffff4f
+	LVN_SETDISPINFO               uint32    = 0xffffff4e
+	LVN_KEYDOWN                   uint32    = 0xffffff65
+	LVN_MARQUEEBEGIN              uint32    = 0xffffff64
+	LVN_GETINFOTIPA               uint32    = 0xffffff63
+	LVN_GETINFOTIPW               uint32    = 0xffffff62
+	LVN_GETINFOTIP                uint32    = 0xffffff62
 	LVNSCH_DEFAULT                int32     = -1
 	LVNSCH_ERROR                  int32     = -2
 	LVNSCH_IGNORE                 int32     = -3
+	LVN_INCREMENTALSEARCHA        uint32    = 0xffffff5e
+	LVN_INCREMENTALSEARCHW        uint32    = 0xffffff5d
+	LVN_INCREMENTALSEARCH         uint32    = 0xffffff5d
+	LVN_COLUMNDROPDOWN            uint32    = 0xffffff5c
+	LVN_COLUMNOVERFLOWCLICK       uint32    = 0xffffff5a
+	LVN_BEGINSCROLL               uint32    = 0xffffff4c
+	LVN_ENDSCROLL                 uint32    = 0xffffff4b
+	LVN_LINKCLICK                 uint32    = 0xffffff48
+	LVN_GETEMPTYMARKUP            uint32    = 0xffffff45
 	WC_TREEVIEWA                  string    = "SysTreeView32"
 	WC_TREEVIEWW                  string    = "SysTreeView32"
 	WC_TREEVIEW                   string    = "SysTreeView32"
@@ -1097,10 +1294,55 @@ const (
 	TVM_GETSELECTEDCOUNT          uint32    = 0x1146
 	TVM_SHOWINFOTIP               uint32    = 0x1147
 	TVM_GETITEMPARTRECT           uint32    = 0x1148
+	TVN_SELCHANGINGA              uint32    = 0xfffffe6f
+	TVN_SELCHANGINGW              uint32    = 0xfffffe3e
+	TVN_SELCHANGEDA               uint32    = 0xfffffe6e
+	TVN_SELCHANGEDW               uint32    = 0xfffffe3d
+	TVN_GETDISPINFOA              uint32    = 0xfffffe6d
+	TVN_GETDISPINFOW              uint32    = 0xfffffe3c
+	TVN_SETDISPINFOA              uint32    = 0xfffffe6c
+	TVN_SETDISPINFOW              uint32    = 0xfffffe3b
+	TVN_ITEMEXPANDINGA            uint32    = 0xfffffe6b
+	TVN_ITEMEXPANDINGW            uint32    = 0xfffffe3a
+	TVN_ITEMEXPANDEDA             uint32    = 0xfffffe6a
+	TVN_ITEMEXPANDEDW             uint32    = 0xfffffe39
+	TVN_BEGINDRAGA                uint32    = 0xfffffe69
+	TVN_BEGINDRAGW                uint32    = 0xfffffe38
+	TVN_BEGINRDRAGA               uint32    = 0xfffffe68
+	TVN_BEGINRDRAGW               uint32    = 0xfffffe37
+	TVN_DELETEITEMA               uint32    = 0xfffffe67
+	TVN_DELETEITEMW               uint32    = 0xfffffe36
+	TVN_BEGINLABELEDITA           uint32    = 0xfffffe66
+	TVN_BEGINLABELEDITW           uint32    = 0xfffffe35
+	TVN_ENDLABELEDITA             uint32    = 0xfffffe65
+	TVN_ENDLABELEDITW             uint32    = 0xfffffe34
+	TVN_KEYDOWN                   uint32    = 0xfffffe64
+	TVN_GETINFOTIPA               uint32    = 0xfffffe63
+	TVN_GETINFOTIPW               uint32    = 0xfffffe62
+	TVN_SINGLEEXPAND              uint32    = 0xfffffe61
 	TVNRET_DEFAULT                uint32    = 0x0
 	TVNRET_SKIPOLD                uint32    = 0x1
 	TVNRET_SKIPNEW                uint32    = 0x2
+	TVN_ITEMCHANGINGA             uint32    = 0xfffffe60
+	TVN_ITEMCHANGINGW             uint32    = 0xfffffe5f
+	TVN_ITEMCHANGEDA              uint32    = 0xfffffe5e
+	TVN_ITEMCHANGEDW              uint32    = 0xfffffe5d
+	TVN_ASYNCDRAW                 uint32    = 0xfffffe5c
+	TVN_SELCHANGING               uint32    = 0xfffffe3e
+	TVN_SELCHANGED                uint32    = 0xfffffe3d
+	TVN_GETDISPINFO               uint32    = 0xfffffe3c
+	TVN_SETDISPINFO               uint32    = 0xfffffe3b
+	TVN_ITEMEXPANDING             uint32    = 0xfffffe3a
+	TVN_ITEMEXPANDED              uint32    = 0xfffffe39
+	TVN_BEGINDRAG                 uint32    = 0xfffffe38
+	TVN_BEGINRDRAG                uint32    = 0xfffffe37
+	TVN_DELETEITEM                uint32    = 0xfffffe36
+	TVN_BEGINLABELEDIT            uint32    = 0xfffffe35
+	TVN_ENDLABELEDIT              uint32    = 0xfffffe34
+	TVN_GETINFOTIP                uint32    = 0xfffffe62
 	TVCDRF_NOIMAGES               uint32    = 0x10000
+	TVN_ITEMCHANGING              uint32    = 0xfffffe5f
+	TVN_ITEMCHANGED               uint32    = 0xfffffe5d
 	WC_COMBOBOXEXW                string    = "ComboBoxEx32"
 	WC_COMBOBOXEXA                string    = "ComboBoxEx32"
 	WC_COMBOBOXEX                 string    = "ComboBoxEx32"
@@ -1131,6 +1373,17 @@ const (
 	CBES_EX_NOSIZELIMIT           uint32    = 0x8
 	CBES_EX_CASESENSITIVE         uint32    = 0x10
 	CBES_EX_TEXTENDELLIPSIS       uint32    = 0x20
+	CBEN_GETDISPINFOA             uint32    = 0xfffffce0
+	CBEN_INSERTITEM               uint32    = 0xfffffcdf
+	CBEN_DELETEITEM               uint32    = 0xfffffcde
+	CBEN_BEGINEDIT                uint32    = 0xfffffcdc
+	CBEN_ENDEDITA                 uint32    = 0xfffffcdb
+	CBEN_ENDEDITW                 uint32    = 0xfffffcda
+	CBEN_GETDISPINFOW             uint32    = 0xfffffcd9
+	CBEN_DRAGBEGINA               uint32    = 0xfffffcd8
+	CBEN_DRAGBEGINW               uint32    = 0xfffffcd7
+	CBEN_DRAGBEGIN                uint32    = 0xfffffcd7
+	CBEN_ENDEDIT                  uint32    = 0xfffffcda
 	CBENF_KILLFOCUS               uint32    = 0x1
 	CBENF_RETURN                  uint32    = 0x2
 	CBENF_ESCAPE                  uint32    = 0x3
@@ -1196,6 +1449,11 @@ const (
 	TCM_GETEXTENDEDSTYLE          uint32    = 0x1335
 	TCM_SETUNICODEFORMAT          uint32    = 0x2005
 	TCM_GETUNICODEFORMAT          uint32    = 0x2006
+	TCN_KEYDOWN                   uint32    = 0xfffffdda
+	TCN_SELCHANGE                 uint32    = 0xfffffdd9
+	TCN_SELCHANGING               uint32    = 0xfffffdd8
+	TCN_GETOBJECT                 uint32    = 0xfffffdd7
+	TCN_FOCUSCHANGE               uint32    = 0xfffffdd6
 	ANIMATE_CLASSW                string    = "SysAnimate32"
 	ANIMATE_CLASSA                string    = "SysAnimate32"
 	ANIMATE_CLASS                 string    = "SysAnimate32"
@@ -1253,6 +1511,10 @@ const (
 	MCM_SETCALENDARBORDER         uint32    = 0x101e
 	MCM_GETCALENDARBORDER         uint32    = 0x101f
 	MCM_SETCURRENTVIEW            uint32    = 0x1020
+	MCN_SELCHANGE                 uint32    = 0xfffffd13
+	MCN_GETDAYSTATE               uint32    = 0xfffffd15
+	MCN_SELECT                    uint32    = 0xfffffd16
+	MCN_VIEWCHANGE                uint32    = 0xfffffd12
 	MCS_DAYSTATE                  uint32    = 0x1
 	MCS_MULTISELECT               uint32    = 0x2
 	MCS_WEEKNUMBERS               uint32    = 0x4
@@ -1292,6 +1554,21 @@ const (
 	DTS_TIMEFORMAT                uint32    = 0x9
 	DTS_APPCANPARSE               uint32    = 0x10
 	DTS_RIGHTALIGN                uint32    = 0x20
+	DTN_DATETIMECHANGE            uint32    = 0xfffffd09
+	DTN_USERSTRINGA               uint32    = 0xfffffd0a
+	DTN_USERSTRINGW               uint32    = 0xfffffd17
+	DTN_USERSTRING                uint32    = 0xfffffd17
+	DTN_WMKEYDOWNA                uint32    = 0xfffffd0b
+	DTN_WMKEYDOWNW                uint32    = 0xfffffd18
+	DTN_WMKEYDOWN                 uint32    = 0xfffffd18
+	DTN_FORMATA                   uint32    = 0xfffffd0c
+	DTN_FORMATW                   uint32    = 0xfffffd19
+	DTN_FORMAT                    uint32    = 0xfffffd19
+	DTN_FORMATQUERYA              uint32    = 0xfffffd0d
+	DTN_FORMATQUERYW              uint32    = 0xfffffd1a
+	DTN_FORMATQUERY               uint32    = 0xfffffd1a
+	DTN_DROPDOWN                  uint32    = 0xfffffd0e
+	DTN_CLOSEUP                   uint32    = 0xfffffd0f
 	GDTR_MIN                      uint32    = 0x1
 	GDTR_MAX                      uint32    = 0x2
 	GDT_ERROR                     int32     = -1
@@ -1304,6 +1581,7 @@ const (
 	WC_IPADDRESSW                 string    = "SysIPAddress32"
 	WC_IPADDRESSA                 string    = "SysIPAddress32"
 	WC_IPADDRESS                  string    = "SysIPAddress32"
+	IPN_FIELDCHANGED              uint32    = 0xfffffca4
 	WC_PAGESCROLLERW              string    = "SysPager"
 	WC_PAGESCROLLERA              string    = "SysPager"
 	WC_PAGESCROLLER               string    = "SysPager"
@@ -1332,6 +1610,9 @@ const (
 	PGM_GETBUTTONSTATE            uint32    = 0x140c
 	PGM_GETDROPTARGET             uint32    = 0x2004
 	PGM_SETSCROLLINFO             uint32    = 0x140d
+	PGN_SCROLL                    uint32    = 0xfffffc7b
+	PGN_CALCSIZE                  uint32    = 0xfffffc7a
+	PGN_HOTITEMCHANGE             uint32    = 0xfffffc79
 	WC_NATIVEFONTCTLW             string    = "NativeFontCtl"
 	WC_NATIVEFONTCTLA             string    = "NativeFontCtl"
 	WC_NATIVEFONTCTL              string    = "NativeFontCtl"
@@ -1403,6 +1684,7 @@ const (
 	EM_FILELINELENGTH             uint32    = 0x1515
 	EM_GETFILELINE                uint32    = 0x1516
 	EM_GETFILELINECOUNT           uint32    = 0x1517
+	EN_SEARCHWEB                  uint32    = 0xfffffa10
 	WC_LISTBOXA                   string    = "ListBox"
 	WC_LISTBOXW                   string    = "ListBox"
 	WC_LISTBOX                    string    = "ListBox"
@@ -1680,6 +1962,20 @@ const (
 	PSCB_INITIALIZED              uint32    = 0x1
 	PSCB_PRECREATE                uint32    = 0x2
 	PSCB_BUTTONPRESSED            uint32    = 0x3
+	PSN_FIRST                     uint32    = 0xffffff38
+	PSN_LAST                      uint32    = 0xfffffed5
+	PSN_SETACTIVE                 uint32    = 0xffffff38
+	PSN_KILLACTIVE                uint32    = 0xffffff37
+	PSN_APPLY                     uint32    = 0xffffff36
+	PSN_RESET                     uint32    = 0xffffff35
+	PSN_HELP                      uint32    = 0xffffff33
+	PSN_WIZBACK                   uint32    = 0xffffff32
+	PSN_WIZNEXT                   uint32    = 0xffffff31
+	PSN_WIZFINISH                 uint32    = 0xffffff30
+	PSN_QUERYCANCEL               uint32    = 0xffffff2f
+	PSN_GETOBJECT                 uint32    = 0xffffff2e
+	PSN_TRANSLATEACCELERATOR      uint32    = 0xffffff2c
+	PSN_QUERYINITIALFOCUS         uint32    = 0xffffff2b
 	PSNRET_NOERROR                uint32    = 0x0
 	PSNRET_INVALID                uint32    = 0x1
 	PSNRET_INVALID_NOCHANGEPAGE   uint32    = 0x2
@@ -1886,17 +2182,20 @@ const (
 )
 
 var (
-	//TD_WARNING_ICON     = PWSTR(unsafe.Pointer(uintptr(-1)))
-	//TD_ERROR_ICON       = PWSTR(unsafe.Pointer(uintptr(-2)))
-	//TD_INFORMATION_ICON = PWSTR(unsafe.Pointer(uintptr(-3)))
-	//TD_SHIELD_ICON      = PWSTR(unsafe.Pointer(uintptr(-4)))
-	TD_WARNING_ICON     = PWSTR(unsafe.Pointer(^uintptr(0)))
-	TD_ERROR_ICON       = PWSTR(unsafe.Pointer(^uintptr(1)))
-	TD_INFORMATION_ICON = PWSTR(unsafe.Pointer(^uintptr(2)))
-	TD_SHIELD_ICON      = PWSTR(unsafe.Pointer(^uintptr(3)))
+	TD_WARNING_ICON     = PWSTR(unsafe.Pointer(uintptr(0xffff)))
+	TD_ERROR_ICON       = PWSTR(unsafe.Pointer(uintptr(0xfffe)))
+	TD_INFORMATION_ICON = PWSTR(unsafe.Pointer(uintptr(0xfffd)))
+	TD_SHIELD_ICON      = PWSTR(unsafe.Pointer(uintptr(0xfffc)))
 )
 
 // enums
+
+// enum
+type POPUPSUBMENUHCHOTSTATES int32
+
+const (
+	MSMHC_HOT POPUPSUBMENUHCHOTSTATES = 1
+)
 
 // enum
 type THEME_PROPERTY_SYMBOL_ID uint32
@@ -2183,7 +2482,7 @@ const (
 )
 
 // enum
-type WORD_BREAK_ACTION uint32
+type WORD_BREAK_ACTION int32
 
 const (
 	WB_CLASSIFY      WORD_BREAK_ACTION = 3
@@ -2304,7 +2603,7 @@ const (
 )
 
 // enum
-type HEADER_CONTROL_NOTIFICATION_BUTTON uint32
+type HEADER_CONTROL_NOTIFICATION_BUTTON int32
 
 const (
 	HEADER_CONTROL_NOTIFICATION_BUTTON_LEFT   HEADER_CONTROL_NOTIFICATION_BUTTON = 0
@@ -2376,7 +2675,7 @@ const (
 )
 
 // enum
-type EDITBALLOONTIP_ICON uint32
+type EDITBALLOONTIP_ICON int32
 
 const (
 	TTI_ERROR         EDITBALLOONTIP_ICON = 3
@@ -2390,7 +2689,7 @@ const (
 
 // enum
 // flags
-type LVCOLUMNW_FORMAT uint32
+type LVCOLUMNW_FORMAT int32
 
 const (
 	LVCFMT_LEFT            LVCOLUMNW_FORMAT = 0
@@ -2584,7 +2883,7 @@ const (
 )
 
 // enum
-type NMPGSCROLL_DIR uint32
+type NMPGSCROLL_DIR int32
 
 const (
 	PGF_SCROLLDOWN  NMPGSCROLL_DIR = 2
@@ -3337,7 +3636,7 @@ const (
 
 // enum
 // flags
-type TA_PROPERTY_FLAG uint32
+type TA_PROPERTY_FLAG int32
 
 const (
 	TAPF_NONE            TA_PROPERTY_FLAG = 0
@@ -3359,6 +3658,7 @@ const (
 )
 
 // enum
+// flags
 type TA_TRANSFORM_FLAG int32
 
 const (
@@ -4326,6 +4626,13 @@ const (
 	MENU_SYSTEMMAXIMIZE           MENUPARTS = 18
 	MENU_SYSTEMMINIMIZE           MENUPARTS = 19
 	MENU_SYSTEMRESTORE            MENUPARTS = 20
+	MENU_SYSTEMCLOSE_HCHOT        MENUPARTS = 22
+	MENU_SYSTEMMAXIMIZE_HCHOT     MENUPARTS = 23
+	MENU_SYSTEMMINIMIZE_HCHOT     MENUPARTS = 24
+	MENU_SYSTEMRESTORE_HCHOT      MENUPARTS = 25
+	MENU_POPUPITEMKBFOCUS         MENUPARTS = 26
+	MENU_POPUPITEM_FOCUSABLE      MENUPARTS = 27
+	MENU_POPUPSUBMENU_HCHOT       MENUPARTS = 21
 )
 
 // enum
@@ -4415,6 +4722,51 @@ type SYSTEMRESTORESTATES int32
 const (
 	MSYSR_NORMAL   SYSTEMRESTORESTATES = 1
 	MSYSR_DISABLED SYSTEMRESTORESTATES = 2
+)
+
+// enum
+type SYSTEMCLOSEHCHOTSTATES int32
+
+const (
+	MSYSCHC_HOT SYSTEMCLOSEHCHOTSTATES = 1
+)
+
+// enum
+type SYSTEMMAXIMIZEHCHOTSTATES int32
+
+const (
+	MSYSMXHC_HOT SYSTEMMAXIMIZEHCHOTSTATES = 1
+)
+
+// enum
+type SYSTEMMINIMIZEHCHOTSTATES int32
+
+const (
+	MSYSMNHC_HOT SYSTEMMINIMIZEHCHOTSTATES = 1
+)
+
+// enum
+type SYSTEMRESTOREHCHOTSTATES int32
+
+const (
+	MSYSRHC_HOT SYSTEMRESTOREHCHOTSTATES = 1
+)
+
+// enum
+type POPUPITEMKBFOCUSSTATES int32
+
+const (
+	MPIKBFOCUS_NORMAL POPUPITEMKBFOCUSSTATES = 1
+)
+
+// enum
+type POPUPITEMFOCUSABLESTATES int32
+
+const (
+	MPIF_NORMAL      POPUPITEMFOCUSABLESTATES = 1
+	MPIF_HOT         POPUPITEMFOCUSABLESTATES = 2
+	MPIF_DISABLED    POPUPITEMFOCUSABLESTATES = 3
+	MPIF_DISABLEDHOT POPUPITEMFOCUSABLESTATES = 4
 )
 
 // enum
@@ -8339,14 +8691,14 @@ type DPASTREAMINFO struct {
 	PvItem unsafe.Pointer
 }
 
-type ImageList struct {
-}
-
 type IMAGELISTSTATS struct {
 	CbSize   uint32
 	CAlloc   int32
 	CUsed    int32
 	CStandby int32
+}
+
+type ImageList struct {
 }
 
 type TA_TRANSFORM struct {
@@ -9891,7 +10243,7 @@ func FlatSB_SetScrollRange(param0 HWND, code SCROLLBAR_CONSTANTS, min int32, max
 	return int32(ret)
 }
 
-func FlatSB_SetScrollProp(param0 HWND, index WSB_PROP, newValue uintptr, param3 BOOL) BOOL {
+func FlatSB_SetScrollProp(param0 HWND, index uint32, newValue uintptr, param3 BOOL) BOOL {
 	addr := LazyAddr(&pFlatSB_SetScrollProp, libComctl32, "FlatSB_SetScrollProp")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(index), newValue, uintptr(param3))
 	return BOOL(ret)
@@ -10071,13 +10423,13 @@ func IsThemeBackgroundPartiallyTransparent(hTheme HTHEME, iPartId int32, iStateI
 	return BOOL(ret)
 }
 
-func GetThemeColor(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pColor *COLORREF) HRESULT {
+func GetThemeColor(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pColor *COLORREF) HRESULT {
 	addr := LazyAddr(&pGetThemeColor, libUxtheme, "GetThemeColor")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pColor)))
 	return HRESULT(ret)
 }
 
-func GetThemeMetric(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
+func GetThemeMetric(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeMetric, libUxtheme, "GetThemeMetric")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
@@ -10089,25 +10441,25 @@ func GetThemeString(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32,
 	return HRESULT(ret)
 }
 
-func GetThemeBool(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pfVal *BOOL) HRESULT {
+func GetThemeBool(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pfVal *BOOL) HRESULT {
 	addr := LazyAddr(&pGetThemeBool, libUxtheme, "GetThemeBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pfVal)))
 	return HRESULT(ret)
 }
 
-func GetThemeInt(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
+func GetThemeInt(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeInt, libUxtheme, "GetThemeInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
-func GetThemeEnumValue(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
+func GetThemeEnumValue(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeEnumValue, libUxtheme, "GetThemeEnumValue")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
-func GetThemePosition(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pPoint *POINT) HRESULT {
+func GetThemePosition(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pPoint *POINT) HRESULT {
 	addr := LazyAddr(&pGetThemePosition, libUxtheme, "GetThemePosition")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pPoint)))
 	return HRESULT(ret)
@@ -10125,13 +10477,13 @@ func GetThemeRect(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, p
 	return HRESULT(ret)
 }
 
-func GetThemeMargins(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, prc *RECT, pMargins *MARGINS) HRESULT {
+func GetThemeMargins(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId int32, prc *RECT, pMargins *MARGINS) HRESULT {
 	addr := LazyAddr(&pGetThemeMargins, libUxtheme, "GetThemeMargins")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(prc)), uintptr(unsafe.Pointer(pMargins)))
 	return HRESULT(ret)
 }
 
-func GetThemeIntList(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pIntList *INTLIST) HRESULT {
+func GetThemeIntList(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pIntList *INTLIST) HRESULT {
 	addr := LazyAddr(&pGetThemeIntList, libUxtheme, "GetThemeIntList")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pIntList)))
 	return HRESULT(ret)
@@ -10149,7 +10501,7 @@ func SetWindowTheme(hwnd HWND, pszSubAppName PWSTR, pszSubIdList PWSTR) HRESULT 
 	return HRESULT(ret)
 }
 
-func GetThemeFilename(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pszThemeFileName PWSTR, cchMaxBuffChars int32) HRESULT {
+func GetThemeFilename(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pszThemeFileName PWSTR, cchMaxBuffChars int32) HRESULT {
 	addr := LazyAddr(&pGetThemeFilename, libUxtheme, "GetThemeFilename")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pszThemeFileName)), uintptr(cchMaxBuffChars))
 	return HRESULT(ret)
@@ -10161,13 +10513,13 @@ func GetThemeSysColor(hTheme HTHEME, iColorId int32) COLORREF {
 	return COLORREF(ret)
 }
 
-func GetThemeSysColorBrush(hTheme HTHEME, iColorId THEME_PROPERTY_SYMBOL_ID) HBRUSH {
+func GetThemeSysColorBrush(hTheme HTHEME, iColorId int32) HBRUSH {
 	addr := LazyAddr(&pGetThemeSysColorBrush, libUxtheme, "GetThemeSysColorBrush")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iColorId))
 	return ret
 }
 
-func GetThemeSysBool(hTheme HTHEME, iBoolId THEME_PROPERTY_SYMBOL_ID) BOOL {
+func GetThemeSysBool(hTheme HTHEME, iBoolId int32) BOOL {
 	addr := LazyAddr(&pGetThemeSysBool, libUxtheme, "GetThemeSysBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iBoolId))
 	return BOOL(ret)
@@ -10179,19 +10531,19 @@ func GetThemeSysSize(hTheme HTHEME, iSizeId int32) int32 {
 	return int32(ret)
 }
 
-func GetThemeSysFont(hTheme HTHEME, iFontId THEME_PROPERTY_SYMBOL_ID, plf *LOGFONTW) HRESULT {
+func GetThemeSysFont(hTheme HTHEME, iFontId int32, plf *LOGFONTW) HRESULT {
 	addr := LazyAddr(&pGetThemeSysFont, libUxtheme, "GetThemeSysFont")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iFontId), uintptr(unsafe.Pointer(plf)))
 	return HRESULT(ret)
 }
 
-func GetThemeSysString(hTheme HTHEME, iStringId THEME_PROPERTY_SYMBOL_ID, pszStringBuff PWSTR, cchMaxStringChars int32) HRESULT {
+func GetThemeSysString(hTheme HTHEME, iStringId int32, pszStringBuff PWSTR, cchMaxStringChars int32) HRESULT {
 	addr := LazyAddr(&pGetThemeSysString, libUxtheme, "GetThemeSysString")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStringId), uintptr(unsafe.Pointer(pszStringBuff)), uintptr(cchMaxStringChars))
 	return HRESULT(ret)
 }
 
-func GetThemeSysInt(hTheme HTHEME, iIntId THEME_PROPERTY_SYMBOL_ID, piValue *int32) HRESULT {
+func GetThemeSysInt(hTheme HTHEME, iIntId int32, piValue *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeSysInt, libUxtheme, "GetThemeSysInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iIntId), uintptr(unsafe.Pointer(piValue)))
 	return HRESULT(ret)
@@ -10280,7 +10632,7 @@ func DrawThemeTextEx(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszT
 	return HRESULT(ret)
 }
 
-func GetThemeBitmap(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, dwFlags GET_THEME_BITMAP_FLAGS, phBitmap *HBITMAP) HRESULT {
+func GetThemeBitmap(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, dwFlags GET_THEME_BITMAP_FLAGS, phBitmap *HBITMAP) HRESULT {
 	addr := LazyAddr(&pGetThemeBitmap, libUxtheme, "GetThemeBitmap")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(dwFlags), uintptr(unsafe.Pointer(phBitmap)))
 	return HRESULT(ret)
@@ -10477,7 +10829,7 @@ func ShowScrollBar(hWnd HWND, wBar SCROLLBAR_CONSTANTS, bShow BOOL) (BOOL, WIN32
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func EnableScrollBar(hWnd HWND, wSBflags SCROLLBAR_CONSTANTS, wArrows ENABLE_SCROLL_BAR_ARROWS) (BOOL, WIN32_ERROR) {
+func EnableScrollBar(hWnd HWND, wSBflags uint32, wArrows ENABLE_SCROLL_BAR_ARROWS) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnableScrollBar, libUser32, "EnableScrollBar")
 	ret, _, err := syscall.SyscallN(addr, hWnd, uintptr(wSBflags), uintptr(wArrows))
 	return BOOL(ret), WIN32_ERROR(err)

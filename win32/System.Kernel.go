@@ -243,24 +243,6 @@ type STRING64 struct {
 	Buffer        uint64
 }
 
-type OBJECT_ATTRIBUTES64 struct {
-	Length                   uint32
-	RootDirectory            uint64
-	ObjectName               uint64
-	Attributes               uint32
-	SecurityDescriptor       uint64
-	SecurityQualityOfService uint64
-}
-
-type OBJECT_ATTRIBUTES32 struct {
-	Length                   uint32
-	RootDirectory            uint32
-	ObjectName               uint32
-	Attributes               uint32
-	SecurityDescriptor       uint32
-	SecurityQualityOfService uint32
-}
-
 type OBJECTID struct {
 	Lineage    syscall.GUID
 	Uniquifier uint32

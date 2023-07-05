@@ -9,6 +9,14 @@ const (
 	OFN_SHAREFALLTHROUGH       uint32 = 0x2
 	OFN_SHARENOWARN            uint32 = 0x1
 	OFN_SHAREWARN              uint32 = 0x0
+	CDN_INITDONE               uint32 = 0xfffffda7
+	CDN_SELCHANGE              uint32 = 0xfffffda6
+	CDN_FOLDERCHANGE           uint32 = 0xfffffda5
+	CDN_SHAREVIOLATION         uint32 = 0xfffffda4
+	CDN_HELP                   uint32 = 0xfffffda3
+	CDN_FILEOK                 uint32 = 0xfffffda2
+	CDN_TYPECHANGE             uint32 = 0xfffffda1
+	CDN_INCLUDEITEM            uint32 = 0xfffffda0
 	CDM_FIRST                  uint32 = 0x464
 	CDM_LAST                   uint32 = 0x4c8
 	CDM_GETSPEC                uint32 = 0x464
@@ -341,22 +349,6 @@ const (
 	SIMULATED_FONTTYPE CHOOSEFONT_FONT_TYPE = 32768
 )
 
-// enum
-type COMMON_DIALOG_NOTIFICATION int32
-
-const (
-	CDN_FIRST          COMMON_DIALOG_NOTIFICATION = -601
-	CDN_LAST           COMMON_DIALOG_NOTIFICATION = -699
-	CDN_INITDONE       COMMON_DIALOG_NOTIFICATION = -601
-	CDN_SELCHANGE      COMMON_DIALOG_NOTIFICATION = -602
-	CDN_FOLDERCHANGE   COMMON_DIALOG_NOTIFICATION = -603
-	CDN_SHAREVIOLATION COMMON_DIALOG_NOTIFICATION = -604
-	CDN_HELP           COMMON_DIALOG_NOTIFICATION = -605
-	CDN_FILEOK         COMMON_DIALOG_NOTIFICATION = -606
-	CDN_TYPECHANGE     COMMON_DIALOG_NOTIFICATION = -607
-	CDN_INCLUDEITEM    COMMON_DIALOG_NOTIFICATION = -608
-)
-
 // structs
 
 type OPENFILENAME_NT4A struct {
@@ -583,8 +575,8 @@ type CHOOSEFONTW struct {
 type PRINTDLGA struct {
 	LStructSize         uint32
 	HwndOwner           HWND
-	HDevMode            uintptr
-	HDevNames           uintptr
+	HDevMode            HGLOBAL
+	HDevNames           HGLOBAL
 	HDC                 HDC
 	Flags               PRINTDLGEX_FLAGS
 	NFromPage           uint16
@@ -598,16 +590,16 @@ type PRINTDLGA struct {
 	LpfnSetupHook       LPSETUPHOOKPROC
 	LpPrintTemplateName PSTR
 	LpSetupTemplateName PSTR
-	HPrintTemplate      uintptr
-	HSetupTemplate      uintptr
+	HPrintTemplate      HGLOBAL
+	HSetupTemplate      HGLOBAL
 }
 
 type PRINTDLG = PRINTDLGW
 type PRINTDLGW struct {
 	LStructSize         uint32
 	HwndOwner           HWND
-	HDevMode            uintptr
-	HDevNames           uintptr
+	HDevMode            HGLOBAL
+	HDevNames           HGLOBAL
 	HDC                 HDC
 	Flags               PRINTDLGEX_FLAGS
 	NFromPage           uint16
@@ -621,8 +613,8 @@ type PRINTDLGW struct {
 	LpfnSetupHook       LPSETUPHOOKPROC
 	LpPrintTemplateName PWSTR
 	LpSetupTemplateName PWSTR
-	HPrintTemplate      uintptr
-	HSetupTemplate      uintptr
+	HPrintTemplate      HGLOBAL
+	HSetupTemplate      HGLOBAL
 }
 
 type PRINTPAGERANGE struct {
@@ -633,8 +625,8 @@ type PRINTPAGERANGE struct {
 type PRINTDLGEXA struct {
 	LStructSize         uint32
 	HwndOwner           HWND
-	HDevMode            uintptr
-	HDevNames           uintptr
+	HDevMode            HGLOBAL
+	HDevNames           HGLOBAL
 	HDC                 HDC
 	Flags               PRINTDLGEX_FLAGS
 	Flags2              uint32
@@ -658,8 +650,8 @@ type PRINTDLGEX = PRINTDLGEXW
 type PRINTDLGEXW struct {
 	LStructSize         uint32
 	HwndOwner           HWND
-	HDevMode            uintptr
-	HDevNames           uintptr
+	HDevMode            HGLOBAL
+	HDevNames           HGLOBAL
 	HDC                 HDC
 	Flags               PRINTDLGEX_FLAGS
 	Flags2              uint32
@@ -689,8 +681,8 @@ type DEVNAMES struct {
 type PAGESETUPDLGA struct {
 	LStructSize             uint32
 	HwndOwner               HWND
-	HDevMode                uintptr
-	HDevNames               uintptr
+	HDevMode                HGLOBAL
+	HDevNames               HGLOBAL
 	Flags                   PAGESETUPDLG_FLAGS
 	PtPaperSize             POINT
 	RtMinMargin             RECT
@@ -700,15 +692,15 @@ type PAGESETUPDLGA struct {
 	LpfnPageSetupHook       LPPAGESETUPHOOK
 	LpfnPagePaintHook       LPPAGEPAINTHOOK
 	LpPageSetupTemplateName PSTR
-	HPageSetupTemplate      uintptr
+	HPageSetupTemplate      HGLOBAL
 }
 
 type PAGESETUPDLG = PAGESETUPDLGW
 type PAGESETUPDLGW struct {
 	LStructSize             uint32
 	HwndOwner               HWND
-	HDevMode                uintptr
-	HDevNames               uintptr
+	HDevMode                HGLOBAL
+	HDevNames               HGLOBAL
 	Flags                   PAGESETUPDLG_FLAGS
 	PtPaperSize             POINT
 	RtMinMargin             RECT
@@ -718,7 +710,7 @@ type PAGESETUPDLGW struct {
 	LpfnPageSetupHook       LPPAGESETUPHOOK
 	LpfnPagePaintHook       LPPAGEPAINTHOOK
 	LpPageSetupTemplateName PWSTR
-	HPageSetupTemplate      uintptr
+	HPageSetupTemplate      HGLOBAL
 }
 
 // func types

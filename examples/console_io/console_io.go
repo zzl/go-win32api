@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/zzl/go-win32api/v2/win32"
 	"os"
-	"unsafe"
 )
 
 //https://learn.microsoft.com/en-us/windows/console/using-the-high-level-input-and-output-functions
@@ -61,7 +60,7 @@ func main() {
 	for {
 		if ok, _ := win32.WriteFile(
 			hStdout,                             // output handle
-			unsafe.Pointer(lpszPrompt1),         // prompt string
+			lpszPrompt1,                         // prompt string
 			uint32(win32.LstrlenA(lpszPrompt1)), // string length
 			&cWritten,                           // bytes written
 			nil,                                 // not overlapped
@@ -70,11 +69,11 @@ func main() {
 		}
 
 		if ok, _ := win32.ReadFile(
-			hStdin,                       // input handle
-			unsafe.Pointer(&chBuffer[0]), // buffer to read into
-			255,                          // size of buffer
-			&cRead,                       // actual bytes read
-			nil,                          // not overlapped
+			hStdin,       // input handle
+			&chBuffer[0], // buffer to read into
+			255,          // size of buffer
+			&cRead,       // actual bytes read
+			nil,          // not overlapped
 		); ok == win32.FALSE {
 			break
 		}
@@ -106,7 +105,7 @@ func main() {
 	for {
 		if ok, _ := win32.WriteFile(
 			hStdout,                             // output handle
-			unsafe.Pointer(lpszPrompt2),         // prompt string
+			lpszPrompt2,                         // prompt string
 			uint32(win32.LstrlenA(lpszPrompt2)), // string length
 			&cWritten,                           // bytes written
 			nil,                                 // not overlapped
@@ -117,13 +116,13 @@ func main() {
 		}
 
 		if ok, _ := win32.ReadFile(hStdin,
-			unsafe.Pointer(&chBuffer[0]), 1, &cRead, nil); ok == win32.FALSE {
+			&chBuffer[0], 1, &cRead, nil); ok == win32.FALSE {
 			break
 		}
 		if chBuffer[0] == '\r' {
 			NewLine()
 		} else if ok, _ := win32.WriteFile(hStdout,
-			unsafe.Pointer(&chBuffer[0]), cRead, &cWritten, nil); ok == win32.FALSE {
+			&chBuffer[0], cRead, &cWritten, nil); ok == win32.FALSE {
 			break
 		} else {
 			NewLine()

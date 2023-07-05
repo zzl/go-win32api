@@ -121,6 +121,46 @@ const (
 	PIDMSI_STATUS_OTHER      PIDMSI_STATUS_VALUE = 32767
 )
 
+// enum
+type PROPVAR_COMPARE_UNIT int32
+
+const (
+	PVCU_DEFAULT PROPVAR_COMPARE_UNIT = 0
+	PVCU_SECOND  PROPVAR_COMPARE_UNIT = 1
+	PVCU_MINUTE  PROPVAR_COMPARE_UNIT = 2
+	PVCU_HOUR    PROPVAR_COMPARE_UNIT = 3
+	PVCU_DAY     PROPVAR_COMPARE_UNIT = 4
+	PVCU_MONTH   PROPVAR_COMPARE_UNIT = 5
+	PVCU_YEAR    PROPVAR_COMPARE_UNIT = 6
+)
+
+// enum
+// flags
+type PROPVAR_COMPARE_FLAGS int32
+
+const (
+	PVCF_DEFAULT                       PROPVAR_COMPARE_FLAGS = 0
+	PVCF_TREATEMPTYASGREATERTHAN       PROPVAR_COMPARE_FLAGS = 1
+	PVCF_USESTRCMP                     PROPVAR_COMPARE_FLAGS = 2
+	PVCF_USESTRCMPC                    PROPVAR_COMPARE_FLAGS = 4
+	PVCF_USESTRCMPI                    PROPVAR_COMPARE_FLAGS = 8
+	PVCF_USESTRCMPIC                   PROPVAR_COMPARE_FLAGS = 16
+	PVCF_DIGITSASNUMBERS_CASESENSITIVE PROPVAR_COMPARE_FLAGS = 32
+)
+
+// enum
+// flags
+type PROPVAR_CHANGE_FLAGS int32
+
+const (
+	PVCHF_DEFAULT        PROPVAR_CHANGE_FLAGS = 0
+	PVCHF_NOVALUEPROP    PROPVAR_CHANGE_FLAGS = 1
+	PVCHF_ALPHABOOL      PROPVAR_CHANGE_FLAGS = 2
+	PVCHF_NOUSEROVERRIDE PROPVAR_CHANGE_FLAGS = 4
+	PVCHF_LOCALBOOL      PROPVAR_CHANGE_FLAGS = 8
+	PVCHF_NOHEXSTRING    PROPVAR_CHANGE_FLAGS = 16
+)
+
 // structs
 
 type BSTRBLOB struct {
@@ -928,9 +968,6 @@ type SERIALIZEDPROPERTYVALUE struct {
 	Rgb    [1]byte
 }
 
-type PMemoryAllocator struct {
-}
-
 type OLESTREAMVTBL struct {
 	Get uintptr
 	Put uintptr
@@ -1010,8 +1047,8 @@ type IStorageInterface interface {
 	CreateStorage(pwcsName PWSTR, grfMode STGM, reserved1 uint32, reserved2 uint32, ppstg **IStorage) HRESULT
 	OpenStorage(pwcsName PWSTR, pstgPriority *IStorage, grfMode STGM, snbExclude **uint16, reserved uint32, ppstg **IStorage) HRESULT
 	CopyTo(ciidExclude uint32, rgiidExclude *syscall.GUID, snbExclude **uint16, pstgDest *IStorage) HRESULT
-	MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags STGMOVE) HRESULT
-	Commit(grfCommitFlags STGC) HRESULT
+	MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags uint32) HRESULT
+	Commit(grfCommitFlags uint32) HRESULT
 	Revert() HRESULT
 	EnumElements(reserved1 uint32, reserved2 unsafe.Pointer, reserved3 uint32, ppenum **IEnumSTATSTG) HRESULT
 	DestroyElement(pwcsName PWSTR) HRESULT
@@ -1019,7 +1056,7 @@ type IStorageInterface interface {
 	SetElementTimes(pwcsName PWSTR, pctime *FILETIME, patime *FILETIME, pmtime *FILETIME) HRESULT
 	SetClass(clsid *syscall.GUID) HRESULT
 	SetStateBits(grfStateBits uint32, grfMask uint32) HRESULT
-	Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT
+	Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT
 }
 
 type IStorageVtbl struct {
@@ -1074,12 +1111,12 @@ func (this *IStorage) CopyTo(ciidExclude uint32, rgiidExclude *syscall.GUID, snb
 	return HRESULT(ret)
 }
 
-func (this *IStorage) MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags STGMOVE) HRESULT {
+func (this *IStorage) MoveElementTo(pwcsName PWSTR, pstgDest *IStorage, pwcsNewName PWSTR, grfFlags uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MoveElementTo, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pwcsName)), uintptr(unsafe.Pointer(pstgDest)), uintptr(unsafe.Pointer(pwcsNewName)), uintptr(grfFlags))
 	return HRESULT(ret)
 }
 
-func (this *IStorage) Commit(grfCommitFlags STGC) HRESULT {
+func (this *IStorage) Commit(grfCommitFlags uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Commit, uintptr(unsafe.Pointer(this)), uintptr(grfCommitFlags))
 	return HRESULT(ret)
 }
@@ -1119,7 +1156,7 @@ func (this *IStorage) SetStateBits(grfStateBits uint32, grfMask uint32) HRESULT 
 	return HRESULT(ret)
 }
 
-func (this *IStorage) Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT {
+func (this *IStorage) Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Stat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstatstg)), uintptr(grfStatFlag))
 	return HRESULT(ret)
 }
@@ -1196,9 +1233,9 @@ type ILockBytesInterface interface {
 	WriteAt(ulOffset uint64, pv unsafe.Pointer, cb uint32, pcbWritten *uint32) HRESULT
 	Flush() HRESULT
 	SetSize(cb uint64) HRESULT
-	LockRegion(libOffset uint64, cb uint64, dwLockType LOCKTYPE) HRESULT
+	LockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
 	UnlockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT
-	Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT
+	Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT
 }
 
 type ILockBytesVtbl struct {
@@ -1240,7 +1277,7 @@ func (this *ILockBytes) SetSize(cb uint64) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ILockBytes) LockRegion(libOffset uint64, cb uint64, dwLockType LOCKTYPE) HRESULT {
+func (this *ILockBytes) LockRegion(libOffset uint64, cb uint64, dwLockType uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().LockRegion, uintptr(unsafe.Pointer(this)), uintptr(libOffset), uintptr(cb), uintptr(dwLockType))
 	return HRESULT(ret)
 }
@@ -1250,7 +1287,7 @@ func (this *ILockBytes) UnlockRegion(libOffset uint64, cb uint64, dwLockType uin
 	return HRESULT(ret)
 }
 
-func (this *ILockBytes) Stat(pstatstg *STATSTG, grfStatFlag STATFLAG) HRESULT {
+func (this *ILockBytes) Stat(pstatstg *STATSTG, grfStatFlag uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Stat, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pstatstg)), uintptr(grfStatFlag))
 	return HRESULT(ret)
 }
@@ -1764,48 +1801,128 @@ func (this *IPropertyBag2) LoadObject(pstrName PWSTR, dwHint uint32, pUnkObject 
 }
 
 var (
-	pCoGetInstanceFromFile               uintptr
-	pCoGetInstanceFromIStorage           uintptr
-	pStgOpenAsyncDocfileOnIFillLockBytes uintptr
-	pStgGetIFillLockBytesOnILockBytes    uintptr
-	pStgGetIFillLockBytesOnFile          uintptr
-	pCreateStreamOnHGlobal               uintptr
-	pGetHGlobalFromStream                uintptr
-	pCoGetInterfaceAndReleaseStream      uintptr
-	pPropVariantCopy                     uintptr
-	pPropVariantClear                    uintptr
-	pFreePropVariantArray                uintptr
-	pStgCreateDocfile                    uintptr
-	pStgCreateDocfileOnILockBytes        uintptr
-	pStgOpenStorage                      uintptr
-	pStgOpenStorageOnILockBytes          uintptr
-	pStgIsStorageFile                    uintptr
-	pStgIsStorageILockBytes              uintptr
-	pStgSetTimes                         uintptr
-	pStgCreateStorageEx                  uintptr
-	pStgOpenStorageEx                    uintptr
-	pStgCreatePropStg                    uintptr
-	pStgOpenPropStg                      uintptr
-	pStgCreatePropSetStg                 uintptr
-	pFmtIdToPropStgName                  uintptr
-	pPropStgNameToFmtId                  uintptr
-	pReadClassStg                        uintptr
-	pWriteClassStg                       uintptr
-	pReadClassStm                        uintptr
-	pWriteClassStm                       uintptr
-	pGetHGlobalFromILockBytes            uintptr
-	pCreateILockBytesOnHGlobal           uintptr
-	pGetConvertStg                       uintptr
-	pStgConvertVariantToProperty         uintptr
-	pStgConvertPropertyToVariant         uintptr
-	pStgPropertyLengthAsVariant          uintptr
-	pWriteFmtUserTypeStg                 uintptr
-	pReadFmtUserTypeStg                  uintptr
-	pOleConvertOLESTREAMToIStorage       uintptr
-	pOleConvertIStorageToOLESTREAM       uintptr
-	pSetConvertStg                       uintptr
-	pOleConvertIStorageToOLESTREAMEx     uintptr
-	pOleConvertOLESTREAMToIStorageEx     uintptr
+	pCoGetInstanceFromFile                    uintptr
+	pCoGetInstanceFromIStorage                uintptr
+	pStgOpenAsyncDocfileOnIFillLockBytes      uintptr
+	pStgGetIFillLockBytesOnILockBytes         uintptr
+	pStgGetIFillLockBytesOnFile               uintptr
+	pCreateStreamOnHGlobal                    uintptr
+	pGetHGlobalFromStream                     uintptr
+	pCoGetInterfaceAndReleaseStream           uintptr
+	pPropVariantCopy                          uintptr
+	pPropVariantClear                         uintptr
+	pFreePropVariantArray                     uintptr
+	pStgCreateDocfile                         uintptr
+	pStgCreateDocfileOnILockBytes             uintptr
+	pStgOpenStorage                           uintptr
+	pStgOpenStorageOnILockBytes               uintptr
+	pStgIsStorageFile                         uintptr
+	pStgIsStorageILockBytes                   uintptr
+	pStgSetTimes                              uintptr
+	pStgCreateStorageEx                       uintptr
+	pStgOpenStorageEx                         uintptr
+	pStgCreatePropStg                         uintptr
+	pStgOpenPropStg                           uintptr
+	pStgCreatePropSetStg                      uintptr
+	pFmtIdToPropStgName                       uintptr
+	pPropStgNameToFmtId                       uintptr
+	pReadClassStg                             uintptr
+	pWriteClassStg                            uintptr
+	pReadClassStm                             uintptr
+	pWriteClassStm                            uintptr
+	pGetHGlobalFromILockBytes                 uintptr
+	pCreateILockBytesOnHGlobal                uintptr
+	pGetConvertStg                            uintptr
+	pStgConvertVariantToProperty              uintptr
+	pStgPropertyLengthAsVariant               uintptr
+	pWriteFmtUserTypeStg                      uintptr
+	pReadFmtUserTypeStg                       uintptr
+	pOleConvertOLESTREAMToIStorage            uintptr
+	pOleConvertIStorageToOLESTREAM            uintptr
+	pSetConvertStg                            uintptr
+	pOleConvertIStorageToOLESTREAMEx          uintptr
+	pOleConvertOLESTREAMToIStorageEx          uintptr
+	pPropVariantToWinRTPropertyValue          uintptr
+	pWinRTPropertyValueToPropVariant          uintptr
+	pInitPropVariantFromResource              uintptr
+	pInitPropVariantFromBuffer                uintptr
+	pInitPropVariantFromCLSID                 uintptr
+	pInitPropVariantFromGUIDAsString          uintptr
+	pInitPropVariantFromFileTime              uintptr
+	pInitPropVariantFromPropVariantVectorElem uintptr
+	pInitPropVariantVectorFromPropVariant     uintptr
+	pInitPropVariantFromBooleanVector         uintptr
+	pInitPropVariantFromInt16Vector           uintptr
+	pInitPropVariantFromUInt16Vector          uintptr
+	pInitPropVariantFromInt32Vector           uintptr
+	pInitPropVariantFromUInt32Vector          uintptr
+	pInitPropVariantFromInt64Vector           uintptr
+	pInitPropVariantFromUInt64Vector          uintptr
+	pInitPropVariantFromDoubleVector          uintptr
+	pInitPropVariantFromFileTimeVector        uintptr
+	pInitPropVariantFromStringVector          uintptr
+	pInitPropVariantFromStringAsVector        uintptr
+	pPropVariantToBooleanWithDefault          uintptr
+	pPropVariantToInt16WithDefault            uintptr
+	pPropVariantToUInt16WithDefault           uintptr
+	pPropVariantToInt32WithDefault            uintptr
+	pPropVariantToUInt32WithDefault           uintptr
+	pPropVariantToInt64WithDefault            uintptr
+	pPropVariantToUInt64WithDefault           uintptr
+	pPropVariantToDoubleWithDefault           uintptr
+	pPropVariantToStringWithDefault           uintptr
+	pPropVariantToBoolean                     uintptr
+	pPropVariantToInt16                       uintptr
+	pPropVariantToUInt16                      uintptr
+	pPropVariantToInt32                       uintptr
+	pPropVariantToUInt32                      uintptr
+	pPropVariantToInt64                       uintptr
+	pPropVariantToUInt64                      uintptr
+	pPropVariantToDouble                      uintptr
+	pPropVariantToBuffer                      uintptr
+	pPropVariantToString                      uintptr
+	pPropVariantToGUID                        uintptr
+	pPropVariantToStringAlloc                 uintptr
+	pPropVariantToBSTR                        uintptr
+	pPropVariantToFileTime                    uintptr
+	pPropVariantGetElementCount               uintptr
+	pPropVariantToBooleanVector               uintptr
+	pPropVariantToInt16Vector                 uintptr
+	pPropVariantToUInt16Vector                uintptr
+	pPropVariantToInt32Vector                 uintptr
+	pPropVariantToUInt32Vector                uintptr
+	pPropVariantToInt64Vector                 uintptr
+	pPropVariantToUInt64Vector                uintptr
+	pPropVariantToDoubleVector                uintptr
+	pPropVariantToFileTimeVector              uintptr
+	pPropVariantToStringVector                uintptr
+	pPropVariantToBooleanVectorAlloc          uintptr
+	pPropVariantToInt16VectorAlloc            uintptr
+	pPropVariantToUInt16VectorAlloc           uintptr
+	pPropVariantToInt32VectorAlloc            uintptr
+	pPropVariantToUInt32VectorAlloc           uintptr
+	pPropVariantToInt64VectorAlloc            uintptr
+	pPropVariantToUInt64VectorAlloc           uintptr
+	pPropVariantToDoubleVectorAlloc           uintptr
+	pPropVariantToFileTimeVectorAlloc         uintptr
+	pPropVariantToStringVectorAlloc           uintptr
+	pPropVariantGetBooleanElem                uintptr
+	pPropVariantGetInt16Elem                  uintptr
+	pPropVariantGetUInt16Elem                 uintptr
+	pPropVariantGetInt32Elem                  uintptr
+	pPropVariantGetUInt32Elem                 uintptr
+	pPropVariantGetInt64Elem                  uintptr
+	pPropVariantGetUInt64Elem                 uintptr
+	pPropVariantGetDoubleElem                 uintptr
+	pPropVariantGetFileTimeElem               uintptr
+	pPropVariantGetStringElem                 uintptr
+	pClearPropVariantArray                    uintptr
+	pPropVariantCompareEx                     uintptr
+	pPropVariantChangeType                    uintptr
+	pPropVariantToVariant                     uintptr
+	pVariantToPropVariant                     uintptr
+	pStgSerializePropVariant                  uintptr
+	pStgDeserializePropVariant                uintptr
 )
 
 func CoGetInstanceFromFile(pServerInfo *COSERVERINFO, pClsid *syscall.GUID, punkOuter *IUnknown, dwClsCtx CLSCTX, grfMode uint32, pwszName PWSTR, dwCount uint32, pResults *MULTI_QI) HRESULT {
@@ -1838,13 +1955,13 @@ func StgGetIFillLockBytesOnFile(pwcsName PWSTR, ppflb **IFillLockBytes) HRESULT 
 	return HRESULT(ret)
 }
 
-func CreateStreamOnHGlobal(hGlobal uintptr, fDeleteOnRelease BOOL, ppstm **IStream) HRESULT {
+func CreateStreamOnHGlobal(hGlobal HGLOBAL, fDeleteOnRelease BOOL, ppstm **IStream) HRESULT {
 	addr := LazyAddr(&pCreateStreamOnHGlobal, libOle32, "CreateStreamOnHGlobal")
-	ret, _, _ := syscall.SyscallN(addr, hGlobal, uintptr(fDeleteOnRelease), uintptr(unsafe.Pointer(ppstm)))
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hGlobal)), uintptr(fDeleteOnRelease), uintptr(unsafe.Pointer(ppstm)))
 	return HRESULT(ret)
 }
 
-func GetHGlobalFromStream(pstm *IStream, phglobal *uintptr) HRESULT {
+func GetHGlobalFromStream(pstm *IStream, phglobal *HGLOBAL) HRESULT {
 	addr := LazyAddr(&pGetHGlobalFromStream, libOle32, "GetHGlobalFromStream")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstm)), uintptr(unsafe.Pointer(phglobal)))
 	return HRESULT(ret)
@@ -1982,15 +2099,15 @@ func WriteClassStm(pStm *IStream, rclsid *syscall.GUID) HRESULT {
 	return HRESULT(ret)
 }
 
-func GetHGlobalFromILockBytes(plkbyt *ILockBytes, phglobal *uintptr) HRESULT {
+func GetHGlobalFromILockBytes(plkbyt *ILockBytes, phglobal *HGLOBAL) HRESULT {
 	addr := LazyAddr(&pGetHGlobalFromILockBytes, libOle32, "GetHGlobalFromILockBytes")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(plkbyt)), uintptr(unsafe.Pointer(phglobal)))
 	return HRESULT(ret)
 }
 
-func CreateILockBytesOnHGlobal(hGlobal uintptr, fDeleteOnRelease BOOL, pplkbyt **ILockBytes) HRESULT {
+func CreateILockBytesOnHGlobal(hGlobal HGLOBAL, fDeleteOnRelease BOOL, pplkbyt **ILockBytes) HRESULT {
 	addr := LazyAddr(&pCreateILockBytesOnHGlobal, libOle32, "CreateILockBytesOnHGlobal")
-	ret, _, _ := syscall.SyscallN(addr, hGlobal, uintptr(fDeleteOnRelease), uintptr(unsafe.Pointer(pplkbyt)))
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hGlobal)), uintptr(fDeleteOnRelease), uintptr(unsafe.Pointer(pplkbyt)))
 	return HRESULT(ret)
 }
 
@@ -2004,12 +2121,6 @@ func StgConvertVariantToProperty(pvar *PROPVARIANT, CodePage uint16, pprop *SERI
 	addr := LazyAddr(&pStgConvertVariantToProperty, libOle32, "StgConvertVariantToProperty")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvar)), uintptr(CodePage), uintptr(unsafe.Pointer(pprop)), uintptr(unsafe.Pointer(pcb)), uintptr(pid), uintptr(fReserved), uintptr(unsafe.Pointer(pcIndirect)))
 	return (*SERIALIZEDPROPERTYVALUE)(unsafe.Pointer(ret))
-}
-
-func StgConvertPropertyToVariant(pprop *SERIALIZEDPROPERTYVALUE, CodePage uint16, pvar *PROPVARIANT, pma *PMemoryAllocator) BOOLEAN {
-	addr := LazyAddr(&pStgConvertPropertyToVariant, libOle32, "StgConvertPropertyToVariant")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pprop)), uintptr(CodePage), uintptr(unsafe.Pointer(pvar)), uintptr(unsafe.Pointer(pma)))
-	return BOOLEAN(ret)
 }
 
 func StgPropertyLengthAsVariant(pProp *SERIALIZEDPROPERTYVALUE, cbProp uint32, CodePage uint16, bReserved byte) uint32 {

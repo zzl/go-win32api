@@ -46,10 +46,38 @@ type OVERLAPPED_ENTRY struct {
 	DwNumberOfBytesTransferred uint32
 }
 
+type IO_STATUS_BLOCK_Anonymous struct {
+	Data [1]uint64
+}
+
+func (this *IO_STATUS_BLOCK_Anonymous) Status() *NTSTATUS {
+	return (*NTSTATUS)(unsafe.Pointer(this))
+}
+
+func (this *IO_STATUS_BLOCK_Anonymous) StatusVal() NTSTATUS {
+	return *(*NTSTATUS)(unsafe.Pointer(this))
+}
+
+func (this *IO_STATUS_BLOCK_Anonymous) Pointer() *unsafe.Pointer {
+	return (*unsafe.Pointer)(unsafe.Pointer(this))
+}
+
+func (this *IO_STATUS_BLOCK_Anonymous) PointerVal() unsafe.Pointer {
+	return *(*unsafe.Pointer)(unsafe.Pointer(this))
+}
+
+type IO_STATUS_BLOCK struct {
+	IO_STATUS_BLOCK_Anonymous
+	Information uintptr
+}
+
 // func types
 
 type LPOVERLAPPED_COMPLETION_ROUTINE = uintptr
 type LPOVERLAPPED_COMPLETION_ROUTINE_func = func(dwErrorCode uint32, dwNumberOfBytesTransfered uint32, lpOverlapped *OVERLAPPED)
+
+type PIO_APC_ROUTINE = uintptr
+type PIO_APC_ROUTINE_func = func(ApcContext unsafe.Pointer, IoStatusBlock *IO_STATUS_BLOCK, Reserved uint32)
 
 var (
 	pCreateIoCompletionPort      uintptr

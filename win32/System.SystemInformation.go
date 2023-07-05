@@ -5,10 +5,6 @@ import (
 	"unsafe"
 )
 
-type (
-	FIRMWARE_TABLE_ID = uint32
-)
-
 const (
 	NTDDI_WIN2K                                            uint32 = 0x5000000
 	NTDDI_WINXP                                            uint32 = 0x5010000
@@ -117,11 +113,12 @@ const (
 	NTDDI_WIN10_MN                                         uint32 = 0xa000009
 	NTDDI_WIN10_FE                                         uint32 = 0xa00000a
 	NTDDI_WIN10_CO                                         uint32 = 0xa00000b
-	WDK_NTDDI_VERSION                                      uint32 = 0xa00000b
+	NTDDI_WIN10_NI                                         uint32 = 0xa00000c
+	WDK_NTDDI_VERSION                                      uint32 = 0xa00000c
 	OSVERSION_MASK                                         uint32 = 0xffff0000
 	SPVERSION_MASK                                         uint32 = 0xff00
 	SUBVERSION_MASK                                        uint32 = 0xff
-	NTDDI_VERSION                                          uint32 = 0xa00000b
+	NTDDI_VERSION                                          uint32 = 0xa00000c
 	SCEX2_ALT_NETBIOS_NAME                                 uint32 = 0x1
 )
 
@@ -178,6 +175,28 @@ const (
 	IMAGE_FILE_MACHINE_M32R        IMAGE_FILE_MACHINE = 36929
 	IMAGE_FILE_MACHINE_ARM64       IMAGE_FILE_MACHINE = 43620
 	IMAGE_FILE_MACHINE_CEE         IMAGE_FILE_MACHINE = 49390
+)
+
+// enum
+type PROCESSOR_ARCHITECTURE uint16
+
+const (
+	PROCESSOR_ARCHITECTURE_INTEL          PROCESSOR_ARCHITECTURE = 0
+	PROCESSOR_ARCHITECTURE_MIPS           PROCESSOR_ARCHITECTURE = 1
+	PROCESSOR_ARCHITECTURE_ALPHA          PROCESSOR_ARCHITECTURE = 2
+	PROCESSOR_ARCHITECTURE_PPC            PROCESSOR_ARCHITECTURE = 3
+	PROCESSOR_ARCHITECTURE_SHX            PROCESSOR_ARCHITECTURE = 4
+	PROCESSOR_ARCHITECTURE_ARM            PROCESSOR_ARCHITECTURE = 5
+	PROCESSOR_ARCHITECTURE_IA64           PROCESSOR_ARCHITECTURE = 6
+	PROCESSOR_ARCHITECTURE_ALPHA64        PROCESSOR_ARCHITECTURE = 7
+	PROCESSOR_ARCHITECTURE_MSIL           PROCESSOR_ARCHITECTURE = 8
+	PROCESSOR_ARCHITECTURE_AMD64          PROCESSOR_ARCHITECTURE = 9
+	PROCESSOR_ARCHITECTURE_IA32_ON_WIN64  PROCESSOR_ARCHITECTURE = 10
+	PROCESSOR_ARCHITECTURE_NEUTRAL        PROCESSOR_ARCHITECTURE = 11
+	PROCESSOR_ARCHITECTURE_ARM64          PROCESSOR_ARCHITECTURE = 12
+	PROCESSOR_ARCHITECTURE_ARM32_ON_WIN64 PROCESSOR_ARCHITECTURE = 13
+	PROCESSOR_ARCHITECTURE_IA32_ON_ARM64  PROCESSOR_ARCHITECTURE = 14
+	PROCESSOR_ARCHITECTURE_UNKNOWN        PROCESSOR_ARCHITECTURE = 65535
 )
 
 // enum
@@ -366,7 +385,7 @@ const (
 	DEVICEFAMILYDEVICEFORM_XBOX_ONE_X_DEVKIT     DEVICEFAMILYDEVICEFORM = 33
 	DEVICEFAMILYDEVICEFORM_XBOX_SERIES_X         DEVICEFAMILYDEVICEFORM = 34
 	DEVICEFAMILYDEVICEFORM_XBOX_SERIES_X_DEVKIT  DEVICEFAMILYDEVICEFORM = 35
-	DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_00      DEVICEFAMILYDEVICEFORM = 36
+	DEVICEFAMILYDEVICEFORM_XBOX_SERIES_S         DEVICEFAMILYDEVICEFORM = 36
 	DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_01      DEVICEFAMILYDEVICEFORM = 37
 	DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_02      DEVICEFAMILYDEVICEFORM = 38
 	DEVICEFAMILYDEVICEFORM_XBOX_RESERVED_03      DEVICEFAMILYDEVICEFORM = 39
@@ -462,6 +481,12 @@ const (
 	GlobalDataIdCyclesPerYield              RTL_SYSTEM_GLOBAL_DATA_ID = 11
 	GlobalDataIdSafeBootMode                RTL_SYSTEM_GLOBAL_DATA_ID = 12
 	GlobalDataIdLastSystemRITEventTickCount RTL_SYSTEM_GLOBAL_DATA_ID = 13
+	GlobalDataIdConsoleSharedDataFlags      RTL_SYSTEM_GLOBAL_DATA_ID = 14
+	GlobalDataIdNtSystemRootDrive           RTL_SYSTEM_GLOBAL_DATA_ID = 15
+	GlobalDataIdQpcShift                    RTL_SYSTEM_GLOBAL_DATA_ID = 16
+	GlobalDataIdQpcBypassEnabled            RTL_SYSTEM_GLOBAL_DATA_ID = 17
+	GlobalDataIdQpcData                     RTL_SYSTEM_GLOBAL_DATA_ID = 18
+	GlobalDataIdQpcBias                     RTL_SYSTEM_GLOBAL_DATA_ID = 19
 )
 
 // enum
@@ -1105,15 +1130,15 @@ func VerSetConditionMask(ConditionMask uint64, TypeMask VER_FLAGS, Condition byt
 	return uint64(ret)
 }
 
-func EnumSystemFirmwareTables(FirmwareTableProviderSignature FIRMWARE_TABLE_PROVIDER, pFirmwareTableEnumBuffer *FIRMWARE_TABLE_ID, BufferSize uint32) (uint32, WIN32_ERROR) {
+func EnumSystemFirmwareTables(FirmwareTableProviderSignature FIRMWARE_TABLE_PROVIDER, pFirmwareTableEnumBuffer *byte, BufferSize uint32) (uint32, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumSystemFirmwareTables, libKernel32, "EnumSystemFirmwareTables")
 	ret, _, err := syscall.SyscallN(addr, uintptr(FirmwareTableProviderSignature), uintptr(unsafe.Pointer(pFirmwareTableEnumBuffer)), uintptr(BufferSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
-func GetSystemFirmwareTable(FirmwareTableProviderSignature FIRMWARE_TABLE_PROVIDER, FirmwareTableID FIRMWARE_TABLE_ID, pFirmwareTableBuffer unsafe.Pointer, BufferSize uint32) (uint32, WIN32_ERROR) {
+func GetSystemFirmwareTable(FirmwareTableProviderSignature FIRMWARE_TABLE_PROVIDER, FirmwareTableID uint32, pFirmwareTableBuffer *byte, BufferSize uint32) (uint32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetSystemFirmwareTable, libKernel32, "GetSystemFirmwareTable")
-	ret, _, err := syscall.SyscallN(addr, uintptr(FirmwareTableProviderSignature), uintptr(FirmwareTableID), uintptr(pFirmwareTableBuffer), uintptr(BufferSize))
+	ret, _, err := syscall.SyscallN(addr, uintptr(FirmwareTableProviderSignature), uintptr(FirmwareTableID), uintptr(unsafe.Pointer(pFirmwareTableBuffer)), uintptr(BufferSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 

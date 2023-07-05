@@ -1378,13 +1378,6 @@ var (
 // enums
 
 // enum
-type UIA_CHANGE_ID uint32
-
-const (
-	UIA_SummaryChangeId UIA_CHANGE_ID = 90000
-)
-
-// enum
 // flags
 type STICKYKEYS_FLAGS uint32
 
@@ -1533,7 +1526,7 @@ const (
 )
 
 // enum
-type UIA_EVENT_ID uint32
+type UIA_EVENT_ID int32
 
 const (
 	UIA_ToolTipOpenedEventId                             UIA_EVENT_ID = 20000
@@ -1935,6 +1928,13 @@ const (
 )
 
 // enum
+type UIA_CHANGE_ID uint32
+
+const (
+	UIA_SummaryChangeId UIA_CHANGE_ID = 90000
+)
+
+// enum
 type UIA_METADATA_ID uint32
 
 const (
@@ -1961,6 +1961,7 @@ const (
 )
 
 // enum
+// flags
 type ProviderOptions int32
 
 const (
@@ -2068,6 +2069,7 @@ const (
 )
 
 // enum
+// flags
 type SynchronizedInputType int32
 
 const (
@@ -2342,6 +2344,7 @@ const (
 )
 
 // enum
+// flags
 type UIAutomationType int32
 
 const (
@@ -2504,22 +2507,13 @@ const (
 
 // structs
 
-type CAccPropServices struct {
-}
-
 type MSAAMENUINFO struct {
 	DwMSAASignature uint32
 	CchWText        uint32
 	PszWText        PWSTR
 }
 
-type CUIAutomation struct {
-}
-
-type CUIAutomation8 struct {
-}
-
-type CUIAutomationRegistrar struct {
+type CAccPropServices struct {
 }
 
 type UiaRect struct {
@@ -2579,9 +2573,18 @@ type UIAutomationPatternInfo struct {
 	PPatternHandler     *IUIAutomationPatternHandler
 }
 
+type CUIAutomationRegistrar struct {
+}
+
 type ExtendedProperty struct {
 	PropertyName  BSTR
 	PropertyValue BSTR
+}
+
+type CUIAutomation struct {
+}
+
+type CUIAutomation8 struct {
 }
 
 type UiaCondition struct {
@@ -10743,7 +10746,7 @@ func NotifyWinEvent(event uint32, hwnd HWND, idObject int32, idChild int32) {
 	syscall.SyscallN(addr, uintptr(event), hwnd, uintptr(idObject), uintptr(idChild))
 }
 
-func SetWinEventHook(eventMin uint32, eventMax uint32, hmodWinEventProc HINSTANCE, pfnWinEventProc WINEVENTPROC, idProcess uint32, idThread uint32, dwFlags uint32) HWINEVENTHOOK {
+func SetWinEventHook(eventMin uint32, eventMax uint32, hmodWinEventProc HMODULE, pfnWinEventProc WINEVENTPROC, idProcess uint32, idThread uint32, dwFlags uint32) HWINEVENTHOOK {
 	addr := LazyAddr(&pSetWinEventHook, libUser32, "SetWinEventHook")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(eventMin), uintptr(eventMax), hmodWinEventProc, pfnWinEventProc, uintptr(idProcess), uintptr(idThread), uintptr(dwFlags))
 	return ret

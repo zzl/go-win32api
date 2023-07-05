@@ -6,11 +6,13 @@ import (
 )
 
 type (
-	CO_MTA_USAGE_COOKIE      = uintptr
-	CO_DEVICE_CATALOG_COOKIE = uintptr
+	CO_MTA_USAGE_COOKIE                       = uintptr
+	CO_DEVICE_CATALOG_COOKIE                  = uintptr
+	MachineGlobalObjectTableRegistrationToken = uintptr
 )
 
 const (
+	COLE_DEFAULT_AUTHINFO                                  int32  = -1
 	MARSHALINTERFACE_MIN                                   uint32 = 0x1f4
 	ASYNC_MODE_COMPATIBILITY                               int32  = 1
 	ASYNC_MODE_DEFAULT                                     int32  = 0
@@ -50,6 +52,10 @@ const (
 	DCOMSCM_PING_DISALLOW_UNSECURE_CALL                    uint32 = 0x20
 	MAXLSN                                                 uint64 = 0x7fffffffffffffff
 	DMUS_ERRBASE                                           uint32 = 0x1000
+)
+
+var (
+	COLE_DEFAULT_PRINCIPAL = PWSTR(unsafe.Pointer(^uintptr(0)))
 )
 
 // enums
@@ -204,7 +210,7 @@ const (
 
 // enum
 // flags
-type STGC uint32
+type STGC int32
 
 const (
 	STGC_DEFAULT                            STGC = 0
@@ -224,64 +230,6 @@ const (
 )
 
 // enum
-type VARENUM uint16
-
-const (
-	VT_EMPTY            VARENUM = 0
-	VT_NULL             VARENUM = 1
-	VT_I2               VARENUM = 2
-	VT_I4               VARENUM = 3
-	VT_R4               VARENUM = 4
-	VT_R8               VARENUM = 5
-	VT_CY               VARENUM = 6
-	VT_DATE             VARENUM = 7
-	VT_BSTR             VARENUM = 8
-	VT_DISPATCH         VARENUM = 9
-	VT_ERROR            VARENUM = 10
-	VT_BOOL             VARENUM = 11
-	VT_VARIANT          VARENUM = 12
-	VT_UNKNOWN          VARENUM = 13
-	VT_DECIMAL          VARENUM = 14
-	VT_I1               VARENUM = 16
-	VT_UI1              VARENUM = 17
-	VT_UI2              VARENUM = 18
-	VT_UI4              VARENUM = 19
-	VT_I8               VARENUM = 20
-	VT_UI8              VARENUM = 21
-	VT_INT              VARENUM = 22
-	VT_UINT             VARENUM = 23
-	VT_VOID             VARENUM = 24
-	VT_HRESULT          VARENUM = 25
-	VT_PTR              VARENUM = 26
-	VT_SAFEARRAY        VARENUM = 27
-	VT_CARRAY           VARENUM = 28
-	VT_USERDEFINED      VARENUM = 29
-	VT_LPSTR            VARENUM = 30
-	VT_LPWSTR           VARENUM = 31
-	VT_RECORD           VARENUM = 36
-	VT_INT_PTR          VARENUM = 37
-	VT_UINT_PTR         VARENUM = 38
-	VT_FILETIME         VARENUM = 64
-	VT_BLOB             VARENUM = 65
-	VT_STREAM           VARENUM = 66
-	VT_STORAGE          VARENUM = 67
-	VT_STREAMED_OBJECT  VARENUM = 68
-	VT_STORED_OBJECT    VARENUM = 69
-	VT_BLOB_OBJECT      VARENUM = 70
-	VT_CF               VARENUM = 71
-	VT_CLSID            VARENUM = 72
-	VT_VERSIONED_STREAM VARENUM = 73
-	VT_BSTR_BLOB        VARENUM = 4095
-	VT_VECTOR           VARENUM = 4096
-	VT_ARRAY            VARENUM = 8192
-	VT_BYREF            VARENUM = 16384
-	VT_RESERVED         VARENUM = 32768
-	VT_ILLEGAL          VARENUM = 65535
-	VT_ILLEGALMASKED    VARENUM = 4095
-	VT_TYPEMASK         VARENUM = 4095
-)
-
-// enum
 type TYSPEC int32
 
 const (
@@ -295,6 +243,7 @@ const (
 )
 
 // enum
+// flags
 type REGCLS int32
 
 const (
@@ -329,35 +278,36 @@ const (
 type CLSCTX uint32
 
 const (
-	CLSCTX_INPROC_SERVER          CLSCTX = 1
-	CLSCTX_INPROC_HANDLER         CLSCTX = 2
-	CLSCTX_LOCAL_SERVER           CLSCTX = 4
-	CLSCTX_INPROC_SERVER16        CLSCTX = 8
-	CLSCTX_REMOTE_SERVER          CLSCTX = 16
-	CLSCTX_INPROC_HANDLER16       CLSCTX = 32
-	CLSCTX_RESERVED1              CLSCTX = 64
-	CLSCTX_RESERVED2              CLSCTX = 128
-	CLSCTX_RESERVED3              CLSCTX = 256
-	CLSCTX_RESERVED4              CLSCTX = 512
-	CLSCTX_NO_CODE_DOWNLOAD       CLSCTX = 1024
-	CLSCTX_RESERVED5              CLSCTX = 2048
-	CLSCTX_NO_CUSTOM_MARSHAL      CLSCTX = 4096
-	CLSCTX_ENABLE_CODE_DOWNLOAD   CLSCTX = 8192
-	CLSCTX_NO_FAILURE_LOG         CLSCTX = 16384
-	CLSCTX_DISABLE_AAA            CLSCTX = 32768
-	CLSCTX_ENABLE_AAA             CLSCTX = 65536
-	CLSCTX_FROM_DEFAULT_CONTEXT   CLSCTX = 131072
-	CLSCTX_ACTIVATE_X86_SERVER    CLSCTX = 262144
-	CLSCTX_ACTIVATE_32_BIT_SERVER CLSCTX = 262144
-	CLSCTX_ACTIVATE_64_BIT_SERVER CLSCTX = 524288
-	CLSCTX_ENABLE_CLOAKING        CLSCTX = 1048576
-	CLSCTX_APPCONTAINER           CLSCTX = 4194304
-	CLSCTX_ACTIVATE_AAA_AS_IU     CLSCTX = 8388608
-	CLSCTX_RESERVED6              CLSCTX = 16777216
-	CLSCTX_ACTIVATE_ARM32_SERVER  CLSCTX = 33554432
-	CLSCTX_PS_DLL                 CLSCTX = 2147483648
-	CLSCTX_ALL                    CLSCTX = 23
-	CLSCTX_SERVER                 CLSCTX = 21
+	CLSCTX_INPROC_SERVER                  CLSCTX = 1
+	CLSCTX_INPROC_HANDLER                 CLSCTX = 2
+	CLSCTX_LOCAL_SERVER                   CLSCTX = 4
+	CLSCTX_INPROC_SERVER16                CLSCTX = 8
+	CLSCTX_REMOTE_SERVER                  CLSCTX = 16
+	CLSCTX_INPROC_HANDLER16               CLSCTX = 32
+	CLSCTX_RESERVED1                      CLSCTX = 64
+	CLSCTX_RESERVED2                      CLSCTX = 128
+	CLSCTX_RESERVED3                      CLSCTX = 256
+	CLSCTX_RESERVED4                      CLSCTX = 512
+	CLSCTX_NO_CODE_DOWNLOAD               CLSCTX = 1024
+	CLSCTX_RESERVED5                      CLSCTX = 2048
+	CLSCTX_NO_CUSTOM_MARSHAL              CLSCTX = 4096
+	CLSCTX_ENABLE_CODE_DOWNLOAD           CLSCTX = 8192
+	CLSCTX_NO_FAILURE_LOG                 CLSCTX = 16384
+	CLSCTX_DISABLE_AAA                    CLSCTX = 32768
+	CLSCTX_ENABLE_AAA                     CLSCTX = 65536
+	CLSCTX_FROM_DEFAULT_CONTEXT           CLSCTX = 131072
+	CLSCTX_ACTIVATE_X86_SERVER            CLSCTX = 262144
+	CLSCTX_ACTIVATE_32_BIT_SERVER         CLSCTX = 262144
+	CLSCTX_ACTIVATE_64_BIT_SERVER         CLSCTX = 524288
+	CLSCTX_ENABLE_CLOAKING                CLSCTX = 1048576
+	CLSCTX_APPCONTAINER                   CLSCTX = 4194304
+	CLSCTX_ACTIVATE_AAA_AS_IU             CLSCTX = 8388608
+	CLSCTX_RESERVED6                      CLSCTX = 16777216
+	CLSCTX_ACTIVATE_ARM32_SERVER          CLSCTX = 33554432
+	CLSCTX_ALLOW_LOWER_TRUST_REGISTRATION CLSCTX = 67108864
+	CLSCTX_PS_DLL                         CLSCTX = 2147483648
+	CLSCTX_ALL                            CLSCTX = 23
+	CLSCTX_SERVER                         CLSCTX = 21
 )
 
 // enum
@@ -715,7 +665,7 @@ const (
 
 // enum
 // flags
-type COINIT uint32
+type COINIT int32
 
 const (
 	COINIT_APARTMENTTHREADED COINIT = 2
@@ -735,6 +685,7 @@ const (
 )
 
 // enum
+// flags
 type COWAIT_FLAGS int32
 
 const (
@@ -747,6 +698,7 @@ const (
 )
 
 // enum
+// flags
 type CWMO_FLAGS int32
 
 const (
@@ -1104,12 +1056,6 @@ type BLOB struct {
 	PBlobData *byte
 }
 
-type IEnumContextProps struct {
-}
-
-type IContext struct {
-}
-
 type COSERVERINFO struct {
 	DwReserved1 uint32
 	PwszName    PWSTR
@@ -1131,7 +1077,7 @@ type STATSTG struct {
 	Ctime             FILETIME
 	Atime             FILETIME
 	GrfMode           STGM
-	GrfLocksSupported LOCKTYPE
+	GrfLocksSupported uint32
 	Clsid             syscall.GUID
 	GrfStateBits      uint32
 	Reserved          uint32
@@ -1174,8 +1120,10 @@ type SOLE_AUTHENTICATION_LIST struct {
 	AAuthInfo *SOLE_AUTHENTICATION_INFO
 }
 
-type MachineGlobalObjectTableRegistrationToken__ struct {
-	Unused int32
+type ContextProperty struct {
+	PolicyId syscall.GUID
+	Flags    uint32
+	PUnk     *IUnknown
 }
 
 type BIND_OPTS struct {
@@ -1223,7 +1171,7 @@ type STATDATA struct {
 }
 
 type RemSTGMEDIUM struct {
-	Tymed          TYMED
+	Tymed          uint32
 	DwHandleType   uint32
 	PData          uint32
 	PUnkForRelease uint32
@@ -1231,69 +1179,69 @@ type RemSTGMEDIUM struct {
 	Data           [1]byte
 }
 
-type STGMEDIUM_Anonymous struct {
+type STGMEDIUM_U struct {
 	Data [1]uint64
 }
 
-func (this *STGMEDIUM_Anonymous) HBitmap() *HBITMAP {
+func (this *STGMEDIUM_U) HBitmap() *HBITMAP {
 	return (*HBITMAP)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) HBitmapVal() HBITMAP {
+func (this *STGMEDIUM_U) HBitmapVal() HBITMAP {
 	return *(*HBITMAP)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) HMetaFilePict() *unsafe.Pointer {
+func (this *STGMEDIUM_U) HMetaFilePict() *unsafe.Pointer {
 	return (*unsafe.Pointer)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) HMetaFilePictVal() unsafe.Pointer {
+func (this *STGMEDIUM_U) HMetaFilePictVal() unsafe.Pointer {
 	return *(*unsafe.Pointer)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) HEnhMetaFile() *HENHMETAFILE {
+func (this *STGMEDIUM_U) HEnhMetaFile() *HENHMETAFILE {
 	return (*HENHMETAFILE)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) HEnhMetaFileVal() HENHMETAFILE {
+func (this *STGMEDIUM_U) HEnhMetaFileVal() HENHMETAFILE {
 	return *(*HENHMETAFILE)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) HGlobal() *uintptr {
-	return (*uintptr)(unsafe.Pointer(this))
+func (this *STGMEDIUM_U) HGlobal() *HGLOBAL {
+	return (*HGLOBAL)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) HGlobalVal() uintptr {
-	return *(*uintptr)(unsafe.Pointer(this))
+func (this *STGMEDIUM_U) HGlobalVal() HGLOBAL {
+	return *(*HGLOBAL)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) LpszFileName() *PWSTR {
+func (this *STGMEDIUM_U) LpszFileName() *PWSTR {
 	return (*PWSTR)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) LpszFileNameVal() PWSTR {
+func (this *STGMEDIUM_U) LpszFileNameVal() PWSTR {
 	return *(*PWSTR)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) Pstm() **IStream {
+func (this *STGMEDIUM_U) Pstm() **IStream {
 	return (**IStream)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) PstmVal() *IStream {
+func (this *STGMEDIUM_U) PstmVal() *IStream {
 	return *(**IStream)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) Pstg() **IStorage {
+func (this *STGMEDIUM_U) Pstg() **IStorage {
 	return (**IStorage)(unsafe.Pointer(this))
 }
 
-func (this *STGMEDIUM_Anonymous) PstgVal() *IStorage {
+func (this *STGMEDIUM_U) PstgVal() *IStorage {
 	return *(**IStorage)(unsafe.Pointer(this))
 }
 
 type STGMEDIUM struct {
 	Tymed TYMED
-	STGMEDIUM_Anonymous
+	STGMEDIUM_U
 	PUnkForRelease *IUnknown
 }
 
@@ -1396,6 +1344,7 @@ type UserSTGMEDIUM_STGMEDIUM_UNION struct {
 }
 
 type UserSTGMEDIUM struct {
+	U              UserSTGMEDIUM_STGMEDIUM_UNION
 	PUnkForRelease *IUnknown
 }
 
@@ -1470,415 +1419,6 @@ type SAFEARRAY struct {
 	CLocks     uint32
 	PvData     unsafe.Pointer
 	Rgsabound  [1]SAFEARRAYBOUND
-}
-
-type VARIANT_Anonymous_Anonymous_Anonymous_Anonymous struct {
-	PvRecord unsafe.Pointer
-	PRecInfo *IRecordInfo
-}
-
-type VARIANT_Anonymous_Anonymous_Anonymous struct {
-	VARIANT_Anonymous_Anonymous_Anonymous_Anonymous
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) LlVal() *int64 {
-	return (*int64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) LlValVal() int64 {
-	return *(*int64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) LVal() *int32 {
-	return (*int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) LValVal() int32 {
-	return *(*int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BVal() *byte {
-	return (*byte)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BValVal() byte {
-	return *(*byte)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) IVal() *int16 {
-	return (*int16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) IValVal() int16 {
-	return *(*int16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) FltVal() *float32 {
-	return (*float32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) FltValVal() float32 {
-	return *(*float32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) DblVal() *float64 {
-	return (*float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) DblValVal() float64 {
-	return *(*float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BoolVal() *VARIANT_BOOL {
-	return (*VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BoolValVal() VARIANT_BOOL {
-	return *(*VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__() *VARIANT_BOOL {
-	return (*VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_BOOL__Val() VARIANT_BOOL {
-	return *(*VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Scode() *int32 {
-	return (*int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) ScodeVal() int32 {
-	return *(*int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) CyVal() *CY {
-	return (*CY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) CyValVal() CY {
-	return *(*CY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Date() *float64 {
-	return (*float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) DateVal() float64 {
-	return *(*float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BstrVal() *BSTR {
-	return (*BSTR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) BstrValVal() BSTR {
-	return *(*BSTR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PunkVal() **IUnknown {
-	return (**IUnknown)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PunkValVal() *IUnknown {
-	return *(**IUnknown)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdispVal() **IDispatch {
-	return (**IDispatch)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdispValVal() *IDispatch {
-	return *(**IDispatch)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Parray() **SAFEARRAY {
-	return (**SAFEARRAY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) ParrayVal() *SAFEARRAY {
-	return *(**SAFEARRAY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PbVal() **byte {
-	return (**byte)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PbValVal() *byte {
-	return *(**byte)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PiVal() **int16 {
-	return (**int16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PiValVal() *int16 {
-	return *(**int16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PlVal() **int32 {
-	return (**int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PlValVal() *int32 {
-	return *(**int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PllVal() **int64 {
-	return (**int64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PllValVal() *int64 {
-	return *(**int64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PfltVal() **float32 {
-	return (**float32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PfltValVal() *float32 {
-	return *(**float32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdblVal() **float64 {
-	return (**float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdblValVal() *float64 {
-	return *(**float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PboolVal() **VARIANT_BOOL {
-	return (**VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PboolValVal() *VARIANT_BOOL {
-	return *(**VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_PBOOL__() **VARIANT_BOOL {
-	return (**VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) OBSOLETE__VARIANT_PBOOL__Val() *VARIANT_BOOL {
-	return *(**VARIANT_BOOL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Pscode() **int32 {
-	return (**int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PscodeVal() *int32 {
-	return *(**int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PcyVal() **CY {
-	return (**CY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PcyValVal() *CY {
-	return *(**CY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Pdate() **float64 {
-	return (**float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdateVal() *float64 {
-	return *(**float64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PbstrVal() **BSTR {
-	return (**BSTR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PbstrValVal() *BSTR {
-	return *(**BSTR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PpunkVal() ***IUnknown {
-	return (***IUnknown)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PpunkValVal() **IUnknown {
-	return *(***IUnknown)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PpdispVal() ***IDispatch {
-	return (***IDispatch)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PpdispValVal() **IDispatch {
-	return *(***IDispatch)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Pparray() ***SAFEARRAY {
-	return (***SAFEARRAY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PparrayVal() **SAFEARRAY {
-	return *(***SAFEARRAY)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PvarVal() **VARIANT {
-	return (**VARIANT)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PvarValVal() *VARIANT {
-	return *(**VARIANT)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Byref() *unsafe.Pointer {
-	return (*unsafe.Pointer)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) ByrefVal() unsafe.Pointer {
-	return *(*unsafe.Pointer)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) CVal() *CHAR {
-	return (*CHAR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) CValVal() CHAR {
-	return *(*CHAR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UiVal() *uint16 {
-	return (*uint16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UiValVal() uint16 {
-	return *(*uint16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UlVal() *uint32 {
-	return (*uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UlValVal() uint32 {
-	return *(*uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UllVal() *uint64 {
-	return (*uint64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UllValVal() uint64 {
-	return *(*uint64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) IntVal() *int32 {
-	return (*int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) IntValVal() int32 {
-	return *(*int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UintVal() *uint32 {
-	return (*uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) UintValVal() uint32 {
-	return *(*uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdecVal() **DECIMAL {
-	return (**DECIMAL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PdecValVal() *DECIMAL {
-	return *(**DECIMAL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PcVal() *PSTR {
-	return (*PSTR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PcValVal() PSTR {
-	return *(*PSTR)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PuiVal() **uint16 {
-	return (**uint16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PuiValVal() *uint16 {
-	return *(**uint16)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PulVal() **uint32 {
-	return (**uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PulValVal() *uint32 {
-	return *(**uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PullVal() **uint64 {
-	return (**uint64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PullValVal() *uint64 {
-	return *(**uint64)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PintVal() **int32 {
-	return (**int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PintValVal() *int32 {
-	return *(**int32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PuintVal() **uint32 {
-	return (**uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) PuintValVal() *uint32 {
-	return *(**uint32)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) Anonymous() *VARIANT_Anonymous_Anonymous_Anonymous_Anonymous {
-	return (*VARIANT_Anonymous_Anonymous_Anonymous_Anonymous)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous_Anonymous_Anonymous) AnonymousVal() VARIANT_Anonymous_Anonymous_Anonymous_Anonymous {
-	return *(*VARIANT_Anonymous_Anonymous_Anonymous_Anonymous)(unsafe.Pointer(this))
-}
-
-type VARIANT_Anonymous_Anonymous struct {
-	Vt         VARENUM
-	WReserved1 uint16
-	WReserved2 uint16
-	WReserved3 uint16
-	VARIANT_Anonymous_Anonymous_Anonymous
-}
-
-type VARIANT_Anonymous struct {
-	VARIANT_Anonymous_Anonymous
-}
-
-func (this *VARIANT_Anonymous) Anonymous() *VARIANT_Anonymous_Anonymous {
-	return (*VARIANT_Anonymous_Anonymous)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous) AnonymousVal() VARIANT_Anonymous_Anonymous {
-	return *(*VARIANT_Anonymous_Anonymous)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous) DecVal() *DECIMAL {
-	return (*DECIMAL)(unsafe.Pointer(this))
-}
-
-func (this *VARIANT_Anonymous) DecValVal() DECIMAL {
-	return *(*DECIMAL)(unsafe.Pointer(this))
-}
-
-type VARIANT struct {
-	VARIANT_Anonymous
 }
 
 type TYPEDESC_Anonymous struct {
@@ -3135,8 +2675,8 @@ var IID_IClientSecurity = syscall.GUID{0x0000013D, 0x0000, 0x0000,
 
 type IClientSecurityInterface interface {
 	IUnknownInterface
-	QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *EOLE_AUTHENTICATION_CAPABILITIES) HRESULT
-	SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES) HRESULT
+	QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *uint32) HRESULT
+	SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities uint32) HRESULT
 	CopyProxy(pProxy *IUnknown, ppCopy **IUnknown) HRESULT
 }
 
@@ -3155,12 +2695,12 @@ func (this *IClientSecurity) Vtbl() *IClientSecurityVtbl {
 	return (*IClientSecurityVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IClientSecurity) QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *EOLE_AUTHENTICATION_CAPABILITIES) HRESULT {
+func (this *IClientSecurity) QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryBlanket, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pProxy)), uintptr(unsafe.Pointer(pAuthnSvc)), uintptr(unsafe.Pointer(pAuthzSvc)), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(unsafe.Pointer(pAuthnLevel)), uintptr(unsafe.Pointer(pImpLevel)), uintptr(pAuthInfo), uintptr(unsafe.Pointer(pCapabilites)))
 	return HRESULT(ret)
 }
 
-func (this *IClientSecurity) SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES) HRESULT {
+func (this *IClientSecurity) SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities uint32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetBlanket, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pProxy)), uintptr(dwAuthnSvc), uintptr(dwAuthzSvc), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthInfo), uintptr(dwCapabilities))
 	return HRESULT(ret)
 }
@@ -4028,6 +3568,109 @@ func (this *AsyncIPipeDouble) Finish_Push() HRESULT {
 	return HRESULT(ret)
 }
 
+// 000001C1-0000-0000-C000-000000000046
+var IID_IEnumContextProps = syscall.GUID{0x000001C1, 0x0000, 0x0000,
+	[8]byte{0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
+
+type IEnumContextPropsInterface interface {
+	IUnknownInterface
+	Next(celt uint32, pContextProperties *ContextProperty, pceltFetched *uint32) HRESULT
+	Skip(celt uint32) HRESULT
+	Reset() HRESULT
+	Clone(ppEnumContextProps **IEnumContextProps) HRESULT
+	Count(pcelt *uint32) HRESULT
+}
+
+type IEnumContextPropsVtbl struct {
+	IUnknownVtbl
+	Next  uintptr
+	Skip  uintptr
+	Reset uintptr
+	Clone uintptr
+	Count uintptr
+}
+
+type IEnumContextProps struct {
+	IUnknown
+}
+
+func (this *IEnumContextProps) Vtbl() *IEnumContextPropsVtbl {
+	return (*IEnumContextPropsVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IEnumContextProps) Next(celt uint32, pContextProperties *ContextProperty, pceltFetched *uint32) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Next, uintptr(unsafe.Pointer(this)), uintptr(celt), uintptr(unsafe.Pointer(pContextProperties)), uintptr(unsafe.Pointer(pceltFetched)))
+	return HRESULT(ret)
+}
+
+func (this *IEnumContextProps) Skip(celt uint32) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Skip, uintptr(unsafe.Pointer(this)), uintptr(celt))
+	return HRESULT(ret)
+}
+
+func (this *IEnumContextProps) Reset() HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Reset, uintptr(unsafe.Pointer(this)))
+	return HRESULT(ret)
+}
+
+func (this *IEnumContextProps) Clone(ppEnumContextProps **IEnumContextProps) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Clone, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppEnumContextProps)))
+	return HRESULT(ret)
+}
+
+func (this *IEnumContextProps) Count(pcelt *uint32) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Count, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pcelt)))
+	return HRESULT(ret)
+}
+
+// 000001C0-0000-0000-C000-000000000046
+var IID_IContext = syscall.GUID{0x000001C0, 0x0000, 0x0000,
+	[8]byte{0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
+
+type IContextInterface interface {
+	IUnknownInterface
+	SetProperty(rpolicyId *syscall.GUID, flags uint32, pUnk *IUnknown) HRESULT
+	RemoveProperty(rPolicyId *syscall.GUID) HRESULT
+	GetProperty(rGuid *syscall.GUID, pFlags *uint32, ppUnk **IUnknown) HRESULT
+	EnumContextProps(ppEnumContextProps **IEnumContextProps) HRESULT
+}
+
+type IContextVtbl struct {
+	IUnknownVtbl
+	SetProperty      uintptr
+	RemoveProperty   uintptr
+	GetProperty      uintptr
+	EnumContextProps uintptr
+}
+
+type IContext struct {
+	IUnknown
+}
+
+func (this *IContext) Vtbl() *IContextVtbl {
+	return (*IContextVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IContext) SetProperty(rpolicyId *syscall.GUID, flags uint32, pUnk *IUnknown) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().SetProperty, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(rpolicyId)), uintptr(flags), uintptr(unsafe.Pointer(pUnk)))
+	return HRESULT(ret)
+}
+
+func (this *IContext) RemoveProperty(rPolicyId *syscall.GUID) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().RemoveProperty, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(rPolicyId)))
+	return HRESULT(ret)
+}
+
+func (this *IContext) GetProperty(rGuid *syscall.GUID, pFlags *uint32, ppUnk **IUnknown) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().GetProperty, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(rGuid)), uintptr(unsafe.Pointer(pFlags)), uintptr(unsafe.Pointer(ppUnk)))
+	return HRESULT(ret)
+}
+
+func (this *IContext) EnumContextProps(ppEnumContextProps **IEnumContextProps) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().EnumContextProps, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(ppEnumContextProps)))
+	return HRESULT(ret)
+}
+
 // 000001CE-0000-0000-C000-000000000046
 var IID_IComThreadingInfo = syscall.GUID{0x000001CE, 0x0000, 0x0000,
 	[8]byte{0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
@@ -4129,9 +3772,9 @@ var IID_IMachineGlobalObjectTable = syscall.GUID{0x26D709AC, 0xF70B, 0x4421,
 
 type IMachineGlobalObjectTableInterface interface {
 	IUnknownInterface
-	RegisterObject(clsid *syscall.GUID, identifier PWSTR, object *IUnknown, token **MachineGlobalObjectTableRegistrationToken__) HRESULT
+	RegisterObject(clsid *syscall.GUID, identifier PWSTR, object *IUnknown, token *MachineGlobalObjectTableRegistrationToken) HRESULT
 	GetObject(clsid *syscall.GUID, identifier PWSTR, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
-	RevokeObject(token *MachineGlobalObjectTableRegistrationToken__) HRESULT
+	RevokeObject(token MachineGlobalObjectTableRegistrationToken) HRESULT
 }
 
 type IMachineGlobalObjectTableVtbl struct {
@@ -4149,7 +3792,7 @@ func (this *IMachineGlobalObjectTable) Vtbl() *IMachineGlobalObjectTableVtbl {
 	return (*IMachineGlobalObjectTableVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IMachineGlobalObjectTable) RegisterObject(clsid *syscall.GUID, identifier PWSTR, object *IUnknown, token **MachineGlobalObjectTableRegistrationToken__) HRESULT {
+func (this *IMachineGlobalObjectTable) RegisterObject(clsid *syscall.GUID, identifier PWSTR, object *IUnknown, token *MachineGlobalObjectTableRegistrationToken) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().RegisterObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(clsid)), uintptr(unsafe.Pointer(identifier)), uintptr(unsafe.Pointer(object)), uintptr(unsafe.Pointer(token)))
 	return HRESULT(ret)
 }
@@ -4159,9 +3802,29 @@ func (this *IMachineGlobalObjectTable) GetObject(clsid *syscall.GUID, identifier
 	return HRESULT(ret)
 }
 
-func (this *IMachineGlobalObjectTable) RevokeObject(token *MachineGlobalObjectTableRegistrationToken__) HRESULT {
-	ret, _, _ := syscall.SyscallN(this.Vtbl().RevokeObject, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(token)))
+func (this *IMachineGlobalObjectTable) RevokeObject(token MachineGlobalObjectTableRegistrationToken) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().RevokeObject, uintptr(unsafe.Pointer(this)), token)
 	return HRESULT(ret)
+}
+
+// E9956EF2-3828-4B4B-8FA9-7DB61DEE4954
+var IID_ISupportAllowLowerTrustActivation = syscall.GUID{0xE9956EF2, 0x3828, 0x4B4B,
+	[8]byte{0x8F, 0xA9, 0x7D, 0xB6, 0x1D, 0xEE, 0x49, 0x54}}
+
+type ISupportAllowLowerTrustActivationInterface interface {
+	IUnknownInterface
+}
+
+type ISupportAllowLowerTrustActivationVtbl struct {
+	IUnknownVtbl
+}
+
+type ISupportAllowLowerTrustActivation struct {
+	IUnknown
+}
+
+func (this *ISupportAllowLowerTrustActivation) Vtbl() *ISupportAllowLowerTrustActivationVtbl {
+	return (*ISupportAllowLowerTrustActivationVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
 // 0000001D-0000-0000-C000-000000000046
@@ -7881,13 +7544,13 @@ func CoGetObjectContext(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	return HRESULT(ret)
 }
 
-func CoGetClassObject(rclsid *syscall.GUID, dwClsContext CLSCTX, pvReserved unsafe.Pointer, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+func CoGetClassObject(rclsid *syscall.GUID, dwClsContext uint32, pvReserved unsafe.Pointer, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pCoGetClassObject, libOle32, "CoGetClassObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(dwClsContext), uintptr(pvReserved), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
-func CoRegisterClassObject(rclsid *syscall.GUID, pUnk *IUnknown, dwClsContext CLSCTX, flags REGCLS, lpdwRegister *uint32) HRESULT {
+func CoRegisterClassObject(rclsid *syscall.GUID, pUnk *IUnknown, dwClsContext CLSCTX, flags uint32, lpdwRegister *uint32) HRESULT {
 	addr := LazyAddr(&pCoRegisterClassObject, libOle32, "CoRegisterClassObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(pUnk)), uintptr(dwClsContext), uintptr(flags), uintptr(unsafe.Pointer(lpdwRegister)))
 	return HRESULT(ret)
@@ -7981,7 +7644,7 @@ func CoDisconnectContext(dwTimeout uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func CoInitializeSecurity(pSecDesc PSECURITY_DESCRIPTOR, cAuthSvc int32, asAuthSvc *SOLE_AUTHENTICATION_SERVICE, pReserved1 unsafe.Pointer, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthList unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES, pReserved3 unsafe.Pointer) HRESULT {
+func CoInitializeSecurity(pSecDesc PSECURITY_DESCRIPTOR, cAuthSvc int32, asAuthSvc *SOLE_AUTHENTICATION_SERVICE, pReserved1 unsafe.Pointer, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthList unsafe.Pointer, dwCapabilities uint32, pReserved3 unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pCoInitializeSecurity, libOle32, "CoInitializeSecurity")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecDesc)), uintptr(cAuthSvc), uintptr(unsafe.Pointer(asAuthSvc)), uintptr(pReserved1), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthList), uintptr(dwCapabilities), uintptr(pReserved3))
 	return HRESULT(ret)
@@ -7999,7 +7662,7 @@ func CoQueryProxyBlanket(pProxy *IUnknown, pwAuthnSvc *uint32, pAuthzSvc *uint32
 	return HRESULT(ret)
 }
 
-func CoSetProxyBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES) HRESULT {
+func CoSetProxyBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities uint32) HRESULT {
 	addr := LazyAddr(&pCoSetProxyBlanket, libOle32, "CoSetProxyBlanket")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pProxy)), uintptr(dwAuthnSvc), uintptr(dwAuthzSvc), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthInfo), uintptr(dwCapabilities))
 	return HRESULT(ret)

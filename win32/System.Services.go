@@ -6,7 +6,8 @@ import (
 )
 
 type (
-	SERVICE_STATUS_HANDLE = uintptr
+	SERVICE_STATUS_HANDLE         = uintptr
+	PSC_NOTIFICATION_REGISTRATION = uintptr
 )
 
 const (
@@ -633,9 +634,6 @@ type SERVICE_CONTROL_STATUS_REASON_PARAMSW struct {
 
 type SERVICE_START_REASON struct {
 	DwReason uint32
-}
-
-type SC_NOTIFICATION_REGISTRATION_ struct {
 }
 
 // func types

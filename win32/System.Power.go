@@ -10,120 +10,181 @@ type (
 )
 
 const (
-	BATTERY_UNKNOWN_CAPACITY                  uint32 = 0xffffffff
-	UNKNOWN_CAPACITY                          uint32 = 0xffffffff
-	BATTERY_SYSTEM_BATTERY                    uint32 = 0x80000000
-	BATTERY_CAPACITY_RELATIVE                 uint32 = 0x40000000
-	BATTERY_IS_SHORT_TERM                     uint32 = 0x20000000
-	BATTERY_SEALED                            uint32 = 0x10000000
-	BATTERY_SET_CHARGE_SUPPORTED              uint32 = 0x1
-	BATTERY_SET_DISCHARGE_SUPPORTED           uint32 = 0x2
-	BATTERY_SET_CHARGINGSOURCE_SUPPORTED      uint32 = 0x4
-	BATTERY_SET_CHARGER_ID_SUPPORTED          uint32 = 0x8
-	BATTERY_UNKNOWN_TIME                      uint32 = 0xffffffff
-	BATTERY_UNKNOWN_CURRENT                   uint32 = 0xffffffff
-	UNKNOWN_CURRENT                           uint32 = 0xffffffff
-	BATTERY_USB_CHARGER_STATUS_FN_DEFAULT_USB uint32 = 0x1
-	BATTERY_USB_CHARGER_STATUS_UCM_PD         uint32 = 0x2
-	BATTERY_UNKNOWN_VOLTAGE                   uint32 = 0xffffffff
-	BATTERY_UNKNOWN_RATE                      uint32 = 0x80000000
-	UNKNOWN_RATE                              uint32 = 0x80000000
-	UNKNOWN_VOLTAGE                           uint32 = 0xffffffff
-	BATTERY_POWER_ON_LINE                     uint32 = 0x1
-	BATTERY_DISCHARGING                       uint32 = 0x2
-	BATTERY_CHARGING                          uint32 = 0x4
-	BATTERY_CRITICAL                          uint32 = 0x8
-	MAX_BATTERY_STRING_SIZE                   uint32 = 0x80
-	IOCTL_BATTERY_QUERY_TAG                   uint32 = 0x294040
-	IOCTL_BATTERY_QUERY_INFORMATION           uint32 = 0x294044
-	IOCTL_BATTERY_SET_INFORMATION             uint32 = 0x298048
-	IOCTL_BATTERY_QUERY_STATUS                uint32 = 0x29404c
-	IOCTL_BATTERY_CHARGING_SOURCE_CHANGE      uint32 = 0x294050
-	BATTERY_TAG_INVALID                       uint32 = 0x0
-	MAX_ACTIVE_COOLING_LEVELS                 uint32 = 0xa
-	ACTIVE_COOLING                            uint32 = 0x0
-	PASSIVE_COOLING                           uint32 = 0x1
-	TZ_ACTIVATION_REASON_THERMAL              uint32 = 0x1
-	TZ_ACTIVATION_REASON_CURRENT              uint32 = 0x2
-	THERMAL_POLICY_VERSION_1                  uint32 = 0x1
-	THERMAL_POLICY_VERSION_2                  uint32 = 0x2
-	IOCTL_THERMAL_QUERY_INFORMATION           uint32 = 0x294080
-	IOCTL_THERMAL_SET_COOLING_POLICY          uint32 = 0x298084
-	IOCTL_RUN_ACTIVE_COOLING_METHOD           uint32 = 0x298088
-	IOCTL_THERMAL_SET_PASSIVE_LIMIT           uint32 = 0x29808c
-	IOCTL_THERMAL_READ_TEMPERATURE            uint32 = 0x294090
-	IOCTL_THERMAL_READ_POLICY                 uint32 = 0x294094
-	IOCTL_QUERY_LID                           uint32 = 0x2940c0
-	IOCTL_NOTIFY_SWITCH_EVENT                 uint32 = 0x294100
-	IOCTL_GET_SYS_BUTTON_CAPS                 uint32 = 0x294140
-	IOCTL_GET_SYS_BUTTON_EVENT                uint32 = 0x294144
-	SYS_BUTTON_POWER                          uint32 = 0x1
-	SYS_BUTTON_SLEEP                          uint32 = 0x2
-	SYS_BUTTON_LID                            uint32 = 0x4
-	SYS_BUTTON_WAKE                           uint32 = 0x80000000
-	SYS_BUTTON_LID_STATE_MASK                 uint32 = 0x30000
-	SYS_BUTTON_LID_OPEN                       uint32 = 0x10000
-	SYS_BUTTON_LID_CLOSED                     uint32 = 0x20000
-	SYS_BUTTON_LID_INITIAL                    uint32 = 0x40000
-	SYS_BUTTON_LID_CHANGED                    uint32 = 0x80000
-	IOCTL_GET_PROCESSOR_OBJ_INFO              uint32 = 0x294180
-	THERMAL_COOLING_INTERFACE_VERSION         uint32 = 0x1
-	THERMAL_DEVICE_INTERFACE_VERSION          uint32 = 0x1
-	IOCTL_SET_SYS_MESSAGE_INDICATOR           uint32 = 0x2981c0
-	IOCTL_SET_WAKE_ALARM_VALUE                uint32 = 0x298200
-	IOCTL_SET_WAKE_ALARM_POLICY               uint32 = 0x298204
-	IOCTL_GET_WAKE_ALARM_VALUE                uint32 = 0x29c208
-	IOCTL_GET_WAKE_ALARM_POLICY               uint32 = 0x29c20c
-	ACPI_TIME_ADJUST_DAYLIGHT                 uint32 = 0x1
-	ACPI_TIME_IN_DAYLIGHT                     uint32 = 0x2
-	ACPI_TIME_ZONE_UNKNOWN                    uint32 = 0x7ff
-	IOCTL_ACPI_GET_REAL_TIME                  uint32 = 0x294210
-	IOCTL_ACPI_SET_REAL_TIME                  uint32 = 0x298214
-	IOCTL_GET_WAKE_ALARM_SYSTEM_POWERSTATE    uint32 = 0x294218
-	BATTERY_MINIPORT_UPDATE_DATA_VER_1        uint32 = 0x1
-	BATTERY_MINIPORT_UPDATE_DATA_VER_2        uint32 = 0x2
-	BATTERY_CLASS_MAJOR_VERSION               uint32 = 0x1
-	BATTERY_CLASS_MINOR_VERSION               uint32 = 0x0
-	BATTERY_CLASS_MINOR_VERSION_1             uint32 = 0x1
-	IOCTL_EMI_GET_VERSION                     uint32 = 0x224000
-	IOCTL_EMI_GET_METADATA_SIZE               uint32 = 0x224004
-	IOCTL_EMI_GET_METADATA                    uint32 = 0x224008
-	IOCTL_EMI_GET_MEASUREMENT                 uint32 = 0x22400c
-	EMI_NAME_MAX                              uint32 = 0x10
-	EMI_VERSION_V1                            uint32 = 0x1
-	EMI_VERSION_V2                            uint32 = 0x2
-	EFFECTIVE_POWER_MODE_V1                   uint32 = 0x1
-	EFFECTIVE_POWER_MODE_V2                   uint32 = 0x2
-	EnableSysTrayBatteryMeter                 uint32 = 0x1
-	EnableMultiBatteryDisplay                 uint32 = 0x2
-	EnablePasswordLogon                       uint32 = 0x4
-	EnableWakeOnRing                          uint32 = 0x8
-	EnableVideoDimDisplay                     uint32 = 0x10
-	POWER_ATTRIBUTE_HIDE                      uint32 = 0x1
-	POWER_ATTRIBUTE_SHOW_AOAC                 uint32 = 0x2
-	DEVICEPOWER_HARDWAREID                    uint32 = 0x80000000
-	DEVICEPOWER_AND_OPERATION                 uint32 = 0x40000000
-	DEVICEPOWER_FILTER_DEVICES_PRESENT        uint32 = 0x20000000
-	DEVICEPOWER_FILTER_HARDWARE               uint32 = 0x10000000
-	DEVICEPOWER_FILTER_WAKEENABLED            uint32 = 0x8000000
-	DEVICEPOWER_FILTER_WAKEPROGRAMMABLE       uint32 = 0x4000000
-	DEVICEPOWER_FILTER_ON_NAME                uint32 = 0x2000000
-	DEVICEPOWER_SET_WAKEENABLED               uint32 = 0x1
-	DEVICEPOWER_CLEAR_WAKEENABLED             uint32 = 0x2
-	PDCAP_S0_SUPPORTED                        uint32 = 0x10000
-	PDCAP_S1_SUPPORTED                        uint32 = 0x20000
-	PDCAP_S2_SUPPORTED                        uint32 = 0x40000
-	PDCAP_S3_SUPPORTED                        uint32 = 0x80000
-	PDCAP_WAKE_FROM_S0_SUPPORTED              uint32 = 0x100000
-	PDCAP_WAKE_FROM_S1_SUPPORTED              uint32 = 0x200000
-	PDCAP_WAKE_FROM_S2_SUPPORTED              uint32 = 0x400000
-	PDCAP_WAKE_FROM_S3_SUPPORTED              uint32 = 0x800000
-	PDCAP_S4_SUPPORTED                        uint32 = 0x1000000
-	PDCAP_S5_SUPPORTED                        uint32 = 0x2000000
-	THERMAL_EVENT_VERSION                     uint32 = 0x1
+	PPM_FIRMWARE_ACPI1C2                       uint32 = 0x1
+	PPM_FIRMWARE_ACPI1C3                       uint32 = 0x2
+	PPM_FIRMWARE_ACPI1TSTATES                  uint32 = 0x4
+	PPM_FIRMWARE_CST                           uint32 = 0x8
+	PPM_FIRMWARE_CSD                           uint32 = 0x10
+	PPM_FIRMWARE_PCT                           uint32 = 0x20
+	PPM_FIRMWARE_PSS                           uint32 = 0x40
+	PPM_FIRMWARE_XPSS                          uint32 = 0x80
+	PPM_FIRMWARE_PPC                           uint32 = 0x100
+	PPM_FIRMWARE_PSD                           uint32 = 0x200
+	PPM_FIRMWARE_PTC                           uint32 = 0x400
+	PPM_FIRMWARE_TSS                           uint32 = 0x800
+	PPM_FIRMWARE_TPC                           uint32 = 0x1000
+	PPM_FIRMWARE_TSD                           uint32 = 0x2000
+	PPM_FIRMWARE_PCCH                          uint32 = 0x4000
+	PPM_FIRMWARE_PCCP                          uint32 = 0x8000
+	PPM_FIRMWARE_OSC                           uint32 = 0x10000
+	PPM_FIRMWARE_PDC                           uint32 = 0x20000
+	PPM_FIRMWARE_CPC                           uint32 = 0x40000
+	PPM_FIRMWARE_LPI                           uint32 = 0x80000
+	PPM_PERFORMANCE_IMPLEMENTATION_NONE        uint32 = 0x0
+	PPM_PERFORMANCE_IMPLEMENTATION_PSTATES     uint32 = 0x1
+	PPM_PERFORMANCE_IMPLEMENTATION_PCCV1       uint32 = 0x2
+	PPM_PERFORMANCE_IMPLEMENTATION_CPPC        uint32 = 0x3
+	PPM_PERFORMANCE_IMPLEMENTATION_PEP         uint32 = 0x4
+	PPM_IDLE_IMPLEMENTATION_NONE               uint32 = 0x0
+	PPM_IDLE_IMPLEMENTATION_CSTATES            uint32 = 0x1
+	PPM_IDLE_IMPLEMENTATION_PEP                uint32 = 0x2
+	PPM_IDLE_IMPLEMENTATION_MICROPEP           uint32 = 0x3
+	PPM_IDLE_IMPLEMENTATION_LPISTATES          uint32 = 0x4
+	BATTERY_UNKNOWN_CAPACITY                   uint32 = 0xffffffff
+	UNKNOWN_CAPACITY                           uint32 = 0xffffffff
+	BATTERY_SYSTEM_BATTERY                     uint32 = 0x80000000
+	BATTERY_CAPACITY_RELATIVE                  uint32 = 0x40000000
+	BATTERY_IS_SHORT_TERM                      uint32 = 0x20000000
+	BATTERY_SEALED                             uint32 = 0x10000000
+	BATTERY_SET_CHARGE_SUPPORTED               uint32 = 0x1
+	BATTERY_SET_DISCHARGE_SUPPORTED            uint32 = 0x2
+	BATTERY_SET_CHARGINGSOURCE_SUPPORTED       uint32 = 0x4
+	BATTERY_SET_CHARGER_ID_SUPPORTED           uint32 = 0x8
+	BATTERY_UNKNOWN_TIME                       uint32 = 0xffffffff
+	BATTERY_UNKNOWN_CURRENT                    uint32 = 0xffffffff
+	UNKNOWN_CURRENT                            uint32 = 0xffffffff
+	BATTERY_USB_CHARGER_STATUS_FN_DEFAULT_USB  uint32 = 0x1
+	BATTERY_USB_CHARGER_STATUS_UCM_PD          uint32 = 0x2
+	BATTERY_UNKNOWN_VOLTAGE                    uint32 = 0xffffffff
+	BATTERY_UNKNOWN_RATE                       uint32 = 0x80000000
+	UNKNOWN_RATE                               uint32 = 0x80000000
+	UNKNOWN_VOLTAGE                            uint32 = 0xffffffff
+	BATTERY_POWER_ON_LINE                      uint32 = 0x1
+	BATTERY_DISCHARGING                        uint32 = 0x2
+	BATTERY_CHARGING                           uint32 = 0x4
+	BATTERY_CRITICAL                           uint32 = 0x8
+	MAX_BATTERY_STRING_SIZE                    uint32 = 0x80
+	IOCTL_BATTERY_QUERY_TAG                    uint32 = 0x294040
+	IOCTL_BATTERY_QUERY_INFORMATION            uint32 = 0x294044
+	IOCTL_BATTERY_SET_INFORMATION              uint32 = 0x298048
+	IOCTL_BATTERY_QUERY_STATUS                 uint32 = 0x29404c
+	IOCTL_BATTERY_CHARGING_SOURCE_CHANGE       uint32 = 0x294050
+	BATTERY_TAG_INVALID                        uint32 = 0x0
+	MAX_ACTIVE_COOLING_LEVELS                  uint32 = 0xa
+	ACTIVE_COOLING                             uint32 = 0x0
+	PASSIVE_COOLING                            uint32 = 0x1
+	TZ_ACTIVATION_REASON_THERMAL               uint32 = 0x1
+	TZ_ACTIVATION_REASON_CURRENT               uint32 = 0x2
+	THERMAL_POLICY_VERSION_1                   uint32 = 0x1
+	THERMAL_POLICY_VERSION_2                   uint32 = 0x2
+	IOCTL_THERMAL_QUERY_INFORMATION            uint32 = 0x294080
+	IOCTL_THERMAL_SET_COOLING_POLICY           uint32 = 0x298084
+	IOCTL_RUN_ACTIVE_COOLING_METHOD            uint32 = 0x298088
+	IOCTL_THERMAL_SET_PASSIVE_LIMIT            uint32 = 0x29808c
+	IOCTL_THERMAL_READ_TEMPERATURE             uint32 = 0x294090
+	IOCTL_THERMAL_READ_POLICY                  uint32 = 0x294094
+	IOCTL_QUERY_LID                            uint32 = 0x2940c0
+	IOCTL_NOTIFY_SWITCH_EVENT                  uint32 = 0x294100
+	IOCTL_GET_SYS_BUTTON_CAPS                  uint32 = 0x294140
+	IOCTL_GET_SYS_BUTTON_EVENT                 uint32 = 0x294144
+	SYS_BUTTON_POWER                           uint32 = 0x1
+	SYS_BUTTON_SLEEP                           uint32 = 0x2
+	SYS_BUTTON_LID                             uint32 = 0x4
+	SYS_BUTTON_WAKE                            uint32 = 0x80000000
+	SYS_BUTTON_LID_STATE_MASK                  uint32 = 0x30000
+	SYS_BUTTON_LID_OPEN                        uint32 = 0x10000
+	SYS_BUTTON_LID_CLOSED                      uint32 = 0x20000
+	SYS_BUTTON_LID_INITIAL                     uint32 = 0x40000
+	SYS_BUTTON_LID_CHANGED                     uint32 = 0x80000
+	IOCTL_GET_PROCESSOR_OBJ_INFO               uint32 = 0x294180
+	THERMAL_COOLING_INTERFACE_VERSION          uint32 = 0x1
+	THERMAL_DEVICE_INTERFACE_VERSION           uint32 = 0x1
+	IOCTL_SET_SYS_MESSAGE_INDICATOR            uint32 = 0x2981c0
+	IOCTL_SET_WAKE_ALARM_VALUE                 uint32 = 0x298200
+	IOCTL_SET_WAKE_ALARM_POLICY                uint32 = 0x298204
+	IOCTL_GET_WAKE_ALARM_VALUE                 uint32 = 0x29c208
+	IOCTL_GET_WAKE_ALARM_POLICY                uint32 = 0x29c20c
+	ACPI_TIME_ADJUST_DAYLIGHT                  uint32 = 0x1
+	ACPI_TIME_IN_DAYLIGHT                      uint32 = 0x2
+	ACPI_TIME_ZONE_UNKNOWN                     uint32 = 0x7ff
+	IOCTL_ACPI_GET_REAL_TIME                   uint32 = 0x294210
+	IOCTL_ACPI_SET_REAL_TIME                   uint32 = 0x298214
+	IOCTL_GET_WAKE_ALARM_SYSTEM_POWERSTATE     uint32 = 0x294218
+	IOCTL_GET_ACPI_TIME_AND_ALARM_CAPABILITIES uint32 = 0x29421c
+	BATTERY_MINIPORT_UPDATE_DATA_VER_1         uint32 = 0x1
+	BATTERY_MINIPORT_UPDATE_DATA_VER_2         uint32 = 0x2
+	BATTERY_CLASS_MAJOR_VERSION                uint32 = 0x1
+	BATTERY_CLASS_MINOR_VERSION                uint32 = 0x0
+	BATTERY_CLASS_MINOR_VERSION_1              uint32 = 0x1
+	IOCTL_EMI_GET_VERSION                      uint32 = 0x224000
+	IOCTL_EMI_GET_METADATA_SIZE                uint32 = 0x224004
+	IOCTL_EMI_GET_METADATA                     uint32 = 0x224008
+	IOCTL_EMI_GET_MEASUREMENT                  uint32 = 0x22400c
+	EMI_NAME_MAX                               uint32 = 0x10
+	EMI_VERSION_V1                             uint32 = 0x1
+	EMI_VERSION_V2                             uint32 = 0x2
+	EFFECTIVE_POWER_MODE_V1                    uint32 = 0x1
+	EFFECTIVE_POWER_MODE_V2                    uint32 = 0x2
+	EnableSysTrayBatteryMeter                  uint32 = 0x1
+	EnableMultiBatteryDisplay                  uint32 = 0x2
+	EnablePasswordLogon                        uint32 = 0x4
+	EnableWakeOnRing                           uint32 = 0x8
+	EnableVideoDimDisplay                      uint32 = 0x10
+	POWER_ATTRIBUTE_HIDE                       uint32 = 0x1
+	POWER_ATTRIBUTE_SHOW_AOAC                  uint32 = 0x2
+	DEVICEPOWER_HARDWAREID                     uint32 = 0x80000000
+	DEVICEPOWER_AND_OPERATION                  uint32 = 0x40000000
+	DEVICEPOWER_FILTER_DEVICES_PRESENT         uint32 = 0x20000000
+	DEVICEPOWER_FILTER_HARDWARE                uint32 = 0x10000000
+	DEVICEPOWER_FILTER_WAKEENABLED             uint32 = 0x8000000
+	DEVICEPOWER_FILTER_WAKEPROGRAMMABLE        uint32 = 0x4000000
+	DEVICEPOWER_FILTER_ON_NAME                 uint32 = 0x2000000
+	DEVICEPOWER_SET_WAKEENABLED                uint32 = 0x1
+	DEVICEPOWER_CLEAR_WAKEENABLED              uint32 = 0x2
+	PDCAP_S0_SUPPORTED                         uint32 = 0x10000
+	PDCAP_S1_SUPPORTED                         uint32 = 0x20000
+	PDCAP_S2_SUPPORTED                         uint32 = 0x40000
+	PDCAP_S3_SUPPORTED                         uint32 = 0x80000
+	PDCAP_WAKE_FROM_S0_SUPPORTED               uint32 = 0x100000
+	PDCAP_WAKE_FROM_S1_SUPPORTED               uint32 = 0x200000
+	PDCAP_WAKE_FROM_S2_SUPPORTED               uint32 = 0x400000
+	PDCAP_WAKE_FROM_S3_SUPPORTED               uint32 = 0x800000
+	PDCAP_S4_SUPPORTED                         uint32 = 0x1000000
+	PDCAP_S5_SUPPORTED                         uint32 = 0x2000000
+	THERMAL_EVENT_VERSION                      uint32 = 0x1
 )
 
 var (
+	PPM_PERFSTATE_CHANGE_GUID = syscall.GUID{0xA5B32DDD, 0x7F39, 0x4ABC,
+		[8]byte{0xB8, 0x92, 0x90, 0x0E, 0x43, 0xB5, 0x9E, 0xBB}}
+
+	PPM_PERFSTATE_DOMAIN_CHANGE_GUID = syscall.GUID{0x995E6B7F, 0xD653, 0x497A,
+		[8]byte{0xB9, 0x78, 0x36, 0xA3, 0x0C, 0x29, 0xBF, 0x01}}
+
+	PPM_IDLESTATE_CHANGE_GUID = syscall.GUID{0x4838FE4F, 0xF71C, 0x4E51,
+		[8]byte{0x9E, 0xCC, 0x84, 0x30, 0xA7, 0xAC, 0x4C, 0x6C}}
+
+	PPM_PERFSTATES_DATA_GUID = syscall.GUID{0x5708CC20, 0x7D40, 0x4BF4,
+		[8]byte{0xB4, 0xAA, 0x2B, 0x01, 0x33, 0x8D, 0x01, 0x26}}
+
+	PPM_IDLESTATES_DATA_GUID = syscall.GUID{0xBA138E10, 0xE250, 0x4AD7,
+		[8]byte{0x86, 0x16, 0xCF, 0x1A, 0x7A, 0xD4, 0x10, 0xE7}}
+
+	PPM_IDLE_ACCOUNTING_GUID = syscall.GUID{0xE2A26F78, 0xAE07, 0x4EE0,
+		[8]byte{0xA3, 0x0F, 0xCE, 0x54, 0xF5, 0x5A, 0x94, 0xCD}}
+
+	PPM_IDLE_ACCOUNTING_EX_GUID = syscall.GUID{0xD67ABD39, 0x81F8, 0x4A5E,
+		[8]byte{0x81, 0x52, 0x72, 0xE3, 0x1E, 0xC9, 0x12, 0xEE}}
+
+	PPM_THERMALCONSTRAINT_GUID = syscall.GUID{0xA852C2C8, 0x1A4C, 0x423B,
+		[8]byte{0x8C, 0x2C, 0xF3, 0x0D, 0x82, 0x93, 0x1A, 0x88}}
+
+	PPM_PERFMON_PERFSTATE_GUID = syscall.GUID{0x7FD18652, 0x0CFE, 0x40D2,
+		[8]byte{0xB0, 0xA1, 0x0B, 0x06, 0x6A, 0x87, 0x75, 0x9E}}
+
+	PPM_THERMAL_POLICY_CHANGE_GUID = syscall.GUID{0x48F377B8, 0x6880, 0x4C7B,
+		[8]byte{0x8B, 0xDC, 0x38, 0x01, 0x76, 0xC6, 0x65, 0x4D}}
+
 	GUID_DEVICE_BATTERY = syscall.GUID{0x72631E54, 0x78A4, 0x11D0,
 		[8]byte{0xBC, 0xF7, 0x00, 0xAA, 0x00, 0xB7, 0xB3, 0x2A}}
 
@@ -208,15 +269,6 @@ type POWER_PLATFORM_ROLE_VERSION uint32
 const (
 	POWER_PLATFORM_ROLE_V1 POWER_PLATFORM_ROLE_VERSION = 1
 	POWER_PLATFORM_ROLE_V2 POWER_PLATFORM_ROLE_VERSION = 2
-)
-
-// enum
-type POWER_SETTING_REGISTER_NOTIFICATION_FLAGS uint32
-
-const (
-	DEVICE_NOTIFY_SERVICE_HANDLE POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = 1
-	DEVICE_NOTIFY_CALLBACK       POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = 2
-	DEVICE_NOTIFY_WINDOW_HANDLE  POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = 0
 )
 
 // enum
@@ -338,6 +390,15 @@ const (
 )
 
 // enum
+type ACPI_TIME_RESOLUTION int32
+
+const (
+	AcpiTimeResolutionMilliseconds ACPI_TIME_RESOLUTION = 0
+	AcpiTimeResolutionSeconds      ACPI_TIME_RESOLUTION = 1
+	AcpiTimeResolutionMax          ACPI_TIME_RESOLUTION = 2
+)
+
+// enum
 type EMI_MEASUREMENT_UNIT int32
 
 const (
@@ -383,6 +444,17 @@ const (
 	PowerDeviceD2          DEVICE_POWER_STATE = 3
 	PowerDeviceD3          DEVICE_POWER_STATE = 4
 	PowerDeviceMaximum     DEVICE_POWER_STATE = 5
+)
+
+// enum
+type USER_ACTIVITY_PRESENCE int32
+
+const (
+	PowerUserPresent    USER_ACTIVITY_PRESENCE = 0
+	PowerUserNotPresent USER_ACTIVITY_PRESENCE = 1
+	PowerUserInactive   USER_ACTIVITY_PRESENCE = 2
+	PowerUserMaximum    USER_ACTIVITY_PRESENCE = 3
+	PowerUserInvalid    USER_ACTIVITY_PRESENCE = 3
 )
 
 // enum
@@ -504,7 +576,88 @@ const (
 	UpdateBlackBoxRecorder             POWER_INFORMATION_LEVEL = 94
 	SessionAllowExternalDmaDevices     POWER_INFORMATION_LEVEL = 95
 	SendSuspendResumeNotification      POWER_INFORMATION_LEVEL = 96
-	PowerInformationLevelMaximum       POWER_INFORMATION_LEVEL = 97
+	BlackBoxRecorderDirectAccessBuffer POWER_INFORMATION_LEVEL = 97
+	PowerInformationLevelMaximum       POWER_INFORMATION_LEVEL = 98
+)
+
+// enum
+type POWER_USER_PRESENCE_TYPE int32
+
+const (
+	UserNotPresent POWER_USER_PRESENCE_TYPE = 0
+	UserPresent    POWER_USER_PRESENCE_TYPE = 1
+	UserUnknown    POWER_USER_PRESENCE_TYPE = 255
+)
+
+// enum
+type POWER_MONITOR_REQUEST_REASON int32
+
+const (
+	MonitorRequestReasonUnknown                        POWER_MONITOR_REQUEST_REASON = 0
+	MonitorRequestReasonPowerButton                    POWER_MONITOR_REQUEST_REASON = 1
+	MonitorRequestReasonRemoteConnection               POWER_MONITOR_REQUEST_REASON = 2
+	MonitorRequestReasonScMonitorpower                 POWER_MONITOR_REQUEST_REASON = 3
+	MonitorRequestReasonUserInput                      POWER_MONITOR_REQUEST_REASON = 4
+	MonitorRequestReasonAcDcDisplayBurst               POWER_MONITOR_REQUEST_REASON = 5
+	MonitorRequestReasonUserDisplayBurst               POWER_MONITOR_REQUEST_REASON = 6
+	MonitorRequestReasonPoSetSystemState               POWER_MONITOR_REQUEST_REASON = 7
+	MonitorRequestReasonSetThreadExecutionState        POWER_MONITOR_REQUEST_REASON = 8
+	MonitorRequestReasonFullWake                       POWER_MONITOR_REQUEST_REASON = 9
+	MonitorRequestReasonSessionUnlock                  POWER_MONITOR_REQUEST_REASON = 10
+	MonitorRequestReasonScreenOffRequest               POWER_MONITOR_REQUEST_REASON = 11
+	MonitorRequestReasonIdleTimeout                    POWER_MONITOR_REQUEST_REASON = 12
+	MonitorRequestReasonPolicyChange                   POWER_MONITOR_REQUEST_REASON = 13
+	MonitorRequestReasonSleepButton                    POWER_MONITOR_REQUEST_REASON = 14
+	MonitorRequestReasonLid                            POWER_MONITOR_REQUEST_REASON = 15
+	MonitorRequestReasonBatteryCountChange             POWER_MONITOR_REQUEST_REASON = 16
+	MonitorRequestReasonGracePeriod                    POWER_MONITOR_REQUEST_REASON = 17
+	MonitorRequestReasonPnP                            POWER_MONITOR_REQUEST_REASON = 18
+	MonitorRequestReasonDP                             POWER_MONITOR_REQUEST_REASON = 19
+	MonitorRequestReasonSxTransition                   POWER_MONITOR_REQUEST_REASON = 20
+	MonitorRequestReasonSystemIdle                     POWER_MONITOR_REQUEST_REASON = 21
+	MonitorRequestReasonNearProximity                  POWER_MONITOR_REQUEST_REASON = 22
+	MonitorRequestReasonThermalStandby                 POWER_MONITOR_REQUEST_REASON = 23
+	MonitorRequestReasonResumePdc                      POWER_MONITOR_REQUEST_REASON = 24
+	MonitorRequestReasonResumeS4                       POWER_MONITOR_REQUEST_REASON = 25
+	MonitorRequestReasonTerminal                       POWER_MONITOR_REQUEST_REASON = 26
+	MonitorRequestReasonPdcSignal                      POWER_MONITOR_REQUEST_REASON = 27
+	MonitorRequestReasonAcDcDisplayBurstSuppressed     POWER_MONITOR_REQUEST_REASON = 28
+	MonitorRequestReasonSystemStateEntered             POWER_MONITOR_REQUEST_REASON = 29
+	MonitorRequestReasonWinrt                          POWER_MONITOR_REQUEST_REASON = 30
+	MonitorRequestReasonUserInputKeyboard              POWER_MONITOR_REQUEST_REASON = 31
+	MonitorRequestReasonUserInputMouse                 POWER_MONITOR_REQUEST_REASON = 32
+	MonitorRequestReasonUserInputTouchpad              POWER_MONITOR_REQUEST_REASON = 33
+	MonitorRequestReasonUserInputPen                   POWER_MONITOR_REQUEST_REASON = 34
+	MonitorRequestReasonUserInputAccelerometer         POWER_MONITOR_REQUEST_REASON = 35
+	MonitorRequestReasonUserInputHid                   POWER_MONITOR_REQUEST_REASON = 36
+	MonitorRequestReasonUserInputPoUserPresent         POWER_MONITOR_REQUEST_REASON = 37
+	MonitorRequestReasonUserInputSessionSwitch         POWER_MONITOR_REQUEST_REASON = 38
+	MonitorRequestReasonUserInputInitialization        POWER_MONITOR_REQUEST_REASON = 39
+	MonitorRequestReasonPdcSignalWindowsMobilePwrNotif POWER_MONITOR_REQUEST_REASON = 40
+	MonitorRequestReasonPdcSignalWindowsMobileShell    POWER_MONITOR_REQUEST_REASON = 41
+	MonitorRequestReasonPdcSignalHeyCortana            POWER_MONITOR_REQUEST_REASON = 42
+	MonitorRequestReasonPdcSignalHolographicShell      POWER_MONITOR_REQUEST_REASON = 43
+	MonitorRequestReasonPdcSignalFingerprint           POWER_MONITOR_REQUEST_REASON = 44
+	MonitorRequestReasonDirectedDrips                  POWER_MONITOR_REQUEST_REASON = 45
+	MonitorRequestReasonDim                            POWER_MONITOR_REQUEST_REASON = 46
+	MonitorRequestReasonBuiltinPanel                   POWER_MONITOR_REQUEST_REASON = 47
+	MonitorRequestReasonDisplayRequiredUnDim           POWER_MONITOR_REQUEST_REASON = 48
+	MonitorRequestReasonBatteryCountChangeSuppressed   POWER_MONITOR_REQUEST_REASON = 49
+	MonitorRequestReasonResumeModernStandby            POWER_MONITOR_REQUEST_REASON = 50
+	MonitorRequestReasonTerminalInit                   POWER_MONITOR_REQUEST_REASON = 51
+	MonitorRequestReasonPdcSignalSensorsHumanPresence  POWER_MONITOR_REQUEST_REASON = 52
+	MonitorRequestReasonBatteryPreCritical             POWER_MONITOR_REQUEST_REASON = 53
+	MonitorRequestReasonUserInputTouch                 POWER_MONITOR_REQUEST_REASON = 54
+	MonitorRequestReasonMax                            POWER_MONITOR_REQUEST_REASON = 55
+)
+
+// enum
+type POWER_MONITOR_REQUEST_TYPE int32
+
+const (
+	MonitorRequestTypeOff          POWER_MONITOR_REQUEST_TYPE = 0
+	MonitorRequestTypeOnAndPresent POWER_MONITOR_REQUEST_TYPE = 1
+	MonitorRequestTypeToggleOn     POWER_MONITOR_REQUEST_TYPE = 2
 )
 
 // enum
@@ -531,6 +684,19 @@ const (
 	PlatformRolePerformanceServer POWER_PLATFORM_ROLE = 7
 	PlatformRoleSlate             POWER_PLATFORM_ROLE = 8
 	PlatformRoleMaximum           POWER_PLATFORM_ROLE = 9
+)
+
+// enum
+type POWER_SETTING_ALTITUDE int32
+
+const (
+	ALTITUDE_GROUP_POLICY      POWER_SETTING_ALTITUDE = 0
+	ALTITUDE_USER              POWER_SETTING_ALTITUDE = 1
+	ALTITUDE_RUNTIME_OVERRIDE  POWER_SETTING_ALTITUDE = 2
+	ALTITUDE_PROVISIONING      POWER_SETTING_ALTITUDE = 3
+	ALTITUDE_OEM_CUSTOMIZATION POWER_SETTING_ALTITUDE = 4
+	ALTITUDE_INTERNAL_OVERRIDE POWER_SETTING_ALTITUDE = 5
+	ALTITUDE_OS_DEFAULT        POWER_SETTING_ALTITUDE = 6
 )
 
 // structs
@@ -778,6 +944,19 @@ type ACPI_REAL_TIME struct {
 	Reserved1    [3]byte
 }
 
+type ACPI_TIME_AND_ALARM_CAPABILITIES struct {
+	AcWakeSupported           BOOLEAN
+	DcWakeSupported           BOOLEAN
+	S4AcWakeSupported         BOOLEAN
+	S4DcWakeSupported         BOOLEAN
+	S5AcWakeSupported         BOOLEAN
+	S5DcWakeSupported         BOOLEAN
+	S4S5WakeStatusSupported   BOOLEAN
+	DeepestWakeSystemState    uint32
+	RealTimeFeaturesSupported BOOLEAN
+	RealTimeResolution        ACPI_TIME_RESOLUTION
+}
+
 type EMI_VERSION struct {
 	EmiVersion uint16
 }
@@ -829,6 +1008,51 @@ type CM_POWER_DATA struct {
 	PD_DeepestSystemWake    SYSTEM_POWER_STATE
 }
 
+type POWER_USER_PRESENCE struct {
+	UserPresence POWER_USER_PRESENCE_TYPE
+}
+
+type POWER_SESSION_CONNECT struct {
+	Connected BOOLEAN
+	Console   BOOLEAN
+}
+
+type POWER_SESSION_TIMEOUTS struct {
+	InputTimeout   uint32
+	DisplayTimeout uint32
+}
+
+type POWER_SESSION_RIT_STATE struct {
+	Active        BOOLEAN
+	LastInputTime uint64
+}
+
+type POWER_SESSION_WINLOGON struct {
+	SessionId uint32
+	Console   BOOLEAN
+	Locked    BOOLEAN
+}
+
+type POWER_SESSION_ALLOW_EXTERNAL_DMA_DEVICES struct {
+	IsAllowed BOOLEAN
+}
+
+type POWER_IDLE_RESILIENCY struct {
+	CoalescingTimeout    uint32
+	IdleResiliencyPeriod uint32
+}
+
+type POWER_MONITOR_INVOCATION struct {
+	Console       BOOLEAN
+	RequestReason POWER_MONITOR_REQUEST_REASON
+}
+
+type RESUME_PERFORMANCE struct {
+	PostTimeMs              uint32
+	TotalResumeTimeMs       uint64
+	ResumeCompleteTimestamp uint64
+}
+
 type SET_POWER_SETTING_VALUE struct {
 	Version        uint32
 	Guid           syscall.GUID
@@ -837,9 +1061,190 @@ type SET_POWER_SETTING_VALUE struct {
 	Data           [1]byte
 }
 
+type POWER_PLATFORM_INFORMATION struct {
+	AoAc BOOLEAN
+}
+
 type BATTERY_REPORTING_SCALE struct {
 	Granularity uint32
 	Capacity    uint32
+}
+
+type PPM_WMI_LEGACY_PERFSTATE struct {
+	Frequency        uint32
+	Flags            uint32
+	PercentFrequency uint32
+}
+
+type PPM_WMI_IDLE_STATE struct {
+	Latency        uint32
+	Power          uint32
+	TimeCheck      uint32
+	PromotePercent byte
+	DemotePercent  byte
+	StateType      byte
+	Reserved       byte
+	StateFlags     uint32
+	Context        uint32
+	IdleHandler    uint32
+	Reserved1      uint32
+}
+
+type PPM_WMI_IDLE_STATES struct {
+	Type             uint32
+	Count            uint32
+	TargetState      uint32
+	OldState         uint32
+	TargetProcessors uint64
+	State            [1]PPM_WMI_IDLE_STATE
+}
+
+type PPM_WMI_IDLE_STATES_EX struct {
+	Type             uint32
+	Count            uint32
+	TargetState      uint32
+	OldState         uint32
+	TargetProcessors unsafe.Pointer
+	State            [1]PPM_WMI_IDLE_STATE
+}
+
+type PPM_WMI_PERF_STATE struct {
+	Frequency        uint32
+	Power            uint32
+	PercentFrequency byte
+	IncreaseLevel    byte
+	DecreaseLevel    byte
+	Type             byte
+	IncreaseTime     uint32
+	DecreaseTime     uint32
+	Control          uint64
+	Status           uint64
+	HitCount         uint32
+	Reserved1        uint32
+	Reserved2        uint64
+	Reserved3        uint64
+}
+
+type PPM_WMI_PERF_STATES struct {
+	Count             uint32
+	MaxFrequency      uint32
+	CurrentState      uint32
+	MaxPerfState      uint32
+	MinPerfState      uint32
+	LowestPerfState   uint32
+	ThermalConstraint uint32
+	BusyAdjThreshold  byte
+	PolicyType        byte
+	Type              byte
+	Reserved          byte
+	TimerInterval     uint32
+	TargetProcessors  uint64
+	PStateHandler     uint32
+	PStateContext     uint32
+	TStateHandler     uint32
+	TStateContext     uint32
+	FeedbackHandler   uint32
+	Reserved1         uint32
+	Reserved2         uint64
+	State             [1]PPM_WMI_PERF_STATE
+}
+
+type PPM_WMI_PERF_STATES_EX struct {
+	Count             uint32
+	MaxFrequency      uint32
+	CurrentState      uint32
+	MaxPerfState      uint32
+	MinPerfState      uint32
+	LowestPerfState   uint32
+	ThermalConstraint uint32
+	BusyAdjThreshold  byte
+	PolicyType        byte
+	Type              byte
+	Reserved          byte
+	TimerInterval     uint32
+	TargetProcessors  unsafe.Pointer
+	PStateHandler     uint32
+	PStateContext     uint32
+	TStateHandler     uint32
+	TStateContext     uint32
+	FeedbackHandler   uint32
+	Reserved1         uint32
+	Reserved2         uint64
+	State             [1]PPM_WMI_PERF_STATE
+}
+
+type PPM_IDLE_STATE_ACCOUNTING struct {
+	IdleTransitions    uint32
+	FailedTransitions  uint32
+	InvalidBucketIndex uint32
+	TotalTime          uint64
+	IdleTimeBuckets    [6]uint32
+}
+
+type PPM_IDLE_ACCOUNTING struct {
+	StateCount       uint32
+	TotalTransitions uint32
+	ResetCount       uint32
+	StartTime        uint64
+	State            [1]PPM_IDLE_STATE_ACCOUNTING
+}
+
+type PPM_IDLE_STATE_BUCKET_EX struct {
+	TotalTimeUs uint64
+	MinTimeUs   uint32
+	MaxTimeUs   uint32
+	Count       uint32
+}
+
+type PPM_IDLE_STATE_ACCOUNTING_EX struct {
+	TotalTime            uint64
+	IdleTransitions      uint32
+	FailedTransitions    uint32
+	InvalidBucketIndex   uint32
+	MinTimeUs            uint32
+	MaxTimeUs            uint32
+	CancelledTransitions uint32
+	IdleTimeBuckets      [16]PPM_IDLE_STATE_BUCKET_EX
+}
+
+type PPM_IDLE_ACCOUNTING_EX struct {
+	StateCount       uint32
+	TotalTransitions uint32
+	ResetCount       uint32
+	AbortCount       uint32
+	StartTime        uint64
+	State            [1]PPM_IDLE_STATE_ACCOUNTING_EX
+}
+
+type PPM_PERFSTATE_EVENT struct {
+	State     uint32
+	Status    uint32
+	Latency   uint32
+	Speed     uint32
+	Processor uint32
+}
+
+type PPM_PERFSTATE_DOMAIN_EVENT struct {
+	State      uint32
+	Latency    uint32
+	Speed      uint32
+	Processors uint64
+}
+
+type PPM_IDLESTATE_EVENT struct {
+	NewState   uint32
+	OldState   uint32
+	Processors uint64
+}
+
+type PPM_THERMALCHANGE_EVENT struct {
+	ThermalConstraint uint32
+	Processors        uint64
+}
+
+type PPM_THERMAL_POLICY_EVENT struct {
+	Mode       byte
+	Processors uint64
 }
 
 type POWER_ACTION_POLICY struct {
@@ -1023,7 +1428,7 @@ func UnregisterPowerSettingNotification(Handle HPOWERNOTIFY) (BOOL, WIN32_ERROR)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func RegisterSuspendResumeNotification(hRecipient HANDLE, Flags uint32) (HPOWERNOTIFY, WIN32_ERROR) {
+func RegisterSuspendResumeNotification(hRecipient HANDLE, Flags REGISTER_NOTIFICATION_FLAGS) (HPOWERNOTIFY, WIN32_ERROR) {
 	addr := LazyAddr(&pRegisterSuspendResumeNotification, libUser32, "RegisterSuspendResumeNotification")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(Flags))
 	return ret, WIN32_ERROR(err)

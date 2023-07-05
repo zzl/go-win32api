@@ -30,6 +30,8 @@ const (
 	WLDP_RESETWCOSPRODUCTIONCONFIGURATION_FN                           string = "WldpResetWcosProductionConfiguration"
 	WLDP_ISPRODUCTIONCONFIGURATION_FN                                  string = "WldpIsProductionConfiguration"
 	WLDP_RESETPRODUCTIONCONFIGURATION_FN                               string = "WldpResetProductionConfiguration"
+	WLDP_CANEXECUTEBUFFER_FN                                           string = "WldpCanExecuteBuffer"
+	WLDP_CANEXECUTEFILE_FN                                             string = "WldpCanExecuteFile"
 	WLDP_LOCKDOWN_UNDEFINED                                            uint32 = 0x0
 	WLDP_LOCKDOWN_DEFINED_FLAG                                         uint32 = 0x80000000
 	WLDP_LOCKDOWN_CONFIG_CI_FLAG                                       uint32 = 0x1
@@ -138,6 +140,7 @@ const (
 	COPY_FILE_SKIP_ALTERNATE_STREAMS                                   uint32 = 0x8000
 	COPY_FILE_DISABLE_PRE_ALLOCATION                                   uint32 = 0x4000000
 	COPY_FILE_ENABLE_LOW_FREE_SPACE_MODE                               uint32 = 0x8000000
+	COPY_FILE_ENABLE_SPARSE_COPY                                       uint32 = 0x20000000
 	FAIL_FAST_GENERATE_EXCEPTION_ADDRESS                               uint32 = 0x1
 	FAIL_FAST_NO_HARD_ERROR_DLG                                        uint32 = 0x2
 	SP_SERIALCOMM                                                      uint32 = 0x1
@@ -213,10 +216,6 @@ const (
 	GMEM_DISCARDED                                                     uint32 = 0x4000
 	GMEM_LOCKCOUNT                                                     uint32 = 0xff
 	THREAD_PRIORITY_ERROR_RETURN                                       uint32 = 0x7fffffff
-	VOLUME_NAME_DOS                                                    uint32 = 0x0
-	VOLUME_NAME_GUID                                                   uint32 = 0x1
-	VOLUME_NAME_NT                                                     uint32 = 0x2
-	VOLUME_NAME_NONE                                                   uint32 = 0x4
 	DRIVE_UNKNOWN                                                      uint32 = 0x0
 	DRIVE_NO_ROOT_DIR                                                  uint32 = 0x1
 	DRIVE_REMOVABLE                                                    uint32 = 0x2
@@ -225,7 +224,6 @@ const (
 	DRIVE_CDROM                                                        uint32 = 0x5
 	DRIVE_RAMDISK                                                      uint32 = 0x6
 	IGNORE                                                             uint32 = 0x0
-	INFINITE                                                           uint32 = 0xffffffff
 	CBR_110                                                            uint32 = 0x6e
 	CBR_300                                                            uint32 = 0x12c
 	CBR_600                                                            uint32 = 0x258
@@ -369,6 +367,8 @@ const (
 	COPYFILE2_IO_CYCLE_SIZE_MIN                                        uint32 = 0x1000
 	COPYFILE2_IO_CYCLE_SIZE_MAX                                        uint32 = 0x40000000
 	COPYFILE2_IO_RATE_MIN                                              uint32 = 0x200
+	COPY_FILE2_V2_DONT_COPY_JUNCTIONS                                  uint32 = 0x1
+	COPY_FILE2_V2_VALID_FLAGS                                          uint32 = 0x1
 	EVENTLOG_FULL_INFO                                                 uint32 = 0x0
 	OPERATION_API_VERSION                                              uint32 = 0x1
 	MAX_COMPUTERNAME_LENGTH                                            uint32 = 0xf
@@ -418,12 +418,6 @@ const (
 	FILE_RENAME_FLAG_REPLACE_IF_EXISTS                                 uint32 = 0x1
 	FILE_RENAME_FLAG_POSIX_SEMANTICS                                   uint32 = 0x2
 	FILE_RENAME_FLAG_SUPPRESS_PIN_STATE_INHERITANCE                    uint32 = 0x4
-	FILE_DISPOSITION_FLAG_DO_NOT_DELETE                                uint32 = 0x0
-	FILE_DISPOSITION_FLAG_DELETE                                       uint32 = 0x1
-	FILE_DISPOSITION_FLAG_POSIX_SEMANTICS                              uint32 = 0x2
-	FILE_DISPOSITION_FLAG_FORCE_IMAGE_SECTION_CHECK                    uint32 = 0x4
-	FILE_DISPOSITION_FLAG_ON_CLOSE                                     uint32 = 0x8
-	FILE_DISPOSITION_FLAG_IGNORE_READONLY_ATTRIBUTE                    uint32 = 0x10
 	STORAGE_INFO_FLAGS_ALIGNED_DEVICE                                  uint32 = 0x1
 	STORAGE_INFO_FLAGS_PARTITION_ALIGNED_ON_DEVICE                     uint32 = 0x2
 	STORAGE_INFO_OFFSET_UNKNOWN                                        uint32 = 0xffffffff
@@ -435,6 +429,8 @@ const (
 	RPI_FLAG_SMB2_SHARECAP_CONTINUOUS_AVAILABILITY                     uint32 = 0x10
 	RPI_FLAG_SMB2_SHARECAP_SCALEOUT                                    uint32 = 0x20
 	RPI_FLAG_SMB2_SHARECAP_CLUSTER                                     uint32 = 0x40
+	RPI_SMB2_SHAREFLAG_ENCRYPT_DATA                                    uint32 = 0x1
+	RPI_SMB2_SHAREFLAG_COMPRESS_DATA                                   uint32 = 0x2
 	RPI_SMB2_FLAG_SERVERCAP_DFS                                        uint32 = 0x1
 	RPI_SMB2_FLAG_SERVERCAP_LEASING                                    uint32 = 0x2
 	RPI_SMB2_FLAG_SERVERCAP_LARGEMTU                                   uint32 = 0x4
@@ -458,27 +454,9 @@ const (
 	CODEINTEGRITY_OPTION_HVCI_KMCI_STRICTMODE_ENABLED                  uint32 = 0x1000
 	CODEINTEGRITY_OPTION_HVCI_IUM_ENABLED                              uint32 = 0x2000
 	FILE_MAXIMUM_DISPOSITION                                           uint32 = 0x5
-	FILE_DIRECTORY_FILE                                                uint32 = 0x1
-	FILE_WRITE_THROUGH                                                 uint32 = 0x2
-	FILE_SEQUENTIAL_ONLY                                               uint32 = 0x4
-	FILE_NO_INTERMEDIATE_BUFFERING                                     uint32 = 0x8
-	FILE_SYNCHRONOUS_IO_ALERT                                          uint32 = 0x10
-	FILE_SYNCHRONOUS_IO_NONALERT                                       uint32 = 0x20
-	FILE_NON_DIRECTORY_FILE                                            uint32 = 0x40
-	FILE_CREATE_TREE_CONNECTION                                        uint32 = 0x80
-	FILE_COMPLETE_IF_OPLOCKED                                          uint32 = 0x100
-	FILE_NO_EA_KNOWLEDGE                                               uint32 = 0x200
 	FILE_OPEN_REMOTE_INSTANCE                                          uint32 = 0x400
-	FILE_RANDOM_ACCESS                                                 uint32 = 0x800
-	FILE_DELETE_ON_CLOSE                                               uint32 = 0x1000
-	FILE_OPEN_BY_FILE_ID                                               uint32 = 0x2000
-	FILE_OPEN_FOR_BACKUP_INTENT                                        uint32 = 0x4000
 	FILE_NO_COMPRESSION                                                uint32 = 0x8000
-	FILE_OPEN_REQUIRING_OPLOCK                                         uint32 = 0x10000
-	FILE_RESERVE_OPFILTER                                              uint32 = 0x100000
-	FILE_OPEN_REPARSE_POINT                                            uint32 = 0x200000
 	FILE_OPEN_NO_RECALL                                                uint32 = 0x400000
-	FILE_OPEN_FOR_FREE_SPACE_QUERY                                     uint32 = 0x800000
 	FILE_VALID_OPTION_FLAGS                                            uint32 = 0xffffff
 	FILE_VALID_PIPE_OPTION_FLAGS                                       uint32 = 0x32
 	FILE_VALID_MAILSLOT_OPTION_FLAGS                                   uint32 = 0x32
@@ -643,6 +621,33 @@ const (
 var (
 	CATID_DeleteBrowsingHistory = syscall.GUID{0x31CAF6E4, 0xD6AA, 0x4090,
 		[8]byte{0xA0, 0x50, 0xA5, 0xAC, 0x89, 0x72, 0xE9, 0xEF}}
+
+	WLDP_HOST_CMD = syscall.GUID{0x5BAEA1D6, 0x6F1C, 0x488E,
+		[8]byte{0x84, 0x90, 0x34, 0x7F, 0xA5, 0xC5, 0x06, 0x7F}}
+
+	WLDP_HOST_POWERSHELL = syscall.GUID{0x8E9AAA7C, 0x198B, 0x4879,
+		[8]byte{0xAE, 0x41, 0xA5, 0x0D, 0x47, 0xAD, 0x64, 0x58}}
+
+	WLDP_HOST_PYTHON = syscall.GUID{0xBFD557EF, 0x2448, 0x42EC,
+		[8]byte{0x81, 0x0B, 0x0D, 0x9F, 0x09, 0x35, 0x2D, 0x4A}}
+
+	WLDP_HOST_WINDOWS_SCRIPT_HOST = syscall.GUID{0xD30B84C5, 0x29CE, 0x4FF3,
+		[8]byte{0x86, 0xEC, 0xA3, 0x00, 0x07, 0xA8, 0x2E, 0x49}}
+
+	WLDP_HOST_JAVASCRIPT = syscall.GUID{0x5629F0D5, 0x1CCA, 0x4FED,
+		[8]byte{0xA1, 0xA3, 0x36, 0xA8, 0xC1, 0x8D, 0x74, 0xC0}}
+
+	WLDP_HOST_HTML = syscall.GUID{0xB35A71B6, 0xFE56, 0x48D6,
+		[8]byte{0x95, 0x43, 0x2D, 0xFF, 0x0E, 0xCD, 0xED, 0x66}}
+
+	WLDP_HOST_XML = syscall.GUID{0x5594BE58, 0xC6BF, 0x4295,
+		[8]byte{0x82, 0xF4, 0xD4, 0x94, 0xD2, 0x0E, 0x3A, 0x36}}
+
+	WLDP_HOST_MSI = syscall.GUID{0x624EB611, 0x6E7E, 0x4EEC,
+		[8]byte{0x9B, 0xFE, 0xF0, 0xEC, 0xDB, 0xFC, 0xF3, 0x90}}
+
+	WLDP_HOST_OTHER = syscall.GUID{0x626CBEC3, 0xE1FA, 0x4227,
+		[8]byte{0x98, 0x00, 0xED, 0x21, 0x02, 0x74, 0xCF, 0x7C}}
 )
 
 // enums
@@ -666,44 +671,6 @@ type FILE_INFORMATION_CLASS int32
 
 const (
 	FileDirectoryInformation FILE_INFORMATION_CLASS = 1
-)
-
-// enum
-type SYSTEM_INFORMATION_CLASS int32
-
-const (
-	SystemBasicInformation                SYSTEM_INFORMATION_CLASS = 0
-	SystemPerformanceInformation          SYSTEM_INFORMATION_CLASS = 2
-	SystemTimeOfDayInformation            SYSTEM_INFORMATION_CLASS = 3
-	SystemProcessInformation              SYSTEM_INFORMATION_CLASS = 5
-	SystemProcessorPerformanceInformation SYSTEM_INFORMATION_CLASS = 8
-	SystemInterruptInformation            SYSTEM_INFORMATION_CLASS = 23
-	SystemExceptionInformation            SYSTEM_INFORMATION_CLASS = 33
-	SystemRegistryQuotaInformation        SYSTEM_INFORMATION_CLASS = 37
-	SystemLookasideInformation            SYSTEM_INFORMATION_CLASS = 45
-	SystemCodeIntegrityInformation        SYSTEM_INFORMATION_CLASS = 103
-	SystemPolicyInformation               SYSTEM_INFORMATION_CLASS = 134
-)
-
-// enum
-type OBJECT_INFORMATION_CLASS int32
-
-const (
-	ObjectBasicInformation OBJECT_INFORMATION_CLASS = 0
-	ObjectTypeInformation  OBJECT_INFORMATION_CLASS = 2
-)
-
-// enum
-type KEY_SET_INFORMATION_CLASS int32
-
-const (
-	KeyWriteTimeInformation         KEY_SET_INFORMATION_CLASS = 0
-	KeyWow64FlagsInformation        KEY_SET_INFORMATION_CLASS = 1
-	KeyControlFlagsInformation      KEY_SET_INFORMATION_CLASS = 2
-	KeySetVirtualizationInformation KEY_SET_INFORMATION_CLASS = 3
-	KeySetDebugInformation          KEY_SET_INFORMATION_CLASS = 4
-	KeySetHandleTagsInformation     KEY_SET_INFORMATION_CLASS = 5
-	MaxKeySetInfoClass              KEY_SET_INFORMATION_CLASS = 6
 )
 
 // enum
@@ -877,13 +844,25 @@ const (
 	WLDP_POLICY_SETTING_AV_PERF_MODE WLDP_POLICY_SETTING = 1000
 )
 
+// enum
+type WLDP_EXECUTION_POLICY int32
+
+const (
+	WLDP_EXECUTION_POLICY_BLOCKED         WLDP_EXECUTION_POLICY = 0
+	WLDP_EXECUTION_POLICY_ALLOWED         WLDP_EXECUTION_POLICY = 1
+	WLDP_EXECUTION_POLICY_REQUIRE_SANDBOX WLDP_EXECUTION_POLICY = 2
+)
+
+// enum
+// flags
+type WLDP_EXECUTION_EVALUATION_OPTIONS int32
+
+const (
+	WLDP_EXECUTION_EVALUATION_OPTION_NONE                           WLDP_EXECUTION_EVALUATION_OPTIONS = 0
+	WLDP_EXECUTION_EVALUATION_OPTION_EXECUTE_IN_INTERACTIVE_SESSION WLDP_EXECUTION_EVALUATION_OPTIONS = 1
+)
+
 // structs
-
-type D3DHAL_CALLBACKS_ struct {
-}
-
-type D3DHAL_GLOBALDRIVERDATA_ struct {
-}
 
 type TCP_REQUEST_QUERY_INFORMATION_EX32_XP struct {
 	ID      TDIObjectID
@@ -1074,10 +1053,6 @@ type FILE_CASE_SENSITIVE_INFO struct {
 	Flags uint32
 }
 
-type FILE_DISPOSITION_INFO_EX struct {
-	Flags uint32
-}
-
 type CLIENT_ID struct {
 	UniqueProcess HANDLE
 	UniqueThread  HANDLE
@@ -1114,40 +1089,6 @@ type LDR_DATA_TABLE_ENTRY struct {
 	Reserved5          [3]unsafe.Pointer
 	LDR_DATA_TABLE_ENTRY_Anonymous
 	TimeDateStamp uint32
-}
-
-type OBJECT_ATTRIBUTES struct {
-	Length                   uint32
-	RootDirectory            HANDLE
-	ObjectName               *UNICODE_STRING
-	Attributes               uint32
-	SecurityDescriptor       unsafe.Pointer
-	SecurityQualityOfService unsafe.Pointer
-}
-
-type IO_STATUS_BLOCK_Anonymous struct {
-	Data [1]uint64
-}
-
-func (this *IO_STATUS_BLOCK_Anonymous) Status() *NTSTATUS {
-	return (*NTSTATUS)(unsafe.Pointer(this))
-}
-
-func (this *IO_STATUS_BLOCK_Anonymous) StatusVal() NTSTATUS {
-	return *(*NTSTATUS)(unsafe.Pointer(this))
-}
-
-func (this *IO_STATUS_BLOCK_Anonymous) Pointer() *unsafe.Pointer {
-	return (*unsafe.Pointer)(unsafe.Pointer(this))
-}
-
-func (this *IO_STATUS_BLOCK_Anonymous) PointerVal() unsafe.Pointer {
-	return *(*unsafe.Pointer)(unsafe.Pointer(this))
-}
-
-type IO_STATUS_BLOCK struct {
-	IO_STATUS_BLOCK_Anonymous
-	Information uintptr
 }
 
 type SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION struct {
@@ -1253,13 +1194,6 @@ type PUBLIC_OBJECT_BASIC_INFORMATION struct {
 type PUBLIC_OBJECT_TYPE_INFORMATION struct {
 	TypeName UNICODE_STRING
 	Reserved [22]uint32
-}
-
-type KEY_VALUE_ENTRY struct {
-	ValueName  *UNICODE_STRING
-	DataLength uint32
-	DataOffset uint32
-	Type       uint32
 }
 
 type WINSTATIONINFORMATIONW struct {
@@ -1606,9 +1540,6 @@ type PQUERYACTCTXW_FUNC_func = func(dwFlags uint32, hActCtx HANDLE, pvSubInstanc
 type APPLICATION_RECOVERY_CALLBACK = uintptr
 type APPLICATION_RECOVERY_CALLBACK_func = func(pvParameter unsafe.Pointer) uint32
 
-type PIO_APC_ROUTINE = uintptr
-type PIO_APC_ROUTINE_func = func(ApcContext unsafe.Pointer, IoStatusBlock *IO_STATUS_BLOCK, Reserved uint32)
-
 type PWINSTATIONQUERYINFORMATIONW = uintptr
 type PWINSTATIONQUERYINFORMATIONW_func = func(param0 HANDLE, param1 uint32, param2 WINSTATIONINFOCLASS, param3 unsafe.Pointer, param4 uint32, param5 *uint32) BOOLEAN
 
@@ -1622,7 +1553,7 @@ type WINWATCHNOTIFYPROC = uintptr
 type WINWATCHNOTIFYPROC_func = func(hww HWINWATCH, hwnd HWND, code uint32, lParam LPARAM)
 
 type REGINSTALLA = uintptr
-type REGINSTALLA_func = func(hm HINSTANCE, pszSection PSTR, pstTable *STRTABLEA) HRESULT
+type REGINSTALLA_func = func(hm HMODULE, pszSection PSTR, pstTable *STRTABLEA) HRESULT
 
 type PWLDP_SETDYNAMICCODETRUST_API = uintptr
 type PWLDP_SETDYNAMICCODETRUST_API_func = func(hFileHandle HANDLE) HRESULT
@@ -1665,6 +1596,15 @@ type PWLDP_ISPRODUCTIONCONFIGURATION_API_func = func(IsProductionConfiguration *
 
 type PWLDP_RESETPRODUCTIONCONFIGURATION_API = uintptr
 type PWLDP_RESETPRODUCTIONCONFIGURATION_API_func = func() HRESULT
+
+type PWLDP_CANEXECUTEFILE_API = uintptr
+type PWLDP_CANEXECUTEFILE_API_func = func(host *syscall.GUID, options WLDP_EXECUTION_EVALUATION_OPTIONS, fileHandle HANDLE, auditInfo PWSTR, result *WLDP_EXECUTION_POLICY) HRESULT
+
+type PWLDP_CANEXECUTEBUFFER_API = uintptr
+type PWLDP_CANEXECUTEBUFFER_API_func = func(host *syscall.GUID, options WLDP_EXECUTION_EVALUATION_OPTIONS, buffer *byte, bufferSize uint32, auditInfo PWSTR, result *WLDP_EXECUTION_POLICY) HRESULT
+
+type PWLDP_CANEXECUTESTREAM_API = uintptr
+type PWLDP_CANEXECUTESTREAM_API_func = func(host *syscall.GUID, options WLDP_EXECUTION_EVALUATION_OPTIONS, stream *IStream, auditInfo PWSTR, result *WLDP_EXECUTION_POLICY) HRESULT
 
 type PDELAYLOAD_FAILURE_DLL_CALLBACK = uintptr
 type PDELAYLOAD_FAILURE_DLL_CALLBACK_func = func(NotificationReason uint32, DelayloadInfo *DELAYLOAD_INFO) unsafe.Pointer
@@ -1981,6 +1921,33 @@ func (this *IClipServiceNotificationHelper) ShowToast(titleText BSTR, bodyText B
 	return HRESULT(ret)
 }
 
+// 3D5E3D21-BD41-4C2A-A669-B17CE87FB50B
+var IID_IFClipNotificationHelper = syscall.GUID{0x3D5E3D21, 0xBD41, 0x4C2A,
+	[8]byte{0xA6, 0x69, 0xB1, 0x7C, 0xE8, 0x7F, 0xB5, 0x0B}}
+
+type IFClipNotificationHelperInterface interface {
+	IUnknownInterface
+	ShowSystemDialog(titleText BSTR, bodyText BSTR) HRESULT
+}
+
+type IFClipNotificationHelperVtbl struct {
+	IUnknownVtbl
+	ShowSystemDialog uintptr
+}
+
+type IFClipNotificationHelper struct {
+	IUnknown
+}
+
+func (this *IFClipNotificationHelper) Vtbl() *IFClipNotificationHelperVtbl {
+	return (*IFClipNotificationHelperVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *IFClipNotificationHelper) ShowSystemDialog(titleText BSTR, bodyText BSTR) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ShowSystemDialog, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(titleText)), uintptr(unsafe.Pointer(bodyText)))
+	return HRESULT(ret)
+}
+
 // 7A27FAAD-5AE6-4255-9030-C530936292E3
 var IID_IDefaultBrowserSyncSettings = syscall.GUID{0x7A27FAAD, 0x5AE6, 0x4255,
 	[8]byte{0x90, 0x30, 0xC5, 0x30, 0x93, 0x62, 0x92, 0xE3}}
@@ -2073,7 +2040,6 @@ var (
 	pHwrite_                             uintptr
 	pLclose_                             uintptr
 	pLlseek_                             uintptr
-	pSignalObjectAndWait                 uintptr
 	pOpenMutexA                          uintptr
 	pOpenSemaphoreA                      uintptr
 	pCreateWaitableTimerA                uintptr
@@ -2226,31 +2192,31 @@ func GlobalCompact(dwMinFree uint32) uintptr {
 	return ret
 }
 
-func GlobalFix(hMem uintptr) {
+func GlobalFix(hMem HGLOBAL) {
 	addr := LazyAddr(&pGlobalFix, libKernel32, "GlobalFix")
-	syscall.SyscallN(addr, hMem)
+	syscall.SyscallN(addr, uintptr(unsafe.Pointer(hMem)))
 }
 
-func GlobalUnfix(hMem uintptr) {
+func GlobalUnfix(hMem HGLOBAL) {
 	addr := LazyAddr(&pGlobalUnfix, libKernel32, "GlobalUnfix")
-	syscall.SyscallN(addr, hMem)
+	syscall.SyscallN(addr, uintptr(unsafe.Pointer(hMem)))
 }
 
-func GlobalWire(hMem uintptr) unsafe.Pointer {
+func GlobalWire(hMem HGLOBAL) unsafe.Pointer {
 	addr := LazyAddr(&pGlobalWire, libKernel32, "GlobalWire")
-	ret, _, _ := syscall.SyscallN(addr, hMem)
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hMem)))
 	return (unsafe.Pointer)(ret)
 }
 
-func GlobalUnWire(hMem uintptr) BOOL {
+func GlobalUnWire(hMem HGLOBAL) BOOL {
 	addr := LazyAddr(&pGlobalUnWire, libKernel32, "GlobalUnWire")
-	ret, _, _ := syscall.SyscallN(addr, hMem)
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hMem)))
 	return BOOL(ret)
 }
 
-func LocalShrink(hMem uintptr, cbNewSize uint32) uintptr {
+func LocalShrink(hMem HLOCAL, cbNewSize uint32) uintptr {
 	addr := LazyAddr(&pLocalShrink, libKernel32, "LocalShrink")
-	ret, _, _ := syscall.SyscallN(addr, hMem, uintptr(cbNewSize))
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hMem)), uintptr(cbNewSize))
 	return ret
 }
 
@@ -2360,12 +2326,6 @@ func Llseek_(hFile int32, lOffset int32, iOrigin int32) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pLlseek_, libKernel32, "_llseek")
 	ret, _, err := syscall.SyscallN(addr, uintptr(hFile), uintptr(lOffset), uintptr(iOrigin))
 	return int32(ret), WIN32_ERROR(err)
-}
-
-func SignalObjectAndWait(hObjectToSignal HANDLE, hObjectToWaitOn HANDLE, dwMilliseconds uint32, bAlertable BOOL) (WIN32_ERROR, WIN32_ERROR) {
-	addr := LazyAddr(&pSignalObjectAndWait, libKernel32, "SignalObjectAndWait")
-	ret, _, err := syscall.SyscallN(addr, hObjectToSignal, hObjectToWaitOn, uintptr(dwMilliseconds), uintptr(bAlertable))
-	return WIN32_ERROR(ret), WIN32_ERROR(err)
 }
 
 func OpenMutexA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) HANDLE {

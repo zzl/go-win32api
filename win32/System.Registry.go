@@ -1550,7 +1550,7 @@ func RegReplaceKeyW(hKey HKEY, lpSubKey PWSTR, lpNewFile PWSTR, lpOldFile PWSTR)
 	return WIN32_ERROR(ret)
 }
 
-func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32_ERROR {
+func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags uint32) WIN32_ERROR {
 	addr := LazyAddr(&pRegRestoreKeyA, libAdvapi32, "RegRestoreKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
@@ -1558,7 +1558,7 @@ func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32
 
 var RegRestoreKey = RegRestoreKeyW
 
-func RegRestoreKeyW(hKey HKEY, lpFile PWSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32_ERROR {
+func RegRestoreKeyW(hKey HKEY, lpFile PWSTR, dwFlags uint32) WIN32_ERROR {
 	addr := LazyAddr(&pRegRestoreKeyW, libAdvapi32, "RegRestoreKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)

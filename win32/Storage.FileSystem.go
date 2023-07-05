@@ -6,12 +6,7 @@ import (
 )
 
 type (
-	FindFileHandle               = uintptr
-	FindFileNameHandle           = uintptr
-	FindStreamHandle             = uintptr
-	FindChangeNotificationHandle = uintptr
-	FindVolumeHandle             = uintptr
-	FindVolumeMointPointHandle   = uintptr
+	HIORING = uintptr
 )
 
 const (
@@ -150,6 +145,7 @@ const (
 	SHARE_PASSWD_PARMNUM                                 uint32 = 0x9
 	SHARE_FILE_SD_PARMNUM                                uint32 = 0x1f5
 	SHARE_SERVER_PARMNUM                                 uint32 = 0x1f7
+	SHARE_QOS_POLICY_PARMNUM                             uint32 = 0x1f8
 	SHI1_NUM_ELEMENTS                                    uint32 = 0x4
 	SHI2_NUM_ELEMENTS                                    uint32 = 0xa
 	STYPE_RESERVED1                                      uint32 = 0x1000000
@@ -180,6 +176,8 @@ const (
 	SHI1005_FLAGS_IDENTITY_REMOTING                      uint32 = 0x40000
 	SHI1005_FLAGS_CLUSTER_MANAGED                        uint32 = 0x80000
 	SHI1005_FLAGS_COMPRESS_DATA                          uint32 = 0x100000
+	SHI1005_FLAGS_ISOLATED_TRANSPORT                     uint32 = 0x200000
+	SHI1005_FLAGS_DISABLE_DIRECTORY_HANDLE_LEASING       uint32 = 0x400000
 	SESI1_NUM_ELEMENTS                                   uint32 = 0x8
 	SESI2_NUM_ELEMENTS                                   uint32 = 0x9
 	STATSOPT_CLR                                         uint32 = 0x1
@@ -322,6 +320,15 @@ var (
 	PARTITION_PRE_INSTALLED_GUID = syscall.GUID{0x57434F53, 0x7FE0, 0x4196,
 		[8]byte{0x9B, 0x42, 0x42, 0x7B, 0x51, 0x64, 0x34, 0x84}}
 
+	PARTITION_SBL_CACHE_SSD_GUID = syscall.GUID{0xEEFF8352, 0xDD2A, 0x44DB,
+		[8]byte{0xAE, 0x83, 0xBE, 0xE1, 0xCF, 0x74, 0x81, 0xDC}}
+
+	PARTITION_SBL_CACHE_SSD_RESERVED_GUID = syscall.GUID{0xDCC0C7C1, 0x55AD, 0x4F17,
+		[8]byte{0x9D, 0x43, 0x4B, 0xC7, 0x76, 0xE0, 0x11, 0x7E}}
+
+	PARTITION_SBL_CACHE_HDD_GUID = syscall.GUID{0x03AAA829, 0xEBFC, 0x4E7E,
+		[8]byte{0xAA, 0xC9, 0xC4, 0xD7, 0x6C, 0x63, 0xB2, 0x4B}}
+
 	PARTITION_SERVICING_FILES_GUID = syscall.GUID{0x57434F53, 0x432E, 0x4014,
 		[8]byte{0xAE, 0x4C, 0x8D, 0xEA, 0xA9, 0xC0, 0x00, 0x6A}}
 
@@ -428,38 +435,38 @@ const (
 
 // enum
 // flags
-type FILE_ACCESS_FLAGS uint32
+type FILE_ACCESS_RIGHTS uint32
 
 const (
-	FILE_READ_DATA            FILE_ACCESS_FLAGS = 1
-	FILE_LIST_DIRECTORY       FILE_ACCESS_FLAGS = 1
-	FILE_WRITE_DATA           FILE_ACCESS_FLAGS = 2
-	FILE_ADD_FILE             FILE_ACCESS_FLAGS = 2
-	FILE_APPEND_DATA          FILE_ACCESS_FLAGS = 4
-	FILE_ADD_SUBDIRECTORY     FILE_ACCESS_FLAGS = 4
-	FILE_CREATE_PIPE_INSTANCE FILE_ACCESS_FLAGS = 4
-	FILE_READ_EA              FILE_ACCESS_FLAGS = 8
-	FILE_WRITE_EA             FILE_ACCESS_FLAGS = 16
-	FILE_EXECUTE              FILE_ACCESS_FLAGS = 32
-	FILE_TRAVERSE             FILE_ACCESS_FLAGS = 32
-	FILE_DELETE_CHILD         FILE_ACCESS_FLAGS = 64
-	FILE_READ_ATTRIBUTES      FILE_ACCESS_FLAGS = 128
-	FILE_WRITE_ATTRIBUTES     FILE_ACCESS_FLAGS = 256
-	DELETE                    FILE_ACCESS_FLAGS = 65536
-	READ_CONTROL              FILE_ACCESS_FLAGS = 131072
-	WRITE_DAC                 FILE_ACCESS_FLAGS = 262144
-	WRITE_OWNER               FILE_ACCESS_FLAGS = 524288
-	SYNCHRONIZE               FILE_ACCESS_FLAGS = 1048576
-	STANDARD_RIGHTS_REQUIRED  FILE_ACCESS_FLAGS = 983040
-	STANDARD_RIGHTS_READ      FILE_ACCESS_FLAGS = 131072
-	STANDARD_RIGHTS_WRITE     FILE_ACCESS_FLAGS = 131072
-	STANDARD_RIGHTS_EXECUTE   FILE_ACCESS_FLAGS = 131072
-	STANDARD_RIGHTS_ALL       FILE_ACCESS_FLAGS = 2031616
-	SPECIFIC_RIGHTS_ALL       FILE_ACCESS_FLAGS = 65535
-	FILE_ALL_ACCESS           FILE_ACCESS_FLAGS = 2032127
-	FILE_GENERIC_READ         FILE_ACCESS_FLAGS = 1179785
-	FILE_GENERIC_WRITE        FILE_ACCESS_FLAGS = 1179926
-	FILE_GENERIC_EXECUTE      FILE_ACCESS_FLAGS = 1179808
+	FILE_READ_DATA            FILE_ACCESS_RIGHTS = 1
+	FILE_LIST_DIRECTORY       FILE_ACCESS_RIGHTS = 1
+	FILE_WRITE_DATA           FILE_ACCESS_RIGHTS = 2
+	FILE_ADD_FILE             FILE_ACCESS_RIGHTS = 2
+	FILE_APPEND_DATA          FILE_ACCESS_RIGHTS = 4
+	FILE_ADD_SUBDIRECTORY     FILE_ACCESS_RIGHTS = 4
+	FILE_CREATE_PIPE_INSTANCE FILE_ACCESS_RIGHTS = 4
+	FILE_READ_EA              FILE_ACCESS_RIGHTS = 8
+	FILE_WRITE_EA             FILE_ACCESS_RIGHTS = 16
+	FILE_EXECUTE              FILE_ACCESS_RIGHTS = 32
+	FILE_TRAVERSE             FILE_ACCESS_RIGHTS = 32
+	FILE_DELETE_CHILD         FILE_ACCESS_RIGHTS = 64
+	FILE_READ_ATTRIBUTES      FILE_ACCESS_RIGHTS = 128
+	FILE_WRITE_ATTRIBUTES     FILE_ACCESS_RIGHTS = 256
+	DELETE                    FILE_ACCESS_RIGHTS = 65536
+	READ_CONTROL              FILE_ACCESS_RIGHTS = 131072
+	WRITE_DAC                 FILE_ACCESS_RIGHTS = 262144
+	WRITE_OWNER               FILE_ACCESS_RIGHTS = 524288
+	SYNCHRONIZE               FILE_ACCESS_RIGHTS = 1048576
+	STANDARD_RIGHTS_REQUIRED  FILE_ACCESS_RIGHTS = 983040
+	STANDARD_RIGHTS_READ      FILE_ACCESS_RIGHTS = 131072
+	STANDARD_RIGHTS_WRITE     FILE_ACCESS_RIGHTS = 131072
+	STANDARD_RIGHTS_EXECUTE   FILE_ACCESS_RIGHTS = 131072
+	STANDARD_RIGHTS_ALL       FILE_ACCESS_RIGHTS = 2031616
+	SPECIFIC_RIGHTS_ALL       FILE_ACCESS_RIGHTS = 65535
+	FILE_ALL_ACCESS           FILE_ACCESS_RIGHTS = 2032127
+	FILE_GENERIC_READ         FILE_ACCESS_RIGHTS = 1179785
+	FILE_GENERIC_WRITE        FILE_ACCESS_RIGHTS = 1179926
+	FILE_GENERIC_EXECUTE      FILE_ACCESS_RIGHTS = 1179808
 )
 
 // enum
@@ -539,7 +546,7 @@ const (
 )
 
 // enum
-type VS_FIXEDFILEINFO_FILE_OS int32
+type VS_FIXEDFILEINFO_FILE_OS uint32
 
 const (
 	VOS_UNKNOWN       VS_FIXEDFILEINFO_FILE_OS = 0
@@ -665,11 +672,15 @@ const (
 )
 
 // enum
-type FILE_NAME uint32
+type GETFINALPATHNAMEBYHANDLE_FLAGS uint32
 
 const (
-	FILE_NAME_NORMALIZED FILE_NAME = 0
-	FILE_NAME_OPENED     FILE_NAME = 8
+	VOLUME_NAME_DOS      GETFINALPATHNAMEBYHANDLE_FLAGS = 0
+	VOLUME_NAME_GUID     GETFINALPATHNAMEBYHANDLE_FLAGS = 1
+	VOLUME_NAME_NT       GETFINALPATHNAMEBYHANDLE_FLAGS = 2
+	VOLUME_NAME_NONE     GETFINALPATHNAMEBYHANDLE_FLAGS = 4
+	FILE_NAME_NORMALIZED GETFINALPATHNAMEBYHANDLE_FLAGS = 0
+	FILE_NAME_OPENED     GETFINALPATHNAMEBYHANDLE_FLAGS = 8
 )
 
 // enum
@@ -720,7 +731,7 @@ const (
 )
 
 // enum
-type TAPE_POSITION_TYPE int32
+type TAPE_POSITION_TYPE uint32
 
 const (
 	TAPE_ABSOLUTE_POSITION TAPE_POSITION_TYPE = 0
@@ -728,7 +739,7 @@ const (
 )
 
 // enum
-type CREATE_TAPE_PARTITION_METHOD int32
+type CREATE_TAPE_PARTITION_METHOD uint32
 
 const (
 	TAPE_FIXED_PARTITIONS     CREATE_TAPE_PARTITION_METHOD = 0
@@ -747,7 +758,7 @@ const (
 )
 
 // enum
-type TAPEMARK_TYPE int32
+type TAPEMARK_TYPE uint32
 
 const (
 	TAPE_FILEMARKS       TAPEMARK_TYPE = 1
@@ -766,7 +777,7 @@ const (
 )
 
 // enum
-type TAPE_POSITION_METHOD int32
+type TAPE_POSITION_METHOD uint32
 
 const (
 	TAPE_ABSOLUTE_BLOCK        TAPE_POSITION_METHOD = 1
@@ -778,18 +789,6 @@ const (
 	TAPE_SPACE_SEQUENTIAL_FMKS TAPE_POSITION_METHOD = 7
 	TAPE_SPACE_SEQUENTIAL_SMKS TAPE_POSITION_METHOD = 9
 	TAPE_SPACE_SETMARKS        TAPE_POSITION_METHOD = 8
-)
-
-// enum
-type NT_CREATE_FILE_DISPOSITION uint32
-
-const (
-	FILE_SUPERSEDE    NT_CREATE_FILE_DISPOSITION = 0
-	FILE_CREATE       NT_CREATE_FILE_DISPOSITION = 2
-	FILE_OPEN         NT_CREATE_FILE_DISPOSITION = 1
-	FILE_OPEN_IF      NT_CREATE_FILE_DISPOSITION = 3
-	FILE_OVERWRITE    NT_CREATE_FILE_DISPOSITION = 4
-	FILE_OVERWRITE_IF NT_CREATE_FILE_DISPOSITION = 5
 )
 
 // enum
@@ -826,7 +825,7 @@ const (
 )
 
 // enum
-type PREPARE_TAPE_OPERATION int32
+type PREPARE_TAPE_OPERATION uint32
 
 const (
 	TAPE_FORMAT  PREPARE_TAPE_OPERATION = 5
@@ -846,7 +845,7 @@ const (
 )
 
 // enum
-type ERASE_TAPE_TYPE int32
+type ERASE_TAPE_TYPE uint32
 
 const (
 	TAPE_ERASE_LONG  ERASE_TAPE_TYPE = 1
@@ -964,6 +963,18 @@ const (
 )
 
 // enum
+type FILE_DISPOSITION_INFO_EX_FLAGS uint32
+
+const (
+	FILE_DISPOSITION_FLAG_DO_NOT_DELETE             FILE_DISPOSITION_INFO_EX_FLAGS = 0
+	FILE_DISPOSITION_FLAG_DELETE                    FILE_DISPOSITION_INFO_EX_FLAGS = 1
+	FILE_DISPOSITION_FLAG_POSIX_SEMANTICS           FILE_DISPOSITION_INFO_EX_FLAGS = 2
+	FILE_DISPOSITION_FLAG_FORCE_IMAGE_SECTION_CHECK FILE_DISPOSITION_INFO_EX_FLAGS = 4
+	FILE_DISPOSITION_FLAG_ON_CLOSE                  FILE_DISPOSITION_INFO_EX_FLAGS = 8
+	FILE_DISPOSITION_FLAG_IGNORE_READONLY_ATTRIBUTE FILE_DISPOSITION_INFO_EX_FLAGS = 16
+)
+
+// enum
 type FINDEX_INFO_LEVELS int32
 
 const (
@@ -988,6 +999,8 @@ type READ_DIRECTORY_NOTIFY_INFORMATION_CLASS int32
 const (
 	ReadDirectoryNotifyInformation         READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = 1
 	ReadDirectoryNotifyExtendedInformation READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = 2
+	ReadDirectoryNotifyFullInformation     READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = 3
+	ReadDirectoryNotifyMaximumInformation  READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = 4
 )
 
 // enum
@@ -1585,9 +1598,12 @@ type IORING_VERSION int32
 const (
 	IORING_VERSION_INVALID IORING_VERSION = 0
 	IORING_VERSION_1       IORING_VERSION = 1
+	IORING_VERSION_2       IORING_VERSION = 2
+	IORING_VERSION_3       IORING_VERSION = 300
 )
 
 // enum
+// flags
 type IORING_FEATURE_FLAGS int32
 
 const (
@@ -1605,16 +1621,21 @@ const (
 	IORING_OP_REGISTER_FILES   IORING_OP_CODE = 2
 	IORING_OP_REGISTER_BUFFERS IORING_OP_CODE = 3
 	IORING_OP_CANCEL           IORING_OP_CODE = 4
+	IORING_OP_WRITE            IORING_OP_CODE = 5
+	IORING_OP_FLUSH            IORING_OP_CODE = 6
 )
 
 // enum
+// flags
 type IORING_SQE_FLAGS int32
 
 const (
-	IOSQE_FLAGS_NONE IORING_SQE_FLAGS = 0
+	IOSQE_FLAGS_NONE                IORING_SQE_FLAGS = 0
+	IOSQE_FLAGS_DRAIN_PRECEDING_OPS IORING_SQE_FLAGS = 1
 )
 
 // enum
+// flags
 type IORING_CREATE_REQUIRED_FLAGS int32
 
 const (
@@ -1622,6 +1643,7 @@ const (
 )
 
 // enum
+// flags
 type IORING_CREATE_ADVISORY_FLAGS int32
 
 const (
@@ -1671,6 +1693,25 @@ const (
 	BusTypeUfs               STORAGE_BUS_TYPE = 19
 	BusTypeMax               STORAGE_BUS_TYPE = 20
 	BusTypeMaxReserved       STORAGE_BUS_TYPE = 127
+)
+
+// enum
+// flags
+type FILE_WRITE_FLAGS int32
+
+const (
+	FILE_WRITE_FLAGS_NONE          FILE_WRITE_FLAGS = 0
+	FILE_WRITE_FLAGS_WRITE_THROUGH FILE_WRITE_FLAGS = 1
+)
+
+// enum
+type FILE_FLUSH_MODE int32
+
+const (
+	FILE_FLUSH_DEFAULT      FILE_FLUSH_MODE = 0
+	FILE_FLUSH_DATA         FILE_FLUSH_MODE = 1
+	FILE_FLUSH_MIN_METADATA FILE_FLUSH_MODE = 2
+	FILE_FLUSH_NO_SYNC      FILE_FLUSH_MODE = 3
 )
 
 // enum
@@ -1884,8 +1925,8 @@ type VS_FIXEDFILEINFO struct {
 	DwFileFlagsMask    uint32
 	DwFileFlags        VS_FIXEDFILEINFO_FILE_FLAGS
 	DwFileOS           VS_FIXEDFILEINFO_FILE_OS
-	DwFileType         VS_FIXEDFILEINFO_FILE_TYPE
-	DwFileSubtype      VS_FIXEDFILEINFO_FILE_SUBTYPE
+	DwFileType         uint32
+	DwFileSubtype      uint32
 	DwFileDateMS       uint32
 	DwFileDateLS       uint32
 }
@@ -1913,7 +1954,7 @@ type NTMS_ALLOCATION_INFORMATION struct {
 
 type NTMS_DRIVEINFORMATIONA struct {
 	Number               uint32
-	State                NtmsDriveState
+	State                uint32
 	DriveType            syscall.GUID
 	SzDeviceName         [64]CHAR
 	SzSerialNumber       [32]CHAR
@@ -1933,7 +1974,7 @@ type NTMS_DRIVEINFORMATIONA struct {
 type NTMS_DRIVEINFORMATION = NTMS_DRIVEINFORMATIONW
 type NTMS_DRIVEINFORMATIONW struct {
 	Number               uint32
-	State                NtmsDriveState
+	State                uint32
 	DriveType            syscall.GUID
 	SzDeviceName         [64]uint16
 	SzSerialNumber       [32]uint16
@@ -1951,12 +1992,12 @@ type NTMS_DRIVEINFORMATIONW struct {
 }
 
 type NTMS_LIBRARYINFORMATION struct {
-	LibraryType                  NtmsLibraryType
+	LibraryType                  uint32
 	CleanerSlot                  syscall.GUID
 	CleanerSlotDefault           syscall.GUID
 	LibrarySupportsDriveCleaning BOOL
 	BarCodeReaderInstalled       BOOL
-	InventoryMethod              NtmsInventoryMethod
+	InventoryMethod              uint32
 	DwCleanerUsesRemaining       uint32
 	FirstDriveNumber             uint32
 	DwNumberOfDrives             uint32
@@ -1973,7 +2014,7 @@ type NTMS_LIBRARYINFORMATION struct {
 	DwNumberOfLibRequests        uint32
 	Reserved                     syscall.GUID
 	AutoRecovery                 BOOL
-	DwFlags                      NtmsLibraryFlags
+	DwFlags                      uint32
 }
 
 type NTMS_CHANGERINFORMATIONA struct {
@@ -2011,15 +2052,15 @@ type NTMS_STORAGESLOTINFORMATION struct {
 
 type NTMS_IEDOORINFORMATION struct {
 	Number      uint32
-	State       NtmsDoorState
+	State       uint32
 	MaxOpenSecs uint16
 	Library     syscall.GUID
 }
 
 type NTMS_IEPORTINFORMATION struct {
 	Number        uint32
-	Content       NtmsPortContent
-	Position      NtmsPortPosition
+	Content       uint32
+	Position      uint32
 	MaxExtendSecs uint16
 	Library       syscall.GUID
 }
@@ -2032,9 +2073,9 @@ type NTMS_PMIDINFORMATIONA struct {
 	MediaType            syscall.GUID
 	HomeSlot             syscall.GUID
 	SzBarCode            [64]CHAR
-	BarCodeState         NtmsBarCodeState
+	BarCodeState         uint32
 	SzSequenceNumber     [32]CHAR
-	MediaState           NtmsMediaState
+	MediaState           uint32
 	DwNumberOfPartitions uint32
 	DwMediaTypeCode      uint32
 	DwDensityCode        uint32
@@ -2050,9 +2091,9 @@ type NTMS_PMIDINFORMATIONW struct {
 	MediaType            syscall.GUID
 	HomeSlot             syscall.GUID
 	SzBarCode            [64]uint16
-	BarCodeState         NtmsBarCodeState
+	BarCodeState         uint32
 	SzSequenceNumber     [32]uint16
-	MediaState           NtmsMediaState
+	MediaState           uint32
 	DwNumberOfPartitions uint32
 	DwMediaTypeCode      uint32
 	DwDensityCode        uint32
@@ -2067,7 +2108,7 @@ type NTMS_LMIDINFORMATION struct {
 type NTMS_PARTITIONINFORMATIONA struct {
 	PhysicalMedia       syscall.GUID
 	LogicalMedia        syscall.GUID
-	State               NtmsPartitionState
+	State               uint32
 	Side                uint16
 	DwOmidLabelIdLength uint32
 	OmidLabelId         [255]byte
@@ -2082,7 +2123,7 @@ type NTMS_PARTITIONINFORMATION = NTMS_PARTITIONINFORMATIONW
 type NTMS_PARTITIONINFORMATIONW struct {
 	PhysicalMedia       syscall.GUID
 	LogicalMedia        syscall.GUID
-	State               NtmsPartitionState
+	State               uint32
 	Side                uint16
 	DwOmidLabelIdLength uint32
 	OmidLabelId         [255]byte
@@ -2108,7 +2149,7 @@ type NTMS_MEDIAPOOLINFORMATION struct {
 type NTMS_MEDIATYPEINFORMATION struct {
 	MediaType                uint32
 	NumberOfSides            uint32
-	ReadWriteCharacteristics NtmsReadWriteCharacteristics
+	ReadWriteCharacteristics uint32
 	DeviceType               FILE_DEVICE_TYPE
 }
 
@@ -2141,9 +2182,9 @@ type NTMS_CHANGERTYPEINFORMATIONW struct {
 }
 
 type NTMS_LIBREQUESTINFORMATIONA struct {
-	OperationCode   NtmsLmOperation
+	OperationCode   uint32
 	OperationOption uint32
-	State           NtmsLmState
+	State           uint32
 	PartitionId     syscall.GUID
 	DriveId         syscall.GUID
 	PhysMediaId     syscall.GUID
@@ -2161,9 +2202,9 @@ type NTMS_LIBREQUESTINFORMATIONA struct {
 
 type NTMS_LIBREQUESTINFORMATION = NTMS_LIBREQUESTINFORMATIONW
 type NTMS_LIBREQUESTINFORMATIONW struct {
-	OperationCode   NtmsLmOperation
+	OperationCode   uint32
 	OperationOption uint32
-	State           NtmsLmState
+	State           uint32
 	PartitionId     syscall.GUID
 	DriveId         syscall.GUID
 	PhysMediaId     syscall.GUID
@@ -2180,13 +2221,13 @@ type NTMS_LIBREQUESTINFORMATIONW struct {
 }
 
 type NTMS_OPREQUESTINFORMATIONA struct {
-	Request       NtmsOpreqCommand
+	Request       uint32
 	Submitted     SYSTEMTIME
-	State         NtmsOpreqState
+	State         uint32
 	SzMessage     [256]CHAR
-	Arg1Type      NtmsObjectsTypes
+	Arg1Type      uint32
 	Arg1          syscall.GUID
-	Arg2Type      NtmsObjectsTypes
+	Arg2Type      uint32
 	Arg2          syscall.GUID
 	SzApplication [64]CHAR
 	SzUser        [64]CHAR
@@ -2195,13 +2236,13 @@ type NTMS_OPREQUESTINFORMATIONA struct {
 
 type NTMS_OPREQUESTINFORMATION = NTMS_OPREQUESTINFORMATIONW
 type NTMS_OPREQUESTINFORMATIONW struct {
-	Request       NtmsOpreqCommand
+	Request       uint32
 	Submitted     SYSTEMTIME
-	State         NtmsOpreqState
+	State         uint32
 	SzMessage     [256]uint16
-	Arg1Type      NtmsObjectsTypes
+	Arg1Type      uint32
 	Arg1          syscall.GUID
-	Arg2Type      NtmsObjectsTypes
+	Arg2Type      uint32
 	Arg2          syscall.GUID
 	SzApplication [64]uint16
 	SzUser        [64]uint16
@@ -2350,12 +2391,12 @@ func (this *NTMS_OBJECTINFORMATIONA_Info) ComputerVal() NTMS_COMPUTERINFORMATION
 
 type NTMS_OBJECTINFORMATIONA struct {
 	DwSize             uint32
-	DwType             NtmsObjectsTypes
+	DwType             uint32
 	Created            SYSTEMTIME
 	Modified           SYSTEMTIME
 	ObjectGuid         syscall.GUID
 	Enabled            BOOL
-	DwOperationalState NtmsOperationalState
+	DwOperationalState uint32
 	SzName             [64]CHAR
 	SzDescription      [127]CHAR
 	Info               NTMS_OBJECTINFORMATIONA_Info
@@ -2496,12 +2537,12 @@ func (this *NTMS_OBJECTINFORMATIONW_Info) ComputerVal() NTMS_COMPUTERINFORMATION
 type NTMS_OBJECTINFORMATION = NTMS_OBJECTINFORMATIONW
 type NTMS_OBJECTINFORMATIONW struct {
 	DwSize             uint32
-	DwType             NtmsObjectsTypes
+	DwType             uint32
 	Created            SYSTEMTIME
 	Modified           SYSTEMTIME
 	ObjectGuid         syscall.GUID
 	Enabled            BOOL
-	DwOperationalState NtmsOperationalState
+	DwOperationalState uint32
 	SzName             [64]uint16
 	SzDescription      [127]uint16
 	Info               NTMS_OBJECTINFORMATIONW_Info
@@ -2931,7 +2972,7 @@ type NTMS_FILESYSTEM_INFO struct {
 }
 
 type NTMS_NOTIFICATIONINFORMATION struct {
-	DwOperation NtmsNotificationOperations
+	DwOperation uint32
 	ObjectId    syscall.GUID
 }
 
@@ -3608,18 +3649,19 @@ type FILE_INFO_3 struct {
 }
 
 type SERVER_CERTIFICATE_INFO_0 struct {
-	Srvci0_name          PWSTR
-	Srvci0_subject       PWSTR
-	Srvci0_issuer        PWSTR
-	Srvci0_thumbprint    PWSTR
-	Srvci0_friendlyname  PWSTR
-	Srvci0_notbefore     PWSTR
-	Srvci0_notafter      PWSTR
-	Srvci0_storelocation PWSTR
-	Srvci0_storename     PWSTR
-	Srvci0_renewalchain  PWSTR
-	Srvci0_type          uint32
-	Srvci0_flags         uint32
+	Srvci0_name           PWSTR
+	Srvci0_subject        PWSTR
+	Srvci0_issuer         PWSTR
+	Srvci0_thumbprint     PWSTR
+	Srvci0_friendlyname   PWSTR
+	Srvci0_notbefore      PWSTR
+	Srvci0_notafter       PWSTR
+	Srvci0_storelocation  PWSTR
+	Srvci0_storename      PWSTR
+	Srvci0_renewalchain   PWSTR
+	Srvci0_type           uint32
+	Srvci0_flags          uint32
+	Srvci0_mapping_status uint32
 }
 
 type STAT_WORKSTATION_0 struct {
@@ -3720,10 +3762,6 @@ type IORING_REGISTERED_BUFFER struct {
 	Offset      uint32
 }
 
-type HIORING__ struct {
-	Unused int32
-}
-
 type IORING_CREATE_FLAGS struct {
 	Required IORING_CREATE_REQUIRED_FLAGS
 	Advisory IORING_CREATE_ADVISORY_FLAGS
@@ -3810,6 +3848,26 @@ type FILE_NOTIFY_INFORMATION struct {
 	FileName        [1]uint16
 }
 
+type FILE_NOTIFY_EXTENDED_INFORMATION_Anonymous struct {
+	Data [1]uint32
+}
+
+func (this *FILE_NOTIFY_EXTENDED_INFORMATION_Anonymous) ReparsePointTag() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *FILE_NOTIFY_EXTENDED_INFORMATION_Anonymous) ReparsePointTagVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
+func (this *FILE_NOTIFY_EXTENDED_INFORMATION_Anonymous) EaSize() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *FILE_NOTIFY_EXTENDED_INFORMATION_Anonymous) EaSizeVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
 type FILE_NOTIFY_EXTENDED_INFORMATION struct {
 	NextEntryOffset      uint32
 	Action               FILE_ACTION
@@ -3820,11 +3878,11 @@ type FILE_NOTIFY_EXTENDED_INFORMATION struct {
 	AllocatedLength      int64
 	FileSize             int64
 	FileAttributes       uint32
-	ReparsePointTag      uint32
-	FileId               int64
-	ParentFileId         int64
-	FileNameLength       uint32
-	FileName             [1]uint16
+	FILE_NOTIFY_EXTENDED_INFORMATION_Anonymous
+	FileId         int64
+	ParentFileId   int64
+	FileNameLength uint32
+	FileName       [1]uint16
 }
 
 type FILE_SEGMENT_ELEMENT struct {
@@ -4121,6 +4179,10 @@ type FILE_ATTRIBUTE_TAG_INFO struct {
 	ReparseTag     uint32
 }
 
+type FILE_DISPOSITION_INFO_EX struct {
+	Flags FILE_DISPOSITION_INFO_EX_FLAGS
+}
+
 type FILE_ID_BOTH_DIR_INFO struct {
 	NextEntryOffset uint32
 	FileIndex       uint32
@@ -4204,7 +4266,7 @@ type FILE_REMOTE_PROTOCOL_INFO_ProtocolSpecific_Smb2_Server struct {
 
 type FILE_REMOTE_PROTOCOL_INFO_ProtocolSpecific_Smb2_Share struct {
 	Capabilities uint32
-	CachingFlags uint32
+	ShareFlags   uint32
 }
 
 type FILE_REMOTE_PROTOCOL_INFO_ProtocolSpecific_Smb2 struct {
@@ -4907,6 +4969,8 @@ var (
 	pLZSeek                             uintptr
 	pLZRead                             uintptr
 	pLZClose                            uintptr
+	pBuildIoRingWriteFile               uintptr
+	pBuildIoRingFlushFile               uintptr
 	pWow64EnableWow64FsRedirection      uintptr
 	pWow64DisableWow64FsRedirection     uintptr
 	pWow64RevertWow64FsRedirection      uintptr
@@ -5053,7 +5117,7 @@ func CreateDirectoryW(lpPathName PWSTR, lpSecurityAttributes *SECURITY_ATTRIBUTE
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreateFileA(lpFileName PSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE) (HANDLE, WIN32_ERROR) {
+func CreateFileA(lpFileName PSTR, dwDesiredAccess uint32, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateFileA, libKernel32, "CreateFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwCreationDisposition), uintptr(dwFlagsAndAttributes), hTemplateFile)
 	return ret, WIN32_ERROR(err)
@@ -5061,7 +5125,7 @@ func CreateFileA(lpFileName PSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode
 
 var CreateFile = CreateFileW
 
-func CreateFileW(lpFileName PWSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE) (HANDLE, WIN32_ERROR) {
+func CreateFileW(lpFileName PWSTR, dwDesiredAccess uint32, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwCreationDisposition FILE_CREATION_DISPOSITION, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES, hTemplateFile HANDLE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateFileW, libKernel32, "CreateFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwCreationDisposition), uintptr(dwFlagsAndAttributes), hTemplateFile)
 	return ret, WIN32_ERROR(err)
@@ -5103,19 +5167,19 @@ func FileTimeToLocalFileTime(lpFileTime *FILETIME, lpLocalFileTime *FILETIME) (B
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindClose(hFindFile FindFileHandle) (BOOL, WIN32_ERROR) {
+func FindClose(hFindFile HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindClose, libKernel32, "FindClose")
 	ret, _, err := syscall.SyscallN(addr, hFindFile)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindCloseChangeNotification(hChangeHandle FindChangeNotificationHandle) (BOOL, WIN32_ERROR) {
+func FindCloseChangeNotification(hChangeHandle HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindCloseChangeNotification, libKernel32, "FindCloseChangeNotification")
 	ret, _, err := syscall.SyscallN(addr, hChangeHandle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindFirstChangeNotificationA(lpPathName PSTR, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE) (FindChangeNotificationHandle, WIN32_ERROR) {
+func FindFirstChangeNotificationA(lpPathName PSTR, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstChangeNotificationA, libKernel32, "FindFirstChangeNotificationA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(bWatchSubtree), uintptr(dwNotifyFilter))
 	return ret, WIN32_ERROR(err)
@@ -5123,13 +5187,13 @@ func FindFirstChangeNotificationA(lpPathName PSTR, bWatchSubtree BOOL, dwNotifyF
 
 var FindFirstChangeNotification = FindFirstChangeNotificationW
 
-func FindFirstChangeNotificationW(lpPathName PWSTR, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE) (FindChangeNotificationHandle, WIN32_ERROR) {
+func FindFirstChangeNotificationW(lpPathName PWSTR, bWatchSubtree BOOL, dwNotifyFilter FILE_NOTIFY_CHANGE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstChangeNotificationW, libKernel32, "FindFirstChangeNotificationW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpPathName)), uintptr(bWatchSubtree), uintptr(dwNotifyFilter))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindFirstFileA(lpFileName PSTR, lpFindFileData *WIN32_FIND_DATAA) (FindFileHandle, WIN32_ERROR) {
+func FindFirstFileA(lpFileName PSTR, lpFindFileData *WIN32_FIND_DATAA) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileA, libKernel32, "FindFirstFileA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFindFileData)))
 	return ret, WIN32_ERROR(err)
@@ -5137,13 +5201,13 @@ func FindFirstFileA(lpFileName PSTR, lpFindFileData *WIN32_FIND_DATAA) (FindFile
 
 var FindFirstFile = FindFirstFileW
 
-func FindFirstFileW(lpFileName PWSTR, lpFindFileData *WIN32_FIND_DATAW) (FindFileHandle, WIN32_ERROR) {
+func FindFirstFileW(lpFileName PWSTR, lpFindFileData *WIN32_FIND_DATAW) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileW, libKernel32, "FindFirstFileW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(unsafe.Pointer(lpFindFileData)))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindFirstFileExA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags FIND_FIRST_EX_FLAGS) (FindFileHandle, WIN32_ERROR) {
+func FindFirstFileExA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags FIND_FIRST_EX_FLAGS) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileExA, libKernel32, "FindFirstFileExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags))
 	return ret, WIN32_ERROR(err)
@@ -5151,7 +5215,7 @@ func FindFirstFileExA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFi
 
 var FindFirstFileEx = FindFirstFileExW
 
-func FindFirstFileExW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags FIND_FIRST_EX_FLAGS) (FindFileHandle, WIN32_ERROR) {
+func FindFirstFileExW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags FIND_FIRST_EX_FLAGS) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileExW, libKernel32, "FindFirstFileExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags))
 	return ret, WIN32_ERROR(err)
@@ -5159,19 +5223,19 @@ func FindFirstFileExW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindF
 
 var FindFirstVolume = FindFirstVolumeW
 
-func FindFirstVolumeW(lpszVolumeName PWSTR, cchBufferLength uint32) (FindVolumeHandle, WIN32_ERROR) {
+func FindFirstVolumeW(lpszVolumeName PWSTR, cchBufferLength uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstVolumeW, libKernel32, "FindFirstVolumeW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindNextChangeNotification(hChangeHandle FindChangeNotificationHandle) (BOOL, WIN32_ERROR) {
+func FindNextChangeNotification(hChangeHandle HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextChangeNotification, libKernel32, "FindNextChangeNotification")
 	ret, _, err := syscall.SyscallN(addr, hChangeHandle)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindNextFileA(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAA) (BOOL, WIN32_ERROR) {
+func FindNextFileA(hFindFile HANDLE, lpFindFileData *WIN32_FIND_DATAA) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextFileA, libKernel32, "FindNextFileA")
 	ret, _, err := syscall.SyscallN(addr, hFindFile, uintptr(unsafe.Pointer(lpFindFileData)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -5179,7 +5243,7 @@ func FindNextFileA(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAA) (
 
 var FindNextFile = FindNextFileW
 
-func FindNextFileW(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAW) (BOOL, WIN32_ERROR) {
+func FindNextFileW(hFindFile HANDLE, lpFindFileData *WIN32_FIND_DATAW) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextFileW, libKernel32, "FindNextFileW")
 	ret, _, err := syscall.SyscallN(addr, hFindFile, uintptr(unsafe.Pointer(lpFindFileData)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -5187,13 +5251,13 @@ func FindNextFileW(hFindFile FindFileHandle, lpFindFileData *WIN32_FIND_DATAW) (
 
 var FindNextVolume = FindNextVolumeW
 
-func FindNextVolumeW(hFindVolume FindVolumeHandle, lpszVolumeName PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
+func FindNextVolumeW(hFindVolume HANDLE, lpszVolumeName PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextVolumeW, libKernel32, "FindNextVolumeW")
 	ret, _, err := syscall.SyscallN(addr, hFindVolume, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindVolumeClose(hFindVolume FindVolumeHandle) (BOOL, WIN32_ERROR) {
+func FindVolumeClose(hFindVolume HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindVolumeClose, libKernel32, "FindVolumeClose")
 	ret, _, err := syscall.SyscallN(addr, hFindVolume)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -5313,7 +5377,7 @@ func GetFileType(hFile HANDLE) (FILE_TYPE, WIN32_ERROR) {
 	return FILE_TYPE(ret), WIN32_ERROR(err)
 }
 
-func GetFinalPathNameByHandleA(hFile HANDLE, lpszFilePath PSTR, cchFilePath uint32, dwFlags FILE_NAME) (uint32, WIN32_ERROR) {
+func GetFinalPathNameByHandleA(hFile HANDLE, lpszFilePath PSTR, cchFilePath uint32, dwFlags GETFINALPATHNAMEBYHANDLE_FLAGS) (uint32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetFinalPathNameByHandleA, libKernel32, "GetFinalPathNameByHandleA")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpszFilePath)), uintptr(cchFilePath), uintptr(dwFlags))
 	return uint32(ret), WIN32_ERROR(err)
@@ -5321,7 +5385,7 @@ func GetFinalPathNameByHandleA(hFile HANDLE, lpszFilePath PSTR, cchFilePath uint
 
 var GetFinalPathNameByHandle = GetFinalPathNameByHandleW
 
-func GetFinalPathNameByHandleW(hFile HANDLE, lpszFilePath PWSTR, cchFilePath uint32, dwFlags FILE_NAME) (uint32, WIN32_ERROR) {
+func GetFinalPathNameByHandleW(hFile HANDLE, lpszFilePath PWSTR, cchFilePath uint32, dwFlags GETFINALPATHNAMEBYHANDLE_FLAGS) (uint32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetFinalPathNameByHandleW, libKernel32, "GetFinalPathNameByHandleW")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpszFilePath)), uintptr(cchFilePath), uintptr(dwFlags))
 	return uint32(ret), WIN32_ERROR(err)
@@ -5445,15 +5509,15 @@ func QueryDosDeviceW(lpDeviceName PWSTR, lpTargetPath PWSTR, ucchMax uint32) (ui
 	return uint32(ret), WIN32_ERROR(err)
 }
 
-func ReadFile(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, lpNumberOfBytesRead *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
+func ReadFile(hFile HANDLE, lpBuffer *byte, nNumberOfBytesToRead uint32, lpNumberOfBytesRead *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pReadFile, libKernel32, "ReadFile")
-	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpNumberOfBytesRead)), uintptr(unsafe.Pointer(lpOverlapped)))
+	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpNumberOfBytesRead)), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ReadFileEx(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToRead uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE) (BOOL, WIN32_ERROR) {
+func ReadFileEx(hFile HANDLE, lpBuffer *byte, nNumberOfBytesToRead uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pReadFileEx, libKernel32, "ReadFileEx")
-	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine)
+	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfBytesToRead), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -5539,15 +5603,15 @@ func UnlockFileEx(hFile HANDLE, dwReserved uint32, nNumberOfBytesToUnlockLow uin
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteFile(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToWrite uint32, lpNumberOfBytesWritten *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
+func WriteFile(hFile HANDLE, lpBuffer *byte, nNumberOfBytesToWrite uint32, lpNumberOfBytesWritten *uint32, lpOverlapped *OVERLAPPED) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pWriteFile, libKernel32, "WriteFile")
-	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpNumberOfBytesWritten)), uintptr(unsafe.Pointer(lpOverlapped)))
+	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpNumberOfBytesWritten)), uintptr(unsafe.Pointer(lpOverlapped)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteFileEx(hFile HANDLE, lpBuffer unsafe.Pointer, nNumberOfBytesToWrite uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE) (BOOL, WIN32_ERROR) {
+func WriteFileEx(hFile HANDLE, lpBuffer *byte, nNumberOfBytesToWrite uint32, lpOverlapped *OVERLAPPED, lpCompletionRoutine LPOVERLAPPED_COMPLETION_ROUTINE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pWriteFileEx, libKernel32, "WriteFileEx")
-	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(lpBuffer), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine)
+	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfBytesToWrite), uintptr(unsafe.Pointer(lpOverlapped)), lpCompletionRoutine)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -5581,7 +5645,7 @@ func GetVolumePathNamesForVolumeNameW(lpszVolumeName PWSTR, lpszVolumePathNames 
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CreateFile2(lpFileName PWSTR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, dwCreationDisposition FILE_CREATION_DISPOSITION, pCreateExParams *CREATEFILE2_EXTENDED_PARAMETERS) (HANDLE, WIN32_ERROR) {
+func CreateFile2(lpFileName PWSTR, dwDesiredAccess uint32, dwShareMode FILE_SHARE_MODE, dwCreationDisposition FILE_CREATION_DISPOSITION, pCreateExParams *CREATEFILE2_EXTENDED_PARAMETERS) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateFile2, libKernel32, "CreateFile2")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(dwCreationDisposition), uintptr(unsafe.Pointer(pCreateExParams)))
 	return ret, WIN32_ERROR(err)
@@ -5607,13 +5671,13 @@ func GetCompressedFileSizeW(lpFileName PWSTR, lpFileSizeHigh *uint32) (uint32, W
 	return uint32(ret), WIN32_ERROR(err)
 }
 
-func FindFirstStreamW(lpFileName PWSTR, InfoLevel STREAM_INFO_LEVELS, lpFindStreamData unsafe.Pointer, dwFlags uint32) (FindStreamHandle, WIN32_ERROR) {
+func FindFirstStreamW(lpFileName PWSTR, InfoLevel STREAM_INFO_LEVELS, lpFindStreamData unsafe.Pointer, dwFlags uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstStreamW, libKernel32, "FindFirstStreamW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(InfoLevel), uintptr(lpFindStreamData), uintptr(dwFlags))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindNextStreamW(hFindStream FindStreamHandle, lpFindStreamData unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func FindNextStreamW(hFindStream HANDLE, lpFindStreamData unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextStreamW, libKernel32, "FindNextStreamW")
 	ret, _, err := syscall.SyscallN(addr, hFindStream, uintptr(lpFindStreamData))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -5631,13 +5695,13 @@ func GetTempPathA(nBufferLength uint32, lpBuffer PSTR) (uint32, WIN32_ERROR) {
 	return uint32(ret), WIN32_ERROR(err)
 }
 
-func FindFirstFileNameW(lpFileName PWSTR, dwFlags uint32, StringLength *uint32, LinkName PWSTR) (FindFileNameHandle, WIN32_ERROR) {
+func FindFirstFileNameW(lpFileName PWSTR, dwFlags uint32, StringLength *uint32, LinkName PWSTR) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileNameW, libKernel32, "FindFirstFileNameW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFlags), uintptr(unsafe.Pointer(StringLength)), uintptr(unsafe.Pointer(LinkName)))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindNextFileNameW(hFindStream FindFileNameHandle, StringLength *uint32, LinkName PWSTR) (BOOL, WIN32_ERROR) {
+func FindNextFileNameW(hFindStream HANDLE, StringLength *uint32, LinkName PWSTR) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextFileNameW, libKernel32, "FindNextFileNameW")
 	ret, _, err := syscall.SyscallN(addr, hFindStream, uintptr(unsafe.Pointer(StringLength)), uintptr(unsafe.Pointer(LinkName)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -5933,6 +5997,18 @@ func LZRead(hFile int32, lpBuffer PSTR, cbRead int32) int32 {
 func LZClose(hFile int32) {
 	addr := LazyAddr(&pLZClose, libKernel32, "LZClose")
 	syscall.SyscallN(addr, uintptr(hFile))
+}
+
+func BuildIoRingWriteFile(ioRing HIORING, fileRef IORING_HANDLE_REF, bufferRef IORING_BUFFER_REF, numberOfBytesToWrite uint32, fileOffset uint64, writeFlags FILE_WRITE_FLAGS, userData uintptr, sqeFlags IORING_SQE_FLAGS) HRESULT {
+	addr := LazyAddr(&pBuildIoRingWriteFile, libKernel32, "BuildIoRingWriteFile")
+	ret, _, _ := syscall.SyscallN(addr, ioRing, uintptr(unsafe.Pointer(&fileRef)), uintptr(unsafe.Pointer(&bufferRef)), uintptr(numberOfBytesToWrite), uintptr(fileOffset), uintptr(writeFlags), userData, uintptr(sqeFlags))
+	return HRESULT(ret)
+}
+
+func BuildIoRingFlushFile(ioRing HIORING, fileRef IORING_HANDLE_REF, flushMode FILE_FLUSH_MODE, userData uintptr, sqeFlags IORING_SQE_FLAGS) HRESULT {
+	addr := LazyAddr(&pBuildIoRingFlushFile, libKernel32, "BuildIoRingFlushFile")
+	ret, _, _ := syscall.SyscallN(addr, ioRing, uintptr(unsafe.Pointer(&fileRef)), uintptr(flushMode), userData, uintptr(sqeFlags))
+	return HRESULT(ret)
 }
 
 func Wow64EnableWow64FsRedirection(Wow64FsEnableRedirection BOOLEAN) BOOLEAN {
@@ -6252,7 +6328,7 @@ func CreateFileTransactedW(lpFileName PWSTR, dwDesiredAccess uint32, dwShareMode
 	return ret, WIN32_ERROR(err)
 }
 
-func ReOpenFile(hOriginalFile HANDLE, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES) (HANDLE, WIN32_ERROR) {
+func ReOpenFile(hOriginalFile HANDLE, dwDesiredAccess uint32, dwShareMode FILE_SHARE_MODE, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pReOpenFile, libKernel32, "ReOpenFile")
 	ret, _, err := syscall.SyscallN(addr, hOriginalFile, uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(dwFlagsAndAttributes))
 	return ret, WIN32_ERROR(err)
@@ -6328,7 +6404,7 @@ func CheckNameLegalDOS8Dot3W(lpName PWSTR, lpOemName PSTR, OemNameSize uint32, p
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindFirstFileTransactedA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags uint32, hTransaction HANDLE) (FindFileHandle, WIN32_ERROR) {
+func FindFirstFileTransactedA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags uint32, hTransaction HANDLE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileTransactedA, libKernel32, "FindFirstFileTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags), hTransaction)
 	return ret, WIN32_ERROR(err)
@@ -6336,7 +6412,7 @@ func FindFirstFileTransactedA(lpFileName PSTR, fInfoLevelId FINDEX_INFO_LEVELS, 
 
 var FindFirstFileTransacted = FindFirstFileTransactedW
 
-func FindFirstFileTransactedW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags uint32, hTransaction HANDLE) (FindFileHandle, WIN32_ERROR) {
+func FindFirstFileTransactedW(lpFileName PWSTR, fInfoLevelId FINDEX_INFO_LEVELS, lpFindFileData unsafe.Pointer, fSearchOp FINDEX_SEARCH_OPS, lpSearchFilter unsafe.Pointer, dwAdditionalFlags uint32, hTransaction HANDLE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileTransactedW, libKernel32, "FindFirstFileTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(fInfoLevelId), uintptr(lpFindFileData), uintptr(fSearchOp), uintptr(lpSearchFilter), uintptr(dwAdditionalFlags), hTransaction)
 	return ret, WIN32_ERROR(err)
@@ -6488,13 +6564,13 @@ func CreateHardLinkTransactedW(lpFileName PWSTR, lpExistingFileName PWSTR, lpSec
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindFirstStreamTransactedW(lpFileName PWSTR, InfoLevel STREAM_INFO_LEVELS, lpFindStreamData unsafe.Pointer, dwFlags uint32, hTransaction HANDLE) (FindStreamHandle, WIN32_ERROR) {
+func FindFirstStreamTransactedW(lpFileName PWSTR, InfoLevel STREAM_INFO_LEVELS, lpFindStreamData unsafe.Pointer, dwFlags uint32, hTransaction HANDLE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstStreamTransactedW, libKernel32, "FindFirstStreamTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(InfoLevel), uintptr(lpFindStreamData), uintptr(dwFlags), hTransaction)
 	return ret, WIN32_ERROR(err)
 }
 
-func FindFirstFileNameTransactedW(lpFileName PWSTR, dwFlags uint32, StringLength *uint32, LinkName PWSTR, hTransaction HANDLE) (FindFileNameHandle, WIN32_ERROR) {
+func FindFirstFileNameTransactedW(lpFileName PWSTR, dwFlags uint32, StringLength *uint32, LinkName PWSTR, hTransaction HANDLE) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstFileNameTransactedW, libKernel32, "FindFirstFileNameTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(dwFlags), uintptr(unsafe.Pointer(StringLength)), uintptr(unsafe.Pointer(LinkName)), hTransaction)
 	return ret, WIN32_ERROR(err)
@@ -6538,19 +6614,19 @@ func ReadDirectoryChangesExW(hDirectory HANDLE, lpBuffer unsafe.Pointer, nBuffer
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindFirstVolumeA(lpszVolumeName PSTR, cchBufferLength uint32) (FindVolumeHandle, WIN32_ERROR) {
+func FindFirstVolumeA(lpszVolumeName PSTR, cchBufferLength uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstVolumeA, libKernel32, "FindFirstVolumeA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindNextVolumeA(hFindVolume FindVolumeHandle, lpszVolumeName PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
+func FindNextVolumeA(hFindVolume HANDLE, lpszVolumeName PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextVolumeA, libKernel32, "FindNextVolumeA")
 	ret, _, err := syscall.SyscallN(addr, hFindVolume, uintptr(unsafe.Pointer(lpszVolumeName)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindFirstVolumeMountPointA(lpszRootPathName PSTR, lpszVolumeMountPoint PSTR, cchBufferLength uint32) (FindVolumeMointPointHandle, WIN32_ERROR) {
+func FindFirstVolumeMountPointA(lpszRootPathName PSTR, lpszVolumeMountPoint PSTR, cchBufferLength uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstVolumeMountPointA, libKernel32, "FindFirstVolumeMountPointA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszRootPathName)), uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
@@ -6558,13 +6634,13 @@ func FindFirstVolumeMountPointA(lpszRootPathName PSTR, lpszVolumeMountPoint PSTR
 
 var FindFirstVolumeMountPoint = FindFirstVolumeMountPointW
 
-func FindFirstVolumeMountPointW(lpszRootPathName PWSTR, lpszVolumeMountPoint PWSTR, cchBufferLength uint32) (FindVolumeMointPointHandle, WIN32_ERROR) {
+func FindFirstVolumeMountPointW(lpszRootPathName PWSTR, lpszVolumeMountPoint PWSTR, cchBufferLength uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pFindFirstVolumeMountPointW, libKernel32, "FindFirstVolumeMountPointW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszRootPathName)), uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindNextVolumeMountPointA(hFindVolumeMountPoint FindVolumeMointPointHandle, lpszVolumeMountPoint PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
+func FindNextVolumeMountPointA(hFindVolumeMountPoint HANDLE, lpszVolumeMountPoint PSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextVolumeMountPointA, libKernel32, "FindNextVolumeMountPointA")
 	ret, _, err := syscall.SyscallN(addr, hFindVolumeMountPoint, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -6572,13 +6648,13 @@ func FindNextVolumeMountPointA(hFindVolumeMountPoint FindVolumeMointPointHandle,
 
 var FindNextVolumeMountPoint = FindNextVolumeMountPointW
 
-func FindNextVolumeMountPointW(hFindVolumeMountPoint FindVolumeMointPointHandle, lpszVolumeMountPoint PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
+func FindNextVolumeMountPointW(hFindVolumeMountPoint HANDLE, lpszVolumeMountPoint PWSTR, cchBufferLength uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindNextVolumeMountPointW, libKernel32, "FindNextVolumeMountPointW")
 	ret, _, err := syscall.SyscallN(addr, hFindVolumeMountPoint, uintptr(unsafe.Pointer(lpszVolumeMountPoint)), uintptr(cchBufferLength))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func FindVolumeMountPointClose(hFindVolumeMountPoint FindVolumeMointPointHandle) (BOOL, WIN32_ERROR) {
+func FindVolumeMountPointClose(hFindVolumeMountPoint HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pFindVolumeMountPointClose, libKernel32, "FindVolumeMountPointClose")
 	ret, _, err := syscall.SyscallN(addr, hFindVolumeMountPoint)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -6628,7 +6704,7 @@ func GetFileInformationByHandleEx(hFile HANDLE, FileInformationClass FILE_INFO_B
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func OpenFileById(hVolumeHint HANDLE, lpFileId *FILE_ID_DESCRIPTOR, dwDesiredAccess FILE_ACCESS_FLAGS, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES) (HANDLE, WIN32_ERROR) {
+func OpenFileById(hVolumeHint HANDLE, lpFileId *FILE_ID_DESCRIPTOR, dwDesiredAccess uint32, dwShareMode FILE_SHARE_MODE, lpSecurityAttributes *SECURITY_ATTRIBUTES, dwFlagsAndAttributes FILE_FLAGS_AND_ATTRIBUTES) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pOpenFileById, libKernel32, "OpenFileById")
 	ret, _, err := syscall.SyscallN(addr, hVolumeHint, uintptr(unsafe.Pointer(lpFileId)), uintptr(dwDesiredAccess), uintptr(dwShareMode), uintptr(unsafe.Pointer(lpSecurityAttributes)), uintptr(dwFlagsAndAttributes))
 	return ret, WIN32_ERROR(err)

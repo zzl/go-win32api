@@ -18,7 +18,7 @@ const (
 
 // enum
 // flags
-type PSS_HANDLE_FLAGS uint32
+type PSS_HANDLE_FLAGS int32
 
 const (
 	PSS_HANDLE_NONE                           PSS_HANDLE_FLAGS = 0
@@ -96,7 +96,7 @@ const (
 
 // enum
 // flags
-type PSS_DUPLICATE_FLAGS uint32
+type PSS_DUPLICATE_FLAGS int32
 
 const (
 	PSS_DUPLICATE_NONE         PSS_DUPLICATE_FLAGS = 0
@@ -105,7 +105,7 @@ const (
 
 // enum
 // flags
-type PSS_PROCESS_FLAGS uint32
+type PSS_PROCESS_FLAGS int32
 
 const (
 	PSS_PROCESS_FLAGS_NONE        PSS_PROCESS_FLAGS = 0
@@ -118,7 +118,7 @@ const (
 
 // enum
 // flags
-type PSS_THREAD_FLAGS uint32
+type PSS_THREAD_FLAGS int32
 
 const (
 	PSS_THREAD_FLAGS_NONE       PSS_THREAD_FLAGS = 0

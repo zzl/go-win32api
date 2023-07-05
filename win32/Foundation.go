@@ -6,26 +6,33 @@ import (
 )
 
 type (
+	BSTR         = *uint16
+	HANDLE       = uintptr
 	BOOL         = int32
 	BOOLEAN      = byte
 	VARIANT_BOOL = int16
-	BSTR         = *uint16
-	HANDLE       = uintptr
+	HMODULE      = uintptr
 	HINSTANCE    = uintptr
 	HRESULT      = int32
 	HWND         = uintptr
 	LPARAM       = uintptr
 	LRESULT      = uintptr
 	NTSTATUS     = int32
-	PSID         = unsafe.Pointer
+	PSID         = uintptr
 	PSTR         = *byte
 	PWSTR        = *uint16
 	WPARAM       = uintptr
 	COLORREF     = uint32
 	HRSRC        = uintptr
+	HLOCAL       = uintptr
+	HGLOBAL      = uintptr
 	CHAR         = byte
 	SHANDLE_PTR  = uintptr
 	HANDLE_PTR   = uintptr
+	HSPRITE      = uintptr
+	HSTR         = uintptr
+	HUMPD        = uintptr
+	HLSURF       = uintptr
 )
 
 const (
@@ -67,6 +74,164 @@ const (
 	E_FAIL                                                                HRESULT      = -2147467259
 	STRICT                                                                uint32       = 0x1
 	MAX_PATH                                                              uint32       = 0x104
+	IO_ERR_INSUFFICIENT_RESOURCES                                         NTSTATUS     = -1073479678
+	IO_ERR_DRIVER_ERROR                                                   NTSTATUS     = -1073479676
+	IO_ERR_SEEK_ERROR                                                     NTSTATUS     = -1073479674
+	IO_ERR_BAD_BLOCK                                                      NTSTATUS     = -1073479673
+	IO_ERR_TIMEOUT                                                        NTSTATUS     = -1073479671
+	IO_ERR_CONTROLLER_ERROR                                               NTSTATUS     = -1073479669
+	IO_ERR_NOT_READY                                                      NTSTATUS     = -1073479665
+	IO_ERR_INVALID_REQUEST                                                NTSTATUS     = -1073479664
+	IO_ERR_RESET                                                          NTSTATUS     = -1073479661
+	IO_ERR_BAD_FIRMWARE                                                   NTSTATUS     = -1073479655
+	IO_WRN_BAD_FIRMWARE                                                   NTSTATUS     = -2147221478
+	IO_WRITE_CACHE_ENABLED                                                NTSTATUS     = -2147221472
+	IO_RECOVERED_VIA_ECC                                                  NTSTATUS     = -2147221471
+	IO_WRITE_CACHE_DISABLED                                               NTSTATUS     = -2147221470
+	IO_WARNING_PAGING_FAILURE                                             NTSTATUS     = -2147221453
+	IO_WRN_FAILURE_PREDICTED                                              NTSTATUS     = -2147221452
+	IO_WARNING_ALLOCATION_FAILED                                          NTSTATUS     = -2147221448
+	IO_WARNING_DUPLICATE_SIGNATURE                                        NTSTATUS     = -2147221446
+	IO_WARNING_DUPLICATE_PATH                                             NTSTATUS     = -2147221445
+	IO_WARNING_WRITE_FUA_PROBLEM                                          NTSTATUS     = -2147221372
+	IO_WARNING_VOLUME_LOST_DISK_EXTENT                                    NTSTATUS     = -2147221362
+	IO_WARNING_DEVICE_HAS_INTERNAL_DUMP                                   NTSTATUS     = -2147221361
+	IO_WARNING_SOFT_THRESHOLD_REACHED                                     NTSTATUS     = -2147221360
+	IO_WARNING_SOFT_THRESHOLD_REACHED_EX                                  NTSTATUS     = -2147221359
+	IO_WARNING_SOFT_THRESHOLD_REACHED_EX_LUN_LUN                          NTSTATUS     = -2147221358
+	IO_WARNING_SOFT_THRESHOLD_REACHED_EX_LUN_POOL                         NTSTATUS     = -2147221357
+	IO_WARNING_SOFT_THRESHOLD_REACHED_EX_POOL_LUN                         NTSTATUS     = -2147221356
+	IO_WARNING_SOFT_THRESHOLD_REACHED_EX_POOL_POOL                        NTSTATUS     = -2147221355
+	IO_ERROR_DISK_RESOURCES_EXHAUSTED                                     NTSTATUS     = -1073479530
+	IO_WARNING_DISK_CAPACITY_CHANGED                                      NTSTATUS     = -2147221353
+	IO_WARNING_DISK_PROVISIONING_TYPE_CHANGED                             NTSTATUS     = -2147221352
+	IO_WARNING_IO_OPERATION_RETRIED                                       NTSTATUS     = -2147221351
+	IO_ERROR_IO_HARDWARE_ERROR                                            NTSTATUS     = -1073479526
+	IO_WARNING_COMPLETION_TIME                                            NTSTATUS     = -2147221349
+	IO_WARNING_DISK_SURPRISE_REMOVED                                      NTSTATUS     = -2147221347
+	IO_WARNING_REPEATED_DISK_GUID                                         NTSTATUS     = -2147221346
+	IO_WARNING_DISK_FIRMWARE_UPDATED                                      NTSTATUS     = 1074004127
+	IO_ERR_RETRY_SUCCEEDED                                                NTSTATUS     = 262145
+	IO_DUMP_CREATION_SUCCESS                                              NTSTATUS     = 262306
+	IO_FILE_QUOTA_THRESHOLD                                               NTSTATUS     = 1074004004
+	IO_FILE_QUOTA_LIMIT                                                   NTSTATUS     = 1074004005
+	IO_FILE_QUOTA_STARTED                                                 NTSTATUS     = 1074004006
+	IO_FILE_QUOTA_SUCCEEDED                                               NTSTATUS     = 1074004007
+	IO_INFO_THROTTLE_COMPLETE                                             NTSTATUS     = 1074004087
+	IO_CDROM_EXCLUSIVE_LOCK                                               NTSTATUS     = 1074004101
+	IO_WARNING_ADAPTER_FIRMWARE_UPDATED                                   NTSTATUS     = 1074004128
+	IO_FILE_QUOTA_FAILED                                                  NTSTATUS     = -2147221464
+	IO_LOST_DELAYED_WRITE                                                 NTSTATUS     = -2147221454
+	IO_WARNING_INTERRUPT_STILL_PENDING                                    NTSTATUS     = -2147221451
+	IO_DRIVER_CANCEL_TIMEOUT                                              NTSTATUS     = -2147221450
+	IO_WARNING_LOG_FLUSH_FAILED                                           NTSTATUS     = -2147221447
+	IO_WARNING_BUS_RESET                                                  NTSTATUS     = -2147221386
+	IO_WARNING_RESET                                                      NTSTATUS     = -2147221375
+	IO_LOST_DELAYED_WRITE_NETWORK_DISCONNECTED                            NTSTATUS     = -2147221365
+	IO_LOST_DELAYED_WRITE_NETWORK_SERVER_ERROR                            NTSTATUS     = -2147221364
+	IO_LOST_DELAYED_WRITE_NETWORK_LOCAL_DISK_ERROR                        NTSTATUS     = -2147221363
+	IO_WARNING_DUMP_DISABLED_DEVICE_GONE                                  NTSTATUS     = -2147221348
+	IO_ERR_CONFIGURATION_ERROR                                            NTSTATUS     = -1073479677
+	IO_ERR_PARITY                                                         NTSTATUS     = -1073479675
+	IO_ERR_OVERRUN_ERROR                                                  NTSTATUS     = -1073479672
+	IO_ERR_SEQUENCE                                                       NTSTATUS     = -1073479670
+	IO_ERR_INTERNAL_ERROR                                                 NTSTATUS     = -1073479668
+	IO_ERR_INCORRECT_IRQL                                                 NTSTATUS     = -1073479667
+	IO_ERR_INVALID_IOBASE                                                 NTSTATUS     = -1073479666
+	IO_ERR_VERSION                                                        NTSTATUS     = -1073479663
+	IO_ERR_LAYERED_FAILURE                                                NTSTATUS     = -1073479662
+	IO_ERR_PROTOCOL                                                       NTSTATUS     = -1073479660
+	IO_ERR_MEMORY_CONFLICT_DETECTED                                       NTSTATUS     = -1073479659
+	IO_ERR_PORT_CONFLICT_DETECTED                                         NTSTATUS     = -1073479658
+	IO_ERR_DMA_CONFLICT_DETECTED                                          NTSTATUS     = -1073479657
+	IO_ERR_IRQ_CONFLICT_DETECTED                                          NTSTATUS     = -1073479656
+	IO_ERR_DMA_RESOURCE_CONFLICT                                          NTSTATUS     = -1073479653
+	IO_ERR_INTERRUPT_RESOURCE_CONFLICT                                    NTSTATUS     = -1073479652
+	IO_ERR_MEMORY_RESOURCE_CONFLICT                                       NTSTATUS     = -1073479651
+	IO_ERR_PORT_RESOURCE_CONFLICT                                         NTSTATUS     = -1073479650
+	IO_BAD_BLOCK_WITH_NAME                                                NTSTATUS     = -1073479649
+	IO_FILE_SYSTEM_CORRUPT                                                NTSTATUS     = -1073479639
+	IO_FILE_QUOTA_CORRUPT                                                 NTSTATUS     = -1073479638
+	IO_SYSTEM_SLEEP_FAILED                                                NTSTATUS     = -1073479637
+	IO_DUMP_POINTER_FAILURE                                               NTSTATUS     = -1073479636
+	IO_DUMP_DRIVER_LOAD_FAILURE                                           NTSTATUS     = -1073479635
+	IO_DUMP_INITIALIZATION_FAILURE                                        NTSTATUS     = -1073479634
+	IO_DUMP_DUMPFILE_CONFLICT                                             NTSTATUS     = -1073479633
+	IO_DUMP_DIRECT_CONFIG_FAILED                                          NTSTATUS     = -1073479632
+	IO_DUMP_PAGE_CONFIG_FAILED                                            NTSTATUS     = -1073479631
+	IO_FILE_SYSTEM_CORRUPT_WITH_NAME                                      NTSTATUS     = -1073479625
+	IO_ERR_THREAD_STUCK_IN_DEVICE_DRIVER                                  NTSTATUS     = -1073479572
+	IO_ERR_PORT_TIMEOUT                                                   NTSTATUS     = -1073479563
+	IO_ERROR_DUMP_CREATION_ERROR                                          NTSTATUS     = -1073479519
+	IO_DUMP_CALLBACK_EXCEPTION                                            NTSTATUS     = -1073479517
+	IO_DUMP_INIT_DEDICATED_DUMP_FAILURE                                   NTSTATUS     = -1073479516
+	MCA_INFO_CPU_THERMAL_THROTTLING_REMOVED                               NTSTATUS     = 1074069616
+	MCA_INFO_NO_MORE_CORRECTED_ERROR_LOGS                                 NTSTATUS     = 1074069619
+	MCA_INFO_MEMORY_PAGE_MARKED_BAD                                       NTSTATUS     = 1074069620
+	MCA_WARNING_CACHE                                                     NTSTATUS     = -2147155908
+	MCA_WARNING_TLB                                                       NTSTATUS     = -2147155906
+	MCA_WARNING_CPU_BUS                                                   NTSTATUS     = -2147155904
+	MCA_WARNING_REGISTER_FILE                                             NTSTATUS     = -2147155902
+	MCA_WARNING_MAS                                                       NTSTATUS     = -2147155900
+	MCA_WARNING_MEM_UNKNOWN                                               NTSTATUS     = -2147155898
+	MCA_WARNING_MEM_1_2                                                   NTSTATUS     = -2147155896
+	MCA_WARNING_MEM_1_2_5                                                 NTSTATUS     = -2147155894
+	MCA_WARNING_MEM_1_2_5_4                                               NTSTATUS     = -2147155892
+	MCA_WARNING_SYSTEM_EVENT                                              NTSTATUS     = -2147155890
+	MCA_WARNING_PCI_BUS_PARITY                                            NTSTATUS     = -2147155888
+	MCA_WARNING_PCI_BUS_PARITY_NO_INFO                                    NTSTATUS     = -2147155886
+	MCA_WARNING_PCI_BUS_SERR                                              NTSTATUS     = -2147155884
+	MCA_WARNING_PCI_BUS_SERR_NO_INFO                                      NTSTATUS     = -2147155882
+	MCA_WARNING_PCI_BUS_MASTER_ABORT                                      NTSTATUS     = -2147155880
+	MCA_WARNING_PCI_BUS_MASTER_ABORT_NO_INFO                              NTSTATUS     = -2147155878
+	MCA_WARNING_PCI_BUS_TIMEOUT                                           NTSTATUS     = -2147155876
+	MCA_WARNING_PCI_BUS_TIMEOUT_NO_INFO                                   NTSTATUS     = -2147155874
+	MCA_WARNING_PCI_BUS_UNKNOWN                                           NTSTATUS     = -2147155872
+	MCA_WARNING_PCI_DEVICE                                                NTSTATUS     = -2147155870
+	MCA_WARNING_SMBIOS                                                    NTSTATUS     = -2147155868
+	MCA_WARNING_PLATFORM_SPECIFIC                                         NTSTATUS     = -2147155866
+	MCA_WARNING_UNKNOWN                                                   NTSTATUS     = -2147155864
+	MCA_WARNING_UNKNOWN_NO_CPU                                            NTSTATUS     = -2147155862
+	MCA_WARNING_CMC_THRESHOLD_EXCEEDED                                    NTSTATUS     = -2147155859
+	MCA_WARNING_CPE_THRESHOLD_EXCEEDED                                    NTSTATUS     = -2147155858
+	MCA_WARNING_CPU_THERMAL_THROTTLED                                     NTSTATUS     = -2147155857
+	MCA_WARNING_CPU                                                       NTSTATUS     = -2147155855
+	MCA_ERROR_CACHE                                                       NTSTATUS     = -1073414083
+	MCA_ERROR_TLB                                                         NTSTATUS     = -1073414081
+	MCA_ERROR_CPU_BUS                                                     NTSTATUS     = -1073414079
+	MCA_ERROR_REGISTER_FILE                                               NTSTATUS     = -1073414077
+	MCA_ERROR_MAS                                                         NTSTATUS     = -1073414075
+	MCA_ERROR_MEM_UNKNOWN                                                 NTSTATUS     = -1073414073
+	MCA_ERROR_MEM_1_2                                                     NTSTATUS     = -1073414071
+	MCA_ERROR_MEM_1_2_5                                                   NTSTATUS     = -1073414069
+	MCA_ERROR_MEM_1_2_5_4                                                 NTSTATUS     = -1073414067
+	MCA_ERROR_SYSTEM_EVENT                                                NTSTATUS     = -1073414065
+	MCA_ERROR_PCI_BUS_PARITY                                              NTSTATUS     = -1073414063
+	MCA_ERROR_PCI_BUS_PARITY_NO_INFO                                      NTSTATUS     = -1073414061
+	MCA_ERROR_PCI_BUS_SERR                                                NTSTATUS     = -1073414059
+	MCA_ERROR_PCI_BUS_SERR_NO_INFO                                        NTSTATUS     = -1073414057
+	MCA_ERROR_PCI_BUS_MASTER_ABORT                                        NTSTATUS     = -1073414055
+	MCA_ERROR_PCI_BUS_MASTER_ABORT_NO_INFO                                NTSTATUS     = -1073414053
+	MCA_ERROR_PCI_BUS_TIMEOUT                                             NTSTATUS     = -1073414051
+	MCA_ERROR_PCI_BUS_TIMEOUT_NO_INFO                                     NTSTATUS     = -1073414049
+	MCA_ERROR_PCI_BUS_UNKNOWN                                             NTSTATUS     = -1073414047
+	MCA_ERROR_PCI_DEVICE                                                  NTSTATUS     = -1073414045
+	MCA_ERROR_SMBIOS                                                      NTSTATUS     = -1073414043
+	MCA_ERROR_PLATFORM_SPECIFIC                                           NTSTATUS     = -1073414041
+	MCA_ERROR_UNKNOWN                                                     NTSTATUS     = -1073414039
+	MCA_ERROR_UNKNOWN_NO_CPU                                              NTSTATUS     = -1073414037
+	MCA_ERROR_CPU                                                         NTSTATUS     = -1073414030
+	MCA_MEMORYHIERARCHY_ERROR                                             NTSTATUS     = -1073414024
+	MCA_TLB_ERROR                                                         NTSTATUS     = -1073414023
+	MCA_BUS_ERROR                                                         NTSTATUS     = -1073414022
+	MCA_BUS_TIMEOUT_ERROR                                                 NTSTATUS     = -1073414021
+	MCA_INTERNALTIMER_ERROR                                               NTSTATUS     = -1073414020
+	MCA_MICROCODE_ROM_PARITY_ERROR                                        NTSTATUS     = -1073414018
+	MCA_EXTERNAL_ERROR                                                    NTSTATUS     = -1073414017
+	MCA_FRC_ERROR                                                         NTSTATUS     = -1073414016
+	VOLMGR_KSR_ERROR                                                      NTSTATUS     = -2143813631
+	VOLMGR_KSR_READ_ERROR                                                 NTSTATUS     = -2143813630
+	VOLMGR_KSR_BYPASS                                                     NTSTATUS     = -2143813629
 	STATUS_WAIT_0                                                         NTSTATUS     = 0
 	FACILTIY_MUI_ERROR_CODE                                               uint32       = 0xb
 	STATUS_SUCCESS                                                        NTSTATUS     = 0
@@ -131,6 +296,7 @@ const (
 	STATUS_OPLOCK_HANDLE_CLOSED                                           NTSTATUS     = 534
 	STATUS_WAIT_FOR_OPLOCK                                                NTSTATUS     = 871
 	STATUS_REPARSE_GLOBAL                                                 NTSTATUS     = 872
+	STATUS_PAGE_FAULT_RETRY                                               NTSTATUS     = 873
 	DBG_EXCEPTION_HANDLED                                                 NTSTATUS     = 65537
 	DBG_CONTINUE                                                          NTSTATUS     = 65538
 	STATUS_FLT_IO_COMPLETE                                                NTSTATUS     = 1835009
@@ -259,6 +425,7 @@ const (
 	STATUS_CLUSTER_NETWORK_ALREADY_OFFLINE                                NTSTATUS     = -2146238460
 	STATUS_CLUSTER_NODE_ALREADY_MEMBER                                    NTSTATUS     = -2146238459
 	STATUS_FLT_BUFFER_TOO_SMALL                                           NTSTATUS     = -2145648639
+	STATUS_GRAPHICS_LINK_CONFIGURATION_IN_PROGRESS                        NTSTATUS     = -2145517568
 	STATUS_FVE_PARTIAL_METADATA                                           NTSTATUS     = -2145320959
 	STATUS_FVE_TRANSIENT_STATE                                            NTSTATUS     = -2145320958
 	STATUS_CLOUD_FILE_PROPERTY_BLOB_CHECKSUM_MISMATCH                     NTSTATUS     = -2147430656
@@ -1166,6 +1333,8 @@ const (
 	STATUS_INDEX_OUT_OF_BOUNDS                                            NTSTATUS     = -1073740591
 	STATUS_BYPASSIO_FLT_NOT_SUPPORTED                                     NTSTATUS     = -1073740590
 	STATUS_VOLUME_WRITE_ACCESS_DENIED                                     NTSTATUS     = -1073740589
+	STATUS_PATCH_NOT_REGISTERED                                           NTSTATUS     = -1073740588
+	STATUS_NOT_SUPPORTED_WITH_CACHED_HANDLE                               NTSTATUS     = -1073740587
 	STATUS_INVALID_TASK_NAME                                              NTSTATUS     = -1073740544
 	STATUS_INVALID_TASK_INDEX                                             NTSTATUS     = -1073740543
 	STATUS_THREAD_ALREADY_IN_TASK                                         NTSTATUS     = -1073740542
@@ -1190,6 +1359,7 @@ const (
 	STATUS_INTERRUPTED                                                    NTSTATUS     = -1073740523
 	STATUS_THREAD_NOT_RUNNING                                             NTSTATUS     = -1073740522
 	STATUS_SESSION_KEY_TOO_SHORT                                          NTSTATUS     = -1073740521
+	STATUS_FS_METADATA_INCONSISTENT                                       NTSTATUS     = -1073740520
 	STATUS_FAIL_FAST_EXCEPTION                                            NTSTATUS     = -1073740286
 	STATUS_IMAGE_CERT_REVOKED                                             NTSTATUS     = -1073740285
 	STATUS_DYNAMIC_CODE_BLOCKED                                           NTSTATUS     = -1073740284
@@ -1268,6 +1438,10 @@ const (
 	STATUS_NO_KEY                                                         NTSTATUS     = -1073739508
 	STATUS_FILE_HANDLE_REVOKED                                            NTSTATUS     = -1073739504
 	STATUS_SECTION_DIRECT_MAP_ONLY                                        NTSTATUS     = -1073739503
+	STATUS_BLOCK_WEAK_REFERENCE_INVALID                                   NTSTATUS     = -1073739502
+	STATUS_BLOCK_SOURCE_WEAK_REFERENCE_INVALID                            NTSTATUS     = -1073739501
+	STATUS_BLOCK_TARGET_WEAK_REFERENCE_INVALID                            NTSTATUS     = -1073739500
+	STATUS_BLOCK_SHARED                                                   NTSTATUS     = -1073739499
 	STATUS_VRF_VOLATILE_CFG_AND_IO_ENABLED                                NTSTATUS     = -1073738744
 	STATUS_VRF_VOLATILE_NOT_STOPPABLE                                     NTSTATUS     = -1073738743
 	STATUS_VRF_VOLATILE_SAFE_MODE                                         NTSTATUS     = -1073738742
@@ -1311,6 +1485,7 @@ const (
 	STATUS_DS_OID_MAPPED_GROUP_CANT_HAVE_MEMBERS                          NTSTATUS     = -1073700729
 	STATUS_DS_OID_NOT_FOUND                                               NTSTATUS     = -1073700728
 	STATUS_INCORRECT_ACCOUNT_TYPE                                         NTSTATUS     = -1073700727
+	STATUS_LOCAL_POLICY_MODIFICATION_NOT_SUPPORTED                        NTSTATUS     = -1073700726
 	STATUS_HASH_NOT_SUPPORTED                                             NTSTATUS     = -1073700608
 	STATUS_HASH_NOT_PRESENT                                               NTSTATUS     = -1073700607
 	STATUS_SECONDARY_IC_PROVIDER_NOT_REGISTERED                           NTSTATUS     = -1073700575
@@ -1382,6 +1557,7 @@ const (
 	STATUS_NOT_A_CLOUD_SYNC_ROOT                                          NTSTATUS     = -1073688802
 	STATUS_CLOUD_FILE_REQUEST_TIMEOUT                                     NTSTATUS     = -1073688801
 	STATUS_CLOUD_FILE_DEHYDRATION_DISALLOWED                              NTSTATUS     = -1073688800
+	STATUS_CLOUD_FILE_US_MESSAGE_TIMEOUT                                  NTSTATUS     = -1073688799
 	STATUS_FILE_SNAP_IN_PROGRESS                                          NTSTATUS     = -1073679104
 	STATUS_FILE_SNAP_USER_SECTION_NOT_SUPPORTED                           NTSTATUS     = -1073679103
 	STATUS_FILE_SNAP_MODIFY_NOT_SUPPORTED                                 NTSTATUS     = -1073679102
@@ -1852,6 +2028,7 @@ const (
 	STATUS_GRAPHICS_VAIL_STATE_CHANGED                                    NTSTATUS     = -1071775727
 	STATUS_GRAPHICS_INDIRECT_DISPLAY_ABANDON_SWAPCHAIN                    NTSTATUS     = -1071775726
 	STATUS_GRAPHICS_INDIRECT_DISPLAY_DEVICE_STOPPED                       NTSTATUS     = -1071775725
+	STATUS_GRAPHICS_MPO_ALLOCATION_UNPINNED                               NTSTATUS     = -1071775720
 	STATUS_GRAPHICS_NO_VIDEO_MEMORY                                       NTSTATUS     = -1071775488
 	STATUS_GRAPHICS_CANT_LOCK_MEMORY                                      NTSTATUS     = -1071775487
 	STATUS_GRAPHICS_ALLOCATION_BUSY                                       NTSTATUS     = -1071775486
@@ -2086,6 +2263,9 @@ const (
 	STATUS_FVE_PROTECTION_CANNOT_BE_DISABLED                              NTSTATUS     = -1071579073
 	STATUS_FVE_OSV_KSR_NOT_ALLOWED                                        NTSTATUS     = -1071579072
 	STATUS_FVE_EDRIVE_BAND_ENUMERATION_FAILED                             NTSTATUS     = -1071579071
+	STATUS_FVE_POLICY_ON_RDV_EXCLUSION_LIST                               NTSTATUS     = -1071579070
+	STATUS_FVE_DATASET_FULL                                               NTSTATUS     = -1071579069
+	STATUS_FVE_METADATA_FULL                                              NTSTATUS     = -1071579068
 	STATUS_FWP_CALLOUT_NOT_FOUND                                          NTSTATUS     = -1071513599
 	STATUS_FWP_CONDITION_NOT_FOUND                                        NTSTATUS     = -1071513598
 	STATUS_FWP_FILTER_NOT_FOUND                                           NTSTATUS     = -1071513597
@@ -2485,6 +2665,11 @@ const (
 	STATUS_HV_NESTED_VM_EXIT                                              NTSTATUS     = -1070268297
 	STATUS_HV_CALL_PENDING                                                NTSTATUS     = -1070268295
 	STATUS_HV_MSR_ACCESS_FAILED                                           NTSTATUS     = -1070268288
+	STATUS_HV_INSUFFICIENT_MEMORY_MIRRORING                               NTSTATUS     = -1070268287
+	STATUS_HV_INSUFFICIENT_CONTIGUOUS_MEMORY_MIRRORING                    NTSTATUS     = -1070268286
+	STATUS_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY                         NTSTATUS     = -1070268285
+	STATUS_HV_INSUFFICIENT_ROOT_MEMORY_MIRRORING                          NTSTATUS     = -1070268284
+	STATUS_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY_MIRRORING               NTSTATUS     = -1070268283
 	STATUS_HV_NOT_PRESENT                                                 NTSTATUS     = -1070264320
 	STATUS_VID_DUPLICATE_HANDLER                                          NTSTATUS     = -1070137343
 	STATUS_VID_TOO_MANY_HANDLERS                                          NTSTATUS     = -1070137342
@@ -2528,6 +2713,13 @@ const (
 	STATUS_VID_SAVED_STATE_UNRECOGNIZED_ITEM                              NTSTATUS     = -1070137304
 	STATUS_VID_SAVED_STATE_INCOMPATIBLE                                   NTSTATUS     = -1070137303
 	STATUS_VID_VTL_ACCESS_DENIED                                          NTSTATUS     = -1070137302
+	STATUS_VID_INSUFFICIENT_RESOURCES_RESERVE                             NTSTATUS     = -1070137301
+	STATUS_VID_INSUFFICIENT_RESOURCES_PHYSICAL_BUFFER                     NTSTATUS     = -1070137300
+	STATUS_VID_INSUFFICIENT_RESOURCES_HV_DEPOSIT                          NTSTATUS     = -1070137299
+	STATUS_VID_MEMORY_TYPE_NOT_SUPPORTED                                  NTSTATUS     = -1070137298
+	STATUS_VID_INSUFFICIENT_RESOURCES_WITHDRAW                            NTSTATUS     = -1070137297
+	STATUS_VID_PROCESS_ALREADY_SET                                        NTSTATUS     = -1070137296
+	STATUS_DM_OPERATION_LIMIT_EXCEEDED                                    NTSTATUS     = -1070135808
 	STATUS_VID_REMOTE_NODE_PARENT_GPA_PAGES_USED                          NTSTATUS     = -2143879167
 	STATUS_IPSEC_BAD_SPI                                                  NTSTATUS     = -1070202879
 	STATUS_IPSEC_SA_LIFETIME_EXPIRED                                      NTSTATUS     = -1070202878
@@ -2748,6 +2940,8 @@ const (
 	STATUS_SYSTEM_INTEGRITY_REPUTATION_PUA                                NTSTATUS     = -1058471928
 	STATUS_SYSTEM_INTEGRITY_REPUTATION_DANGEROUS_EXT                      NTSTATUS     = -1058471927
 	STATUS_SYSTEM_INTEGRITY_REPUTATION_OFFLINE                            NTSTATUS     = -1058471926
+	STATUS_SYSTEM_INTEGRITY_REPUTATION_UNFRIENDLY_FILE                    NTSTATUS     = -1058471925
+	STATUS_SYSTEM_INTEGRITY_REPUTATION_UNATTAINABLE                       NTSTATUS     = -1058471924
 	STATUS_NO_APPLICABLE_APP_LICENSES_FOUND                               NTSTATUS     = -1058406399
 	STATUS_CLIP_LICENSE_NOT_FOUND                                         NTSTATUS     = -1058406398
 	STATUS_CLIP_DEVICE_LICENSE_MISSING                                    NTSTATUS     = -1058406397
@@ -2802,6 +2996,7 @@ const (
 	STATUS_SPACES_PD_INVALID_DATA                                         NTSTATUS     = -1058602972
 	STATUS_SPACES_FLUSH_METADATA                                          NTSTATUS     = -1058602971
 	STATUS_SPACES_CACHE_FULL                                              NTSTATUS     = -1058602970
+	STATUS_SPACES_REPAIR_IN_PROGRESS                                      NTSTATUS     = -1058602969
 	STATUS_VOLSNAP_BOOTFILE_NOT_VALID                                     NTSTATUS     = -1068498941
 	STATUS_VOLSNAP_ACTIVATION_TIMEOUT                                     NTSTATUS     = -1068498940
 	STATUS_VOLSNAP_NO_BYPASSIO_WITH_SNAPSHOT                              NTSTATUS     = -1068498939
@@ -2824,6 +3019,7 @@ const (
 	STATUS_SMB_BAD_CLUSTER_DIALECT                                        NTSTATUS     = -1067646975
 	STATUS_SMB_GUEST_LOGON_BLOCKED                                        NTSTATUS     = -1067646974
 	STATUS_SMB_NO_SIGNING_ALGORITHM_OVERLAP                               NTSTATUS     = -1067646973
+	STATUS_NETWORK_AUTHENTICATION_PROMPT_CANCELED                         NTSTATUS     = -1067646972
 	STATUS_SECCORE_INVALID_COMMAND                                        NTSTATUS     = -1058537472
 	STATUS_VSM_NOT_INITIALIZED                                            NTSTATUS     = -1069219840
 	STATUS_VSM_DMA_PROTECTION_NOT_IN_USE                                  NTSTATUS     = -1069219839
@@ -2855,6 +3051,7 @@ const (
 	STATUS_IORING_COMPLETION_QUEUE_TOO_BIG                                NTSTATUS     = -1069154299
 	STATUS_IORING_SUBMIT_IN_PROGRESS                                      NTSTATUS     = -1069154298
 	STATUS_IORING_CORRUPT                                                 NTSTATUS     = -1069154297
+	STATUS_IORING_COMPLETION_QUEUE_TOO_FULL                               NTSTATUS     = -1069154296
 	WINVER                                                                uint32       = 0x500
 	APP_LOCAL_DEVICE_ID_SIZE                                              uint32       = 0x20
 	SEC_E_OK                                                              HRESULT      = 0
@@ -2928,14 +3125,6 @@ const (
 	DNS_STATUS_CONTINUE_NEEDED                                            int32        = 9801
 	WARNING_IPSEC_MM_POLICY_PRUNED                                        int32        = 13024
 	WARNING_IPSEC_QM_POLICY_PRUNED                                        int32        = 13025
-	APPMODEL_ERROR_NO_PACKAGE                                             int32        = 15700
-	APPMODEL_ERROR_PACKAGE_RUNTIME_CORRUPT                                int32        = 15701
-	APPMODEL_ERROR_PACKAGE_IDENTITY_CORRUPT                               int32        = 15702
-	APPMODEL_ERROR_NO_APPLICATION                                         int32        = 15703
-	APPMODEL_ERROR_DYNAMIC_PROPERTY_READ_FAILED                           int32        = 15704
-	APPMODEL_ERROR_DYNAMIC_PROPERTY_INVALID                               int32        = 15705
-	APPMODEL_ERROR_PACKAGE_NOT_AVAILABLE                                  int32        = 15706
-	APPMODEL_ERROR_NO_MUTABLE_DIRECTORY                                   int32        = 15707
 	STORE_ERROR_UNLICENSED                                                int32        = 15861
 	STORE_ERROR_UNLICENSED_USER                                           int32        = 15862
 	STORE_ERROR_PENDING_COM_TRANSACTION                                   int32        = 15863
@@ -3432,6 +3621,7 @@ const (
 	APPX_E_INVALID_ENCRYPTION_EXCLUSION_FILE_LIST                         HRESULT      = -2146958826
 	APPX_E_INVALID_PACKAGE_FOLDER_ACLS                                    HRESULT      = -2146958825
 	APPX_E_INVALID_PUBLISHER_BRIDGING                                     HRESULT      = -2146958824
+	APPX_E_DIGEST_MISMATCH                                                HRESULT      = -2146958823
 	BT_E_SPURIOUS_ACTIVATION                                              HRESULT      = -2146958592
 	DISP_E_UNKNOWNINTERFACE                                               HRESULT      = -2147352575
 	DISP_E_MEMBERNOTFOUND                                                 HRESULT      = -2147352573
@@ -3946,6 +4136,7 @@ const (
 	CERTSRV_E_INVALID_REQUESTID                                           HRESULT      = -2146875362
 	CERTSRV_E_REQUEST_PRECERTIFICATE_MISMATCH                             HRESULT      = -2146875361
 	CERTSRV_E_PENDING_CLIENT_RESPONSE                                     HRESULT      = -2146875360
+	CERTSRV_E_SEC_EXT_DIRECTORY_SID_REQUIRED                              HRESULT      = -2146875359
 	XENROLL_E_KEY_NOT_EXPORTABLE                                          HRESULT      = -2146873344
 	XENROLL_E_CANNOT_ADD_ROOT_CERT                                        HRESULT      = -2146873343
 	XENROLL_E_RESPONSE_KA_HASH_NOT_FOUND                                  HRESULT      = -2146873342
@@ -4379,6 +4570,8 @@ const (
 	ERROR_GRAPHICS_VAIL_FAILED_TO_SEND_CREATE_SUPERWETINK_MESSAGE         HRESULT      = -1071243244
 	ERROR_GRAPHICS_VAIL_FAILED_TO_SEND_DESTROY_SUPERWETINK_MESSAGE        HRESULT      = -1071243243
 	ERROR_GRAPHICS_VAIL_FAILED_TO_SEND_COMPOSITION_WINDOW_DPI_MESSAGE     HRESULT      = -1071243242
+	ERROR_GRAPHICS_LINK_CONFIGURATION_IN_PROGRESS                         HRESULT      = -1071243241
+	ERROR_GRAPHICS_MPO_ALLOCATION_UNPINNED                                HRESULT      = -1071243240
 	ERROR_GRAPHICS_NO_VIDEO_MEMORY                                        HRESULT      = -1071243008
 	ERROR_GRAPHICS_CANT_LOCK_MEMORY                                       HRESULT      = -1071243007
 	ERROR_GRAPHICS_ALLOCATION_BUSY                                        HRESULT      = -1071243006
@@ -4913,6 +5106,7 @@ const (
 	TPM_E_PROVISIONING_INCOMPLETE                                         HRESULT      = -2144795136
 	TPM_E_INVALID_OWNER_AUTH                                              HRESULT      = -2144795135
 	TPM_E_TOO_MUCH_DATA                                                   HRESULT      = -2144795134
+	TPM_E_TPM_GENERATED_EPS                                               HRESULT      = -2144795133
 	PLA_E_DCS_NOT_FOUND                                                   HRESULT      = -2144337918
 	PLA_E_DCS_IN_USE                                                      HRESULT      = -2144337750
 	PLA_E_TOO_MANY_FOLDERS                                                HRESULT      = -2144337851
@@ -5157,6 +5351,11 @@ const (
 	FVE_E_PREDICTED_TPM_PROTECTOR_NOT_SUPPORTED                           HRESULT      = -2144272155
 	FVE_E_SETUP_TPM_CALLBACK_NOT_SUPPORTED                                HRESULT      = -2144272154
 	FVE_E_TPM_CONTEXT_SETUP_NOT_SUPPORTED                                 HRESULT      = -2144272153
+	FVE_E_UPDATE_INVALID_CONFIG                                           HRESULT      = -2144272152
+	FVE_E_AAD_SERVER_FAIL_RETRY_AFTER                                     HRESULT      = -2144272151
+	FVE_E_AAD_SERVER_FAIL_BACKOFF                                         HRESULT      = -2144272150
+	FVE_E_DATASET_FULL                                                    HRESULT      = -2144272149
+	FVE_E_METADATA_FULL                                                   HRESULT      = -2144272148
 	FWP_E_CALLOUT_NOT_FOUND                                               HRESULT      = -2144206847
 	FWP_E_CONDITION_NOT_FOUND                                             HRESULT      = -2144206846
 	FWP_E_FILTER_NOT_FOUND                                                HRESULT      = -2144206845
@@ -5295,6 +5494,7 @@ const (
 	HCS_E_SERVICE_DISCONNECT                                              HRESULT      = -2143878882
 	HCS_E_PROCESS_ALREADY_STOPPED                                         HRESULT      = -2143878881
 	HCS_E_SYSTEM_NOT_CONFIGURED_FOR_OPERATION                             HRESULT      = -2143878880
+	HCS_E_OPERATION_ALREADY_CANCELLED                                     HRESULT      = -2143878879
 	WHV_E_UNKNOWN_CAPABILITY                                              HRESULT      = -2143878400
 	WHV_E_INSUFFICIENT_BUFFER                                             HRESULT      = -2143878399
 	WHV_E_UNKNOWN_PROPERTY                                                HRESULT      = -2143878398
@@ -5314,6 +5514,7 @@ const (
 	VM_SAVED_STATE_DUMP_E_VA_NOT_MAPPED                                   HRESULT      = -1070136059
 	VM_SAVED_STATE_DUMP_E_INVALID_VP_STATE                                HRESULT      = -1070136058
 	VM_SAVED_STATE_DUMP_E_VP_VTL_NOT_ENABLED                              HRESULT      = -1070136055
+	ERROR_DM_OPERATION_LIMIT_EXCEEDED                                     HRESULT      = -1070135808
 	HCN_E_NETWORK_NOT_FOUND                                               HRESULT      = -2143617023
 	HCN_E_ENDPOINT_NOT_FOUND                                              HRESULT      = -2143617022
 	HCN_E_LAYER_NOT_FOUND                                                 HRESULT      = -2143617021
@@ -5637,6 +5838,7 @@ const (
 	ERROR_SPACES_MARK_DIRTY                                               HRESULT      = -2132344800
 	ERROR_SPACES_FLUSH_METADATA                                           HRESULT      = -2132344795
 	ERROR_SPACES_CACHE_FULL                                               HRESULT      = -2132344794
+	ERROR_SPACES_REPAIR_IN_PROGRESS                                       HRESULT      = -2132344793
 	ERROR_VOLSNAP_BOOTFILE_NOT_VALID                                      HRESULT      = -2138963967
 	ERROR_VOLSNAP_ACTIVATION_TIMEOUT                                      HRESULT      = -2138963966
 	ERROR_VOLSNAP_NO_BYPASSIO_WITH_SNAPSHOT                               HRESULT      = -2138963965
@@ -6349,6 +6551,7 @@ const (
 	IORING_E_COMPLETION_QUEUE_TOO_BIG                                     HRESULT      = -2142896123
 	IORING_E_SUBMIT_IN_PROGRESS                                           HRESULT      = -2142896122
 	IORING_E_CORRUPT                                                      HRESULT      = -2142896121
+	IORING_E_COMPLETION_QUEUE_TOO_FULL                                    HRESULT      = -2142896120
 	STATUS_SEVERITY_COERROR                                               uint32       = 0x2
 	STATUS_SEVERITY_COFAIL                                                uint32       = 0x3
 	NOT_AN_ERROR1                                                         HRESULT      = 529920
@@ -6560,12 +6763,6 @@ type WIN32_ERROR uint32
 
 const (
 	NO_ERROR                                                                       WIN32_ERROR = 0
-	WAIT_OBJECT_0                                                                  WIN32_ERROR = 0
-	WAIT_ABANDONED                                                                 WIN32_ERROR = 128
-	WAIT_ABANDONED_0                                                               WIN32_ERROR = 128
-	WAIT_IO_COMPLETION                                                             WIN32_ERROR = 192
-	WAIT_TIMEOUT                                                                   WIN32_ERROR = 258
-	WAIT_FAILED                                                                    WIN32_ERROR = 4294967295
 	ERROR_SUCCESS                                                                  WIN32_ERROR = 0
 	ERROR_INVALID_FUNCTION                                                         WIN32_ERROR = 1
 	ERROR_FILE_NOT_FOUND                                                           WIN32_ERROR = 2
@@ -6929,6 +7126,7 @@ const (
 	ERROR_STORAGE_STACK_ACCESS_DENIED                                              WIN32_ERROR = 472
 	ERROR_INSUFFICIENT_VIRTUAL_ADDR_RESOURCES                                      WIN32_ERROR = 473
 	ERROR_INDEX_OUT_OF_BOUNDS                                                      WIN32_ERROR = 474
+	ERROR_CLOUD_FILE_US_MESSAGE_TIMEOUT                                            WIN32_ERROR = 475
 	ERROR_PNP_QUERY_REMOVE_DEVICE_TIMEOUT                                          WIN32_ERROR = 480
 	ERROR_PNP_QUERY_REMOVE_RELATED_DEVICE_TIMEOUT                                  WIN32_ERROR = 481
 	ERROR_PNP_QUERY_REMOVE_UNRELATED_DEVICE_TIMEOUT                                WIN32_ERROR = 482
@@ -6955,6 +7153,12 @@ const (
 	ERROR_BYPASSIO_FLT_NOT_SUPPORTED                                               WIN32_ERROR = 506
 	ERROR_DEVICE_RESET_REQUIRED                                                    WIN32_ERROR = 507
 	ERROR_VOLUME_WRITE_ACCESS_DENIED                                               WIN32_ERROR = 508
+	ERROR_NOT_SUPPORTED_WITH_CACHED_HANDLE                                         WIN32_ERROR = 509
+	ERROR_FS_METADATA_INCONSISTENT                                                 WIN32_ERROR = 510
+	ERROR_BLOCK_WEAK_REFERENCE_INVALID                                             WIN32_ERROR = 511
+	ERROR_BLOCK_SOURCE_WEAK_REFERENCE_INVALID                                      WIN32_ERROR = 512
+	ERROR_BLOCK_TARGET_WEAK_REFERENCE_INVALID                                      WIN32_ERROR = 513
+	ERROR_BLOCK_SHARED                                                             WIN32_ERROR = 514
 	ERROR_ARITHMETIC_OVERFLOW                                                      WIN32_ERROR = 534
 	ERROR_PIPE_CONNECTED                                                           WIN32_ERROR = 535
 	ERROR_PIPE_LISTENING                                                           WIN32_ERROR = 536
@@ -7801,6 +8005,8 @@ const (
 	ERROR_PRINT_JOB_RESTART_REQUIRED                                               WIN32_ERROR = 3020
 	ERROR_INVALID_PRINTER_DRIVER_MANIFEST                                          WIN32_ERROR = 3021
 	ERROR_PRINTER_NOT_SHAREABLE                                                    WIN32_ERROR = 3022
+	ERROR_SERVER_SERVICE_CALL_REQUIRES_SMB1                                        WIN32_ERROR = 3023
+	ERROR_NETWORK_AUTHENTICATION_PROMPT_CANCELED                                   WIN32_ERROR = 3024
 	ERROR_REQUEST_PAUSED                                                           WIN32_ERROR = 3050
 	ERROR_APPEXEC_CONDITION_NOT_SATISFIED                                          WIN32_ERROR = 3060
 	ERROR_APPEXEC_HANDLE_INVALIDATED                                               WIN32_ERROR = 3061
@@ -7963,6 +8169,8 @@ const (
 	ERROR_PLATFORM_MANIFEST_BINARY_ID_NOT_FOUND                                    WIN32_ERROR = 4574
 	ERROR_PLATFORM_MANIFEST_NOT_ACTIVE                                             WIN32_ERROR = 4575
 	ERROR_PLATFORM_MANIFEST_NOT_SIGNED                                             WIN32_ERROR = 4576
+	ERROR_SYSTEM_INTEGRITY_REPUTATION_UNFRIENDLY_FILE                              WIN32_ERROR = 4580
+	ERROR_SYSTEM_INTEGRITY_REPUTATION_UNATTAINABLE                                 WIN32_ERROR = 4581
 	ERROR_DEPENDENT_RESOURCE_EXISTS                                                WIN32_ERROR = 5001
 	ERROR_DEPENDENCY_NOT_FOUND                                                     WIN32_ERROR = 5002
 	ERROR_DEPENDENCY_ALREADY_EXISTS                                                WIN32_ERROR = 5003
@@ -8787,6 +8995,8 @@ const (
 	ERROR_DS_MISSING_FOREST_TRUST                                                  WIN32_ERROR = 8649
 	ERROR_DS_VALUE_KEY_NOT_UNIQUE                                                  WIN32_ERROR = 8650
 	ERROR_WEAK_WHFBKEY_BLOCKED                                                     WIN32_ERROR = 8651
+	ERROR_DS_PER_ATTRIBUTE_AUTHZ_FAILED_DURING_ADD                                 WIN32_ERROR = 8652
+	ERROR_LOCAL_POLICY_MODIFICATION_NOT_SUPPORTED                                  WIN32_ERROR = 8653
 	DNS_ERROR_RESPONSE_CODES_BASE                                                  WIN32_ERROR = 9000
 	DNS_ERROR_RCODE_NO_ERROR                                                       WIN32_ERROR = 0
 	DNS_ERROR_MASK                                                                 WIN32_ERROR = 9000
@@ -9335,6 +9545,7 @@ const (
 	ERROR_PRI_MERGE_INVALID_FILE_NAME                                              WIN32_ERROR = 15158
 	ERROR_MRM_PACKAGE_NOT_FOUND                                                    WIN32_ERROR = 15159
 	ERROR_MRM_MISSING_DEFAULT_LANGUAGE                                             WIN32_ERROR = 15160
+	ERROR_MRM_SCOPE_ITEM_CONFLICT                                                  WIN32_ERROR = 15161
 	ERROR_MCA_INVALID_CAPABILITIES_STRING                                          WIN32_ERROR = 15200
 	ERROR_MCA_INVALID_VCP_VERSION                                                  WIN32_ERROR = 15201
 	ERROR_MCA_MONITOR_VIOLATES_MCCS_SPECIFICATION                                  WIN32_ERROR = 15202
@@ -9431,6 +9642,17 @@ const (
 	ERROR_CLASSIC_COMPAT_MODE_NOT_ALLOWED                                          WIN32_ERROR = 15667
 	ERROR_STAGEFROMUPDATEAGENT_PACKAGE_NOT_APPLICABLE                              WIN32_ERROR = 15668
 	ERROR_PACKAGE_NOT_REGISTERED_FOR_USER                                          WIN32_ERROR = 15669
+	ERROR_PACKAGE_NAME_MISMATCH                                                    WIN32_ERROR = 15670
+	ERROR_APPINSTALLER_URI_IN_USE                                                  WIN32_ERROR = 15671
+	ERROR_APPINSTALLER_IS_MANAGED_BY_SYSTEM                                        WIN32_ERROR = 15672
+	APPMODEL_ERROR_NO_PACKAGE                                                      WIN32_ERROR = 15700
+	APPMODEL_ERROR_PACKAGE_RUNTIME_CORRUPT                                         WIN32_ERROR = 15701
+	APPMODEL_ERROR_PACKAGE_IDENTITY_CORRUPT                                        WIN32_ERROR = 15702
+	APPMODEL_ERROR_NO_APPLICATION                                                  WIN32_ERROR = 15703
+	APPMODEL_ERROR_DYNAMIC_PROPERTY_READ_FAILED                                    WIN32_ERROR = 15704
+	APPMODEL_ERROR_DYNAMIC_PROPERTY_INVALID                                        WIN32_ERROR = 15705
+	APPMODEL_ERROR_PACKAGE_NOT_AVAILABLE                                           WIN32_ERROR = 15706
+	APPMODEL_ERROR_NO_MUTABLE_DIRECTORY                                            WIN32_ERROR = 15707
 	ERROR_STATE_LOAD_STORE_FAILED                                                  WIN32_ERROR = 15800
 	ERROR_STATE_GET_VERSION_FAILED                                                 WIN32_ERROR = 15801
 	ERROR_STATE_SET_VERSION_FAILED                                                 WIN32_ERROR = 15802
@@ -9551,6 +9773,11 @@ const (
 	ERROR_HV_DEVICE_NOT_IN_DOMAIN                                                  WIN32_ERROR = 3224698998
 	ERROR_HV_NESTED_VM_EXIT                                                        WIN32_ERROR = 3224698999
 	ERROR_HV_MSR_ACCESS_FAILED                                                     WIN32_ERROR = 3224699008
+	ERROR_HV_INSUFFICIENT_MEMORY_MIRRORING                                         WIN32_ERROR = 3224699009
+	ERROR_HV_INSUFFICIENT_CONTIGUOUS_MEMORY_MIRRORING                              WIN32_ERROR = 3224699010
+	ERROR_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY                                   WIN32_ERROR = 3224699011
+	ERROR_HV_INSUFFICIENT_ROOT_MEMORY_MIRRORING                                    WIN32_ERROR = 3224699012
+	ERROR_HV_INSUFFICIENT_CONTIGUOUS_ROOT_MEMORY_MIRRORING                         WIN32_ERROR = 3224699013
 	ERROR_HV_NOT_PRESENT                                                           WIN32_ERROR = 3224702976
 	ERROR_VID_DUPLICATE_HANDLER                                                    WIN32_ERROR = 3224829953
 	ERROR_VID_TOO_MANY_HANDLERS                                                    WIN32_ERROR = 3224829954
@@ -9594,6 +9821,12 @@ const (
 	ERROR_VID_SAVED_STATE_UNRECOGNIZED_ITEM                                        WIN32_ERROR = 3224829992
 	ERROR_VID_SAVED_STATE_INCOMPATIBLE                                             WIN32_ERROR = 3224829993
 	ERROR_VID_VTL_ACCESS_DENIED                                                    WIN32_ERROR = 3224829994
+	ERROR_VID_INSUFFICIENT_RESOURCES_RESERVE                                       WIN32_ERROR = 3224829995
+	ERROR_VID_INSUFFICIENT_RESOURCES_PHYSICAL_BUFFER                               WIN32_ERROR = 3224829996
+	ERROR_VID_INSUFFICIENT_RESOURCES_HV_DEPOSIT                                    WIN32_ERROR = 3224829997
+	ERROR_VID_MEMORY_TYPE_NOT_SUPPORTED                                            WIN32_ERROR = 3224829998
+	ERROR_VID_INSUFFICIENT_RESOURCES_WITHDRAW                                      WIN32_ERROR = 3224829999
+	ERROR_VID_PROCESS_ALREADY_SET                                                  WIN32_ERROR = 3224830000
 	ERROR_VMCOMPUTE_TERMINATED_DURING_START                                        WIN32_ERROR = 3224830208
 	ERROR_VMCOMPUTE_IMAGE_MISMATCH                                                 WIN32_ERROR = 3224830209
 	ERROR_VMCOMPUTE_HYPERV_NOT_INSTALLED                                           WIN32_ERROR = 3224830210
@@ -9762,9 +9995,22 @@ const (
 )
 
 // enum
+type WAIT_EVENT uint32
+
+const (
+	WAIT_OBJECT_0      WAIT_EVENT = 0
+	WAIT_ABANDONED     WAIT_EVENT = 128
+	WAIT_ABANDONED_0   WAIT_EVENT = 128
+	WAIT_IO_COMPLETION WAIT_EVENT = 192
+	WAIT_TIMEOUT       WAIT_EVENT = 258
+	WAIT_FAILED        WAIT_EVENT = 4294967295
+)
+
+// enum
 type NTSTATUS_FACILITY_CODE uint32
 
 const (
+	FACILITY_MCA_ERROR_CODE      NTSTATUS_FACILITY_CODE = 5
 	FACILITY_DEBUGGER            NTSTATUS_FACILITY_CODE = 1
 	FACILITY_RPC_RUNTIME         NTSTATUS_FACILITY_CODE = 2
 	FACILITY_RPC_STUBS           NTSTATUS_FACILITY_CODE = 3
@@ -9823,6 +10069,16 @@ const (
 )
 
 // enum
+type NTSTATUS_SEVERITY_CODE uint32
+
+const (
+	STATUS_SEVERITY_SUCCESS       NTSTATUS_SEVERITY_CODE = 0
+	STATUS_SEVERITY_INFORMATIONAL NTSTATUS_SEVERITY_CODE = 1
+	STATUS_SEVERITY_WARNING       NTSTATUS_SEVERITY_CODE = 2
+	STATUS_SEVERITY_ERROR         NTSTATUS_SEVERITY_CODE = 3
+)
+
+// enum
 // flags
 type DUPLICATE_HANDLE_OPTIONS uint32
 
@@ -9838,6 +10094,17 @@ type HANDLE_FLAGS uint32
 const (
 	HANDLE_FLAG_INHERIT            HANDLE_FLAGS = 1
 	HANDLE_FLAG_PROTECT_FROM_CLOSE HANDLE_FLAGS = 2
+)
+
+// enum
+// flags
+type GENERIC_ACCESS_RIGHTS uint32
+
+const (
+	GENERIC_READ    GENERIC_ACCESS_RIGHTS = 2147483648
+	GENERIC_WRITE   GENERIC_ACCESS_RIGHTS = 1073741824
+	GENERIC_EXECUTE GENERIC_ACCESS_RIGHTS = 536870912
+	GENERIC_ALL     GENERIC_ACCESS_RIGHTS = 268435456
 )
 
 // structs
@@ -9910,25 +10177,9 @@ type DECIMAL struct {
 	DECIMAL_Anonymous2
 }
 
-type HSPRITE__ struct {
-	Unused int32
-}
-
-type HLSURF__ struct {
-	Unused int32
-}
-
-type HSTR__ struct {
-	Unused int32
-}
-
 type FILETIME struct {
 	DwLowDateTime  uint32
 	DwHighDateTime uint32
-}
-
-type HUMPD__ struct {
-	Unused int32
 }
 
 type RECT struct {
@@ -9980,82 +10231,6 @@ type FLOAT128 struct {
 	HighPart int64
 }
 
-type LARGE_INTEGER_Anonymous struct {
-	LowPart  uint32
-	HighPart int32
-}
-
-type LARGE_INTEGER_U struct {
-	LowPart  uint32
-	HighPart int32
-}
-
-type LARGE_INTEGER struct {
-	LARGE_INTEGER_Anonymous
-}
-
-func (this *LARGE_INTEGER) Anonymous() *LARGE_INTEGER_Anonymous {
-	return (*LARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
-}
-
-func (this *LARGE_INTEGER) AnonymousVal() LARGE_INTEGER_Anonymous {
-	return *(*LARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
-}
-
-func (this *LARGE_INTEGER) U() *LARGE_INTEGER_U {
-	return (*LARGE_INTEGER_U)(unsafe.Pointer(this))
-}
-
-func (this *LARGE_INTEGER) UVal() LARGE_INTEGER_U {
-	return *(*LARGE_INTEGER_U)(unsafe.Pointer(this))
-}
-
-func (this *LARGE_INTEGER) QuadPart() *int64 {
-	return (*int64)(unsafe.Pointer(this))
-}
-
-func (this *LARGE_INTEGER) QuadPartVal() int64 {
-	return *(*int64)(unsafe.Pointer(this))
-}
-
-type ULARGE_INTEGER_Anonymous struct {
-	LowPart  uint32
-	HighPart uint32
-}
-
-type ULARGE_INTEGER_U struct {
-	LowPart  uint32
-	HighPart uint32
-}
-
-type ULARGE_INTEGER struct {
-	ULARGE_INTEGER_Anonymous
-}
-
-func (this *ULARGE_INTEGER) Anonymous() *ULARGE_INTEGER_Anonymous {
-	return (*ULARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
-}
-
-func (this *ULARGE_INTEGER) AnonymousVal() ULARGE_INTEGER_Anonymous {
-	return *(*ULARGE_INTEGER_Anonymous)(unsafe.Pointer(this))
-}
-
-func (this *ULARGE_INTEGER) U() *ULARGE_INTEGER_U {
-	return (*ULARGE_INTEGER_U)(unsafe.Pointer(this))
-}
-
-func (this *ULARGE_INTEGER) UVal() ULARGE_INTEGER_U {
-	return *(*ULARGE_INTEGER_U)(unsafe.Pointer(this))
-}
-
-func (this *ULARGE_INTEGER) QuadPart() *uint64 {
-	return (*uint64)(unsafe.Pointer(this))
-}
-
-func (this *ULARGE_INTEGER) QuadPartVal() uint64 {
-	return *(*uint64)(unsafe.Pointer(this))
-}
-
 type LUID struct {
 	LowPart  uint32
 	HighPart int32
@@ -10090,9 +10265,12 @@ var (
 	pDuplicateHandle       uintptr
 	pGetHandleInformation  uintptr
 	pSetHandleInformation  uintptr
+	pFreeLibrary           uintptr
 	pGetLastError          uintptr
 	pSetLastError          uintptr
 	pSetLastErrorEx        uintptr
+	pGlobalFree            uintptr
+	pLocalFree             uintptr
 )
 
 func SysAllocString(psz PWSTR) BSTR {
@@ -10177,6 +10355,12 @@ func SetHandleInformation(hObject HANDLE, dwMask uint32, dwFlags HANDLE_FLAGS) (
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
+func FreeLibrary(hLibModule HMODULE) (BOOL, WIN32_ERROR) {
+	addr := LazyAddr(&pFreeLibrary, libKernel32, "FreeLibrary")
+	ret, _, err := syscall.SyscallN(addr, hLibModule)
+	return BOOL(ret), WIN32_ERROR(err)
+}
+
 func GetLastError() WIN32_ERROR {
 	addr := LazyAddr(&pGetLastError, libKernel32, "GetLastError")
 	ret, _, _ := syscall.SyscallN(addr)
@@ -10193,4 +10377,16 @@ func SetLastErrorEx(dwErrCode WIN32_ERROR, dwType uint32) WIN32_ERROR {
 	addr := LazyAddr(&pSetLastErrorEx, libUser32, "SetLastErrorEx")
 	_, _, err := syscall.SyscallN(addr, uintptr(dwErrCode), uintptr(dwType))
 	return WIN32_ERROR(err)
+}
+
+func GlobalFree(hMem HGLOBAL) (HGLOBAL, WIN32_ERROR) {
+	addr := LazyAddr(&pGlobalFree, libKernel32, "GlobalFree")
+	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hMem)))
+	return (HGLOBAL)(unsafe.Pointer(ret)), WIN32_ERROR(err)
+}
+
+func LocalFree(hMem HLOCAL) (HLOCAL, WIN32_ERROR) {
+	addr := LazyAddr(&pLocalFree, libKernel32, "LocalFree")
+	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hMem)))
+	return (HLOCAL)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }

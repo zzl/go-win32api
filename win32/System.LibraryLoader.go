@@ -68,33 +68,32 @@ type REDIRECTION_DESCRIPTOR struct {
 // func types
 
 type ENUMRESLANGPROCA = uintptr
-type ENUMRESLANGPROCA_func = func(hModule HINSTANCE, lpType PSTR, lpName PSTR, wLanguage uint16, lParam uintptr) BOOL
+type ENUMRESLANGPROCA_func = func(hModule HMODULE, lpType PSTR, lpName PSTR, wLanguage uint16, lParam uintptr) BOOL
 
 type ENUMRESLANGPROCW = uintptr
-type ENUMRESLANGPROCW_func = func(hModule HINSTANCE, lpType PWSTR, lpName PWSTR, wLanguage uint16, lParam uintptr) BOOL
+type ENUMRESLANGPROCW_func = func(hModule HMODULE, lpType PWSTR, lpName PWSTR, wLanguage uint16, lParam uintptr) BOOL
 
 type ENUMRESNAMEPROCA = uintptr
-type ENUMRESNAMEPROCA_func = func(hModule HINSTANCE, lpType PSTR, lpName PSTR, lParam uintptr) BOOL
+type ENUMRESNAMEPROCA_func = func(hModule HMODULE, lpType PSTR, lpName PSTR, lParam uintptr) BOOL
 
 type ENUMRESNAMEPROCW = uintptr
-type ENUMRESNAMEPROCW_func = func(hModule HINSTANCE, lpType PWSTR, lpName PWSTR, lParam uintptr) BOOL
+type ENUMRESNAMEPROCW_func = func(hModule HMODULE, lpType PWSTR, lpName PWSTR, lParam uintptr) BOOL
 
 type ENUMRESTYPEPROCA = uintptr
-type ENUMRESTYPEPROCA_func = func(hModule HINSTANCE, lpType PSTR, lParam uintptr) BOOL
+type ENUMRESTYPEPROCA_func = func(hModule HMODULE, lpType PSTR, lParam uintptr) BOOL
 
 type ENUMRESTYPEPROCW = uintptr
-type ENUMRESTYPEPROCW_func = func(hModule HINSTANCE, lpType PWSTR, lParam uintptr) BOOL
+type ENUMRESTYPEPROCW_func = func(hModule HMODULE, lpType PWSTR, lParam uintptr) BOOL
 
 type PGET_MODULE_HANDLE_EXA = uintptr
-type PGET_MODULE_HANDLE_EXA_func = func(dwFlags uint32, lpModuleName PSTR, phModule *HINSTANCE) BOOL
+type PGET_MODULE_HANDLE_EXA_func = func(dwFlags uint32, lpModuleName PSTR, phModule *HMODULE) BOOL
 
 type PGET_MODULE_HANDLE_EXW = uintptr
-type PGET_MODULE_HANDLE_EXW_func = func(dwFlags uint32, lpModuleName PWSTR, phModule *HINSTANCE) BOOL
+type PGET_MODULE_HANDLE_EXW_func = func(dwFlags uint32, lpModuleName PWSTR, phModule *HMODULE) BOOL
 
 var (
 	pDisableThreadLibraryCalls uintptr
 	pFindResourceExW           uintptr
-	pFreeLibrary               uintptr
 	pFreeLibraryAndExitThread  uintptr
 	pFreeResource              uintptr
 	pGetModuleFileNameA        uintptr
@@ -143,7 +142,7 @@ var (
 	pGetDllDirectoryW          uintptr
 )
 
-func DisableThreadLibraryCalls(hLibModule HINSTANCE) (BOOL, WIN32_ERROR) {
+func DisableThreadLibraryCalls(hLibModule HMODULE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pDisableThreadLibraryCalls, libKernel32, "DisableThreadLibraryCalls")
 	ret, _, err := syscall.SyscallN(addr, hLibModule)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -151,30 +150,24 @@ func DisableThreadLibraryCalls(hLibModule HINSTANCE) (BOOL, WIN32_ERROR) {
 
 var FindResourceEx = FindResourceExW
 
-func FindResourceExW(hModule HINSTANCE, lpType PWSTR, lpName PWSTR, wLanguage uint16) HRSRC {
+func FindResourceExW(hModule HMODULE, lpType PWSTR, lpName PWSTR, wLanguage uint16) HRSRC {
 	addr := LazyAddr(&pFindResourceExW, libKernel32, "FindResourceExW")
 	ret, _, _ := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpName)), uintptr(wLanguage))
 	return ret
 }
 
-func FreeLibrary(hLibModule HINSTANCE) (BOOL, WIN32_ERROR) {
-	addr := LazyAddr(&pFreeLibrary, libKernel32, "FreeLibrary")
-	ret, _, err := syscall.SyscallN(addr, hLibModule)
-	return BOOL(ret), WIN32_ERROR(err)
-}
-
-func FreeLibraryAndExitThread(hLibModule HINSTANCE, dwExitCode uint32) {
+func FreeLibraryAndExitThread(hLibModule HMODULE, dwExitCode uint32) {
 	addr := LazyAddr(&pFreeLibraryAndExitThread, libKernel32, "FreeLibraryAndExitThread")
 	syscall.SyscallN(addr, hLibModule, uintptr(dwExitCode))
 }
 
-func FreeResource(hResData uintptr) BOOL {
+func FreeResource(hResData HGLOBAL) BOOL {
 	addr := LazyAddr(&pFreeResource, libKernel32, "FreeResource")
-	ret, _, _ := syscall.SyscallN(addr, hResData)
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hResData)))
 	return BOOL(ret)
 }
 
-func GetModuleFileNameA(hModule HINSTANCE, lpFilename PSTR, nSize uint32) (uint32, WIN32_ERROR) {
+func GetModuleFileNameA(hModule HMODULE, lpFilename PSTR, nSize uint32) (uint32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetModuleFileNameA, libKernel32, "GetModuleFileNameA")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpFilename)), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
@@ -182,13 +175,13 @@ func GetModuleFileNameA(hModule HINSTANCE, lpFilename PSTR, nSize uint32) (uint3
 
 var GetModuleFileName = GetModuleFileNameW
 
-func GetModuleFileNameW(hModule HINSTANCE, lpFilename PWSTR, nSize uint32) (uint32, WIN32_ERROR) {
+func GetModuleFileNameW(hModule HMODULE, lpFilename PWSTR, nSize uint32) (uint32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetModuleFileNameW, libKernel32, "GetModuleFileNameW")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpFilename)), uintptr(nSize))
 	return uint32(ret), WIN32_ERROR(err)
 }
 
-func GetModuleHandleA(lpModuleName PSTR) (HINSTANCE, WIN32_ERROR) {
+func GetModuleHandleA(lpModuleName PSTR) (HMODULE, WIN32_ERROR) {
 	addr := LazyAddr(&pGetModuleHandleA, libKernel32, "GetModuleHandleA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpModuleName)))
 	return ret, WIN32_ERROR(err)
@@ -196,13 +189,13 @@ func GetModuleHandleA(lpModuleName PSTR) (HINSTANCE, WIN32_ERROR) {
 
 var GetModuleHandle = GetModuleHandleW
 
-func GetModuleHandleW(lpModuleName PWSTR) (HINSTANCE, WIN32_ERROR) {
+func GetModuleHandleW(lpModuleName PWSTR) (HMODULE, WIN32_ERROR) {
 	addr := LazyAddr(&pGetModuleHandleW, libKernel32, "GetModuleHandleW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpModuleName)))
 	return ret, WIN32_ERROR(err)
 }
 
-func GetModuleHandleExA(dwFlags uint32, lpModuleName PSTR, phModule *HINSTANCE) (BOOL, WIN32_ERROR) {
+func GetModuleHandleExA(dwFlags uint32, lpModuleName PSTR, phModule *HMODULE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetModuleHandleExA, libKernel32, "GetModuleHandleExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpModuleName)), uintptr(unsafe.Pointer(phModule)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -210,19 +203,19 @@ func GetModuleHandleExA(dwFlags uint32, lpModuleName PSTR, phModule *HINSTANCE) 
 
 var GetModuleHandleEx = GetModuleHandleExW
 
-func GetModuleHandleExW(dwFlags uint32, lpModuleName PWSTR, phModule *HINSTANCE) (BOOL, WIN32_ERROR) {
+func GetModuleHandleExW(dwFlags uint32, lpModuleName PWSTR, phModule *HMODULE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetModuleHandleExW, libKernel32, "GetModuleHandleExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwFlags), uintptr(unsafe.Pointer(lpModuleName)), uintptr(unsafe.Pointer(phModule)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetProcAddress(hModule HINSTANCE, lpProcName PSTR) (FARPROC, WIN32_ERROR) {
+func GetProcAddress(hModule HMODULE, lpProcName PSTR) (FARPROC, WIN32_ERROR) {
 	addr := LazyAddr(&pGetProcAddress, libKernel32, "GetProcAddress")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpProcName)))
 	return FARPROC(ret), WIN32_ERROR(err)
 }
 
-func LoadLibraryExA(lpLibFileName PSTR, hFile HANDLE, dwFlags LOAD_LIBRARY_FLAGS) (HINSTANCE, WIN32_ERROR) {
+func LoadLibraryExA(lpLibFileName PSTR, hFile HANDLE, dwFlags LOAD_LIBRARY_FLAGS) (HMODULE, WIN32_ERROR) {
 	addr := LazyAddr(&pLoadLibraryExA, libKernel32, "LoadLibraryExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLibFileName)), hFile, uintptr(dwFlags))
 	return ret, WIN32_ERROR(err)
@@ -230,25 +223,25 @@ func LoadLibraryExA(lpLibFileName PSTR, hFile HANDLE, dwFlags LOAD_LIBRARY_FLAGS
 
 var LoadLibraryEx = LoadLibraryExW
 
-func LoadLibraryExW(lpLibFileName PWSTR, hFile HANDLE, dwFlags LOAD_LIBRARY_FLAGS) (HINSTANCE, WIN32_ERROR) {
+func LoadLibraryExW(lpLibFileName PWSTR, hFile HANDLE, dwFlags LOAD_LIBRARY_FLAGS) (HMODULE, WIN32_ERROR) {
 	addr := LazyAddr(&pLoadLibraryExW, libKernel32, "LoadLibraryExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLibFileName)), hFile, uintptr(dwFlags))
 	return ret, WIN32_ERROR(err)
 }
 
-func LoadResource(hModule HINSTANCE, hResInfo HRSRC) (uintptr, WIN32_ERROR) {
+func LoadResource(hModule HMODULE, hResInfo HRSRC) (HGLOBAL, WIN32_ERROR) {
 	addr := LazyAddr(&pLoadResource, libKernel32, "LoadResource")
 	ret, _, err := syscall.SyscallN(addr, hModule, hResInfo)
-	return ret, WIN32_ERROR(err)
+	return (HGLOBAL)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
-func LockResource(hResData uintptr) unsafe.Pointer {
+func LockResource(hResData HGLOBAL) unsafe.Pointer {
 	addr := LazyAddr(&pLockResource, libKernel32, "LockResource")
-	ret, _, _ := syscall.SyscallN(addr, hResData)
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(hResData)))
 	return (unsafe.Pointer)(ret)
 }
 
-func SizeofResource(hModule HINSTANCE, hResInfo HRSRC) (uint32, WIN32_ERROR) {
+func SizeofResource(hModule HMODULE, hResInfo HRSRC) (uint32, WIN32_ERROR) {
 	addr := LazyAddr(&pSizeofResource, libKernel32, "SizeofResource")
 	ret, _, err := syscall.SyscallN(addr, hModule, hResInfo)
 	return uint32(ret), WIN32_ERROR(err)
@@ -272,7 +265,7 @@ func SetDefaultDllDirectories(DirectoryFlags LOAD_LIBRARY_FLAGS) (BOOL, WIN32_ER
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func EnumResourceLanguagesExA(hModule HINSTANCE, lpType PSTR, lpName PSTR, lpEnumFunc ENUMRESLANGPROCA, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
+func EnumResourceLanguagesExA(hModule HMODULE, lpType PSTR, lpName PSTR, lpEnumFunc ENUMRESLANGPROCA, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceLanguagesExA, libKernel32, "EnumResourceLanguagesExA")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpName)), lpEnumFunc, lParam, uintptr(dwFlags), uintptr(LangId))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -280,13 +273,13 @@ func EnumResourceLanguagesExA(hModule HINSTANCE, lpType PSTR, lpName PSTR, lpEnu
 
 var EnumResourceLanguagesEx = EnumResourceLanguagesExW
 
-func EnumResourceLanguagesExW(hModule HINSTANCE, lpType PWSTR, lpName PWSTR, lpEnumFunc ENUMRESLANGPROCW, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
+func EnumResourceLanguagesExW(hModule HMODULE, lpType PWSTR, lpName PWSTR, lpEnumFunc ENUMRESLANGPROCW, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceLanguagesExW, libKernel32, "EnumResourceLanguagesExW")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpName)), lpEnumFunc, lParam, uintptr(dwFlags), uintptr(LangId))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func EnumResourceNamesExA(hModule HINSTANCE, lpType PSTR, lpEnumFunc ENUMRESNAMEPROCA, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
+func EnumResourceNamesExA(hModule HMODULE, lpType PSTR, lpEnumFunc ENUMRESNAMEPROCA, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceNamesExA, libKernel32, "EnumResourceNamesExA")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), lpEnumFunc, lParam, uintptr(dwFlags), uintptr(LangId))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -294,13 +287,13 @@ func EnumResourceNamesExA(hModule HINSTANCE, lpType PSTR, lpEnumFunc ENUMRESNAME
 
 var EnumResourceNamesEx = EnumResourceNamesExW
 
-func EnumResourceNamesExW(hModule HINSTANCE, lpType PWSTR, lpEnumFunc ENUMRESNAMEPROCW, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
+func EnumResourceNamesExW(hModule HMODULE, lpType PWSTR, lpEnumFunc ENUMRESNAMEPROCW, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceNamesExW, libKernel32, "EnumResourceNamesExW")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), lpEnumFunc, lParam, uintptr(dwFlags), uintptr(LangId))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func EnumResourceTypesExA(hModule HINSTANCE, lpEnumFunc ENUMRESTYPEPROCA, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
+func EnumResourceTypesExA(hModule HMODULE, lpEnumFunc ENUMRESTYPEPROCA, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceTypesExA, libKernel32, "EnumResourceTypesExA")
 	ret, _, err := syscall.SyscallN(addr, hModule, lpEnumFunc, lParam, uintptr(dwFlags), uintptr(LangId))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -308,7 +301,7 @@ func EnumResourceTypesExA(hModule HINSTANCE, lpEnumFunc ENUMRESTYPEPROCA, lParam
 
 var EnumResourceTypesEx = EnumResourceTypesExW
 
-func EnumResourceTypesExW(hModule HINSTANCE, lpEnumFunc ENUMRESTYPEPROCW, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
+func EnumResourceTypesExW(hModule HMODULE, lpEnumFunc ENUMRESTYPEPROCW, lParam uintptr, dwFlags uint32, LangId uint16) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceTypesExW, libKernel32, "EnumResourceTypesExW")
 	ret, _, err := syscall.SyscallN(addr, hModule, lpEnumFunc, lParam, uintptr(dwFlags), uintptr(LangId))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -316,13 +309,13 @@ func EnumResourceTypesExW(hModule HINSTANCE, lpEnumFunc ENUMRESTYPEPROCW, lParam
 
 var FindResource = FindResourceW
 
-func FindResourceW(hModule HINSTANCE, lpName PWSTR, lpType PWSTR) HRSRC {
+func FindResourceW(hModule HMODULE, lpName PWSTR, lpType PWSTR) HRSRC {
 	addr := LazyAddr(&pFindResourceW, libKernel32, "FindResourceW")
 	ret, _, _ := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpType)))
 	return ret
 }
 
-func LoadLibraryA(lpLibFileName PSTR) (HINSTANCE, WIN32_ERROR) {
+func LoadLibraryA(lpLibFileName PSTR) (HMODULE, WIN32_ERROR) {
 	addr := LazyAddr(&pLoadLibraryA, libKernel32, "LoadLibraryA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLibFileName)))
 	return ret, WIN32_ERROR(err)
@@ -330,7 +323,7 @@ func LoadLibraryA(lpLibFileName PSTR) (HINSTANCE, WIN32_ERROR) {
 
 var LoadLibrary = LoadLibraryW
 
-func LoadLibraryW(lpLibFileName PWSTR) (HINSTANCE, WIN32_ERROR) {
+func LoadLibraryW(lpLibFileName PWSTR) (HMODULE, WIN32_ERROR) {
 	addr := LazyAddr(&pLoadLibraryW, libKernel32, "LoadLibraryW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLibFileName)))
 	return ret, WIN32_ERROR(err)
@@ -338,13 +331,13 @@ func LoadLibraryW(lpLibFileName PWSTR) (HINSTANCE, WIN32_ERROR) {
 
 var EnumResourceNames = EnumResourceNamesW
 
-func EnumResourceNamesW(hModule HINSTANCE, lpType PWSTR, lpEnumFunc ENUMRESNAMEPROCW, lParam uintptr) BOOL {
+func EnumResourceNamesW(hModule HMODULE, lpType PWSTR, lpEnumFunc ENUMRESNAMEPROCW, lParam uintptr) BOOL {
 	addr := LazyAddr(&pEnumResourceNamesW, libKernel32, "EnumResourceNamesW")
 	ret, _, _ := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), lpEnumFunc, lParam)
 	return BOOL(ret)
 }
 
-func EnumResourceNamesA(hModule HINSTANCE, lpType PSTR, lpEnumFunc ENUMRESNAMEPROCA, lParam uintptr) (BOOL, WIN32_ERROR) {
+func EnumResourceNamesA(hModule HMODULE, lpType PSTR, lpEnumFunc ENUMRESNAMEPROCA, lParam uintptr) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceNamesA, libKernel32, "EnumResourceNamesA")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -356,25 +349,25 @@ func LoadModule(lpModuleName PSTR, lpParameterBlock unsafe.Pointer) uint32 {
 	return uint32(ret)
 }
 
-func LoadPackagedLibrary(lpwLibFileName PWSTR, Reserved uint32) (HINSTANCE, WIN32_ERROR) {
+func LoadPackagedLibrary(lpwLibFileName PWSTR, Reserved uint32) (HMODULE, WIN32_ERROR) {
 	addr := LazyAddr(&pLoadPackagedLibrary, libKernel32, "LoadPackagedLibrary")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpwLibFileName)), uintptr(Reserved))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindResourceA(hModule HINSTANCE, lpName PSTR, lpType PSTR) (HRSRC, WIN32_ERROR) {
+func FindResourceA(hModule HMODULE, lpName PSTR, lpType PSTR) (HRSRC, WIN32_ERROR) {
 	addr := LazyAddr(&pFindResourceA, libKernel32, "FindResourceA")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpName)), uintptr(unsafe.Pointer(lpType)))
 	return ret, WIN32_ERROR(err)
 }
 
-func FindResourceExA(hModule HINSTANCE, lpType PSTR, lpName PSTR, wLanguage uint16) (HRSRC, WIN32_ERROR) {
+func FindResourceExA(hModule HMODULE, lpType PSTR, lpName PSTR, wLanguage uint16) (HRSRC, WIN32_ERROR) {
 	addr := LazyAddr(&pFindResourceExA, libKernel32, "FindResourceExA")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpName)), uintptr(wLanguage))
 	return ret, WIN32_ERROR(err)
 }
 
-func EnumResourceTypesA(hModule HINSTANCE, lpEnumFunc ENUMRESTYPEPROCA, lParam uintptr) (BOOL, WIN32_ERROR) {
+func EnumResourceTypesA(hModule HMODULE, lpEnumFunc ENUMRESTYPEPROCA, lParam uintptr) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceTypesA, libKernel32, "EnumResourceTypesA")
 	ret, _, err := syscall.SyscallN(addr, hModule, lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -382,13 +375,13 @@ func EnumResourceTypesA(hModule HINSTANCE, lpEnumFunc ENUMRESTYPEPROCA, lParam u
 
 var EnumResourceTypes = EnumResourceTypesW
 
-func EnumResourceTypesW(hModule HINSTANCE, lpEnumFunc ENUMRESTYPEPROCW, lParam uintptr) (BOOL, WIN32_ERROR) {
+func EnumResourceTypesW(hModule HMODULE, lpEnumFunc ENUMRESTYPEPROCW, lParam uintptr) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceTypesW, libKernel32, "EnumResourceTypesW")
 	ret, _, err := syscall.SyscallN(addr, hModule, lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func EnumResourceLanguagesA(hModule HINSTANCE, lpType PSTR, lpName PSTR, lpEnumFunc ENUMRESLANGPROCA, lParam uintptr) (BOOL, WIN32_ERROR) {
+func EnumResourceLanguagesA(hModule HMODULE, lpType PSTR, lpName PSTR, lpEnumFunc ENUMRESLANGPROCA, lParam uintptr) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceLanguagesA, libKernel32, "EnumResourceLanguagesA")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpName)), lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -396,7 +389,7 @@ func EnumResourceLanguagesA(hModule HINSTANCE, lpType PSTR, lpName PSTR, lpEnumF
 
 var EnumResourceLanguages = EnumResourceLanguagesW
 
-func EnumResourceLanguagesW(hModule HINSTANCE, lpType PWSTR, lpName PWSTR, lpEnumFunc ENUMRESLANGPROCW, lParam uintptr) (BOOL, WIN32_ERROR) {
+func EnumResourceLanguagesW(hModule HMODULE, lpType PWSTR, lpName PWSTR, lpEnumFunc ENUMRESLANGPROCW, lParam uintptr) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pEnumResourceLanguagesW, libKernel32, "EnumResourceLanguagesW")
 	ret, _, err := syscall.SyscallN(addr, hModule, uintptr(unsafe.Pointer(lpType)), uintptr(unsafe.Pointer(lpName)), lpEnumFunc, lParam)
 	return BOOL(ret), WIN32_ERROR(err)

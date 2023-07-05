@@ -6,9 +6,52 @@ import (
 )
 
 type (
-	HIMC              = uintptr
-	HIMCC             = uintptr
-	HSAVEDUILANGUAGES = uintptr
+	HIMC                       = uintptr
+	HIMCC                      = uintptr
+	HSAVEDUILANGUAGES          = uintptr
+	UBiDi                      = uintptr
+	UBiDiTransform             = uintptr
+	UBreakIterator             = uintptr
+	UCaseMap                   = uintptr
+	UCharsetDetector           = uintptr
+	UCharsetMatch              = uintptr
+	UCollationElements         = uintptr
+	UCollator                  = uintptr
+	UConstrainedFieldPosition  = uintptr
+	UConverter                 = uintptr
+	UConverterSelector         = uintptr
+	UCPMap                     = uintptr
+	UDateFormatSymbols         = uintptr
+	UDateIntervalFormat        = uintptr
+	UEnumeration               = uintptr
+	UFieldPositionIterator     = uintptr
+	UFormattedDateInterval     = uintptr
+	UFormattedList             = uintptr
+	UFormattedNumber           = uintptr
+	UFormattedNumberRange      = uintptr
+	UFormattedRelativeDateTime = uintptr
+	UFormattedValue            = uintptr
+	UGenderInfo                = uintptr
+	UHashtable                 = uintptr
+	UIDNA                      = uintptr
+	UListFormatter             = uintptr
+	ULocaleData                = uintptr
+	ULocaleDisplayNames        = uintptr
+	UMutableCPTrie             = uintptr
+	UNormalizer2               = uintptr
+	UNumberFormatter           = uintptr
+	UNumberingSystem           = uintptr
+	UPluralRules               = uintptr
+	URegion                    = uintptr
+	URegularExpression         = uintptr
+	URelativeDateTimeFormatter = uintptr
+	UResourceBundle            = uintptr
+	USearch                    = uintptr
+	USet                       = uintptr
+	USpoofChecker              = uintptr
+	USpoofCheckResult          = uintptr
+	UStringPrepProfile         = uintptr
+	UStringSearch              = uintptr
 )
 
 const (
@@ -96,9 +139,6 @@ const (
 	LOCALE_REPLACEMENT                        uint32  = 0x8
 	LOCALE_NEUTRALDATA                        uint32  = 0x10
 	LOCALE_SPECIFICDATA                       uint32  = 0x20
-	CSTR_LESS_THAN                            uint32  = 0x1
-	CSTR_EQUAL                                uint32  = 0x2
-	CSTR_GREATER_THAN                         uint32  = 0x3
 	CP_ACP                                    uint32  = 0x0
 	CP_OEMCP                                  uint32  = 0x1
 	CP_MACCP                                  uint32  = 0x2
@@ -1043,6 +1083,15 @@ const (
 	IS_TEXT_UNICODE_REVERSE_MASK       IS_TEXT_UNICODE_RESULT = 240
 	IS_TEXT_UNICODE_NOT_UNICODE_MASK   IS_TEXT_UNICODE_RESULT = 3840
 	IS_TEXT_UNICODE_NOT_ASCII_MASK     IS_TEXT_UNICODE_RESULT = 61440
+)
+
+// enum
+type COMPARESTRING_RESULT int32
+
+const (
+	CSTR_LESS_THAN    COMPARESTRING_RESULT = 1
+	CSTR_EQUAL        COMPARESTRING_RESULT = 2
+	CSTR_GREATER_THAN COMPARESTRING_RESULT = 3
 )
 
 // enum
@@ -4390,18 +4439,6 @@ type UCharIterator struct {
 	SetState      UCharIteratorSetState
 }
 
-type UEnumeration struct {
-}
-
-type UResourceBundle struct {
-}
-
-type ULocaleDisplayNames struct {
-}
-
-type UCPMap struct {
-}
-
 type UCPTrieData struct {
 	Data [1]uint64
 }
@@ -4454,12 +4491,6 @@ type UCPTrie struct {
 	NullValue          uint32
 }
 
-type UMutableCPTrie struct {
-}
-
-type UConverter struct {
-}
-
 type UConverterFromUnicodeArgs struct {
 	Size        uint16
 	Flush       int8
@@ -4480,15 +4511,6 @@ type UConverterToUnicodeArgs struct {
 	Target      *uint16
 	TargetLimit *uint16
 	Offsets     *int32
-}
-
-type USet struct {
-}
-
-type UBiDi struct {
-}
-
-type UBiDiTransform struct {
 }
 
 type UTextFuncs struct {
@@ -4544,29 +4566,11 @@ type USerializedSet struct {
 	StaticArray [8]uint16
 }
 
-type UNormalizer2 struct {
-}
-
-type UConverterSelector struct {
-}
-
-type UBreakIterator struct {
-}
-
-type UCaseMap struct {
-}
-
 type UParseError struct {
 	Line        int32
 	Offset      int32
 	PreContext  [16]uint16
 	PostContext [16]uint16
-}
-
-type UStringPrepProfile struct {
-}
-
-type UIDNA struct {
 }
 
 type UIDNAInfo struct {
@@ -4578,104 +4582,11 @@ type UIDNAInfo struct {
 	ReservedI3              int32
 }
 
-type UCollator struct {
-}
-
-type UCollationElements struct {
-}
-
-type UCharsetDetector struct {
-}
-
-type UCharsetMatch struct {
-}
-
-type UFieldPositionIterator struct {
-}
-
-type UConstrainedFieldPosition struct {
-}
-
-type UFormattedValue struct {
-}
-
-type UDateIntervalFormat struct {
-}
-
-type UFormattedDateInterval struct {
-}
-
-type UGenderInfo struct {
-}
-
-type UListFormatter struct {
-}
-
-type UFormattedList struct {
-}
-
-type ULocaleData struct {
-}
-
-type UDateFormatSymbols struct {
-}
-
-type UNumberFormatter struct {
-}
-
-type UFormattedNumber struct {
-}
-
-type UNumberingSystem struct {
-}
-
-type UFormattedNumberRange struct {
-}
-
-type UPluralRules struct {
-}
-
-type URegularExpression struct {
-}
-
-type URegion struct {
-}
-
-type URelativeDateTimeFormatter struct {
-}
-
-type UFormattedRelativeDateTime struct {
-}
-
-type UStringSearch struct {
-}
-
-type USpoofChecker struct {
-}
-
-type USpoofCheckResult struct {
-}
-
 type UTransPosition struct {
 	ContextStart int32
 	ContextLimit int32
 	Start        int32
 	Limit        int32
-}
-
-type UHashtable struct {
-}
-
-type USearch struct {
-}
-
-type CMLangString struct {
-}
-
-type CMLangConvertCharset struct {
-}
-
-type CMultiLanguage struct {
 }
 
 type MIMECPINFO struct {
@@ -4726,6 +4637,15 @@ type SCRIPTFONTINFO struct {
 type UNICODERANGE struct {
 	WcFrom uint16
 	WcTo   uint16
+}
+
+type CMLangString struct {
+}
+
+type CMLangConvertCharset struct {
+}
+
+type CMultiLanguage struct {
 }
 
 // func types
@@ -6749,24 +6669,24 @@ func GetDurationFormatEx(lpLocaleName PWSTR, dwFlags uint32, lpDuration *SYSTEMT
 	return int32(ret), WIN32_ERROR(err)
 }
 
-func CompareStringEx(lpLocaleName PWSTR, dwCmpFlags COMPARE_STRING_FLAGS, lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32, lpVersionInformation *NLSVERSIONINFO, lpReserved unsafe.Pointer, lParam LPARAM) (int32, WIN32_ERROR) {
+func CompareStringEx(lpLocaleName PWSTR, dwCmpFlags COMPARE_STRING_FLAGS, lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32, lpVersionInformation *NLSVERSIONINFO, lpReserved unsafe.Pointer, lParam LPARAM) (COMPARESTRING_RESULT, WIN32_ERROR) {
 	addr := LazyAddr(&pCompareStringEx, libKernel32, "CompareStringEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpLocaleName)), uintptr(dwCmpFlags), uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2), uintptr(unsafe.Pointer(lpVersionInformation)), uintptr(lpReserved), lParam)
-	return int32(ret), WIN32_ERROR(err)
+	return COMPARESTRING_RESULT(ret), WIN32_ERROR(err)
 }
 
-func CompareStringOrdinal(lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32, bIgnoreCase BOOL) (int32, WIN32_ERROR) {
+func CompareStringOrdinal(lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32, bIgnoreCase BOOL) (COMPARESTRING_RESULT, WIN32_ERROR) {
 	addr := LazyAddr(&pCompareStringOrdinal, libKernel32, "CompareStringOrdinal")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2), uintptr(bIgnoreCase))
-	return int32(ret), WIN32_ERROR(err)
+	return COMPARESTRING_RESULT(ret), WIN32_ERROR(err)
 }
 
 var CompareString = CompareStringW
 
-func CompareStringW(Locale uint32, dwCmpFlags uint32, lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32) int32 {
+func CompareStringW(Locale uint32, dwCmpFlags uint32, lpString1 PWSTR, cchCount1 int32, lpString2 PWSTR, cchCount2 int32) COMPARESTRING_RESULT {
 	addr := LazyAddr(&pCompareStringW, libKernel32, "CompareStringW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwCmpFlags), uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2))
-	return int32(ret)
+	return COMPARESTRING_RESULT(ret)
 }
 
 var FoldString = FoldStringW
@@ -6843,10 +6763,10 @@ func GetCPInfoExW(CodePage uint32, dwFlags uint32, lpCPInfoEx *CPINFOEXW) (BOOL,
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CompareStringA(Locale uint32, dwCmpFlags uint32, lpString1 *int8, cchCount1 int32, lpString2 *int8, cchCount2 int32) int32 {
+func CompareStringA(Locale uint32, dwCmpFlags uint32, lpString1 *int8, cchCount1 int32, lpString2 *int8, cchCount2 int32) COMPARESTRING_RESULT {
 	addr := LazyAddr(&pCompareStringA, libKernel32, "CompareStringA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(Locale), uintptr(dwCmpFlags), uintptr(unsafe.Pointer(lpString1)), uintptr(cchCount1), uintptr(unsafe.Pointer(lpString2)), uintptr(cchCount2))
-	return int32(ret)
+	return COMPARESTRING_RESULT(ret)
 }
 
 func FindNLSString(Locale uint32, dwFindNLSStringFlags uint32, lpStringSource PWSTR, cchSource int32, lpStringValue PWSTR, cchValue int32, pcchFound *int32) (int32, WIN32_ERROR) {

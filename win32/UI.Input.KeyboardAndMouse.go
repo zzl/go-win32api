@@ -130,9 +130,6 @@ const (
 	KBDNLS_KANAEVENT                  uint32 = 0xe
 	KBDNLS_CONV_OR_NONCONV            uint32 = 0xf
 	KBD_TYPE                          uint32 = 0x4
-	VK__none_                         uint32 = 0xff
-	VK_ABNT_C1                        uint32 = 0xc1
-	VK_ABNT_C2                        uint32 = 0xc2
 	SCANCODE_LSHIFT                   uint32 = 0x2a
 	SCANCODE_RSHIFT                   uint32 = 0x36
 	SCANCODE_CTRL                     uint32 = 0x1d
@@ -142,20 +139,6 @@ const (
 	SCANCODE_LWIN                     uint32 = 0x5b
 	SCANCODE_RWIN                     uint32 = 0x5c
 	SCANCODE_THAI_LAYOUT_TOGGLE       uint32 = 0x29
-	VK_DBE_ALPHANUMERIC               uint32 = 0xf0
-	VK_DBE_KATAKANA                   uint32 = 0xf1
-	VK_DBE_HIRAGANA                   uint32 = 0xf2
-	VK_DBE_SBCSCHAR                   uint32 = 0xf3
-	VK_DBE_DBCSCHAR                   uint32 = 0xf4
-	VK_DBE_ROMAN                      uint32 = 0xf5
-	VK_DBE_NOROMAN                    uint32 = 0xf6
-	VK_DBE_ENTERWORDREGISTERMODE      uint32 = 0xf7
-	VK_DBE_ENTERIMECONFIGMODE         uint32 = 0xf8
-	VK_DBE_FLUSHSTRING                uint32 = 0xf9
-	VK_DBE_CODEINPUT                  uint32 = 0xfa
-	VK_DBE_NOCODEINPUT                uint32 = 0xfb
-	VK_DBE_DETERMINESTRING            uint32 = 0xfc
-	VK_DBE_ENTERDLGCONVERSIONMODE     uint32 = 0xfd
 )
 
 // enums
@@ -287,6 +270,23 @@ const (
 	VK_X                               VIRTUAL_KEY = 88
 	VK_Y                               VIRTUAL_KEY = 89
 	VK_Z                               VIRTUAL_KEY = 90
+	VK_ABNT_C1                         VIRTUAL_KEY = 193
+	VK_ABNT_C2                         VIRTUAL_KEY = 194
+	VK_DBE_ALPHANUMERIC                VIRTUAL_KEY = 240
+	VK_DBE_CODEINPUT                   VIRTUAL_KEY = 250
+	VK_DBE_DBCSCHAR                    VIRTUAL_KEY = 244
+	VK_DBE_DETERMINESTRING             VIRTUAL_KEY = 252
+	VK_DBE_ENTERDLGCONVERSIONMODE      VIRTUAL_KEY = 253
+	VK_DBE_ENTERIMECONFIGMODE          VIRTUAL_KEY = 248
+	VK_DBE_ENTERWORDREGISTERMODE       VIRTUAL_KEY = 247
+	VK_DBE_FLUSHSTRING                 VIRTUAL_KEY = 249
+	VK_DBE_HIRAGANA                    VIRTUAL_KEY = 242
+	VK_DBE_KATAKANA                    VIRTUAL_KEY = 241
+	VK_DBE_NOCODEINPUT                 VIRTUAL_KEY = 251
+	VK_DBE_NOROMAN                     VIRTUAL_KEY = 246
+	VK_DBE_ROMAN                       VIRTUAL_KEY = 245
+	VK_DBE_SBCSCHAR                    VIRTUAL_KEY = 243
+	VK__none_                          VIRTUAL_KEY = 255
 	VK_LBUTTON                         VIRTUAL_KEY = 1
 	VK_RBUTTON                         VIRTUAL_KEY = 2
 	VK_CANCEL                          VIRTUAL_KEY = 3
