@@ -119,7 +119,7 @@ type SAFER_CODE_PROPERTIES_V1 struct {
 	ImageHash        [64]byte
 	DwImageHashSize  uint32
 	ImageSize        int64
-	HashAlgorithm    uint32
+	HashAlgorithm    ALG_ID
 	PByteBlock       *byte
 	HWndParent       HWND
 	DwWVTUIChoice    uint32
@@ -134,7 +134,7 @@ type SAFER_CODE_PROPERTIES_V2 struct {
 	ImageHash          [64]byte
 	DwImageHashSize    uint32
 	ImageSize          int64
-	HashAlgorithm      uint32
+	HashAlgorithm      ALG_ID
 	PByteBlock         *byte
 	HWndParent         HWND
 	DwWVTUIChoice      uint32
@@ -165,7 +165,7 @@ type SAFER_HASH_IDENTIFICATION struct {
 	FriendlyName  [256]uint16
 	HashSize      uint32
 	ImageHash     [64]byte
-	HashAlgorithm uint32
+	HashAlgorithm ALG_ID
 	ImageSize     int64
 	DwSaferFlags  uint32
 }
@@ -174,7 +174,7 @@ type SAFER_HASH_IDENTIFICATION2 struct {
 	HashIdentification SAFER_HASH_IDENTIFICATION
 	HashSize           uint32
 	ImageHash          [64]byte
-	HashAlgorithm      uint32
+	HashAlgorithm      ALG_ID
 }
 
 type SAFER_URLZONE_IDENTIFICATION struct {

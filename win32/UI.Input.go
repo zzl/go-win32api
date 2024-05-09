@@ -55,6 +55,17 @@ const (
 )
 
 // enum
+type MOUSE_STATE uint16
+
+const (
+	MOUSE_MOVE_RELATIVE      MOUSE_STATE = 0
+	MOUSE_MOVE_ABSOLUTE      MOUSE_STATE = 1
+	MOUSE_VIRTUAL_DESKTOP    MOUSE_STATE = 2
+	MOUSE_ATTRIBUTES_CHANGED MOUSE_STATE = 4
+	MOUSE_MOVE_NOCOALESCE    MOUSE_STATE = 8
+)
+
+// enum
 type INPUT_MESSAGE_DEVICE_TYPE int32
 
 const (
@@ -111,7 +122,7 @@ func (this *RAWMOUSE_Anonymous) AnonymousVal() RAWMOUSE_Anonymous_Anonymous {
 }
 
 type RAWMOUSE struct {
-	UsFlags uint16
+	UsFlags MOUSE_STATE
 	RAWMOUSE_Anonymous
 	UlRawButtons       uint32
 	LLastX             int32

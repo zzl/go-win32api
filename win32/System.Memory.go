@@ -187,6 +187,17 @@ const (
 )
 
 // enum
+// flags
+type SETPROCESSWORKINGSETSIZEEX_FLAGS uint32
+
+const (
+	QUOTA_LIMITS_HARDWS_MIN_ENABLE  SETPROCESSWORKINGSETSIZEEX_FLAGS = 1
+	QUOTA_LIMITS_HARDWS_MIN_DISABLE SETPROCESSWORKINGSETSIZEEX_FLAGS = 2
+	QUOTA_LIMITS_HARDWS_MAX_ENABLE  SETPROCESSWORKINGSETSIZEEX_FLAGS = 4
+	QUOTA_LIMITS_HARDWS_MAX_DISABLE SETPROCESSWORKINGSETSIZEEX_FLAGS = 8
+)
+
+// enum
 type MEMORY_RESOURCE_NOTIFICATION_TYPE int32
 
 const (
@@ -781,7 +792,7 @@ func GetProcessWorkingSetSizeEx(hProcess HANDLE, lpMinimumWorkingSetSize *uintpt
 	return BOOL(ret)
 }
 
-func SetProcessWorkingSetSizeEx(hProcess HANDLE, dwMinimumWorkingSetSize uintptr, dwMaximumWorkingSetSize uintptr, Flags uint32) (BOOL, WIN32_ERROR) {
+func SetProcessWorkingSetSizeEx(hProcess HANDLE, dwMinimumWorkingSetSize uintptr, dwMaximumWorkingSetSize uintptr, Flags SETPROCESSWORKINGSETSIZEEX_FLAGS) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSetProcessWorkingSetSizeEx, libKernel32, "SetProcessWorkingSetSizeEx")
 	ret, _, err := syscall.SyscallN(addr, hProcess, dwMinimumWorkingSetSize, dwMaximumWorkingSetSize, uintptr(Flags))
 	return BOOL(ret), WIN32_ERROR(err)

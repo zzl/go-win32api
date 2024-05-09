@@ -17,6 +17,19 @@ type (
 )
 
 const (
+	CONDITION_VARIABLE_LOCKMODE_SHARED                    uint32 = 0x1
+	INIT_ONCE_CHECK_ONLY                                  uint32 = 0x1
+	INIT_ONCE_ASYNC                                       uint32 = 0x2
+	INIT_ONCE_INIT_FAILED                                 uint32 = 0x4
+	INIT_ONCE_CTX_RESERVED_BITS                           uint32 = 0x2
+	ALL_PROCESSOR_GROUPS                                  uint16 = 0xffff
+	RTL_CRITICAL_SECTION_FLAG_NO_DEBUG_INFO               uint32 = 0x1000000
+	RTL_CRITICAL_SECTION_FLAG_DYNAMIC_SPIN                uint32 = 0x2000000
+	RTL_CRITICAL_SECTION_FLAG_STATIC_INIT                 uint32 = 0x4000000
+	RTL_CRITICAL_SECTION_FLAG_RESOURCE_TYPE               uint32 = 0x8000000
+	RTL_CRITICAL_SECTION_FLAG_FORCE_DEBUG_INFO            uint32 = 0x10000000
+	RTL_CRITICAL_SECTION_ALL_FLAG_BITS                    uint32 = 0xff000000
+	RTL_CRITICAL_SECTION_DEBUG_FLAG_STATIC_INIT           uint32 = 0x1
 	FLS_OUT_OF_INDEXES                                    uint32 = 0xffffffff
 	PRIVATE_NAMESPACE_FLAG_DESTROY                        uint32 = 0x1
 	TLS_OUT_OF_INDEXES                                    uint32 = 0xffffffff
@@ -32,11 +45,6 @@ const (
 	PROCESS_POWER_THROTTLING_IGNORE_TIMER_RESOLUTION      uint32 = 0x4
 	PROCESS_LEAP_SECOND_INFO_FLAG_ENABLE_SIXTY_SECOND     uint32 = 0x1
 	PROCESS_LEAP_SECOND_INFO_VALID_FLAGS                  uint32 = 0x1
-	INIT_ONCE_CHECK_ONLY                                  uint32 = 0x1
-	INIT_ONCE_ASYNC                                       uint32 = 0x2
-	INIT_ONCE_INIT_FAILED                                 uint32 = 0x4
-	INIT_ONCE_CTX_RESERVED_BITS                           uint32 = 0x2
-	CONDITION_VARIABLE_LOCKMODE_SHARED                    uint32 = 0x1
 	CREATE_MUTEX_INITIAL_OWNER                            uint32 = 0x1
 	CREATE_WAITABLE_TIMER_MANUAL_RESET                    uint32 = 0x1
 	CREATE_WAITABLE_TIMER_HIGH_RESOLUTION                 uint32 = 0x2
@@ -155,34 +163,52 @@ const (
 type PROCESSOR_FEATURE_ID uint32
 
 const (
-	PF_ARM_64BIT_LOADSTORE_ATOMIC            PROCESSOR_FEATURE_ID = 25
-	PF_ARM_DIVIDE_INSTRUCTION_AVAILABLE      PROCESSOR_FEATURE_ID = 24
-	PF_ARM_EXTERNAL_CACHE_AVAILABLE          PROCESSOR_FEATURE_ID = 26
-	PF_ARM_FMAC_INSTRUCTIONS_AVAILABLE       PROCESSOR_FEATURE_ID = 27
-	PF_ARM_VFP_32_REGISTERS_AVAILABLE        PROCESSOR_FEATURE_ID = 18
-	PF_3DNOW_INSTRUCTIONS_AVAILABLE          PROCESSOR_FEATURE_ID = 7
-	PF_CHANNELS_ENABLED                      PROCESSOR_FEATURE_ID = 16
+	PF_FLOATING_POINT_PRECISION_ERRATA       PROCESSOR_FEATURE_ID = 0
+	PF_FLOATING_POINT_EMULATED               PROCESSOR_FEATURE_ID = 1
 	PF_COMPARE_EXCHANGE_DOUBLE               PROCESSOR_FEATURE_ID = 2
+	PF_MMX_INSTRUCTIONS_AVAILABLE            PROCESSOR_FEATURE_ID = 3
+	PF_PPC_MOVEMEM_64BIT_OK                  PROCESSOR_FEATURE_ID = 4
+	PF_ALPHA_BYTE_INSTRUCTIONS               PROCESSOR_FEATURE_ID = 5
+	PF_XMMI_INSTRUCTIONS_AVAILABLE           PROCESSOR_FEATURE_ID = 6
+	PF_3DNOW_INSTRUCTIONS_AVAILABLE          PROCESSOR_FEATURE_ID = 7
+	PF_RDTSC_INSTRUCTION_AVAILABLE           PROCESSOR_FEATURE_ID = 8
+	PF_PAE_ENABLED                           PROCESSOR_FEATURE_ID = 9
+	PF_XMMI64_INSTRUCTIONS_AVAILABLE         PROCESSOR_FEATURE_ID = 10
+	PF_SSE_DAZ_MODE_AVAILABLE                PROCESSOR_FEATURE_ID = 11
+	PF_NX_ENABLED                            PROCESSOR_FEATURE_ID = 12
+	PF_SSE3_INSTRUCTIONS_AVAILABLE           PROCESSOR_FEATURE_ID = 13
 	PF_COMPARE_EXCHANGE128                   PROCESSOR_FEATURE_ID = 14
 	PF_COMPARE64_EXCHANGE128                 PROCESSOR_FEATURE_ID = 15
-	PF_FASTFAIL_AVAILABLE                    PROCESSOR_FEATURE_ID = 23
-	PF_FLOATING_POINT_EMULATED               PROCESSOR_FEATURE_ID = 1
-	PF_FLOATING_POINT_PRECISION_ERRATA       PROCESSOR_FEATURE_ID = 0
-	PF_MMX_INSTRUCTIONS_AVAILABLE            PROCESSOR_FEATURE_ID = 3
-	PF_NX_ENABLED                            PROCESSOR_FEATURE_ID = 12
-	PF_PAE_ENABLED                           PROCESSOR_FEATURE_ID = 9
-	PF_RDTSC_INSTRUCTION_AVAILABLE           PROCESSOR_FEATURE_ID = 8
-	PF_RDWRFSGSBASE_AVAILABLE                PROCESSOR_FEATURE_ID = 22
-	PF_SECOND_LEVEL_ADDRESS_TRANSLATION      PROCESSOR_FEATURE_ID = 20
-	PF_SSE3_INSTRUCTIONS_AVAILABLE           PROCESSOR_FEATURE_ID = 13
-	PF_VIRT_FIRMWARE_ENABLED                 PROCESSOR_FEATURE_ID = 21
-	PF_XMMI_INSTRUCTIONS_AVAILABLE           PROCESSOR_FEATURE_ID = 6
-	PF_XMMI64_INSTRUCTIONS_AVAILABLE         PROCESSOR_FEATURE_ID = 10
+	PF_CHANNELS_ENABLED                      PROCESSOR_FEATURE_ID = 16
 	PF_XSAVE_ENABLED                         PROCESSOR_FEATURE_ID = 17
+	PF_ARM_VFP_32_REGISTERS_AVAILABLE        PROCESSOR_FEATURE_ID = 18
+	PF_ARM_NEON_INSTRUCTIONS_AVAILABLE       PROCESSOR_FEATURE_ID = 19
+	PF_SECOND_LEVEL_ADDRESS_TRANSLATION      PROCESSOR_FEATURE_ID = 20
+	PF_VIRT_FIRMWARE_ENABLED                 PROCESSOR_FEATURE_ID = 21
+	PF_RDWRFSGSBASE_AVAILABLE                PROCESSOR_FEATURE_ID = 22
+	PF_FASTFAIL_AVAILABLE                    PROCESSOR_FEATURE_ID = 23
+	PF_ARM_DIVIDE_INSTRUCTION_AVAILABLE      PROCESSOR_FEATURE_ID = 24
+	PF_ARM_64BIT_LOADSTORE_ATOMIC            PROCESSOR_FEATURE_ID = 25
+	PF_ARM_EXTERNAL_CACHE_AVAILABLE          PROCESSOR_FEATURE_ID = 26
+	PF_ARM_FMAC_INSTRUCTIONS_AVAILABLE       PROCESSOR_FEATURE_ID = 27
+	PF_RDRAND_INSTRUCTION_AVAILABLE          PROCESSOR_FEATURE_ID = 28
 	PF_ARM_V8_INSTRUCTIONS_AVAILABLE         PROCESSOR_FEATURE_ID = 29
 	PF_ARM_V8_CRYPTO_INSTRUCTIONS_AVAILABLE  PROCESSOR_FEATURE_ID = 30
 	PF_ARM_V8_CRC32_INSTRUCTIONS_AVAILABLE   PROCESSOR_FEATURE_ID = 31
+	PF_RDTSCP_INSTRUCTION_AVAILABLE          PROCESSOR_FEATURE_ID = 32
+	PF_RDPID_INSTRUCTION_AVAILABLE           PROCESSOR_FEATURE_ID = 33
 	PF_ARM_V81_ATOMIC_INSTRUCTIONS_AVAILABLE PROCESSOR_FEATURE_ID = 34
+	PF_MONITORX_INSTRUCTION_AVAILABLE        PROCESSOR_FEATURE_ID = 35
+	PF_SSSE3_INSTRUCTIONS_AVAILABLE          PROCESSOR_FEATURE_ID = 36
+	PF_SSE4_1_INSTRUCTIONS_AVAILABLE         PROCESSOR_FEATURE_ID = 37
+	PF_SSE4_2_INSTRUCTIONS_AVAILABLE         PROCESSOR_FEATURE_ID = 38
+	PF_AVX_INSTRUCTIONS_AVAILABLE            PROCESSOR_FEATURE_ID = 39
+	PF_AVX2_INSTRUCTIONS_AVAILABLE           PROCESSOR_FEATURE_ID = 40
+	PF_AVX512F_INSTRUCTIONS_AVAILABLE        PROCESSOR_FEATURE_ID = 41
+	PF_ERMS_AVAILABLE                        PROCESSOR_FEATURE_ID = 42
+	PF_ARM_V82_DP_INSTRUCTIONS_AVAILABLE     PROCESSOR_FEATURE_ID = 43
+	PF_ARM_V83_JSCVT_INSTRUCTIONS_AVAILABLE  PROCESSOR_FEATURE_ID = 44
+	PF_ARM_V83_LRCPC_INSTRUCTIONS_AVAILABLE  PROCESSOR_FEATURE_ID = 45
 )
 
 // enum
@@ -388,17 +414,19 @@ const (
 type PROCESS_INFORMATION_CLASS int32
 
 const (
-	ProcessMemoryPriority        PROCESS_INFORMATION_CLASS = 0
-	ProcessMemoryExhaustionInfo  PROCESS_INFORMATION_CLASS = 1
-	ProcessAppMemoryInfo         PROCESS_INFORMATION_CLASS = 2
-	ProcessInPrivateInfo         PROCESS_INFORMATION_CLASS = 3
-	ProcessPowerThrottling       PROCESS_INFORMATION_CLASS = 4
-	ProcessReservedValue1        PROCESS_INFORMATION_CLASS = 5
-	ProcessTelemetryCoverageInfo PROCESS_INFORMATION_CLASS = 6
-	ProcessProtectionLevelInfo   PROCESS_INFORMATION_CLASS = 7
-	ProcessLeapSecondInfo        PROCESS_INFORMATION_CLASS = 8
-	ProcessMachineTypeInfo       PROCESS_INFORMATION_CLASS = 9
-	ProcessInformationClassMax   PROCESS_INFORMATION_CLASS = 10
+	ProcessMemoryPriority                      PROCESS_INFORMATION_CLASS = 0
+	ProcessMemoryExhaustionInfo                PROCESS_INFORMATION_CLASS = 1
+	ProcessAppMemoryInfo                       PROCESS_INFORMATION_CLASS = 2
+	ProcessInPrivateInfo                       PROCESS_INFORMATION_CLASS = 3
+	ProcessPowerThrottling                     PROCESS_INFORMATION_CLASS = 4
+	ProcessReservedValue1                      PROCESS_INFORMATION_CLASS = 5
+	ProcessTelemetryCoverageInfo               PROCESS_INFORMATION_CLASS = 6
+	ProcessProtectionLevelInfo                 PROCESS_INFORMATION_CLASS = 7
+	ProcessLeapSecondInfo                      PROCESS_INFORMATION_CLASS = 8
+	ProcessMachineTypeInfo                     PROCESS_INFORMATION_CLASS = 9
+	ProcessOverrideSubsequentPrefetchParameter PROCESS_INFORMATION_CLASS = 10
+	ProcessMaxOverridePrefetchParameter        PROCESS_INFORMATION_CLASS = 11
+	ProcessInformationClassMax                 PROCESS_INFORMATION_CLASS = 12
 )
 
 // enum
@@ -443,26 +471,27 @@ const (
 type PROCESS_MITIGATION_POLICY int32
 
 const (
-	ProcessDEPPolicy                   PROCESS_MITIGATION_POLICY = 0
-	ProcessASLRPolicy                  PROCESS_MITIGATION_POLICY = 1
-	ProcessDynamicCodePolicy           PROCESS_MITIGATION_POLICY = 2
-	ProcessStrictHandleCheckPolicy     PROCESS_MITIGATION_POLICY = 3
-	ProcessSystemCallDisablePolicy     PROCESS_MITIGATION_POLICY = 4
-	ProcessMitigationOptionsMask       PROCESS_MITIGATION_POLICY = 5
-	ProcessExtensionPointDisablePolicy PROCESS_MITIGATION_POLICY = 6
-	ProcessControlFlowGuardPolicy      PROCESS_MITIGATION_POLICY = 7
-	ProcessSignaturePolicy             PROCESS_MITIGATION_POLICY = 8
-	ProcessFontDisablePolicy           PROCESS_MITIGATION_POLICY = 9
-	ProcessImageLoadPolicy             PROCESS_MITIGATION_POLICY = 10
-	ProcessSystemCallFilterPolicy      PROCESS_MITIGATION_POLICY = 11
-	ProcessPayloadRestrictionPolicy    PROCESS_MITIGATION_POLICY = 12
-	ProcessChildProcessPolicy          PROCESS_MITIGATION_POLICY = 13
-	ProcessSideChannelIsolationPolicy  PROCESS_MITIGATION_POLICY = 14
-	ProcessUserShadowStackPolicy       PROCESS_MITIGATION_POLICY = 15
-	ProcessRedirectionTrustPolicy      PROCESS_MITIGATION_POLICY = 16
-	ProcessUserPointerAuthPolicy       PROCESS_MITIGATION_POLICY = 17
-	ProcessSEHOPPolicy                 PROCESS_MITIGATION_POLICY = 18
-	MaxProcessMitigationPolicy         PROCESS_MITIGATION_POLICY = 19
+	ProcessDEPPolicy                    PROCESS_MITIGATION_POLICY = 0
+	ProcessASLRPolicy                   PROCESS_MITIGATION_POLICY = 1
+	ProcessDynamicCodePolicy            PROCESS_MITIGATION_POLICY = 2
+	ProcessStrictHandleCheckPolicy      PROCESS_MITIGATION_POLICY = 3
+	ProcessSystemCallDisablePolicy      PROCESS_MITIGATION_POLICY = 4
+	ProcessMitigationOptionsMask        PROCESS_MITIGATION_POLICY = 5
+	ProcessExtensionPointDisablePolicy  PROCESS_MITIGATION_POLICY = 6
+	ProcessControlFlowGuardPolicy       PROCESS_MITIGATION_POLICY = 7
+	ProcessSignaturePolicy              PROCESS_MITIGATION_POLICY = 8
+	ProcessFontDisablePolicy            PROCESS_MITIGATION_POLICY = 9
+	ProcessImageLoadPolicy              PROCESS_MITIGATION_POLICY = 10
+	ProcessSystemCallFilterPolicy       PROCESS_MITIGATION_POLICY = 11
+	ProcessPayloadRestrictionPolicy     PROCESS_MITIGATION_POLICY = 12
+	ProcessChildProcessPolicy           PROCESS_MITIGATION_POLICY = 13
+	ProcessSideChannelIsolationPolicy   PROCESS_MITIGATION_POLICY = 14
+	ProcessUserShadowStackPolicy        PROCESS_MITIGATION_POLICY = 15
+	ProcessRedirectionTrustPolicy       PROCESS_MITIGATION_POLICY = 16
+	ProcessUserPointerAuthPolicy        PROCESS_MITIGATION_POLICY = 17
+	ProcessSEHOPPolicy                  PROCESS_MITIGATION_POLICY = 18
+	ProcessActivationContextTrustPolicy PROCESS_MITIGATION_POLICY = 19
+	MaxProcessMitigationPolicy          PROCESS_MITIGATION_POLICY = 20
 )
 
 // enum
@@ -634,6 +663,10 @@ type PROCESS_MACHINE_INFORMATION struct {
 	MachineAttributes MACHINE_ATTRIBUTES
 }
 
+type OVERRIDE_PREFETCH_PARAMETER struct {
+	Value uint32
+}
+
 type PROCESS_MEMORY_EXHAUSTION_INFO struct {
 	Version  uint16
 	Reserved uint16
@@ -776,9 +809,9 @@ type TP_CALLBACK_ENVIRON_V3 struct {
 	RaceDll                    unsafe.Pointer
 	ActivationContext          uintptr
 	FinalizationCallback       PTP_SIMPLE_CALLBACK
-	U                          TP_CALLBACK_ENVIRON_V3_U
-	CallbackPriority           TP_CALLBACK_PRIORITY
-	Size                       uint32
+	TP_CALLBACK_ENVIRON_V3_U
+	CallbackPriority TP_CALLBACK_PRIORITY
+	Size             uint32
 }
 
 type UMS_SCHEDULER_STARTUP_INFO struct {
@@ -1336,7 +1369,10 @@ var (
 	pWinExec                                      uintptr
 	pSignalObjectAndWait                          uintptr
 	pCreateSemaphoreA                             uintptr
+	pCreateWaitableTimerA                         uintptr
+	pOpenWaitableTimerA                           uintptr
 	pCreateSemaphoreExA                           uintptr
+	pCreateWaitableTimerExA                       uintptr
 	pQueryFullProcessImageNameA                   uintptr
 	pQueryFullProcessImageNameW                   uintptr
 	pGetStartupInfoA                              uintptr
@@ -1345,6 +1381,7 @@ var (
 	pRegisterWaitForSingleObject                  uintptr
 	pUnregisterWait                               uintptr
 	pSetTimerQueueTimer                           uintptr
+	pCancelTimerQueueTimer                        uintptr
 	pCreatePrivateNamespaceA                      uintptr
 	pOpenPrivateNamespaceA                        uintptr
 	pCreateBoundaryDescriptorA                    uintptr
@@ -1637,6 +1674,8 @@ func OpenSemaphoreW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandl
 	return ret, WIN32_ERROR(err)
 }
 
+var OpenWaitableTimer = OpenWaitableTimerW
+
 func OpenWaitableTimerW(dwDesiredAccess SYNCHRONIZATION_ACCESS_RIGHTS, bInheritHandle BOOL, lpTimerName PWSTR) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pOpenWaitableTimerW, libKernel32, "OpenWaitableTimerW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpTimerName)))
@@ -1697,6 +1736,8 @@ func CreateSemaphoreExW(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCoun
 	return ret, WIN32_ERROR(err)
 }
 
+var CreateWaitableTimerEx = CreateWaitableTimerExW
+
 func CreateWaitableTimerExW(lpTimerAttributes *SECURITY_ATTRIBUTES, lpTimerName PWSTR, dwFlags uint32, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateWaitableTimerExW, libKernel32, "CreateWaitableTimerExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(unsafe.Pointer(lpTimerName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
@@ -1739,6 +1780,8 @@ func CreateSemaphoreW(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount 
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSemaphoreAttributes)), uintptr(lInitialCount), uintptr(lMaximumCount), uintptr(unsafe.Pointer(lpName)))
 	return ret, WIN32_ERROR(err)
 }
+
+var CreateWaitableTimer = CreateWaitableTimerW
 
 func CreateWaitableTimerW(lpTimerAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, lpTimerName PWSTR) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateWaitableTimerW, libKernel32, "CreateWaitableTimerW")
@@ -2864,10 +2907,28 @@ func CreateSemaphoreA(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount 
 	return ret, WIN32_ERROR(err)
 }
 
+func CreateWaitableTimerA(lpTimerAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, lpTimerName PSTR) HANDLE {
+	addr := LazyAddr(&pCreateWaitableTimerA, libKernel32, "CreateWaitableTimerA")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(bManualReset), uintptr(unsafe.Pointer(lpTimerName)))
+	return ret
+}
+
+func OpenWaitableTimerA(dwDesiredAccess uint32, bInheritHandle BOOL, lpTimerName PSTR) HANDLE {
+	addr := LazyAddr(&pOpenWaitableTimerA, libKernel32, "OpenWaitableTimerA")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpTimerName)))
+	return ret
+}
+
 func CreateSemaphoreExA(lpSemaphoreAttributes *SECURITY_ATTRIBUTES, lInitialCount int32, lMaximumCount int32, lpName PSTR, dwFlags uint32, dwDesiredAccess uint32) (HANDLE, WIN32_ERROR) {
 	addr := LazyAddr(&pCreateSemaphoreExA, libKernel32, "CreateSemaphoreExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSemaphoreAttributes)), uintptr(lInitialCount), uintptr(lMaximumCount), uintptr(unsafe.Pointer(lpName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret, WIN32_ERROR(err)
+}
+
+func CreateWaitableTimerExA(lpTimerAttributes *SECURITY_ATTRIBUTES, lpTimerName PSTR, dwFlags uint32, dwDesiredAccess uint32) HANDLE {
+	addr := LazyAddr(&pCreateWaitableTimerExA, libKernel32, "CreateWaitableTimerExA")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(unsafe.Pointer(lpTimerName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
+	return ret
 }
 
 func QueryFullProcessImageNameA(hProcess HANDLE, dwFlags PROCESS_NAME_FORMAT, lpExeName PSTR, lpdwSize *uint32) (BOOL, WIN32_ERROR) {
@@ -2917,6 +2978,12 @@ func SetTimerQueueTimer(TimerQueue HANDLE, Callback WAITORTIMERCALLBACK, Paramet
 	addr := LazyAddr(&pSetTimerQueueTimer, libKernel32, "SetTimerQueueTimer")
 	ret, _, _ := syscall.SyscallN(addr, TimerQueue, Callback, uintptr(Parameter), uintptr(DueTime), uintptr(Period), uintptr(PreferIo))
 	return ret
+}
+
+func CancelTimerQueueTimer(TimerQueue HANDLE, Timer HANDLE) BOOL {
+	addr := LazyAddr(&pCancelTimerQueueTimer, libKernel32, "CancelTimerQueueTimer")
+	ret, _, _ := syscall.SyscallN(addr, TimerQueue, Timer)
+	return BOOL(ret)
 }
 
 func CreatePrivateNamespaceA(lpPrivateNamespaceAttributes *SECURITY_ATTRIBUTES, lpBoundaryDescriptor unsafe.Pointer, lpAliasPrefix PSTR) (HANDLE, WIN32_ERROR) {

@@ -414,6 +414,16 @@ const (
 )
 
 // enum
+type DEVELOPER_DRIVE_ENABLEMENT_STATE int32
+
+const (
+	DeveloperDriveEnablementStateError   DEVELOPER_DRIVE_ENABLEMENT_STATE = 0
+	DeveloperDriveEnabled                DEVELOPER_DRIVE_ENABLEMENT_STATE = 1
+	DeveloperDriveDisabledBySystemPolicy DEVELOPER_DRIVE_ENABLEMENT_STATE = 2
+	DeveloperDriveDisabledByGroupPolicy  DEVELOPER_DRIVE_ENABLEMENT_STATE = 3
+)
+
+// enum
 type FIRMWARE_TYPE int32
 
 const (

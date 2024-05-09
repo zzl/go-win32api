@@ -1416,7 +1416,7 @@ var (
 	pGetSystemPowerStatus                uintptr
 )
 
-func RegisterPowerSettingNotification(hRecipient HANDLE, PowerSettingGuid *syscall.GUID, Flags uint32) (HPOWERNOTIFY, WIN32_ERROR) {
+func RegisterPowerSettingNotification(hRecipient HANDLE, PowerSettingGuid *syscall.GUID, Flags REGISTER_NOTIFICATION_FLAGS) (HPOWERNOTIFY, WIN32_ERROR) {
 	addr := LazyAddr(&pRegisterPowerSettingNotification, libUser32, "RegisterPowerSettingNotification")
 	ret, _, err := syscall.SyscallN(addr, hRecipient, uintptr(unsafe.Pointer(PowerSettingGuid)), uintptr(Flags))
 	return ret, WIN32_ERROR(err)

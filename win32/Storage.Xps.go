@@ -5,10 +5,6 @@ import (
 	"unsafe"
 )
 
-type (
-	HPTPROVIDER = uintptr
-)
-
 const (
 	XPS_E_SIGREQUESTID_DUP                           HRESULT = -2142108795
 	XPS_E_PACKAGE_NOT_OPENED                         HRESULT = -2142108794

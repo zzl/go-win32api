@@ -48,6 +48,7 @@ const (
 	EM_GETLIMITTEXT               uint32    = 0xd5
 	EM_POSFROMCHAR                uint32    = 0xd6
 	EM_CHARFROMPOS                uint32    = 0xd7
+	HOTKEYF_EXT                   uint32    = 0x8
 	WM_CTLCOLOR                   uint32    = 0x19
 	ODT_HEADER                    uint32    = 0x64
 	LVM_FIRST                     uint32    = 0x1000
@@ -830,7 +831,6 @@ const (
 	HOTKEYF_SHIFT                 uint32    = 0x1
 	HOTKEYF_CONTROL               uint32    = 0x2
 	HOTKEYF_ALT                   uint32    = 0x4
-	HOTKEYF_EXT                   uint32    = 0x80
 	HKCOMB_NONE                   uint32    = 0x1
 	HKCOMB_S                      uint32    = 0x2
 	HKCOMB_C                      uint32    = 0x4
@@ -1068,17 +1068,6 @@ const (
 	LV_VIEW_MAX                   uint32    = 0x4
 	LVM_SETVIEW                   uint32    = 0x108e
 	LVM_GETVIEW                   uint32    = 0x108f
-	LVGF_ALIGN                    uint32    = 0x8
-	LVGF_GROUPID                  uint32    = 0x10
-	LVGF_SUBTITLE                 uint32    = 0x100
-	LVGF_TASK                     uint32    = 0x200
-	LVGF_DESCRIPTIONTOP           uint32    = 0x400
-	LVGF_DESCRIPTIONBOTTOM        uint32    = 0x800
-	LVGF_TITLEIMAGE               uint32    = 0x1000
-	LVGF_EXTENDEDIMAGE            uint32    = 0x2000
-	LVGF_ITEMS                    uint32    = 0x4000
-	LVGF_SUBSET                   uint32    = 0x8000
-	LVGF_SUBSETITEMS              uint32    = 0x10000
 	LVM_INSERTGROUP               uint32    = 0x1091
 	LVM_SETGROUPINFO              uint32    = 0x1093
 	LVM_GETGROUPINFO              uint32    = 0x1095
@@ -1110,6 +1099,7 @@ const (
 	LVM_GETTILEVIEWINFO           uint32    = 0x10a3
 	LVM_SETTILEINFO               uint32    = 0x10a4
 	LVM_GETTILEINFO               uint32    = 0x10a5
+	LVIM_AFTER                    uint32    = 0x1
 	LVM_SETINSERTMARK             uint32    = 0x10a6
 	LVM_GETINSERTMARK             uint32    = 0x10a7
 	LVM_INSERTMARKHITTEST         uint32    = 0x10a8
@@ -2961,10 +2951,21 @@ const (
 type LVGROUP_MASK uint32
 
 const (
-	LVGF_NONE   LVGROUP_MASK = 0
-	LVGF_HEADER LVGROUP_MASK = 1
-	LVGF_FOOTER LVGROUP_MASK = 2
-	LVGF_STATE  LVGROUP_MASK = 4
+	LVGF_NONE              LVGROUP_MASK = 0
+	LVGF_HEADER            LVGROUP_MASK = 1
+	LVGF_FOOTER            LVGROUP_MASK = 2
+	LVGF_STATE             LVGROUP_MASK = 4
+	LVGF_ALIGN             LVGROUP_MASK = 8
+	LVGF_GROUPID           LVGROUP_MASK = 16
+	LVGF_SUBTITLE          LVGROUP_MASK = 256
+	LVGF_TASK              LVGROUP_MASK = 512
+	LVGF_DESCRIPTIONTOP    LVGROUP_MASK = 1024
+	LVGF_DESCRIPTIONBOTTOM LVGROUP_MASK = 2048
+	LVGF_TITLEIMAGE        LVGROUP_MASK = 4096
+	LVGF_EXTENDEDIMAGE     LVGROUP_MASK = 8192
+	LVGF_ITEMS             LVGROUP_MASK = 16384
+	LVGF_SUBSET            LVGROUP_MASK = 32768
+	LVGF_SUBSETITEMS       LVGROUP_MASK = 65536
 )
 
 // enum
@@ -3365,14 +3366,6 @@ const (
 
 // enum
 // flags
-type LIST_VIEW_INSERT_MARK_FLAGS uint32
-
-const (
-	LVIM_AFTER LIST_VIEW_INSERT_MARK_FLAGS = 1
-)
-
-// enum
-// flags
 type LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS int32
 
 const (
@@ -3498,6 +3491,24 @@ const (
 )
 
 // enum
+// flags
+type TASKDIALOG_COMMON_BUTTON_FLAGS int32
+
+const (
+	TDCBF_OK_BUTTON       TASKDIALOG_COMMON_BUTTON_FLAGS = 1
+	TDCBF_YES_BUTTON      TASKDIALOG_COMMON_BUTTON_FLAGS = 2
+	TDCBF_NO_BUTTON       TASKDIALOG_COMMON_BUTTON_FLAGS = 4
+	TDCBF_CANCEL_BUTTON   TASKDIALOG_COMMON_BUTTON_FLAGS = 8
+	TDCBF_RETRY_BUTTON    TASKDIALOG_COMMON_BUTTON_FLAGS = 16
+	TDCBF_CLOSE_BUTTON    TASKDIALOG_COMMON_BUTTON_FLAGS = 32
+	TDCBF_ABORT_BUTTON    TASKDIALOG_COMMON_BUTTON_FLAGS = 65536
+	TDCBF_IGNORE_BUTTON   TASKDIALOG_COMMON_BUTTON_FLAGS = 131072
+	TDCBF_TRYAGAIN_BUTTON TASKDIALOG_COMMON_BUTTON_FLAGS = 262144
+	TDCBF_CONTINUE_BUTTON TASKDIALOG_COMMON_BUTTON_FLAGS = 524288
+	TDCBF_HELP_BUTTON     TASKDIALOG_COMMON_BUTTON_FLAGS = 1048576
+)
+
+// enum
 type TVITEMPART int32
 
 const (
@@ -3523,6 +3534,7 @@ const (
 )
 
 // enum
+// flags
 type TASKDIALOG_FLAGS int32
 
 const (
@@ -3600,18 +3612,6 @@ type TASKDIALOG_ICON_ELEMENTS int32
 const (
 	TDIE_ICON_MAIN   TASKDIALOG_ICON_ELEMENTS = 0
 	TDIE_ICON_FOOTER TASKDIALOG_ICON_ELEMENTS = 1
-)
-
-// enum
-type TASKDIALOG_COMMON_BUTTON_FLAGS int32
-
-const (
-	TDCBF_OK_BUTTON     TASKDIALOG_COMMON_BUTTON_FLAGS = 1
-	TDCBF_YES_BUTTON    TASKDIALOG_COMMON_BUTTON_FLAGS = 2
-	TDCBF_NO_BUTTON     TASKDIALOG_COMMON_BUTTON_FLAGS = 4
-	TDCBF_CANCEL_BUTTON TASKDIALOG_COMMON_BUTTON_FLAGS = 8
-	TDCBF_RETRY_BUTTON  TASKDIALOG_COMMON_BUTTON_FLAGS = 16
-	TDCBF_CLOSE_BUTTON  TASKDIALOG_COMMON_BUTTON_FLAGS = 32
 )
 
 // enum
@@ -7756,7 +7756,7 @@ type LVITEMA struct {
 	IImage     int32
 	LParam     LPARAM
 	IIndent    int32
-	IGroupId   LVITEMA_GROUP_ID
+	IGroupId   int32
 	CColumns   uint32
 	PuColumns  *uint32
 	PiColFmt   *LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS
@@ -7775,7 +7775,7 @@ type LVITEMW struct {
 	IImage     int32
 	LParam     LPARAM
 	IIndent    int32
-	IGroupId   LVITEMA_GROUP_ID
+	IGroupId   int32
 	CColumns   uint32
 	PuColumns  *uint32
 	PiColFmt   *LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS
@@ -7922,7 +7922,7 @@ type LVTILEINFO struct {
 
 type LVINSERTMARK struct {
 	CbSize     uint32
-	DwFlags    LIST_VIEW_INSERT_MARK_FLAGS
+	DwFlags    uint32
 	IItem      int32
 	DwReserved uint32
 }
@@ -9031,7 +9031,7 @@ type PFNTVCOMPARE = uintptr
 type PFNTVCOMPARE_func = func(lParam1 LPARAM, lParam2 LPARAM, lParamSort LPARAM) int32
 
 type PFTASKDIALOGCALLBACK = uintptr
-type PFTASKDIALOGCALLBACK_func = func(hwnd HWND, msg uint32, wParam WPARAM, lParam LPARAM, lpRefData uintptr) HRESULT
+type PFTASKDIALOGCALLBACK_func = func(hwnd HWND, msg TASKDIALOG_NOTIFICATIONS, wParam WPARAM, lParam LPARAM, lpRefData uintptr) HRESULT
 
 type PFNDAENUMCALLBACK = uintptr
 type PFNDAENUMCALLBACK_func = func(p unsafe.Pointer, pData unsafe.Pointer) int32
@@ -9762,7 +9762,7 @@ func ImageList_Remove(himl HIMAGELIST, i int32) BOOL {
 	return BOOL(ret)
 }
 
-func ImageList_GetIcon(himl HIMAGELIST, i int32, flags uint32) HICON {
+func ImageList_GetIcon(himl HIMAGELIST, i int32, flags IMAGE_LIST_DRAW_STYLE) HICON {
 	addr := LazyAddr(&pImageList_GetIcon, libComctl32, "ImageList_GetIcon")
 	ret, _, _ := syscall.SyscallN(addr, himl, uintptr(i), uintptr(flags))
 	return ret
@@ -10243,7 +10243,7 @@ func FlatSB_SetScrollRange(param0 HWND, code SCROLLBAR_CONSTANTS, min int32, max
 	return int32(ret)
 }
 
-func FlatSB_SetScrollProp(param0 HWND, index uint32, newValue uintptr, param3 BOOL) BOOL {
+func FlatSB_SetScrollProp(param0 HWND, index WSB_PROP, newValue uintptr, param3 BOOL) BOOL {
 	addr := LazyAddr(&pFlatSB_SetScrollProp, libComctl32, "FlatSB_SetScrollProp")
 	ret, _, _ := syscall.SyscallN(addr, param0, uintptr(index), newValue, uintptr(param3))
 	return BOOL(ret)
@@ -10423,13 +10423,13 @@ func IsThemeBackgroundPartiallyTransparent(hTheme HTHEME, iPartId int32, iStateI
 	return BOOL(ret)
 }
 
-func GetThemeColor(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pColor *COLORREF) HRESULT {
+func GetThemeColor(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pColor *COLORREF) HRESULT {
 	addr := LazyAddr(&pGetThemeColor, libUxtheme, "GetThemeColor")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pColor)))
 	return HRESULT(ret)
 }
 
-func GetThemeMetric(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
+func GetThemeMetric(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeMetric, libUxtheme, "GetThemeMetric")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
@@ -10441,25 +10441,25 @@ func GetThemeString(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32,
 	return HRESULT(ret)
 }
 
-func GetThemeBool(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pfVal *BOOL) HRESULT {
+func GetThemeBool(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pfVal *BOOL) HRESULT {
 	addr := LazyAddr(&pGetThemeBool, libUxtheme, "GetThemeBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pfVal)))
 	return HRESULT(ret)
 }
 
-func GetThemeInt(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
+func GetThemeInt(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeInt, libUxtheme, "GetThemeInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
-func GetThemeEnumValue(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, piVal *int32) HRESULT {
+func GetThemeEnumValue(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, piVal *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeEnumValue, libUxtheme, "GetThemeEnumValue")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(piVal)))
 	return HRESULT(ret)
 }
 
-func GetThemePosition(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pPoint *POINT) HRESULT {
+func GetThemePosition(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pPoint *POINT) HRESULT {
 	addr := LazyAddr(&pGetThemePosition, libUxtheme, "GetThemePosition")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pPoint)))
 	return HRESULT(ret)
@@ -10477,13 +10477,13 @@ func GetThemeRect(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, p
 	return HRESULT(ret)
 }
 
-func GetThemeMargins(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId int32, prc *RECT, pMargins *MARGINS) HRESULT {
+func GetThemeMargins(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, prc *RECT, pMargins *MARGINS) HRESULT {
 	addr := LazyAddr(&pGetThemeMargins, libUxtheme, "GetThemeMargins")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, hdc, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(prc)), uintptr(unsafe.Pointer(pMargins)))
 	return HRESULT(ret)
 }
 
-func GetThemeIntList(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pIntList *INTLIST) HRESULT {
+func GetThemeIntList(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pIntList *INTLIST) HRESULT {
 	addr := LazyAddr(&pGetThemeIntList, libUxtheme, "GetThemeIntList")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pIntList)))
 	return HRESULT(ret)
@@ -10501,7 +10501,7 @@ func SetWindowTheme(hwnd HWND, pszSubAppName PWSTR, pszSubIdList PWSTR) HRESULT 
 	return HRESULT(ret)
 }
 
-func GetThemeFilename(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, pszThemeFileName PWSTR, cchMaxBuffChars int32) HRESULT {
+func GetThemeFilename(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, pszThemeFileName PWSTR, cchMaxBuffChars int32) HRESULT {
 	addr := LazyAddr(&pGetThemeFilename, libUxtheme, "GetThemeFilename")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(unsafe.Pointer(pszThemeFileName)), uintptr(cchMaxBuffChars))
 	return HRESULT(ret)
@@ -10513,13 +10513,13 @@ func GetThemeSysColor(hTheme HTHEME, iColorId int32) COLORREF {
 	return COLORREF(ret)
 }
 
-func GetThemeSysColorBrush(hTheme HTHEME, iColorId int32) HBRUSH {
+func GetThemeSysColorBrush(hTheme HTHEME, iColorId THEME_PROPERTY_SYMBOL_ID) HBRUSH {
 	addr := LazyAddr(&pGetThemeSysColorBrush, libUxtheme, "GetThemeSysColorBrush")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iColorId))
 	return ret
 }
 
-func GetThemeSysBool(hTheme HTHEME, iBoolId int32) BOOL {
+func GetThemeSysBool(hTheme HTHEME, iBoolId THEME_PROPERTY_SYMBOL_ID) BOOL {
 	addr := LazyAddr(&pGetThemeSysBool, libUxtheme, "GetThemeSysBool")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iBoolId))
 	return BOOL(ret)
@@ -10531,19 +10531,19 @@ func GetThemeSysSize(hTheme HTHEME, iSizeId int32) int32 {
 	return int32(ret)
 }
 
-func GetThemeSysFont(hTheme HTHEME, iFontId int32, plf *LOGFONTW) HRESULT {
+func GetThemeSysFont(hTheme HTHEME, iFontId THEME_PROPERTY_SYMBOL_ID, plf *LOGFONTW) HRESULT {
 	addr := LazyAddr(&pGetThemeSysFont, libUxtheme, "GetThemeSysFont")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iFontId), uintptr(unsafe.Pointer(plf)))
 	return HRESULT(ret)
 }
 
-func GetThemeSysString(hTheme HTHEME, iStringId int32, pszStringBuff PWSTR, cchMaxStringChars int32) HRESULT {
+func GetThemeSysString(hTheme HTHEME, iStringId THEME_PROPERTY_SYMBOL_ID, pszStringBuff PWSTR, cchMaxStringChars int32) HRESULT {
 	addr := LazyAddr(&pGetThemeSysString, libUxtheme, "GetThemeSysString")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iStringId), uintptr(unsafe.Pointer(pszStringBuff)), uintptr(cchMaxStringChars))
 	return HRESULT(ret)
 }
 
-func GetThemeSysInt(hTheme HTHEME, iIntId int32, piValue *int32) HRESULT {
+func GetThemeSysInt(hTheme HTHEME, iIntId THEME_PROPERTY_SYMBOL_ID, piValue *int32) HRESULT {
 	addr := LazyAddr(&pGetThemeSysInt, libUxtheme, "GetThemeSysInt")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iIntId), uintptr(unsafe.Pointer(piValue)))
 	return HRESULT(ret)
@@ -10632,7 +10632,7 @@ func DrawThemeTextEx(hTheme HTHEME, hdc HDC, iPartId int32, iStateId int32, pszT
 	return HRESULT(ret)
 }
 
-func GetThemeBitmap(hTheme HTHEME, iPartId int32, iStateId int32, iPropId int32, dwFlags GET_THEME_BITMAP_FLAGS, phBitmap *HBITMAP) HRESULT {
+func GetThemeBitmap(hTheme HTHEME, iPartId int32, iStateId int32, iPropId THEME_PROPERTY_SYMBOL_ID, dwFlags GET_THEME_BITMAP_FLAGS, phBitmap *HBITMAP) HRESULT {
 	addr := LazyAddr(&pGetThemeBitmap, libUxtheme, "GetThemeBitmap")
 	ret, _, _ := syscall.SyscallN(addr, hTheme, uintptr(iPartId), uintptr(iStateId), uintptr(iPropId), uintptr(dwFlags), uintptr(unsafe.Pointer(phBitmap)))
 	return HRESULT(ret)

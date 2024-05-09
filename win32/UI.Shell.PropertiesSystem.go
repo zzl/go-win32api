@@ -1642,6 +1642,396 @@ var (
 	pSHGetPropertyStoreForWindow                 uintptr
 )
 
+func PSFormatForDisplay(propkey *PROPERTYKEY, propvar *PROPVARIANT, pdfFlags PROPDESC_FORMAT_FLAGS, pwszText PWSTR, cchText uint32) HRESULT {
+	addr := LazyAddr(&pPSFormatForDisplay, libPropsys, "PSFormatForDisplay")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propkey)), uintptr(unsafe.Pointer(propvar)), uintptr(pdfFlags), uintptr(unsafe.Pointer(pwszText)), uintptr(cchText))
+	return HRESULT(ret)
+}
+
+func PSFormatForDisplayAlloc(key *PROPERTYKEY, propvar *PROPVARIANT, pdff PROPDESC_FORMAT_FLAGS, ppszDisplay *PWSTR) HRESULT {
+	addr := LazyAddr(&pPSFormatForDisplayAlloc, libPropsys, "PSFormatForDisplayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(key)), uintptr(unsafe.Pointer(propvar)), uintptr(pdff), uintptr(unsafe.Pointer(ppszDisplay)))
+	return HRESULT(ret)
+}
+
+func PSFormatPropertyValue(pps *IPropertyStore, ppd *IPropertyDescription, pdff PROPDESC_FORMAT_FLAGS, ppszDisplay *PWSTR) HRESULT {
+	addr := LazyAddr(&pPSFormatPropertyValue, libPropsys, "PSFormatPropertyValue")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pps)), uintptr(unsafe.Pointer(ppd)), uintptr(pdff), uintptr(unsafe.Pointer(ppszDisplay)))
+	return HRESULT(ret)
+}
+
+func PSGetImageReferenceForValue(propkey *PROPERTYKEY, propvar *PROPVARIANT, ppszImageRes *PWSTR) HRESULT {
+	addr := LazyAddr(&pPSGetImageReferenceForValue, libPropsys, "PSGetImageReferenceForValue")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propkey)), uintptr(unsafe.Pointer(propvar)), uintptr(unsafe.Pointer(ppszImageRes)))
+	return HRESULT(ret)
+}
+
+func PSStringFromPropertyKey(pkey *PROPERTYKEY, psz PWSTR, cch uint32) HRESULT {
+	addr := LazyAddr(&pPSStringFromPropertyKey, libPropsys, "PSStringFromPropertyKey")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pkey)), uintptr(unsafe.Pointer(psz)), uintptr(cch))
+	return HRESULT(ret)
+}
+
+func PSPropertyKeyFromString(pszString PWSTR, pkey *PROPERTYKEY) HRESULT {
+	addr := LazyAddr(&pPSPropertyKeyFromString, libPropsys, "PSPropertyKeyFromString")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszString)), uintptr(unsafe.Pointer(pkey)))
+	return HRESULT(ret)
+}
+
+func PSCreateMemoryPropertyStore(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreateMemoryPropertyStore, libPropsys, "PSCreateMemoryPropertyStore")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSCreateDelayedMultiplexPropertyStore(flags GETPROPERTYSTOREFLAGS, pdpsf *IDelayedPropertyStoreFactory, rgStoreIds *uint32, cStores uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreateDelayedMultiplexPropertyStore, libPropsys, "PSCreateDelayedMultiplexPropertyStore")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(unsafe.Pointer(pdpsf)), uintptr(unsafe.Pointer(rgStoreIds)), uintptr(cStores), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSCreateMultiplexPropertyStore(prgpunkStores **IUnknown, cStores uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreateMultiplexPropertyStore, libPropsys, "PSCreateMultiplexPropertyStore")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgpunkStores)), uintptr(cStores), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSCreatePropertyChangeArray(rgpropkey *PROPERTYKEY, rgflags *PKA_FLAGS, rgpropvar *PROPVARIANT, cChanges uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreatePropertyChangeArray, libPropsys, "PSCreatePropertyChangeArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rgpropkey)), uintptr(unsafe.Pointer(rgflags)), uintptr(unsafe.Pointer(rgpropvar)), uintptr(cChanges), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSCreateSimplePropertyChange(flags PKA_FLAGS, key *PROPERTYKEY, propvar *PROPVARIANT, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreateSimplePropertyChange, libPropsys, "PSCreateSimplePropertyChange")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(flags), uintptr(unsafe.Pointer(key)), uintptr(unsafe.Pointer(propvar)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSGetPropertyDescription(propkey *PROPERTYKEY, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSGetPropertyDescription, libPropsys, "PSGetPropertyDescription")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propkey)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSGetPropertyDescriptionByName(pszCanonicalName PWSTR, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSGetPropertyDescriptionByName, libPropsys, "PSGetPropertyDescriptionByName")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszCanonicalName)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSLookupPropertyHandlerCLSID(pszFilePath PWSTR, pclsid *syscall.GUID) HRESULT {
+	addr := LazyAddr(&pPSLookupPropertyHandlerCLSID, libPropsys, "PSLookupPropertyHandlerCLSID")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszFilePath)), uintptr(unsafe.Pointer(pclsid)))
+	return HRESULT(ret)
+}
+
+func PSGetItemPropertyHandler(punkItem *IUnknown, fReadWrite BOOL, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSGetItemPropertyHandler, libPropsys, "PSGetItemPropertyHandler")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punkItem)), uintptr(fReadWrite), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSGetItemPropertyHandlerWithCreateObject(punkItem *IUnknown, fReadWrite BOOL, punkCreateObject *IUnknown, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSGetItemPropertyHandlerWithCreateObject, libPropsys, "PSGetItemPropertyHandlerWithCreateObject")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punkItem)), uintptr(fReadWrite), uintptr(unsafe.Pointer(punkCreateObject)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSGetPropertyValue(pps *IPropertyStore, ppd *IPropertyDescription, ppropvar *PROPVARIANT) HRESULT {
+	addr := LazyAddr(&pPSGetPropertyValue, libPropsys, "PSGetPropertyValue")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pps)), uintptr(unsafe.Pointer(ppd)), uintptr(unsafe.Pointer(ppropvar)))
+	return HRESULT(ret)
+}
+
+func PSSetPropertyValue(pps *IPropertyStore, ppd *IPropertyDescription, propvar *PROPVARIANT) HRESULT {
+	addr := LazyAddr(&pPSSetPropertyValue, libPropsys, "PSSetPropertyValue")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pps)), uintptr(unsafe.Pointer(ppd)), uintptr(unsafe.Pointer(propvar)))
+	return HRESULT(ret)
+}
+
+func PSRegisterPropertySchema(pszPath PWSTR) HRESULT {
+	addr := LazyAddr(&pPSRegisterPropertySchema, libPropsys, "PSRegisterPropertySchema")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
+	return HRESULT(ret)
+}
+
+func PSUnregisterPropertySchema(pszPath PWSTR) HRESULT {
+	addr := LazyAddr(&pPSUnregisterPropertySchema, libPropsys, "PSUnregisterPropertySchema")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)))
+	return HRESULT(ret)
+}
+
+func PSRefreshPropertySchema() HRESULT {
+	addr := LazyAddr(&pPSRefreshPropertySchema, libPropsys, "PSRefreshPropertySchema")
+	ret, _, _ := syscall.SyscallN(addr)
+	return HRESULT(ret)
+}
+
+func PSEnumeratePropertyDescriptions(filterOn PROPDESC_ENUMFILTER, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSEnumeratePropertyDescriptions, libPropsys, "PSEnumeratePropertyDescriptions")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(filterOn), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSGetPropertyKeyFromName(pszName PWSTR, ppropkey *PROPERTYKEY) HRESULT {
+	addr := LazyAddr(&pPSGetPropertyKeyFromName, libPropsys, "PSGetPropertyKeyFromName")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(ppropkey)))
+	return HRESULT(ret)
+}
+
+func PSGetNameFromPropertyKey(propkey *PROPERTYKEY, ppszCanonicalName *PWSTR) HRESULT {
+	addr := LazyAddr(&pPSGetNameFromPropertyKey, libPropsys, "PSGetNameFromPropertyKey")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propkey)), uintptr(unsafe.Pointer(ppszCanonicalName)))
+	return HRESULT(ret)
+}
+
+func PSCoerceToCanonicalValue(key *PROPERTYKEY, ppropvar *PROPVARIANT) HRESULT {
+	addr := LazyAddr(&pPSCoerceToCanonicalValue, libPropsys, "PSCoerceToCanonicalValue")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(key)), uintptr(unsafe.Pointer(ppropvar)))
+	return HRESULT(ret)
+}
+
+func PSGetPropertyDescriptionListFromString(pszPropList PWSTR, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSGetPropertyDescriptionListFromString, libPropsys, "PSGetPropertyDescriptionListFromString")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPropList)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSCreatePropertyStoreFromPropertySetStorage(ppss *IPropertySetStorage, grfMode uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreatePropertyStoreFromPropertySetStorage, libPropsys, "PSCreatePropertyStoreFromPropertySetStorage")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ppss)), uintptr(grfMode), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSCreatePropertyStoreFromObject(punk *IUnknown, grfMode uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreatePropertyStoreFromObject, libPropsys, "PSCreatePropertyStoreFromObject")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(punk)), uintptr(grfMode), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSCreateAdapterFromPropertyStore(pps *IPropertyStore, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSCreateAdapterFromPropertyStore, libPropsys, "PSCreateAdapterFromPropertyStore")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pps)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSGetPropertySystem(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSGetPropertySystem, libPropsys, "PSGetPropertySystem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSGetPropertyFromPropertyStorage(psps PCUSERIALIZEDPROPSTORAGE, cb uint32, rpkey *PROPERTYKEY, ppropvar *PROPVARIANT) HRESULT {
+	addr := LazyAddr(&pPSGetPropertyFromPropertyStorage, libPropsys, "PSGetPropertyFromPropertyStorage")
+	ret, _, _ := syscall.SyscallN(addr, psps, uintptr(cb), uintptr(unsafe.Pointer(rpkey)), uintptr(unsafe.Pointer(ppropvar)))
+	return HRESULT(ret)
+}
+
+func PSGetNamedPropertyFromPropertyStorage(psps PCUSERIALIZEDPROPSTORAGE, cb uint32, pszName PWSTR, ppropvar *PROPVARIANT) HRESULT {
+	addr := LazyAddr(&pPSGetNamedPropertyFromPropertyStorage, libPropsys, "PSGetNamedPropertyFromPropertyStorage")
+	ret, _, _ := syscall.SyscallN(addr, psps, uintptr(cb), uintptr(unsafe.Pointer(pszName)), uintptr(unsafe.Pointer(ppropvar)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadType(propBag *IPropertyBag, propName PWSTR, var_ *VARIANT, type_ VARENUM) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadType, libPropsys, "PSPropertyBag_ReadType")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(var_)), uintptr(type_))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadStr(propBag *IPropertyBag, propName PWSTR, value PWSTR, characterCount int32) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadStr, libPropsys, "PSPropertyBag_ReadStr")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)), uintptr(characterCount))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadStrAlloc(propBag *IPropertyBag, propName PWSTR, value *PWSTR) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadStrAlloc, libPropsys, "PSPropertyBag_ReadStrAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadBSTR(propBag *IPropertyBag, propName PWSTR, value *BSTR) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadBSTR, libPropsys, "PSPropertyBag_ReadBSTR")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteStr(propBag *IPropertyBag, propName PWSTR, value PWSTR) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteStr, libPropsys, "PSPropertyBag_WriteStr")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteBSTR(propBag *IPropertyBag, propName PWSTR, value BSTR) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteBSTR, libPropsys, "PSPropertyBag_WriteBSTR")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadInt(propBag *IPropertyBag, propName PWSTR, value *int32) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadInt, libPropsys, "PSPropertyBag_ReadInt")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteInt(propBag *IPropertyBag, propName PWSTR, value int32) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteInt, libPropsys, "PSPropertyBag_WriteInt")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(value))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadSHORT(propBag *IPropertyBag, propName PWSTR, value *int16) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadSHORT, libPropsys, "PSPropertyBag_ReadSHORT")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteSHORT(propBag *IPropertyBag, propName PWSTR, value int16) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteSHORT, libPropsys, "PSPropertyBag_WriteSHORT")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(value))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadLONG(propBag *IPropertyBag, propName PWSTR, value *int32) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadLONG, libPropsys, "PSPropertyBag_ReadLONG")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteLONG(propBag *IPropertyBag, propName PWSTR, value int32) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteLONG, libPropsys, "PSPropertyBag_WriteLONG")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(value))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadDWORD(propBag *IPropertyBag, propName PWSTR, value *uint32) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadDWORD, libPropsys, "PSPropertyBag_ReadDWORD")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteDWORD(propBag *IPropertyBag, propName PWSTR, value uint32) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteDWORD, libPropsys, "PSPropertyBag_WriteDWORD")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(value))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadBOOL(propBag *IPropertyBag, propName PWSTR, value *BOOL) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadBOOL, libPropsys, "PSPropertyBag_ReadBOOL")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteBOOL(propBag *IPropertyBag, propName PWSTR, value BOOL) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteBOOL, libPropsys, "PSPropertyBag_WriteBOOL")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(value))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadPOINTL(propBag *IPropertyBag, propName PWSTR, value *POINTL) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadPOINTL, libPropsys, "PSPropertyBag_ReadPOINTL")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WritePOINTL(propBag *IPropertyBag, propName PWSTR, value *POINTL) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WritePOINTL, libPropsys, "PSPropertyBag_WritePOINTL")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadPOINTS(propBag *IPropertyBag, propName PWSTR, value *POINTS) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadPOINTS, libPropsys, "PSPropertyBag_ReadPOINTS")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WritePOINTS(propBag *IPropertyBag, propName PWSTR, value *POINTS) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WritePOINTS, libPropsys, "PSPropertyBag_WritePOINTS")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadRECTL(propBag *IPropertyBag, propName PWSTR, value *RECTL) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadRECTL, libPropsys, "PSPropertyBag_ReadRECTL")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteRECTL(propBag *IPropertyBag, propName PWSTR, value *RECTL) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteRECTL, libPropsys, "PSPropertyBag_WriteRECTL")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadStream(propBag *IPropertyBag, propName PWSTR, value **IStream) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadStream, libPropsys, "PSPropertyBag_ReadStream")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteStream(propBag *IPropertyBag, propName PWSTR, value *IStream) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteStream, libPropsys, "PSPropertyBag_WriteStream")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_Delete(propBag *IPropertyBag, propName PWSTR) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_Delete, libPropsys, "PSPropertyBag_Delete")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadULONGLONG(propBag *IPropertyBag, propName PWSTR, value *uint64) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadULONGLONG, libPropsys, "PSPropertyBag_ReadULONGLONG")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteULONGLONG(propBag *IPropertyBag, propName PWSTR, value uint64) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteULONGLONG, libPropsys, "PSPropertyBag_WriteULONGLONG")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(value))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadUnknown(propBag *IPropertyBag, propName PWSTR, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadUnknown, libPropsys, "PSPropertyBag_ReadUnknown")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteUnknown(propBag *IPropertyBag, propName PWSTR, punk *IUnknown) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteUnknown, libPropsys, "PSPropertyBag_WriteUnknown")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(punk)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadGUID(propBag *IPropertyBag, propName PWSTR, value *syscall.GUID) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadGUID, libPropsys, "PSPropertyBag_ReadGUID")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WriteGUID(propBag *IPropertyBag, propName PWSTR, value *syscall.GUID) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WriteGUID, libPropsys, "PSPropertyBag_WriteGUID")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_ReadPropertyKey(propBag *IPropertyBag, propName PWSTR, value *PROPERTYKEY) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_ReadPropertyKey, libPropsys, "PSPropertyBag_ReadPropertyKey")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+func PSPropertyBag_WritePropertyKey(propBag *IPropertyBag, propName PWSTR, value *PROPERTYKEY) HRESULT {
+	addr := LazyAddr(&pPSPropertyBag_WritePropertyKey, libPropsys, "PSPropertyBag_WritePropertyKey")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propBag)), uintptr(unsafe.Pointer(propName)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
 func SHGetPropertyStoreFromIDList(pidl *ITEMIDLIST, flags GETPROPERTYSTOREFLAGS, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pSHGetPropertyStoreFromIDList, libShell32, "SHGetPropertyStoreFromIDList")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pidl)), uintptr(flags), uintptr(unsafe.Pointer(riid)), uintptr(ppv))

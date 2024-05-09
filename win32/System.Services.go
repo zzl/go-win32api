@@ -6,6 +6,7 @@ import (
 )
 
 type (
+	SC_HANDLE                     = uintptr
 	SERVICE_STATUS_HANDLE         = uintptr
 	PSC_NOTIFICATION_REGISTRATION = uintptr
 )
@@ -400,7 +401,7 @@ func (this *SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM_U) SVal() SERVICE_CUSTO
 }
 
 type SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM struct {
-	U SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM_U
+	SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM_U
 }
 
 type SERVICE_DESCRIPTIONA struct {
@@ -729,7 +730,7 @@ func SetServiceBits(hServiceStatus SERVICE_STATUS_HANDLE, dwServiceBits uint32, 
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ChangeServiceConfigA(hService SC_HANDLE, dwServiceType uint32, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PSTR, lpLoadOrderGroup PSTR, lpdwTagId *uint32, lpDependencies PSTR, lpServiceStartName PSTR, lpPassword PSTR, lpDisplayName PSTR) (BOOL, WIN32_ERROR) {
+func ChangeServiceConfigA(hService SC_HANDLE, dwServiceType ENUM_SERVICE_TYPE, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PSTR, lpLoadOrderGroup PSTR, lpdwTagId *uint32, lpDependencies PSTR, lpServiceStartName PSTR, lpPassword PSTR, lpDisplayName PSTR) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pChangeServiceConfigA, libAdvapi32, "ChangeServiceConfigA")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwServiceType), uintptr(dwStartType), uintptr(dwErrorControl), uintptr(unsafe.Pointer(lpBinaryPathName)), uintptr(unsafe.Pointer(lpLoadOrderGroup)), uintptr(unsafe.Pointer(lpdwTagId)), uintptr(unsafe.Pointer(lpDependencies)), uintptr(unsafe.Pointer(lpServiceStartName)), uintptr(unsafe.Pointer(lpPassword)), uintptr(unsafe.Pointer(lpDisplayName)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -737,7 +738,7 @@ func ChangeServiceConfigA(hService SC_HANDLE, dwServiceType uint32, dwStartType 
 
 var ChangeServiceConfig = ChangeServiceConfigW
 
-func ChangeServiceConfigW(hService SC_HANDLE, dwServiceType uint32, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PWSTR, lpLoadOrderGroup PWSTR, lpdwTagId *uint32, lpDependencies PWSTR, lpServiceStartName PWSTR, lpPassword PWSTR, lpDisplayName PWSTR) (BOOL, WIN32_ERROR) {
+func ChangeServiceConfigW(hService SC_HANDLE, dwServiceType ENUM_SERVICE_TYPE, dwStartType SERVICE_START_TYPE, dwErrorControl SERVICE_ERROR, lpBinaryPathName PWSTR, lpLoadOrderGroup PWSTR, lpdwTagId *uint32, lpDependencies PWSTR, lpServiceStartName PWSTR, lpPassword PWSTR, lpDisplayName PWSTR) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pChangeServiceConfigW, libAdvapi32, "ChangeServiceConfigW")
 	ret, _, err := syscall.SyscallN(addr, hService, uintptr(dwServiceType), uintptr(dwStartType), uintptr(dwErrorControl), uintptr(unsafe.Pointer(lpBinaryPathName)), uintptr(unsafe.Pointer(lpLoadOrderGroup)), uintptr(unsafe.Pointer(lpdwTagId)), uintptr(unsafe.Pointer(lpDependencies)), uintptr(unsafe.Pointer(lpServiceStartName)), uintptr(unsafe.Pointer(lpPassword)), uintptr(unsafe.Pointer(lpDisplayName)))
 	return BOOL(ret), WIN32_ERROR(err)

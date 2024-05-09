@@ -2,17 +2,23 @@
 
 # go-win32api
 
-Win32 API bindings for Golang. 
+Win32 API bindings for Go. 
 
-The bindings are all implemented through syscall, no cgo used.
-Most of the code are generated from win32metadata, which is officially published by microsoft to describe Win32 APIs.
+**Bindings:**
+All bindings are implemented through syscall, without using cgo.
 
-The APIs in this lib are not exhaustive, those that are less frequently used are not included.
-The code generator is avaiable [here](https://github.com/zzl/go-win32api-gen), you can use it to generate your own code.
+**Code Generation:**
+Most of the code is generated from win32metadata, an official 
+Microsoft publication that describes Win32 APIs.
 
+**API Coverage:**
+The library includes frequently used APIs. 
+Less common ones are omitted. 
+You can generate your own code for these using the code generator available 
+[here](https://github.com/zzl/go-winapi-gen).
 
 ## Status
-Currently only 64-bit architecture is targeted and tested.
+Currently, only the 64-bit architecture is supported and tested.
 
 ## Installation
 ```
@@ -22,12 +28,16 @@ go get github.com/zzl/go-win32api/v2
 import "github.com/zzl/go-win32api/v2/win32"
 ```
 
-## About unions
-Union fields are mapped to accessor methods in Go. These methods has the same name as the fields, and return pointer values, so that they can be assigned with new values. 
-An additional value accessor method is also generated for each field, whose name is in the pattern of FieldName+Val.
+## Unions
+Union fields are mapped to accessor methods in Go. 
+These methods share the same name as the fields and 
+return pointers to allow assigning new values. 
+Additionally, a value accessor method is generated for each field, 
+following the naming pattern FieldName+Val.
 
-For example, with this C Union:
-```
+## Example:
+Consider this C Union:
+```c
 union QWord {
     UINT64 WholeValue;
     struct {
@@ -36,14 +46,14 @@ union QWord {
     } Parts;
 };
 ```
-The code in Go the get the field values would look like this:
-```
+
+Here's how you would access and set field values in Go:
+```go
 var qw QWord
-var whole uint64 = qw.WholeValueVal() //or whole = *qw.WholeValue()
+var whole uint64 = qw.WholeValueVal() // or whole = *qw.WholeValue()
 var lowPart uint32 = qw.Parts().LowPart
-```
-To set the field values, we use:
-```
+
+// Setting values:
 *qw.WholeValue() = 123
 qw.Parts().LowPart = 4
 ```

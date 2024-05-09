@@ -117,6 +117,20 @@ const (
 	COMMON_LVB_SBCSDBCS        CONSOLE_CHARACTER_ATTRIBUTES = 768
 )
 
+// enum
+type CONSOLECONTROL int32
+
+const (
+	Reserved1                       CONSOLECONTROL = 0
+	ConsoleNotifyConsoleApplication CONSOLECONTROL = 1
+	Reserved2                       CONSOLECONTROL = 2
+	ConsoleSetCaretInfo             CONSOLECONTROL = 3
+	Reserved3                       CONSOLECONTROL = 4
+	ConsoleSetForeground            CONSOLECONTROL = 5
+	ConsoleSetWindowOwner           CONSOLECONTROL = 6
+	ConsoleEndTask                  CONSOLECONTROL = 7
+)
+
 // structs
 
 type COORD struct {
@@ -312,6 +326,34 @@ type CONSOLE_HISTORY_INFO struct {
 	DwFlags                uint32
 }
 
+type CONSOLEENDTASK struct {
+	ProcessId        HANDLE
+	Hwnd             HWND
+	ConsoleEventCode uint32
+	ConsoleFlags     uint32
+}
+
+type CONSOLEWINDOWOWNER struct {
+	Hwnd      HWND
+	ProcessId uint32
+	ThreadId  uint32
+}
+
+type CONSOLESETFOREGROUND struct {
+	HProcess    HANDLE
+	BForeground BOOL
+}
+
+type CONSOLE_PROCESS_INFO struct {
+	DwProcessID uint32
+	DwFlags     uint32
+}
+
+type CONSOLE_CARET_INFO struct {
+	Hwnd HWND
+	Rc   RECT
+}
+
 // func types
 
 type PHANDLER_ROUTINE = uintptr
@@ -409,6 +451,7 @@ var (
 	pGetConsoleCommandHistoryA       uintptr
 	pGetConsoleCommandHistoryW       uintptr
 	pGetConsoleProcessList           uintptr
+	pConsoleControl                  uintptr
 	pGetStdHandle                    uintptr
 	pSetStdHandle                    uintptr
 	pSetStdHandleEx                  uintptr
@@ -504,17 +547,17 @@ func ReadConsoleW(hConsoleInput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsT
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func WriteConsoleA(hConsoleOutput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func WriteConsoleA(hConsoleOutput HANDLE, lpBuffer PSTR, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pWriteConsoleA, libKernel32, "WriteConsoleA")
-	ret, _, err := syscall.SyscallN(addr, hConsoleOutput, uintptr(lpBuffer), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
+	ret, _, err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
 var WriteConsole = WriteConsoleW
 
-func WriteConsoleW(hConsoleOutput HANDLE, lpBuffer unsafe.Pointer, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
+func WriteConsoleW(hConsoleOutput HANDLE, lpBuffer PWSTR, nNumberOfCharsToWrite uint32, lpNumberOfCharsWritten *uint32, lpReserved unsafe.Pointer) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pWriteConsoleW, libKernel32, "WriteConsoleW")
-	ret, _, err := syscall.SyscallN(addr, hConsoleOutput, uintptr(lpBuffer), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
+	ret, _, err := syscall.SyscallN(addr, hConsoleOutput, uintptr(unsafe.Pointer(lpBuffer)), uintptr(nNumberOfCharsToWrite), uintptr(unsafe.Pointer(lpNumberOfCharsWritten)), uintptr(lpReserved))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
@@ -1003,6 +1046,12 @@ func GetConsoleProcessList(lpdwProcessList *uint32, dwProcessCount uint32) (uint
 	addr := LazyAddr(&pGetConsoleProcessList, libKernel32, "GetConsoleProcessList")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpdwProcessList)), uintptr(dwProcessCount))
 	return uint32(ret), WIN32_ERROR(err)
+}
+
+func ConsoleControl(Command CONSOLECONTROL, ConsoleInformation unsafe.Pointer, ConsoleInformationLength uint32) NTSTATUS {
+	addr := LazyAddr(&pConsoleControl, libUser32, "ConsoleControl")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(Command), uintptr(ConsoleInformation), uintptr(ConsoleInformationLength))
+	return NTSTATUS(ret)
 }
 
 func GetStdHandle(nStdHandle STD_HANDLE) (HANDLE, WIN32_ERROR) {

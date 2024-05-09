@@ -517,26 +517,6 @@ const (
 	REGSTR_VAL_FORCEDCONFIG                         string = "ForcedConfig"
 	REGSTR_VAL_CONFIGFLAGS                          string = "ConfigFlags"
 	REGSTR_VAL_CSCONFIGFLAGS                        string = "CSConfigFlags"
-	CONFIGFLAG_DISABLED                             uint32 = 0x1
-	CONFIGFLAG_REMOVED                              uint32 = 0x2
-	CONFIGFLAG_MANUAL_INSTALL                       uint32 = 0x4
-	CONFIGFLAG_IGNORE_BOOT_LC                       uint32 = 0x8
-	CONFIGFLAG_NET_BOOT                             uint32 = 0x10
-	CONFIGFLAG_REINSTALL                            uint32 = 0x20
-	CONFIGFLAG_FAILEDINSTALL                        uint32 = 0x40
-	CONFIGFLAG_CANTSTOPACHILD                       uint32 = 0x80
-	CONFIGFLAG_OKREMOVEROM                          uint32 = 0x100
-	CONFIGFLAG_NOREMOVEEXIT                         uint32 = 0x200
-	CONFIGFLAG_FINISH_INSTALL                       uint32 = 0x400
-	CONFIGFLAG_NEEDS_FORCED_CONFIG                  uint32 = 0x800
-	CONFIGFLAG_NETBOOT_CARD                         uint32 = 0x1000
-	CONFIGFLAG_PARTIAL_LOG_CONF                     uint32 = 0x2000
-	CONFIGFLAG_SUPPRESS_SURPRISE                    uint32 = 0x4000
-	CONFIGFLAG_VERIFY_HARDWARE                      uint32 = 0x8000
-	CONFIGFLAG_FINISHINSTALL_UI                     uint32 = 0x10000
-	CONFIGFLAG_FINISHINSTALL_ACTION                 uint32 = 0x20000
-	CONFIGFLAG_BOOT_DEVICE                          uint32 = 0x40000
-	CONFIGFLAG_NEEDS_CLASS_CONFIG                   uint32 = 0x80000
 	CSCONFIGFLAG_BITS                               uint32 = 0x7
 	CSCONFIGFLAG_DISABLED                           uint32 = 0x1
 	CSCONFIGFLAG_DO_NOT_CREATE                      uint32 = 0x2
@@ -1412,7 +1392,7 @@ func RegFlushKey(hKey HKEY) WIN32_ERROR {
 	return WIN32_ERROR(ret)
 }
 
-func RegGetKeySecurity(hKey HKEY, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR, lpcbSecurityDescriptor *uint32) WIN32_ERROR {
+func RegGetKeySecurity(hKey HKEY, SecurityInformation OBJECT_SECURITY_INFORMATION, pSecurityDescriptor PSECURITY_DESCRIPTOR, lpcbSecurityDescriptor *uint32) WIN32_ERROR {
 	addr := LazyAddr(&pRegGetKeySecurity, libAdvapi32, "RegGetKeySecurity")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(lpcbSecurityDescriptor)))
 	return WIN32_ERROR(ret)
@@ -1550,7 +1530,7 @@ func RegReplaceKeyW(hKey HKEY, lpSubKey PWSTR, lpNewFile PWSTR, lpOldFile PWSTR)
 	return WIN32_ERROR(ret)
 }
 
-func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags uint32) WIN32_ERROR {
+func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32_ERROR {
 	addr := LazyAddr(&pRegRestoreKeyA, libAdvapi32, "RegRestoreKeyA")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
@@ -1558,7 +1538,7 @@ func RegRestoreKeyA(hKey HKEY, lpFile PSTR, dwFlags uint32) WIN32_ERROR {
 
 var RegRestoreKey = RegRestoreKeyW
 
-func RegRestoreKeyW(hKey HKEY, lpFile PWSTR, dwFlags uint32) WIN32_ERROR {
+func RegRestoreKeyW(hKey HKEY, lpFile PWSTR, dwFlags REG_RESTORE_KEY_FLAGS) WIN32_ERROR {
 	addr := LazyAddr(&pRegRestoreKeyW, libAdvapi32, "RegRestoreKeyW")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(unsafe.Pointer(lpFile)), uintptr(dwFlags))
 	return WIN32_ERROR(ret)
@@ -1584,7 +1564,7 @@ func RegSaveKeyW(hKey HKEY, lpFile PWSTR, lpSecurityAttributes *SECURITY_ATTRIBU
 	return WIN32_ERROR(ret)
 }
 
-func RegSetKeySecurity(hKey HKEY, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR) WIN32_ERROR {
+func RegSetKeySecurity(hKey HKEY, SecurityInformation OBJECT_SECURITY_INFORMATION, pSecurityDescriptor PSECURITY_DESCRIPTOR) WIN32_ERROR {
 	addr := LazyAddr(&pRegSetKeySecurity, libAdvapi32, "RegSetKeySecurity")
 	ret, _, _ := syscall.SyscallN(addr, hKey, uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return WIN32_ERROR(ret)

@@ -186,6 +186,8 @@ const (
 	OF_GET                                     uint32  = 0x2
 	OF_HANDLER                                 uint32  = 0x4
 	WIN32                                      uint32  = 0x64
+	OLESTREAM_CONVERSION_DEFAULT               int32   = 0
+	OLESTREAM_CONVERSION_DISABLEOLELINK        int32   = 1
 	IDC_OLEUIHELP                              uint32  = 0x63
 	IDC_IO_CREATENEW                           uint32  = 0x834
 	IDC_IO_CREATEFROMFILE                      uint32  = 0x835
@@ -1746,7 +1748,7 @@ func (this *SAFEARRAYUNION_U) HyperStrVal() HYPER_SIZEDARR {
 
 type SAFEARRAYUNION struct {
 	SfType uint32
-	U      SAFEARRAYUNION_U
+	SAFEARRAYUNION_U
 }
 
 type WireSAFEARRAY_ struct {
@@ -2180,7 +2182,7 @@ type OLEVERB struct {
 	LVerb        OLEIVERB
 	LpszVerbName PWSTR
 	FuFlags      MENU_ITEM_FLAGS
-	GrfAttribs   uint32
+	GrfAttribs   OLEVERBATTRIB
 }
 
 type NUMPARSE struct {
@@ -2228,7 +2230,7 @@ type CONTROLINFO struct {
 	Cb      uint32
 	HAccel  HACCEL
 	CAccel  uint16
-	DwFlags uint32
+	DwFlags CTRLINFO
 }
 
 type POINTF struct {
@@ -2277,7 +2279,7 @@ type QACONTAINER struct {
 	PAdviseSink         *IAdviseSinkEx
 	PPropertyNotifySink *IPropertyNotifySink
 	PUnkEventSink       *IUnknown
-	DwAmbientFlags      uint32
+	DwAmbientFlags      QACONTAINERFLAGS
 	ColorFore           uint32
 	ColorBack           uint32
 	PFont               *IFont
@@ -2292,11 +2294,11 @@ type QACONTAINER struct {
 
 type QACONTROL struct {
 	CbSize                    uint32
-	DwMiscStatus              uint32
-	DwViewStatus              uint32
+	DwMiscStatus              OLEMISC
+	DwViewStatus              VIEWSTATUS
 	DwEventCookie             uint32
 	DwPropNotifyCookie        uint32
-	DwPointerActivationPolicy uint32
+	DwPointerActivationPolicy POINTERINACTIVE
 }
 
 type OCPFIPARAMS struct {
@@ -2381,7 +2383,7 @@ func (this *PICTDESC_Anonymous) EmfVal() PICTDESC_Anonymous_Emf {
 
 type PICTDESC struct {
 	CbSizeofstruct uint32
-	PicType        uint32
+	PicType        PICTYPE
 	PICTDESC_Anonymous
 }
 
@@ -2399,8 +2401,8 @@ type PAGESET struct {
 }
 
 type OLECMD struct {
-	CmdID uint32
-	Cmdf  uint32
+	CmdID OLECMDID
+	Cmdf  OLECMDF
 }
 
 type OLECMDTEXT struct {
@@ -2801,6 +2803,9 @@ type OLEUIOBJECTPROPSA struct {
 }
 
 // func types
+
+type OLESTREAMQUERYCONVERTOLELINKCALLBACK = uintptr
+type OLESTREAMQUERYCONVERTOLELINKCALLBACK_func = func(pClsid *syscall.GUID, szClass PWSTR, szTopicName PWSTR, szItemName PWSTR, szUNCName PWSTR, linkUpdatingOption uint32, pvContext unsafe.Pointer) HRESULT
 
 type LPFNOLEUIHOOK = uintptr
 type LPFNOLEUIHOOK_func = func(param0 HWND, param1 uint32, param2 WPARAM, param3 LPARAM) uint32
@@ -3813,7 +3818,7 @@ var IID_IOleContainer = syscall.GUID{0x0000011B, 0x0000, 0x0000,
 
 type IOleContainerInterface interface {
 	IParseDisplayNameInterface
-	EnumObjects(grfFlags uint32, ppenum **IEnumUnknown) HRESULT
+	EnumObjects(grfFlags OLECONTF, ppenum **IEnumUnknown) HRESULT
 	LockContainer(fLock BOOL) HRESULT
 }
 
@@ -3831,7 +3836,7 @@ func (this *IOleContainer) Vtbl() *IOleContainerVtbl {
 	return (*IOleContainerVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IOleContainer) EnumObjects(grfFlags uint32, ppenum **IEnumUnknown) HRESULT {
+func (this *IOleContainer) EnumObjects(grfFlags OLECONTF, ppenum **IEnumUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EnumObjects, uintptr(unsafe.Pointer(this)), uintptr(grfFlags), uintptr(unsafe.Pointer(ppenum)))
 	return HRESULT(ret)
 }
@@ -3848,7 +3853,7 @@ var IID_IOleClientSite = syscall.GUID{0x00000118, 0x0000, 0x0000,
 type IOleClientSiteInterface interface {
 	IUnknownInterface
 	SaveObject() HRESULT
-	GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT
+	GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT
 	GetContainer(ppContainer **IOleContainer) HRESULT
 	ShowObject() HRESULT
 	OnShowWindow(fShow BOOL) HRESULT
@@ -3878,7 +3883,7 @@ func (this *IOleClientSite) SaveObject() HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IOleClientSite) GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT {
+func (this *IOleClientSite) GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMoniker, uintptr(unsafe.Pointer(this)), uintptr(dwAssign), uintptr(dwWhichMoniker), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
@@ -3912,9 +3917,9 @@ type IOleObjectInterface interface {
 	SetClientSite(pClientSite *IOleClientSite) HRESULT
 	GetClientSite(ppClientSite **IOleClientSite) HRESULT
 	SetHostNames(szContainerApp PWSTR, szContainerObj PWSTR) HRESULT
-	Close(dwSaveOption uint32) HRESULT
-	SetMoniker(dwWhichMoniker uint32, pmk *IMoniker) HRESULT
-	GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT
+	Close(dwSaveOption OLECLOSE) HRESULT
+	SetMoniker(dwWhichMoniker OLEWHICHMK, pmk *IMoniker) HRESULT
+	GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT
 	InitFromData(pDataObject *IDataObject, fCreation BOOL, dwReserved uint32) HRESULT
 	GetClipboardData(dwReserved uint32, ppDataObject **IDataObject) HRESULT
 	DoVerb(iVerb int32, lpmsg *MSG, pActiveSite *IOleClientSite, lindex int32, hwndParent HWND, lprcPosRect *RECT) HRESULT
@@ -3922,7 +3927,7 @@ type IOleObjectInterface interface {
 	Update() HRESULT
 	IsUpToDate() HRESULT
 	GetUserClassID(pClsid *syscall.GUID) HRESULT
-	GetUserType(dwFormOfType uint32, pszUserType *PWSTR) HRESULT
+	GetUserType(dwFormOfType USERCLASSTYPE, pszUserType *PWSTR) HRESULT
 	SetExtent(dwDrawAspect DVASPECT, psizel *SIZE) HRESULT
 	GetExtent(dwDrawAspect DVASPECT, psizel *SIZE) HRESULT
 	Advise(pAdvSink *IAdviseSink, pdwConnection *uint32) HRESULT
@@ -3980,17 +3985,17 @@ func (this *IOleObject) SetHostNames(szContainerApp PWSTR, szContainerObj PWSTR)
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) Close(dwSaveOption uint32) HRESULT {
+func (this *IOleObject) Close(dwSaveOption OLECLOSE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Close, uintptr(unsafe.Pointer(this)), uintptr(dwSaveOption))
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) SetMoniker(dwWhichMoniker uint32, pmk *IMoniker) HRESULT {
+func (this *IOleObject) SetMoniker(dwWhichMoniker OLEWHICHMK, pmk *IMoniker) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetMoniker, uintptr(unsafe.Pointer(this)), uintptr(dwWhichMoniker), uintptr(unsafe.Pointer(pmk)))
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) GetMoniker(dwAssign uint32, dwWhichMoniker uint32, ppmk **IMoniker) HRESULT {
+func (this *IOleObject) GetMoniker(dwAssign OLEGETMONIKER, dwWhichMoniker OLEWHICHMK, ppmk **IMoniker) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetMoniker, uintptr(unsafe.Pointer(this)), uintptr(dwAssign), uintptr(dwWhichMoniker), uintptr(unsafe.Pointer(ppmk)))
 	return HRESULT(ret)
 }
@@ -4030,7 +4035,7 @@ func (this *IOleObject) GetUserClassID(pClsid *syscall.GUID) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IOleObject) GetUserType(dwFormOfType uint32, pszUserType *PWSTR) HRESULT {
+func (this *IOleObject) GetUserType(dwFormOfType USERCLASSTYPE, pszUserType *PWSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetUserType, uintptr(unsafe.Pointer(this)), uintptr(dwFormOfType), uintptr(unsafe.Pointer(pszUserType)))
 	return HRESULT(ret)
 }
@@ -5045,7 +5050,7 @@ type IOleControlSiteInterface interface {
 	OnControlInfoChanged() HRESULT
 	LockInPlaceActive(fLock BOOL) HRESULT
 	GetExtendedControl(ppDisp **IDispatch) HRESULT
-	TransformCoords(pPtlHimetric *POINTL, pPtfContainer *POINTF, dwFlags uint32) HRESULT
+	TransformCoords(pPtlHimetric *POINTL, pPtfContainer *POINTF, dwFlags XFORMCOORDS) HRESULT
 	TranslateAccelerator(pMsg *MSG, grfModifiers KEYMODIFIERS) HRESULT
 	OnFocus(fGotFocus BOOL) HRESULT
 	ShowPropertyFrame() HRESULT
@@ -5085,7 +5090,7 @@ func (this *IOleControlSite) GetExtendedControl(ppDisp **IDispatch) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IOleControlSite) TransformCoords(pPtlHimetric *POINTL, pPtfContainer *POINTF, dwFlags uint32) HRESULT {
+func (this *IOleControlSite) TransformCoords(pPtlHimetric *POINTL, pPtfContainer *POINTF, dwFlags XFORMCOORDS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TransformCoords, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pPtlHimetric)), uintptr(unsafe.Pointer(pPtfContainer)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -5235,7 +5240,7 @@ var IID_IPropertyPageSite = syscall.GUID{0xB196B28C, 0xBAB4, 0x101A,
 
 type IPropertyPageSiteInterface interface {
 	IUnknownInterface
-	OnStatusChange(dwFlags uint32) HRESULT
+	OnStatusChange(dwFlags PROPPAGESTATUS) HRESULT
 	GetLocaleID(pLocaleID *uint32) HRESULT
 	GetPageContainer(ppUnk **IUnknown) HRESULT
 	TranslateAccelerator(pMsg *MSG) HRESULT
@@ -5257,7 +5262,7 @@ func (this *IPropertyPageSite) Vtbl() *IPropertyPageSiteVtbl {
 	return (*IPropertyPageSiteVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IPropertyPageSite) OnStatusChange(dwFlags uint32) HRESULT {
+func (this *IPropertyPageSite) OnStatusChange(dwFlags PROPPAGESTATUS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().OnStatusChange, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -6630,7 +6635,7 @@ var IID_IVBGetControl = syscall.GUID{0x40A050A0, 0x3C31, 0x101B,
 
 type IVBGetControlInterface interface {
 	IUnknownInterface
-	EnumControls(dwOleContF uint32, dwWhich ENUM_CONTROLS_WHICH_FLAGS, ppenumUnk **IEnumUnknown) HRESULT
+	EnumControls(dwOleContF OLECONTF, dwWhich ENUM_CONTROLS_WHICH_FLAGS, ppenumUnk **IEnumUnknown) HRESULT
 }
 
 type IVBGetControlVtbl struct {
@@ -6646,7 +6651,7 @@ func (this *IVBGetControl) Vtbl() *IVBGetControlVtbl {
 	return (*IVBGetControlVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IVBGetControl) EnumControls(dwOleContF uint32, dwWhich ENUM_CONTROLS_WHICH_FLAGS, ppenumUnk **IEnumUnknown) HRESULT {
+func (this *IVBGetControl) EnumControls(dwOleContF OLECONTF, dwWhich ENUM_CONTROLS_WHICH_FLAGS, ppenumUnk **IEnumUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().EnumControls, uintptr(unsafe.Pointer(this)), uintptr(dwOleContF), uintptr(dwWhich), uintptr(unsafe.Pointer(ppenumUnk)))
 	return HRESULT(ret)
 }
@@ -8126,9 +8131,11 @@ var (
 	pOleRegGetMiscStatus               uintptr
 	pOleRegEnumFormatEtc               uintptr
 	pOleRegEnumVerbs                   uintptr
+	pOleConvertOLESTREAMToIStorage2    uintptr
 	pOleDoAutoConvert                  uintptr
 	pOleGetAutoConvert                 uintptr
 	pOleSetAutoConvert                 uintptr
+	pOleConvertOLESTREAMToIStorageEx2  uintptr
 	pHRGN_UserSize                     uintptr
 	pHRGN_UserMarshal                  uintptr
 	pHRGN_UserUnmarshal                uintptr
@@ -10254,79 +10261,79 @@ func OleQueryCreateFromData(pSrcDataObject *IDataObject) HRESULT {
 	return HRESULT(ret)
 }
 
-func OleCreate(rclsid *syscall.GUID, riid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreate(rclsid *syscall.GUID, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreate, libOle32, "OleCreate")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateEx(rclsid *syscall.GUID, riid *syscall.GUID, dwFlags OLECREATE, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateEx(rclsid *syscall.GUID, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateEx, libOle32, "OleCreateEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateFromData, libOle32, "OleCreateFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateFromDataEx, libOle32, "OleCreateFromDataEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkFromData(pSrcDataObj *IDataObject, riid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateLinkFromData, libOle32, "OleCreateLinkFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkFromDataEx(pSrcDataObj *IDataObject, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateLinkFromDataEx, libOle32, "OleCreateLinkFromDataEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateStaticFromData(pSrcDataObj *IDataObject, iid *syscall.GUID, renderopt uint32, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateStaticFromData(pSrcDataObj *IDataObject, iid *syscall.GUID, renderopt OLERENDER, pFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateStaticFromData, libOle32, "OleCreateStaticFromData")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSrcDataObj)), uintptr(unsafe.Pointer(iid)), uintptr(renderopt), uintptr(unsafe.Pointer(pFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLink(pmkLinkSrc *IMoniker, riid *syscall.GUID, renderopt uint32, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLink(pmkLinkSrc *IMoniker, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateLink, libOle32, "OleCreateLink")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkLinkSrc)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkEx(pmkLinkSrc *IMoniker, riid *syscall.GUID, dwFlags OLECREATE, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkEx(pmkLinkSrc *IMoniker, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateLinkEx, libOle32, "OleCreateLinkEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pmkLinkSrc)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkToFile(lpszFileName PWSTR, riid *syscall.GUID, renderopt uint32, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkToFile(lpszFileName PWSTR, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateLinkToFile, libOle32, "OleCreateLinkToFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateLinkToFileEx(lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateLinkToFileEx(lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateLinkToFileEx, libOle32, "OleCreateLinkToFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromFile(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, renderopt uint32, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromFile(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, renderopt OLERENDER, lpFormatEtc *FORMATETC, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateFromFile, libOle32, "OleCreateFromFile")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(renderopt), uintptr(unsafe.Pointer(lpFormatEtc)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
 }
 
-func OleCreateFromFileEx(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt uint32, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
+func OleCreateFromFileEx(rclsid *syscall.GUID, lpszFileName PWSTR, riid *syscall.GUID, dwFlags OLECREATE, renderopt OLERENDER, cFormats uint32, rgAdvf *uint32, rgFormatEtc *FORMATETC, lpAdviseSink *IAdviseSink, rgdwConnection *uint32, pClientSite *IOleClientSite, pStg *IStorage, ppvObj unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pOleCreateFromFileEx, libOle32, "OleCreateFromFileEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(lpszFileName)), uintptr(unsafe.Pointer(riid)), uintptr(dwFlags), uintptr(renderopt), uintptr(cFormats), uintptr(unsafe.Pointer(rgAdvf)), uintptr(unsafe.Pointer(rgFormatEtc)), uintptr(unsafe.Pointer(lpAdviseSink)), uintptr(unsafe.Pointer(rgdwConnection)), uintptr(unsafe.Pointer(pClientSite)), uintptr(unsafe.Pointer(pStg)), uintptr(ppvObj))
 	return HRESULT(ret)
@@ -10517,7 +10524,7 @@ func OleMetafilePictFromIconAndLabel(hIcon HICON, lpszLabel PWSTR, lpszSourceFil
 	return (HGLOBAL)(unsafe.Pointer(ret)), WIN32_ERROR(err)
 }
 
-func OleRegGetUserType(clsid *syscall.GUID, dwFormOfType uint32, pszUserType *PWSTR) HRESULT {
+func OleRegGetUserType(clsid *syscall.GUID, dwFormOfType USERCLASSTYPE, pszUserType *PWSTR) HRESULT {
 	addr := LazyAddr(&pOleRegGetUserType, libOle32, "OleRegGetUserType")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsid)), uintptr(dwFormOfType), uintptr(unsafe.Pointer(pszUserType)))
 	return HRESULT(ret)
@@ -10541,6 +10548,12 @@ func OleRegEnumVerbs(clsid *syscall.GUID, ppenum **IEnumOLEVERB) HRESULT {
 	return HRESULT(ret)
 }
 
+func OleConvertOLESTREAMToIStorage2(lpolestream *OLESTREAM, pstg *IStorage, ptd *DVTARGETDEVICE, opt uint32, pvCallbackContext unsafe.Pointer, pQueryConvertOLELinkCallback OLESTREAMQUERYCONVERTOLELINKCALLBACK) HRESULT {
+	addr := LazyAddr(&pOleConvertOLESTREAMToIStorage2, libOle32, "OleConvertOLESTREAMToIStorage2")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpolestream)), uintptr(unsafe.Pointer(pstg)), uintptr(unsafe.Pointer(ptd)), uintptr(opt), uintptr(pvCallbackContext), pQueryConvertOLELinkCallback)
+	return HRESULT(ret)
+}
+
 func OleDoAutoConvert(pStg *IStorage, pClsidNew *syscall.GUID) HRESULT {
 	addr := LazyAddr(&pOleDoAutoConvert, libOle32, "OleDoAutoConvert")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pStg)), uintptr(unsafe.Pointer(pClsidNew)))
@@ -10556,6 +10569,12 @@ func OleGetAutoConvert(clsidOld *syscall.GUID, pClsidNew *syscall.GUID) HRESULT 
 func OleSetAutoConvert(clsidOld *syscall.GUID, clsidNew *syscall.GUID) HRESULT {
 	addr := LazyAddr(&pOleSetAutoConvert, libOle32, "OleSetAutoConvert")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(clsidOld)), uintptr(unsafe.Pointer(clsidNew)))
+	return HRESULT(ret)
+}
+
+func OleConvertOLESTREAMToIStorageEx2(polestm *OLESTREAM, pstg *IStorage, pcfFormat *uint16, plwWidth *int32, plHeight *int32, pdwSize *uint32, pmedium *STGMEDIUM, opt uint32, pvCallbackContext unsafe.Pointer, pQueryConvertOLELinkCallback OLESTREAMQUERYCONVERTOLELINKCALLBACK) HRESULT {
+	addr := LazyAddr(&pOleConvertOLESTREAMToIStorageEx2, libOle32, "OleConvertOLESTREAMToIStorageEx2")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(polestm)), uintptr(unsafe.Pointer(pstg)), uintptr(unsafe.Pointer(pcfFormat)), uintptr(unsafe.Pointer(plwWidth)), uintptr(unsafe.Pointer(plHeight)), uintptr(unsafe.Pointer(pdwSize)), uintptr(unsafe.Pointer(pmedium)), uintptr(opt), uintptr(pvCallbackContext), pQueryConvertOLELinkCallback)
 	return HRESULT(ret)
 }
 

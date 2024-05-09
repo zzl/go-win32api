@@ -7,8 +7,10 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-type HKL = uintptr
+// type HKL = uintptr
 type HTASK = uintptr
+
+type ALG_ID = uint32
 
 type CONDITION_OPERATION = int32
 
@@ -152,7 +154,7 @@ const (
 )
 
 const (
-	WVR_REDRAW = WVR_HREDRAW | WVR_VREDRAW
+// WVR_REDRAW = WVR_HREDRAW | WVR_VREDRAW
 )
 
 const (

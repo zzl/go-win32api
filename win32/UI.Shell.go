@@ -672,22 +672,6 @@ const (
 	DBIF_VIEWMODE_TRANSPARENT                                 uint32  = 0x4
 	DBPC_SELECTFIRST                                          uint32  = 0xffffffff
 	THBN_CLICKED                                              uint32  = 0x1800
-	FOFX_NOSKIPJUNCTIONS                                      uint32  = 0x10000
-	FOFX_PREFERHARDLINK                                       uint32  = 0x20000
-	FOFX_SHOWELEVATIONPROMPT                                  uint32  = 0x40000
-	FOFX_RECYCLEONDELETE                                      uint32  = 0x80000
-	FOFX_EARLYFAILURE                                         uint32  = 0x100000
-	FOFX_PRESERVEFILEEXTENSIONS                               uint32  = 0x200000
-	FOFX_KEEPNEWERFILE                                        uint32  = 0x400000
-	FOFX_NOCOPYHOOKS                                          uint32  = 0x800000
-	FOFX_NOMINIMIZEBOX                                        uint32  = 0x1000000
-	FOFX_MOVEACLSACROSSVOLUMES                                uint32  = 0x2000000
-	FOFX_DONTDISPLAYSOURCEPATH                                uint32  = 0x4000000
-	FOFX_DONTDISPLAYDESTPATH                                  uint32  = 0x8000000
-	FOFX_REQUIREELEVATION                                     uint32  = 0x10000000
-	FOFX_ADDUNDORECORD                                        uint32  = 0x20000000
-	FOFX_COPYASDOWNLOAD                                       uint32  = 0x40000000
-	FOFX_DONTDISPLAYLOCATIONS                                 uint32  = 0x80000000
 	BSIM_STATE                                                uint32  = 0x1
 	BSIM_STYLE                                                uint32  = 0x2
 	BSSF_VISIBLE                                              uint32  = 0x1
@@ -794,22 +778,6 @@ const (
 	FO_COPY                                                   uint32  = 0x2
 	FO_DELETE                                                 uint32  = 0x3
 	FO_RENAME                                                 uint32  = 0x4
-	FOF_MULTIDESTFILES                                        uint32  = 0x1
-	FOF_CONFIRMMOUSE                                          uint32  = 0x2
-	FOF_SILENT                                                uint32  = 0x4
-	FOF_RENAMEONCOLLISION                                     uint32  = 0x8
-	FOF_NOCONFIRMATION                                        uint32  = 0x10
-	FOF_WANTMAPPINGHANDLE                                     uint32  = 0x20
-	FOF_ALLOWUNDO                                             uint32  = 0x40
-	FOF_FILESONLY                                             uint32  = 0x80
-	FOF_SIMPLEPROGRESS                                        uint32  = 0x100
-	FOF_NOCONFIRMMKDIR                                        uint32  = 0x200
-	FOF_NOERRORUI                                             uint32  = 0x400
-	FOF_NOCOPYSECURITYATTRIBS                                 uint32  = 0x800
-	FOF_NORECURSION                                           uint32  = 0x1000
-	FOF_NO_CONNECTED_ELEMENTS                                 uint32  = 0x2000
-	FOF_WANTNUKEWARNING                                       uint32  = 0x4000
-	FOF_NORECURSEREPARSE                                      uint32  = 0x8000
 	PO_DELETE                                                 uint32  = 0x13
 	PO_RENAME                                                 uint32  = 0x14
 	PO_PORTCHANGE                                             uint32  = 0x20
@@ -1154,6 +1122,7 @@ const (
 	COPYENGINE_S_CLOSE_PROGRAM                                HRESULT = 2555917
 	COPYENGINE_S_COLLISIONRESOLVED                            HRESULT = 2555918
 	COPYENGINE_S_PROGRESS_PAUSE                               HRESULT = 2555919
+	COPYENGINE_S_PENDING_DELETE                               HRESULT = 2555920
 	COPYENGINE_E_USER_CANCELLED                               HRESULT = -2144927744
 	COPYENGINE_E_CANCELLED                                    HRESULT = -2144927743
 	COPYENGINE_E_REQUIRES_ELEVATION                           HRESULT = -2144927742
@@ -1831,9 +1800,6 @@ var (
 	SID_CommandsPropertyBag = syscall.GUID{0x6E043250, 0x4416, 0x485C,
 		[8]byte{0xB1, 0x43, 0xE6, 0x2A, 0x76, 0x0D, 0x9F, 0xE5}}
 
-	CLSID_CUrlHistory = syscall.GUID{0x3C374A40, 0xBAE4, 0x11CF,
-		[8]byte{0xBF, 0x7D, 0x00, 0xAA, 0x00, 0x69, 0x46, 0xEE}}
-
 	CLSID_CURLSearchHook = syscall.GUID{0xCFBFAE00, 0x17A6, 0x11D0,
 		[8]byte{0x99, 0xCB, 0x00, 0xC0, 0x4F, 0xD6, 0x44, 0x97}}
 
@@ -1891,44 +1857,107 @@ var (
 	CLSID_DocHostUIHandler = syscall.GUID{0x7057E952, 0xBD1B, 0x11D1,
 		[8]byte{0x89, 0x19, 0x00, 0xC0, 0x4F, 0xC2, 0xC8, 0x36}}
 
+	PSGUID_SHELLDETAILS = syscall.GUID{0x28636AA6, 0x953D, 0x11D2,
+		[8]byte{0xB5, 0xD6, 0x00, 0xC0, 0x4F, 0xD9, 0x18, 0xD0}}
+
 	FMTID_ShellDetails = syscall.GUID{0x28636AA6, 0x953D, 0x11D2,
 		[8]byte{0xB5, 0xD6, 0x00, 0xC0, 0x4F, 0xD9, 0x18, 0xD0}}
 
 	FMTID_Storage = syscall.GUID{0xB725F130, 0x47EF, 0x101A,
 		[8]byte{0xA5, 0xF1, 0x02, 0x60, 0x8C, 0x9E, 0xEB, 0xAC}}
 
+	PSGUID_IMAGEPROPERTIES = syscall.GUID{0x14B81DA1, 0x0135, 0x4D31,
+		[8]byte{0x96, 0xD9, 0x6C, 0xBF, 0xC9, 0x67, 0x1A, 0x99}}
+
 	FMTID_ImageProperties = syscall.GUID{0x14B81DA1, 0x0135, 0x4D31,
 		[8]byte{0x96, 0xD9, 0x6C, 0xBF, 0xC9, 0x67, 0x1A, 0x99}}
+
+	PSGUID_CUSTOMIMAGEPROPERTIES = syscall.GUID{0x7ECD8B0E, 0xC136, 0x4A9B,
+		[8]byte{0x94, 0x11, 0x4E, 0xBD, 0x66, 0x73, 0xCC, 0xC3}}
 
 	FMTID_CustomImageProperties = syscall.GUID{0x7ECD8B0E, 0xC136, 0x4A9B,
 		[8]byte{0x94, 0x11, 0x4E, 0xBD, 0x66, 0x73, 0xCC, 0xC3}}
 
+	PSGUID_LIBRARYPROPERTIES = syscall.GUID{0x5D76B67F, 0x9B3D, 0x44BB,
+		[8]byte{0xB6, 0xAE, 0x25, 0xDA, 0x4F, 0x63, 0x8A, 0x67}}
+
 	FMTID_LibraryProperties = syscall.GUID{0x5D76B67F, 0x9B3D, 0x44BB,
 		[8]byte{0xB6, 0xAE, 0x25, 0xDA, 0x4F, 0x63, 0x8A, 0x67}}
+
+	PSGUID_DISPLACED = syscall.GUID{0x9B174B33, 0x40FF, 0x11D2,
+		[8]byte{0xA2, 0x7E, 0x00, 0xC0, 0x4F, 0xC3, 0x08, 0x71}}
 
 	FMTID_Displaced = syscall.GUID{0x9B174B33, 0x40FF, 0x11D2,
 		[8]byte{0xA2, 0x7E, 0x00, 0xC0, 0x4F, 0xC3, 0x08, 0x71}}
 
+	PSGUID_BRIEFCASE = syscall.GUID{0x328D8B21, 0x7729, 0x4BFC,
+		[8]byte{0x95, 0x4C, 0x90, 0x2B, 0x32, 0x9D, 0x56, 0xB0}}
+
 	FMTID_Briefcase = syscall.GUID{0x328D8B21, 0x7729, 0x4BFC,
 		[8]byte{0x95, 0x4C, 0x90, 0x2B, 0x32, 0x9D, 0x56, 0xB0}}
+
+	PSGUID_MISC = syscall.GUID{0x9B174B34, 0x40FF, 0x11D2,
+		[8]byte{0xA2, 0x7E, 0x00, 0xC0, 0x4F, 0xC3, 0x08, 0x71}}
 
 	FMTID_Misc = syscall.GUID{0x9B174B34, 0x40FF, 0x11D2,
 		[8]byte{0xA2, 0x7E, 0x00, 0xC0, 0x4F, 0xC3, 0x08, 0x71}}
 
+	PSGUID_WEBVIEW = syscall.GUID{0xF2275480, 0xF782, 0x4291,
+		[8]byte{0xBD, 0x94, 0xF1, 0x36, 0x93, 0x51, 0x3A, 0xEC}}
+
 	FMTID_WebView = syscall.GUID{0xF2275480, 0xF782, 0x4291,
 		[8]byte{0xBD, 0x94, 0xF1, 0x36, 0x93, 0x51, 0x3A, 0xEC}}
+
+	PSGUID_MUSIC = syscall.GUID{0x56A3372E, 0xCE9C, 0x11D2,
+		[8]byte{0x9F, 0x0E, 0x00, 0x60, 0x97, 0xC6, 0x86, 0xF6}}
 
 	FMTID_MUSIC = syscall.GUID{0x56A3372E, 0xCE9C, 0x11D2,
 		[8]byte{0x9F, 0x0E, 0x00, 0x60, 0x97, 0xC6, 0x86, 0xF6}}
 
+	PSGUID_DRM = syscall.GUID{0xAEAC19E4, 0x89AE, 0x4508,
+		[8]byte{0xB9, 0xB7, 0xBB, 0x86, 0x7A, 0xBE, 0xE2, 0xED}}
+
 	FMTID_DRM = syscall.GUID{0xAEAC19E4, 0x89AE, 0x4508,
 		[8]byte{0xB9, 0xB7, 0xBB, 0x86, 0x7A, 0xBE, 0xE2, 0xED}}
+
+	PSGUID_VIDEO = syscall.GUID{0x64440491, 0x4C8B, 0x11D1,
+		[8]byte{0x8B, 0x70, 0x08, 0x00, 0x36, 0xB1, 0x1A, 0x03}}
+
+	PSGUID_AUDIO = syscall.GUID{0x64440490, 0x4C8B, 0x11D1,
+		[8]byte{0x8B, 0x70, 0x08, 0x00, 0x36, 0xB1, 0x1A, 0x03}}
+
+	PSGUID_CONTROLPANEL = syscall.GUID{0x305CA226, 0xD286, 0x468E,
+		[8]byte{0xB8, 0x48, 0x2B, 0x2E, 0x8E, 0x69, 0x7B, 0x74}}
+
+	PSGUID_VOLUME = syscall.GUID{0x9B174B35, 0x40FF, 0x11D2,
+		[8]byte{0xA2, 0x7E, 0x00, 0xC0, 0x4F, 0xC3, 0x08, 0x71}}
 
 	FMTID_Volume = syscall.GUID{0x9B174B35, 0x40FF, 0x11D2,
 		[8]byte{0xA2, 0x7E, 0x00, 0xC0, 0x4F, 0xC3, 0x08, 0x71}}
 
+	PSGUID_SHARE = syscall.GUID{0xD8C3986F, 0x813B, 0x449C,
+		[8]byte{0x84, 0x5D, 0x87, 0xB9, 0x5D, 0x67, 0x4A, 0xDE}}
+
+	PSGUID_LINK = syscall.GUID{0xB9B4B3FC, 0x2B51, 0x4A42,
+		[8]byte{0xB5, 0xD8, 0x32, 0x41, 0x46, 0xAF, 0xCF, 0x25}}
+
+	PSGUID_QUERY_D = syscall.GUID{0x49691C90, 0x7E17, 0x101A,
+		[8]byte{0xA9, 0x1C, 0x08, 0x00, 0x2B, 0x2E, 0xCD, 0xA9}}
+
 	FMTID_Query = syscall.GUID{0x49691C90, 0x7E17, 0x101A,
 		[8]byte{0xA9, 0x1C, 0x08, 0x00, 0x2B, 0x2E, 0xCD, 0xA9}}
+
+	PSGUID_SUMMARYINFORMATION = syscall.GUID{0xF29F85E0, 0x4FF9, 0x1068,
+		[8]byte{0xAB, 0x91, 0x08, 0x00, 0x2B, 0x27, 0xB3, 0xD9}}
+
+	PSGUID_DOCUMENTSUMMARYINFORMATION = syscall.GUID{0xD5CDD502, 0x2E9C, 0x101B,
+		[8]byte{0x93, 0x97, 0x08, 0x00, 0x2B, 0x2C, 0xF9, 0xAE}}
+
+	PSGUID_MEDIAFILESUMMARYINFORMATION = syscall.GUID{0x64440492, 0x4C8B, 0x11D1,
+		[8]byte{0x8B, 0x70, 0x08, 0x00, 0x36, 0xB1, 0x1A, 0x03}}
+
+	PSGUID_IMAGESUMMARYINFORMATION = syscall.GUID{0x6444048F, 0x4C8B, 0x11D1,
+		[8]byte{0x8B, 0x70, 0x08, 0x00, 0x36, 0xB1, 0x1A, 0x03}}
 
 	CLSID_HWShellExecute = syscall.GUID{0xFFB8655F, 0x81B9, 0x4FCE,
 		[8]byte{0xB8, 0x9C, 0x9A, 0x6B, 0xA7, 0x6D, 0x13, 0xE7}}
@@ -2298,6 +2327,12 @@ var (
 
 	Identity_LocalUserProvider = syscall.GUID{0xA198529B, 0x730F, 0x4089,
 		[8]byte{0xB6, 0x46, 0xA1, 0x25, 0x57, 0xF5, 0x66, 0x5E}}
+
+	CLSID_CUrlHistory = syscall.GUID{0x3C374A40, 0xBAE4, 0x11CF,
+		[8]byte{0xBF, 0x7D, 0x00, 0xAA, 0x00, 0x69, 0x46, 0xEE}}
+
+	CLSID_CUrlHistoryBoth = syscall.GUID{0x6659983C, 0x8476, 0x4EB4,
+		[8]byte{0xB7, 0x8C, 0xE5, 0x96, 0x8F, 0x32, 0x6B, 0xA0}}
 )
 
 // enums
@@ -2839,6 +2874,7 @@ const (
 )
 
 // enum
+// flags
 type NOTIFY_ICON_INFOTIP_FLAGS uint32
 
 const (
@@ -2854,6 +2890,7 @@ const (
 )
 
 // enum
+// flags
 type NOTIFY_ICON_STATE uint32
 
 const (
@@ -2883,6 +2920,46 @@ const (
 	SHGSI_LARGEICON     SHGSI_FLAGS = 0
 	SHGSI_SMALLICON     SHGSI_FLAGS = 1
 	SHGSI_SHELLICONSIZE SHGSI_FLAGS = 4
+)
+
+// enum
+// flags
+type FILEOPERATION_FLAGS uint32
+
+const (
+	FOFX_NOSKIPJUNCTIONS        FILEOPERATION_FLAGS = 65536
+	FOFX_PREFERHARDLINK         FILEOPERATION_FLAGS = 131072
+	FOFX_SHOWELEVATIONPROMPT    FILEOPERATION_FLAGS = 262144
+	FOFX_RECYCLEONDELETE        FILEOPERATION_FLAGS = 524288
+	FOFX_EARLYFAILURE           FILEOPERATION_FLAGS = 1048576
+	FOFX_PRESERVEFILEEXTENSIONS FILEOPERATION_FLAGS = 2097152
+	FOFX_KEEPNEWERFILE          FILEOPERATION_FLAGS = 4194304
+	FOFX_NOCOPYHOOKS            FILEOPERATION_FLAGS = 8388608
+	FOFX_NOMINIMIZEBOX          FILEOPERATION_FLAGS = 16777216
+	FOFX_MOVEACLSACROSSVOLUMES  FILEOPERATION_FLAGS = 33554432
+	FOFX_DONTDISPLAYSOURCEPATH  FILEOPERATION_FLAGS = 67108864
+	FOFX_DONTDISPLAYDESTPATH    FILEOPERATION_FLAGS = 134217728
+	FOFX_REQUIREELEVATION       FILEOPERATION_FLAGS = 268435456
+	FOFX_ADDUNDORECORD          FILEOPERATION_FLAGS = 536870912
+	FOFX_COPYASDOWNLOAD         FILEOPERATION_FLAGS = 1073741824
+	FOFX_DONTDISPLAYLOCATIONS   FILEOPERATION_FLAGS = 2147483648
+	FOF_MULTIDESTFILES          FILEOPERATION_FLAGS = 1
+	FOF_CONFIRMMOUSE            FILEOPERATION_FLAGS = 2
+	FOF_SILENT                  FILEOPERATION_FLAGS = 4
+	FOF_RENAMEONCOLLISION       FILEOPERATION_FLAGS = 8
+	FOF_NOCONFIRMATION          FILEOPERATION_FLAGS = 16
+	FOF_WANTMAPPINGHANDLE       FILEOPERATION_FLAGS = 32
+	FOF_ALLOWUNDO               FILEOPERATION_FLAGS = 64
+	FOF_FILESONLY               FILEOPERATION_FLAGS = 128
+	FOF_SIMPLEPROGRESS          FILEOPERATION_FLAGS = 256
+	FOF_NOCONFIRMMKDIR          FILEOPERATION_FLAGS = 512
+	FOF_NOERRORUI               FILEOPERATION_FLAGS = 1024
+	FOF_NOCOPYSECURITYATTRIBS   FILEOPERATION_FLAGS = 2048
+	FOF_NORECURSION             FILEOPERATION_FLAGS = 4096
+	FOF_NO_CONNECTED_ELEMENTS   FILEOPERATION_FLAGS = 8192
+	FOF_WANTNUKEWARNING         FILEOPERATION_FLAGS = 16384
+	FOF_NORECURSEREPARSE        FILEOPERATION_FLAGS = 32768
+	FOF_NO_UI                   FILEOPERATION_FLAGS = 1556
 )
 
 // enum
@@ -6272,7 +6349,7 @@ type NOTIFYICONDATAA struct {
 	HIcon            HICON
 	SzTip            [128]CHAR
 	DwState          NOTIFY_ICON_STATE
-	DwStateMask      uint32
+	DwStateMask      NOTIFY_ICON_STATE
 	SzInfo           [256]CHAR
 	NOTIFYICONDATAA_Anonymous
 	SzInfoTitle  [64]CHAR
@@ -6311,7 +6388,7 @@ type NOTIFYICONDATAW struct {
 	HIcon            HICON
 	SzTip            [128]uint16
 	DwState          NOTIFY_ICON_STATE
-	DwStateMask      uint32
+	DwStateMask      NOTIFY_ICON_STATE
 	SzInfo           [256]uint16
 	NOTIFYICONDATAW_Anonymous
 	SzInfoTitle  [64]uint16
@@ -7088,7 +7165,7 @@ type SHChangeUpdateImageIDList struct {
 }
 
 type SHDESCRIPTIONID struct {
-	DwDescriptionId uint32
+	DwDescriptionId SHDID_ID
 	Clsid           syscall.GUID
 }
 
@@ -8510,7 +8587,7 @@ type IShellFolder2Interface interface {
 	GetDefaultSearchGUID(pguid *syscall.GUID) HRESULT
 	EnumSearches(ppenum **IEnumExtraSearch) HRESULT
 	GetDefaultColumn(dwRes uint32, pSort *uint32, pDisplay *uint32) HRESULT
-	GetDefaultColumnState(iColumn uint32, pcsFlags *uint32) HRESULT
+	GetDefaultColumnState(iColumn uint32, pcsFlags *SHCOLSTATE) HRESULT
 	GetDetailsEx(pidl *ITEMIDLIST, pscid *PROPERTYKEY, pv *VARIANT) HRESULT
 	GetDetailsOf(pidl *ITEMIDLIST, iColumn uint32, psd *SHELLDETAILS) HRESULT
 	MapColumnToSCID(iColumn uint32, pscid *PROPERTYKEY) HRESULT
@@ -8550,7 +8627,7 @@ func (this *IShellFolder2) GetDefaultColumn(dwRes uint32, pSort *uint32, pDispla
 	return HRESULT(ret)
 }
 
-func (this *IShellFolder2) GetDefaultColumnState(iColumn uint32, pcsFlags *uint32) HRESULT {
+func (this *IShellFolder2) GetDefaultColumnState(iColumn uint32, pcsFlags *SHCOLSTATE) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetDefaultColumnState, uintptr(unsafe.Pointer(this)), uintptr(iColumn), uintptr(unsafe.Pointer(pcsFlags)))
 	return HRESULT(ret)
 }
@@ -8586,7 +8663,7 @@ type IShellViewInterface interface {
 	AddPropertySheetPages(dwReserved uint32, pfn LPFNSVADDPROPSHEETPAGE, lparam LPARAM) HRESULT
 	SaveViewState() HRESULT
 	SelectItem(pidlItem *ITEMIDLIST, uFlags uint32) HRESULT
-	GetItemObject(uItem uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
+	GetItemObject(uItem SVGIO_, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
 }
 
 type IShellViewVtbl struct {
@@ -8662,7 +8739,7 @@ func (this *IShellView) SelectItem(pidlItem *ITEMIDLIST, uFlags uint32) HRESULT 
 	return HRESULT(ret)
 }
 
-func (this *IShellView) GetItemObject(uItem uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+func (this *IShellView) GetItemObject(uItem SVGIO_, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetItemObject, uintptr(unsafe.Pointer(this)), uintptr(uItem), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
@@ -8725,8 +8802,8 @@ type IFolderViewInterface interface {
 	SetCurrentViewMode(ViewMode uint32) HRESULT
 	GetFolder(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
 	Item(iItemIndex int32, ppidl **ITEMIDLIST) HRESULT
-	ItemCount(uFlags uint32, pcItems *int32) HRESULT
-	Items(uFlags uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
+	ItemCount(uFlags SVGIO_, pcItems *int32) HRESULT
+	Items(uFlags SVGIO_, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT
 	GetSelectionMarkedItem(piItem *int32) HRESULT
 	GetFocusedItem(piItem *int32) HRESULT
 	GetItemPosition(pidl *ITEMIDLIST, ppt *POINT) HRESULT
@@ -8783,12 +8860,12 @@ func (this *IFolderView) Item(iItemIndex int32, ppidl **ITEMIDLIST) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IFolderView) ItemCount(uFlags uint32, pcItems *int32) HRESULT {
+func (this *IFolderView) ItemCount(uFlags SVGIO_, pcItems *int32) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().ItemCount, uintptr(unsafe.Pointer(this)), uintptr(uFlags), uintptr(unsafe.Pointer(pcItems)))
 	return HRESULT(ret)
 }
 
-func (this *IFolderView) Items(uFlags uint32, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+func (this *IFolderView) Items(uFlags SVGIO_, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Items, uintptr(unsafe.Pointer(this)), uintptr(uFlags), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
@@ -12381,7 +12458,7 @@ type IFileOperationInterface interface {
 	IUnknownInterface
 	Advise(pfops *IFileOperationProgressSink, pdwCookie *uint32) HRESULT
 	Unadvise(dwCookie uint32) HRESULT
-	SetOperationFlags(dwOperationFlags uint32) HRESULT
+	SetOperationFlags(dwOperationFlags FILEOPERATION_FLAGS) HRESULT
 	SetProgressMessage(pszMessage PWSTR) HRESULT
 	SetProgressDialog(popd *IOperationsProgressDialog) HRESULT
 	SetProperties(pproparray *IPropertyChangeArray) HRESULT
@@ -12443,7 +12520,7 @@ func (this *IFileOperation) Unadvise(dwCookie uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IFileOperation) SetOperationFlags(dwOperationFlags uint32) HRESULT {
+func (this *IFileOperation) SetOperationFlags(dwOperationFlags FILEOPERATION_FLAGS) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetOperationFlags, uintptr(unsafe.Pointer(this)), uintptr(dwOperationFlags))
 	return HRESULT(ret)
 }
@@ -23629,7 +23706,7 @@ var IID_IQueryInfo = syscall.GUID{0x00021500, 0x0000, 0x0000,
 
 type IQueryInfoInterface interface {
 	IUnknownInterface
-	GetInfoTip(dwFlags uint32, ppwszTip *PWSTR) HRESULT
+	GetInfoTip(dwFlags QITIPF_FLAGS, ppwszTip *PWSTR) HRESULT
 	GetInfoFlags(pdwFlags *uint32) HRESULT
 }
 
@@ -23647,7 +23724,7 @@ func (this *IQueryInfo) Vtbl() *IQueryInfoVtbl {
 	return (*IQueryInfoVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IQueryInfo) GetInfoTip(dwFlags uint32, ppwszTip *PWSTR) HRESULT {
+func (this *IQueryInfo) GetInfoTip(dwFlags QITIPF_FLAGS, ppwszTip *PWSTR) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().GetInfoTip, uintptr(unsafe.Pointer(this)), uintptr(dwFlags), uintptr(unsafe.Pointer(ppwszTip)))
 	return HRESULT(ret)
 }
@@ -23663,7 +23740,7 @@ var IID_IShellFolderViewCB = syscall.GUID{0x2047E320, 0xF2A9, 0x11CE,
 
 type IShellFolderViewCBInterface interface {
 	IUnknownInterface
-	MessageSFVCB(uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT
+	MessageSFVCB(uMsg SFVM_MESSAGE_ID, wParam WPARAM, lParam LPARAM) HRESULT
 }
 
 type IShellFolderViewCBVtbl struct {
@@ -23679,7 +23756,7 @@ func (this *IShellFolderViewCB) Vtbl() *IShellFolderViewCBVtbl {
 	return (*IShellFolderViewCBVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IShellFolderViewCB) MessageSFVCB(uMsg uint32, wParam WPARAM, lParam LPARAM) HRESULT {
+func (this *IShellFolderViewCB) MessageSFVCB(uMsg SFVM_MESSAGE_ID, wParam WPARAM, lParam LPARAM) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().MessageSFVCB, uintptr(unsafe.Pointer(this)), uintptr(uMsg), wParam, lParam)
 	return HRESULT(ret)
 }
@@ -23715,7 +23792,7 @@ type IShellFolderViewInterface interface {
 	SetPoints(pDataObject *IDataObject) HRESULT
 	GetItemSpacing(pSpacing *ITEMSPACING) HRESULT
 	SetCallback(pNewCB *IShellFolderViewCB, ppOldCB **IShellFolderViewCB) HRESULT
-	Select(dwFlags uint32) HRESULT
+	Select(dwFlags SFVS_SELECT) HRESULT
 	QuerySupport(pdwSupport *uint32) HRESULT
 	SetAutomationObject(pdisp *IDispatch) HRESULT
 }
@@ -23885,7 +23962,7 @@ func (this *IShellFolderView) SetCallback(pNewCB *IShellFolderViewCB, ppOldCB **
 	return HRESULT(ret)
 }
 
-func (this *IShellFolderView) Select(dwFlags uint32) HRESULT {
+func (this *IShellFolderView) Select(dwFlags SFVS_SELECT) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Select, uintptr(unsafe.Pointer(this)), uintptr(dwFlags))
 	return HRESULT(ret)
 }
@@ -27003,7 +27080,7 @@ type IShellImageDataInterface interface {
 	GetDelay(pdwDelay *uint32) HRESULT
 	GetProperties(dwMode uint32, ppPropSet **IPropertySetStorage) HRESULT
 	Rotate(dwAngle uint32) HRESULT
-	Scale(cx uint32, cy uint32, hints uint32) HRESULT
+	Scale(cx uint32, cy uint32, hints unsafe.Pointer) HRESULT
 	DiscardEdit() HRESULT
 	SetEncoderParams(pbagEnc *IPropertyBag) HRESULT
 	DisplayName(wszName PWSTR, cch uint32) HRESULT
@@ -27161,7 +27238,7 @@ func (this *IShellImageData) Rotate(dwAngle uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *IShellImageData) Scale(cx uint32, cy uint32, hints uint32) HRESULT {
+func (this *IShellImageData) Scale(cx uint32, cy uint32, hints unsafe.Pointer) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().Scale, uintptr(unsafe.Pointer(this)), uintptr(cx), uintptr(cy), uintptr(hints))
 	return HRESULT(ret)
 }
@@ -30257,6 +30334,30 @@ func GetUserProfileDirectoryW(hToken HANDLE, lpProfileDir PWSTR, lpcchSize *uint
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
+func InitPropVariantFromStrRet(pstrret *STRRET, pidl *ITEMIDLIST, ppropvar *PROPVARIANT) HRESULT {
+	addr := LazyAddr(&pInitPropVariantFromStrRet, libPropsys, "InitPropVariantFromStrRet")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstrret)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(ppropvar)))
+	return HRESULT(ret)
+}
+
+func PropVariantToStrRet(propvar *PROPVARIANT, pstrret *STRRET) HRESULT {
+	addr := LazyAddr(&pPropVariantToStrRet, libPropsys, "PropVariantToStrRet")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(propvar)), uintptr(unsafe.Pointer(pstrret)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromStrRet(pstrret *STRRET, pidl *ITEMIDLIST, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromStrRet, libPropsys, "InitVariantFromStrRet")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pstrret)), uintptr(unsafe.Pointer(pidl)), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func VariantToStrRet(varIn *VARIANT, pstrret *STRRET) HRESULT {
+	addr := LazyAddr(&pVariantToStrRet, libPropsys, "VariantToStrRet")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pstrret)))
+	return HRESULT(ret)
+}
+
 func SetWindowSubclass(hWnd HWND, pfnSubclass SUBCLASSPROC, uIdSubclass uintptr, dwRefData uintptr) BOOL {
 	addr := LazyAddr(&pSetWindowSubclass, libComctl32, "SetWindowSubclass")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, pfnSubclass, uIdSubclass, dwRefData)
@@ -30349,7 +30450,7 @@ func SHCreateItemFromRelativeName(psiParent *IShellItem, pszName PWSTR, pbc *IBi
 	return HRESULT(ret)
 }
 
-func SHCreateItemInKnownFolder(kfid *syscall.GUID, dwKFFlags uint32, pszItem PWSTR, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+func SHCreateItemInKnownFolder(kfid *syscall.GUID, dwKFFlags KNOWN_FOLDER_FLAG, pszItem PWSTR, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pSHCreateItemInKnownFolder, libShell32, "SHCreateItemInKnownFolder")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(kfid)), uintptr(dwKFFlags), uintptr(unsafe.Pointer(pszItem)), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
@@ -30798,7 +30899,7 @@ func SHSetKnownFolderPath(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, psz
 	return HRESULT(ret)
 }
 
-func SHGetKnownFolderPath(rfid *syscall.GUID, dwFlags uint32, hToken HANDLE, ppszPath *PWSTR) HRESULT {
+func SHGetKnownFolderPath(rfid *syscall.GUID, dwFlags KNOWN_FOLDER_FLAG, hToken HANDLE, ppszPath *PWSTR) HRESULT {
 	addr := LazyAddr(&pSHGetKnownFolderPath, libShell32, "SHGetKnownFolderPath")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rfid)), uintptr(dwFlags), hToken, uintptr(unsafe.Pointer(ppszPath)))
 	return HRESULT(ret)
@@ -30842,7 +30943,7 @@ func SHGetDesktopFolder(ppshf **IShellFolder) HRESULT {
 	return HRESULT(ret)
 }
 
-func SHChangeNotify(wEventId int32, uFlags SHCNF_FLAGS, dwItem1 unsafe.Pointer, dwItem2 unsafe.Pointer) {
+func SHChangeNotify(wEventId SHCNE_ID, uFlags SHCNF_FLAGS, dwItem1 unsafe.Pointer, dwItem2 unsafe.Pointer) {
 	addr := LazyAddr(&pSHChangeNotify, libShell32, "SHChangeNotify")
 	syscall.SyscallN(addr, uintptr(wEventId), uintptr(uFlags), uintptr(dwItem1), uintptr(dwItem2))
 }
@@ -31034,7 +31135,7 @@ func PathCleanupSpec(pszDir PWSTR, pszSpec PWSTR) int32 {
 	return int32(ret)
 }
 
-func PathResolve(pszPath PWSTR, dirs **uint16, fFlags uint32) (int32, WIN32_ERROR) {
+func PathResolve(pszPath PWSTR, dirs **uint16, fFlags PRF_FLAGS) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pPathResolve, libShell32, "PathResolve")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pszPath)), uintptr(unsafe.Pointer(dirs)), uintptr(fFlags))
 	return int32(ret), WIN32_ERROR(err)
@@ -31070,13 +31171,13 @@ func Shell_MergeMenus(hmDst HMENU, hmSrc HMENU, uInsert uint32, uIDAdjust uint32
 	return uint32(ret)
 }
 
-func SHObjectProperties(hwnd HWND, shopObjectType uint32, pszObjectName PWSTR, pszPropertyPage PWSTR) BOOL {
+func SHObjectProperties(hwnd HWND, shopObjectType SHOP_TYPE, pszObjectName PWSTR, pszPropertyPage PWSTR) BOOL {
 	addr := LazyAddr(&pSHObjectProperties, libShell32, "SHObjectProperties")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(shopObjectType), uintptr(unsafe.Pointer(pszObjectName)), uintptr(unsafe.Pointer(pszPropertyPage)))
 	return BOOL(ret)
 }
 
-func SHFormatDrive(hwnd HWND, drive uint32, fmtID SHFMT_ID, options uint32) uint32 {
+func SHFormatDrive(hwnd HWND, drive uint32, fmtID SHFMT_ID, options SHFMT_OPT) uint32 {
 	addr := LazyAddr(&pSHFormatDrive, libShell32, "SHFormatDrive")
 	ret, _, _ := syscall.SyscallN(addr, hwnd, uintptr(drive), uintptr(fmtID), uintptr(options))
 	return uint32(ret)
@@ -31198,7 +31299,7 @@ func Shell_GetCachedImageIndexW(pszIconPath PWSTR, iIconIndex int32, uIconFlags 
 	return int32(ret)
 }
 
-func SHValidateUNC(hwndOwner HWND, pszFile PWSTR, fConnect uint32) BOOL {
+func SHValidateUNC(hwndOwner HWND, pszFile PWSTR, fConnect VALIDATEUNC_OPTION) BOOL {
 	addr := LazyAddr(&pSHValidateUNC, libShell32, "SHValidateUNC")
 	ret, _, _ := syscall.SyscallN(addr, hwndOwner, uintptr(unsafe.Pointer(pszFile)), uintptr(fConnect))
 	return BOOL(ret)

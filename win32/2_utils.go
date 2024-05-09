@@ -130,7 +130,7 @@ func BoolFromBOOL(b BOOL) bool {
 	return b != 0
 }
 
-func GetCh() byte {
+func GetCh() CHAR {
 	hStdIn, _ := GetStdHandle(STD_INPUT_HANDLE)
 	if hStdIn == 0 {
 		println("??")

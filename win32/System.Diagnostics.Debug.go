@@ -6,6 +6,9 @@ import (
 )
 
 const (
+	EXCEPTION_EXECUTE_HANDLER                                          int32  = 1
+	EXCEPTION_CONTINUE_SEARCH                                          int32  = 0
+	EXCEPTION_CONTINUE_EXECUTION                                       int32  = -1
 	WOW64_SIZE_OF_80387_REGISTERS                                      uint32 = 0x50
 	WOW64_MAXIMUM_SUPPORTED_EXTENSION                                  uint32 = 0x200
 	RESTORE_LAST_ERROR_NAME_A                                          string = "RestoreLastError"
@@ -969,6 +972,7 @@ const (
 	IORING                                                   BUGCHECK_ERROR = 499
 	MDL_CACHE                                                BUGCHECK_ERROR = 500
 	MISALIGNED_POINTER_PARAMETER                             BUGCHECK_ERROR = 502
+	MSSECCORE_ASSERTION_FAILURE                              BUGCHECK_ERROR = 503
 	XBOX_VMCTRL_CS_TIMEOUT                                   BUGCHECK_ERROR = 854
 	XBOX_CORRUPTED_IMAGE                                     BUGCHECK_ERROR = 855
 	XBOX_INVERTED_FUNCTION_TABLE_OVERFLOW                    BUGCHECK_ERROR = 856
@@ -2122,7 +2126,7 @@ type DEBUG_EVENT struct {
 	DwDebugEventCode DEBUG_EVENT_CODE
 	DwProcessId      uint32
 	DwThreadId       uint32
-	U                DEBUG_EVENT_U
+	DEBUG_EVENT_U
 }
 
 type APC_CALLBACK_DATA struct {
@@ -5024,7 +5028,7 @@ type WHEA_NOTIFICATION_DESCRIPTOR struct {
 	Type   byte
 	Length byte
 	Flags  WHEA_NOTIFICATION_FLAGS
-	U      WHEA_NOTIFICATION_DESCRIPTOR_U
+	WHEA_NOTIFICATION_DESCRIPTOR_U
 }
 
 type WHEA_XPF_MC_BANK_DESCRIPTOR struct {
@@ -5083,7 +5087,7 @@ func (this *WHEA_PCI_SLOT_NUMBER_U) AsULONGVal() uint32 {
 }
 
 type WHEA_PCI_SLOT_NUMBER struct {
-	U WHEA_PCI_SLOT_NUMBER_U
+	WHEA_PCI_SLOT_NUMBER_U
 }
 
 type WHEA_XPF_NMI_DESCRIPTOR struct {
@@ -5369,7 +5373,7 @@ type LPTOP_LEVEL_EXCEPTION_FILTER = uintptr
 type LPTOP_LEVEL_EXCEPTION_FILTER_func = func(ExceptionInfo *EXCEPTION_POINTERS) int32
 
 type PWAITCHAINCALLBACK = uintptr
-type PWAITCHAINCALLBACK_func = func(WctHandle unsafe.Pointer, Context uintptr, CallbackStatus uint32, NodeCount *uint32, NodeInfoArray *WAITCHAIN_NODE_INFO, IsCycle *int32)
+type PWAITCHAINCALLBACK_func = func(WctHandle unsafe.Pointer, Context uintptr, CallbackStatus uint32, NodeCount *uint32, NodeInfoArray *WAITCHAIN_NODE_INFO, IsCycle *BOOL)
 
 type PCOGETCALLSTATE = uintptr
 type PCOGETCALLSTATE_func = func(param0 int32, param1 *uint32) HRESULT
@@ -6292,10 +6296,10 @@ func GetErrorMode() uint32 {
 	return uint32(ret)
 }
 
-func SetErrorMode(uMode THREAD_ERROR_MODE) uint32 {
+func SetErrorMode(uMode THREAD_ERROR_MODE) THREAD_ERROR_MODE {
 	addr := LazyAddr(&pSetErrorMode, libKernel32, "SetErrorMode")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(uMode))
-	return uint32(ret)
+	return THREAD_ERROR_MODE(ret)
 }
 
 func AddVectoredExceptionHandler(First uint32, Handler PVECTORED_EXCEPTION_HANDLER) unsafe.Pointer {
@@ -6362,7 +6366,7 @@ func CloseThreadWaitChainSession(WctHandle unsafe.Pointer) {
 	syscall.SyscallN(addr, uintptr(WctHandle))
 }
 
-func GetThreadWaitChain(WctHandle unsafe.Pointer, Context uintptr, Flags WAIT_CHAIN_THREAD_OPTIONS, ThreadId uint32, NodeCount *uint32, NodeInfoArray *WAITCHAIN_NODE_INFO, IsCycle *int32) (BOOL, WIN32_ERROR) {
+func GetThreadWaitChain(WctHandle unsafe.Pointer, Context uintptr, Flags WAIT_CHAIN_THREAD_OPTIONS, ThreadId uint32, NodeCount *uint32, NodeInfoArray *WAITCHAIN_NODE_INFO, IsCycle *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetThreadWaitChain, libAdvapi32, "GetThreadWaitChain")
 	ret, _, err := syscall.SyscallN(addr, uintptr(WctHandle), Context, uintptr(Flags), uintptr(ThreadId), uintptr(unsafe.Pointer(NodeCount)), uintptr(unsafe.Pointer(NodeInfoArray)), uintptr(unsafe.Pointer(IsCycle)))
 	return BOOL(ret), WIN32_ERROR(err)

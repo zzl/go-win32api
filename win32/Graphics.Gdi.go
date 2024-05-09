@@ -210,7 +210,6 @@ const (
 	SP_OUTOFDISK                                    int32  = -4
 	SP_OUTOFMEMORY                                  int32  = -5
 	PR_JOBSTATUS                                    uint32 = 0x0
-	LCS_CALIBRATED_RGB                              int32  = 0
 	LCS_GM_BUSINESS                                 int32  = 1
 	LCS_GM_GRAPHICS                                 int32  = 2
 	LCS_GM_IMAGES                                   int32  = 4
@@ -2519,13 +2518,13 @@ type LOGBRUSH32 struct {
 }
 
 type LOGPEN struct {
-	LopnStyle uint32
+	LopnStyle PEN_STYLE
 	LopnWidth POINT
 	LopnColor COLORREF
 }
 
 type EXTLOGPEN struct {
-	ElpPenStyle   uint32
+	ElpPenStyle   PEN_STYLE
 	ElpWidth      uint32
 	ElpBrushStyle uint32
 	ElpColor      COLORREF
@@ -2535,7 +2534,7 @@ type EXTLOGPEN struct {
 }
 
 type EXTLOGPEN32 struct {
-	ElpPenStyle   uint32
+	ElpPenStyle   PEN_STYLE
 	ElpWidth      uint32
 	ElpBrushStyle uint32
 	ElpColor      COLORREF
@@ -3404,7 +3403,7 @@ type EMRFRAMERGN struct {
 type EMREXTSELECTCLIPRGN struct {
 	Emr       EMR
 	CbRgnData uint32
-	IMode     uint32
+	IMode     RGN_COMBINE_MODE
 	RgnData   [1]byte
 }
 
@@ -4771,7 +4770,7 @@ func GetMetaRgn(hdc HDC, hrgn HRGN) int32 {
 	return int32(ret)
 }
 
-func GetCurrentObject(hdc HDC, type_ uint32) HGDIOBJ {
+func GetCurrentObject(hdc HDC, type_ OBJ_TYPE) HGDIOBJ {
 	addr := LazyAddr(&pGetCurrentObject, libGdi32, "GetCurrentObject")
 	ret, _, _ := syscall.SyscallN(addr, hdc, uintptr(type_))
 	return ret

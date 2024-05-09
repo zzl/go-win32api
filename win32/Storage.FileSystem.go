@@ -1925,8 +1925,8 @@ type VS_FIXEDFILEINFO struct {
 	DwFileFlagsMask    uint32
 	DwFileFlags        VS_FIXEDFILEINFO_FILE_FLAGS
 	DwFileOS           VS_FIXEDFILEINFO_FILE_OS
-	DwFileType         uint32
-	DwFileSubtype      uint32
+	DwFileType         VS_FIXEDFILEINFO_FILE_TYPE
+	DwFileSubtype      VS_FIXEDFILEINFO_FILE_SUBTYPE
 	DwFileDateMS       uint32
 	DwFileDateLS       uint32
 }
@@ -1954,7 +1954,7 @@ type NTMS_ALLOCATION_INFORMATION struct {
 
 type NTMS_DRIVEINFORMATIONA struct {
 	Number               uint32
-	State                uint32
+	State                NtmsDriveState
 	DriveType            syscall.GUID
 	SzDeviceName         [64]CHAR
 	SzSerialNumber       [32]CHAR
@@ -1974,7 +1974,7 @@ type NTMS_DRIVEINFORMATIONA struct {
 type NTMS_DRIVEINFORMATION = NTMS_DRIVEINFORMATIONW
 type NTMS_DRIVEINFORMATIONW struct {
 	Number               uint32
-	State                uint32
+	State                NtmsDriveState
 	DriveType            syscall.GUID
 	SzDeviceName         [64]uint16
 	SzSerialNumber       [32]uint16
@@ -1992,12 +1992,12 @@ type NTMS_DRIVEINFORMATIONW struct {
 }
 
 type NTMS_LIBRARYINFORMATION struct {
-	LibraryType                  uint32
+	LibraryType                  NtmsLibraryType
 	CleanerSlot                  syscall.GUID
 	CleanerSlotDefault           syscall.GUID
 	LibrarySupportsDriveCleaning BOOL
 	BarCodeReaderInstalled       BOOL
-	InventoryMethod              uint32
+	InventoryMethod              NtmsInventoryMethod
 	DwCleanerUsesRemaining       uint32
 	FirstDriveNumber             uint32
 	DwNumberOfDrives             uint32
@@ -2014,7 +2014,7 @@ type NTMS_LIBRARYINFORMATION struct {
 	DwNumberOfLibRequests        uint32
 	Reserved                     syscall.GUID
 	AutoRecovery                 BOOL
-	DwFlags                      uint32
+	DwFlags                      NtmsLibraryFlags
 }
 
 type NTMS_CHANGERINFORMATIONA struct {
@@ -2052,15 +2052,15 @@ type NTMS_STORAGESLOTINFORMATION struct {
 
 type NTMS_IEDOORINFORMATION struct {
 	Number      uint32
-	State       uint32
+	State       NtmsDoorState
 	MaxOpenSecs uint16
 	Library     syscall.GUID
 }
 
 type NTMS_IEPORTINFORMATION struct {
 	Number        uint32
-	Content       uint32
-	Position      uint32
+	Content       NtmsPortContent
+	Position      NtmsPortPosition
 	MaxExtendSecs uint16
 	Library       syscall.GUID
 }
@@ -2073,9 +2073,9 @@ type NTMS_PMIDINFORMATIONA struct {
 	MediaType            syscall.GUID
 	HomeSlot             syscall.GUID
 	SzBarCode            [64]CHAR
-	BarCodeState         uint32
+	BarCodeState         NtmsBarCodeState
 	SzSequenceNumber     [32]CHAR
-	MediaState           uint32
+	MediaState           NtmsMediaState
 	DwNumberOfPartitions uint32
 	DwMediaTypeCode      uint32
 	DwDensityCode        uint32
@@ -2091,9 +2091,9 @@ type NTMS_PMIDINFORMATIONW struct {
 	MediaType            syscall.GUID
 	HomeSlot             syscall.GUID
 	SzBarCode            [64]uint16
-	BarCodeState         uint32
+	BarCodeState         NtmsBarCodeState
 	SzSequenceNumber     [32]uint16
-	MediaState           uint32
+	MediaState           NtmsMediaState
 	DwNumberOfPartitions uint32
 	DwMediaTypeCode      uint32
 	DwDensityCode        uint32
@@ -2108,7 +2108,7 @@ type NTMS_LMIDINFORMATION struct {
 type NTMS_PARTITIONINFORMATIONA struct {
 	PhysicalMedia       syscall.GUID
 	LogicalMedia        syscall.GUID
-	State               uint32
+	State               NtmsPartitionState
 	Side                uint16
 	DwOmidLabelIdLength uint32
 	OmidLabelId         [255]byte
@@ -2123,7 +2123,7 @@ type NTMS_PARTITIONINFORMATION = NTMS_PARTITIONINFORMATIONW
 type NTMS_PARTITIONINFORMATIONW struct {
 	PhysicalMedia       syscall.GUID
 	LogicalMedia        syscall.GUID
-	State               uint32
+	State               NtmsPartitionState
 	Side                uint16
 	DwOmidLabelIdLength uint32
 	OmidLabelId         [255]byte
@@ -2149,7 +2149,7 @@ type NTMS_MEDIAPOOLINFORMATION struct {
 type NTMS_MEDIATYPEINFORMATION struct {
 	MediaType                uint32
 	NumberOfSides            uint32
-	ReadWriteCharacteristics uint32
+	ReadWriteCharacteristics NtmsReadWriteCharacteristics
 	DeviceType               FILE_DEVICE_TYPE
 }
 
@@ -2182,9 +2182,9 @@ type NTMS_CHANGERTYPEINFORMATIONW struct {
 }
 
 type NTMS_LIBREQUESTINFORMATIONA struct {
-	OperationCode   uint32
+	OperationCode   NtmsLmOperation
 	OperationOption uint32
-	State           uint32
+	State           NtmsLmState
 	PartitionId     syscall.GUID
 	DriveId         syscall.GUID
 	PhysMediaId     syscall.GUID
@@ -2202,9 +2202,9 @@ type NTMS_LIBREQUESTINFORMATIONA struct {
 
 type NTMS_LIBREQUESTINFORMATION = NTMS_LIBREQUESTINFORMATIONW
 type NTMS_LIBREQUESTINFORMATIONW struct {
-	OperationCode   uint32
+	OperationCode   NtmsLmOperation
 	OperationOption uint32
-	State           uint32
+	State           NtmsLmState
 	PartitionId     syscall.GUID
 	DriveId         syscall.GUID
 	PhysMediaId     syscall.GUID
@@ -2221,13 +2221,13 @@ type NTMS_LIBREQUESTINFORMATIONW struct {
 }
 
 type NTMS_OPREQUESTINFORMATIONA struct {
-	Request       uint32
+	Request       NtmsOpreqCommand
 	Submitted     SYSTEMTIME
-	State         uint32
+	State         NtmsOpreqState
 	SzMessage     [256]CHAR
-	Arg1Type      uint32
+	Arg1Type      NtmsObjectsTypes
 	Arg1          syscall.GUID
-	Arg2Type      uint32
+	Arg2Type      NtmsObjectsTypes
 	Arg2          syscall.GUID
 	SzApplication [64]CHAR
 	SzUser        [64]CHAR
@@ -2236,13 +2236,13 @@ type NTMS_OPREQUESTINFORMATIONA struct {
 
 type NTMS_OPREQUESTINFORMATION = NTMS_OPREQUESTINFORMATIONW
 type NTMS_OPREQUESTINFORMATIONW struct {
-	Request       uint32
+	Request       NtmsOpreqCommand
 	Submitted     SYSTEMTIME
-	State         uint32
+	State         NtmsOpreqState
 	SzMessage     [256]uint16
-	Arg1Type      uint32
+	Arg1Type      NtmsObjectsTypes
 	Arg1          syscall.GUID
-	Arg2Type      uint32
+	Arg2Type      NtmsObjectsTypes
 	Arg2          syscall.GUID
 	SzApplication [64]uint16
 	SzUser        [64]uint16
@@ -2391,12 +2391,12 @@ func (this *NTMS_OBJECTINFORMATIONA_Info) ComputerVal() NTMS_COMPUTERINFORMATION
 
 type NTMS_OBJECTINFORMATIONA struct {
 	DwSize             uint32
-	DwType             uint32
+	DwType             NtmsObjectsTypes
 	Created            SYSTEMTIME
 	Modified           SYSTEMTIME
 	ObjectGuid         syscall.GUID
 	Enabled            BOOL
-	DwOperationalState uint32
+	DwOperationalState NtmsOperationalState
 	SzName             [64]CHAR
 	SzDescription      [127]CHAR
 	Info               NTMS_OBJECTINFORMATIONA_Info
@@ -2537,12 +2537,12 @@ func (this *NTMS_OBJECTINFORMATIONW_Info) ComputerVal() NTMS_COMPUTERINFORMATION
 type NTMS_OBJECTINFORMATION = NTMS_OBJECTINFORMATIONW
 type NTMS_OBJECTINFORMATIONW struct {
 	DwSize             uint32
-	DwType             uint32
+	DwType             NtmsObjectsTypes
 	Created            SYSTEMTIME
 	Modified           SYSTEMTIME
 	ObjectGuid         syscall.GUID
 	Enabled            BOOL
-	DwOperationalState uint32
+	DwOperationalState NtmsOperationalState
 	SzName             [64]uint16
 	SzDescription      [127]uint16
 	Info               NTMS_OBJECTINFORMATIONW_Info
@@ -2972,7 +2972,7 @@ type NTMS_FILESYSTEM_INFO struct {
 }
 
 type NTMS_NOTIFICATIONINFORMATION struct {
-	DwOperation uint32
+	DwOperation NtmsNotificationOperations
 	ObjectId    syscall.GUID
 }
 
@@ -3258,7 +3258,7 @@ type EFS_PIN_BLOB struct {
 type EFS_KEY_INFO struct {
 	DwVersion uint32
 	Entropy   uint32
-	Algorithm uint32
+	Algorithm ALG_ID
 	KeyLength uint32
 }
 
@@ -4398,7 +4398,7 @@ type CACHE_DESTROY_CALLBACK = uintptr
 type CACHE_DESTROY_CALLBACK_func = func(cb uint32, lpb *byte)
 
 type CACHE_ACCESS_CHECK = uintptr
-type CACHE_ACCESS_CHECK_func = func(pSecurityDescriptor PSECURITY_DESCRIPTOR, hClientToken HANDLE, dwDesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) BOOL
+type CACHE_ACCESS_CHECK_func = func(pSecurityDescriptor PSECURITY_DESCRIPTOR, hClientToken HANDLE, dwDesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *BOOL) BOOL
 
 type PFE_EXPORT_FUNC = uintptr
 type PFE_EXPORT_FUNC_func = func(pbData *byte, pvCallbackContext unsafe.Pointer, ulLength uint32) uint32
@@ -6432,7 +6432,7 @@ func CopyFileW(lpExistingFileName PWSTR, lpNewFileName PWSTR, bFailIfExists BOOL
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CopyFileExA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32) (BOOL, WIN32_ERROR) {
+func CopyFileExA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *BOOL, dwCopyFlags uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pCopyFileExA, libKernel32, "CopyFileExA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -6440,13 +6440,13 @@ func CopyFileExA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine 
 
 var CopyFileEx = CopyFileExW
 
-func CopyFileExW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32) (BOOL, WIN32_ERROR) {
+func CopyFileExW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *BOOL, dwCopyFlags uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pCopyFileExW, libKernel32, "CopyFileExW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func CopyFileTransactedA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
+func CopyFileTransactedA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *BOOL, dwCopyFlags uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pCopyFileTransactedA, libKernel32, "CopyFileTransactedA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -6454,7 +6454,7 @@ func CopyFileTransactedA(lpExistingFileName PSTR, lpNewFileName PSTR, lpProgress
 
 var CopyFileTransacted = CopyFileTransactedW
 
-func CopyFileTransactedW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *int32, dwCopyFlags uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
+func CopyFileTransactedW(lpExistingFileName PWSTR, lpNewFileName PWSTR, lpProgressRoutine LPPROGRESS_ROUTINE, lpData unsafe.Pointer, pbCancel *BOOL, dwCopyFlags uint32, hTransaction HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pCopyFileTransactedW, libKernel32, "CopyFileTransactedW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpExistingFileName)), uintptr(unsafe.Pointer(lpNewFileName)), lpProgressRoutine, uintptr(lpData), uintptr(unsafe.Pointer(pbCancel)), uintptr(dwCopyFlags), hTransaction)
 	return BOOL(ret), WIN32_ERROR(err)
@@ -6596,7 +6596,7 @@ func SetFileBandwidthReservation(hFile HANDLE, nPeriodMilliseconds uint32, nByte
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetFileBandwidthReservation(hFile HANDLE, lpPeriodMilliseconds *uint32, lpBytesPerPeriod *uint32, pDiscardable *int32, lpTransferSize *uint32, lpNumOutstandingRequests *uint32) (BOOL, WIN32_ERROR) {
+func GetFileBandwidthReservation(hFile HANDLE, lpPeriodMilliseconds *uint32, lpBytesPerPeriod *uint32, pDiscardable *BOOL, lpTransferSize *uint32, lpNumOutstandingRequests *uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetFileBandwidthReservation, libKernel32, "GetFileBandwidthReservation")
 	ret, _, err := syscall.SyscallN(addr, hFile, uintptr(unsafe.Pointer(lpPeriodMilliseconds)), uintptr(unsafe.Pointer(lpBytesPerPeriod)), uintptr(unsafe.Pointer(pDiscardable)), uintptr(unsafe.Pointer(lpTransferSize)), uintptr(unsafe.Pointer(lpNumOutstandingRequests)))
 	return BOOL(ret), WIN32_ERROR(err)

@@ -8,7 +8,6 @@ import (
 type (
 	HWINWATCH                         = uintptr
 	FEATURE_STATE_CHANGE_SUBSCRIPTION = uintptr
-	FH_SERVICE_PIPE_HANDLE            = uintptr
 )
 
 const (
@@ -118,6 +117,7 @@ const (
 	DCI_CAN_STRETCHYN                                                  uint32 = 0x8000
 	DCI_CANOVERLAY                                                     uint32 = 0x10000
 	FILE_FLAG_OPEN_REQUIRING_OPLOCK                                    uint32 = 0x40000
+	FILE_FLAG_IGNORE_IMPERSONATED_DEVICEMAP                            uint32 = 0x20000
 	PROGRESS_CONTINUE                                                  uint32 = 0x0
 	PROGRESS_CANCEL                                                    uint32 = 0x1
 	PROGRESS_STOP                                                      uint32 = 0x2
@@ -664,13 +664,6 @@ const (
 	CO_TL_ENTITY   TDIENTITY_ENTITY_TYPE = 1024
 	ER_ENTITY      TDIENTITY_ENTITY_TYPE = 896
 	IF_ENTITY      TDIENTITY_ENTITY_TYPE = 512
-)
-
-// enum
-type FILE_INFORMATION_CLASS int32
-
-const (
-	FileDirectoryInformation FILE_INFORMATION_CLASS = 1
 )
 
 // enum
@@ -2042,9 +2035,6 @@ var (
 	pLlseek_                             uintptr
 	pOpenMutexA                          uintptr
 	pOpenSemaphoreA                      uintptr
-	pCreateWaitableTimerA                uintptr
-	pOpenWaitableTimerA                  uintptr
-	pCreateWaitableTimerExA              uintptr
 	pGetFirmwareEnvironmentVariableA     uintptr
 	pGetFirmwareEnvironmentVariableW     uintptr
 	pGetFirmwareEnvironmentVariableExA   uintptr
@@ -2089,7 +2079,6 @@ var (
 	pGetUserNameA                        uintptr
 	pGetUserNameW                        uintptr
 	pIsTokenUntrusted                    uintptr
-	pCancelTimerQueueTimer               uintptr
 	pGetCurrentHwProfileA                uintptr
 	pGetCurrentHwProfileW                uintptr
 	pReplacePartitionUnit                uintptr
@@ -2337,24 +2326,6 @@ func OpenMutexA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) HANDLE
 func OpenSemaphoreA(dwDesiredAccess uint32, bInheritHandle BOOL, lpName PSTR) HANDLE {
 	addr := LazyAddr(&pOpenSemaphoreA, libKernel32, "OpenSemaphoreA")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpName)))
-	return ret
-}
-
-func CreateWaitableTimerA(lpTimerAttributes *SECURITY_ATTRIBUTES, bManualReset BOOL, lpTimerName PSTR) HANDLE {
-	addr := LazyAddr(&pCreateWaitableTimerA, libKernel32, "CreateWaitableTimerA")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(bManualReset), uintptr(unsafe.Pointer(lpTimerName)))
-	return ret
-}
-
-func OpenWaitableTimerA(dwDesiredAccess uint32, bInheritHandle BOOL, lpTimerName PSTR) HANDLE {
-	addr := LazyAddr(&pOpenWaitableTimerA, libKernel32, "OpenWaitableTimerA")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(dwDesiredAccess), uintptr(bInheritHandle), uintptr(unsafe.Pointer(lpTimerName)))
-	return ret
-}
-
-func CreateWaitableTimerExA(lpTimerAttributes *SECURITY_ATTRIBUTES, lpTimerName PSTR, dwFlags uint32, dwDesiredAccess uint32) HANDLE {
-	addr := LazyAddr(&pCreateWaitableTimerExA, libKernel32, "CreateWaitableTimerExA")
-	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpTimerAttributes)), uintptr(unsafe.Pointer(lpTimerName)), uintptr(dwFlags), uintptr(dwDesiredAccess))
 	return ret
 }
 
@@ -2659,12 +2630,6 @@ func GetUserNameW(lpBuffer PWSTR, pcbBuffer *uint32) (BOOL, WIN32_ERROR) {
 func IsTokenUntrusted(TokenHandle HANDLE) BOOL {
 	addr := LazyAddr(&pIsTokenUntrusted, libAdvapi32, "IsTokenUntrusted")
 	ret, _, _ := syscall.SyscallN(addr, TokenHandle)
-	return BOOL(ret)
-}
-
-func CancelTimerQueueTimer(TimerQueue HANDLE, Timer HANDLE) BOOL {
-	addr := LazyAddr(&pCancelTimerQueueTimer, libKernel32, "CancelTimerQueueTimer")
-	ret, _, _ := syscall.SyscallN(addr, TimerQueue, Timer)
 	return BOOL(ret)
 }
 

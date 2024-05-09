@@ -96,7 +96,6 @@ const (
 	DBT_VPOWERDAPI                                             uint32  = 0x8100
 	DBT_USERDEFINED                                            uint32  = 0xffff
 	DIFFERENCE                                                 uint32  = 0xb
-	RT_MANIFEST                                                uint32  = 0x18
 	CREATEPROCESS_MANIFEST_RESOURCE_ID                         uint32  = 0x1
 	ISOLATIONAWARE_MANIFEST_RESOURCE_ID                        uint32  = 0x2
 	ISOLATIONAWARE_NOSTATICIMPORT_MANIFEST_RESOURCE_ID         uint32  = 0x3
@@ -557,14 +556,8 @@ const (
 	ENDSESSION_CLOSEAPP                                        uint32  = 0x1
 	ENDSESSION_CRITICAL                                        uint32  = 0x40000000
 	ENDSESSION_LOGOFF                                          uint32  = 0x80000000
-	EWX_FORCE                                                  uint32  = 0x4
-	EWX_FORCEIFHUNG                                            uint32  = 0x10
-	EWX_QUICKRESOLVE                                           uint32  = 0x20
-	EWX_BOOTOPTIONS                                            uint32  = 0x1000000
-	EWX_ARSO                                                   uint32  = 0x4000000
-	EWX_CHECK_SAFE_FOR_SERVER                                  uint32  = 0x8000000
-	EWX_SYSTEM_INITIATED                                       uint32  = 0x10000000
 	BROADCAST_QUERY_DENY                                       uint32  = 0x424d5144
+	HWND_BROADCAST                                             HWND    = 65535
 	HWND_MESSAGE                                               HWND    = ^HWND(0x2)
 	ISMEX_NOSEND                                               uint32  = 0x0
 	ISMEX_SEND                                                 uint32  = 0x1
@@ -1329,6 +1322,9 @@ const (
 	HBMMENU_POPUP_MINIMIZE                                     HBITMAP = 11
 	CW_USEDEFAULT                                              int32   = -2147483648
 	LBS_STANDARD                                               int32   = 10485763
+	WINSTA_ALL_ACCESS                                          int32   = 895
+	WVR_REDRAW                                                 uint32  = 0x300
+	IDC_STATIC                                                 int32   = -1
 )
 
 var (
@@ -1376,6 +1372,7 @@ var (
 	IDI_WARNING     = PWSTR(unsafe.Pointer(uintptr(0x7f03)))
 	IDI_ERROR       = PWSTR(unsafe.Pointer(uintptr(0x7f01)))
 	IDI_INFORMATION = PWSTR(unsafe.Pointer(uintptr(0x7f04)))
+	RT_MANIFEST     = PWSTR(unsafe.Pointer(uintptr(0x18)))
 )
 
 var (
@@ -2248,6 +2245,7 @@ const (
 )
 
 // enum
+// flags
 type REGISTER_NOTIFICATION_FLAGS uint32
 
 const (
@@ -2997,10 +2995,10 @@ type CREATESTRUCTA struct {
 	Cx             int32
 	Y              int32
 	X              int32
-	Style          int32
+	Style          WINDOW_STYLE
 	LpszName       PSTR
 	LpszClass      PSTR
-	DwExStyle      uint32
+	DwExStyle      WINDOW_EX_STYLE
 }
 
 type CREATESTRUCT = CREATESTRUCTW
@@ -3013,16 +3011,16 @@ type CREATESTRUCTW struct {
 	Cx             int32
 	Y              int32
 	X              int32
-	Style          int32
+	Style          WINDOW_STYLE
 	LpszName       PWSTR
 	LpszClass      PWSTR
-	DwExStyle      uint32
+	DwExStyle      WINDOW_EX_STYLE
 }
 
 type WINDOWPLACEMENT struct {
 	Length           uint32
 	Flags            WINDOWPLACEMENT_FLAGS
-	ShowCmd          uint32
+	ShowCmd          SHOW_WINDOW_CMD
 	PtMinPosition    POINT
 	PtMaxPosition    POINT
 	RcNormalPosition RECT
@@ -4086,6 +4084,7 @@ var (
 	pChangeWindowMessageFilterEx           uintptr
 	pSetAdditionalForegroundBoostProcesses uintptr
 	pRegisterForTooltipDismissNotification uintptr
+	pIsWindowArranged                      uintptr
 )
 
 func LoadStringA(hInstance HINSTANCE, uID uint32, lpBuffer PSTR, cchBufferMax int32) (int32, WIN32_ERROR) {
@@ -5204,10 +5203,10 @@ func TranslateAcceleratorW(hWnd HWND, hAccTable HACCEL, lpMsg *MSG) (int32, WIN3
 	return int32(ret), WIN32_ERROR(err)
 }
 
-func GetSystemMetrics(nIndex SYSTEM_METRICS_INDEX) (int32, WIN32_ERROR) {
+func GetSystemMetrics(nIndex SYSTEM_METRICS_INDEX) int32 {
 	addr := LazyAddr(&pGetSystemMetrics, libUser32, "GetSystemMetrics")
-	ret, _, err := syscall.SyscallN(addr, uintptr(nIndex))
-	return int32(ret), WIN32_ERROR(err)
+	ret, _, _ := syscall.SyscallN(addr, uintptr(nIndex))
+	return int32(ret)
 }
 
 func LoadMenuA(hInstance HINSTANCE, lpMenuName PSTR) (HMENU, WIN32_ERROR) {
@@ -6601,5 +6600,11 @@ func SetAdditionalForegroundBoostProcesses(topLevelWindow HWND, processHandleCou
 func RegisterForTooltipDismissNotification(hWnd HWND, tdFlags TOOLTIP_DISMISS_FLAGS) BOOL {
 	addr := LazyAddr(&pRegisterForTooltipDismissNotification, libUser32, "RegisterForTooltipDismissNotification")
 	ret, _, _ := syscall.SyscallN(addr, hWnd, uintptr(tdFlags))
+	return BOOL(ret)
+}
+
+func IsWindowArranged(hwnd HWND) BOOL {
+	addr := LazyAddr(&pIsWindowArranged, libUser32, "IsWindowArranged")
+	ret, _, _ := syscall.SyscallN(addr, hwnd)
 	return BOOL(ret)
 }

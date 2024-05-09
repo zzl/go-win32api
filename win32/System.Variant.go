@@ -23,6 +23,7 @@ const (
 )
 
 // enum
+// flags
 type VARENUM uint16
 
 const (
@@ -705,4 +706,411 @@ func VariantChangeTypeEx(pvargDest *VARIANT, pvarSrc *VARIANT, lcid uint32, wFla
 	addr := LazyAddr(&pVariantChangeTypeEx, libOleaut32, "VariantChangeTypeEx")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvargDest)), uintptr(unsafe.Pointer(pvarSrc)), uintptr(lcid), uintptr(wFlags), uintptr(vt))
 	return HRESULT(ret)
+}
+
+func InitVariantFromResource(hinst HINSTANCE, id uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromResource, libPropsys, "InitVariantFromResource")
+	ret, _, _ := syscall.SyscallN(addr, hinst, uintptr(id), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromBuffer(pv unsafe.Pointer, cb uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromBuffer, libPropsys, "InitVariantFromBuffer")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(pv), uintptr(cb), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromGUIDAsString(guid *syscall.GUID, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromGUIDAsString, libPropsys, "InitVariantFromGUIDAsString")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(guid)), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromFileTime(pft *FILETIME, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromFileTime, libPropsys, "InitVariantFromFileTime")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pft)), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromFileTimeArray(prgft *FILETIME, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromFileTimeArray, libPropsys, "InitVariantFromFileTimeArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgft)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromVariantArrayElem(varIn *VARIANT, iElem uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromVariantArrayElem, libPropsys, "InitVariantFromVariantArrayElem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(iElem), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromBooleanArray(prgf *BOOL, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromBooleanArray, libPropsys, "InitVariantFromBooleanArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgf)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromInt16Array(prgn *int16, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromInt16Array, libPropsys, "InitVariantFromInt16Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgn)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromUInt16Array(prgn *uint16, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromUInt16Array, libPropsys, "InitVariantFromUInt16Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgn)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromInt32Array(prgn *int32, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromInt32Array, libPropsys, "InitVariantFromInt32Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgn)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromUInt32Array(prgn *uint32, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromUInt32Array, libPropsys, "InitVariantFromUInt32Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgn)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromInt64Array(prgn *int64, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromInt64Array, libPropsys, "InitVariantFromInt64Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgn)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromUInt64Array(prgn *uint64, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromUInt64Array, libPropsys, "InitVariantFromUInt64Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgn)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromDoubleArray(prgn *float64, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromDoubleArray, libPropsys, "InitVariantFromDoubleArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgn)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func InitVariantFromStringArray(prgsz *PWSTR, cElems uint32, pvar *VARIANT) HRESULT {
+	addr := LazyAddr(&pInitVariantFromStringArray, libPropsys, "InitVariantFromStringArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(prgsz)), uintptr(cElems), uintptr(unsafe.Pointer(pvar)))
+	return HRESULT(ret)
+}
+
+func VariantToBooleanWithDefault(varIn *VARIANT, fDefault BOOL) BOOL {
+	addr := LazyAddr(&pVariantToBooleanWithDefault, libPropsys, "VariantToBooleanWithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(fDefault))
+	return BOOL(ret)
+}
+
+func VariantToInt16WithDefault(varIn *VARIANT, iDefault int16) int16 {
+	addr := LazyAddr(&pVariantToInt16WithDefault, libPropsys, "VariantToInt16WithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(iDefault))
+	return int16(ret)
+}
+
+func VariantToUInt16WithDefault(varIn *VARIANT, uiDefault uint16) uint16 {
+	addr := LazyAddr(&pVariantToUInt16WithDefault, libPropsys, "VariantToUInt16WithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(uiDefault))
+	return uint16(ret)
+}
+
+func VariantToInt32WithDefault(varIn *VARIANT, lDefault int32) int32 {
+	addr := LazyAddr(&pVariantToInt32WithDefault, libPropsys, "VariantToInt32WithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(lDefault))
+	return int32(ret)
+}
+
+func VariantToUInt32WithDefault(varIn *VARIANT, ulDefault uint32) uint32 {
+	addr := LazyAddr(&pVariantToUInt32WithDefault, libPropsys, "VariantToUInt32WithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(ulDefault))
+	return uint32(ret)
+}
+
+func VariantToInt64WithDefault(varIn *VARIANT, llDefault int64) int64 {
+	addr := LazyAddr(&pVariantToInt64WithDefault, libPropsys, "VariantToInt64WithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(llDefault))
+	return int64(ret)
+}
+
+func VariantToUInt64WithDefault(varIn *VARIANT, ullDefault uint64) uint64 {
+	addr := LazyAddr(&pVariantToUInt64WithDefault, libPropsys, "VariantToUInt64WithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(ullDefault))
+	return uint64(ret)
+}
+
+func VariantToDoubleWithDefault(varIn *VARIANT, dblDefault float64) float64 {
+	addr := LazyAddr(&pVariantToDoubleWithDefault, libPropsys, "VariantToDoubleWithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(dblDefault))
+	return float64(ret)
+}
+
+func VariantToStringWithDefault(varIn *VARIANT, pszDefault PWSTR) PWSTR {
+	addr := LazyAddr(&pVariantToStringWithDefault, libPropsys, "VariantToStringWithDefault")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pszDefault)))
+	return (PWSTR)(unsafe.Pointer(ret))
+}
+
+func VariantToBoolean(varIn *VARIANT, pfRet *BOOL) HRESULT {
+	addr := LazyAddr(&pVariantToBoolean, libPropsys, "VariantToBoolean")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pfRet)))
+	return HRESULT(ret)
+}
+
+func VariantToInt16(varIn *VARIANT, piRet *int16) HRESULT {
+	addr := LazyAddr(&pVariantToInt16, libPropsys, "VariantToInt16")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(piRet)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt16(varIn *VARIANT, puiRet *uint16) HRESULT {
+	addr := LazyAddr(&pVariantToUInt16, libPropsys, "VariantToUInt16")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(puiRet)))
+	return HRESULT(ret)
+}
+
+func VariantToInt32(varIn *VARIANT, plRet *int32) HRESULT {
+	addr := LazyAddr(&pVariantToInt32, libPropsys, "VariantToInt32")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(plRet)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt32(varIn *VARIANT, pulRet *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToUInt32, libPropsys, "VariantToUInt32")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pulRet)))
+	return HRESULT(ret)
+}
+
+func VariantToInt64(varIn *VARIANT, pllRet *int64) HRESULT {
+	addr := LazyAddr(&pVariantToInt64, libPropsys, "VariantToInt64")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pllRet)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt64(varIn *VARIANT, pullRet *uint64) HRESULT {
+	addr := LazyAddr(&pVariantToUInt64, libPropsys, "VariantToUInt64")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pullRet)))
+	return HRESULT(ret)
+}
+
+func VariantToDouble(varIn *VARIANT, pdblRet *float64) HRESULT {
+	addr := LazyAddr(&pVariantToDouble, libPropsys, "VariantToDouble")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pdblRet)))
+	return HRESULT(ret)
+}
+
+func VariantToBuffer(varIn *VARIANT, pv unsafe.Pointer, cb uint32) HRESULT {
+	addr := LazyAddr(&pVariantToBuffer, libPropsys, "VariantToBuffer")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(pv), uintptr(cb))
+	return HRESULT(ret)
+}
+
+func VariantToGUID(varIn *VARIANT, pguid *syscall.GUID) HRESULT {
+	addr := LazyAddr(&pVariantToGUID, libPropsys, "VariantToGUID")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pguid)))
+	return HRESULT(ret)
+}
+
+func VariantToString(varIn *VARIANT, pszBuf PWSTR, cchBuf uint32) HRESULT {
+	addr := LazyAddr(&pVariantToString, libPropsys, "VariantToString")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pszBuf)), uintptr(cchBuf))
+	return HRESULT(ret)
+}
+
+func VariantToStringAlloc(varIn *VARIANT, ppszBuf *PWSTR) HRESULT {
+	addr := LazyAddr(&pVariantToStringAlloc, libPropsys, "VariantToStringAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(ppszBuf)))
+	return HRESULT(ret)
+}
+
+func VariantToDosDateTime(varIn *VARIANT, pwDate *uint16, pwTime *uint16) HRESULT {
+	addr := LazyAddr(&pVariantToDosDateTime, libPropsys, "VariantToDosDateTime")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(unsafe.Pointer(pwDate)), uintptr(unsafe.Pointer(pwTime)))
+	return HRESULT(ret)
+}
+
+func VariantToFileTime(varIn *VARIANT, stfOut PSTIME_FLAGS, pftOut *FILETIME) HRESULT {
+	addr := LazyAddr(&pVariantToFileTime, libPropsys, "VariantToFileTime")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)), uintptr(stfOut), uintptr(unsafe.Pointer(pftOut)))
+	return HRESULT(ret)
+}
+
+func VariantGetElementCount(varIn *VARIANT) uint32 {
+	addr := LazyAddr(&pVariantGetElementCount, libPropsys, "VariantGetElementCount")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(varIn)))
+	return uint32(ret)
+}
+
+func VariantToBooleanArray(var_ *VARIANT, prgf *BOOL, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToBooleanArray, libPropsys, "VariantToBooleanArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgf)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToInt16Array(var_ *VARIANT, prgn *int16, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToInt16Array, libPropsys, "VariantToInt16Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgn)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt16Array(var_ *VARIANT, prgn *uint16, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToUInt16Array, libPropsys, "VariantToUInt16Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgn)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToInt32Array(var_ *VARIANT, prgn *int32, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToInt32Array, libPropsys, "VariantToInt32Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgn)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt32Array(var_ *VARIANT, prgn *uint32, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToUInt32Array, libPropsys, "VariantToUInt32Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgn)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToInt64Array(var_ *VARIANT, prgn *int64, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToInt64Array, libPropsys, "VariantToInt64Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgn)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt64Array(var_ *VARIANT, prgn *uint64, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToUInt64Array, libPropsys, "VariantToUInt64Array")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgn)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToDoubleArray(var_ *VARIANT, prgn *float64, crgn uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToDoubleArray, libPropsys, "VariantToDoubleArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgn)), uintptr(crgn), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToStringArray(var_ *VARIANT, prgsz *PWSTR, crgsz uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToStringArray, libPropsys, "VariantToStringArray")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(prgsz)), uintptr(crgsz), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToBooleanArrayAlloc(var_ *VARIANT, pprgf **BOOL, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToBooleanArrayAlloc, libPropsys, "VariantToBooleanArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgf)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToInt16ArrayAlloc(var_ *VARIANT, pprgn **int16, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToInt16ArrayAlloc, libPropsys, "VariantToInt16ArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgn)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt16ArrayAlloc(var_ *VARIANT, pprgn **uint16, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToUInt16ArrayAlloc, libPropsys, "VariantToUInt16ArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgn)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToInt32ArrayAlloc(var_ *VARIANT, pprgn **int32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToInt32ArrayAlloc, libPropsys, "VariantToInt32ArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgn)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt32ArrayAlloc(var_ *VARIANT, pprgn **uint32, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToUInt32ArrayAlloc, libPropsys, "VariantToUInt32ArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgn)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToInt64ArrayAlloc(var_ *VARIANT, pprgn **int64, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToInt64ArrayAlloc, libPropsys, "VariantToInt64ArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgn)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToUInt64ArrayAlloc(var_ *VARIANT, pprgn **uint64, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToUInt64ArrayAlloc, libPropsys, "VariantToUInt64ArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgn)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToDoubleArrayAlloc(var_ *VARIANT, pprgn **float64, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToDoubleArrayAlloc, libPropsys, "VariantToDoubleArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgn)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantToStringArrayAlloc(var_ *VARIANT, pprgsz **PWSTR, pcElem *uint32) HRESULT {
+	addr := LazyAddr(&pVariantToStringArrayAlloc, libPropsys, "VariantToStringArrayAlloc")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(unsafe.Pointer(pprgsz)), uintptr(unsafe.Pointer(pcElem)))
+	return HRESULT(ret)
+}
+
+func VariantGetBooleanElem(var_ *VARIANT, iElem uint32, pfVal *BOOL) HRESULT {
+	addr := LazyAddr(&pVariantGetBooleanElem, libPropsys, "VariantGetBooleanElem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pfVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetInt16Elem(var_ *VARIANT, iElem uint32, pnVal *int16) HRESULT {
+	addr := LazyAddr(&pVariantGetInt16Elem, libPropsys, "VariantGetInt16Elem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pnVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetUInt16Elem(var_ *VARIANT, iElem uint32, pnVal *uint16) HRESULT {
+	addr := LazyAddr(&pVariantGetUInt16Elem, libPropsys, "VariantGetUInt16Elem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pnVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetInt32Elem(var_ *VARIANT, iElem uint32, pnVal *int32) HRESULT {
+	addr := LazyAddr(&pVariantGetInt32Elem, libPropsys, "VariantGetInt32Elem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pnVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetUInt32Elem(var_ *VARIANT, iElem uint32, pnVal *uint32) HRESULT {
+	addr := LazyAddr(&pVariantGetUInt32Elem, libPropsys, "VariantGetUInt32Elem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pnVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetInt64Elem(var_ *VARIANT, iElem uint32, pnVal *int64) HRESULT {
+	addr := LazyAddr(&pVariantGetInt64Elem, libPropsys, "VariantGetInt64Elem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pnVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetUInt64Elem(var_ *VARIANT, iElem uint32, pnVal *uint64) HRESULT {
+	addr := LazyAddr(&pVariantGetUInt64Elem, libPropsys, "VariantGetUInt64Elem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pnVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetDoubleElem(var_ *VARIANT, iElem uint32, pnVal *float64) HRESULT {
+	addr := LazyAddr(&pVariantGetDoubleElem, libPropsys, "VariantGetDoubleElem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(pnVal)))
+	return HRESULT(ret)
+}
+
+func VariantGetStringElem(var_ *VARIANT, iElem uint32, ppszVal *PWSTR) HRESULT {
+	addr := LazyAddr(&pVariantGetStringElem, libPropsys, "VariantGetStringElem")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var_)), uintptr(iElem), uintptr(unsafe.Pointer(ppszVal)))
+	return HRESULT(ret)
+}
+
+func ClearVariantArray(pvars *VARIANT, cvars uint32) {
+	addr := LazyAddr(&pClearVariantArray, libPropsys, "ClearVariantArray")
+	syscall.SyscallN(addr, uintptr(unsafe.Pointer(pvars)), uintptr(cvars))
+}
+
+func VariantCompare(var1 *VARIANT, var2 *VARIANT) int32 {
+	addr := LazyAddr(&pVariantCompare, libPropsys, "VariantCompare")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(var1)), uintptr(unsafe.Pointer(var2)))
+	return int32(ret)
 }

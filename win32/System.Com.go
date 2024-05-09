@@ -58,6 +58,11 @@ var (
 	COLE_DEFAULT_PRINCIPAL = PWSTR(unsafe.Pointer(^uintptr(0)))
 )
 
+var (
+	CLSID_GlobalOptions = syscall.GUID{0x0000034B, 0x0000, 0x0000,
+		[8]byte{0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46}}
+)
+
 // enums
 
 // enum
@@ -1077,7 +1082,7 @@ type STATSTG struct {
 	Ctime             FILETIME
 	Atime             FILETIME
 	GrfMode           STGM
-	GrfLocksSupported uint32
+	GrfLocksSupported LOCKTYPE
 	Clsid             syscall.GUID
 	GrfStateBits      uint32
 	Reserved          uint32
@@ -1171,7 +1176,7 @@ type STATDATA struct {
 }
 
 type RemSTGMEDIUM struct {
-	Tymed          uint32
+	Tymed          TYMED
 	DwHandleType   uint32
 	PData          uint32
 	PUnkForRelease uint32
@@ -1275,7 +1280,7 @@ func (this *GDI_OBJECT_U) HGenericVal() *UserHGLOBAL {
 
 type GDI_OBJECT struct {
 	ObjectType uint32
-	U          GDI_OBJECT_U
+	GDI_OBJECT_U
 }
 
 type UserSTGMEDIUM_STGMEDIUM_UNION_U struct {
@@ -1340,11 +1345,11 @@ func (this *UserSTGMEDIUM_STGMEDIUM_UNION_U) PstgVal() *BYTE_BLOB {
 
 type UserSTGMEDIUM_STGMEDIUM_UNION struct {
 	Tymed uint32
-	U     UserSTGMEDIUM_STGMEDIUM_UNION_U
+	UserSTGMEDIUM_STGMEDIUM_UNION_U
 }
 
 type UserSTGMEDIUM struct {
-	U              UserSTGMEDIUM_STGMEDIUM_UNION
+	UserSTGMEDIUM_STGMEDIUM_UNION
 	PUnkForRelease *IUnknown
 }
 
@@ -2675,8 +2680,8 @@ var IID_IClientSecurity = syscall.GUID{0x0000013D, 0x0000, 0x0000,
 
 type IClientSecurityInterface interface {
 	IUnknownInterface
-	QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *uint32) HRESULT
-	SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities uint32) HRESULT
+	QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *EOLE_AUTHENTICATION_CAPABILITIES) HRESULT
+	SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES) HRESULT
 	CopyProxy(pProxy *IUnknown, ppCopy **IUnknown) HRESULT
 }
 
@@ -2695,12 +2700,12 @@ func (this *IClientSecurity) Vtbl() *IClientSecurityVtbl {
 	return (*IClientSecurityVtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
 }
 
-func (this *IClientSecurity) QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *uint32) HRESULT {
+func (this *IClientSecurity) QueryBlanket(pProxy *IUnknown, pAuthnSvc *uint32, pAuthzSvc *uint32, pServerPrincName **uint16, pAuthnLevel *RPC_C_AUTHN_LEVEL, pImpLevel *RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, pCapabilites *EOLE_AUTHENTICATION_CAPABILITIES) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().QueryBlanket, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pProxy)), uintptr(unsafe.Pointer(pAuthnSvc)), uintptr(unsafe.Pointer(pAuthzSvc)), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(unsafe.Pointer(pAuthnLevel)), uintptr(unsafe.Pointer(pImpLevel)), uintptr(pAuthInfo), uintptr(unsafe.Pointer(pCapabilites)))
 	return HRESULT(ret)
 }
 
-func (this *IClientSecurity) SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities uint32) HRESULT {
+func (this *IClientSecurity) SetBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetBlanket, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(pProxy)), uintptr(dwAuthnSvc), uintptr(dwAuthzSvc), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthInfo), uintptr(dwCapabilities))
 	return HRESULT(ret)
 }
@@ -7544,13 +7549,13 @@ func CoGetObjectContext(riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	return HRESULT(ret)
 }
 
-func CoGetClassObject(rclsid *syscall.GUID, dwClsContext uint32, pvReserved unsafe.Pointer, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
+func CoGetClassObject(rclsid *syscall.GUID, dwClsContext CLSCTX, pvReserved unsafe.Pointer, riid *syscall.GUID, ppv unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pCoGetClassObject, libOle32, "CoGetClassObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(dwClsContext), uintptr(pvReserved), uintptr(unsafe.Pointer(riid)), uintptr(ppv))
 	return HRESULT(ret)
 }
 
-func CoRegisterClassObject(rclsid *syscall.GUID, pUnk *IUnknown, dwClsContext CLSCTX, flags uint32, lpdwRegister *uint32) HRESULT {
+func CoRegisterClassObject(rclsid *syscall.GUID, pUnk *IUnknown, dwClsContext CLSCTX, flags REGCLS, lpdwRegister *uint32) HRESULT {
 	addr := LazyAddr(&pCoRegisterClassObject, libOle32, "CoRegisterClassObject")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(rclsid)), uintptr(unsafe.Pointer(pUnk)), uintptr(dwClsContext), uintptr(flags), uintptr(unsafe.Pointer(lpdwRegister)))
 	return HRESULT(ret)
@@ -7644,7 +7649,7 @@ func CoDisconnectContext(dwTimeout uint32) HRESULT {
 	return HRESULT(ret)
 }
 
-func CoInitializeSecurity(pSecDesc PSECURITY_DESCRIPTOR, cAuthSvc int32, asAuthSvc *SOLE_AUTHENTICATION_SERVICE, pReserved1 unsafe.Pointer, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthList unsafe.Pointer, dwCapabilities uint32, pReserved3 unsafe.Pointer) HRESULT {
+func CoInitializeSecurity(pSecDesc PSECURITY_DESCRIPTOR, cAuthSvc int32, asAuthSvc *SOLE_AUTHENTICATION_SERVICE, pReserved1 unsafe.Pointer, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthList unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES, pReserved3 unsafe.Pointer) HRESULT {
 	addr := LazyAddr(&pCoInitializeSecurity, libOle32, "CoInitializeSecurity")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecDesc)), uintptr(cAuthSvc), uintptr(unsafe.Pointer(asAuthSvc)), uintptr(pReserved1), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthList), uintptr(dwCapabilities), uintptr(pReserved3))
 	return HRESULT(ret)
@@ -7662,7 +7667,7 @@ func CoQueryProxyBlanket(pProxy *IUnknown, pwAuthnSvc *uint32, pAuthzSvc *uint32
 	return HRESULT(ret)
 }
 
-func CoSetProxyBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities uint32) HRESULT {
+func CoSetProxyBlanket(pProxy *IUnknown, dwAuthnSvc uint32, dwAuthzSvc uint32, pServerPrincName PWSTR, dwAuthnLevel RPC_C_AUTHN_LEVEL, dwImpLevel RPC_C_IMP_LEVEL, pAuthInfo unsafe.Pointer, dwCapabilities EOLE_AUTHENTICATION_CAPABILITIES) HRESULT {
 	addr := LazyAddr(&pCoSetProxyBlanket, libOle32, "CoSetProxyBlanket")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pProxy)), uintptr(dwAuthnSvc), uintptr(dwAuthzSvc), uintptr(unsafe.Pointer(pServerPrincName)), uintptr(dwAuthnLevel), uintptr(dwImpLevel), uintptr(pAuthInfo), uintptr(dwCapabilities))
 	return HRESULT(ret)

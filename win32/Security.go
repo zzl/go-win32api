@@ -6,84 +6,82 @@ import (
 )
 
 type (
-	HDIAGNOSTIC_DATA_QUERY_SESSION         = uintptr
-	HDIAGNOSTIC_REPORT                     = uintptr
-	HDIAGNOSTIC_EVENT_TAG_DESCRIPTION      = uintptr
-	HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = uintptr
-	HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = uintptr
-	HDIAGNOSTIC_RECORD                     = uintptr
-	NCRYPT_DESCRIPTOR_HANDLE               = uintptr
-	NCRYPT_STREAM_HANDLE                   = uintptr
-	SAFER_LEVEL_HANDLE                     = uintptr
-	SC_HANDLE                              = uintptr
-	PSECURITY_DESCRIPTOR                   = unsafe.Pointer
+	PSID                     = unsafe.Pointer
+	NCRYPT_DESCRIPTOR_HANDLE = uintptr
+	NCRYPT_STREAM_HANDLE     = uintptr
+	SAFER_LEVEL_HANDLE       = uintptr
+	PSECURITY_DESCRIPTOR     = unsafe.Pointer
 )
 
 const (
-	SECURITY_DYNAMIC_TRACKING                 BOOLEAN = 0x1
-	SECURITY_STATIC_TRACKING                  BOOLEAN = 0x0
-	SE_CREATE_TOKEN_NAME                      string  = "SeCreateTokenPrivilege"
-	SE_ASSIGNPRIMARYTOKEN_NAME                string  = "SeAssignPrimaryTokenPrivilege"
-	SE_LOCK_MEMORY_NAME                       string  = "SeLockMemoryPrivilege"
-	SE_INCREASE_QUOTA_NAME                    string  = "SeIncreaseQuotaPrivilege"
-	SE_UNSOLICITED_INPUT_NAME                 string  = "SeUnsolicitedInputPrivilege"
-	SE_MACHINE_ACCOUNT_NAME                   string  = "SeMachineAccountPrivilege"
-	SE_TCB_NAME                               string  = "SeTcbPrivilege"
-	SE_SECURITY_NAME                          string  = "SeSecurityPrivilege"
-	SE_TAKE_OWNERSHIP_NAME                    string  = "SeTakeOwnershipPrivilege"
-	SE_LOAD_DRIVER_NAME                       string  = "SeLoadDriverPrivilege"
-	SE_SYSTEM_PROFILE_NAME                    string  = "SeSystemProfilePrivilege"
-	SE_SYSTEMTIME_NAME                        string  = "SeSystemtimePrivilege"
-	SE_PROF_SINGLE_PROCESS_NAME               string  = "SeProfileSingleProcessPrivilege"
-	SE_INC_BASE_PRIORITY_NAME                 string  = "SeIncreaseBasePriorityPrivilege"
-	SE_CREATE_PAGEFILE_NAME                   string  = "SeCreatePagefilePrivilege"
-	SE_CREATE_PERMANENT_NAME                  string  = "SeCreatePermanentPrivilege"
-	SE_BACKUP_NAME                            string  = "SeBackupPrivilege"
-	SE_RESTORE_NAME                           string  = "SeRestorePrivilege"
-	SE_SHUTDOWN_NAME                          string  = "SeShutdownPrivilege"
-	SE_DEBUG_NAME                             string  = "SeDebugPrivilege"
-	SE_AUDIT_NAME                             string  = "SeAuditPrivilege"
-	SE_SYSTEM_ENVIRONMENT_NAME                string  = "SeSystemEnvironmentPrivilege"
-	SE_CHANGE_NOTIFY_NAME                     string  = "SeChangeNotifyPrivilege"
-	SE_REMOTE_SHUTDOWN_NAME                   string  = "SeRemoteShutdownPrivilege"
-	SE_UNDOCK_NAME                            string  = "SeUndockPrivilege"
-	SE_SYNC_AGENT_NAME                        string  = "SeSyncAgentPrivilege"
-	SE_ENABLE_DELEGATION_NAME                 string  = "SeEnableDelegationPrivilege"
-	SE_MANAGE_VOLUME_NAME                     string  = "SeManageVolumePrivilege"
-	SE_IMPERSONATE_NAME                       string  = "SeImpersonatePrivilege"
-	SE_CREATE_GLOBAL_NAME                     string  = "SeCreateGlobalPrivilege"
-	SE_TRUSTED_CREDMAN_ACCESS_NAME            string  = "SeTrustedCredManAccessPrivilege"
-	SE_RELABEL_NAME                           string  = "SeRelabelPrivilege"
-	SE_INC_WORKING_SET_NAME                   string  = "SeIncreaseWorkingSetPrivilege"
-	SE_TIME_ZONE_NAME                         string  = "SeTimeZonePrivilege"
-	SE_CREATE_SYMBOLIC_LINK_NAME              string  = "SeCreateSymbolicLinkPrivilege"
-	SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME string  = "SeDelegateSessionUserImpersonatePrivilege"
-	WszCERTENROLLSHAREPATH                    string  = "CertSrv\\CertEnroll"
-	CwcHRESULTSTRING                          uint32  = 0x28
-	SzLBRACE                                  string  = "{"
-	SzRBRACE                                  string  = "}"
-	WszLBRACE                                 string  = "{"
-	WszRBRACE                                 string  = "}"
-	SzLPAREN                                  string  = "("
-	SzRPAREN                                  string  = ")"
-	WszLPAREN                                 string  = "("
-	WszRPAREN                                 string  = ")"
-	CVT_SECONDS                               uint32  = 0x1
-	CwcFILENAMESUFFIXMAX                      uint32  = 0x14
-	WszFCSAPARM_SERVERDNSNAME                 string  = "%1"
-	WszFCSAPARM_SERVERSHORTNAME               string  = "%2"
-	WszFCSAPARM_SANITIZEDCANAME               string  = "%3"
-	WszFCSAPARM_CERTFILENAMESUFFIX            string  = "%4"
-	WszFCSAPARM_DOMAINDN                      string  = "%5"
-	WszFCSAPARM_CONFIGDN                      string  = "%6"
-	WszFCSAPARM_SANITIZEDCANAMEHASH           string  = "%7"
-	WszFCSAPARM_CRLFILENAMESUFFIX             string  = "%8"
-	WszFCSAPARM_CRLDELTAFILENAMESUFFIX        string  = "%9"
-	WszFCSAPARM_DSCRLATTRIBUTE                string  = "%10"
-	WszFCSAPARM_DSCACERTATTRIBUTE             string  = "%11"
-	WszFCSAPARM_DSUSERCERTATTRIBUTE           string  = "%12"
-	WszFCSAPARM_DSKRACERTATTRIBUTE            string  = "%13"
-	WszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE      string  = "%14"
+	SECURITY_DYNAMIC_TRACKING                   BOOLEAN = 0x1
+	SECURITY_STATIC_TRACKING                    BOOLEAN = 0x0
+	SECURITY_MAX_SID_SIZE                       uint32  = 0x44
+	SE_CREATE_TOKEN_NAME                        string  = "SeCreateTokenPrivilege"
+	SE_ASSIGNPRIMARYTOKEN_NAME                  string  = "SeAssignPrimaryTokenPrivilege"
+	SE_LOCK_MEMORY_NAME                         string  = "SeLockMemoryPrivilege"
+	SE_INCREASE_QUOTA_NAME                      string  = "SeIncreaseQuotaPrivilege"
+	SE_UNSOLICITED_INPUT_NAME                   string  = "SeUnsolicitedInputPrivilege"
+	SE_MACHINE_ACCOUNT_NAME                     string  = "SeMachineAccountPrivilege"
+	SE_TCB_NAME                                 string  = "SeTcbPrivilege"
+	SE_SECURITY_NAME                            string  = "SeSecurityPrivilege"
+	SE_TAKE_OWNERSHIP_NAME                      string  = "SeTakeOwnershipPrivilege"
+	SE_LOAD_DRIVER_NAME                         string  = "SeLoadDriverPrivilege"
+	SE_SYSTEM_PROFILE_NAME                      string  = "SeSystemProfilePrivilege"
+	SE_SYSTEMTIME_NAME                          string  = "SeSystemtimePrivilege"
+	SE_PROF_SINGLE_PROCESS_NAME                 string  = "SeProfileSingleProcessPrivilege"
+	SE_INC_BASE_PRIORITY_NAME                   string  = "SeIncreaseBasePriorityPrivilege"
+	SE_CREATE_PAGEFILE_NAME                     string  = "SeCreatePagefilePrivilege"
+	SE_CREATE_PERMANENT_NAME                    string  = "SeCreatePermanentPrivilege"
+	SE_BACKUP_NAME                              string  = "SeBackupPrivilege"
+	SE_RESTORE_NAME                             string  = "SeRestorePrivilege"
+	SE_SHUTDOWN_NAME                            string  = "SeShutdownPrivilege"
+	SE_DEBUG_NAME                               string  = "SeDebugPrivilege"
+	SE_AUDIT_NAME                               string  = "SeAuditPrivilege"
+	SE_SYSTEM_ENVIRONMENT_NAME                  string  = "SeSystemEnvironmentPrivilege"
+	SE_CHANGE_NOTIFY_NAME                       string  = "SeChangeNotifyPrivilege"
+	SE_REMOTE_SHUTDOWN_NAME                     string  = "SeRemoteShutdownPrivilege"
+	SE_UNDOCK_NAME                              string  = "SeUndockPrivilege"
+	SE_SYNC_AGENT_NAME                          string  = "SeSyncAgentPrivilege"
+	SE_ENABLE_DELEGATION_NAME                   string  = "SeEnableDelegationPrivilege"
+	SE_MANAGE_VOLUME_NAME                       string  = "SeManageVolumePrivilege"
+	SE_IMPERSONATE_NAME                         string  = "SeImpersonatePrivilege"
+	SE_CREATE_GLOBAL_NAME                       string  = "SeCreateGlobalPrivilege"
+	SE_TRUSTED_CREDMAN_ACCESS_NAME              string  = "SeTrustedCredManAccessPrivilege"
+	SE_RELABEL_NAME                             string  = "SeRelabelPrivilege"
+	SE_INC_WORKING_SET_NAME                     string  = "SeIncreaseWorkingSetPrivilege"
+	SE_TIME_ZONE_NAME                           string  = "SeTimeZonePrivilege"
+	SE_CREATE_SYMBOLIC_LINK_NAME                string  = "SeCreateSymbolicLinkPrivilege"
+	SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME   string  = "SeDelegateSessionUserImpersonatePrivilege"
+	WszCERTENROLLSHAREPATH                      string  = "CertSrv\\CertEnroll"
+	CwcHRESULTSTRING                            uint32  = 0x28
+	SzLBRACE                                    string  = "{"
+	SzRBRACE                                    string  = "}"
+	WszLBRACE                                   string  = "{"
+	WszRBRACE                                   string  = "}"
+	SzLPAREN                                    string  = "("
+	SzRPAREN                                    string  = ")"
+	WszLPAREN                                   string  = "("
+	WszRPAREN                                   string  = ")"
+	CVT_SECONDS                                 uint32  = 0x1
+	CwcFILENAMESUFFIXMAX                        uint32  = 0x14
+	WszFCSAPARM_SERVERDNSNAME                   string  = "%1"
+	WszFCSAPARM_SERVERSHORTNAME                 string  = "%2"
+	WszFCSAPARM_SANITIZEDCANAME                 string  = "%3"
+	WszFCSAPARM_CERTFILENAMESUFFIX              string  = "%4"
+	WszFCSAPARM_DOMAINDN                        string  = "%5"
+	WszFCSAPARM_CONFIGDN                        string  = "%6"
+	WszFCSAPARM_SANITIZEDCANAMEHASH             string  = "%7"
+	WszFCSAPARM_CRLFILENAMESUFFIX               string  = "%8"
+	WszFCSAPARM_CRLDELTAFILENAMESUFFIX          string  = "%9"
+	WszFCSAPARM_DSCRLATTRIBUTE                  string  = "%10"
+	WszFCSAPARM_DSCACERTATTRIBUTE               string  = "%11"
+	WszFCSAPARM_DSUSERCERTATTRIBUTE             string  = "%12"
+	WszFCSAPARM_DSKRACERTATTRIBUTE              string  = "%13"
+	WszFCSAPARM_DSCROSSCERTPAIRATTRIBUTE        string  = "%14"
+	SIGNING_LEVEL_FILE_CACHE_FLAG_NOT_VALIDATED uint32  = 0x1
+	SIGNING_LEVEL_FILE_CACHE_FLAG_VALIDATE_ONLY uint32  = 0x4
+	SIGNING_LEVEL_MICROSOFT                     uint32  = 0x8
 )
 
 // enums
@@ -1303,7 +1301,7 @@ var (
 	pLogonUserExW                                       uintptr
 )
 
-func AccessCheck(pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) (BOOL, WIN32_ERROR) {
+func AccessCheck(pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pAccessCheck, libAdvapi32, "AccessCheck")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), ClientToken, uintptr(DesiredAccess), uintptr(unsafe.Pointer(GenericMapping)), uintptr(unsafe.Pointer(PrivilegeSet)), uintptr(unsafe.Pointer(PrivilegeSetLength)), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1311,13 +1309,13 @@ func AccessCheck(pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, D
 
 var AccessCheckAndAuditAlarm = AccessCheckAndAuditAlarmW
 
-func AccessCheckAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *BOOL, pfGenerateOnClose *BOOL) BOOL {
 	addr := LazyAddr(&pAccessCheckAndAuditAlarmW, libAdvapi32, "AccessCheckAndAuditAlarmW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(DesiredAccess), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
 }
 
-func AccessCheckByType(pSecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, ClientToken HANDLE, DesiredAccess uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByType(pSecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, ClientToken HANDLE, DesiredAccess uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, PrivilegeSet *PRIVILEGE_SET, PrivilegeSetLength *uint32, GrantedAccess *uint32, AccessStatus *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pAccessCheckByType, libAdvapi32, "AccessCheckByType")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), ClientToken, uintptr(DesiredAccess), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(unsafe.Pointer(PrivilegeSet)), uintptr(unsafe.Pointer(PrivilegeSetLength)), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1331,7 +1329,7 @@ func AccessCheckByTypeResultList(pSecurityDescriptor PSECURITY_DESCRIPTOR, Princ
 
 var AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmW
 
-func AccessCheckByTypeAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckByTypeAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *BOOL, pfGenerateOnClose *BOOL) BOOL {
 	addr := LazyAddr(&pAccessCheckByTypeAndAuditAlarmW, libAdvapi32, "AccessCheckByTypeAndAuditAlarmW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
@@ -1339,7 +1337,7 @@ func AccessCheckByTypeAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointe
 
 var AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmW
 
-func AccessCheckByTypeResultListAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckByTypeResultListAndAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *BOOL) BOOL {
 	addr := LazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmW, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
@@ -1347,7 +1345,7 @@ func AccessCheckByTypeResultListAndAuditAlarmW(SubsystemName PWSTR, HandleId uns
 
 var AccessCheckByTypeResultListAndAuditAlarmByHandle = AccessCheckByTypeResultListAndAuditAlarmByHandleW
 
-func AccessCheckByTypeResultListAndAuditAlarmByHandleW(SubsystemName PWSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) BOOL {
+func AccessCheckByTypeResultListAndAuditAlarmByHandleW(SubsystemName PWSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PWSTR, ObjectName PWSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccessList *uint32, AccessStatusList *uint32, pfGenerateOnClose *BOOL) BOOL {
 	addr := LazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmByHandleW, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmByHandleW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), ClientToken, uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccessList)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret)
@@ -1619,7 +1617,7 @@ func GetLengthSid(pSid PSID) uint32 {
 	return uint32(ret)
 }
 
-func GetPrivateObjectSecurity(ObjectDescriptor PSECURITY_DESCRIPTOR, SecurityInformation uint32, ResultantDescriptor PSECURITY_DESCRIPTOR, DescriptorLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
+func GetPrivateObjectSecurity(ObjectDescriptor PSECURITY_DESCRIPTOR, SecurityInformation OBJECT_SECURITY_INFORMATION, ResultantDescriptor PSECURITY_DESCRIPTOR, DescriptorLength uint32, ReturnLength *uint32) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetPrivateObjectSecurity, libAdvapi32, "GetPrivateObjectSecurity")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(ObjectDescriptor)), uintptr(SecurityInformation), uintptr(unsafe.Pointer(ResultantDescriptor)), uintptr(DescriptorLength), uintptr(unsafe.Pointer(ReturnLength)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1631,13 +1629,13 @@ func GetSecurityDescriptorControl(pSecurityDescriptor PSECURITY_DESCRIPTOR, pCon
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetSecurityDescriptorDacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, lpbDaclPresent *int32, pDacl **ACL, lpbDaclDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorDacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, lpbDaclPresent *BOOL, pDacl **ACL, lpbDaclDefaulted *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetSecurityDescriptorDacl, libAdvapi32, "GetSecurityDescriptorDacl")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(lpbDaclPresent)), uintptr(unsafe.Pointer(pDacl)), uintptr(unsafe.Pointer(lpbDaclDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetSecurityDescriptorGroup(pSecurityDescriptor PSECURITY_DESCRIPTOR, pGroup *PSID, lpbGroupDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorGroup(pSecurityDescriptor PSECURITY_DESCRIPTOR, pGroup *PSID, lpbGroupDefaulted *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetSecurityDescriptorGroup, libAdvapi32, "GetSecurityDescriptorGroup")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(pGroup)), uintptr(unsafe.Pointer(lpbGroupDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1649,7 +1647,7 @@ func GetSecurityDescriptorLength(pSecurityDescriptor PSECURITY_DESCRIPTOR) uint3
 	return uint32(ret)
 }
 
-func GetSecurityDescriptorOwner(pSecurityDescriptor PSECURITY_DESCRIPTOR, pOwner *PSID, lpbOwnerDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorOwner(pSecurityDescriptor PSECURITY_DESCRIPTOR, pOwner *PSID, lpbOwnerDefaulted *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetSecurityDescriptorOwner, libAdvapi32, "GetSecurityDescriptorOwner")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(pOwner)), uintptr(unsafe.Pointer(lpbOwnerDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1661,7 +1659,7 @@ func GetSecurityDescriptorRMControl(SecurityDescriptor PSECURITY_DESCRIPTOR, RMC
 	return uint32(ret)
 }
 
-func GetSecurityDescriptorSacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, lpbSaclPresent *int32, pSacl **ACL, lpbSaclDefaulted *int32) (BOOL, WIN32_ERROR) {
+func GetSecurityDescriptorSacl(pSecurityDescriptor PSECURITY_DESCRIPTOR, lpbSaclPresent *BOOL, pSacl **ACL, lpbSaclDefaulted *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pGetSecurityDescriptorSacl, libAdvapi32, "GetSecurityDescriptorSacl")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(pSecurityDescriptor)), uintptr(unsafe.Pointer(lpbSaclPresent)), uintptr(unsafe.Pointer(pSacl)), uintptr(unsafe.Pointer(lpbSaclDefaulted)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1804,7 +1802,7 @@ func ObjectDeleteAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, Gener
 
 var ObjectOpenAuditAlarm = ObjectOpenAuditAlarmW
 
-func ObjectOpenAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *int32) BOOL {
+func ObjectOpenAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, ObjectTypeName PWSTR, ObjectName PWSTR, pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *BOOL) BOOL {
 	addr := LazyAddr(&pObjectOpenAuditAlarmW, libAdvapi32, "ObjectOpenAuditAlarmW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(pSecurityDescriptor)), ClientToken, uintptr(DesiredAccess), uintptr(GrantedAccess), uintptr(unsafe.Pointer(Privileges)), uintptr(ObjectCreation), uintptr(AccessGranted), uintptr(unsafe.Pointer(GenerateOnClose)))
 	return BOOL(ret)
@@ -1818,7 +1816,7 @@ func ObjectPrivilegeAuditAlarmW(SubsystemName PWSTR, HandleId unsafe.Pointer, Cl
 	return BOOL(ret)
 }
 
-func PrivilegeCheck(ClientToken HANDLE, RequiredPrivileges *PRIVILEGE_SET, pfResult *int32) (BOOL, WIN32_ERROR) {
+func PrivilegeCheck(ClientToken HANDLE, RequiredPrivileges *PRIVILEGE_SET, pfResult *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pPrivilegeCheck, libAdvapi32, "PrivilegeCheck")
 	ret, _, err := syscall.SyscallN(addr, ClientToken, uintptr(unsafe.Pointer(RequiredPrivileges)), uintptr(unsafe.Pointer(pfResult)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -1832,7 +1830,7 @@ func PrivilegedServiceAuditAlarmW(SubsystemName PWSTR, ServiceName PWSTR, Client
 	return BOOL(ret)
 }
 
-func QuerySecurityAccessMask(SecurityInformation uint32, DesiredAccess *uint32) {
+func QuerySecurityAccessMask(SecurityInformation OBJECT_SECURITY_INFORMATION, DesiredAccess *uint32) {
 	addr := LazyAddr(&pQuerySecurityAccessMask, libAdvapi32, "QuerySecurityAccessMask")
 	syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(DesiredAccess)))
 }
@@ -1851,31 +1849,31 @@ func SetAclInformation(pAcl *ACL, pAclInformation unsafe.Pointer, nAclInformatio
 
 var SetFileSecurity = SetFileSecurityW
 
-func SetFileSecurityW(lpFileName PWSTR, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR) BOOL {
+func SetFileSecurityW(lpFileName PWSTR, SecurityInformation OBJECT_SECURITY_INFORMATION, pSecurityDescriptor PSECURITY_DESCRIPTOR) BOOL {
 	addr := LazyAddr(&pSetFileSecurityW, libAdvapi32, "SetFileSecurityW")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return BOOL(ret)
 }
 
-func SetKernelObjectSecurity(Handle HANDLE, SecurityInformation uint32, SecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
+func SetKernelObjectSecurity(Handle HANDLE, SecurityInformation OBJECT_SECURITY_INFORMATION, SecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSetKernelObjectSecurity, libAdvapi32, "SetKernelObjectSecurity")
 	ret, _, err := syscall.SyscallN(addr, Handle, uintptr(SecurityInformation), uintptr(unsafe.Pointer(SecurityDescriptor)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetPrivateObjectSecurity(SecurityInformation uint32, ModificationDescriptor PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor *PSECURITY_DESCRIPTOR, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
+func SetPrivateObjectSecurity(SecurityInformation OBJECT_SECURITY_INFORMATION, ModificationDescriptor PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor *PSECURITY_DESCRIPTOR, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSetPrivateObjectSecurity, libAdvapi32, "SetPrivateObjectSecurity")
 	ret, _, err := syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(ModificationDescriptor)), uintptr(unsafe.Pointer(ObjectsSecurityDescriptor)), uintptr(unsafe.Pointer(GenericMapping)), Token)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetPrivateObjectSecurityEx(SecurityInformation uint32, ModificationDescriptor PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor *PSECURITY_DESCRIPTOR, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
+func SetPrivateObjectSecurityEx(SecurityInformation OBJECT_SECURITY_INFORMATION, ModificationDescriptor PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor *PSECURITY_DESCRIPTOR, AutoInheritFlags SECURITY_AUTO_INHERIT_FLAGS, GenericMapping *GENERIC_MAPPING, Token HANDLE) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSetPrivateObjectSecurityEx, libAdvapi32, "SetPrivateObjectSecurityEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(ModificationDescriptor)), uintptr(unsafe.Pointer(ObjectsSecurityDescriptor)), uintptr(AutoInheritFlags), uintptr(unsafe.Pointer(GenericMapping)), Token)
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetSecurityAccessMask(SecurityInformation uint32, DesiredAccess *uint32) {
+func SetSecurityAccessMask(SecurityInformation OBJECT_SECURITY_INFORMATION, DesiredAccess *uint32) {
 	addr := LazyAddr(&pSetSecurityAccessMask, libAdvapi32, "SetSecurityAccessMask")
 	syscall.SyscallN(addr, uintptr(SecurityInformation), uintptr(unsafe.Pointer(DesiredAccess)))
 }
@@ -1946,31 +1944,31 @@ func GetUserObjectSecurity(hObj HANDLE, pSIRequested *uint32, pSID PSECURITY_DES
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, DesiredAccess uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *BOOL, pfGenerateOnClose *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pAccessCheckAndAuditAlarmA, libAdvapi32, "AccessCheckAndAuditAlarmA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(DesiredAccess), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckByTypeAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *int32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByTypeAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatus *BOOL, pfGenerateOnClose *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pAccessCheckByTypeAndAuditAlarmA, libAdvapi32, "AccessCheckByTypeAndAuditAlarmA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatus)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckByTypeResultListAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByTypeResultListAndAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmA, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func AccessCheckByTypeResultListAndAuditAlarmByHandleA(SubsystemName PSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func AccessCheckByTypeResultListAndAuditAlarmByHandleA(SubsystemName PSTR, HandleId unsafe.Pointer, ClientToken HANDLE, ObjectTypeName PSTR, ObjectName PSTR, SecurityDescriptor PSECURITY_DESCRIPTOR, PrincipalSelfSid PSID, DesiredAccess uint32, AuditType AUDIT_EVENT_TYPE, Flags uint32, ObjectTypeList *OBJECT_TYPE_LIST, ObjectTypeListLength uint32, GenericMapping *GENERIC_MAPPING, ObjectCreation BOOL, GrantedAccess *uint32, AccessStatusList *uint32, pfGenerateOnClose *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pAccessCheckByTypeResultListAndAuditAlarmByHandleA, libAdvapi32, "AccessCheckByTypeResultListAndAuditAlarmByHandleA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), ClientToken, uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(SecurityDescriptor)), uintptr(unsafe.Pointer(PrincipalSelfSid)), uintptr(DesiredAccess), uintptr(AuditType), uintptr(Flags), uintptr(unsafe.Pointer(ObjectTypeList)), uintptr(ObjectTypeListLength), uintptr(unsafe.Pointer(GenericMapping)), uintptr(ObjectCreation), uintptr(unsafe.Pointer(GrantedAccess)), uintptr(unsafe.Pointer(AccessStatusList)), uintptr(unsafe.Pointer(pfGenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func ObjectOpenAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *int32) (BOOL, WIN32_ERROR) {
+func ObjectOpenAuditAlarmA(SubsystemName PSTR, HandleId unsafe.Pointer, ObjectTypeName PSTR, ObjectName PSTR, pSecurityDescriptor PSECURITY_DESCRIPTOR, ClientToken HANDLE, DesiredAccess uint32, GrantedAccess uint32, Privileges *PRIVILEGE_SET, ObjectCreation BOOL, AccessGranted BOOL, GenerateOnClose *BOOL) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pObjectOpenAuditAlarmA, libAdvapi32, "ObjectOpenAuditAlarmA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(SubsystemName)), uintptr(HandleId), uintptr(unsafe.Pointer(ObjectTypeName)), uintptr(unsafe.Pointer(ObjectName)), uintptr(unsafe.Pointer(pSecurityDescriptor)), ClientToken, uintptr(DesiredAccess), uintptr(GrantedAccess), uintptr(unsafe.Pointer(Privileges)), uintptr(ObjectCreation), uintptr(AccessGranted), uintptr(unsafe.Pointer(GenerateOnClose)))
 	return BOOL(ret), WIN32_ERROR(err)
@@ -2006,7 +2004,7 @@ func AddConditionalAce(pAcl *ACL, dwAceRevision ACE_REVISION, AceFlags ACE_FLAGS
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func SetFileSecurityA(lpFileName PSTR, SecurityInformation uint32, pSecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
+func SetFileSecurityA(lpFileName PSTR, SecurityInformation OBJECT_SECURITY_INFORMATION, pSecurityDescriptor PSECURITY_DESCRIPTOR) (BOOL, WIN32_ERROR) {
 	addr := LazyAddr(&pSetFileSecurityA, libAdvapi32, "SetFileSecurityA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpFileName)), uintptr(SecurityInformation), uintptr(unsafe.Pointer(pSecurityDescriptor)))
 	return BOOL(ret), WIN32_ERROR(err)

@@ -22,6 +22,7 @@ var (
 	libUserenv  = windows.NewLazySystemDLL("userenv.dll")
 	libUxtheme  = windows.NewLazySystemDLL("uxtheme.dll")
 	libVersion  = windows.NewLazySystemDLL("version.dll")
+	libPropsys  = windows.NewLazySystemDLL("propsys.dll")
 
 	//
 	libApi_ms_win_core_winrt_string_l1_1_0 = windows.NewLazySystemDLL(

@@ -6,8 +6,6 @@ import (
 )
 
 type (
-	HIMC                       = uintptr
-	HIMCC                      = uintptr
 	HSAVEDUILANGUAGES          = uintptr
 	UBiDi                      = uintptr
 	UBiDiTransform             = uintptr
@@ -4101,6 +4099,21 @@ const (
 	MLSTR_WRITE MLSTR_FLAGS = 2
 )
 
+// enum
+type CALDATETIME_DATEUNIT int32
+
+const (
+	EraUnit    CALDATETIME_DATEUNIT = 0
+	YearUnit   CALDATETIME_DATEUNIT = 1
+	MonthUnit  CALDATETIME_DATEUNIT = 2
+	WeekUnit   CALDATETIME_DATEUNIT = 3
+	DayUnit    CALDATETIME_DATEUNIT = 4
+	HourUnit   CALDATETIME_DATEUNIT = 5
+	MinuteUnit CALDATETIME_DATEUNIT = 6
+	SecondUnit CALDATETIME_DATEUNIT = 7
+	TickUnit   CALDATETIME_DATEUNIT = 8
+)
+
 // structs
 
 type FONTSIGNATURE struct {
@@ -4646,6 +4659,19 @@ type CMLangConvertCharset struct {
 }
 
 type CMultiLanguage struct {
+}
+
+type CALDATETIME struct {
+	CalId     uint32
+	Era       uint32
+	Year      uint32
+	Month     uint32
+	Day       uint32
+	DayOfWeek uint32
+	Hour      uint32
+	Minute    uint32
+	Second    uint32
+	Tick      uint32
 }
 
 // func types
@@ -6589,6 +6615,13 @@ var (
 	pEnumTimeFormatsEx                 uintptr
 	pEnumSystemLocalesEx               uintptr
 	pResolveLocaleName                 uintptr
+	pGetCalendarSupportedDateRange     uintptr
+	pGetCalendarDateFormatEx           uintptr
+	pConvertSystemTimeToCalDateTime    uintptr
+	pUpdateCalendarDayOfWeek           uintptr
+	pAdjustCalendarDate                uintptr
+	pConvertCalDateTimeToSystemTime    uintptr
+	pIsCalendarLeapYear                uintptr
 	pFindStringOrdinal                 uintptr
 	pLstrcmpA                          uintptr
 	pLstrcmpW                          uintptr
@@ -6719,7 +6752,7 @@ func MultiByteToWideChar(CodePage uint32, dwFlags MULTI_BYTE_TO_WIDE_CHAR_FLAGS,
 	return int32(ret), WIN32_ERROR(err)
 }
 
-func WideCharToMultiByte(CodePage uint32, dwFlags uint32, lpWideCharStr PWSTR, cchWideChar int32, lpMultiByteStr PSTR, cbMultiByte int32, lpDefaultChar PSTR, lpUsedDefaultChar *int32) (int32, WIN32_ERROR) {
+func WideCharToMultiByte(CodePage uint32, dwFlags uint32, lpWideCharStr PWSTR, cchWideChar int32, lpMultiByteStr PSTR, cbMultiByte int32, lpDefaultChar PSTR, lpUsedDefaultChar *BOOL) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pWideCharToMultiByte, libKernel32, "WideCharToMultiByte")
 	ret, _, err := syscall.SyscallN(addr, uintptr(CodePage), uintptr(dwFlags), uintptr(unsafe.Pointer(lpWideCharStr)), uintptr(cchWideChar), uintptr(unsafe.Pointer(lpMultiByteStr)), uintptr(cbMultiByte), uintptr(unsafe.Pointer(lpDefaultChar)), uintptr(unsafe.Pointer(lpUsedDefaultChar)))
 	return int32(ret), WIN32_ERROR(err)
@@ -6991,7 +7024,7 @@ func IsValidLocale(Locale uint32, dwFlags IS_VALID_LOCALE_FLAGS) BOOL {
 	return BOOL(ret)
 }
 
-func GetGeoInfoA(Location int32, GeoType uint32, lpGeoData PSTR, cchData int32, LangId uint16) (int32, WIN32_ERROR) {
+func GetGeoInfoA(Location int32, GeoType SYSGEOTYPE, lpGeoData PSTR, cchData int32, LangId uint16) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetGeoInfoA, libKernel32, "GetGeoInfoA")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Location), uintptr(GeoType), uintptr(unsafe.Pointer(lpGeoData)), uintptr(cchData), uintptr(LangId))
 	return int32(ret), WIN32_ERROR(err)
@@ -6999,13 +7032,13 @@ func GetGeoInfoA(Location int32, GeoType uint32, lpGeoData PSTR, cchData int32, 
 
 var GetGeoInfo = GetGeoInfoW
 
-func GetGeoInfoW(Location int32, GeoType uint32, lpGeoData PWSTR, cchData int32, LangId uint16) (int32, WIN32_ERROR) {
+func GetGeoInfoW(Location int32, GeoType SYSGEOTYPE, lpGeoData PWSTR, cchData int32, LangId uint16) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetGeoInfoW, libKernel32, "GetGeoInfoW")
 	ret, _, err := syscall.SyscallN(addr, uintptr(Location), uintptr(GeoType), uintptr(unsafe.Pointer(lpGeoData)), uintptr(cchData), uintptr(LangId))
 	return int32(ret), WIN32_ERROR(err)
 }
 
-func GetGeoInfoEx(location PWSTR, geoType uint32, geoData PWSTR, geoDataCount int32) (int32, WIN32_ERROR) {
+func GetGeoInfoEx(location PWSTR, geoType SYSGEOTYPE, geoData PWSTR, geoDataCount int32) (int32, WIN32_ERROR) {
 	addr := LazyAddr(&pGetGeoInfoEx, libKernel32, "GetGeoInfoEx")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(location)), uintptr(geoType), uintptr(unsafe.Pointer(geoData)), uintptr(geoDataCount))
 	return int32(ret), WIN32_ERROR(err)
@@ -7023,7 +7056,7 @@ func EnumSystemGeoNames(geoClass uint32, geoEnumProc GEO_ENUMNAMEPROC, data LPAR
 	return BOOL(ret), WIN32_ERROR(err)
 }
 
-func GetUserGeoID(GeoClass uint32) int32 {
+func GetUserGeoID(GeoClass SYSGEOCLASS) int32 {
 	addr := LazyAddr(&pGetUserGeoID, libKernel32, "GetUserGeoID")
 	ret, _, _ := syscall.SyscallN(addr, uintptr(GeoClass))
 	return int32(ret)
@@ -7402,6 +7435,48 @@ func ResolveLocaleName(lpNameToResolve PWSTR, lpLocaleName PWSTR, cchLocaleName 
 	addr := LazyAddr(&pResolveLocaleName, libKernel32, "ResolveLocaleName")
 	ret, _, err := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpNameToResolve)), uintptr(unsafe.Pointer(lpLocaleName)), uintptr(cchLocaleName))
 	return int32(ret), WIN32_ERROR(err)
+}
+
+func GetCalendarSupportedDateRange(Calendar uint32, lpCalMinDateTime *CALDATETIME, lpCalMaxDateTime *CALDATETIME) BOOL {
+	addr := LazyAddr(&pGetCalendarSupportedDateRange, libKernel32, "GetCalendarSupportedDateRange")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(Calendar), uintptr(unsafe.Pointer(lpCalMinDateTime)), uintptr(unsafe.Pointer(lpCalMaxDateTime)))
+	return BOOL(ret)
+}
+
+func GetCalendarDateFormatEx(lpszLocale PWSTR, dwFlags uint32, lpCalDateTime *CALDATETIME, lpFormat PWSTR, lpDateStr PWSTR, cchDate int32) BOOL {
+	addr := LazyAddr(&pGetCalendarDateFormatEx, libKernel32, "GetCalendarDateFormatEx")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpszLocale)), uintptr(dwFlags), uintptr(unsafe.Pointer(lpCalDateTime)), uintptr(unsafe.Pointer(lpFormat)), uintptr(unsafe.Pointer(lpDateStr)), uintptr(cchDate))
+	return BOOL(ret)
+}
+
+func ConvertSystemTimeToCalDateTime(lpSysTime *SYSTEMTIME, calId uint32, lpCalDateTime *CALDATETIME) BOOL {
+	addr := LazyAddr(&pConvertSystemTimeToCalDateTime, libKernel32, "ConvertSystemTimeToCalDateTime")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpSysTime)), uintptr(calId), uintptr(unsafe.Pointer(lpCalDateTime)))
+	return BOOL(ret)
+}
+
+func UpdateCalendarDayOfWeek(lpCalDateTime *CALDATETIME) BOOL {
+	addr := LazyAddr(&pUpdateCalendarDayOfWeek, libKernel32, "UpdateCalendarDayOfWeek")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCalDateTime)))
+	return BOOL(ret)
+}
+
+func AdjustCalendarDate(lpCalDateTime *CALDATETIME, calUnit CALDATETIME_DATEUNIT, amount int32) BOOL {
+	addr := LazyAddr(&pAdjustCalendarDate, libKernel32, "AdjustCalendarDate")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCalDateTime)), uintptr(calUnit), uintptr(amount))
+	return BOOL(ret)
+}
+
+func ConvertCalDateTimeToSystemTime(lpCalDateTime *CALDATETIME, lpSysTime *SYSTEMTIME) BOOL {
+	addr := LazyAddr(&pConvertCalDateTimeToSystemTime, libKernel32, "ConvertCalDateTimeToSystemTime")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(unsafe.Pointer(lpCalDateTime)), uintptr(unsafe.Pointer(lpSysTime)))
+	return BOOL(ret)
+}
+
+func IsCalendarLeapYear(calId uint32, year uint32, era uint32) BOOL {
+	addr := LazyAddr(&pIsCalendarLeapYear, libKernel32, "IsCalendarLeapYear")
+	ret, _, _ := syscall.SyscallN(addr, uintptr(calId), uintptr(year), uintptr(era))
+	return BOOL(ret)
 }
 
 func FindStringOrdinal(dwFindStringOrdinalFlags uint32, lpStringSource PWSTR, cchSource int32, lpStringValue PWSTR, cchValue int32, bIgnoreCase BOOL) (int32, WIN32_ERROR) {

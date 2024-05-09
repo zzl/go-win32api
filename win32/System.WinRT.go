@@ -8,7 +8,6 @@ import (
 type (
 	HSTRING                                = uintptr
 	HSTRING_BUFFER                         = uintptr
-	ROPARAMIIDHANDLE                       = uintptr
 	APARTMENT_SHUTDOWN_REGISTRATION_COOKIE = uintptr
 	RO_REGISTRATION_COOKIE                 = uintptr
 )
@@ -1400,6 +1399,40 @@ func (this *ICoreWindowAdapterInterop) Get_TitleBarClientAdapter(value **IUnknow
 
 func (this *ICoreWindowAdapterInterop) SetWindowClientAdapter(value *IUnknown) HRESULT {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().SetWindowClientAdapter, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(value)))
+	return HRESULT(ret)
+}
+
+// B8A2ACD7-A0F0-40EE-8EE7-C82F59CC5CD4
+var IID_ICoreInputInterop2 = syscall.GUID{0xB8A2ACD7, 0xA0F0, 0x40EE,
+	[8]byte{0x8E, 0xE7, 0xC8, 0x2F, 0x59, 0xCC, 0x5C, 0xD4}}
+
+type ICoreInputInterop2Interface interface {
+	IInspectableInterface
+	Get_WindowHandle(window *HWND) HRESULT
+	ChangeHostingContext(newParentWindow HWND, newViewInstanceId uint32) HRESULT
+}
+
+type ICoreInputInterop2Vtbl struct {
+	IInspectableVtbl
+	Get_WindowHandle     uintptr
+	ChangeHostingContext uintptr
+}
+
+type ICoreInputInterop2 struct {
+	IInspectable
+}
+
+func (this *ICoreInputInterop2) Vtbl() *ICoreInputInterop2Vtbl {
+	return (*ICoreInputInterop2Vtbl)(unsafe.Pointer(this.IUnknown.LpVtbl))
+}
+
+func (this *ICoreInputInterop2) Get_WindowHandle(window *HWND) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().Get_WindowHandle, uintptr(unsafe.Pointer(this)), uintptr(unsafe.Pointer(window)))
+	return HRESULT(ret)
+}
+
+func (this *ICoreInputInterop2) ChangeHostingContext(newParentWindow HWND, newViewInstanceId uint32) HRESULT {
+	ret, _, _ := syscall.SyscallN(this.Vtbl().ChangeHostingContext, uintptr(unsafe.Pointer(this)), newParentWindow, uintptr(newViewInstanceId))
 	return HRESULT(ret)
 }
 

@@ -1485,7 +1485,7 @@ const (
 )
 
 // enum
-type UIA_PATTERN_ID uint32
+type UIA_PATTERN_ID int32
 
 const (
 	UIA_InvokePatternId            UIA_PATTERN_ID = 10000
@@ -1569,7 +1569,7 @@ const (
 )
 
 // enum
-type UIA_PROPERTY_ID uint32
+type UIA_PROPERTY_ID int32
 
 const (
 	UIA_RuntimeIdPropertyId                           UIA_PROPERTY_ID = 30000
@@ -1750,7 +1750,7 @@ const (
 )
 
 // enum
-type UIA_TEXTATTRIBUTE_ID uint32
+type UIA_TEXTATTRIBUTE_ID int32
 
 const (
 	UIA_AnimationStyleAttributeId          UIA_TEXTATTRIBUTE_ID = 40000
@@ -1800,7 +1800,7 @@ const (
 )
 
 // enum
-type UIA_CONTROLTYPE_ID uint32
+type UIA_CONTROLTYPE_ID int32
 
 const (
 	UIA_ButtonControlTypeId       UIA_CONTROLTYPE_ID = 50000
@@ -1847,7 +1847,7 @@ const (
 )
 
 // enum
-type UIA_ANNOTATIONTYPE uint32
+type UIA_ANNOTATIONTYPE int32
 
 const (
 	AnnotationType_Unknown                UIA_ANNOTATIONTYPE = 60000
@@ -1878,7 +1878,7 @@ const (
 )
 
 // enum
-type UIA_STYLE_ID uint32
+type UIA_STYLE_ID int32
 
 const (
 	StyleId_Custom       UIA_STYLE_ID = 70000
@@ -1901,7 +1901,7 @@ const (
 )
 
 // enum
-type UIA_LANDMARKTYPE_ID uint32
+type UIA_LANDMARKTYPE_ID int32
 
 const (
 	UIA_CustomLandmarkTypeId     UIA_LANDMARKTYPE_ID = 80000
@@ -1912,7 +1912,7 @@ const (
 )
 
 // enum
-type UIA_HEADINGLEVEL_ID uint32
+type UIA_HEADINGLEVEL_ID int32
 
 const (
 	HeadingLevel_None UIA_HEADINGLEVEL_ID = 80050
@@ -1928,14 +1928,14 @@ const (
 )
 
 // enum
-type UIA_CHANGE_ID uint32
+type UIA_CHANGE_ID int32
 
 const (
 	UIA_SummaryChangeId UIA_CHANGE_ID = 90000
 )
 
 // enum
-type UIA_METADATA_ID uint32
+type UIA_METADATA_ID int32
 
 const (
 	UIA_SayAsInterpretAsMetadataId UIA_METADATA_ID = 100000

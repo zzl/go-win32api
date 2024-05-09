@@ -170,6 +170,8 @@ const (
 	EM_GETIMEPROPERTY                 uint32  = 0x4f4
 	EM_GETQUERYRTFOBJ                 uint32  = 0x50d
 	EM_SETQUERYRTFOBJ                 uint32  = 0x50e
+	EM_SETQUERYCONVERTOLELINKCALLBACK uint32  = 0x593
+	EM_SETDISABLEOLELINKCONVERSION    uint32  = 0x594
 	EPR_0                             uint32  = 0x0
 	EPR_270                           uint32  = 0x1
 	EPR_180                           uint32  = 0x2
@@ -359,31 +361,6 @@ const (
 	MAX_TAB_STOPS                     uint32  = 0x20
 	LDefaultTab                       uint32  = 0x2d0
 	MAX_TABLE_CELLS                   uint32  = 0x3f
-	PFM_SPACEBEFORE                   uint32  = 0x40
-	PFM_SPACEAFTER                    uint32  = 0x80
-	PFM_LINESPACING                   uint32  = 0x100
-	PFM_STYLE                         uint32  = 0x400
-	PFM_BORDER                        uint32  = 0x800
-	PFM_SHADING                       uint32  = 0x1000
-	PFM_NUMBERINGSTYLE                uint32  = 0x2000
-	PFM_NUMBERINGTAB                  uint32  = 0x4000
-	PFM_NUMBERINGSTART                uint32  = 0x8000
-	PFM_KEEP                          uint32  = 0x20000
-	PFM_KEEPNEXT                      uint32  = 0x40000
-	PFM_PAGEBREAKBEFORE               uint32  = 0x80000
-	PFM_NOLINENUMBER                  uint32  = 0x100000
-	PFM_NOWIDOWCONTROL                uint32  = 0x200000
-	PFM_DONOTHYPHEN                   uint32  = 0x400000
-	PFM_SIDEBYSIDE                    uint32  = 0x800000
-	PFM_COLLAPSED                     uint32  = 0x1000000
-	PFM_OUTLINELEVEL                  uint32  = 0x2000000
-	PFM_BOX                           uint32  = 0x4000000
-	PFM_RESERVED2                     uint32  = 0x8000000
-	PFM_TABLEROWDELIMITER             uint32  = 0x10000000
-	PFM_TEXTWRAPPINGBREAK             uint32  = 0x20000000
-	PFM_TABLE                         uint32  = 0x40000000
-	PFA_JUSTIFY                       uint32  = 0x4
-	PFA_FULL_INTERWORD                uint32  = 0x4
 	GCMF_GRIPPER                      uint32  = 0x1
 	GCMF_SPELLING                     uint32  = 0x2
 	GCMF_TOUCHMENU                    uint32  = 0x4000
@@ -412,14 +389,7 @@ const (
 	BOE_FORCERECALC                   uint32  = 0x20
 	BOE_LEGACYBIDICLASS               uint32  = 0x40
 	BOE_UNICODEBIDI                   uint32  = 0x80
-	FR_MATCHDIAC                      uint32  = 0x20000000
-	FR_MATCHKASHIDA                   uint32  = 0x40000000
-	FR_MATCHALEFHAMZA                 uint32  = 0x80000000
 	RICHEDIT60_CLASS                  string  = "RICHEDIT60W"
-	PFA_FULL_NEWSPAPER                uint32  = 0x5
-	PFA_FULL_INTERLETTER              uint32  = 0x6
-	PFA_FULL_SCALED                   uint32  = 0x7
-	PFA_FULL_GLYPHS                   uint32  = 0x8
 	AURL_ENABLEEA                     uint32  = 0x1
 	GCM_TOUCHMENU                     uint32  = 0x4000
 	GCM_MOUSEMENU                     uint32  = 0x2000
@@ -548,14 +518,40 @@ const (
 type PARAFORMAT_MASK uint32
 
 const (
-	PFM_ALIGNMENT    PARAFORMAT_MASK = 8
-	PFM_NUMBERING    PARAFORMAT_MASK = 32
-	PFM_OFFSET       PARAFORMAT_MASK = 4
-	PFM_OFFSETINDENT PARAFORMAT_MASK = 2147483648
-	PFM_RIGHTINDENT  PARAFORMAT_MASK = 2
-	PFM_RTLPARA      PARAFORMAT_MASK = 65536
-	PFM_STARTINDENT  PARAFORMAT_MASK = 1
-	PFM_TABSTOPS     PARAFORMAT_MASK = 16
+	PFM_STARTINDENT       PARAFORMAT_MASK = 1
+	PFM_RIGHTINDENT       PARAFORMAT_MASK = 2
+	PFM_OFFSET            PARAFORMAT_MASK = 4
+	PFM_ALIGNMENT         PARAFORMAT_MASK = 8
+	PFM_TABSTOPS          PARAFORMAT_MASK = 16
+	PFM_NUMBERING         PARAFORMAT_MASK = 32
+	PFM_OFFSETINDENT      PARAFORMAT_MASK = 2147483648
+	PFM_SPACEBEFORE       PARAFORMAT_MASK = 64
+	PFM_SPACEAFTER        PARAFORMAT_MASK = 128
+	PFM_LINESPACING       PARAFORMAT_MASK = 256
+	PFM_STYLE             PARAFORMAT_MASK = 1024
+	PFM_BORDER            PARAFORMAT_MASK = 2048
+	PFM_SHADING           PARAFORMAT_MASK = 4096
+	PFM_NUMBERINGSTYLE    PARAFORMAT_MASK = 8192
+	PFM_NUMBERINGTAB      PARAFORMAT_MASK = 16384
+	PFM_NUMBERINGSTART    PARAFORMAT_MASK = 32768
+	PFM_RTLPARA           PARAFORMAT_MASK = 65536
+	PFM_KEEP              PARAFORMAT_MASK = 131072
+	PFM_KEEPNEXT          PARAFORMAT_MASK = 262144
+	PFM_PAGEBREAKBEFORE   PARAFORMAT_MASK = 524288
+	PFM_NOLINENUMBER      PARAFORMAT_MASK = 1048576
+	PFM_NOWIDOWCONTROL    PARAFORMAT_MASK = 2097152
+	PFM_DONOTHYPHEN       PARAFORMAT_MASK = 4194304
+	PFM_SIDEBYSIDE        PARAFORMAT_MASK = 8388608
+	PFM_COLLAPSED         PARAFORMAT_MASK = 16777216
+	PFM_OUTLINELEVEL      PARAFORMAT_MASK = 33554432
+	PFM_BOX               PARAFORMAT_MASK = 67108864
+	PFM_RESERVED2         PARAFORMAT_MASK = 134217728
+	PFM_TABLEROWDELIMITER PARAFORMAT_MASK = 268435456
+	PFM_TEXTWRAPPINGBREAK PARAFORMAT_MASK = 536870912
+	PFM_TABLE             PARAFORMAT_MASK = 1073741824
+	PFM_ALL               PARAFORMAT_MASK = 2147549247
+	PFM_EFFECTS           PARAFORMAT_MASK = 1358888960
+	PFM_ALL2              PARAFORMAT_MASK = 3506437631
 )
 
 // enum
@@ -697,9 +693,15 @@ const (
 type PARAFORMAT_ALIGNMENT uint16
 
 const (
-	PFA_CENTER PARAFORMAT_ALIGNMENT = 3
-	PFA_LEFT   PARAFORMAT_ALIGNMENT = 1
-	PFA_RIGHT  PARAFORMAT_ALIGNMENT = 2
+	PFA_LEFT             PARAFORMAT_ALIGNMENT = 1
+	PFA_RIGHT            PARAFORMAT_ALIGNMENT = 2
+	PFA_CENTER           PARAFORMAT_ALIGNMENT = 3
+	PFA_JUSTIFY          PARAFORMAT_ALIGNMENT = 4
+	PFA_FULL_INTERWORD   PARAFORMAT_ALIGNMENT = 4
+	PFA_FULL_NEWSPAPER   PARAFORMAT_ALIGNMENT = 5
+	PFA_FULL_INTERLETTER PARAFORMAT_ALIGNMENT = 6
+	PFA_FULL_SCALED      PARAFORMAT_ALIGNMENT = 7
+	PFA_FULL_GLYPHS      PARAFORMAT_ALIGNMENT = 8
 )
 
 // enum
@@ -1626,7 +1628,7 @@ type GETTEXTEX struct {
 	Flags         GETTEXTEX_FLAGS
 	Codepage      uint32
 	LpDefaultChar PSTR
-	LpUsedDefChar *int32
+	LpUsedDefChar *BOOL
 }
 
 type HYPHENATEINFO struct {
@@ -1856,7 +1858,7 @@ type HYPHRESULT struct {
 }
 
 type CHANGENOTIFY struct {
-	DwChangeType uint32
+	DwChangeType CHANGETYPE
 	PvCookieData unsafe.Pointer
 }
 
@@ -2100,8 +2102,8 @@ type ITextHostInterface interface {
 	OnTxParaFormatChange(pPF *PARAFORMAT) HRESULT
 	TxGetPropertyBits(dwMask uint32, pdwBits *uint32) HRESULT
 	TxNotify(iNotify uint32, pv unsafe.Pointer) HRESULT
-	TxImmGetContext() HIMC
-	TxImmReleaseContext(himc HIMC)
+	TxImmGetContext() unsafe.Pointer
+	TxImmReleaseContext(himc unsafe.Pointer)
 	TxGetSelectionBarWidth(lSelBarWidth *int32) HRESULT
 }
 
@@ -2329,13 +2331,13 @@ func (this *ITextHost) TxNotify(iNotify uint32, pv unsafe.Pointer) HRESULT {
 	return HRESULT(ret)
 }
 
-func (this *ITextHost) TxImmGetContext() HIMC {
+func (this *ITextHost) TxImmGetContext() unsafe.Pointer {
 	ret, _, _ := syscall.SyscallN(this.Vtbl().TxImmGetContext, uintptr(unsafe.Pointer(this)))
-	return ret
+	return (unsafe.Pointer)(ret)
 }
 
-func (this *ITextHost) TxImmReleaseContext(himc HIMC) {
-	_, _, _ = syscall.SyscallN(this.Vtbl().TxImmReleaseContext, uintptr(unsafe.Pointer(this)), himc)
+func (this *ITextHost) TxImmReleaseContext(himc unsafe.Pointer) {
+	_, _, _ = syscall.SyscallN(this.Vtbl().TxImmReleaseContext, uintptr(unsafe.Pointer(this)), uintptr(himc))
 }
 
 func (this *ITextHost) TxGetSelectionBarWidth(lSelBarWidth *int32) HRESULT {

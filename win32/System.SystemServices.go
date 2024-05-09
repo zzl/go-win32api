@@ -19,7 +19,6 @@ const (
 	UCSCHAR_INVALID_CHARACTER                                    uint32 = 0xffffffff
 	MIN_UCSCHAR                                                  uint32 = 0x0
 	MAX_UCSCHAR                                                  uint32 = 0x10ffff
-	ALL_PROCESSOR_GROUPS                                         uint32 = 0xffff
 	MAXIMUM_PROC_PER_GROUP                                       uint32 = 0x40
 	MAXIMUM_PROCESSORS                                           uint32 = 0x40
 	APPLICATION_ERROR_MASK                                       uint32 = 0x20000000
@@ -923,10 +922,6 @@ const (
 	DYNAMIC_EH_CONTINUATION_TARGET_PROCESSED                     uint32 = 0x2
 	DYNAMIC_ENFORCED_ADDRESS_RANGE_ADD                           uint32 = 0x1
 	DYNAMIC_ENFORCED_ADDRESS_RANGE_PROCESSED                     uint32 = 0x2
-	QUOTA_LIMITS_HARDWS_MIN_ENABLE                               uint32 = 0x1
-	QUOTA_LIMITS_HARDWS_MIN_DISABLE                              uint32 = 0x2
-	QUOTA_LIMITS_HARDWS_MAX_ENABLE                               uint32 = 0x4
-	QUOTA_LIMITS_HARDWS_MAX_DISABLE                              uint32 = 0x8
 	QUOTA_LIMITS_USE_DEFAULT_LIMITS                              uint32 = 0x10
 	MAX_HW_COUNTERS                                              uint32 = 0x10
 	THREAD_PROFILING_FLAG_DISPATCH                               uint32 = 0x1
@@ -979,24 +974,6 @@ const (
 	PROCESSOR_ARM920                                             uint32 = 0x920
 	PROCESSOR_ARM_7TDMI                                          uint32 = 0x11171
 	PROCESSOR_OPTIL                                              uint32 = 0x494f
-	PF_PPC_MOVEMEM_64BIT_OK                                      uint32 = 0x4
-	PF_ALPHA_BYTE_INSTRUCTIONS                                   uint32 = 0x5
-	PF_SSE_DAZ_MODE_AVAILABLE                                    uint32 = 0xb
-	PF_ARM_NEON_INSTRUCTIONS_AVAILABLE                           uint32 = 0x13
-	PF_RDRAND_INSTRUCTION_AVAILABLE                              uint32 = 0x1c
-	PF_RDTSCP_INSTRUCTION_AVAILABLE                              uint32 = 0x20
-	PF_RDPID_INSTRUCTION_AVAILABLE                               uint32 = 0x21
-	PF_MONITORX_INSTRUCTION_AVAILABLE                            uint32 = 0x23
-	PF_SSSE3_INSTRUCTIONS_AVAILABLE                              uint32 = 0x24
-	PF_SSE4_1_INSTRUCTIONS_AVAILABLE                             uint32 = 0x25
-	PF_SSE4_2_INSTRUCTIONS_AVAILABLE                             uint32 = 0x26
-	PF_AVX_INSTRUCTIONS_AVAILABLE                                uint32 = 0x27
-	PF_AVX2_INSTRUCTIONS_AVAILABLE                               uint32 = 0x28
-	PF_AVX512F_INSTRUCTIONS_AVAILABLE                            uint32 = 0x29
-	PF_ERMS_AVAILABLE                                            uint32 = 0x2a
-	PF_ARM_V82_DP_INSTRUCTIONS_AVAILABLE                         uint32 = 0x2b
-	PF_ARM_V83_JSCVT_INSTRUCTIONS_AVAILABLE                      uint32 = 0x2c
-	PF_ARM_V83_LRCPC_INSTRUCTIONS_AVAILABLE                      uint32 = 0x2d
 	XSTATE_LEGACY_FLOATING_POINT                                 uint32 = 0x0
 	XSTATE_LEGACY_SSE                                            uint32 = 0x1
 	XSTATE_GSSE                                                  uint32 = 0x2
@@ -1106,6 +1083,7 @@ const (
 	IO_REPARSE_TAG_RESERVED_ONE                                  uint32 = 0x1
 	IO_REPARSE_TAG_RESERVED_TWO                                  uint32 = 0x2
 	IO_REPARSE_TAG_RESERVED_RANGE                                uint32 = 0x2
+	IO_REPARSE_TAG_RESERVED_INVALID                              int32  = -1073709056
 	IO_REPARSE_TAG_MOUNT_POINT                                   uint32 = 0xa0000003
 	IO_REPARSE_TAG_HSM                                           uint32 = 0xc0000004
 	IO_REPARSE_TAG_HSM2                                          uint32 = 0x80000006
@@ -1777,10 +1755,6 @@ const (
 	IMAGE_SEPARATE_DEBUG_MISMATCH                                uint32 = 0x8000
 	IMPORT_OBJECT_HDR_SIG2                                       uint32 = 0xffff
 	UNWIND_HISTORY_TABLE_SIZE                                    uint32 = 0xc
-	RTL_RUN_ONCE_CHECK_ONLY                                      uint32 = 0x1
-	RTL_RUN_ONCE_ASYNC                                           uint32 = 0x2
-	RTL_RUN_ONCE_INIT_FAILED                                     uint32 = 0x4
-	RTL_RUN_ONCE_CTX_RESERVED_BITS                               uint32 = 0x2
 	FAST_FAIL_LEGACY_GS_VIOLATION                                uint32 = 0x0
 	FAST_FAIL_VTGUARD_CHECK_FAILURE                              uint32 = 0x1
 	FAST_FAIL_STACK_COOKIE_CHECK_FAILURE                         uint32 = 0x2
@@ -1888,14 +1862,6 @@ const (
 	IMAGE_POLICY_METADATA_VERSION                                uint32 = 0x1
 	IMAGE_POLICY_SECTION_NAME                                    string = ".tPolicy"
 	RTL_VIRTUAL_UNWIND2_VALIDATE_PAC                             uint32 = 0x1
-	RTL_CRITICAL_SECTION_FLAG_NO_DEBUG_INFO                      uint32 = 0x1000000
-	RTL_CRITICAL_SECTION_FLAG_DYNAMIC_SPIN                       uint32 = 0x2000000
-	RTL_CRITICAL_SECTION_FLAG_STATIC_INIT                        uint32 = 0x4000000
-	RTL_CRITICAL_SECTION_FLAG_RESOURCE_TYPE                      uint32 = 0x8000000
-	RTL_CRITICAL_SECTION_FLAG_FORCE_DEBUG_INFO                   uint32 = 0x10000000
-	RTL_CRITICAL_SECTION_ALL_FLAG_BITS                           uint32 = 0xff000000
-	RTL_CRITICAL_SECTION_DEBUG_FLAG_STATIC_INIT                  uint32 = 0x1
-	RTL_CONDITION_VARIABLE_LOCKMODE_SHARED                       uint32 = 0x1
 	HEAP_OPTIMIZE_RESOURCES_CURRENT_VERSION                      uint32 = 0x1
 	WT_EXECUTEINUITHREAD                                         uint32 = 0x2
 	WT_EXECUTEINPERSISTENTIOTHREAD                               uint32 = 0x40
@@ -2032,6 +1998,7 @@ const (
 	WDT_INPROC_CALL                                              uint32 = 0x48746457
 	WDT_REMOTE_CALL                                              uint32 = 0x52746457
 	WDT_INPROC64_CALL                                            uint32 = 0x50746457
+	DECIMAL_NEG                                                  byte   = 0x80
 	PROCESS_HEAP_REGION                                          uint32 = 0x1
 	PROCESS_HEAP_UNCOMMITTED_RANGE                               uint32 = 0x2
 	PROCESS_HEAP_ENTRY_BUSY                                      uint32 = 0x4
@@ -2210,11 +2177,17 @@ var (
 	GUID_STANDBY_RESET_PERCENT = syscall.GUID{0x49CB11A5, 0x56E2, 0x4AFB,
 		[8]byte{0x9D, 0x38, 0x3D, 0xF4, 0x78, 0x72, 0xE2, 0x1B}}
 
-	GUID_HUPR_ADAPTIVE_DISPLAY_TIMEOUT = syscall.GUID{0x0A7D6AB6, 0xAC83, 0x4AD1,
+	GUID_HUPR_ADAPTIVE_AWAY_DISPLAY_TIMEOUT = syscall.GUID{0x0A7D6AB6, 0xAC83, 0x4AD1,
 		[8]byte{0x82, 0x82, 0xEC, 0xA5, 0xB5, 0x83, 0x08, 0xF3}}
 
-	GUID_HUPR_ADAPTIVE_DIM_TIMEOUT = syscall.GUID{0xCF8C6097, 0x12B8, 0x4279,
+	GUID_HUPR_ADAPTIVE_INATTENTIVE_DIM_TIMEOUT = syscall.GUID{0xCF8C6097, 0x12B8, 0x4279,
 		[8]byte{0xBB, 0xDD, 0x44, 0x60, 0x1E, 0xE5, 0x20, 0x9D}}
+
+	GUID_HUPR_ADAPTIVE_INATTENTIVE_DISPLAY_TIMEOUT = syscall.GUID{0xEE16691E, 0x6AB3, 0x4619,
+		[8]byte{0xBB, 0x48, 0x1C, 0x77, 0xC9, 0x35, 0x7E, 0x5A}}
+
+	GUID_HUPR_ADAPTIVE_AWAY_DIM_TIMEOUT = syscall.GUID{0xA79C8E0E, 0xF271, 0x482D,
+		[8]byte{0x8F, 0x8A, 0x5D, 0xB9, 0xA1, 0x83, 0x12, 0xDE}}
 
 	GUID_ALLOW_STANDBY_STATES = syscall.GUID{0xABFC2519, 0x3608, 0x4C2A,
 		[8]byte{0x94, 0xEA, 0x17, 0x1B, 0x0E, 0xD5, 0x46, 0xAB}}
@@ -2689,15 +2662,6 @@ var (
 
 	GUID_SPR_ACTIVE_SESSION_CHANGE = syscall.GUID{0x0E24CE38, 0xC393, 0x4742,
 		[8]byte{0xBD, 0xB1, 0x74, 0x4F, 0x4B, 0x9E, 0xE0, 0x8E}}
-
-	GUID_DEVINTERFACE_DMR = syscall.GUID{0xD0875FB4, 0x2196, 0x4C7A,
-		[8]byte{0xA6, 0x3D, 0xE4, 0x16, 0xAD, 0xDD, 0x60, 0xA1}}
-
-	GUID_DEVINTERFACE_DMP = syscall.GUID{0x25B4E268, 0x2A05, 0x496E,
-		[8]byte{0x80, 0x3B, 0x26, 0x68, 0x37, 0xFB, 0xDA, 0x4B}}
-
-	GUID_DEVINTERFACE_DMS = syscall.GUID{0xC96037AE, 0xA558, 0x4470,
-		[8]byte{0xB4, 0x32, 0x11, 0x5A, 0x31, 0xB8, 0x55, 0x53}}
 )
 
 // enums
@@ -3396,7 +3360,7 @@ func (this *UserCLIPFORMAT_U) PwszNameVal() PWSTR {
 
 type UserCLIPFORMAT struct {
 	FContext int32
-	U        UserCLIPFORMAT_U
+	UserCLIPFORMAT_U
 }
 
 type GDI_NONREMOTE_U struct {
@@ -3421,7 +3385,7 @@ func (this *GDI_NONREMOTE_U) HRemoteVal() *DWORD_BLOB {
 
 type GDI_NONREMOTE struct {
 	FContext int32
-	U        GDI_NONREMOTE_U
+	GDI_NONREMOTE_U
 }
 
 type UserHGLOBAL_U struct {
@@ -3454,7 +3418,7 @@ func (this *UserHGLOBAL_U) HInproc64Val() int64 {
 
 type UserHGLOBAL struct {
 	FContext int32
-	U        UserHGLOBAL_U
+	UserHGLOBAL_U
 }
 
 type UserHMETAFILE_U struct {
@@ -3487,7 +3451,7 @@ func (this *UserHMETAFILE_U) HInproc64Val() int64 {
 
 type UserHMETAFILE struct {
 	FContext int32
-	U        UserHMETAFILE_U
+	UserHMETAFILE_U
 }
 
 type RemoteMETAFILEPICT struct {
@@ -3527,7 +3491,7 @@ func (this *UserHMETAFILEPICT_U) HInproc64Val() int64 {
 
 type UserHMETAFILEPICT struct {
 	FContext int32
-	U        UserHMETAFILEPICT_U
+	UserHMETAFILEPICT_U
 }
 
 type UserHENHMETAFILE_U struct {
@@ -3560,7 +3524,7 @@ func (this *UserHENHMETAFILE_U) HInproc64Val() int64 {
 
 type UserHENHMETAFILE struct {
 	FContext int32
-	U        UserHENHMETAFILE_U
+	UserHENHMETAFILE_U
 }
 
 type UserBITMAP struct {
@@ -3604,7 +3568,7 @@ func (this *UserHBITMAP_U) HInproc64Val() int64 {
 
 type UserHBITMAP struct {
 	FContext int32
-	U        UserHBITMAP_U
+	UserHBITMAP_U
 }
 
 type UserHPALETTE_U struct {
@@ -3637,7 +3601,7 @@ func (this *UserHPALETTE_U) HInproc64Val() int64 {
 
 type UserHPALETTE struct {
 	FContext int32
-	U        UserHPALETTE_U
+	UserHPALETTE_U
 }
 
 type RemotableHandle_U struct {
@@ -3662,7 +3626,7 @@ func (this *RemotableHandle_U) HRemoteVal() int32 {
 
 type RemotableHandle struct {
 	FContext int32
-	U        RemotableHandle_U
+	RemotableHandle_U
 }
 
 type REDBOOK_DIGITAL_AUDIO_EXTRACTION_INFO struct {
@@ -4449,6 +4413,34 @@ func (this *PROCESS_MITIGATION_REDIRECTION_TRUST_POLICY_Anonymous) AnonymousVal(
 
 type PROCESS_MITIGATION_REDIRECTION_TRUST_POLICY struct {
 	PROCESS_MITIGATION_REDIRECTION_TRUST_POLICY_Anonymous
+}
+
+type PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous_Anonymous struct {
+	Bitfield_ uint32
+}
+
+type PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous struct {
+	PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous_Anonymous
+}
+
+func (this *PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous) Flags() *uint32 {
+	return (*uint32)(unsafe.Pointer(this))
+}
+
+func (this *PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous) FlagsVal() uint32 {
+	return *(*uint32)(unsafe.Pointer(this))
+}
+
+func (this *PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous) Anonymous() *PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous_Anonymous {
+	return (*PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous_Anonymous)(unsafe.Pointer(this))
+}
+
+func (this *PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous) AnonymousVal() PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous_Anonymous {
+	return *(*PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous_Anonymous)(unsafe.Pointer(this))
+}
+
+type PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY struct {
+	PROCESS_MITIGATION_ACTIVATION_CONTEXT_TRUST_POLICY_Anonymous
 }
 
 type SILOOBJECT_BASIC_INFORMATION struct {
@@ -5764,7 +5756,7 @@ func (this *IMAGE_POLICY_ENTRY_U) UnicodeStringValueVal() PWSTR {
 type IMAGE_POLICY_ENTRY struct {
 	Type     IMAGE_POLICY_ENTRY_TYPE
 	PolicyId IMAGE_POLICY_ID
-	U        IMAGE_POLICY_ENTRY_U
+	IMAGE_POLICY_ENTRY_U
 }
 
 type IMAGE_POLICY_METADATA struct {
